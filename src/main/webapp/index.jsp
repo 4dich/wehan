@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>인덱스다</h1>
-	zjalt
+	<h1>인덱스다/현희 테스트ㅎ</h1>
 </body>
 </html>
