@@ -10,21 +10,21 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
 	<!-- Favicon -->
-	<link href="../resources/img/favicon.ico" rel="shortcut icon"/>
+	<link href="resources/images/favicon.ico" rel="shortcut icon"/>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,900&display=swap" rel="stylesheet">
 
 	<!-- Stylesheets -->
-	<link rel="stylesheet" href="../resources/css/bootstrap.min.css"/>
-	<link rel="stylesheet" href="../resources/css/font-awesome.min.css"/>
-	<link rel="stylesheet" href="../resources/css/magnific-popup.css"/>
-	<link rel="stylesheet" href="../resources/css/owl.carousel.min.css"/>
+	<link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="resources/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="resources/css/magnific-popup.css"/>
+	<link rel="stylesheet" href="resources/css/owl.carousel.min.css"/>
 
 	<!-- Main Stylesheets -->
-    <link rel="stylesheet" href="../resources/css/follow.css"/>
-    <link rel="stylesheet" href="../resources/css/style.css"/>
+    <link rel="stylesheet" href="resources/css/follow.css"/>
+    <link rel="stylesheet" href="resources/css/style.css"/>
 
 
 	<!--[if lt IE 9]>
@@ -79,7 +79,7 @@
 					<div>
 						<input type="textarea" style="width: 300px; height: 50px; border-radius: 3px; border:3px solid #242424" placeholder="유저를 검색해주세요">
 						<a href="#" class="site-btn2">
-						<img src="../resources/img/main/search.png" alt=""></a>
+						<img src="resources/images/main/search.png" alt=""></a>
 					</div>
 					<br><br>
 
@@ -178,7 +178,7 @@
                         <div class="follow">
                             <div class="followArea">
                                 <div class="followUserInfo">
-                                    <img src="../resources/img/fid/2.png" alt="">
+                                    <img src="resources/images/fid/2.png" alt="">
                                     &nbsp;&nbsp; 현스델리
                                 </div>
                                 <a href="mypageProfile.html">
@@ -197,7 +197,7 @@
                         <div class="follow">
                             <div class="followArea">
                                 <div class="followUserInfo">
-                                    <img src="../resources/img/fid/2.png" alt="">
+                                    <img src="resources/images/fid/2.png" alt="">
                                     &nbsp;&nbsp; 현스델리
                                 </div>
                                 <div class="followButton">
@@ -209,7 +209,7 @@
                         <div class="follow">
                             <div class="followArea">
                                 <div class="followUserInfo">
-                                    <img src="../resources/img/fid/2.png" alt="">
+                                    <img src="resources/images/fid/2.png" alt="">
                                     &nbsp;&nbsp; 현스델리
                                 </div>
                                 <div class="followButton">
@@ -221,7 +221,7 @@
                         <div class="follow">
                             <div class="followArea">
                                 <div class="followUserInfo">
-                                    <img src="../resources/img/fid/2.png" alt="">
+                                    <img src="resources/images/fid/2.png" alt="">
                                     &nbsp;&nbsp; 현스델리
                                 </div>
                                 <div class="followButton">
@@ -233,7 +233,7 @@
                         <div class="follow">
                             <div class="followArea">
                                 <div class="followUserInfo">
-                                    <img src="../resources/img/fid/2.png" alt="">
+                                    <img src="resources/images/fid/2.png" alt="">
                                     &nbsp;&nbsp; 현스델리
                                 </div>
                                 <div class="followButton">
@@ -245,7 +245,7 @@
                         <div class="follow">
                             <div class="followArea">
                                 <div class="followUserInfo">
-                                    <img src="../resources/img/fid/2.png" alt="">
+                                    <img src="resources/images/fid/2.png" alt="">
                                     &nbsp;&nbsp; 현스델리
                                 </div>
                                 <div class="followButton">
@@ -257,7 +257,7 @@
                         <div class="follow">
                             <div class="followArea">
                                 <div class="followUserInfo">
-                                    <img src="../resources/img/fid/2.png" alt="">
+                                    <img src="resources/images/fid/2.png" alt="">
                                     &nbsp;&nbsp; 현스델리
                                 </div>
                                 <div class="followButton">
@@ -269,7 +269,7 @@
                         <div class="follow">
                             <div class="followArea">
                                 <div class="followUserInfo">
-                                    <img src="../resources/img/fid/2.png" alt="">
+                                    <img src="resources/images/fid/2.png" alt="">
                                     &nbsp;&nbsp; 현스델리
                                 </div>
                                 <div class="followButton">
@@ -281,7 +281,7 @@
                         <div class="follow">
                             <div class="followArea">
                                 <div class="followUserInfo">
-                                    <img src="../resources/img/fid/2.png" alt="">
+                                    <img src="resources/images/fid/2.png" alt="">
                                     &nbsp;&nbsp; 현스델리
                                 </div>
                                 <div class="followButton">
@@ -293,7 +293,7 @@
                         <div class="follow">
                             <div class="followArea">
                                 <div class="followUserInfo">
-                                    <img src="../resources/img/fid/2.png" alt="">
+                                    <img src="resources/images/fid/2.png" alt="">
                                     &nbsp;&nbsp; 현스델리
                                 </div>
                                 <div class="followButton">
@@ -305,7 +305,7 @@
                         <div class="follow">
                             <div class="followArea">
                                 <div class="followUserInfo">
-                                    <img src="../resources/img/fid/2.png" alt="">
+                                    <img src="resources/images/fid/2.png" alt="">
                                     &nbsp;&nbsp; 현스델리
                                 </div>
                                 <div class="followButton">
@@ -317,7 +317,7 @@
                         <div class="follow">
                             <div class="followArea">
                                 <div class="followUserInfo">
-                                    <img src="../resources/img/fid/2.png" alt="">
+                                    <img src="resources/images/fid/2.png" alt="">
                                     &nbsp;&nbsp; 현스델리
                                 </div>
                                 <div class="followButton">
@@ -329,7 +329,7 @@
                         <div class="follow">
                             <div class="followArea">
                                 <div class="followUserInfo">
-                                    <img src="../resources/img/fid/2.png" alt="">
+                                    <img src="resources/images/fid/2.png" alt="">
                                     &nbsp;&nbsp; 현스델리
                                 </div>
                                 <div class="followButton">
@@ -341,7 +341,7 @@
                         <div class="follow">
                             <div class="followArea">
                                 <div class="followUserInfo">
-                                    <img src="../resources/img/fid/2.png" alt="">
+                                    <img src="resources/images/fid/2.png" alt="">
                                     &nbsp;&nbsp; 현스델리
                                 </div>
                                 <div class="followButton">
@@ -353,7 +353,7 @@
                         <div class="follow">
                             <div class="followArea">
                                 <div class="followUserInfo">
-                                    <img src="../resources/img/fid/2.png" alt="">
+                                    <img src="resources/images/fid/2.png" alt="">
                                     &nbsp;&nbsp; 현스델리
                                 </div>
                                 <div class="followButton">
@@ -365,7 +365,7 @@
                         <div class="follow">
                             <div class="followArea">
                                 <div class="followUserInfo">
-                                    <img src="../resources/img/fid/2.png" alt="">
+                                    <img src="resources/images/fid/2.png" alt="">
                                     &nbsp;&nbsp; 현스델리
                                 </div>
                                 <div class="followButton">
@@ -377,7 +377,7 @@
                         <div class="follow">
                             <div class="followArea">
                                 <div class="followUserInfo">
-                                    <img src="../resources/img/fid/2.png" alt="">
+                                    <img src="resources/images/fid/2.png" alt="">
                                     &nbsp;&nbsp; 현스델리
                                 </div>
                                 <div class="followButton">
@@ -389,7 +389,7 @@
                         <div class="follow">
                             <div class="followArea">
                                 <div class="followUserInfo">
-                                    <img src="../resources/img/fid/2.png" alt="">
+                                    <img src="resources/images/fid/2.png" alt="">
                                     &nbsp;&nbsp; 현스델리
                                 </div>
                                 <div class="followButton">
@@ -401,7 +401,7 @@
                         <div class="follow">
                             <div class="followArea">
                                 <div class="followUserInfo">
-                                    <img src="../resources/img/fid/2.png" alt="">
+                                    <img src="resources/images/fid/2.png" alt="">
                                     &nbsp;&nbsp; 현스델리
                                 </div>
                                 <div class="followButton">
@@ -413,7 +413,7 @@
                         <div class="follow">
                             <div class="followArea">
                                 <div class="followUserInfo">
-                                    <img src="../resources/img/fid/2.png" alt="">
+                                    <img src="resources/images/fid/2.png" alt="">
                                     &nbsp;&nbsp; 현스델리
                                 </div>
                                 <div class="followButton">
@@ -425,7 +425,7 @@
                         <div class="follow">
                             <div class="followArea">
                                 <div class="followUserInfo">
-                                    <img src="../resources/img/fid/2.png" alt="">
+                                    <img src="resources/images/fid/2.png" alt="">
                                     &nbsp;&nbsp; 현스델리
                                 </div>
                                 <div class="followButton">
@@ -451,13 +451,13 @@
 	<!-- Main section end -->
 	
 	<!--====== Javascripts & Jquery ======-->
-	<script src="../resources/js/jquery-3.2.1.min.js"></script>
-	<script src="../resources/js/bootstrap.min.js"></script>
-	<script src="../resources/js/owl.carousel.min.js"></script>
-	<script src="../resources/js/jquery.nicescroll.min.js"></script>
-	<script src="../resources/js/circle-progress.min.js"></script>
-	<script src="../resources/js/jquery.magnific-popup.min.js"></script>
-	<script src="../resources/js/main.js"></script>
+	<script src="resources/js/jquery-3.2.1.min.js"></script>
+	<script src="resources/js/bootstrap.min.js"></script>
+	<script src="resources/js/owl.carousel.min.js"></script>
+	<script src="resources/js/jquery.nicescroll.min.js"></script>
+	<script src="resources/js/circle-progress.min.js"></script>
+	<script src="resources/js/jquery.magnific-popup.min.js"></script>
+	<script src="resources/js/main.js"></script>
 
 	</body>
 </html>
