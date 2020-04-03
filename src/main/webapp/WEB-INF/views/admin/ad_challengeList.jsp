@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
-	<title>AD_CERTIFY</title>
+	<title>AD_CHALLENGELIST</title>
 	<meta charset="UTF-8">
 	<meta name="description" content="Nissa Photography studio html template">
 	<meta name="keywords" content="industry, html">
@@ -25,6 +25,7 @@
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="../resources/css/style.css"/>
 	<link rel="stylesheet" href="../resources/css/admin_qna.css"/>
+
 	<style>
 		.infoMenu{font-size: 16px;}
 		button{font-size:14px;}
@@ -32,28 +33,30 @@
 		tr{height: 58px;}
 		.blog-posts{height: 800px;}
 	</style>
+	<!--</head>-->
 		
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 </head>
 <body>
 	<!-- Page Preloder -->
-        <div id="preloder">
-            <div class="loader"></div>
-        </div>
-        <!-- Main section start -->
-        <div class="main-site-warp">
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
 
+	<!-- Main section start -->
+	<div class="main-site-warp">
+	
 		<include file="/WEB-INF/views/common/ad_menuBar"/>
 		
-            <header class="header-section">
-                <div class="nav-switch">
-                    <i class="fa fa-bars"></i>
-                </div>
-            </header>
-            <div class="site-content-warp">
-			 <!-- Left Side section -->
-			 <div class="main-sidebar">
+		<header class="header-section">
+			<div class="nav-switch">
+				<i class="fa fa-bars"></i>
+			</div>
+		</header>
+		<div class="site-content-warp">
+			<!-- Left Side section -->
+			<div class="main-sidebar">
 				<!-- 로고구역 -->		
 				<div class="mb-warp">
 					<a href="../homepage/index.html" class="site-logo">
@@ -63,22 +66,23 @@
 			
 					<!-- 관리자 사이드 메뉴 -->
 					<div class="about-info">
-						<h2>인증글 정보</h2>
+						<h2>챌린지 정보</h2>
 						<a href="pay.html" id="ad_profile" class="infoMenu">결제정보</a><br><br>
 						<a href="adminProfile.html" id="ad_profile" class="infoMenu">회원정보</a><br><br> <!-- 사이드 메뉴들 -->
-						<a href="ad-chal.html" id="ad_challenge" class="infoMenu">챌린지 정보</a><br><br>
+						<a href="ad-cert.html" id="ad_certify" class="infoMenu">인증글 정보</a><br><br>
 						<a href="admin_notice.html" id="ad_notice" class="infoMenu">공지사항</a><br><br>
 						<a href="admin_qna.html" id="ad_questions" class="infoMenu">문의사항</a><br><br>
 					</div>
 				</div>
 			</div>
-
 			<!-- Left Side section end -->
 			<!-- Page start -->
-			<div class="page-section blog-page">
-				<div class="blog-posts">				
-					<div class="blog-post-item">
-						<div class="sampleArea">
+
+			<!-- 현재 height : 1080px 적용되어있음 -->
+			<div class="sampleArea">
+				<div class="page-section blog-page">
+					<div class="blog-posts">
+						<div class="blog-post-item">
 							<div id="searchArea">
 								<div id="searchSelect"> 
 									<select name="" id="">
@@ -101,115 +105,148 @@
 									<th>개설 유저ID</th>
 									<th>시작 날짜</th>
 									<th>종료 날짜</th>
+									<th>참여 인원</th>
+									<th>배팅 금액</th>
+									<th>총 모집 금액</th>
 									<th>상세 정보</th>
 									<th>조회 수</th>
 								</tr>
 								<tr class="noticeList">
 									<td>1</td>
 									<td>ch00001</td>
-									<td>마스크팩 붙이기</td>
-									<td>user01</td>
+									<td>하루에 3번 팩하기</td>
+									<td>knine22</td>
 									<td>2020-03-20</td>
 									<td>2020-03-25</td>
+									<td>10명</td>
+									<td>1000원</td>
+									<td>10000원</td>
 									<td><button>정보</button></td>
-									<td>2</td>
+									<td>3</td>
 								</tr>
 
 								<tr class="noticeList">
 									<td>1</td>
 									<td>ch00001</td>
-									<td>마스크팩 붙이기</td>
-									<td>user01</td>
+									<td>하루에 3번 팩하기</td>
+									<td>knine22</td>
 									<td>2020-03-20</td>
 									<td>2020-03-25</td>
+									<td>10명</td>
+									<td>1000원</td>
+									<td>10000원</td>
 									<td><button>정보</button></td>
-									<td>2</td>
+									<td>3</td>
 								</tr>
 								<tr class="noticeList">
 									<td>1</td>
 									<td>ch00001</td>
-									<td>마스크팩 붙이기</td>
-									<td>user01</td>
+									<td>하루에 3번 팩하기</td>
+									<td>knine22</td>
 									<td>2020-03-20</td>
 									<td>2020-03-25</td>
+									<td>10명</td>
+									<td>1000원</td>
+									<td>10000원</td>
 									<td><button>정보</button></td>
-									<td>2</td>
+									<td>3</td>
 								</tr>
 								<tr class="noticeList">
 									<td>1</td>
 									<td>ch00001</td>
-									<td>마스크팩 붙이기</td>
-									<td>user01</td>
+									<td>하루에 3번 팩하기</td>
+									<td>knine22</td>
 									<td>2020-03-20</td>
 									<td>2020-03-25</td>
+									<td>10명</td>
+									<td>1000원</td>
+									<td>10000원</td>
 									<td><button>정보</button></td>
-									<td>2</td>
+									<td>3</td>
 								</tr>
 								<tr class="noticeList">
 									<td>1</td>
 									<td>ch00001</td>
-									<td>마스크팩 붙이기</td>
-									<td>user01</td>
+									<td>하루에 3번 팩하기</td>
+									<td>knine22</td>
 									<td>2020-03-20</td>
 									<td>2020-03-25</td>
+									<td>10명</td>
+									<td>1000원</td>
+									<td>10000원</td>
 									<td><button>정보</button></td>
-									<td>2</td>
+									<td>3</td>
 								</tr>
 								<tr class="noticeList">
 									<td>1</td>
 									<td>ch00001</td>
-									<td>마스크팩 붙이기</td>
-									<td>user01</td>
+									<td>하루에 3번 팩하기</td>
+									<td>knine22</td>
 									<td>2020-03-20</td>
 									<td>2020-03-25</td>
+									<td>10명</td>
+									<td>1000원</td>
+									<td>10000원</td>
 									<td><button>정보</button></td>
-									<td>2</td>
+									<td>3</td>
 								</tr>
 								<tr class="noticeList">
 									<td>1</td>
 									<td>ch00001</td>
-									<td>마스크팩 붙이기</td>
-									<td>user01</td>
+									<td>하루에 3번 팩하기</td>
+									<td>knine22</td>
 									<td>2020-03-20</td>
 									<td>2020-03-25</td>
+									<td>10명</td>
+									<td>1000원</td>
+									<td>10000원</td>
 									<td><button>정보</button></td>
-									<td>2</td>
+									<td>3</td>
 								</tr>
 								<tr class="noticeList">
 									<td>1</td>
 									<td>ch00001</td>
-									<td>마스크팩 붙이기</td>
-									<td>user01</td>
+									<td>하루에 3번 팩하기</td>
+									<td>knine22</td>
 									<td>2020-03-20</td>
 									<td>2020-03-25</td>
+									<td>10명</td>
+									<td>1000원</td>
+									<td>10000원</td>
 									<td><button>정보</button></td>
-									<td>2</td>
+									<td>3</td>
 								</tr>
 								<tr class="noticeList">
 									<td>1</td>
 									<td>ch00001</td>
-									<td>마스크팩 붙이기</td>
-									<td>user01</td>
+									<td>하루에 3번 팩하기</td>
+									<td>knine22</td>
 									<td>2020-03-20</td>
 									<td>2020-03-25</td>
+									<td>10명</td>
+									<td>1000원</td>
+									<td>10000원</td>
 									<td><button>정보</button></td>
-									<td>2</td>
+									<td>3</td>
 								</tr>
 								<tr class="noticeList">
 									<td>1</td>
 									<td>ch00001</td>
-									<td>마스크팩 붙이기</td>
-									<td>user01</td>
+									<td>하루에 3번 팩하기</td>
+									<td>knine22</td>
 									<td>2020-03-20</td>
 									<td>2020-03-25</td>
+									<td>10명</td>
+									<td>1000원</td>
+									<td>10000원</td>
 									<td><button>정보</button></td>
-									<td>2</td>
+									<td>3</td>
 								</tr>
 
 							</table>
 							
 							<div class="qnaPaging">
-								<a><</a>&nbsp;&nbsp;&nbsp;&nbsp;
+								<a>&lt;</a>&nbsp;&nbsp;&nbsp;&nbsp;
 								<a>●</a>
 								<a>●</a>
 								<a>●</a>
@@ -221,9 +258,8 @@
 					</div>
 				</div>
 			</div>
-		<!-- Page end -->
 		</div>
-			<div class="copyright"><p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
+		<div class="copyright"><p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
 			All rights reserved </p>
 		</div>
 	</div>
