@@ -14,7 +14,7 @@ public class viewController {
 	
 	@RequestMapping("ad_certifyView.do")
 	public String ad_certifyView() {
-		return "admin/ad_certify ";
+		return "admin/ad_certify";
 	}
 	
 	@RequestMapping("ad_payListView.do")
@@ -24,7 +24,7 @@ public class viewController {
 	
 	@RequestMapping("ad_payDetailView.do")
 	public String ad_payDetailView() {
-		return "admin/ad_payDetail ";
+		return "admin/ad_payDetail";
 	}
 	
 	@RequestMapping("ad_profileListView.do")
@@ -247,7 +247,7 @@ public class viewController {
 	
 	@RequestMapping("noticeView.do")
 	public String noticeView() {
-		return "user/notice ";
+		return "user/notice";
 	}
 	
 
