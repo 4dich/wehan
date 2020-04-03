@@ -60,6 +60,7 @@
 	<button onclick="location.href='noticeDetail.do';"> 공지사항 상세보기 </button>
 	<button onclick="location.href='notice.do';"> 공지사항 리스트</button>
 	
+	<h1>내가 글을 쓴다</h1>
 	
 </body>
 </html>
