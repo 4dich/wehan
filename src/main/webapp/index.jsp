@@ -58,7 +58,8 @@
    <button onclick="location.href='qnaDetail.do';"> 문의사항 상세보기 </button>
    <button onclick="location.href='qnaInsert.do';"> 문의사항 작성하기 </button>
    <button onclick="location.href='noticeDetail.do';"> 공지사항 상세보기 </button>
-   <button onclick="location.href='notice.do';"> 공지사항 리스트</button>	
+   <button onclick="location.href='notice.do';"> 공지사항 리스트</button>
+
 	
 </body>
 </html>
