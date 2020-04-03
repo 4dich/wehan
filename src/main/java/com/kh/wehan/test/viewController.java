@@ -10,7 +10,7 @@ public class viewController {
 		return "admin/ad_challengeList";
 	}
 	
-	@RequestMapping("ad_certify View.do")
+	@RequestMapping("ad_certifyView.do")
 	public String ad_certifyView() {
 		return "admin/ad_certify ";
 	}
@@ -20,7 +20,7 @@ public class viewController {
 		return "admin/ad_payList";
 	}
 	
-	@RequestMapping("ad_payDetail View.do")
+	@RequestMapping("ad_payDetailView.do")
 	public String ad_payDetailView() {
 		return "admin/ad_payDetail ";
 	}
@@ -103,12 +103,12 @@ public class viewController {
 		return "user/findIdPwd";
 	}
 	
-	@RequestMapping("login.do")
+	@RequestMapping("loginView.do")
 	public String loginView() {
 		return "user/login";
 	}
 	
-	@RequestMapping("signIn.do")
+	@RequestMapping("signInView.do")
 	public String signInView() {
 		return "user/signIn";
 	}
@@ -197,8 +197,8 @@ public class viewController {
 	}
 	
 	
-	@RequestMapping("index.do")
-	public String index() {
+	@RequestMapping("indexView.do")
+	public String indexView() {
 		return "user/index";
 	}
 	
@@ -212,7 +212,7 @@ public class viewController {
 		return "user/fid_friendList";
 	}
 	
-	@RequestMapping("fid_ch_recommend.do")
+	@RequestMapping("fid_ch_recommendView.do")
 	public String fid_ch_recommendView() {
 		return "user/fid_ch_recommend";
 	}
@@ -243,7 +243,7 @@ public class viewController {
 		return "user/noticeDetail";
 	}
 	
-	@RequestMapping("notice View.do")
+	@RequestMapping("noticeView.do")
 	public String noticeView() {
 		return "user/notice ";
 	}
