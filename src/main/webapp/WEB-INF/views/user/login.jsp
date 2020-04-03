@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html>
 <head>
 	<title>NISSA - PHOTOGRAPHY STUDIO HTML TEMPLATE</title>
@@ -64,10 +64,33 @@
 
 	<!-- Main section start -->
 	<div class="main-site-warp">
-		
-		<%@ include file="/WEB-INF/views/common/menuBar.jsp" %>
-
-		
+		<div class="site-menu-warp">
+			<div class="close-menu">x</div>
+			<!-- Main menu -->
+			<ul class="site-menu">
+				<!-- <li><a href="index.html" class="active">Home</a></li> -->
+				<!-- <li><a href="portfolio.html">Message</a></li> -->
+				<li><a href="ch-list.html">Challenge</a></li>
+				<li><a href="fidRecommend.html">Fid</a></li>
+				<li><a href="mypageProfile.html">My Page</a></li>
+				<li><a href="qna.html">고객센터</a></li>
+			 </ul>
+			 <div class="menu-social">
+				<!-- <a href=""><i class="fa fa-pinterest"></i></a>
+				<a href=""><i class="fa fa-facebook"></i></a>
+				<a href=""><i class="fa fa-twitter"></i></a>
+				<a href=""><i class="fa fa-dribbble"></i></a>
+				<a href=""><i class="fa fa-behance"></i></a> -->
+				<!-- <a href="#" class="site-btn">login</a> -->
+	
+				<a href="index.html" class="menuIcon">
+				   <img src="../resources/img/main/home.png" alt=""></a>
+				<a href="message_followerlist.html" class="menuIcon">
+				   <img src="../resources/img/main/message.png" alt=""><div>1</div></a>
+				<a href="login.html" class="menuIcon">
+				   <img src="../resources/img/main/login.png" alt=""></a>
+			 </div>
+		</div>
 		<header class="header-section">
 			<div class="nav-switch">
 				<i class="fa fa-bars"></i>
@@ -134,7 +157,6 @@
 										<b><a href="pAgree.html" style="color: #bd362f; font-size: 20px; margin-left: 65px;">회원가입</a></b>
 										<input type="submit" class="btn btn-danger" style=" margin-left:290px; width:150px" value="로그인">
 									</div>
-									
 								</div>
 								<br><br>
 							</form>
