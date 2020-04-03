@@ -119,7 +119,7 @@
 								<th>조회수</th>
 							</tr>
 							
-							<c:forEach var="noticeList" itmes="${ list }">
+							<%-- <c:forEach var="noticeList" itmes="${ list }"> --%>
 							
 							<!-- 반복문 예정 -->
 							<tr class="noticeList">
@@ -175,7 +175,7 @@
 							</tr>
 
 
-
+					<%-- 	</c:forEach> --%>
 							<!-- 삭제 끝 -->
 
 						</table>
