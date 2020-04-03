@@ -10,21 +10,21 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
 	<!-- Favicon -->
-	<link href="../resources/img/favicon.ico" rel="shortcut icon"/>
+	<link href="resources/img/favicon.ico" rel="shortcut icon"/>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,900&display=swap" rel="stylesheet">
 
 	<!-- Stylesheets -->
-	<link rel="stylesheet" href="../resources/css/bootstrap.min.css"/>
-	<link rel="stylesheet" href="../resources/css/font-awesome.min.css"/>
-	<link rel="stylesheet" href="../resources/css/magnific-popup.css"/>
-	<link rel="stylesheet" href="../resources/css/owl.carousel.min.css"/>
+	<link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="resources/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="resources/css/magnific-popup.css"/>
+	<link rel="stylesheet" href="resources/css/owl.carousel.min.css"/>
 
 	<!-- Main Stylesheets -->
-	<link rel="stylesheet" href="../resources/css/style.css"/>
-	<script src="../resources/js/jquery-3.2.1.min.js"></script>
+	<link rel="stylesheet" href="resources/css/style.css"/>
+	<script src="resources/js/jquery-3.2.1.min.js"></script>
 
 	<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -284,8 +284,8 @@
 						
 						</div>
 						<div style="margin-left:60%; margin-top: 30px;">
-							<label><input type="radio" id="agreeA1" name="agreeA" value="Y" style="float: right;"></label>&nbsp;&nbsp;<label for="agreeA1">동의합니다. </label>&nbsp;&nbsp;
-							<label><input type="radio" id="agreeA2" name="agreeA" checked="checked" value="N" style="float: right;"></label>&nbsp;&nbsp;<label for="agreeA2">동의하지 않습니다. </label>
+							<label><input type="radio" id="agreeA1" name="agreeA" class="agree" value="Y" style="float: right;"></label>&nbsp;&nbsp;<label for="agreeA1">동의합니다. </label>&nbsp;&nbsp;
+							<label><input type="radio" id="agreeA2" name="agreeA" class="agree" checked="checked" value="N" style="float: right;"></label>&nbsp;&nbsp;<label for="agreeA2">동의하지 않습니다. </label>
 						</div>	
 						<h5 class="policyname">개인정보 수집 및 이용 동의(필수)</h5>
 						<div class="policycontent">
@@ -312,8 +312,8 @@
 							④ 회사는 회원으로부터 접근매체의 분실이나 도난 등의 통지를 받은 때에는 그 때부터 제3자가 그 접근매체를 사용함으로 인하여 회원에게 발생한 손해를 배상할 책임이 있습니다.
 						</div>
 						<div style="margin-left:60%; margin-top: 30px;">
-							<label><input type="radio" id="agreeB1" name="agreeB" value="Y" style="float: right;"></label>&nbsp;&nbsp;<label for="agreeB1">동의합니다. </label>&nbsp;&nbsp;
-							<label><input type="radio" id="agreeB2" name="agreeB" value="N" checked="checked" style="float: right;"></label>&nbsp;&nbsp;<label for="agreeB2">동의하지 않습니다. </label>
+							<label><input type="radio" id="agreeB1" name="agreeB" class="agree" value="Y" style="float: right;"></label>&nbsp;&nbsp;<label for="agreeB1">동의합니다. </label>&nbsp;&nbsp;
+							<label><input type="radio" id="agreeB2" name="agreeB" class="agree" value="N" checked="checked" style="float: right;"></label>&nbsp;&nbsp;<label for="agreeB2">동의하지 않습니다. </label>
 						</div>							
 					
 						<br><br>
@@ -337,54 +337,58 @@
 	</div>
 	<!-- Main section end -->
 	<script>
-		
 	 $(function(){
-		$('#agreeAll').click(function(){
-			$('#agreeA1').prop('checked',true);
-			$('#agreeB1').prop('checked',true);
-		});
-
-		$('#agreeA2').click(function(){
-			$('#agreeAll').prop('checked',false);
-		});
-
-		$('#agreeB2').click(function(){
-			$('#agreeAll').prop('checked',false);
-		}); 
+		var agree=$('.agree[value="Y"]');		
+		var nAgree = $('.agree[value="N"]');
 		
-		var agreeA = $("input[name='agreeA']").is(":checked").val;	
-		var agreeB = $("input[name='agreeB']:checked").val;	
-		console.log(agreeA,agreeB);	
-		console.log($("input[name='agreeA']:checked").val,$("input[name='agreeB']:checked").val);
+		$('#agreeAll').click(function(){
+			agree.prop('checked',true);
+		});
 
-		$('#agree').click(function(){
-			if($('#agreeA1').is(":checked") == false || $('#agreeB1').is(":checked") == false){
-		  		alert("동의해주세요");
-				  
-				  if($('#agreeA1').is(":checked") == false){
-					$('#agreeA1').focus();
-				  }else if($('#agreeB1').is(":checked") == false){
-					$('#agreeB1').focus();
-				  }
-		 	}
-		 	else{
-		  	location.href='signUp.html'
+		agree.click(function(){
+			for(var i=0; i<agree.length; i++){
+				var agreeY = $(agree[i]);
+				if(!agreeY.is(":checked")){
+					$('#agreeAll').prop('checked',false);
+					return;					
+				}
 			}
+			$('#agreeAll').prop('checked',true);
+		});
+
+		nAgree.click(function(){
+			$('#agreeAll').prop('checked',false);
+		});
+			
+		$('#agree').click(function(){
+			console.log(agree.length);
+			for(var i=0; i<agree.length; i++){
+				var agreeY = $(agree[i]);
+				if(!agreeY.is(":checked")){
+					alert("반드시 동의 해야합니다");
+					agreeY.focus();
+					return;					
+				}
+			}
+			location.href='signUp.html'						
 		});
 		
 	});
+		
+		
+   </script>
 		
 		
     </script>
 	
 	<!--====== Javascripts & Jquery ======-->
 	
-	<script src="../resources/js/bootstrap.min.js"></script>
-	<script src="../resources/js/owl.carousel.min.js"></script>
-	<script src="../resources/js/jquery.nicescroll.min.js"></script>
-	<script src="../resources/js/circle-progress.min.js"></script>
-	<script src="../resources/js/jquery.magnific-popup.min.js"></script>
-	<script src="../resources/js/main.js"></script>
+	<script src="resources/js/bootstrap.min.js"></script>
+	<script src="resources/js/owl.carousel.min.js"></script>
+	<script src="resources/js/jquery.nicescroll.min.js"></script>
+	<script src="resources/js/circle-progress.min.js"></script>
+	<script src="resources/js/jquery.magnific-popup.min.js"></script>
+	<script src="resources/js/main.js"></script>
 
 	</body>
 </html>
