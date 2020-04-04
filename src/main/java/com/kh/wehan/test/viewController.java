@@ -128,12 +128,12 @@ public class viewController {
 	
 	@RequestMapping("fid_detailView.do")
 	public String fid_detailView() {
-		return "user/fid_detail";
+		return "user/fid/fid_detail";
 	}
 	
 	@RequestMapping("ch_certifyDetailView.do")
 	public String ch_certifyDetailView() {
-		return "user/ch_certifyDetail";
+		return "user/ceritify/ch_certifyDetail";
 	}
 	
 	@RequestMapping("guideInfoView.do")
@@ -163,7 +163,7 @@ public class viewController {
 	
 	@RequestMapping("ch_registerPhotoView.do")
 	public String ch_registerPhotoView() {
-		return "user/ch_registerPhoto";
+		return "user/ceritify/ch_registerPhoto";
 	}
 	
 	
@@ -179,23 +179,23 @@ public class viewController {
 	
 	@RequestMapping("my_updateInfoView.do")
 	public String my_updateInfoView() {
-		return "user/my_updateInfo";
+		return "user/mypage/my_updateInfo";
 	}
 	
 	
 	@RequestMapping("my_profileView.do")
 	public String my_profileView() {
-		return "user/my_profile";
+		return "user/mypage/my_profile";
 	}
 	
 	@RequestMapping("my_challengeView.do")
 	public String my_challengeView() {
-		return "user/my_challenge";
+		return "user/mypage/my_challenge";
 	}
 	
 	@RequestMapping("my_diaryView.do")
 	public String my_diaryView() {
-		return "user/my_diary";
+		return "user/mypage/my_diary";
 	}
 	
 	
@@ -206,22 +206,22 @@ public class viewController {
 	
 	@RequestMapping("ch_certifyPhotoListView.do")
 	public String ch_certifyPhotoListView() {
-		return "user/ch_certifyPhotoList";
+		return "user/ceritify/ch_certifyPhotoList";
 	}
 	
 	@RequestMapping("fid_friendListView.do")
 	public String fid_friendListView() {
-		return "user/fid_friendList";
+		return "user/fid/fid_friendList";
 	}
 	
 	@RequestMapping("fid_ch_recommendView.do")
 	public String fid_ch_recommendView() {
-		return "user/fid_ch_recommend";
+		return "user/fid/fid_ch_recommend";
 	}
 	
 	@RequestMapping("fid_followView.do")
 	public String fid_followView() {
-		return "user/fid_follow";
+		return "user/fid/fid_follow";
 	}
 	
 	@RequestMapping("qnaListView.do")

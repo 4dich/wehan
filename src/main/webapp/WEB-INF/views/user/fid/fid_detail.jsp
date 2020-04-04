@@ -10,28 +10,28 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
 	<!-- Favicon -->
-	<link href="../resources/img/favicon.ico" rel="shortcut icon"/>
+	<link href="resources/images/favicon.ico" rel="shortcut icon"/>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,900&display=swap" rel="stylesheet">
 
 	<!-- Stylesheets -->
-	<link rel="stylesheet" href="../resources/css/bootstrap.min.css"/>
-	<link rel="stylesheet" href="../resources/css/bootstrap.css"/>
-	<link rel="stylesheet" href="../resources/css/font-awesome.min.css"/>
-	<link rel="stylesheet" href="../resources/css/magnific-popup.css"/>
-	<link rel="stylesheet" href="../resources/css/owl.carousel.min.css"/>
+	<link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="resources/css/bootstrap.css"/>
+	<link rel="stylesheet" href="resources/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="resources/css/magnific-popup.css"/>
+	<link rel="stylesheet" href="resources/css/owl.carousel.min.css"/>
 
 	<!-- Main Stylesheets -->
-	<link rel="stylesheet" href="../resources/css/style.css"/>
+	<link rel="stylesheet" href="resources/css/style.css"/>
 	
 
 	<!-- 피드 상세보기 CSS -->
-	<link rel="stylesheet" href="../resources/css/fidDetail-sr.css"/>
+	<link rel="stylesheet" href="resources/css/fidDetail-sr.css"/>
 	
 	<!-- 회원전용 사이드바 CSS -->
-	<!-- <link rel="stylesheet" href="../resources/css/main.css"/> -->
+	<!-- <link rel="stylesheet" href="resources/css/main.css"/> -->
 	
 	<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -92,7 +92,7 @@
 									<ul class="chat-list">
 										<li class="in">
 											<div class="chat-img" style="width: 70px;">
-												<img alt="Avtar" src="https://bootdey.com/img/Content/avatar/avatar1.png">
+												<img alt="Avtar" src="https://bootdey.com/images/Content/avatar/avatar1.png">
 											</div>
 											<div class="chat-body">
 												<div style="margin-top: 15px;">
@@ -114,7 +114,7 @@
 								
 								<!-- 사진 나오는 곳 -->
 								<div class="card-body profile-userpic" style="text-align: center;">
-									<img src="../resources/img/image.png" class="img-responsive" alt=""> 
+									<img src="resources/images/image.png" class="img-responsive" alt=""> 
 								</div>
 
 								<!-- 본문 나오는 곳 -->
@@ -159,7 +159,7 @@
 														
 													</div>									
 													<div class="media g-mb-30 media-comment">
-														<img class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Image Description">
+														<img class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15" src="https://bootdey.com/images/Content/avatar/avatar7.png" alt="Image Description">
 														<div class="media-body u-shadow-v18 g-bg-secondary g-pa-30">
 															<div class="g-mb-15">
 																<h5 class="h5 g-color-gray-dark-v1 mb-0">
@@ -194,13 +194,13 @@
 
 	
 	<!--====== Javascripts & Jquery ======-->
-	<script src="../resources/js/jquery-3.2.1.min.js"></script>
-	<script src="../resources/js/bootstrap.min.js"></script>
-	<script src="../resources/js/owl.carousel.min.js"></script>
-	<script src="../resources/js/jquery.nicescroll.min.js"></script>
-	<script src="../resources/js/circle-progress.min.js"></script>
-	<script src="../resources/js/jquery.magnific-popup.min.js"></script>
-	<script src="../resources/js/main.js"></script>
+	<script src="resources/js/jquery-3.2.1.min.js"></script>
+	<script src="resources/js/bootstrap.min.js"></script>
+	<script src="resources/js/owl.carousel.min.js"></script>
+	<script src="resources/js/jquery.nicescroll.min.js"></script>
+	<script src="resources/js/circle-progress.min.js"></script>
+	<script src="resources/js/jquery.magnific-popup.min.js"></script>
+	<script src="resources/js/main.js"></script>
 
 	</body>
 </html>
