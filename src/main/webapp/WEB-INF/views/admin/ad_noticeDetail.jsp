@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
-	<title>NISSA - PHOTOGRAPHY STUDIO HTML TEMPLATE</title>
+	<title>WEHAN - 위대한 한걸음</title>
 	<meta charset="UTF-8">
 	<meta name="description" content="Nissa Photography studio html template">
 	<meta name="keywords" content="industry, html">
@@ -53,7 +53,7 @@
 	<!-- Main section start -->
 	<div class="main-site-warp">
 
-		<c:import url="../common/ad_menuBar.jsp"/>
+		<c:import url="/WEB-INF/views/common/ad_menuBar.jsp"/>
 	
 		
 		<header class="header-section">
@@ -86,9 +86,9 @@
 			<!-- Page start -->
 			<div class="page-section blog-page">
 				<div class="blog-posts" style="overflow: hidden;outline: none;position: relative;">
-					<a href="admin_notice.html">
+					<a href="ad_noticeListView.do">
 						<div class="arrowBack">
-							<img src="../resources/img/arrow-righ-3.png" alt="">
+							<img src="resources/images/arrow-righ-3.png" alt="">
 						</div>
 					</a><br>
 					<h3 class="admin_noticehead">관리자 공지사항</h3>
@@ -99,34 +99,38 @@
 							<div class="qnaInfoArea">
 
 								<table class="detailArea">
-									<tr class="qnaNumber">
+									<tr class="noticeNumber">
 										<td>번호</td>
-										<td><input type="text" value="1" disabled></td>
+										<td>
+											1
+										</td>
 									</tr>
-									<tr class="qnaTitleArea">
-										<td class="qnaTitle1">제목</td>
-										<td class="qnaTitle2"><input type="text" placeholder="제목을 입력해주세요"></td>
+									<tr class="noticeTitleArea">
+										<td class="noticeTitle1">제목</td>
+										<td class="noticeTitle2">
+											제목입니다
+										</td>
 									</tr>
-									<tr class="qnaUserNameArea">
-										<td class="qnaUserName1">유저명</td>
-										<td class="qnaUserName2"><input type="text" value="관리자" disabled></td>
+									<tr class="noticeUserNameArea">
+										<td class="noticeUserName1">작성자</td>
+										<td class="noticeUserName2">
+											관리자
+										</td>
 									</tr>
-									<tr class="qnaDateArea">
-										<td class="qnaDate1">등록날짜</td>
-										<td class="qnaDate2"><input type="text" value="sysdate" disabled></td>
+									<tr class="noticeDateArea">
+										<td class="noticeDate1">등록날짜</td>
+										<td class="noticeDate2">
+											sysdate
+										</td>
 									</tr>
-									<tr class="qnaTextBox">
-										<td class="qnaTextArea"  colspan="2"> 
-										<input class="textInput" type="text" placeholder="공지내용을 입력해주세요">
+									<tr class="noticeTextBox">
+										<td class="noticeTextArea" colspan="2" style="height:500px; text-align:-webkit-auto;"> 
+											<div style="width:100%; height:100%; padding:5%;">
+												공지 내용입니다.
+											</div>
 										</td>
 									</tr>
 									
-									<tr class="replybuttonArea">
-										<td class="buttonArea"  colspan="2">
-											<div class="replyButton" id="replyBtn"><a>등록하기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="../resources/img/arrow-righ-3.png" alt=""></a></div>
-											<div class="replyButton" id="deleteBtn"><a>삭제하기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="../resources/img/arrow-righ-3.png" alt=""></a></div>	
-										</td>
-									</tr>
 								</table>
 
 
