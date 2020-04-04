@@ -179,23 +179,23 @@ public class viewController {
 	
 	@RequestMapping("my_updateInfoView.do")
 	public String my_updateInfoView() {
-		return "user/my_updateInfo";
+		return "user/mypage/my_updateInfo";
 	}
 	
 	
 	@RequestMapping("my_profileView.do")
 	public String my_profileView() {
-		return "user/my_profile";
+		return "user/mypage/my_profile";
 	}
 	
 	@RequestMapping("my_challengeView.do")
 	public String my_challengeView() {
-		return "user/my_challenge";
+		return "user/mypage/my_challenge";
 	}
 	
 	@RequestMapping("my_diaryView.do")
 	public String my_diaryView() {
-		return "user/my_diary";
+		return "user/mypage/my_diary";
 	}
 	
 	
