@@ -123,7 +123,7 @@ public class viewController {
 	
 	@RequestMapping("errorPageView.do")
 	public String errorPageView() {
-		return "user/errorPage";
+		return "common/errorPage";
 	}
 	
 	@RequestMapping("fid_detailView.do")
@@ -138,27 +138,27 @@ public class viewController {
 	
 	@RequestMapping("guideInfoView.do")
 	public String guideInfoView() {
-		return "user/guideInfo";
+		return "user/info/guideInfo";
 	}
 	
 	@RequestMapping("msg_friendListView.do")
 	public String msg_friendListView() {
-		return "user/msg_friendList";
+		return "user/message/msg_friendList";
 	}
 	
 	@RequestMapping("msg_msgListView.do")
 	public String msg_msgListView() {
-		return "user/msg_msgList";
+		return "user/message/msg_msgList";
 	}
 	
 	@RequestMapping("msg_msgDetailView.do")
 	public String msg_msgDetailView() {
-		return "user/msg_msgDetail";
+		return "user/message/msg_msgDetail";
 	}
 	
 	@RequestMapping("serviceInfoView.do")
 	public String serviceInfoView() {
-		return "user/serviceInfo";
+		return "user/info/serviceInfo";
 	}
 	
 	@RequestMapping("ch_registerPhotoView.do")
@@ -220,12 +220,12 @@ public class viewController {
 		
 	@RequestMapping("noticeDetailView.do")
 	public String noticeDetailView() {
-		return "user/noticeDetail";
+		return "user/notice/noticeDetail";
 	}
 	
 	@RequestMapping("noticeView.do")
 	public String noticeView() {
-		return "user/notice";
+		return "user/notice/notice";
 	}
 	
 
