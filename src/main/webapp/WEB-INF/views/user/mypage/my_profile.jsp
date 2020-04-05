@@ -155,23 +155,7 @@
 					<button class="site-btn sb-solid mr-3 mb-3" style="display:none">follow</button>
 
 					<div class="profile-aboutme" style="text-align: left; margin-top:10px; padding:10px; height:65px; overflow-y: scroll;">
-						<p> 
-							"크아아아아"
-
-							드래곤중에서도 최강의 투명드래곤이 울부짓었따
-							투명드래곤은 졸라짱쎄서 드래곤중에서 최강이엇따
-							신이나 마족도 이겼따 다덤벼도 이겼따 투명드래곤은
-							새상에서 하나였다 어쨌든 걔가 울부짓었따
-							
-							"으악 제기랄 도망가자"
-							
-							발록들이 도망갔다 투명드래곤이 짱이었따
-							그래서 발록들은 도망간 것이어따
-							
-							꼐속
-							
-							- 전설의 시작. 투명드래곤 제1화 전문(全文).
-						</p>
+						<p>${ mypage.intro }</p>
                     </div>
 
                     <div class="profile-follow">
@@ -237,7 +221,7 @@
 							<div style="display: inline-block; width:100%;">
 								<div style="width:150px; margin: 15px; float:left; padding-left:70px;">건강</div>
 								<div style="width:150px; margin: 15px; float:left; padding-left:70px;">취미</div>
-								<div style="width:150px; margin: 15px; float:left; padding-left:70px;">자기계발</div>
+								<div style="width:150px; margin: 15px; float:left; padding-left:70px;">자기개발</div>
 								<div style="width:150px; margin: 15px; float:left; padding-left:70px;">경제</div>
 								<div style="width:150px; margin: 15px; float:left; padding-left:70px;">생활</div>
 								<div style="width:150px; margin: 15px; float:left; padding-left:70px;">기타</div>
@@ -250,7 +234,7 @@
 							<img src="resources/images/mypage/setting.png" style="height: 30px; width: 30px;">
 						</div>
 						<div class="main-up-content" style="padding:3%;">
-							Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+							${ mypage.goal }
 						</div>
 					</div>
 				</div>

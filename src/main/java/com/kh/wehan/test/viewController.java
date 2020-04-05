@@ -177,28 +177,6 @@ public class viewController {
 		return "user/payAgree";
 	}
 	
-	@RequestMapping("my_updateInfoView.do")
-	public String my_updateInfoView() {
-		return "user/mypage/my_updateInfo";
-	}
-	
-	
-	@RequestMapping("my_profileView.do")
-	public String my_profileView() {
-		return "user/mypage/my_profile";
-	}
-	
-	@RequestMapping("my_challengeView.do")
-	public String my_challengeView() {
-		return "user/mypage/my_challenge";
-	}
-	
-	@RequestMapping("my_diaryView.do")
-	public String my_diaryView() {
-		return "user/mypage/my_diary";
-	}
-	
-	
 	@RequestMapping("indexView.do")
 	public String indexView() {
 		return "user/index";
