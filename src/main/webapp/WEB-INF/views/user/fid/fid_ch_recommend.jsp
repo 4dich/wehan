@@ -140,8 +140,8 @@
 							<!-- 인증사진리스트영역 -->
 							<div id="photoList">
 								<!-- 피드 디테일로 연결 -->
-								<a href="fidDetail.html">
-									<div class="photoBox">
+						
+									<div class="photoBox" onclick="location.href='fid_detailView.do';">
 										<!-- 인증사진 -->
 										<img src="resources/images/blog/1.jpg" alt="">
 										<!-- 인증날짜 -->
@@ -150,7 +150,6 @@
 										<p class="nick">현스델리</p>
 										<p class="fidName">디테일로 연결</p>
 									</div>
-								</a>
 							<!-- 삭제예정 -->
 								<div class="photoBox">
 									<!-- 인증사진 -->
