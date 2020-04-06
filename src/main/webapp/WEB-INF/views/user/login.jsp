@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +29,7 @@
 
 	<!-- 부트스트랩 -->
 
-	
+	 
 	<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -64,33 +65,7 @@
 
 	<!-- Main section start -->
 	<div class="main-site-warp">
-		<div class="site-menu-warp">
-			<div class="close-menu">x</div>
-			<!-- Main menu -->
-			<ul class="site-menu">
-				<!-- <li><a href="index.html" class="active">Home</a></li> -->
-				<!-- <li><a href="portfolio.html">Message</a></li> -->
-				<li><a href="ch-list.html">Challenge</a></li>
-				<li><a href="fidRecommend.html">Fid</a></li>
-				<li><a href="mypageProfile.html">My Page</a></li>
-				<li><a href="qna.html">고객센터</a></li>
-			 </ul>
-			 <div class="menu-social">
-				<!-- <a href=""><i class="fa fa-pinterest"></i></a>
-				<a href=""><i class="fa fa-facebook"></i></a>
-				<a href=""><i class="fa fa-twitter"></i></a>
-				<a href=""><i class="fa fa-dribbble"></i></a>
-				<a href=""><i class="fa fa-behance"></i></a> -->
-				<!-- <a href="#" class="site-btn">login</a> -->
-	
-				<a href="index.html" class="menuIcon">
-				   <img src="resources/img/main/home.png" alt=""></a>
-				<a href="message_followerlist.html" class="menuIcon">
-				   <img src="resources/img/main/message.png" alt=""><div>1</div></a>
-				<a href="login.html" class="menuIcon">
-				   <img src="resources/img/main/login.png" alt=""></a>
-			 </div>
-		</div>
+		<%@ include file="/WEB-INF/views/common/menuBar.jsp" %>
 		<header class="header-section">
 			<div class="nav-switch">
 				<i class="fa fa-bars"></i>
@@ -134,7 +109,7 @@
 				<div class="hero-section">
 					<div class="hero-track">
 						<div class="container" >
-							<form action="login.do">
+							<form action="login.do" method="post">
 								<br><br>
 								<h2 style="color: #bd362f; margin-left: 43px;">생각말고</h2>
 								<h2 style="color: black; margin-left: 43px;">실천하자</h2><br>
