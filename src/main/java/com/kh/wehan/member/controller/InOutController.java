@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.kh.wehan.member.model.service.MemberService;
 import com.kh.wehan.member.model.vo.Member;
@@ -24,11 +25,17 @@ public class InOutController {
 		
 		Member loginUser = mService.login(m);
 		
-		if(loginUser != null && m.getPassword() == loginUser.getPassword()) {
+		if(loginUser != null && m.getPassword().equals(loginUser.getPassword())) {
 			model.addAttribute("loginUser",loginUser);
-			return "user/main";
+			return "redirect:index.jsp";
 		}else{
 			return "common/error";
 		}
+	}
+	
+	@RequestMapping("logout.do")
+	public String logout(SessionStatus status) {
+		status.setComplete();
+		return "redirect:index.jsp";
 	}
 }
