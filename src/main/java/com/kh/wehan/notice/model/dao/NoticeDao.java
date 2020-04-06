@@ -21,4 +21,12 @@ public class NoticeDao {
 		return sqlSession.insert("noticeMapper.insertNotice", n);
 	}
 
+	/**
+	 * 공지사항 글 수 확인
+	 * @return
+	 */
+	public int getListCount() {
+		return sqlSession.selectOne("noticeMapper.getListCount");
+	}
+
 }

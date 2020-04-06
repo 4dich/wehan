@@ -11,7 +11,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
 	<!-- Favicon -->
-	<link href="../resources/img/favicon.ico" rel="shortcut icon"/>
+	<link href="resources/img/favicon.ico" rel="shortcut icon"/>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap" rel="stylesheet">
@@ -119,59 +119,15 @@
 							</tr>
 							<!-- 반복문 예정 -->
 							
+							<c:forEach var="n" items="${list}">
 								<tr class="noticeList">
-									<td>1</td>									
+									<td>${n.nId}</td>									
 									<td><a href="noticeDetailView.do">공지사항입니다.</a></td>
 									<td>관리자</td>
 									<td>2020-03-25</td>
 									<td>1</td>
-								</tr>
-
-							<!-- 나중에 삭제할거 -->
-							<tr class="noticeList">
-								<td>1</td>
-								<td>공지사항입니다.</td>
-								<td>관리자</td>
-								<td>2020-03-25</td>
-								<td>1</td>
-							</tr>
-							<tr class="noticeList">
-								<td>1</td>
-								<td>공지사항입니다.</td>
-								<td>관리자</td>
-								<td>2020-03-25</td>
-								<td>1</td>
-							</tr>
-							<tr class="noticeList">
-								<td>1</td>
-								<td>공지사항입니다.</td>
-								<td>관리자</td>
-								<td>2020-03-25</td>
-								<td>1</td>
-							</tr>
-							<tr class="noticeList">
-								<td>1</td>
-								<td>공지사항입니다.</td>
-								<td>관리자</td>
-								<td>2020-03-25</td>
-								<td>1</td>
-							</tr>
-							<tr class="noticeList">
-								<td>1</td>
-								<td>공지사항입니다.</td>
-								<td>관리자</td>
-								<td>2020-03-25</td>
-								<td>1</td>
-							</tr>
-							<tr class="noticeList">
-								<td>1</td>
-								<td>공지사항입니다.</td>
-								<td>관리자</td>
-								<td>2020-03-25</td>
-								<td>1</td>
-							</tr>
-
-							<!-- 삭제 끝 -->
+								</tr>	
+							</c:forEach>					
 
 						</table>
 						

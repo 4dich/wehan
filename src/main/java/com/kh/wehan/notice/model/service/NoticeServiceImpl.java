@@ -20,4 +20,12 @@ public class NoticeServiceImpl implements NoticeService{
 		return nDao.insertNotice(n);
 	}
 
+	/**
+	 * 공지사항 글 수 확인하기
+	 */
+	@Override
+	public int getListCount() {
+		return nDao.getListCount();
+	}
+
 }

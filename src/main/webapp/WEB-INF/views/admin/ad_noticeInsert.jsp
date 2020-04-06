@@ -110,7 +110,7 @@
 										<tr class="noticeUserNameArea">
 											<td class="noticeUserName1">작성자</td>
 											<td class="noticeUserName2">
-												<input type="text" name="nWriter" value="관리자" disabled>
+												<input type="text" name="nWriter" value="${loginUser.id}" disabled>
 											</td>
 										</tr>
 										<tr class="noticeTextBox">

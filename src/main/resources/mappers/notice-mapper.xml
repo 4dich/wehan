@@ -11,6 +11,11 @@
   		VALUES(SEQ_NID.NEXTVAL, #{nTitle}, #{nContent}, #{nWriter}, DEFAULT, DEFAULT, SYSDATE, DEFAULT)
   	</insert>
   	
-  	
+  	<!-- 공지사항 글 수 확인하기 -->
+  	<select id="getListCount" parameterType="_int">
+  		SELECT COUNT(*)
+  		FROM NOTICE
+  		WHERE NDEL_YN='N'
+  	</select>
   	
   </mapper>
