@@ -10,10 +10,12 @@
 	</settings>
 	
 	<typeAliases>
+		<typeAlias type="com.kh.wehan.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.kh.wehan.member.model.vo.Mypage" alias="Mypage"/>
 	</typeAliases>
 	
 	<mappers>
+		<mapper resource="mappers/member-mapper.xml"/>
 		<mapper resource="mappers/mypage-mapper.xml"/>
 	</mappers>
 </configuration>
