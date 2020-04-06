@@ -36,6 +36,9 @@
 			#prof{margin-left: 105px; text-align: center; margin-top: 20px; font-size: 18px;}
 			p{margin :0}
 		
+			#file{
+				display: none;
+			}
 		</style>
 
 
@@ -94,7 +97,7 @@
 			<!-- Page start -->
 			<div class="page-section blog-page" style="margin-top: 40px; height: 800px;">
 				<div class="contact-section">
-					<form action="dk.do">
+					<form action="insertMember.do" method="post" onsubmit="return pattern();">
 					<h3>회원가입</h3>
 					<div class="row" style="margin-left: 30px; height: 400px;">
 						<!-- <div class="col-xl-6">
@@ -102,59 +105,56 @@
 						</div> -->
 						<div style="margin-top: 50px; margin-right: 20px;">
                             <div class="ch-register-pic"></div>
-                            <button class="site-btn" style="margin-top: 30px; margin-left: 100px; height: 300px; width: 280px; font-size: 15px;"> 프로필 사진 (300x280)</button>				
-							<br><br><button style="margin-left: 50%;">프로필수정</button>
+                            <div class="site-btn" style="margin-top: 30px; margin-left: 100px; height: 300px; width: 280px; font-size: 15px; text-align:'center';"> 프로필 사진 (300x280)</div>				
+							<br><br><label for="file" text-align="center">프로필 수정</label><input id="file" type="file"  style="margin-left: 50%;">
 						</div>
                         <div class="col-xl-6" style="margin-left: 20px;">
 							<div class="contact-text-warp">
 								<div class="contact-form" style="margin-top: 60px;">
 									<div class="row">	
                                         <div class="col-lg-12">
-                                            <input name="userId" type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="아이디">
+                                            <input id="userId" name="userId" type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="아이디">
                                         </div>
 										<div class="col-lg-12">
-                                            <input name="password" type="password" style="border-top: none; border-left: none; border-right: none;" placeholder="비밀번호">
+                                            <input id="password" name="password" type="password" style="border-top: none; border-left: none; border-right: none;" placeholder="비밀번호">
                                         </div>
                                         <div class="col-lg-12">
-                                            <input name="password2" type="password" style="border-top: none; border-left: none; border-right: none;" placeholder="비밀번호확인">
+                                            <input id="password2" name="password2" type="password" style="border-top: none; border-left: none; border-right: none;" placeholder="비밀번호확인">
                                         </div>
                                         <div class="col-lg-12">
-                                            <input name="userName" type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="이름">
+                                            <input id="userName" name="userName" type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="이름">
                                         </div>
 										<div class="col-lg-12">
-                                            <input name="nickName"type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="닉네임">
+                                            <input id="nickName" name="nickName"type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="닉네임">
                                         </div>
 										<div class="col-lg-12">
-                                            <input name="email" type="email" style="border-top: none; border-left: none; border-right: none;" placeholder="이메일">
+                                            <input id="email" name="email" type="email" style="border-top: none; border-left: none; border-right: none;" placeholder="이메일">
                                         </div>
 									</div>
 								</div>
 							</div>
 						</div>
 						
-							<div class="col-lg-4">
-								<input name="bankName" type="text" style="height: 46px; font-size:14px; font-style:italic; border: 2px solid #e1e1e1; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 90%;" placeholder="은행명">
-							</div>
-							<div class="col-lg-4">
-								<input name="accountHolder" type="text" style="height: 46px; font-size:14px; font-style:italic; border: 2px solid #e1e1e1; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 90%;" placeholder="예금주">
-							</div>
-							<div class="col-lg-4">
-								<input name="accountNumber"type="text" style="height: 46px; font-size:14px; font-style:italic; border: 2px solid #e1e1e1; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 90%;" placeholder="계좌번호">
-							</div>
+						<div class="col-lg-4">
+							<input id="bankName" name="bankName" type="text" style="height: 46px; font-size:14px; font-style:italic; border: 2px solid #e1e1e1; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 90%;" placeholder="은행명">
+						</div>
+						<div class="col-lg-4">
+							<input id="accountHolder" name="accountHolder" type="text" style="height: 46px; font-size:14px; font-style:italic; border: 2px solid #e1e1e1; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 90%;" placeholder="예금주">
+						</div>
+						<div class="col-lg-4">
+							<input id="accountNumber" name="accountNumber"type="text" style="height: 46px; font-size:14px; font-style:italic; border: 2px solid #e1e1e1; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 90%;" placeholder="계좌번호">
+						</div>
 						 
-							<div class="col-lg-8" style="margin-top: 50px;">
-								<input name="address" type="text" style="height: 46px; font-size:14px; font-style:italic; border: 2px solid #e1e1e1; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 83%;" placeholder="주소"><button style="margin-left: 10px;">주소검색</button>
-							</div>
-							<div class="col-lg-4" style="margin-top: 50px;">
-								<input name="phone" type="text" style="height: 46px; font-size:14px; font-style:italic; border: 2px solid #e1e1e1; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 90%;" placeholder="전화번호">
-							</div>
+						<div class="col-lg-8" style="margin-top: 50px;">
+							<input id="address" name="address" type="text" style="height: 46px; font-size:14px; font-style:italic; border: 2px solid #e1e1e1; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 83%;" placeholder="주소"><button type="button" onclick="addrSearch();"style="margin-left: 10px;">주소검색</button>
+						</div>
+						<div class="col-lg-4" style="margin-top: 50px;">
+							<input id="phone" name="phone" type="text" style="height: 46px; font-size:14px; font-style:italic; border: 2px solid #e1e1e1; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 90%;" placeholder="전화번호">
+						</div>
 						<div style="margin-top: 50px;">
-							<button type="submit" class="site-btn" style="width:20%; height: 80px; margin: 20px; margin-left: 300px;" >
-								회원가입
-							</button>	
-							<button type="button" class="site-btn" style="width:20%; height: 80px;" onclick="location.href='login.html'">
-								취소하기
-							</button>
+							<input type="submit" value="회원가입" class="site-btn" style="width:20%; height: 80px; margin: 20px; margin-left: 300px;" >
+							<input type="button" value="취소하기" class="site-btn" style="width:20%; height: 80px;" onclick="location.href='login.html'">
+							
 						</div>
 					</div>
 				</form>
@@ -169,7 +169,18 @@
 	<!-- Main section end -->
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
-	   
+		var userId = $('#userId');
+		var password = $('#password');
+		var password2 = $('#password2');
+		var userName = $('#userName');
+		var nickName = $('#nickName');
+		var email = $('#email');
+		var bankName = $('#bankName');
+		var accountHolder = $('#accountHolder');
+		var accountNumber = $('#accountNumber');
+		var address = $('#address');
+		var phone = $('#phone');   
+	
 	   function addrSearch() {
 	        new daum.Postcode({
 	            oncomplete: function(data) {
@@ -183,11 +194,71 @@
 	    }
 	
 		function pattern(){
-			var userId = $('#userId');
-			/* var password= () */
+			if(userId.value == null){
+				alert("아이디를 입력해 주세요");
+				return false;
+			}
+			if(password.value == null && password2.value == null){
+				alert("패스워드를 입력해 주세요");
+				return false;
+			}
+			if(userName.value == null){
+				alert("이름을 입력해 주세요");
+				return false;
+			}
+			if(nickName.value == null){
+				alert("닉네임을 입력해 주세요");
+				return false;
+			}
+			if(email.value == null){
+				alert("이메일을 입력해 주세요");
+				return false;
+			}
+			if(bankName.value == null){
+				alert("은행 이름을 입력해 주세요");
+				return false;
+			}
+			if(accountHolder.value == null){
+				alert("예금주 입력해주세요");
+				return false;
+			}
+			if(accountNumber.value == null){
+				alert("계좌번호를 입력해주세요");
+				return false;
+			}
+			if(address.value == null){
+				alert("주소를 입력해 주세요");
+				return false;
+			}
+			if(phone.value == null){
+				alert("연락처를 입력해주세요");
+				return false;
+			}
+			if(password == password2){
+				alert("비밀번호가 일치 하지 않습니다.");
+				return false;
+			}
+			
 		}
+		
+		$(function(){
+			userId.on("keyup",function({
+				var idCheck = userId.value;
+				$.ajax(){
+					url:"idCheck.do",
+					data:{idCheck:idCheck},
+					type:post,
+					success:function(data){
+						
+					},error:function{
+						
+					}
+				});
+			});
+		});
+			
+		
 	</script>
-	
 	<!--====== Javascripts & Jquery ======-->
 	
 	<script src="resources/js/bootstrap.min.js"></script>
