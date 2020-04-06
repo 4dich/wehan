@@ -239,18 +239,20 @@
 				return false;
 			}
 			
+			
+			
 		}
 		
 		$(function(){
-			userId.on("keyup",function({
-				var idCheck = userId.value;
-				$.ajax(){
+			userId.on("keyup",function(){
+				var idCheck = $('#userId').val();
+				$.ajax({
 					url:"idCheck.do",
 					data:{idCheck:idCheck},
-					type:post,
+					type:"post",
 					success:function(data){
-						
-					},error:function{
+						console.log(data);
+					},error:function(){
 						
 					}
 				});
