@@ -98,47 +98,37 @@
 
 						<div class="noticeInfo">
 							<div class="noticeInfoArea">
-
-								<table class="detailArea">
-									<tr class="noticeNumber">
-										<td>번호</td>
-										<td><input type="text" value="1" disabled></td>
-									</tr>
-									<tr class="noticeTitleArea">
-										<td class="noticeTitle1">제목</td>
-										<td class="noticeTitle2"><input type="text" placeholder="제목을 입력해주세요"></td>
-									</tr>
-									<tr class="noticeUserNameArea">
-										<td class="noticeUserName1">작성자</td>
-										<td class="noticeUserName2"><input type="text" value="관리자" disabled></td>
-									</tr>
-									<tr class="noticeDateArea">
-										<td class="noticeDate1">등록날짜</td>
-										<td class="noticeDate2"><input type="text" value="sysdate" disabled></td>
-									</tr>
-									<tr class="noticeTextBox">
-										<td class="noticeTextArea"  colspan="2" style="height:500px; text-align:-webkit-auto;"> 
-											<textarea type="text" style="width:100%; height:100%; padding:5%; resize:none"></textarea>
-										</td>
-									</tr>
-									
-									<tr class="replybuttonArea">
-										<td class="buttonArea"  colspan="2">
-											<div class="replyButton" id="replyBtn">
-												<a>
-													등록하기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-													<img src="resources/images/arrow-righ-3.png" alt="">
-												</a>
-											</div>
-											<div class="replyButton" id="deleteBtn">
-												<a href="ad_noticeListView.do" style="color:black;">
-													목록가기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-													<img src="resources/images/arrow-righ-3.png" alt="">
-												</a>
-											</div>	
-										</td>
-									</tr>
-								</table>
+								
+								<form action="noticeInsert.do" method="post">
+									<table class="detailArea">
+										<tr class="noticeTitleArea">
+											<td class="noticeTitle1">제목</td>
+											<td class="noticeTitle2">
+												<input type="text" placeholder="제목을 입력해주세요" name="nTitle">
+											</td>
+										</tr>
+										<tr class="noticeUserNameArea">
+											<td class="noticeUserName1">작성자</td>
+											<td class="noticeUserName2">
+												<input type="text" name="nWriter" value="관리자" disabled>
+											</td>
+										</tr>
+										<tr class="noticeTextBox">
+											<td class="noticeTextArea"  colspan="2" style="height:500px; text-align:-webkit-auto;"> 
+												<textarea name="nContent" style="width:100%; height:100%; padding:5%; resize:none"></textarea>
+											</td>
+										</tr>
+										
+										<tr class="replybuttonArea">
+											<td class="buttonArea"  colspan="2">												
+												<input type="submit" class="site-btn" style="background-color: white; padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; width:120px;border: 2px solid #e1e1e1;" value="등록하기">	
+												<button class="site-btn" onclick="location.href='ad_noticeListView.do'" style="background-color: white; padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px;">
+													목록가기
+												</button>
+											</td>
+										</tr>
+									</table>
+								</form>
 							</div>							
 						</div>
 						
