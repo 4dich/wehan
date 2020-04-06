@@ -12,10 +12,11 @@ public class MemberDao {
 	SqlSessionTemplate sqlSession;
 	
 	public Member login(Member m) {
-		
-		Member loginUser = (Member)sqlSession.selectOne("memberMapper.userInfo",m);
-		System.out.println(loginUser);
-		return loginUser;
+		return (Member)sqlSession.selectOne("memberMapper.userInfo",m);
+	}
+
+	public int idCheck(String idCheck) {
+		return sqlSession.selectOne("memberMapper.idCheck",idCheck);
 	}
 
 }

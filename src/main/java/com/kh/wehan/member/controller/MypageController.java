@@ -17,15 +17,29 @@ public class MypageController {
 	@RequestMapping("my_profileView.do")
 	public ModelAndView my_profileView(ModelAndView mv) {
 		
-		String userId = "user01";
+		String userId = "user02";
 		
-		Mypage mypage = myService.my_profileView(userId);
-		
+		Mypage mypage = myService.my_profileView(userId);	
+
 		mv.addObject("mypage", mypage);
 		mv.setViewName("user/mypage/my_profile");
 		
 		return mv;
 	}
+	
+//	@RequestMapping("my_profileView.do")
+//	public void my_profileView(HttpServletResponse response) throws JsonIOException, IOException {
+//		
+//		String userId = "user02";
+//		
+//		Mypage mypage = myService.my_profileView(userId);
+//		
+//		response.setContentType("application/json; charset=utf-8");
+//		
+//		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+//		gson.toJson(mypage ,response.getWriter());
+//	}
+	
 	
 	@RequestMapping("my_challengeView.do")
 	public String my_challengeView() {
