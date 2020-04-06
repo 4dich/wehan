@@ -59,7 +59,5 @@
    <button onclick="location.href='qnaInsertView.do';"> 문의사항 작성하기 </button>
    <button onclick="location.href='noticeDetailView.do';"> 공지사항 상세보기 </button>
    <button onclick="location.href='noticeView.do';"> 공지사항 리스트</button>
-
-	
 </body>
 </html>

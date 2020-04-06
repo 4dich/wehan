@@ -62,7 +62,6 @@ public class viewController {
 		return "admin/ad_noticeInsert";
 	}
 	
-	
 	// user
 	@RequestMapping("ch_detailView.do")
 	public String ch_detailView() {
