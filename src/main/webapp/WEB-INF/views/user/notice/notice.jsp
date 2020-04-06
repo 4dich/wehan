@@ -107,7 +107,7 @@
 						</div>
 
 
-						<!-- 문의사항 테이블 -->
+						<!-- 공지사항 테이블 -->
 						<table class="qnaTable">
 							
 							<tr class="thArea">
@@ -122,24 +122,53 @@
 							<c:forEach var="n" items="${list}">
 								<tr class="noticeList">
 									<td>${n.nId}</td>									
-									<td><a href="noticeDetailView.do">공지사항입니다.</a></td>
-									<td>관리자</td>
-									<td>2020-03-25</td>
-									<td>1</td>
+									<td>${n.nTitle}</td>
+									<td>${n.nWriter}</td>
+									<td>${n.nCreateDate}</td>
+									<td>${n.nCount}</td>
 								</tr>	
 							</c:forEach>					
 
 						</table>
 						
+						<!-- 페이징 처리 -->
+						<!-- 이전 -->
 						<div class="qnaPaging">
-							<a><</a>&nbsp;&nbsp;&nbsp;&nbsp;
-							<a>●</a>
-							<a>●</a>
-							<a>●</a>
-							<a>●</a>
-							<a>●</a>&nbsp;&nbsp;&nbsp;&nbsp;
-							<a>></a>
-						</div>
+							<c:if test="${pi.currentPage eq 1 }">
+								<
+							</c:if>
+							<c:if test ="${pi.currentPAge ne 1 }">
+								<c:url var="before" value="noticeList.do">
+									<c:param name="currentPage" value="${pi.currentjPage - 1}"/>
+								</c:url>
+								<a href="${ before }"><</a>
+							</c:if>
+							
+							<!-- 페이지 -->
+							<c:forEach var="p" begin="${pi.startPage}" end="${pi.endPage }">
+								<c:if test="${ p eq pi.currentPage }">
+									<font color="red" size = "4"><b>[${ p }]</b></font>
+								</c:if>
+								
+								<c:if test="${ p ne pi.currentPage }">
+									<c:url var="pagenation" value="noticeList.do">
+										<c:param name="currentPage" value="${ p }"/>
+									</c:url>
+									<a href="${ pagination }">${p}</a>
+								</c:if>
+							</c:forEach>
+							
+							<!-- 다음 -->
+							<c:if test="${pi.currentPage eq pi.maxPage }">
+								>
+							</c:if>
+							<c:if test="${pi.currentPage ne pi.maxPage }">
+								<c:url var="after" value="noticeList.do">
+									<c:param name="currentPage" value="${pi.currentPage + 1 }"/>
+								</c:url>
+								<a href="${after}">></a>
+							</c:if>
+							
 						
 					</div>
 				</div>

@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.wehan.common.Pagination;
+import com.kh.wehan.common.model.vo.PageInfo;
 import com.kh.wehan.notice.model.service.NoticeService;
 import com.kh.wehan.notice.model.vo.Notice;
-import com.kh.wehan.notice.model.vo.PageInfo;
 
 @Controller
 public class NoticeController {
@@ -36,16 +36,19 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("noticeList.do")
-	public ArrayList<Notice> listNotice(ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage){
+	public ModelAndView listNotice(ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage){
 		
 		int listCount = nService.getListCount();
 		
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
 		
 		ArrayList<Notice> list = nService.listNotice(pi);
 			
+		mv.addObject("list", list);
+		mv.addObject("pi", pi);
+		mv.setViewName("board/boardListView");
 		
-		
+		return mv;		
 		
 	}
 	
