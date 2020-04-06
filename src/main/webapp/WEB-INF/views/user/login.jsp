@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<!DOCTYPE html>
 <html>
 <head>
 	<title>NISSA - PHOTOGRAPHY STUDIO HTML TEMPLATE</title>
@@ -10,25 +11,25 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
 	<!-- Favicon -->
-	<link href="../resources/img/favicon.ico" rel="shortcut icon"/>
+	<link href="resources/img/favicon.ico" rel="shortcut icon"/>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,900&display=swap" rel="stylesheet">
 
 	<!-- Stylesheets -->
-	<link rel="stylesheet" href="../resources/css/bootstrap.min.css"/>
-	<link rel="stylesheet" href="../resources/css/font-awesome.min.css"/>
-	<link rel="stylesheet" href="../resources/css/magnific-popup.css"/>
-	<link rel="stylesheet" href="../resources/css/owl.carousel.min.css"/>
+	<link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="resources/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="resources/css/magnific-popup.css"/>
+	<link rel="stylesheet" href="resources/css/owl.carousel.min.css"/>
 
 	<!-- Main Stylesheets -->
 	<!-- <link rel="stylesheet" href="../resources/css/main.css"/> -->
-	<link rel="stylesheet" href="../resources/css/style.css"/>
+	<link rel="stylesheet" href="resources/css/style.css"/>
 
 	<!-- 부트스트랩 -->
 
-	
+	 
 	<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -64,33 +65,7 @@
 
 	<!-- Main section start -->
 	<div class="main-site-warp">
-		<div class="site-menu-warp">
-			<div class="close-menu">x</div>
-			<!-- Main menu -->
-			<ul class="site-menu">
-				<!-- <li><a href="index.html" class="active">Home</a></li> -->
-				<!-- <li><a href="portfolio.html">Message</a></li> -->
-				<li><a href="ch-list.html">Challenge</a></li>
-				<li><a href="fidRecommend.html">Fid</a></li>
-				<li><a href="mypageProfile.html">My Page</a></li>
-				<li><a href="qna.html">고객센터</a></li>
-			 </ul>
-			 <div class="menu-social">
-				<!-- <a href=""><i class="fa fa-pinterest"></i></a>
-				<a href=""><i class="fa fa-facebook"></i></a>
-				<a href=""><i class="fa fa-twitter"></i></a>
-				<a href=""><i class="fa fa-dribbble"></i></a>
-				<a href=""><i class="fa fa-behance"></i></a> -->
-				<!-- <a href="#" class="site-btn">login</a> -->
-	
-				<a href="index.html" class="menuIcon">
-				   <img src="../resources/img/main/home.png" alt=""></a>
-				<a href="message_followerlist.html" class="menuIcon">
-				   <img src="../resources/img/main/message.png" alt=""><div>1</div></a>
-				<a href="login.html" class="menuIcon">
-				   <img src="../resources/img/main/login.png" alt=""></a>
-			 </div>
-		</div>
+		<%@ include file="/WEB-INF/views/common/menuBar.jsp" %>
 		<header class="header-section">
 			<div class="nav-switch">
 				<i class="fa fa-bars"></i>
@@ -134,7 +109,7 @@
 				<div class="hero-section">
 					<div class="hero-track">
 						<div class="container" >
-							<form>
+							<form action="login.do" method="post">
 								<br><br>
 								<h2 style="color: #bd362f; margin-left: 43px;">생각말고</h2>
 								<h2 style="color: black; margin-left: 43px;">실천하자</h2><br>
@@ -173,13 +148,13 @@
 	<!-- Main section end -->
 	
 	<!--====== Javascripts & Jquery ======-->
-	<script src="../resources/js/jquery-3.2.1.min.js"></script>
-	<script src="../resources/js/bootstrap.min.js"></script>
-	<script src="../resources/js/owl.carousel.min.js"></script>
-	<script src="../resources/js/jquery.nicescroll.min.js"></script>
-	<script src="../resources/js/circle-progress.min.js"></script>
-	<script src="../resources/js/jquery.magnific-popup.min.js"></script>
-	<script src="../resources/js/main.js"></script>
+	<script src="resources/js/jquery-3.2.1.min.js"></script>
+	<script src="resources/js/bootstrap.min.js"></script>
+	<script src="resources/js/owl.carousel.min.js"></script>
+	<script src="resources/js/jquery.nicescroll.min.js"></script>
+	<script src="resources/js/circle-progress.min.js"></script>
+	<script src="resources/js/jquery.magnific-popup.min.js"></script>
+	<script src="resources/js/main.js"></script>
 	
 	</body>
 </html>

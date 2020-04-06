@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="zxx">
+<html>
 <head>
 	<title>NISSA - PHOTOGRAPHY STUDIO HTML TEMPLATE</title>
 	<meta charset="UTF-8">
@@ -10,21 +10,21 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
 	<!-- Favicon -->
-	<link href="../resources/img/favicon.ico" rel="shortcut icon"/>
+	<link href="resources/images/favicon.ico" rel="shortcut icon"/>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,900&display=swap" rel="stylesheet">
 
 	<!-- Stylesheets -->
-	<link rel="stylesheet" href="../resources/css/bootstrap.min.css"/>
-	<link rel="stylesheet" href="../resources/css/font-awesome.min.css"/>
-	<link rel="stylesheet" href="../resources/css/magnific-popup.css"/>
-	<link rel="stylesheet" href="../resources/css/owl.carousel.min.css"/>
+	<link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="resources/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="resources/css/magnific-popup.css"/>
+	<link rel="stylesheet" href="resources/css/owl.carousel.min.css"/>
 
 	<!-- Main Stylesheets -->
-	<link rel="stylesheet" href="../resources/css/ch_confirmPhotoList.css"/>
-	<link rel="stylesheet" href="../resources/css/style.css"/>	
+	<link rel="stylesheet" href="resources/css/ch_confirmPhotoList.css"/>
+	<link rel="stylesheet" href="resources/css/style.css"/>	
 	
 
 	<!--[if lt IE 9]>
@@ -67,7 +67,7 @@
                     <div class="challenges-search">
 						<input type="textarea" style="padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 3px solid black;" placeholder="챌린지 검색">
                         <a href="#" class="site-btn2">
-						<img src="../resources/img/main/search.png" alt=""></a>
+						<img src="resources/images/main/search.png" alt=""></a>
                     </div>
                     <!-- <div class="challenges-search">
 						<input type="textarea" style="padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 3px solid black;" placeholder="챌린지 검색">
@@ -86,7 +86,7 @@
 					                    
 					<button class="site-btn sb-dark" style="margin-left: 15px; width: 280px; font-size: 15px;" type="button" onclick="location.href='ch-register.html'">
 						챌린지 등록하기
-						<img src="../resources/img/arrow-righ-3.png" alt="">
+						<img src="resources/images/arrow-righ-3.png" alt="">
 					</button>
 					<!-- <ul class="contact-info">
 						<li>1525  Boring Lane, Los Angeles, CA</li>
@@ -119,7 +119,7 @@
 								<a href="confirmDetail.html">
 									<div class="photoBox">
 										<!-- 인증사진 -->
-										<img src="../resources/img/blog/1.jpg" alt="">
+										<img src="resources/images/blog/1.jpg" alt="">
 										<!-- 인증날짜 -->
 										<p class="confirmDate">2020-03-24</p>
 										<!-- 인증유저 -->
@@ -130,7 +130,7 @@
 							<!-- 삭제예정 -->
 							<div class="photoBox">
 								<!-- 인증사진 -->
-								<img src="../resources/img/blog/1.jpg" alt="">
+								<img src="resources/images/blog/1.jpg" alt="">
 								<!-- 인증날짜 -->
 								<p class="confirmDate">2020-03-24</p>
 								<!-- 인증유저 -->
@@ -138,7 +138,7 @@
 							</div>
 							<div class="photoBox">
 								<!-- 인증사진 -->
-								<img src="../resources/img/blog/1.jpg" alt="">
+								<img src="resources/images/blog/1.jpg" alt="">
 								<!-- 인증날짜 -->
 								<p class="confirmDate">2020-03-24</p>
 								<!-- 인증유저 -->
@@ -146,7 +146,7 @@
 							</div>
 							<div class="photoBox">
 								<!-- 인증사진 -->
-								<img src="../resources/img/blog/1.jpg" alt="">
+								<img src="resources/images/blog/1.jpg" alt="">
 								<!-- 인증날짜 -->
 								<p class="confirmDate">2020-03-24</p>
 								<!-- 인증유저 -->
@@ -154,7 +154,7 @@
 							</div>
 							<div class="photoBox">
 								<!-- 인증사진 -->
-								<img src="../resources/img/blog/1.jpg" alt="">
+								<img src="resources/images/blog/1.jpg" alt="">
 								<!-- 인증날짜 -->
 								<p class="confirmDate">2020-03-24</p>
 								<!-- 인증유저 -->
@@ -162,7 +162,7 @@
 							</div>
 							<div class="photoBox">
 								<!-- 인증사진 -->
-								<img src="../resources/img/blog/1.jpg" alt="">
+								<img src="resources/images/blog/1.jpg" alt="">
 								<!-- 인증날짜 -->
 								<p class="confirmDate">2020-03-24</p>
 								<!-- 인증유저 -->
@@ -170,7 +170,7 @@
 							</div>
 							<div class="photoBox">
 								<!-- 인증사진 -->
-								<img src="../resources/img/blog/1.jpg" alt="">
+								<img src="resources/images/blog/1.jpg" alt="">
 								<!-- 인증날짜 -->
 								<p class="confirmDate">2020-03-24</p>
 								<!-- 인증유저 -->
@@ -178,7 +178,7 @@
 							</div>
 							<div class="photoBox">
 								<!-- 인증사진 -->
-								<img src="../resources/img/blog/1.jpg" alt="">
+								<img src="resources/images/blog/1.jpg" alt="">
 								<!-- 인증날짜 -->
 								<p class="confirmDate">2020-03-24</p>
 								<!-- 인증유저 -->
@@ -186,7 +186,7 @@
 							</div>
 							<div class="photoBox">
 								<!-- 인증사진 -->
-								<img src="../resources/img/blog/1.jpg" alt="">
+								<img src="resources/images/blog/1.jpg" alt="">
 								<!-- 인증날짜 -->
 								<p class="confirmDate">2020-03-24</p>
 								<!-- 인증유저 -->
@@ -194,7 +194,7 @@
 							</div>
 							<div class="photoBox">
 								<!-- 인증사진 -->
-								<img src="../resources/img/blog/1.jpg" alt="">
+								<img src="resources/images/blog/1.jpg" alt="">
 								<!-- 인증날짜 -->
 								<p class="confirmDate">2020-03-24</p>
 								<!-- 인증유저 -->
@@ -202,7 +202,7 @@
 							</div>
 							<div class="photoBox">
 								<!-- 인증사진 -->
-								<img src="../resources/img/blog/1.jpg" alt="">
+								<img src="resources/images/blog/1.jpg" alt="">
 								<!-- 인증날짜 -->
 								<p class="confirmDate">2020-03-24</p>
 								<!-- 인증유저 -->
@@ -210,7 +210,7 @@
 							</div>
 							<div class="photoBox">
 								<!-- 인증사진 -->
-								<img src="../resources/img/blog/1.jpg" alt="">
+								<img src="resources/images/blog/1.jpg" alt="">
 								<!-- 인증날짜 -->
 								<p class="confirmDate">2020-03-24</p>
 								<!-- 인증유저 -->
@@ -218,7 +218,7 @@
 							</div>
 							<div class="photoBox">
 								<!-- 인증사진 -->
-								<img src="../resources/img/blog/1.jpg" alt="">
+								<img src="resources/images/blog/1.jpg" alt="">
 								<!-- 인증날짜 -->
 								<p class="confirmDate">2020-03-24</p>
 								<!-- 인증유저 -->
@@ -226,7 +226,7 @@
 							</div>
 							<div class="photoBox">
 								<!-- 인증사진 -->
-								<img src="../resources/img/blog/1.jpg" alt="">
+								<img src="resources/images/blog/1.jpg" alt="">
 								<!-- 인증날짜 -->
 								<p class="confirmDate">2020-03-24</p>
 								<!-- 인증유저 -->
@@ -235,7 +235,7 @@
 
 							<div class="photoBox">
 								<!-- 인증사진 -->
-								<img src="../resources/img/blog/1.jpg" alt="">
+								<img src="resources/images/blog/1.jpg" alt="">
 								<!-- 인증날짜 -->
 								<p class="confirmDate">2020-03-24</p>
 								<!-- 인증유저 -->
@@ -243,7 +243,7 @@
 							</div>
 							<div class="photoBox">
 								<!-- 인증사진 -->
-								<img src="../resources/img/blog/1.jpg" alt="">
+								<img src="resources/images/blog/1.jpg" alt="">
 								<!-- 인증날짜 -->
 								<p class="confirmDate">2020-03-24</p>
 								<!-- 인증유저 -->
@@ -251,7 +251,7 @@
 							</div>
 							<div class="photoBox">
 								<!-- 인증사진 -->
-								<img src="../resources/img/blog/1.jpg" alt="">
+								<img src="resources/images/blog/1.jpg" alt="">
 								<!-- 인증날짜 -->
 								<p class="confirmDate">2020-03-24</p>
 								<!-- 인증유저 -->
@@ -259,7 +259,7 @@
 							</div>
 							<div class="photoBox">
 								<!-- 인증사진 -->
-								<img src="../resources/img/blog/1.jpg" alt="">
+								<img src="resources/images/blog/1.jpg" alt="">
 								<!-- 인증날짜 -->
 								<p class="confirmDate">2020-03-24</p>
 								<!-- 인증유저 -->
@@ -267,7 +267,7 @@
 							</div>
 							<div class="photoBox">
 								<!-- 인증사진 -->
-								<img src="../resources/img/blog/1.jpg" alt="">
+								<img src="resources/images/blog/1.jpg" alt="">
 								<!-- 인증날짜 -->
 								<p class="confirmDate">2020-03-24</p>
 								<!-- 인증유저 -->
@@ -275,7 +275,7 @@
 							</div>
 							<div class="photoBox">
 								<!-- 인증사진 -->
-								<img src="../resources/img/blog/1.jpg" alt="">
+								<img src="resources/images/blog/1.jpg" alt="">
 								<!-- 인증날짜 -->
 								<p class="confirmDate">2020-03-24</p>
 								<!-- 인증유저 -->
@@ -283,7 +283,7 @@
 							</div>
 							<div class="photoBox">
 								<!-- 인증사진 -->
-								<img src="../resources/img/blog/1.jpg" alt="">
+								<img src="resources/images/blog/1.jpg" alt="">
 								<!-- 인증날짜 -->
 								<p class="confirmDate">2020-03-24</p>
 								<!-- 인증유저 -->
@@ -291,7 +291,7 @@
 							</div>
 							<div class="photoBox">
 								<!-- 인증사진 -->
-								<img src="../resources/img/blog/1.jpg" alt="">
+								<img src="resources/img/blog/1.jpg" alt="">
 								<!-- 인증날짜 -->
 								<p class="confirmDate">2020-03-24</p>
 								<!-- 인증유저 -->
@@ -299,7 +299,7 @@
 							</div>
 							<div class="photoBox">
 								<!-- 인증사진 -->
-								<img src="../resources/img/blog/1.jpg" alt="">
+								<img src="resources/img/blog/1.jpg" alt="">
 								<!-- 인증날짜 -->
 								<p class="confirmDate">2020-03-24</p>
 								<!-- 인증유저 -->
@@ -307,7 +307,7 @@
 							</div>
 							<div class="photoBox">
 								<!-- 인증사진 -->
-								<img src="../resources/img/blog/1.jpg" alt="">
+								<img src="resources/img/blog/1.jpg" alt="">
 								<!-- 인증날짜 -->
 								<p class="confirmDate">2020-03-24</p>
 								<!-- 인증유저 -->
@@ -315,7 +315,7 @@
 							</div>
 							<div class="photoBox">
 								<!-- 인증사진 -->
-								<img src="../resources/img/blog/1.jpg" alt="">
+								<img src="resources/img/blog/1.jpg" alt="">
 								<!-- 인증날짜 -->
 								<p class="confirmDate">2020-03-24</p>
 								<!-- 인증유저 -->
@@ -323,7 +323,7 @@
 							</div>
 							<div class="photoBox">
 								<!-- 인증사진 -->
-								<img src="../resources/img/blog/1.jpg" alt="">
+								<img src="resources/img/blog/1.jpg" alt="">
 								<!-- 인증날짜 -->
 								<p class="confirmDate">2020-03-24</p>
 								<!-- 인증유저 -->
@@ -331,7 +331,7 @@
 							</div>
 							<div class="photoBox">
 								<!-- 인증사진 -->
-								<img src="../resources/img/blog/1.jpg" alt="">
+								<img src="resources/img/blog/1.jpg" alt="">
 								<!-- 인증날짜 -->
 								<p class="confirmDate">2020-03-24</p>
 								<!-- 인증유저 -->
@@ -365,13 +365,13 @@
 	<!-- Main section end -->
 	
 	<!--====== Javascripts & Jquery ======-->
-	<script src="../resources/js/jquery-3.2.1.min.js"></script>
-	<script src="../resources/js/bootstrap.min.js"></script>
-	<script src="../resources/js/owl.carousel.min.js"></script>
-	<script src="../resources/js/jquery.nicescroll.min.js"></script>
-	<script src="../resources/js/circle-progress.min.js"></script>
-	<script src="../resources/js/jquery.magnific-popup.min.js"></script>
-	<script src="../resources/js/main.js"></script>
+	<script src="resources/js/jquery-3.2.1.min.js"></script>
+	<script src="resources/js/bootstrap.min.js"></script>
+	<script src="resources/js/owl.carousel.min.js"></script>
+	<script src="resources/js/jquery.nicescroll.min.js"></script>
+	<script src="resources/js/circle-progress.min.js"></script>
+	<script src="resources/js/jquery.magnific-popup.min.js"></script>
+	<script src="resources/js/main.js"></script>
 
 	</body>
 </html>

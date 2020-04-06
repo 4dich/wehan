@@ -5,30 +5,30 @@
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
-	<title>NISSA - PHOTOGRAPHY STUDIO HTML TEMPLATE</title>
+	<title>WEHAN - 위대한 한걸음</title>
 	<meta charset="UTF-8">
 	<meta name="description" content="Nissa Photography studio html template">
 	<meta name="keywords" content="industry, html">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
 	<!-- Favicon -->
-	<link href="img/favicon.ico" rel="shortcut icon"/>
+	<link href="resources/images/favicon.ico" rel="shortcut icon"/>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,900&display=swap" rel="stylesheet">
 
 	<!-- Stylesheets -->
-	<link rel="stylesheet" href="/webapp/resources/css/bootstrap.min.css"/>
-	<link rel="stylesheet" href="/webapp/resources/css/font-awesome.min.css"/>
-	<link rel="stylesheet" href="/webapp/resources/css/magnific-popup.css"/>
-	<link rel="stylesheet" href="/webapp/resources/css/owl.carousel.min.css"/>
+	<link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="resources/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="resources/css/magnific-popup.css"/>
+	<link rel="stylesheet" href="resources/css/owl.carousel.min.css"/>
 
 	<!-- Main Stylesheets -->
-	<link rel="stylesheet" href="/webapp/resources/css/style.css"/>
-	<link rel="stylesheet" href="/webapp/resources/css/admin_qna.css"/>
-	<link rel="stylesheet" href="/webapp/resources/css/admin_notice.css"/>
-	
+	<link rel="stylesheet" href="resources/css/style.css"/>
+	<link rel="stylesheet" href="resources/css/admin_qna.css"/>
+	<link rel="stylesheet" href="resources/css/admin_notice.css"/>
+	                             
 	<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -53,9 +53,8 @@
 
 	<!-- Main section start -->
 	<div class="main-site-warp">
-
-		<c:import url="../common/ad_menuBar.jsp"/>
 	
+		<c:import url="/WEB-INF/views/common/ad_menuBar.jsp"/>	
 		
 		<header class="header-section">
 			<div class="nav-switch">
@@ -67,18 +66,18 @@
 			<div class="main-sidebar">
 			 <!-- 로고구역 -->		
 			 <div class="mb-warp">
-                <a href="'indexView.do'" class="site-logo">
+                <a href="indexView.do" class="site-logo">
                     <h2 style="margin-left: 6px;">위대한 한걸음</h2>
                     <p style="padding-top: 15px;">THE GREAT ONE STEP</p>
                 </a>
 
 					<div class="about-info">
 						<h2>공지사항</h2>
-						<a href="pay.html" id="ad_pay" class="infoMenu">결제정보</a><br><br>
-						<a href="adminProfile.html" id="ad_profile" class="infoMenu">회원정보</a><br><br>
-						<a href="ad-chal.html" id="ad_challenge" class="infoMenu">챌린지 정보</a><br><br>
-						<a href="ad-cert.html" id="ad_certify" class="infoMenu">인증글 정보</a><br><br>
-						<a href="admin_qna.html" id="ad_questions" class="infoMenu">문의사항</a><br><br>
+						<a href="ad_payListView.do" id="ad_pay" class="infoMenu">결제정보</a><br><br>
+						<a href="ad_profileListView.do" id="ad_profile" class="infoMenu">회원정보</a><br><br>
+						<a href="ad_challengeListView.do" id="ad_challenge" class="infoMenu">챌린지 정보</a><br><br>
+						<a href="ad_certifyView.do" id="ad_certify" class="infoMenu">인증글 정보</a><br><br>
+						<a href="ad_qnaListView.do" id="ad_questions" class="infoMenu">문의사항</a><br><br>
 					</div>
 					
 				</div>
@@ -89,11 +88,10 @@
 				<div class="blog-posts">
 					
 					<div class="blog-post-item">
-						<button class="site-btn sb-dark" style="width: 280px; font-size: 15px; margin-bottom: 40px;" type="button" onclick="location.href='adInsertView.do'">
-							공지사항 등록하기							
+						<button class="site-btn sb-dark" style="width: 170px; font-size: 15px; margin-bottom: 40px;" type="button" onclick="location.href='ad_noticeInsertView.do'">
+							등록하기							
 						</button>
-						<div id="searchArea">
-							
+						<div id="searchArea">							
 							<div id="searchSelect"> 
 								<select name="adNoticeSearch" id="adNoticeSearch">
 									<option>작성자</option>
@@ -103,13 +101,13 @@
 							<!-- 검색 -->
 							<input class="searchBox" type="search" id="adNoticeSerchWord">
 							<button onclick="location.href='adNoticeSearch.do'">
-								<img src="../resources/img/main/search.png" alt="">
+								<img src="resources/images/main/search.png" alt="">
 							</button>
 						</div>
 
 
 						<!-- 공지사항 테이블 -->
-						<table class="noticeTable">
+						<table class="noticeTable" style="width:100%">
 							
 							<tr class="thArea">								
 								<th>NO</th>								
@@ -124,7 +122,7 @@
 							<!-- 반복문 예정 -->
 							<tr class="noticeList">
 								<td>1</td>								
-								<td><a href="admin_noticeDetail.html"> 공지사항제목입니다.</a></td>
+								<td><a href="ad_noticeDetailView.do"> 공지사항제목입니다.</a></td>
 								<td>현스델리</td>
 								<td>2020-03-25</td>
 								<td>1</td>
@@ -179,8 +177,8 @@
 							<!-- 삭제 끝 -->
 
 						</table>
-						
-						<div class="noticePaging">
+						<br>
+						<div class="noticePaging" style="text-align:center">
 							<a>&lt;</a>&nbsp;&nbsp;&nbsp;&nbsp;
 							<a>●</a>
 							<a>●</a>
@@ -208,13 +206,13 @@
 	</script>
 	
 	<!--====== Javascripts & Jquery ======-->
-	<script src="/webapp/resources/js/jquery-3.2.1.min.js"></script>
-	<script src="/webapp/resources/js/bootstrap.min.js"></script>
-	<script src="/webapp/resources/js/owl.carousel.min.js"></script>
-	<script src="/webapp/resources/js/jquery.nicescroll.min.js"></script>
-	<script src="/webapp/resources/js/circle-progress.min.js"></script>
-	<script src="/webapp/resources/js/jquery.magnific-popup.min.js"></script>
-	<script src="/webapp/resources/js/main.js"></script>
+	<script src="resources/js/jquery-3.2.1.min.js"></script>
+	<script src="resources/js/bootstrap.min.js"></script>
+	<script src="resources/js/owl.carousel.min.js"></script>
+	<script src="resources/js/jquery.nicescroll.min.js"></script>
+	<script src="resources/js/circle-progress.min.js"></script>
+	<script src="resources/js/jquery.magnific-popup.min.js"></script>
+	<script src="resources/js/main.js"></script>
 
 	</body>
 </html>

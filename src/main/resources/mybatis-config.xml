@@ -5,24 +5,19 @@
  
 <configuration>
 
-		<!-- 
-			만약 null 데이터가 전달되었다면 빈칸이 아니라 NULL로 인식해라라는 뜻 
- 			value에  null은 반드시 대문자로! 소문자인 경우 지정되지 않은 값이라고 에러 발생
-   		-->
 	<settings>
 		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
 	
-	<!-- typeAliases -->
-		<!-- VO/DTO 객체의 풀네임을 일반 클래스명으로 사용하기 위해 등록하는 별칭 선언 -->
+	<typeAliases>
+		<typeAlias type="com.kh.wehan.member.model.vo.Member" alias="Member"/>
+		<typeAlias type="com.kh.wehan.member.model.vo.Mypage" alias="Mypage"/>
+		<typeAlias type="com.kh.wehan.notice.model.vo.Notice" alias="Notice"/>
+	</typeAliases>
 	
-	
-		<!-- environments 엘리먼트로 dataSource 등등 DB정보 작성했다. 
-		기존에 DB연결 설정에 대한 정보를 스프링에서는 root-context.xml에서
-		작성할 예정이다.(DataSource 등록은 서버 연동과 같이 이루어져야한다.)
-		-->
-	
-		<!-- DB에 사용되는 쿼리문을 담은 mapper 파일을 등록 -->
-	
-	
+	<mappers>
+		<mapper resource="mappers/member-mapper.xml"/>
+		<mapper resource="mappers/mypage-mapper.xml"/>
+		<mapper resource="mappers/notice-mapper.xml"/>
+	</mappers>
 </configuration>

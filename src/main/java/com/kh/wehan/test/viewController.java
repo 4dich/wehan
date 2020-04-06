@@ -123,47 +123,47 @@ public class viewController {
 	
 	@RequestMapping("errorPageView.do")
 	public String errorPageView() {
-		return "user/errorPage";
+		return "common/errorPage";
 	}
 	
 	@RequestMapping("fid_detailView.do")
 	public String fid_detailView() {
-		return "user/fid_detail";
+		return "user/fid/fid_detail";
 	}
 	
 	@RequestMapping("ch_certifyDetailView.do")
 	public String ch_certifyDetailView() {
-		return "user/ch_certifyDetail";
+		return "user/ceritify/ch_certifyDetail";
 	}
 	
 	@RequestMapping("guideInfoView.do")
 	public String guideInfoView() {
-		return "user/guideInfo";
+		return "user/info/guideInfo";
 	}
 	
 	@RequestMapping("msg_friendListView.do")
 	public String msg_friendListView() {
-		return "user/msg_friendList";
+		return "user/message/msg_friendList";
 	}
 	
 	@RequestMapping("msg_msgListView.do")
 	public String msg_msgListView() {
-		return "user/msg_msgList";
+		return "user/message/msg_msgList";
 	}
 	
 	@RequestMapping("msg_msgDetailView.do")
 	public String msg_msgDetailView() {
-		return "user/msg_msgDetail";
+		return "user/message/msg_msgDetail";
 	}
 	
 	@RequestMapping("serviceInfoView.do")
 	public String serviceInfoView() {
-		return "user/serviceInfo";
+		return "user/info/serviceInfo";
 	}
 	
 	@RequestMapping("ch_registerPhotoView.do")
 	public String ch_registerPhotoView() {
-		return "user/ch_registerPhoto";
+		return "user/ceritify/ch_registerPhoto";
 	}
 	
 	
@@ -177,28 +177,6 @@ public class viewController {
 		return "user/payAgree";
 	}
 	
-	@RequestMapping("my_updateInfoView.do")
-	public String my_updateInfoView() {
-		return "user/my_updateInfo";
-	}
-	
-	
-	@RequestMapping("my_profileView.do")
-	public String my_profileView() {
-		return "user/my_profile";
-	}
-	
-	@RequestMapping("my_challengeView.do")
-	public String my_challengeView() {
-		return "user/my_challenge";
-	}
-	
-	@RequestMapping("my_diaryView.do")
-	public String my_diaryView() {
-		return "user/my_diary";
-	}
-	
-	
 	@RequestMapping("indexView.do")
 	public String indexView() {
 		return "user/index";
@@ -206,22 +184,22 @@ public class viewController {
 	
 	@RequestMapping("ch_certifyPhotoListView.do")
 	public String ch_certifyPhotoListView() {
-		return "user/ch_certifyPhotoList";
+		return "user/ceritify/ch_certifyPhotoList";
 	}
 	
 	@RequestMapping("fid_friendListView.do")
 	public String fid_friendListView() {
-		return "user/fid_friendList";
+		return "user/fid/fid_friendList";
 	}
 	
 	@RequestMapping("fid_ch_recommendView.do")
 	public String fid_ch_recommendView() {
-		return "user/fid_ch_recommend";
+		return "user/fid/fid_ch_recommend";
 	}
 	
 	@RequestMapping("fid_followView.do")
 	public String fid_followView() {
-		return "user/fid_follow";
+		return "user/fid/fid_follow";
 	}
 	
 	@RequestMapping("qnaListView.do")
@@ -242,12 +220,12 @@ public class viewController {
 		
 	@RequestMapping("noticeDetailView.do")
 	public String noticeDetailView() {
-		return "user/noticeDetail";
+		return "user/notice/noticeDetail";
 	}
 	
 	@RequestMapping("noticeView.do")
 	public String noticeView() {
-		return "user/notice";
+		return "user/notice/notice";
 	}
 	
 
