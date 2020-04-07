@@ -132,4 +132,48 @@ public class NoticeController {
 	}
 	
 	
+	@RequestMapping("ad_noticeDetail.do")
+	public ModelAndView adNoticeDetail(ModelAndView mv, int nId, int currentPage) {
+		
+		Notice n = nService.noticeSelect(nId);
+		
+		if(n != null) {
+			mv.addObject("n", n) // 공지사항 내용 보내기
+			.addObject("currentPage",currentPage) // 현재 페이지 보내기
+			.setViewName("admin/ad_noticeDetail");
+		} else {
+			mv.addObject("msg","Error").addObject("msg2","페이지 상세 조회 실패").setViewName("common/errorPage");
+		}
+		return mv;
+	}
+	
+	
+	@RequestMapping("ad_searchNotice.do")
+	public ModelAndView adSearchNotice(ModelAndView mv, String searchNotice, String searchWord) {
+		
+		SearchCondition sc = new SearchCondition();
+		
+		if(searchNotice.equals("title")) {
+			sc.setTitle(searchWord);
+		} else if(searchNotice.equals("content")) {
+			sc.setContent(searchWord);
+		}
+		
+		int currentPage = 1;
+		
+		int listCount = nService.getSearchListCount(sc);
+		
+		System.out.println(listCount);
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
+		
+		ArrayList<Notice> list = nService.selectSearchList(sc, pi);
+		
+		
+		mv.addObject("list", list).addObject("pi", pi).setViewName("admin/ad_noticeList");
+		
+		
+		return mv;
+	}
+	
 }

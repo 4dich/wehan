@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang="zxx">
 <head>
 	<title>WEHAN - 위대한 한걸음</title>
 	<meta charset="UTF-8">
@@ -56,7 +56,7 @@
 		
 		
 		
-		<%@include file="/WEB-INF/views/common/ad_menuBar.jsp" %>	
+		<%-- <c:import url="/WEB-INF/views/common/ad_menuBar.jsp" />	 --%>
 		
 		<header class="header-section">
 			<div class="nav-switch">
@@ -94,7 +94,7 @@
 							등록하기							
 						</button>
 						<div id="searchArea">		
-							<form action="searchNotice.do">					
+							<form action="ad_searchNotice.do">					
 								<div id="searchSelect"> 
 									<select name="searchNotice" id="searchNotice">
 										<option value="title">제목</option>
@@ -147,7 +147,7 @@
 								<
 							</c:if>
 							<c:if test ="${pi.currentPage ne 1 }">
-								<c:url var="before" value="noticeList.do">
+								<c:url var="before" value="ad_noticeList.do">
 									<c:param name="currentPage" value="${pi.currentjPage - 1}"/>
 								</c:url>
 								<a href="${ before }"><</a>
@@ -160,7 +160,7 @@
 								</c:if>
 								
 								<c:if test="${ p ne pi.currentPage }">
-									<c:url var="pagenation" value="noticeList.do">
+									<c:url var="pagenation" value="ad_noticeList.do">
 										<c:param name="currentPage" value="${ p }"/>
 									</c:url>
 									<a href="${ pagination }">${p}</a>
@@ -172,7 +172,7 @@
 								>
 							</c:if>
 							<c:if test="${pi.currentPage ne pi.maxPage }">
-								<c:url var="after" value="noticeList.do">
+								<c:url var="after" value="ad_noticeList.do">
 									<c:param name="currentPage" value="${pi.currentPage + 1 }"/>
 								</c:url>
 								<a href="${after}">></a>
@@ -199,7 +199,7 @@
 			var nId = $(this).parent().children().find("input[type=hidden]").val();
 			var currentPage = ${pi.currentPage};
 			
-			location.href="noticeDetail.do?nId="+nId+"&currentPage=" + currentPage;
+			location.href="ad_noticeDetail.do?nId="+nId+"&currentPage=" + currentPage;
 		});
 	</script>
 	
