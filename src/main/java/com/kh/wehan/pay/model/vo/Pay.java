@@ -8,6 +8,7 @@ public class Pay {
   private String userId;
   private int price;
   private String pmethod;
+  private String chName;
   private Date pDate;
   private String pay_yn;
   private String refund_yn;
@@ -17,10 +18,7 @@ public class Pay {
 	  super();
   }
 
-  
-  
-  
-public Pay(String pId, String chId, String userId, int price, String pmethod, Date pDate, String pay_yn,
+public Pay(String pId, String chId, String userId, int price, String pmethod, String chName, Date pDate, String pay_yn,
 		String refund_yn, String pdel_yn) {
 	super();
 	this.pId = pId;
@@ -28,14 +26,12 @@ public Pay(String pId, String chId, String userId, int price, String pmethod, Da
 	this.userId = userId;
 	this.price = price;
 	this.pmethod = pmethod;
+	this.chName = chName;
 	this.pDate = pDate;
 	this.pay_yn = pay_yn;
 	this.refund_yn = refund_yn;
 	this.pdel_yn = pdel_yn;
 }
-
-
-
 
 public String getpId() {
 	return pId;
@@ -77,6 +73,14 @@ public void setPmethod(String pmethod) {
 	this.pmethod = pmethod;
 }
 
+public String getChName() {
+	return chName;
+}
+
+public void setChName(String chName) {
+	this.chName = chName;
+}
+
 public Date getpDate() {
 	return pDate;
 }
@@ -112,8 +116,13 @@ public void setPdel_yn(String pdel_yn) {
 @Override
 public String toString() {
 	return "Pay [pId=" + pId + ", chId=" + chId + ", userId=" + userId + ", price=" + price + ", pmethod=" + pmethod
-			+ ", pDate=" + pDate + ", pay_yn=" + pay_yn + ", refund_yn=" + refund_yn + ", pdel_yn=" + pdel_yn + "]";
+			+ ", chName=" + chName + ", pDate=" + pDate + ", pay_yn=" + pay_yn + ", refund_yn=" + refund_yn
+			+ ", pdel_yn=" + pdel_yn + "]";
 }
+
   
+  
+  
+
   
 }

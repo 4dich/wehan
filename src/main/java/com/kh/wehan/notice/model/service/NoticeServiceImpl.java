@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.kh.wehan.common.model.vo.PageInfo;
 import com.kh.wehan.notice.model.dao.NoticeDao;
 import com.kh.wehan.notice.model.vo.Notice;
+import com.kh.wehan.notice.model.vo.SearchCondition;
 
 @Service("nService")
 public class NoticeServiceImpl implements NoticeService{
@@ -46,6 +47,22 @@ public class NoticeServiceImpl implements NoticeService{
 			return null;
 		}
 	 	
+	}
+
+	/**
+	 * 공지사항 검색글 갯수 가져오기
+	 */
+	@Override
+	public int getSearchListCount(SearchCondition sc) {
+		return nDao.getSearchListCount(sc);
+	}
+
+	/**
+	 * 공지사항 검색 리스트 불러오기
+	 */
+	@Override
+	public ArrayList<Notice> selectSearchList(SearchCondition sc, PageInfo pi) {
+		return nDao.selectSearchList(sc, pi);
 	}
 
 	
