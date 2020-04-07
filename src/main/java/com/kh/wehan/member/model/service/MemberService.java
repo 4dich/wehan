@@ -1,5 +1,6 @@
 package com.kh.wehan.member.model.service;
 
+import com.kh.wehan.member.model.vo.Admin;
 import com.kh.wehan.member.model.vo.Member;
 
 public interface MemberService {
@@ -9,7 +10,7 @@ public interface MemberService {
 	 * @param m
 	 * @return
 	 */
-	Member login(Member m);
+	Member login(String userId);
 
 	/**
 	 * 아이디 체크
@@ -17,5 +18,7 @@ public interface MemberService {
 	 * @return
 	 */
 	int idCheck(String idCheck);
+
+	Admin adminlogin(String userId);
 
 }
