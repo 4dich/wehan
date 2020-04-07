@@ -24,11 +24,12 @@ public class MemberController {
 		
 		Pattern p = Pattern.compile("^[a-zA-Z0-9].{3,11}$");
 		Matcher m = p.matcher(idCheck);
-		System.out.println(m.find());
+		boolean b = m.find();
+		System.out.println(b);
 		
-		int result = mService.idCheck(idCheck);
-		System.out.println(result);
-		if(m.find()) {
+		if(b == true) {
+			int result = mService.idCheck(idCheck);
+			System.out.println(result);
 			if(result > 0) {
 				return "2";
 			}else {
@@ -37,6 +38,7 @@ public class MemberController {
 		}else {
 			return "3";
 		}
+		
 		
 	}
 	
