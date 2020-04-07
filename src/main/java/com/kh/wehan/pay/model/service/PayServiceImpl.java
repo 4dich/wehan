@@ -23,7 +23,7 @@ public class PayServiceImpl implements PayService {
 
 	@Override
 	public ArrayList<Pay> selectList(PageInfo pi) {
-		return null;
+		return pDao.selectList(pi);
 	}
 
 	@Override

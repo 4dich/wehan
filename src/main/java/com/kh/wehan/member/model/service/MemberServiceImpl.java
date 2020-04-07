@@ -27,4 +27,9 @@ public class MemberServiceImpl implements MemberService{
 		return mDao.adminlogin(userId);
 	}
 
+	@Override
+	public int nickCheck(String nickName) {
+		return mDao.nickCheck(nickName);
+	}
+
 }

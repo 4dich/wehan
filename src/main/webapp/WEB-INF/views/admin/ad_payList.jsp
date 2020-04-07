@@ -55,7 +55,7 @@
 
 
 		
-	<%@ include file="/WEB-INF/views/common/ad_menuBar.jsp" %>
+	<%-- <%@ include file="/WEB-INF/views/common/ad_menuBar.jsp" %> --%>
 
 
 		<header class="header-section">
@@ -109,6 +109,7 @@
 
 
 						<!-- 문의사항 테이블 -->
+						총게시글 갯수:${ pi.listCount }
 						<table class="qnaTable">
 							
 							<tr class="thArea">
@@ -121,124 +122,63 @@
 								<th>결제정보</th>
 								<th>환급여부</th>
 							</tr>
+							<c:forEach var="p" items="${ list }">
 							<!-- 반복문 예정 -->
 							<tr class="noticeList">
 								<td><input type="checkbox"></td>
-								<td>dd241241</td>
-								<td><a href="pay2.html">하루에 3번 팩하기</a></td>
-								<td>knine22</td>
-								<td>2020-03-20</td>
-								<td>Y</td>
-								<td><button>정보</button></td>
-								<td>지급완료</td>
+								<td>${ p.pId }</td>
+								<td>ㅇㅇㅇㅇ</td>
+								<td>${ p.userId }</td>
+								<td>${ p.pDate }</td>
+								<td>${ p.pay_yn }</td>
+								<td><button onclick="location.href='paydetail.do?pId=${p.pId}'">정보</button></td>
+								<td>${ p.refund_yn }</td>
 							</tr>
-
-							<!-- 나중에 삭제할거 -->
-							<tr class="noticeList">
-								<td><input type="checkbox"></td>
-								<td>dd241241</td>
-								<td>하루에 3번 팩하기</td>
-								<td>knine22</td>
-								<td>2020-03-20</td>
-								<td>Y</td>
-								<td><button>정보</button></td>
-								<td>지급완료</td>
-							</tr>
-							<tr class="noticeList">
-								<td><input type="checkbox"></td>
-								<td>dd241241</td>
-								<td>하루에 3번 팩하기</td>
-								<td>knine22</td>
-								<td>2020-03-20</td>
-								<td>Y</td>
-								<td><button>정보</button></td>
-								<td>지급완료</td>
-							</tr>
-							<tr class="noticeList">
-								<td><input type="checkbox"></td>
-								<td>dd241241</td>
-								<td>하루에 3번 팩하기</td>
-								<td>knine22</td>
-								<td>2020-03-20</td>
-								<td>Y</td>
-								<td><button>정보</button></td>
-								<td>지급완료</td>
-							</tr>
-							<tr class="noticeList">
-								<td><input type="checkbox"></td>
-								<td>dd241241</td>
-								<td>하루에 3번 팩하기</td>
-								<td>knine22</td>
-								<td>Y</td>
-								<td>Y</td>
-								<td><button>정보</button></td>
-								<td>미지급</td>
-							</tr>
-							<tr class="noticeList">
-								<td><input type="checkbox"></td>
-								<td>dd241241</td>
-								<td>하루에 3번 팩하기</td>
-								<td>knine22</td>
-								<td>Y</td>
-								<td>Y</td>
-								<td><button>정보</button></td>
-								<td>미지급</td>
-							</tr>
-							<tr class="noticeList">
-								<td><input type="checkbox"></td>
-								<td>dd241241</td>
-								<td>하루에 3번 팩하기</td>
-								<td>knine22</td>
-								<td>Y</td>
-								<td>Y</td>
-								<td><button>정보</button></td>
-								<td>미지급</td>
-							</tr>
-							<tr class="noticeList">
-								<td><input type="checkbox"></td>
-								<td>dd241241</td>
-								<td>하루에 3번 팩하기</td>
-								<td>knine22</td>
-								<td>Y</td>
-								<td>Y</td>
-								<td><button>정보</button></td>
-								<td>미지급</td>
-							</tr>
-							<tr class="noticeList">
-								<td><input type="checkbox"></td>
-								<td>dd241241</td>
-								<td>하루에 3번 팩하기</td>
-								<td>knine22</td>
-								<td>Y</td>
-								<td>Y</td>
-								<td><button>정보</button></td>
-								<td>미지급</td>
-							</tr>
-							<tr class="noticeList">
-								<td><input type="checkbox"></td>
-								<td>dd241241</td>
-								<td>하루에 3번 팩하기</td>
-								<td>knine22</td>
-								<td>Y</td>
-								<td>Y</td>
-								<td><button>정보</button></td>
-								<td>미지급</td>
-							</tr>
+							</c:forEach>
+							
 							
 
 
 							<!-- 삭제 끝 -->
 
 						</table>
-						
+					
 						<div class="qnaPaging">
-							<a><</a>&nbsp;&nbsp;&nbsp;&nbsp;
-							<a>●</a>
-							<a>●</a>
-							<a>●</a>
-							<a>●</a>
-							<a>●</a>&nbsp;&nbsp;&nbsp;&nbsp;
-							<a>></a>
+						<!-- [이전] -->
+				<c:if test="${ pi.currentPage eq 1 }">
+					[이전] &nbsp;
+				</c:if>
+				<c:if test="${ pi.currentPage ne 1 }">
+					<c:url var="before" value="paylist.do">
+						<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
+					</c:url>
+					<a href="${ before }">[이전]</a> &nbsp;
+				</c:if>
+				
+				<!-- 페이지 -->
+				<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+					<c:if test="${ p eq pi.currentPage }">
+						<font color="red" size="4"><b>[${ p }]</b></font>
+					</c:if>
+					
+					<c:if test="${ p ne pi.currentPage }">
+						<c:url var="pagination" value="paylist.do">
+							<c:param name="currentPage" value="${ p }"/>
+						</c:url>
+						<a href="${ pagination }">${ p }</a> &nbsp;
+					</c:if>
+				</c:forEach>
+				
+				<!-- [다음] -->
+				<c:if test="${ pi.currentPage eq pi.maxPage }">
+					[다음]
+				</c:if>
+				<c:if test="${ pi.currentPage ne pi.maxPage }">
+					<c:url var="after" value="paylist.do">
+						<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
+					</c:url> 
+					<a href="${ after }">[다음]</a>
+				</c:if>
 						</div>
 					</div>
 				</div>
@@ -246,7 +186,7 @@
 			<!-- Page end -->
 		</div>
 	
-	
+		
 		<div class="copyright"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
   			Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved 
   			<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
@@ -256,7 +196,8 @@
 		$(function(){
 			$('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247"); //even 짝수
 		});
-
+		
+			
 	</script>
 	
 	<!--====== Javascripts & Jquery ======-->

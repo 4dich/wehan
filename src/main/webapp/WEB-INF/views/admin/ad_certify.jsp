@@ -105,118 +105,59 @@
 									<th>상세 정보</th>
 									<th>조회 수</th>
 								</tr>
-								<tr class="noticeList">
-									<td>1</td>
-									<td>ch00001</td>
-									<td>마스크팩 붙이기</td>
-									<td>user01</td>
-									<td>2020-03-20</td>
-									<td>2020-03-25</td>
-									<td><button>정보</button></td>
-									<td>2</td>
-								</tr>
-
-								<tr class="noticeList">
-									<td>1</td>
-									<td>ch00001</td>
-									<td>마스크팩 붙이기</td>
-									<td>user01</td>
-									<td>2020-03-20</td>
-									<td>2020-03-25</td>
-									<td><button>정보</button></td>
-									<td>2</td>
-								</tr>
-								<tr class="noticeList">
-									<td>1</td>
-									<td>ch00001</td>
-									<td>마스크팩 붙이기</td>
-									<td>user01</td>
-									<td>2020-03-20</td>
-									<td>2020-03-25</td>
-									<td><button>정보</button></td>
-									<td>2</td>
-								</tr>
-								<tr class="noticeList">
-									<td>1</td>
-									<td>ch00001</td>
-									<td>마스크팩 붙이기</td>
-									<td>user01</td>
-									<td>2020-03-20</td>
-									<td>2020-03-25</td>
-									<td><button>정보</button></td>
-									<td>2</td>
-								</tr>
-								<tr class="noticeList">
-									<td>1</td>
-									<td>ch00001</td>
-									<td>마스크팩 붙이기</td>
-									<td>user01</td>
-									<td>2020-03-20</td>
-									<td>2020-03-25</td>
-									<td><button>정보</button></td>
-									<td>2</td>
-								</tr>
-								<tr class="noticeList">
-									<td>1</td>
-									<td>ch00001</td>
-									<td>마스크팩 붙이기</td>
-									<td>user01</td>
-									<td>2020-03-20</td>
-									<td>2020-03-25</td>
-									<td><button>정보</button></td>
-									<td>2</td>
-								</tr>
-								<tr class="noticeList">
-									<td>1</td>
-									<td>ch00001</td>
-									<td>마스크팩 붙이기</td>
-									<td>user01</td>
-									<td>2020-03-20</td>
-									<td>2020-03-25</td>
-									<td><button>정보</button></td>
-									<td>2</td>
-								</tr>
-								<tr class="noticeList">
-									<td>1</td>
-									<td>ch00001</td>
-									<td>마스크팩 붙이기</td>
-									<td>user01</td>
-									<td>2020-03-20</td>
-									<td>2020-03-25</td>
-									<td><button>정보</button></td>
-									<td>2</td>
-								</tr>
-								<tr class="noticeList">
-									<td>1</td>
-									<td>ch00001</td>
-									<td>마스크팩 붙이기</td>
-									<td>user01</td>
-									<td>2020-03-20</td>
-									<td>2020-03-25</td>
-									<td><button>정보</button></td>
-									<td>2</td>
-								</tr>
-								<tr class="noticeList">
-									<td>1</td>
-									<td>ch00001</td>
-									<td>마스크팩 붙이기</td>
-									<td>user01</td>
-									<td>2020-03-20</td>
-									<td>2020-03-25</td>
-									<td><button>정보</button></td>
-									<td>2</td>
-								</tr>
+								<c:forEach var ="ce" items="${ list }">
+									<tr class="noticeList">
+										<td>${ ce.ceId }</td>
+										<td>${ ce.chId }</td>
+										<td>마스크팩 붙이기</td>
+										<td>${ ce.userId }</td>
+										<td>2020-03-20</td>
+										<td>2020-03-25</td>
+										<td><button>정보</button></td>
+										<td>2</td>
+									</tr>
+								</c:forEach>
 
 							</table>
 							
 							<div class="qnaPaging">
-								<a><</a>&nbsp;&nbsp;&nbsp;&nbsp;
-								<a>●</a>
-								<a>●</a>
-								<a>●</a>
-								<a>●</a>
-								<a>●</a>&nbsp;&nbsp;&nbsp;&nbsp;
-								<a>></a>
+								<c:if test="${pi.currentPage eq 1 }">
+								<
+								</c:if>
+								
+								<c:if test="${ pi.currentPage ne 1 }">
+									<c:url var="before" value="aclist.bo">
+										<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
+									</c:url>
+									<a href="${ before }">&lt;</a> &nbsp;
+								</c:if>
+							
+								<!-- 페이지 -->
+								<c:forEach var="p" begin="${pi.startPage}" end="${pi.endPage }">
+									<c:if test="${ p eq pi.currentPage }">
+										<font color="red" size = "4"><b>[${ p }]</b></font>
+									</c:if>
+									
+									<c:if test="${ p ne pi.currentPage }">
+										<c:url var="pagenation" value="aclist.do">
+											<c:param name="currentPage" value="${ p }"/>
+										</c:url>
+										<a href="${ pagination }">${p}</a>
+									</c:if>
+								</c:forEach>
+								
+								<!-- 다음 -->
+								<c:if test="${pi.currentPage eq pi.maxPage }">
+									>
+								</c:if>
+								<c:if test="${pi.currentPage ne pi.maxPage }">
+									<c:url var="after" value="aclist.do">
+										<c:param name="currentPage" value="${pi.currentPage + 1 }"/>
+									</c:url>
+									<a href="${after}">&gt;</a>
+								</c:if>
+								
+						
 							</div>
 						</div>
 					</div>

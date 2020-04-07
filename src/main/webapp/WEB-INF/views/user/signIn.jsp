@@ -123,19 +123,21 @@
                                             <input id="checkID" type="hidden" value="0">
                                         </div>
 										<div class="col-lg-12">
-                                            <input id="password" name="password" type="password" style="border-top: none; border-left: none; border-right: none;" placeholder="비밀번호">
+                                            <input id="password" name="password" type="password" style="border-top: none; border-left: none; border-right: none; width:71%" placeholder="비밀번호">
                                         </div>
                                         <div class="col-lg-12">
-                                            <input id="password2" name="password2" type="password" style="border-top: none; border-left: none; border-right: none;" placeholder="비밀번호확인">
+                                            <input id="password2" name="password2" type="password" style="border-top: none; border-left: none; border-right: none; width:71%" placeholder="비밀번호확인">
                                         </div>
                                         <div class="col-lg-12">
-                                            <input id="userName" name="userName" type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="이름">
+                                            <input id="userName" name="userName" type="text" style="border-top: none; border-left: none; border-right: none; width:71%" placeholder="이름">
                                         </div>
 										<div class="col-lg-12">
-                                            <input id="nickName" name="nickName"type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="닉네임">
+                                            <input id="nickName" name="nickName"type="text" style="border-top: none; border-left: none; border-right: none; width:71%" placeholder="닉네임">
+                                            <span class="check c1">사용가능</span><span class="check c4">중복된 닉네임</span><span class="check c5">사용불가능한 닉네임</span>
+                                            <input id="checkNick" type="hidden" value="0">
                                         </div>
 										<div class="col-lg-12">
-                                            <input id="email" name="email" type="email" style="border-top: none; border-left: none; border-right: none;" placeholder="이메일">
+                                            <input id="email" name="email" type="email" style="border-top: none; border-left: none; border-right: none; width:71%" placeholder="이메일">
                                         </div>
 									</div>
 								</div>
@@ -203,7 +205,16 @@
 			if(userId == null){
 				alert("아이디를 입력해 주세요");
 				return false;
+			}else{
+				if($('#checkID').val() == 2){
+					alert("아이디 중복입니다")
+					return false;
+				}else if($('#checkID').val() == 3){
+					alert("사용 불가능한 아이디 입니다")
+					return false;
+				}
 			}
+			
 			
 			if(password == null && password2 == null){
 				alert("패스워드를 입력해 주세요");
@@ -258,7 +269,6 @@
 					data:{idCheck:idCheck},
 					type:"post",
 					success:function(data){
-						console.log(data);
 						if(data=="1"){
 							$('.c1').show();
 							$('.c2').hide();
@@ -279,7 +289,35 @@
 						console.log("에러");
 					}
 				});
-			});	
+			});
+			
+			$('#nickName').on("keyup",function(){
+				$.ajax({
+					uri:"nickCheck.do",
+					data:{nickName:nickName},
+					type:post,
+					success:function(data){
+						if(data=="1"){
+							$('.c1').show();
+							$('.c4').hide();
+							$('.c5').hide();
+							$('#checkID').val(1);
+						}else if(data == "2"){
+							$('.c1').hide();
+							$('.c4').show();
+							$('.c5').hide();
+							$('#checkID').val(2);
+						}else{
+							$('.c1').hide();
+							$('.c2').hide();
+							$('.c3').show();
+							$('#checkID').val(3);
+						}
+					},error:function(){
+						console.log("에러");
+					}
+				});
+			});
 		}); 
 			
 		
