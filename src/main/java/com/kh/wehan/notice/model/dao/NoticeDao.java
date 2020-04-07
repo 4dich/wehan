@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.wehan.common.model.vo.PageInfo;
 import com.kh.wehan.notice.model.vo.Notice;
+import com.kh.wehan.notice.model.vo.SearchCondition;
 
 @Repository("nDao")
 public class NoticeDao {
@@ -55,6 +56,30 @@ public class NoticeDao {
 	 */
 	public Notice noticeSelect(int nId) {
 		return sqlSession.selectOne("noticeMapper.noticeSelect",nId);
+	}
+
+	/**
+	 * 공지사항 검색글 갯수 가져오기
+	 * @param sc
+	 * @return
+	 */
+	public int getSearchListCount(SearchCondition sc) {
+		return sqlSession.selectOne("noticeMapper.getSearchListCount", sc);
+	}
+
+	/**
+	 * 공지사항 검색 리스트 불러오기
+	 * @param sc
+	 * @param pi
+	 * @return
+	 */
+	public ArrayList<Notice> selectSearchList(SearchCondition sc, PageInfo pi) {
+		
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("noticeMapper.selectSearchList", sc, rowBounds);
 	}
 
 	

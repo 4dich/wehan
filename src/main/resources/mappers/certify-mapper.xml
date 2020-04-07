@@ -24,7 +24,7 @@
 		SELECT * 
 		FROM CERTIFY
 		WHERE CEDEL_YN='N'
-		ORDER BY BID DESC
+        ORDER BY CEID ASC
 	</select>
 
 
