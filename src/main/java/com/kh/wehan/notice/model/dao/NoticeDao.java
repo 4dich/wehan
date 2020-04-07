@@ -82,6 +82,35 @@ public class NoticeDao {
 		return (ArrayList)sqlSession.selectList("noticeMapper.selectSearchList", sc, rowBounds);
 	}
 
+	/**
+	 * 공지사항 입력
+	 * @param n
+	 * @return
+	 */
+	public int adNoticeInsert(Notice n) {
+		return sqlSession.insert("noticeMapper.adNoticeInsert", n);
+	}
+
+	/**
+	 * 공지사항 수정하기
+	 * @param n
+	 * @return
+	 */
+	public int adNoticeModify(Notice n) {
+		return sqlSession.update("noticeMapper.adNoticeModify", n);
+	}
+
+	/**
+	 * 공지사항 삭제하기
+	 * @param nId
+	 * @return
+	 */
+	public int adNoticeDelete(int nId) {
+		return sqlSession.update("noticeMapper.adNoticeDelete", nId);
+	}
+
+
+
 	
 	
 

@@ -128,7 +128,7 @@
 										<input type="hidden" value="${n.nId}">
 										${n.nId}
 									</td>									
-									<td>${n.nTitle}</td>
+									<td style="text-align:left">${n.nTitle}</td>
 									<td>${n.nWriter}</td>
 									<td>${n.nDate}</td>
 									<td>${n.nCount}</td>

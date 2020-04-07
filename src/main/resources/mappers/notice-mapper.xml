@@ -73,4 +73,27 @@
 		</if>
 		ORDER BY NID DESC  		
   	</select>
+  	
+  	<!-- 공지사항 입력 -->
+  	<insert id="adNoticeInsert">
+  		INSERT INTO NOTICE 
+  		VALUES(SEQ_NID.NEXTVAL,#{nTitle},#{nContent},#{nWriter},DEFAULT,NULL,SYSDATE,DEFAULT)  	
+  	</insert>
+  	
+  	<!-- 공지사항 수정 -->
+  	<update id="adNoticeModify">
+  		UPDATE NOTICE 
+  		SET NTITLE = #{nTitle}, NCONTENT = #{nContent}, NDATE=SYSDATE 
+  		WHERE NID = #{nId}
+  		AND NDEL_YN = 'N'
+  	</update>
+  	
+  	<!-- 공지사항 삭제 -->
+  	<update id="adNoticeDelete">
+  		UPDATE NOTICE
+  		SET NDEL_YN = 'Y'
+  		WHERE NID = #{nId}
+  	</update>
+  	
+  	
   </mapper>

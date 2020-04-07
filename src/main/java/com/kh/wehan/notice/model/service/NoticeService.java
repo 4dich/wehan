@@ -43,6 +43,29 @@ public interface NoticeService {
 	 */
 	ArrayList<Notice> selectSearchList(SearchCondition sc, PageInfo pi);
 
+	/**
+	 * 공지사항 입력
+	 * @param n
+	 * @return
+	 */
+	int adNoticeInsert(Notice n);
+
+	/**
+	 * 공지사항 수정
+	 * @param n
+	 * @return
+	 */
+	int adNoticeModify(Notice n);
+
+	/**
+	 * 공지사항 삭제
+	 * @param nId
+	 * @return
+	 */
+	int adNoticeDelete(int nId);
+
+	
+
 	
 
 }
