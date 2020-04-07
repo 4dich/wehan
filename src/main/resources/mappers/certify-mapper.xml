@@ -2,7 +2,30 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper>
+<mapper namespace="certifyMapper">
+
+	<!-- resultMap -->
+	<resultMap type="Certify" id="certifyResultSet">
+		<id property="ceId" column="CEID"/>
+		<result property="chId" column="CHID"/>
+		<result property="userId" column="USERID"/>
+		<result property="ceContent" column="CECONTENT"/>
+		<result property="cePicture" column="CEPICTURE"/>
+		<result property="ceDate" column="CEDATE"/>
+		<result property="ceDel" column="CEDEL_YN"/>
+	</resultMap>
+	
+	<select id="getListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM CERTIFY
+		WHERE CEDEL_YN='N'
+	</select>
+	<select id="selectList" resultMap="certifyResultSet">
+		SELECT * 
+		FROM CERTIFY
+		WHERE CEDEL_YN='N'
+		ORDER BY BID DESC
+	</select>
 
 
 </mapper>
