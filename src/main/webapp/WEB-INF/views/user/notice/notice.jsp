@@ -93,17 +93,19 @@
 					<div class="blog-post-item">
 
 						<div id="searchArea">
-							<div id="searchSelect"> 
-								<select name="" id="">
-									<option>작성자</option>
-									<option>제목</option>
-								</select>					
-							</div>
-							<!-- 검색 -->
-							<input class="searchBox" type="search" style="height:31px; width:55%">
-							<button>
-							<img src="resources/images/main/search.png" alt="">
-							</button>
+							<form action="searchNotice.do">
+								<div id="searchSelect"> 
+									<select name="searchNotice" id="searchNotice">
+										<option value="title">제목</option>
+										<option value="content">내용</option>
+									</select>					
+								</div>
+								<!-- 검색 -->
+								<input class="searchBox" name="searchWord" type="search" style="height:31px; width:55%">
+								<button>
+									<img src="resources/images/main/search.png" alt="">
+								</button>
+							</form>
 						</div>
 
 

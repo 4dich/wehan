@@ -16,17 +16,61 @@
   		<result property="nStatus" column="NDEL_YN"/>
   	</resultMap>
   
+  	<!-- 공지사항 전체 글 수 확인용 -->
 	<select id="getListCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM NOTICE
 		WHERE NDEL_YN='N'
 	</select>
 	
+	<!-- 공지사항 전체 리스트 가져오기 -->
 	<select id="selectList" resultMap="noticeResultSet">
 		SELECT *
 		FROM NOTICE
 		WHERE NDEL_YN='N'
 		ORDER BY NID DESC	
 	</select>
-  	
+	
+	<!-- 조회수 올리기 -->
+	<update id="updateCount">
+		UPDATE NOTICE
+		SET NCOUNT = NCOUNT+1
+		WHERE NID = #{nId}
+	</update>
+	
+	<!-- 공지사항 상세보기 -->
+	<select id="noticeSelect" resultMap="noticeResultSet">
+		SELECT *
+		FROM NOTICE
+		WHERE NID = #{nId}
+		AND NDEL_YN = 'N'
+	</select>
+	
+	<!-- 공지사항 검색 갯수 확인 -->
+	<select id="getSearchListCount" parameterType="SearchCondition" resultType="_int">
+		SELECT COUNT(*)
+		FROM NOTICE
+		WHERE NDEL_YN = 'N'
+		
+		<if test="title != null">
+			AND NTITLE LIKE '%' || #{title} || '%'
+		</if>
+		<if test="content != null">
+			AND NCONTENT LIKE '%' || #{content} || '%'
+		</if>
+	</select>
+	
+	<!-- 공지사항 검색 리스트 불러오기 -->
+  	<select id="selectSearchList" resultMap="noticeResultSet">
+  		SELECT *
+  		FROM NOTICE
+  		WHERE NDEL_YN = 'N'  		
+  		<if test="title != null">
+			AND NTITLE LIKE '%' || #{title} || '%'
+		</if>
+		<if test="content != null">
+			AND NCONTENT LIKE '%' || #{content} || '%'
+		</if>
+		ORDER BY NID DESC  		
+  	</select>
   </mapper>
