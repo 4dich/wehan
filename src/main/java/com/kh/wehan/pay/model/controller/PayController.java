@@ -36,4 +36,13 @@ public class PayController {
 		return mv;
 	}
 	
+	@RequestMapping("paydetail.do")
+	public ModelAndView payDetail(ModelAndView mv,
+			int pId) {
+		 
+		System.out.println(pId);
+		
+		return mv;
+	}
+	
 }

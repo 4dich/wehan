@@ -16,6 +16,18 @@
   		<result property="refund_yn" column="REFUND_YN"/>
   		<result property="pdel_yn" column="PDEL_YN"/>
   	</resultMap>
+  	
+  	<resultMap id="payResultSet" type="Pay">
+  		<id property="pId" column="PID"/>
+  		<result property="chId" column="CHID"/>
+  		<result property="userId" column="USERID"/>
+  		<result property="price" column="PRICE"/>
+  		<result property="pmethod" column="PMETHOD"/>
+  		<result property="pDate" column="PDATE"/>
+  		<result property="pay_yn" column="PAY_YN"/>
+  		<result property="refund_yn" column="REFUND_YN"/>
+  		<result property="pdel_yn" column="PDEL_YN"/>
+  	</resultMap>
   
   	<select id="getListCount" resultType="_int">
 		SELECT COUNT(*)
