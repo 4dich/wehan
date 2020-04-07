@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
-<html lang="zxx">
+<html>
 <head>
 	<title>WEHAN - 위대한 한걸음</title>
 	<meta charset="UTF-8">
@@ -34,7 +33,7 @@
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 		
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<script src="resources/js/jquery-3.2.1.min.js"></script>
 
 	<style>
 		.infoMenu{font-size: 16px;}
@@ -54,7 +53,10 @@
 	<!-- Main section start -->
 	<div class="main-site-warp">
 	
-		<c:import url="/WEB-INF/views/common/ad_menuBar.jsp"/>	
+		
+		
+		
+		<%@include file="/WEB-INF/views/common/ad_menuBar.jsp" %>	
 		
 		<header class="header-section">
 			<div class="nav-switch">
@@ -206,7 +208,7 @@
 	</script>
 	
 	<!--====== Javascripts & Jquery ======-->
-	<script src="resources/js/jquery-3.2.1.min.js"></script>
+
 	<script src="resources/js/bootstrap.min.js"></script>
 	<script src="resources/js/owl.carousel.min.js"></script>
 	<script src="resources/js/jquery.nicescroll.min.js"></script>
