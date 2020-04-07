@@ -18,38 +18,13 @@ public class NoticeController {
 	@Autowired
 	private NoticeService nService;
 	
-	/**
-	 * 공지사항 글쓰기
-	 * @param n
-	 * @return
-	 */
-	@RequestMapping("noticeInsert.do")
-	public String insertNotice(Notice n) {
-		
-		int result = nService.insertNotice(n);
-		
-		if(result > 0) {
-			return "redirect:ad_noticeListView.do";
-		} else {
-			return "common/errorPage";
-		}
-	}
 	
 	@RequestMapping("noticeList.do")
-	public ModelAndView listNotice(ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage){
+	public ModelAndView list(ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage){
 		
-		int listCount = nService.getListCount();
 		
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
 		
-		ArrayList<Notice> list = nService.listNotice(pi);
-			
-		mv.addObject("list", list);
-		mv.addObject("pi", pi);
-		mv.setViewName("board/boardListView");
-		
-		return mv;		
-		
+		return mv;
 	}
 	
 }
