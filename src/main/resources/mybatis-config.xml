@@ -14,6 +14,7 @@
 		<typeAlias type="com.kh.wehan.member.model.vo.Mypage" alias="Mypage"/>
 		<typeAlias type="com.kh.wehan.notice.model.vo.Notice" alias="Notice"/>
 		<typeAlias type="com.kh.wehan.certify.model.vo.Certify" alias="Certify"/>
+		<typeAlias type="com.kh.wehan.member.model.vo.Admin" alias="Admin"/>
 	</typeAliases>
 	
 	<mappers>

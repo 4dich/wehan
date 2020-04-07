@@ -8,6 +8,7 @@
 		<result property="userName" column="USERNAME"/>
 		<result property="birthDay" column="BIRTHDAY"/>
 		<result property="email" column="EMAIL"/>
+		<result property="address" column="ADDRESS"/>
 		<result property="phone" column="PHONE"/>
 		<result property="account" column="ACCOUNT"/>
 		<result property="picture" column="PICTURE"/>

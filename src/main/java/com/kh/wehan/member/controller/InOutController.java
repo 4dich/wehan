@@ -27,10 +27,10 @@ public class InOutController {
 		if(userId.equals("admin")){
 			Admin adminUser = mService.adminlogin(userId);
 			if(adminUser != null) {
-				model.addAttribute("adminUser",admin);
-				return "";
+				model.addAttribute("adminUser",adminUser);
+				return "admin/ad_noticeList";
 			}else {
-				return "";
+				return "common/errorPage";
 			}
 		}else {
 			Member loginUser = mService.login(userId);
@@ -38,7 +38,7 @@ public class InOutController {
 				  model.addAttribute("loginUser",loginUser); 
 				  return "redirect:index.jsp";
 			  }else{
-				  return "common/error"; 
+				  return "common/errorPage"; 
 			  }
 		}
 	}

@@ -8,6 +8,7 @@ public class Member {
 	private String nickName;
 	private String userName;
 	private String birthDay;
+	private String address;
 	private String email;
 	private String phone;
 	private String account;
@@ -19,14 +20,15 @@ public class Member {
 		super();
 	}
 
-	public Member(String userId, String password, String nickName, String userName, String birthDay, String email,
-			String phone, String account, String picture, Date joinDate, String outYN) {
+	public Member(String userId, String password, String nickName, String userName, String birthDay, String address,
+			String email, String phone, String account, String picture, Date joinDate, String outYN) {
 		super();
 		this.userId = userId;
 		this.password = password;
 		this.nickName = nickName;
 		this.userName = userName;
 		this.birthDay = birthDay;
+		this.address = address;
 		this.email = email;
 		this.phone = phone;
 		this.account = account;
@@ -73,6 +75,14 @@ public class Member {
 
 	public void setBirthDay(String birthDay) {
 		this.birthDay = birthDay;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public String getEmail() {
@@ -126,9 +136,11 @@ public class Member {
 	@Override
 	public String toString() {
 		return "Member [userId=" + userId + ", password=" + password + ", nickName=" + nickName + ", userName="
-				+ userName + ", birthDay=" + birthDay + ", email=" + email + ", phone=" + phone + ", account=" + account
-				+ ", picture=" + picture + ", joinDate=" + joinDate + ", outYN=" + outYN + "]";
+				+ userName + ", birthDay=" + birthDay + ", address=" + address + ", email=" + email + ", phone=" + phone
+				+ ", account=" + account + ", picture=" + picture + ", joinDate=" + joinDate + ", outYN=" + outYN + "]";
 	}
+
+	
 	
 	
 }
