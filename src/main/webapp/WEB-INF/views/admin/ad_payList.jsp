@@ -109,6 +109,7 @@
 
 
 						<!-- 문의사항 테이블 -->
+						총게시글 갯수:${ pi.listCount }
 						<table class="qnaTable">
 							
 							<tr class="thArea">
@@ -133,97 +134,7 @@
 								<td>지급완료</td>
 							</tr>
 
-							<!-- 나중에 삭제할거 -->
-							<tr class="noticeList">
-								<td><input type="checkbox"></td>
-								<td>dd241241</td>
-								<td>하루에 3번 팩하기</td>
-								<td>knine22</td>
-								<td>2020-03-20</td>
-								<td>Y</td>
-								<td><button>정보</button></td>
-								<td>지급완료</td>
-							</tr>
-							<tr class="noticeList">
-								<td><input type="checkbox"></td>
-								<td>dd241241</td>
-								<td>하루에 3번 팩하기</td>
-								<td>knine22</td>
-								<td>2020-03-20</td>
-								<td>Y</td>
-								<td><button>정보</button></td>
-								<td>지급완료</td>
-							</tr>
-							<tr class="noticeList">
-								<td><input type="checkbox"></td>
-								<td>dd241241</td>
-								<td>하루에 3번 팩하기</td>
-								<td>knine22</td>
-								<td>2020-03-20</td>
-								<td>Y</td>
-								<td><button>정보</button></td>
-								<td>지급완료</td>
-							</tr>
-							<tr class="noticeList">
-								<td><input type="checkbox"></td>
-								<td>dd241241</td>
-								<td>하루에 3번 팩하기</td>
-								<td>knine22</td>
-								<td>Y</td>
-								<td>Y</td>
-								<td><button>정보</button></td>
-								<td>미지급</td>
-							</tr>
-							<tr class="noticeList">
-								<td><input type="checkbox"></td>
-								<td>dd241241</td>
-								<td>하루에 3번 팩하기</td>
-								<td>knine22</td>
-								<td>Y</td>
-								<td>Y</td>
-								<td><button>정보</button></td>
-								<td>미지급</td>
-							</tr>
-							<tr class="noticeList">
-								<td><input type="checkbox"></td>
-								<td>dd241241</td>
-								<td>하루에 3번 팩하기</td>
-								<td>knine22</td>
-								<td>Y</td>
-								<td>Y</td>
-								<td><button>정보</button></td>
-								<td>미지급</td>
-							</tr>
-							<tr class="noticeList">
-								<td><input type="checkbox"></td>
-								<td>dd241241</td>
-								<td>하루에 3번 팩하기</td>
-								<td>knine22</td>
-								<td>Y</td>
-								<td>Y</td>
-								<td><button>정보</button></td>
-								<td>미지급</td>
-							</tr>
-							<tr class="noticeList">
-								<td><input type="checkbox"></td>
-								<td>dd241241</td>
-								<td>하루에 3번 팩하기</td>
-								<td>knine22</td>
-								<td>Y</td>
-								<td>Y</td>
-								<td><button>정보</button></td>
-								<td>미지급</td>
-							</tr>
-							<tr class="noticeList">
-								<td><input type="checkbox"></td>
-								<td>dd241241</td>
-								<td>하루에 3번 팩하기</td>
-								<td>knine22</td>
-								<td>Y</td>
-								<td>Y</td>
-								<td><button>정보</button></td>
-								<td>미지급</td>
-							</tr>
+							
 							
 
 
@@ -246,7 +157,7 @@
 			<!-- Page end -->
 		</div>
 	
-	
+		
 		<div class="copyright"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
   			Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved 
   			<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
@@ -256,7 +167,8 @@
 		$(function(){
 			$('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247"); //even 짝수
 		});
-
+		
+			
 	</script>
 	
 	<!--====== Javascripts & Jquery ======-->

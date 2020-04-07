@@ -4,6 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="payMapper">
+  
   	<resultMap id="payResultSet" type="Pay">
   		<id property="pId" column="PID"/>
   		<result property="chId" column="CHID"/>
@@ -11,12 +12,23 @@
   		<result property="price" column="PRICE"/>
   		<result property="pmethod" column="PMETHOD"/>
   		<result property="pDate" column="PDATE"/>
+  		<result property="pay_yn" column="PAY_YN"/>
   		<result property="refund_yn" column="REFUND_YN"/>
   		<result property="pdel_yn" column="PDEL_YN"/>
   	</resultMap>
   
+  	<select id="getListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM PAY
+		WHERE PAY_YN='Y'
+	</select>
   
-  
+  	<select id="selectList" resultMap="payResultSet">
+		SELECT *
+		FROM PAY
+		WHERE PAY_YN='Y'
+		ORDER BY PID DESC
+	</select>
   
   
   

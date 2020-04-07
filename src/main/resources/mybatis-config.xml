@@ -13,8 +13,10 @@
 		<typeAlias type="com.kh.wehan.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.kh.wehan.member.model.vo.Mypage" alias="Mypage"/>
 		<typeAlias type="com.kh.wehan.notice.model.vo.Notice" alias="Notice"/>
+		<typeAlias type="com.kh.wehan.notice.model.vo.SearchCondition" alias="SearchCondition"/>
 		<typeAlias type="com.kh.wehan.certify.model.vo.Certify" alias="Certify"/>
 		<typeAlias type="com.kh.wehan.member.model.vo.Admin" alias="Admin"/>
+		<typeAlias type="com.kh.wehan.pay.model.vo.Pay" alias="Pay"/>
 	</typeAliases>
 	
 	<mappers>
@@ -22,5 +24,6 @@
 		<mapper resource="mappers/mypage-mapper.xml"/>
 		<mapper resource="mappers/notice-mapper.xml"/>
 		<mapper resource="mappers/certify-mapper.xml"/>
+		<mapper resource="mappers/pay-mapper.xml"/>
 	</mappers>
 </configuration>
