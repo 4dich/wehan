@@ -47,7 +47,7 @@ public class NoticeController {
 	}
 	
 	/**
-	 * 공지사항 상세보기
+	 * user 공지사항 상세보기
 	 * @param mv
 	 * @param nId
 	 * @param currentPage
@@ -70,7 +70,7 @@ public class NoticeController {
 	}
 	
 	/**
-	 * 공지사항 검색
+	 * user 공지사항 검색
 	 * @param mv
 	 * @param searchNotice
 	 * @param searchWord
@@ -104,6 +104,32 @@ public class NoticeController {
 		return mv;
 	}
 
+	
+	/**
+	 * admin 공지사항 리스트 불러오기
+	 * @param mv
+	 * @param currentPage
+	 * @return
+	 */
+	@RequestMapping("ad_noticeList.do")
+	public ModelAndView adNoticeList(ModelAndView mv, @RequestParam(value="currentPage", required=true, defaultValue="1") int currentPage) {
+		
+		// 공지사항 글 수 확인
+		int listCount = nService.getListCount();
+		
+		// 공지사항 페이지네이션
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
+		
+		
+		// 공지사항 글 목록 불러오기
+		ArrayList<Notice> list = nService.selectList(pi);
+		
+		mv.addObject("list", list);
+		mv.addObject("pi", pi);
+		mv.setViewName("admin/ad_noticeList");
+				
+		return mv;
+	}
 	
 	
 }

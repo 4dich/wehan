@@ -198,9 +198,6 @@
 				var nId = $(this).parent().children().find("input[type=hidden]").val();
 				var currentPage = ${pi.currentPage};
 				
-				console.log(nId);
-				console.log(currentPage);
-				
 				location.href="noticeDetail.do?nId="+nId+"&currentPage=" + currentPage;
 			});
 		

@@ -91,18 +91,20 @@
 						<button class="site-btn sb-dark" style="width: 170px; font-size: 15px; margin-bottom: 40px;" type="button" onclick="location.href='ad_noticeInsertView.do'">
 							등록하기							
 						</button>
-						<div id="searchArea">							
-							<div id="searchSelect"> 
-								<select name="adNoticeSearch" id="adNoticeSearch">
-									<option>작성자</option>
-									<option>제목</option>
-								</select>					
-							</div>
-							<!-- 검색 -->
-							<input class="searchBox" type="search" id="adNoticeSerchWord">
-							<button onclick="location.href='adNoticeSearch.do'">
-								<img src="resources/images/main/search.png" alt="">
-							</button>
+						<div id="searchArea">		
+							<form action="searchNotice.do">					
+								<div id="searchSelect"> 
+									<select name="searchNotice" id="searchNotice">
+										<option value="title">제목</option>
+										<option value="content">내용</option>
+									</select>					
+								</div>
+								<!-- 검색 -->
+								<input class="searchBox" type="search" id="adNoticeSerchWord">
+								<button>
+									<img src="resources/images/main/search.png" alt="">
+								</button>
+							</form>
 						</div>
 
 
@@ -117,75 +119,62 @@
 								<th>조회수</th>
 							</tr>
 							
-							<%-- <c:forEach var="noticeList" itmes="${ list }"> --%>
-							
 							<!-- 반복문 예정 -->
-							<tr class="noticeList">
-								<td>1</td>								
-								<td><a href="ad_noticeDetailView.do"> 공지사항제목입니다.</a></td>
-								<td>현스델리</td>
-								<td>2020-03-25</td>
-								<td>1</td>
-							</tr>
+							
+							<c:forEach var="n" items="${list}">
+								<tr class="noticeList">
+									
+									<td>
+										<input type="hidden" value="${n.nId}">
+										${n.nId}
+									</td>									
+									<td>${n.nTitle}</td>
+									<td>${n.nWriter}</td>
+									<td>${n.nDate}</td>
+									<td>${n.nCount}</td>
+								</tr>	
+							</c:forEach>	
 
-							<!-- 나중에 삭제할거 -->
-							<tr class="noticeList">
-								<td>1</td>								
-								<td>공지사항제목입니다.</td>
-								<td>현스델리</td>
-								<td>2020-03-25</td>
-								<td>1</td>
-							</tr>
-							<tr class="noticeList">
-								<td>1</td>								
-								<td>공지사항제목입니다.</td>
-								<td>현스델리</td>
-								<td>2020-03-25</td>
-								<td>1</td>
-							</tr>
-							<tr class="noticeList">
-								<td>1</td>								
-								<td>공지사항제목입니다.</td>
-								<td>현스델리</td>
-								<td>2020-03-25</td>
-								<td>1</td>
-							</tr>
-							<tr class="noticeList">
-								<td>1</td>								
-								<td>공지사항제목입니다.</td>
-								<td>현스델리</td>
-								<td>2020-03-25</td>
-								<td>1</td>
-							</tr>
-							<tr class="noticeList">
-								<td>1</td>								
-								<td>공지사항제목입니다.</td>
-								<td>현스델리</td>
-								<td>2020-03-25</td>
-								<td>1</td>
-							</tr>
-							<tr class="noticeList">
-								<td>1</td>								
-								<td>공지사항제목입니다.</td>
-								<td>현스델리</td>
-								<td>2020-03-25</td>
-								<td>1</td>
-							</tr>
-
-
-					<%-- 	</c:forEach> --%>
-							<!-- 삭제 끝 -->
+							
 
 						</table>
-						<br>
-						<div class="noticePaging" style="text-align:center">
-							<a>&lt;</a>&nbsp;&nbsp;&nbsp;&nbsp;
-							<a>●</a>
-							<a>●</a>
-							<a>●</a>
-							<a>●</a>
-							<a>●</a>&nbsp;&nbsp;&nbsp;&nbsp;
-							<a>></a>
+						<!-- 페이징 처리 -->
+						<!-- 이전 -->
+						<div class="qnaPaging">
+							<c:if test="${pi.currentPage eq 1 }">
+								<
+							</c:if>
+							<c:if test ="${pi.currentPage ne 1 }">
+								<c:url var="before" value="noticeList.do">
+									<c:param name="currentPage" value="${pi.currentjPage - 1}"/>
+								</c:url>
+								<a href="${ before }"><</a>
+							</c:if>
+							
+							<!-- 페이지 -->
+							<c:forEach var="p" begin="${pi.startPage}" end="${pi.endPage }">
+								<c:if test="${ p eq pi.currentPage }">
+									<font color="red" size = "4"><b>[${ p }]</b></font>
+								</c:if>
+								
+								<c:if test="${ p ne pi.currentPage }">
+									<c:url var="pagenation" value="noticeList.do">
+										<c:param name="currentPage" value="${ p }"/>
+									</c:url>
+									<a href="${ pagination }">${p}</a>
+								</c:if>
+							</c:forEach>
+							
+							<!-- 다음 -->
+							<c:if test="${pi.currentPage eq pi.maxPage }">
+								>
+							</c:if>
+							<c:if test="${pi.currentPage ne pi.maxPage }">
+								<c:url var="after" value="noticeList.do">
+									<c:param name="currentPage" value="${pi.currentPage + 1 }"/>
+								</c:url>
+								<a href="${after}">></a>
+							</c:if>
 						</div>
 					</div>
 				</div>
@@ -201,7 +190,14 @@
 	<!-- 리스트 짝수 배경색 변경 -->
 	<script>
 		$(document).ready(function(){
-		  $('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247)");   // even 짝수
+		  $('.noticeTable tr:even').css("backgroundColor","rgb(247, 247, 247)");   // even 짝수
+		});
+		
+		$('.noticeTable td').click(function(){
+			var nId = $(this).parent().children().find("input[type=hidden]").val();
+			var currentPage = ${pi.currentPage};
+			
+			location.href="noticeDetail.do?nId="+nId+"&currentPage=" + currentPage;
 		});
 	</script>
 	
