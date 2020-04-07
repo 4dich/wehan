@@ -53,7 +53,7 @@
 	<!-- Main section start -->
 	<div class="main-site-warp">
 
-		<c:import url="/WEB-INF/views/common/ad_menuBar.jsp"/>
+		<%-- <c:import url="/WEB-INF/views/common/ad_menuBar.jsp"/> --%>
 	
 		
 		<header class="header-section">
@@ -102,45 +102,37 @@
 									<tr class="noticeNumber">
 										<td>번호</td>
 										<td>
-											1
+											${n.nId}
 										</td>
 									</tr>
 									<tr class="noticeTitleArea">
 										<td class="noticeTitle1">제목</td>
 										<td class="noticeTitle2">
-											제목입니다
+											${n.nTitle}
 										</td>
 									</tr>
 									<tr class="noticeUserNameArea">
 										<td class="noticeUserName1">작성자</td>
 										<td class="noticeUserName2">
-											관리자
+											${n.nWriter}
 										</td>
 									</tr>
 									<tr class="noticeDateArea">
 										<td class="noticeDate1">등록날짜</td>
 										<td class="noticeDate2">
-											sysdate
+											${n.nDate}
 										</td>
 									</tr>
 									<tr class="noticeTextBox">
 										<td class="noticeTextArea" colspan="2" style="height:500px; text-align:-webkit-auto;"> 
 											<div style="width:100%; height:100%; padding:5%;">
-												공지 내용입니다.
+												${n.nContent}
 											</div>
 										</td>
-									</tr>
-									
+									</tr>									
 								</table>
-
-
-								
-							</div>
-							
+							</div>							
 						</div>
-						
-
-
 						
 					</div>
 				</div>
@@ -153,12 +145,6 @@
 	</div>
 	<!-- Main section end -->
 
-	<!-- 리스트 짝수 배경색 변경 -->
-	<script>
-		$(document).ready(function(){
-		  $('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247)");   // even 짝수
-		});
-	</script>
 	
 	<!--====== Javascripts & Jquery ======-->
 	<script src="resources/js/jquery-3.2.1.min.js"></script>

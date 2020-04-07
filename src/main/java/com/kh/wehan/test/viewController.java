@@ -44,7 +44,7 @@ public class viewController {
 	
 	@RequestMapping("ad_noticeListView.do")
 	public String ad_noticeListView() {
-		return "admin/ad_noticeList";
+		return "redirect:ad_noticeList.do";
 	}
 	
 	@RequestMapping("ad_noticeDetailView.do")
