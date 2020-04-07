@@ -39,6 +39,11 @@
 			#file{
 				display: none;
 			}
+			
+			.check{display: none;}
+			.c1{color:green;}
+			.c2{color:red;}
+			.c3{color:red;}
 		</style>
 
 
@@ -113,7 +118,9 @@
 								<div class="contact-form" style="margin-top: 60px;">
 									<div class="row">	
                                         <div class="col-lg-12">
-                                            <input id="userId" name="userId" type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="아이디">
+                                            <input id="userId" name="userId" type="text" style="border-top: none; border-left: none; border-right: none; width:71%" placeholder="아이디">
+                                            <span class="check c1">사용가능</span><span class="check c2">중복된 아이디</span><span class="check c3">사용불가능한 아이디</span>
+                                            <input id="checkID" type="hidden" value="0">
                                         </div>
 										<div class="col-lg-12">
                                             <input id="password" name="password" type="password" style="border-top: none; border-left: none; border-right: none;" placeholder="비밀번호">
@@ -169,18 +176,17 @@
 	<!-- Main section end -->
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
-		var userId = $('#userId');
-		var password = $('#password');
-		var password2 = $('#password2');
-		var userName = $('#userName');
-		var nickName = $('#nickName');
-		var email = $('#email');
-		var bankName = $('#bankName');
-		var accountHolder = $('#accountHolder');
-		var accountNumber = $('#accountNumber');
-		var address = $('#address');
-		var phone = $('#phone');   
-	
+		var userId = $('#userId').val();
+		var password = $('#password').val();
+		var password2 = $('#password2').val();
+		var userName = $('#userName').val();
+		var nickName = $('#nickName').val();
+		var email = $('#email').val();
+		var bankName = $('#bankName').val();
+		var accountHolder = $('#accountHolder').val();
+		var accountNumber = $('#accountNumber').val();
+		var address = $('#address').val();
+		var phone = $('#phone').val();
 	   function addrSearch() {
 	        new daum.Postcode({
 	            oncomplete: function(data) {
@@ -194,43 +200,44 @@
 	    }
 	
 		function pattern(){
-			if(userId.value == null){
+			if(userId == null){
 				alert("아이디를 입력해 주세요");
 				return false;
 			}
-			if(password.value == null && password2.value == null){
+			
+			if(password == null && password2 == null){
 				alert("패스워드를 입력해 주세요");
 				return false;
 			}
-			if(userName.value == null){
+			if(userName == null){
 				alert("이름을 입력해 주세요");
 				return false;
 			}
-			if(nickName.value == null){
+			if(nickName == null){
 				alert("닉네임을 입력해 주세요");
 				return false;
 			}
-			if(email.value == null){
+			if(email == null){
 				alert("이메일을 입력해 주세요");
 				return false;
 			}
-			if(bankName.value == null){
+			if(bankName == null){
 				alert("은행 이름을 입력해 주세요");
 				return false;
 			}
-			if(accountHolder.value == null){
+			if(accountHolder == null){
 				alert("예금주 입력해주세요");
 				return false;
 			}
-			if(accountNumber.value == null){
+			if(accountNumber == null){
 				alert("계좌번호를 입력해주세요");
 				return false;
 			}
-			if(address.value == null){
+			if(address == null){
 				alert("주소를 입력해 주세요");
 				return false;
 			}
-			if(phone.value == null){
+			if(phone == null){
 				alert("연락처를 입력해주세요");
 				return false;
 			}
@@ -244,7 +251,7 @@
 		}
 		
 		$(function(){
-			userId.on("keyup",function(){
+			$('#userId').on("keyup",function(){
 				var idCheck = $('#userId').val();
 				$.ajax({
 					url:"idCheck.do",
@@ -252,12 +259,28 @@
 					type:"post",
 					success:function(data){
 						console.log(data);
+						if(data=="1"){
+							$('.c1').show();
+							$('.c2').hide();
+							$('.c3').hide();
+							$('#checkID').val(1);
+						}else if(data == "2"){
+							$('.c1').hide();
+							$('.c2').show();
+							$('.c3').hide();
+							$('#checkID').val(2);
+						}else{
+							$('.c1').hide();
+							$('.c2').hide();
+							$('.c3').show();
+							$('#checkID').val(3);
+						}
 					},error:function(){
-						
+						console.log("에러");
 					}
 				});
-			});
-		});
+			});	
+		}); 
 			
 		
 	</script>
