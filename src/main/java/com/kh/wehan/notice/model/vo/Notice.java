@@ -15,18 +15,17 @@ public class Notice {
 	
 	public Notice() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Notice(String nTitle, String nWriter, String nContent) {
+		super();
+		this.nTitle = nTitle;
+		this.nWriter = nWriter;
+		this.nContent = nContent;
+	}
 
-<<<<<<< HEAD
-	public Notice(int nId, String nTitle, String nWriter, String nContent, int nCount, Date nCreateDate,
-			Date nModifyDate, String nStatus) {
-=======
 	public Notice(int nId, String nTitle, String nWriter, String nContent, int nCount, String nFile, Date nDate,
 			String nStatus) {
->>>>>>> branch 'master' of https://github.com/4dich/wehan.git
 		super();
 		this.nId = nId;
 		this.nTitle = nTitle;
@@ -115,13 +114,6 @@ public class Notice {
 		return "Notice [nId=" + nId + ", nTitle=" + nTitle + ", nWriter=" + nWriter + ", nContent=" + nContent
 				+ ", nCount=" + nCount + ", nFile=" + nFile + ", nDate=" + nDate + ", nStatus=" + nStatus + "]";
 	}
-<<<<<<< HEAD
 
-=======
-	
-	
-	
-	
-	
 }
->>>>>>> branch 'master' of https://github.com/4dich/wehan.git
+

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
 <mapper namespace="memberMapper">
 	<resultMap id="memberResultSet" type="Member">
 		<id property="userId" column="USERID"/>
@@ -16,7 +19,7 @@
 		<result property="outYN" column="OUT_YN"/>
 	</resultMap>
 
-	<resultMap id="adminResultSet" type="admin">
+	<resultMap id="adminResultSet"  type="admin">
 		<id property="userId" column="USERID"/>
 		<result property="password" column="PASSWORD"/>
 	</resultMap>
@@ -26,6 +29,12 @@
 		FROM MEMBER
 		WHERE USERID=#{userId}
 		AND OUT_YN='N'
+	</select>
+	
+	<select id="adminInfo" parameterType="string" resultMap="adminResultSet">
+		SELECT *
+		FROM ADMIN
+		WHERE USERID=#{userId}
 	</select>
 	
 	<select id="idCheck" parameterType="string" resultType="_int">
