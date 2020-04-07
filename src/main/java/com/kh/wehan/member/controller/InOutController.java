@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.kh.wehan.member.model.service.MemberService;
+import com.kh.wehan.member.model.vo.Admin;
 import com.kh.wehan.member.model.vo.Member;
 
 @SessionAttributes("loginUser")
@@ -19,19 +20,30 @@ public class InOutController {
 	private MemberService mService;
 	
 	@RequestMapping(value="login.do",method=RequestMethod.POST)
-	public String login(@ModelAttribute Member m,Model model ) {
-		System.out.println(m.getUserId());
-		System.out.println(m.getPassword());
+	public String login(String userId,String password,Model model ) {
+		System.out.println(userId);
+		System.out.println(password);
 		
-		Member loginUser = mService.login(m);
-		
-		if(loginUser != null && m.getPassword().equals(loginUser.getPassword())) {
-			model.addAttribute("loginUser",loginUser);
-			return "redirect:index.jsp";
-		}else{
-			return "common/error";
+		if(userId.equals("admin")){
+			Admin adminUser = mService.adminlogin(userId);
+			if(adminUser != null) {
+				model.addAttribute("adminUser",admin);
+				return "";
+			}else {
+				return "";
+			}
+		}else {
+			Member loginUser = mService.login(userId);
+			  if(loginUser != null && password.equals(loginUser.getPassword())) {
+				  model.addAttribute("loginUser",loginUser); 
+				  return "redirect:index.jsp";
+			  }else{
+				  return "common/error"; 
+			  }
 		}
 	}
+	
+	
 	
 	@RequestMapping("logout.do")
 	public String logout(SessionStatus status) {
