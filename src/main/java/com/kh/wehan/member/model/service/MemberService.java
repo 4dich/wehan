@@ -21,4 +21,6 @@ public interface MemberService {
 
 	Admin adminlogin(String userId);
 
+	int nickCheck(String nickName);
+
 }

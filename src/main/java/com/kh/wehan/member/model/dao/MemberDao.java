@@ -24,4 +24,8 @@ public class MemberDao {
 		return (Admin)sqlSession.selectOne("memberMapper.adminInfo",userId);
 	}
 
+	public int nickCheck(String nickName) {
+		return sqlSession.selectOne("memberMapper.nickCheck",nickName);
+	}
+
 }

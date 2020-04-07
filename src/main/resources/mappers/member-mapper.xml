@@ -42,4 +42,10 @@
 		FROM MEMBER
 		WHERE USERID=#{idCheck}
 	</select>
+	
+	<select id="nickCheck" parameterType="string" resultType="_int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE NICKNAME=#{nickName}
+	</select>
 </mapper>

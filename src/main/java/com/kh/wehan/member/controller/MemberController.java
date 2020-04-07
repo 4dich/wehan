@@ -38,8 +38,27 @@ public class MemberController {
 		}else {
 			return "3";
 		}
+	}
+	
+	@RequestMapping(value="nickCheck.do")
+	public String nickCheck(String nickName) {
+		System.out.println(nickName);
 		
+		Pattern p = Pattern.compile("^[a-zA-Z가-힣0-9].{7}$");
+		Matcher m = p.matcher(nickName);
+		boolean b = m.find();
+		System.out.println(b);
 		
+		if(b == true) {
+			int result = mService.nickCheck(nickName);
+			if(result > 0) {
+				return "2";
+			}else {
+				return "1";
+			}
+		}else {
+			return "3";
+		}
 	}
 	
 	@RequestMapping(value="insertMember",method=RequestMethod.POST)
