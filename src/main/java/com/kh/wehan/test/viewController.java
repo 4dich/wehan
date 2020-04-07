@@ -12,11 +12,6 @@ public class viewController {
 		return "admin/ad_challengeList";
 	}
 	
-	@RequestMapping("ad_certifyView.do")
-	public String ad_certifyView() {
-		return "admin/ad_certify";
-	}
-	
 	@RequestMapping("ad_payListView.do")
 	public String ad_payListView() {
 		return "admin/ad_payList";
