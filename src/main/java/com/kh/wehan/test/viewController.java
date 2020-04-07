@@ -224,7 +224,7 @@ public class viewController {
 	
 	@RequestMapping("noticeView.do")
 	public String noticeView() {
-		return "user/notice/notice";
+		return "redirect:noticeList.do";
 	}
 	
 

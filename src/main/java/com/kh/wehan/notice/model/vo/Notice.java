@@ -9,8 +9,8 @@ public class Notice {
 	private String nWriter;
 	private String nContent;
 	private int nCount;
-	private Date nCreateDate;
-	private Date nModifyDate;
+	private String nFile;
+	private Date nDate;
 	private String nStatus;
 	
 	public Notice() {
@@ -20,16 +20,21 @@ public class Notice {
 
 	public Notice(String nTitle, String nWriter, String nContent) {
 
+<<<<<<< HEAD
 	public Notice(int nId, String nTitle, String nWriter, String nContent, int nCount, Date nCreateDate,
 			Date nModifyDate, String nStatus) {
+=======
+	public Notice(int nId, String nTitle, String nWriter, String nContent, int nCount, String nFile, Date nDate,
+			String nStatus) {
+>>>>>>> branch 'master' of https://github.com/4dich/wehan.git
 		super();
 		this.nId = nId;
 		this.nTitle = nTitle;
 		this.nWriter = nWriter;
 		this.nContent = nContent;
 		this.nCount = nCount;
-		this.nCreateDate = nCreateDate;
-		this.nModifyDate = nModifyDate;
+		this.nFile = nFile;
+		this.nDate = nDate;
 		this.nStatus = nStatus;
 	}
 
@@ -76,23 +81,23 @@ public class Notice {
 	}
 
 
-	public Date getnCreateDate() {
-		return nCreateDate;
+	public String getnFile() {
+		return nFile;
 	}
 
 
-	public void setnCreateDate(Date nCreateDate) {
-		this.nCreateDate = nCreateDate;
+	public void setnFile(String nFile) {
+		this.nFile = nFile;
 	}
 
 
-	public Date getnModifyDate() {
-		return nModifyDate;
+	public Date getnDate() {
+		return nDate;
 	}
 
 
-	public void setnModifyDate(Date nModifyDate) {
-		this.nModifyDate = nModifyDate;
+	public void setnDate(Date nDate) {
+		this.nDate = nDate;
 	}
 
 
@@ -108,7 +113,15 @@ public class Notice {
 	@Override
 	public String toString() {
 		return "Notice [nId=" + nId + ", nTitle=" + nTitle + ", nWriter=" + nWriter + ", nContent=" + nContent
-				+ ", nCount=" + nCount + ", nCreateDate=" + nCreateDate + ", nModifyDate=" + nModifyDate + ", nStatus="
-				+ nStatus + "]";
+				+ ", nCount=" + nCount + ", nFile=" + nFile + ", nDate=" + nDate + ", nStatus=" + nStatus + "]";
 	}
+<<<<<<< HEAD
 
+=======
+	
+	
+	
+	
+	
+}
+>>>>>>> branch 'master' of https://github.com/4dich/wehan.git
