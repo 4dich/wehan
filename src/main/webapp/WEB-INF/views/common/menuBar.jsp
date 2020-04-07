@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,6 +51,7 @@
             
           </div>
           </c:if>
+         
           
          <c:if test="${!empty sessionScope.adminUser}">
          <div class="close-menu">x</div>
@@ -60,7 +61,7 @@
             <li><a href="my_profileView.do">My Page</a></li>
             <li><a href="noticeView.do">고객센터</a></li>
             <li><a href="">상태:관리자 로그인</a></li>
-            <li><a href="">상태:관리자 페이지 가기(임시)</a></li>
+            <li><a href="ad_noticeListView.do">상태:관리자 페이지 가기(임시)</a></li>
           </ul>
           <div class="menu-social">
    

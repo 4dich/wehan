@@ -21,19 +21,25 @@ public class AdminCertifyController {
 	@Autowired
 	private AdminCertifyService acService;
 	
-	@RequestMapping("aclist.bo")
+	@RequestMapping("ad_certifyView.do")
 	public ModelAndView adCerList(ModelAndView mv,
 			@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage) {
 		
+		
+		System.out.println(currentPage);
 		int listCount = acService.getListCount();
 		System.out.println("listCount : " + listCount);
 		
-		int pageLimit = 10;
-		int boardLimit = 5;
+		int pageLimit = 5;
+		int boardLimit = 10;
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, pageLimit, boardLimit);
 		
 		ArrayList<Certify> list = acService.selectList(pi);
+		
+		System.out.println("list : " +list);
+		
+		
 		
 		mv.addObject("list",list);
 		mv.addObject("pi",pi);
