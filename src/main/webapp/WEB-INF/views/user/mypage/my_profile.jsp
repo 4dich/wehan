@@ -188,7 +188,7 @@
 							
 							<!-- 토글버튼 -->
 							<input id="cateToggle" type="checkbox" checked data-toggle="toggle" data-on="<i class='fa fa-lock' aria-hidden='true'></i> 수정하기" data-off="<i class='fa fa-unlock' aria-hidden='true'></i> 수정중" data-onstyle="outline-success" data-offstyle="outline-danger">
-							
+							<button id="btn">테스트</button>
 							<!-- 토글 상태확인버튼 -->
 <!-- 							<button type="button" class="btn btn-outline-primary" onclick="showChkState()">Show Toggle State</button>
 							<script>
@@ -196,6 +196,13 @@
 									console.log(document.getElementById('cateToggle').checked);
 								}
 							</script> -->
+							
+							<script>
+								$("#btn").click(function(event){
+									alert("문장이 클릭되었습니다.");
+									
+								});
+							</script>
 						</div>
 						<div class="main-down-content" style="height: 28%; width: 100%; margin-top: 15px; text-align:center">
 							<div style="display: inline-block; width:100%;">
@@ -288,31 +295,51 @@
 									},100); */
 									
 									$(function(){
-										for(var i=0; i<6; i++){
-											if(cate[i].textContent==0){
-												$(cate[i]).css('opacity','0.2');
-											}else if(cate[i].textContent==1){
-												$(cate[i]).css('opacity','1');
+										setInterval(function(){
+											if(document.getElementById('cateToggle').checked==false){
+												cate.click(function(){
+													$(this)[0].textContent = 1 - $(this)[0].textContent;
+													/* var msg;
+													for(var i=0; i<6; i++){
+														msg += cate[i].textContent;
+													}
+													alert(msg); */
+												});
 											}
-										}
+											
+											for(var i=0; i<6; i++){
+												if(cate[i].textContent==0){
+													$(cate[i]).css('opacity','0.2');
+												}else{
+													$(cate[i]).css('opacity','1');
+												}
+											}
+										},100);
 									});
 									
-									setInterval(function(){
-										if(document.getElementById('cateToggle').checked==false){
-											cate.click(function(){
-												$(this)[0].textContent = 1 - $(this)[0].textContent;
-											});
-										}
-										
-										for(var i=0; i<6; i++){
-											if(cate[i].textContent==0){
-												$(cate[i]).css('opacity','0.2');
-											}else{
-												$(cate[i]).css('opacity','1');
+									/* 4시에 저장함 */
+									/* $(function(){
+										setInterval(function(){
+											if(document.getElementById('cateToggle').checked==false){
+												cate.click(function(){
+													$(this)[0].textContent = 1 - $(this)[0].textContent;
+													var msg;
+													for(var i=0; i<6; i++){
+														msg += cate[i].textContent;
+													}
+													alert(msg);
+												});
 											}
-										}
-									},100);
-									
+											
+											for(var i=0; i<6; i++){
+												if(cate[i].textContent==0){
+													$(cate[i]).css('opacity','0.2');
+												}else{
+													$(cate[i]).css('opacity','1');
+												}
+											}
+										},100);
+									}); */
 
 									
 									/* 아이콘클릭시 값변경 */
