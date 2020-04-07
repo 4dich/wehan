@@ -21,6 +21,6 @@
 		<mapper resource="mappers/member-mapper.xml"/>
 		<mapper resource="mappers/mypage-mapper.xml"/>
 		<mapper resource="mappers/notice-mapper.xml"/>
-		<mapper resource="mappers/certify-mapper.xml"/>
+		<!-- <mapper resource="mappers/certify-mapper.xml"/> -->
 	</mappers>
 </configuration>

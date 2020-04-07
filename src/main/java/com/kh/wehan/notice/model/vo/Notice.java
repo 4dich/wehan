@@ -119,9 +119,9 @@ public class Notice {
 		return "Notice [nId=" + nId + ", nTitle=" + nTitle + ", nWriter=" + nWriter + ", nContent=" + nContent
 				+ ", nCount=" + nCount + ", nFile=" + nFile + ", nDate=" + nDate + ", nStatus=" + nStatus + "]";
 	}
-
 	
 	
 	
 	
 }
+	
