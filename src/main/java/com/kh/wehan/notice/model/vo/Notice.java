@@ -13,15 +13,20 @@ public class Notice {
 	private Date nDate;
 	private String nStatus;
 	
-	
 	public Notice() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+	public Notice(String nTitle, String nWriter, String nContent) {
 
+<<<<<<< HEAD
+	public Notice(int nId, String nTitle, String nWriter, String nContent, int nCount, Date nCreateDate,
+			Date nModifyDate, String nStatus) {
+=======
 	public Notice(int nId, String nTitle, String nWriter, String nContent, int nCount, String nFile, Date nDate,
 			String nStatus) {
+>>>>>>> branch 'master' of https://github.com/4dich/wehan.git
 		super();
 		this.nId = nId;
 		this.nTitle = nTitle;
@@ -33,7 +38,6 @@ public class Notice {
 		this.nStatus = nStatus;
 	}
 
-
 	public int getnId() {
 		return nId;
 	}
@@ -43,36 +47,29 @@ public class Notice {
 		this.nId = nId;
 	}
 
-
 	public String getnTitle() {
 		return nTitle;
 	}
-
 
 	public void setnTitle(String nTitle) {
 		this.nTitle = nTitle;
 	}
 
-
 	public String getnWriter() {
 		return nWriter;
 	}
-
 
 	public void setnWriter(String nWriter) {
 		this.nWriter = nWriter;
 	}
 
-
 	public String getnContent() {
 		return nContent;
 	}
 
-
 	public void setnContent(String nContent) {
 		this.nContent = nContent;
 	}
-
 
 	public int getnCount() {
 		return nCount;
@@ -113,15 +110,18 @@ public class Notice {
 		this.nStatus = nStatus;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Notice [nId=" + nId + ", nTitle=" + nTitle + ", nWriter=" + nWriter + ", nContent=" + nContent
 				+ ", nCount=" + nCount + ", nFile=" + nFile + ", nDate=" + nDate + ", nStatus=" + nStatus + "]";
 	}
+<<<<<<< HEAD
+
+=======
 	
 	
 	
 	
 	
 }
+>>>>>>> branch 'master' of https://github.com/4dich/wehan.git
