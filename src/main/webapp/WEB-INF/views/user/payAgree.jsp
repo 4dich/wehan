@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +22,8 @@
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="resources/css/style.css"/>
 	<link rel="stylesheet" href="resources/css/admin_qna.css"/>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 		<style>
 			tbody  td {padding:20px; padding-bottom: 0;}
@@ -35,6 +38,11 @@
 		</style>
 		
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script>
+	var IMP = window.IMP; // 생략가능
+	IMP.init('imp76391751');
+	
+	</script>
 
 </head>
 <body>
@@ -421,7 +429,7 @@
 								<br><br>
 								<div style="text-align: center;">
 									<label><input type="radio" id="agreeall"></label>&nbsp;&nbsp;<label for="agreeall">모두 동의합니다.</label><br><br>
-									<button class="site-btn" style="width:20%; height: 80px;">
+									<button class="site-btn" style="width:20%; height: 80px;" onclick="paynow()">
 										결제하기
 									<button class="site-btn" style="width:20%; height: 80px;" onclick="location.href='serviceInfo.html'">
 										취소하기
@@ -437,12 +445,62 @@
 		</div>
 	</div>
 	<!-- Main section end -->
+	
+	<div id='div1' style="display:none;">${loginUser.userName}</div>
+	<div id='div2' style="display:none;">${loginUser.phone}</div>
+	<div id='div3' style="display:none;">${loginUser.email}</div>
+	<div id='div4' style="display:none;">${loginUser.userName}</div>
+	<div id='div5' style="display:none;">${loginUser.userName}</div>
+	<div id='div6' style="display:none;">${loginUser.userName}</div>
+	<div id='div7' style="display:none;">${loginUser.userName}</div>
+	<div id='div8' style="display:none;">${loginUser.userName}</div>
 	<script>
+		
+	
+		var userName = $('#div1')[0].innerText;
+		var phone = $('#div2')[0].innerText;
+		var email = $('#div3')[0].innerText;
+		
+		
+		
 		$(function(){
 			$('#agreeall').click(function(){
 				$('.ay').prop("checked",this.checked);
 			});
 		});
+		
+		function paynow(){
+		IMP.request_pay({
+		    pg : 'inicis', // version 1.1.0부터 지원.
+		    pay_method : 'card',
+		    merchant_uid : 'merchant_' + new Date().getTime(),
+		    name : '주문명:결제테스트',
+		    amount : 10,
+		    buyer_email : email,
+		    buyer_name : userName,
+		    buyer_tel : phone,
+		    buyer_addr : '서울특별시 강남구 삼성동',
+		    buyer_postcode : '123-456',
+		    m_redirect_url : 'https://www.yourdomain.com/payments/complete'
+		}, function(rsp) {
+		    if ( rsp.success ) {
+		        var msg = '결제가 완료되었습니다.';
+		        msg += '고유ID : ' + rsp.imp_uid;
+		        msg += '상점 거래ID : ' + rsp.merchant_uid;
+		        msg += '결제 금액 : ' + rsp.paid_amount;
+		        msg += '카드 승인번호 : ' + rsp.apply_num;
+		     
+		        
+		    } else {
+		        var msg = '결제에 실패하였습니다.';
+		        msg += '에러내용 : ' + rsp.error_msg;
+		        location.href='${contextRoot}';
+		    }
+		    alert(msg);
+		});
+		}
+		
+		
 	</script>
 	
 	<!--====== Javascripts & Jquery ======-->
