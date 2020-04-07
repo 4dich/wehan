@@ -26,9 +26,9 @@
 <div id="notfound">
 <div class="notfound">
 <div class="notfound-404">
-<h1 style="color:black">404</h1>
+<h1 style="color:black">${ msg }</h1>
 </div>
-<h2>Oops! Nothing was found</h2>
+<h2>${ msg2 }</h2>
 <p>페이지에 문제가 있습니다.<br> 다시 시도해주세요<br>
   <br><br>
    <a href="indexView.do" style="color:gray">홈으로 돌아가기</a></p>

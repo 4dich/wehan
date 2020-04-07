@@ -18,8 +18,8 @@ public class Notice {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-
+	
+	
 	public Notice(int nId, String nTitle, String nWriter, String nContent, int nCount, String nFile, Date nDate,
 			String nStatus) {
 		super();
@@ -119,6 +119,9 @@ public class Notice {
 		return "Notice [nId=" + nId + ", nTitle=" + nTitle + ", nWriter=" + nWriter + ", nContent=" + nContent
 				+ ", nCount=" + nCount + ", nFile=" + nFile + ", nDate=" + nDate + ", nStatus=" + nStatus + "]";
 	}
+	
+	
+	
 	
 	
 	

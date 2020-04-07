@@ -62,7 +62,7 @@
 			<div class="main-sidebar">
 			<!-- 로고 구역 -->
 			<div class="mb-warp">
-				<a href="index.html" class="site-logo">
+				<a href="indexView.do" class="site-logo">
 					<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 					<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 				</a>
@@ -88,7 +88,7 @@
 			<div class="page-section blog-page">
 				<div class="blog-posts">
 					<div class="arrowBack">
-						<a href="noticeView.do">
+						<a href="noticeList.do">
 							<img src="resources/images/arrow-righ-3.png" alt="">
 						</a>
 					</div>
@@ -101,23 +101,23 @@
 								<table class="detailArea">
 									<tr class="qnaNumber">
 										<td>번호</td>
-										<td>1</td>
+										<td>${n.nId}</td>
 									</tr>
 									<tr class="qnaTitleArea">
 										<td class="qnaTitle1">제목</td>
-										<td class="qnaTitle2">공지사항 제목입니다.</td>
+										<td class="qnaTitle2">${n.nTitle}</td>
 									</tr>
 									<tr class="qnaUserNameArea">
 										<td class="qnaUserName1">작성자명</td>
-										<td class="qnaUserName2">관리자</td>
+										<td class="qnaUserName2">${n.nWriter}</td>
 									</tr>
 									<tr class="qnaDateArea">
 										<td class="qnaDate1">등록날짜</td>
-										<td class="qnaDate2">2020-03-20</td>
+										<td class="qnaDate2">${n.nDate}</td>
 									</tr>
 									<tr class="qnaTextBox">
 										<td class="qnaTextArea"  colspan="2"> 
-										수수료 50%로 인상입니다.
+										${n.nContent}
 										</td>
 									</tr>
 									
@@ -130,30 +130,6 @@
 							
 						</div>
 
-
-
-
-
-
-
-
-
-
-						
-						
-
-
-
-
-
-
-
-
-
-
-
-
-						
 					</div>
 				</div>
 			</div>

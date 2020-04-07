@@ -19,12 +19,40 @@ public class NoticeController {
 	private NoticeService nService;
 	
 	
+	/**
+	 * user 공지사항 리스트 불러오기
+	 * @param mv
+	 * @param currentPage
+	 * @return
+	 */
 	@RequestMapping("noticeList.do")
-	public ModelAndView list(ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage){
+	public ModelAndView list(ModelAndView mv, @RequestParam(value="currentPage", required=true, defaultValue="1") int currentPage){
+		
+		// 공지사항 글 수 확인
+		int listCount = nService.getListCount();
+		
+		// 공지사항 페이지네이션
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
 		
 		
+		// 공지사항 글 목록 불러오기
+		ArrayList<Notice> list = nService.selectList(pi);
+		
+		mv.addObject("list", list);
+		mv.addObject("pi", pi);
+		mv.setViewName("user/notice/notice");
 		
 		return mv;
 	}
+	
+	@RequestMapping("noticeDetail.do")
+	public ModelAndView noticeDetail(ModelAndView mv, int nId, int currentPage) {
+		
+		Notice n = nService.noticeSelect(nId);
+		
+		return mv;
+	}
+
+	
 	
 }

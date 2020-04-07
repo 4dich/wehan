@@ -5,6 +5,28 @@
   
   <mapper namespace="noticeMapper">
   
-
+  	<resultMap type="Notice" id="noticeResultSet">
+  		<id property="nId" column="NID"/>
+  		<result property="nTitle" column="NTITLE"/>
+  		<result property="nWriter" column="NWRITER"/>
+  		<result property="nContent" column="NCONTENT"/>
+  		<result property="nCount" column="NCOUNT"/>
+  		<result property="nFile" column="NFILE"/>
+  		<result property="nDate" column="NDATE"/>
+  		<result property="nStatus" column="NDEL_YN"/>
+  	</resultMap>
+  
+	<select id="getListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM NOTICE
+		WHERE NDEL_YN='N'
+	</select>
+	
+	<select id="selectList" resultMap="noticeResultSet">
+		SELECT *
+		FROM NOTICE
+		WHERE NDEL_YN='N'
+		ORDER BY NID DESC	
+	</select>
   	
   </mapper>

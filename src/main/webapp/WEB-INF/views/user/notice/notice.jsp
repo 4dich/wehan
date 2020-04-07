@@ -63,7 +63,7 @@
 			<div class="main-sidebar">
 			<!-- 로고 구역 -->
 			<div class="mb-warp">
-				<a href="index.html" class="site-logo">
+				<a href="indexView.do" class="site-logo">
 					<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 					<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 				</a>
@@ -88,7 +88,7 @@
 			<!-- Page start -->
 			<div class="page-section blog-page">
 				<div class="blog-posts">
-					<h3 class="qnaText">공지사항</h3>
+					<h3 class="noticeText">공지사항</h3>
 					
 					<div class="blog-post-item">
 
@@ -121,10 +121,14 @@
 							
 							<c:forEach var="n" items="${list}">
 								<tr class="noticeList">
-									<td>${n.nId}</td>									
+									
+									<td>
+										<input type="hidden" value="${n.nId}">
+										${n.nId}
+									</td>									
 									<td>${n.nTitle}</td>
 									<td>${n.nWriter}</td>
-									<td>${n.nCreateDate}</td>
+									<td>${n.nDate}</td>
 									<td>${n.nCount}</td>
 								</tr>	
 							</c:forEach>					
@@ -137,7 +141,7 @@
 							<c:if test="${pi.currentPage eq 1 }">
 								<
 							</c:if>
-							<c:if test ="${pi.currentPAge ne 1 }">
+							<c:if test ="${pi.currentPage ne 1 }">
 								<c:url var="before" value="noticeList.do">
 									<c:param name="currentPage" value="${pi.currentjPage - 1}"/>
 								</c:url>
@@ -186,6 +190,19 @@
 		$(document).ready(function(){
 		  $('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247)");   // even 짝수
 		});
+		
+		
+			$('.qnaTable td').click(function(){
+				var nId = $(this).parent().children().find("input[type=hidden]").val();
+				var currentPage = ${pi.currentPage};
+				
+				console.log(nId);
+				console.log(currentPage);
+				
+				location.href="noticeDetail.do?nId="+nId+"&currentPage=" + currentPage;
+			});
+		
+		
 	</script>
 	
 	<!--====== Javascripts & Jquery ======-->
