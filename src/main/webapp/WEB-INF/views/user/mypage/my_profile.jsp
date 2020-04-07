@@ -27,6 +27,9 @@
 	<link rel="stylesheet" href="resources/css/style.css"/>
 	
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+	
 	
     <style>
     .profile-images {
@@ -108,6 +111,8 @@
 		/* border: 2px solid #e1e1e1; */
 		border: 2px solid #242424;
 	}
+	/* 토글버튼  */
+	.slow .toggle-group { transition: left 0.7s; -webkit-transition: left 0.7s; }
     </style>
 </head>
 <body>
@@ -142,7 +147,8 @@
 					<a href="index.html" class="site-logo">
 						<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
-					</a>					
+					</a>
+					
 
 					<div class="profile-images">
                         <img class="profile" src="resources/images/hansol_profile2.jpg" style="width:150px;height:150px;">
@@ -174,14 +180,22 @@
                     </div>
 				</div>
 			</div>
-			
-
 			<div class="page-section portfolio-page">
 				<div class="portfolio-section">
 					<div class="main-down" style="height: 40%; width:90%; margin:20px">
 						<div class="main-down-title" style="height: 70px; background: #242424; color:white; padding: 20px; font-size: 21px; font-weight: 700;">
-							관심 분야&nbsp;
-							<img src="resources/images/mypage/setting.png" style="height: 30px; width: 30px;">
+							관심 분야 &nbsp;&nbsp;&nbsp;
+							
+							<!-- 토글버튼 -->
+							<input id="cateToggle" type="checkbox" checked data-toggle="toggle" data-on="<i class='fa fa-lock' aria-hidden='true'></i> 수정하기" data-off="<i class='fa fa-unlock' aria-hidden='true'></i> 수정중" data-onstyle="outline-success" data-offstyle="outline-danger">
+							
+							<!-- 토글 상태확인버튼 -->
+<!-- 							<button type="button" class="btn btn-outline-primary" onclick="showChkState()">Show Toggle State</button>
+							<script>
+								function showChkState(){
+									console.log(document.getElementById('cateToggle').checked);
+								}
+							</script> -->
 						</div>
 						<div class="main-down-content" style="height: 28%; width: 100%; margin-top: 15px; text-align:center">
 							<div style="display: inline-block; width:100%;">
@@ -192,18 +206,40 @@
 								<div style="display: inline;"><img class='category' src="resources/images/mypage/buy.png" style="width:150px; height:150px; margin: 15px;"></div>
 								<div style="display: inline;"><img class='category' src="resources/images/mypage/support.png" style="width:150px; height:150px; margin: 15px;"></div>
 								
-								<script>
+								<div class="myCate" style="display:none">${ mypage.interest }</div>
 								
-									var cate = $('.category');
-									var cateStat = new Array(0,1,0,0,0,0);
+								<!-- 관심분야 on/off -->
+								<script>
+									/* var cate = $('.category');
+									var cateStat = new Array(0,0,0,0,0,0);
+									var myCate = $('.myCate')[0].innerText;
+									
+ 									if(myCate.includes('건강')){
+										cateStat[0]=1;
+									}
+									if(myCate.includes('취미')){
+										cateStat[1]=1;
+									}
+									if(myCate.includes('자기개발')){
+										cateStat[2]=1;
+									}
+									if(myCate.includes('경제')){
+										cateStat[3]=1;
+									}
+									if(myCate.includes('생활')){
+										cateStat[4]=1;
+									}
+									if(myCate.includes('기타')){
+										cateStat[5]=1;
+									}
 									
 									
 									$(function(){
 										for(var i=0; i<6; i++){
 											if(cateStat[i]==0){
-												$(cate[i]).css('opacity','1');
-											}else{
 												$(cate[i]).css('opacity','0.2');
+											}else{
+												$(cate[i]).css('opacity','1');
 											}
 										}
 									});
@@ -214,8 +250,92 @@
 										}else{
 											$(this).css('opacity','1');
 										}
+									}); */
+									
+									var cate = $('.category');
+									for(var i=0; i<6; i++){
+										cate[i].textContent=0;
+									}
+									var myCate = $('.myCate')[0].innerText;
+									
+ 									if(myCate.includes('건강')){
+ 										cate[0].textContent = 1;
+									}
+									if(myCate.includes('취미')){
+										cate[1].textContent = 1;
+									}
+									if(myCate.includes('자기개발')){
+										cate[2].textContent = 1;
+									}
+									if(myCate.includes('경제')){
+										cate[3].textContent = 1;
+									}
+									if(myCate.includes('생활')){
+										cate[4].textContent = 1;
+									}
+									if(myCate.includes('기타')){
+										cate[5].textContent = 1;
+									}
+									
+									/* setInterval(function(){
+										for(var i=0; i<6; i++){
+											if(cate[i].textContent==0){
+												$(cate[i]).css('opacity','0.2');
+											}else{
+												$(cate[i]).css('opacity','1');
+											}
+										}
+									},100); */
+									
+									$(function(){
+										for(var i=0; i<6; i++){
+											if(cate[i].textContent==0){
+												$(cate[i]).css('opacity','0.2');
+											}else if(cate[i].textContent==1){
+												$(cate[i]).css('opacity','1');
+											}
+										}
 									});
+									
+									setInterval(function(){
+										if(document.getElementById('cateToggle').checked==false){
+											cate.click(function(){
+												$(this)[0].textContent = 1 - $(this)[0].textContent;
+											});
+										}
+										
+										for(var i=0; i<6; i++){
+											if(cate[i].textContent==0){
+												$(cate[i]).css('opacity','0.2');
+											}else{
+												$(cate[i]).css('opacity','1');
+											}
+										}
+									},100);
+									
 
+									
+									/* 아이콘클릭시 값변경 */
+									/* cate.click(function(){
+										if($(this)[0].textContent == 1){
+											$(this)[0].textContent = 0;
+										}else{
+											$(this)[0].textContent = 1;
+										}
+									}); */
+									
+									/* $(function(){
+										cate[0].textContent = "바보";
+										
+									}); */
+									
+									/* cate.click(function(){
+										if($(this).css('opacity') == '1'){
+											$(this).css('opacity','0.2');
+										}else{
+											$(this).css('opacity','1');
+										}
+									}); */
 								</script>
 							</div>
 							<div style="display: inline-block; width:100%;">
@@ -230,8 +350,8 @@
 					</div>
 					<div class="main-up" style="height: 52%; width: 90%; margin:20px">
 						<div class="main-up-title" style="height: 70px; background: #242424; color:white; padding: 20px; font-size: 21px; font-weight: 700;">
-							나의 목표&nbsp;
-							<img src="resources/images/mypage/setting.png" style="height: 30px; width: 30px;">
+							나의 목표&nbsp;&nbsp;&nbsp;
+							<input type="checkbox" checked data-toggle="toggle" data-style="slow" data-on="<i class='fa fa-lock' aria-hidden='true'></i> 수정하기" data-off="<i class='fa fa-unlock' aria-hidden='true'></i> 수정중" data-onstyle="outline-success" data-offstyle="outline-danger">
 						</div>
 						<div class="main-up-content" style="padding:3%;">
 							${ mypage.goal }
@@ -246,6 +366,7 @@
 		</div>
 	</div>
 	<!-- Main section end -->
+
 	
 	<!--====== Javascripts & Jquery ======-->
 	<script src="resources/js/jquery-3.2.1.min.js"></script>
@@ -255,6 +376,6 @@
 	<script src="resources/js/circle-progress.min.js"></script>
 	<script src="resources/js/jquery.magnific-popup.min.js"></script>
 	<script src="resources/js/main.js"></script>
-
+	
 	</body>
 </html>

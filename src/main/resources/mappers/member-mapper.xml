@@ -21,4 +21,10 @@
 		WHERE USERID=#{userId}
 		AND OUT_YN='N'
 	</select>
+	
+	<select id="idCheck" parameterType="string" resultType="_int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE USERID=#{idCheck}
+	</select>
 </mapper>
