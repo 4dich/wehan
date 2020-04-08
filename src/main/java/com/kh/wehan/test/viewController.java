@@ -198,12 +198,12 @@ public class viewController {
 	
 	@RequestMapping("qnaListView.do")
 	public String qnaListView() {
-		return "user/qnaList";
+		return "user/questions/questions";
 	}
 	
 	@RequestMapping("qnaDetailView.do")
 	public String qnaDetailView() {
-		return "user/qnaDetail";
+		return "user/qnaDetail"; 
 	}
 	
 	@RequestMapping("qnaInsertView.do")
