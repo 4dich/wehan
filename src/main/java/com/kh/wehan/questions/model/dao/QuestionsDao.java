@@ -31,6 +31,27 @@ public class QuestionsDao {
 		  RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());	  		
 		return (ArrayList)sqlSession.selectList("questionsMapper.selectList",null,rowBounds);
 	}
+	
+	    /**
+	     * 문의사항 상세보기
+	     * @param qId
+	     * @return
+	     */
+		public Questions questionsSelect(int qId) {
+			
+			return sqlSession.selectOne("questionsMapper.questionsSelect",qId);
+		}
+		
+		/**
+		 * 문의사항 카운트
+		 * @param qId
+		 * @return
+		 */
+		
+		public int updateCount(int qId) {
+			
+			return sqlSession.update("questionsMapper.updateCount",qId);
+		}
 }
 
 

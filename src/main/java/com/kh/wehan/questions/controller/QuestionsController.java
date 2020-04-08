@@ -44,7 +44,34 @@ public class QuestionsController {
 		mv.setViewName("user/questions/questions");
 		
 		return mv;
-	}				
+	}			
+	
+	/**
+	 * user 공지사항 상세보기
+	 * @param mv
+	 * @param nId
+	 * @param currentPage
+	 * @return
+	 */
+	@RequestMapping("questionsDetail.do")
+	public ModelAndView questionsDetail(ModelAndView mv, int qId, int currentPage) {
+		
+		Questions n = qService.questionsSelect(qId);
+		
+		if(n != null) {
+			mv.addObject("n", n) // 문의사항 내용 보내기
+			.addObject("currentPage",currentPage) // 현재 페이지 보내기
+			.setViewName("user/questions/questionsDetail");
+		} else {
+			mv.addObject("msg","Error").addObject("msg2","페이지 상세 조회 실패").setViewName("common/errorPage");
+		}
+		
+		return mv;
+	}
+	
+	
+	
+	 
 	
   
 }

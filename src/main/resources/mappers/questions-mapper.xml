@@ -32,6 +32,20 @@
 	
 	    <!-- 문의사항 상세 페이지 가져오기 -->
 	   
+	   <select id="questionsSelect" resultMap="noticeResultSet">
+	              SELECT*
+	              FROM QUESTIONS
+	              WHERE QID=#{qId}
+	              AND QDEL_YN='N'              
+	      
+	   </select>
+	   
+	   <!-- 조회수 올리기 -->
+	   <update id="updateCount">
+	            UPDATE NOTICE
+	            SET QCOUNT = QCOUNT + 1
+	            WHERE QID = #{qId}
+	   </update>
 	
 	 
     

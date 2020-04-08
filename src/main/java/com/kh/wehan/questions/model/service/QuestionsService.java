@@ -22,4 +22,13 @@ public interface QuestionsService {
 	 * @return
 	 */
 	ArrayList<Questions> selectList(PageInfo pi);
+
+	/**
+	 * 문의사항 상세보기
+	 * @param qId
+	 * @return
+	 */
+	Questions questionsSelect(int qId);
+	
+	
 }
