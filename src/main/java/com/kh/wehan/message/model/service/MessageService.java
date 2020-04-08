@@ -2,7 +2,7 @@ package com.kh.wehan.message.model.service;
 
 import java.util.ArrayList;
 
-import com.kh.wehan.member.model.vo.Member;
+import com.kh.wehan.message.model.vo.FriendList;
 import com.kh.wehan.message.model.vo.Message;
 
 public interface MessageService {
@@ -18,6 +18,6 @@ public interface MessageService {
 	 * @param userId
 	 * @return
 	 */
-	ArrayList<Member> msgFriendList(String userId);
+	ArrayList<FriendList> msgFriendList(String userId);
 
 }

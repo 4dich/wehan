@@ -28,4 +28,12 @@ public class MemberDao {
 		return sqlSession.selectOne("memberMapper.nickCheck",nickName);
 	}
 
+	public int insertMember(Member m) {
+		return sqlSession.insert("memberMapper.insertMember",m);
+	}
+
+	public int AidCheck(String idCheck) {
+		return sqlSession.selectOne("memberMapper.AidCheck",idCheck);
+	}
+
 }

@@ -137,7 +137,7 @@ public class viewController {
 	
 	@RequestMapping("msg_friendListView.do")
 	public String msg_friendListView() {
-		return "user/message/msg_friendList";
+		return "redirect:msgFriendList.do";
 	}
 	
 	@RequestMapping("msg_msgListView.do")
