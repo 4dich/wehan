@@ -1,6 +1,9 @@
 package com.kh.wehan.pay.model.vo;
 
 import java.sql.Date;
+import java.util.ArrayList;
+
+import com.kh.wehan.challenge.model.vo.Challenge;
 
 public class Pay {
   private String pId;
@@ -14,12 +17,14 @@ public class Pay {
   private String refund_yn;
   private String pdel_yn;
  
+  private ArrayList<Challenge> chList; // 챌린지 에서 받아오는 정보
+  
   public Pay() {
 	  super();
   }
 
 public Pay(String pId, String chId, String userId, int price, String pmethod, String chName, Date pDate, String pay_yn,
-		String refund_yn, String pdel_yn) {
+		String refund_yn, String pdel_yn, ArrayList<Challenge> chList) {
 	super();
 	this.pId = pId;
 	this.chId = chId;
@@ -31,6 +36,7 @@ public Pay(String pId, String chId, String userId, int price, String pmethod, St
 	this.pay_yn = pay_yn;
 	this.refund_yn = refund_yn;
 	this.pdel_yn = pdel_yn;
+	this.chList = chList;
 }
 
 public String getpId() {
@@ -113,16 +119,19 @@ public void setPdel_yn(String pdel_yn) {
 	this.pdel_yn = pdel_yn;
 }
 
+public ArrayList<Challenge> getChList() {
+	return chList;
+}
+
+public void setChList(ArrayList<Challenge> chList) {
+	this.chList = chList;
+}
+
 @Override
 public String toString() {
 	return "Pay [pId=" + pId + ", chId=" + chId + ", userId=" + userId + ", price=" + price + ", pmethod=" + pmethod
 			+ ", chName=" + chName + ", pDate=" + pDate + ", pay_yn=" + pay_yn + ", refund_yn=" + refund_yn
-			+ ", pdel_yn=" + pdel_yn + "]";
+			+ ", pdel_yn=" + pdel_yn + ", chList=" + chList + "]";
 }
 
-  
-  
-  
-
-  
 }

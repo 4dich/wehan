@@ -17,6 +17,36 @@
   		<result property="pdel_yn" column="PDEL_YN"/>
   	</resultMap>
   	
+  	<resultMap id="chResultSet" type="Challenge">
+  		<id property="chid" column="CHID"/>
+  		<result property="userId" column="USERID"/>
+  		<result property="chName" column="CHNAME"/>
+  		<result property="chPicture" column="CHPICTURE"/>
+  		<result property="chContent" column="CHCONTENT"/>
+  		<result property="startDate" column="STARTDATE"/>
+  		<result property="endDate" column="ENDDATE"/>
+  		<result property="category" column="CATEGORY"/>
+  		<result property="ceMethod" column="CEMETHOD"/>
+  		<result property="minPrice" column="MINORICE"/>
+  		<result property="maxPrice" column="MAXPRICE"/>
+  		<result property="minPerson" column="MINPERSON"/>
+  		<result property="maxPerson" column="MAXPERSON"/>
+  		<result property="chPeople" column="CHPEOPLE"/>
+  	</resultMap>
+  	
+  	<resultMap id="payListResultSet" type="Pay">
+  		<id property="pId" column="PID"/>
+  		<result property="chId" column="CHID"/>
+  		<result property="userId" column="USERID"/>
+  		<result property="price" column="PRICE"/>
+  		<result property="pmethod" column="PMETHOD"/>
+  		<result property="pDate" column="PDATE"/>
+  		<result property="pay_yn" column="PAY_YN"/>
+  		<result property="refund_yn" column="REFUND_YN"/>
+  		<result property="pdel_yn" column="PDEL_YN"/>
+  		
+  		<collection property="chList" javaType="java.util.ArrayList" resultMap="chResultSet"/>
+  	</resultMap>
   	
   
   	<select id="getListCount" resultType="_int">
@@ -25,13 +55,19 @@
 		WHERE PAY_YN='Y'
 	</select>
   
-  	<select id="selectList" resultMap="payResultSet">
+  	<select id="selectList" resultMap="payListResultSet">
 		SELECT *
 		FROM PAY
-		WHERE PAY_YN='Y'
+		JOIN CHALLENGE USING(CHID)
 		ORDER BY PID DESC
 	</select>
   
+ 	<select id="slectPayDetail" resultMap="payListResultSet">
+ 		SELECT *
+		FROM PAY
+		JOIN CHALLENGE USING(CHID)
+		WHERE PID=#{pId}
+ 	</select>
   
   
   </mapper>
