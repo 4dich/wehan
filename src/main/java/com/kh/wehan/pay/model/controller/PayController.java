@@ -47,4 +47,13 @@ public class PayController {
 		return mv;
 	}
 	
+	@RequestMapping(value="payments.do")
+	public void pay(String str) {
+		System.out.println("넘어오는가");
+		System.out.println(str);
+		
+		
+	}
+	
+	
 }
