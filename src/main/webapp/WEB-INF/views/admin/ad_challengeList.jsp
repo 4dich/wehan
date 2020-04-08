@@ -97,153 +97,31 @@
 								<input class="searchBox" type="search">
 								<button><img src="resources/images/main/search.png" alt=""></button>
 							</div>
-
+							
 							<table class="qnaTable">
 								<tr class="thArea">
-									<th>No.</th>
+									<td align="center">${ b.bWriter }</td>
 									<th>챌린지 번호</th>
 									<th>챌린지명</th>
 									<th>개설 유저ID</th>
 									<th>시작 날짜</th>
 									<th>종료 날짜</th>
 									<th>참여 인원</th>
-									<th>배팅 금액</th>
 									<th>총 모집 금액</th>
 									<th>상세 정보</th>
-									<th>조회 수</th>
 								</tr>
-								<tr class="noticeList">
-									<td>1</td>
-									<td>ch00001</td>
-									<td>하루에 3번 팩하기</td>
-									<td>knine22</td>
-									<td>2020-03-20</td>
-									<td>2020-03-25</td>
-									<td>10명</td>
-									<td>1000원</td>
-									<td>10000원</td>
-									<td><button>정보</button></td>
-									<td>3</td>
-								</tr>
-
-								<tr class="noticeList">
-									<td>1</td>
-									<td>ch00001</td>
-									<td>하루에 3번 팩하기</td>
-									<td>knine22</td>
-									<td>2020-03-20</td>
-									<td>2020-03-25</td>
-									<td>10명</td>
-									<td>1000원</td>
-									<td>10000원</td>
-									<td><button>정보</button></td>
-									<td>3</td>
-								</tr>
-								<tr class="noticeList">
-									<td>1</td>
-									<td>ch00001</td>
-									<td>하루에 3번 팩하기</td>
-									<td>knine22</td>
-									<td>2020-03-20</td>
-									<td>2020-03-25</td>
-									<td>10명</td>
-									<td>1000원</td>
-									<td>10000원</td>
-									<td><button>정보</button></td>
-									<td>3</td>
-								</tr>
-								<tr class="noticeList">
-									<td>1</td>
-									<td>ch00001</td>
-									<td>하루에 3번 팩하기</td>
-									<td>knine22</td>
-									<td>2020-03-20</td>
-									<td>2020-03-25</td>
-									<td>10명</td>
-									<td>1000원</td>
-									<td>10000원</td>
-									<td><button>정보</button></td>
-									<td>3</td>
-								</tr>
-								<tr class="noticeList">
-									<td>1</td>
-									<td>ch00001</td>
-									<td>하루에 3번 팩하기</td>
-									<td>knine22</td>
-									<td>2020-03-20</td>
-									<td>2020-03-25</td>
-									<td>10명</td>
-									<td>1000원</td>
-									<td>10000원</td>
-									<td><button>정보</button></td>
-									<td>3</td>
-								</tr>
-								<tr class="noticeList">
-									<td>1</td>
-									<td>ch00001</td>
-									<td>하루에 3번 팩하기</td>
-									<td>knine22</td>
-									<td>2020-03-20</td>
-									<td>2020-03-25</td>
-									<td>10명</td>
-									<td>1000원</td>
-									<td>10000원</td>
-									<td><button>정보</button></td>
-									<td>3</td>
-								</tr>
-								<tr class="noticeList">
-									<td>1</td>
-									<td>ch00001</td>
-									<td>하루에 3번 팩하기</td>
-									<td>knine22</td>
-									<td>2020-03-20</td>
-									<td>2020-03-25</td>
-									<td>10명</td>
-									<td>1000원</td>
-									<td>10000원</td>
-									<td><button>정보</button></td>
-									<td>3</td>
-								</tr>
-								<tr class="noticeList">
-									<td>1</td>
-									<td>ch00001</td>
-									<td>하루에 3번 팩하기</td>
-									<td>knine22</td>
-									<td>2020-03-20</td>
-									<td>2020-03-25</td>
-									<td>10명</td>
-									<td>1000원</td>
-									<td>10000원</td>
-									<td><button>정보</button></td>
-									<td>3</td>
-								</tr>
-								<tr class="noticeList">
-									<td>1</td>
-									<td>ch00001</td>
-									<td>하루에 3번 팩하기</td>
-									<td>knine22</td>
-									<td>2020-03-20</td>
-									<td>2020-03-25</td>
-									<td>10명</td>
-									<td>1000원</td>
-									<td>10000원</td>
-									<td><button>정보</button></td>
-									<td>3</td>
-								</tr>
-								<tr class="noticeList">
-									<td>1</td>
-									<td>ch00001</td>
-									<td>하루에 3번 팩하기</td>
-									<td>knine22</td>
-									<td>2020-03-20</td>
-									<td>2020-03-25</td>
-									<td>10명</td>
-									<td>1000원</td>
-									<td>10000원</td>
-									<td><button>정보</button></td>
-									<td>3</td>
-								</tr>
-
+								<c:forEach var="ch" items="${ list }">
+									<tr class="noticeList">
+										<td>${ ch.chId }</td>
+										<td>${ ch.chName }</td>
+										<td>${ ch.userId }</td>
+										<td>${ ch.startDate }</td>
+										<td>${ ch.endDate }</td>
+										<td>${ ch.chPeople }</td>
+								<%-- 		<td>${ ch.chPeople }</td> --%>
+										<td><button>정보</button></td>
+									</tr>
+								</c:forEach>
 							</table>
 							
 							<div class="qnaPaging">
