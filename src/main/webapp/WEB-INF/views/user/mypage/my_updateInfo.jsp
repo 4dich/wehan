@@ -96,7 +96,8 @@
 						</div> -->
 						<div style="margin-top: 50px; margin-right: 20px;">
                             <div class="ch-register-pic"></div>
-                            <button class="site-btn" style="border: 2px solid #242424; margin-top: 30px; margin-left: 100px; height: 300px; width: 280px; font-size: 15px;"> 프로필 사진 (300x280)</button>				
+                            <!-- <button class="site-btn" style="border: 2px solid #242424; margin-top: 30px; margin-left: 100px; height: 300px; width: 280px; font-size: 15px;"> 프로필 사진 (300x280)</button> -->
+                            <img class="profile" src="resources/images/user/${ loginUser.picture }" style="width:300px;height:300px; object-fit:contain; border:1px solid #242424;">				
 							<br><br><button style="margin-left: 50%;">프로필수정</button>
 						</div>
                         <div class="col-xl-6" style="margin-left: 20px;">
