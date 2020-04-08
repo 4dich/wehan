@@ -26,7 +26,7 @@ public interface PayService {
 	 * @param nId
 	 * @return
 	 */
-	Pay noticeSelect(int nId);
+	Pay slectPayDetail(int pId);
 
 	
 }
