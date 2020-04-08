@@ -1,12 +1,15 @@
 package com.kh.wehan.member.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.wehan.member.model.service.MypageService;
+import com.kh.wehan.member.model.vo.Member;
 import com.kh.wehan.member.model.vo.Mypage;
 
 @Controller
@@ -16,9 +19,12 @@ public class MypageController {
 	private MypageService myService;
 	
 	@RequestMapping("my_profileView.do")
-	public ModelAndView my_profileView(ModelAndView mv) {
+	public ModelAndView my_profileView(ModelAndView mv, HttpServletRequest request) {
 		
-		String userId = "user02";
+		HttpSession session = request.getSession();
+		
+		Member mem = (Member)session.getAttribute("loginUser");
+		String userId = mem.getUserId();
 		Mypage mypage = myService.my_profileView(userId);
 		
 		int follow = myService.followCount(userId);

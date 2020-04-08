@@ -28,7 +28,7 @@ public class PayController {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
 		
 		ArrayList<Pay> list = pService.selectList(pi);
-		
+		System.out.println("페이지 리스트 입니다." + list);
 		mv.addObject("list",list);
 		mv.addObject("pi",pi);
 		mv.setViewName("admin/ad_payList");
@@ -40,7 +40,9 @@ public class PayController {
 	public ModelAndView payDetail(ModelAndView mv,
 			int pId) {
 		 
-		System.out.println(pId);
+		Pay p = pService.slectPayDetail(pId);
+		mv.addObject("p",p);
+		mv.setViewName("admin/ad_payDetail");	
 		
 		return mv;
 	}

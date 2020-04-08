@@ -17,7 +17,7 @@ public class ChallengeDao {
 	private SqlSessionTemplate sqlSession;
 
 	public int getListCount() {
-		return sqlSession.selectOne("challengeMapper.listCount");
+		return sqlSession.selectOne("challengeMapper.getListCount");
 	}
 
 	public ArrayList<Challenge> getSelectList(PageInfo pi) {
