@@ -463,9 +463,9 @@
 		
 		
 		
-		$(function(){
+		$( document ).ready(function(){
 			$('#agreeall').click(function(){
-				$('.ay').prop("checked",this.checked);
+				$('.ay').prop('checked',this.checked);
 			});
 		});
 		

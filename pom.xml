@@ -11,8 +11,8 @@
 	<!-- * 프로젝트 정보 -->
 	<modelVersion>4.0.0</modelVersion>  <!-- Maven2 버전부터 계속 4.0.0 -->
 	<groupId>com.kh</groupId>			<!-- 최초 만든 패키지 1,2레벨 -->
-	<artifactId>spring</artifactId>		<!-- 최초 만든 패키지 3레벨 == context-path-->
-	<name>springProject</name>			<!-- 프로젝트 명 -->
+	<artifactId>wehan</artifactId>		<!-- 최초 만든 패키지 3레벨 == context-path-->
+	<name>wehan</name>			<!-- 프로젝트 명 -->
 	<packaging>war</packaging>			<!-- 패키지 유형을 정의하는 영역 (zip, war)등 확장자명..-->
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	
@@ -28,12 +28,7 @@
 	
 	<!-- * repositories -->
 	<!-- 기본 저장소에서 다운 받지 못하는 경우 직접 다운받고자하는 사설 저장소 경로를 등록 -->
-	<repositories>
-		<repository>
-			<id>Spring plugins</id> <!-- ojdbc6 Repositories : Srping Plugins가 id -->
-			<url>https://repo.spring.io/plugins-release/</url> <!-- Srping Plugins누르고 URL주소 입력 -->
-		</repository>
-	</repositories>
+	
 	
 	<dependencies>
 		<!-- Spring -->
@@ -142,13 +137,6 @@
 		<!-- 1. DB관련(오라클,mybatis) 라이브러리 -->
 		<!-- 1_1. DataBase 오라클 사용을 위한 라이브러리 -->
 		<!-- https://mvnrepository.com/artifact/com.oracle/ojdbc6 -->
-		<dependency>
-		    <groupId>com.oracle</groupId>
-		    <artifactId>ojdbc6</artifactId>
-		    <version>11.2.0.3</version>
-		    <!-- <scope>test</scope> 지우는거 필수-->
-		</dependency>
-
 		
 		<!-- 
 			Mybatis는 스프링 쪽에서 연동에 필요한 API를 제공하지 않으며,
@@ -242,16 +230,6 @@
 		    <version>2.6</version>
 		</dependency>
 		
-		<!-- Jackson 관련 라이브러리 -->
-		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
-		<dependency>
-		    <groupId>com.fasterxml.jackson.core</groupId>
-		    <artifactId>jackson-databind</artifactId>
-		    <version>2.9.5</version>
-		</dependency>
-		
-		
-	
 	</dependencies>
     <build>
         <plugins>
