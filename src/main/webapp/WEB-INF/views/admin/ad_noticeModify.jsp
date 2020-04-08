@@ -99,29 +99,30 @@
 						<div class="noticeInfo">
 							<div class="noticeInfoArea">
 								
-								<form action="ad_noticeInsert.do" method="post">
+								<form action="ad_noticeModify.do" method="post">
 									<table class="detailArea">
 										<tr class="noticeTitleArea">
 											<td class="noticeTitle1">제목</td>
 											<td class="noticeTitle2">
-												<input type="text" placeholder="제목을 입력해주세요" name="nTitle">
+												<input type="text" name="nTitle" value="${n.nTitle }">
+												<input type="hidden" name="nId" value="${n.nId}">
 											</td>
 										</tr>
 										<tr class="noticeUserNameArea">
 											<td class="noticeUserName1">작성자</td>
 											<td class="noticeUserName2">
-												<input type="text" name="nWriter" value="${loginUser.id}" disabled>
+												<input type="text" name="nWriter" value="${n.nWriter}" disabled>
 											</td>
 										</tr>
 										<tr class="noticeTextBox">
 											<td class="noticeTextArea"  colspan="2" style="height:500px; text-align:-webkit-auto;"> 
-												<textarea name="nContent" style="width:100%; height:100%; padding:5%; resize:none"></textarea>
+												<textarea name="nContent" style="width:100%; height:100%; padding:5%; resize:none">${n.nContent}</textarea>
 											</td>
 										</tr>
 										
 										<tr class="replybuttonArea">
 											<td class="buttonArea"  colspan="2">												
-												<input type="submit" class="site-btn" style="background-color: white; padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; width:120px;border: 2px solid #e1e1e1;" value="등록하기">	
+												<input type="submit" class="site-btn" style="background-color: white; padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; width:120px;border: 2px solid #e1e1e1;" value="수정하기">
 												<button class="site-btn" type="button" onclick="location.href='ad_noticeList.do'" style="background-color: white; padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px;">
 													목록가기
 												</button>

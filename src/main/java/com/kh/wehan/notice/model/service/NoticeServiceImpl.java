@@ -65,6 +65,32 @@ public class NoticeServiceImpl implements NoticeService{
 		return nDao.selectSearchList(sc, pi);
 	}
 
+	/**
+	 * 공지사항 입력하기
+	 */
+	@Override
+	public int adNoticeInsert(Notice n) {
+		return nDao.adNoticeInsert(n);
+	}
+
+	/**
+	 * 공지사항 수정하기
+	 */
+	@Override
+	public int adNoticeModify(Notice n) {
+		return nDao.adNoticeModify(n);
+	}
+
+	/**
+	 * 공지사항 삭제하기
+	 */
+	@Override
+	public int adNoticeDelete(int nId) {
+		return nDao.adNoticeDelete(nId);
+	}
+
+	
+
 	
 	
 

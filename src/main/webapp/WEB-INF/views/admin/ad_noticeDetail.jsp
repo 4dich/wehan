@@ -125,11 +125,30 @@
 									</tr>
 									<tr class="noticeTextBox">
 										<td class="noticeTextArea" colspan="2" style="height:500px; text-align:-webkit-auto;"> 
-											<div style="width:100%; height:100%; padding:5%;">
-												${n.nContent}
-											</div>
+											<div style="white-space:pre; width:100%; height:100%; padding:5%;">${n.nContent}</div>
 										</td>
-									</tr>									
+									</tr>
+									
+									<c:if test="${'admin' eq n.nWriter }">
+										<tr class="replybuttonArea">
+											<c:url var="nModifyView" value="ad_noticeModifyView.do">
+												<c:param name="nId" value="${ n.nId }" />
+												<c:param name="currentPage" value="${currentPage}" />
+											</c:url>
+											<c:url var="nDelete" value="ad_noticeDelete.do">
+												<c:param name="nId" value="${ n.nId }" />
+												<c:param name="currentPage" value="${currentPage}" />
+											</c:url>										
+											<td class="buttonArea"  colspan="2">
+												<a class="site-btn" href="${nModifyView}" style="background-color: white; padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px;">
+													수정하기
+												</a>
+												<a class="site-btn" href="${nDelete}" style="background-color: white; padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px;">
+													삭제하기
+												</a>
+											</td>
+										</tr>
+									</c:if>									
 								</table>
 							</div>							
 						</div>

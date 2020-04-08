@@ -2,6 +2,8 @@ package com.kh.wehan.notice.controller;
 
 import java.util.ArrayList;
 
+import javax.xml.ws.Response;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -132,6 +134,13 @@ public class NoticeController {
 	}
 	
 	
+	/**
+	 * admin 공지사항 상세보기
+	 * @param mv
+	 * @param nId
+	 * @param currentPage
+	 * @return
+	 */
 	@RequestMapping("ad_noticeDetail.do")
 	public ModelAndView adNoticeDetail(ModelAndView mv, int nId, int currentPage) {
 		
@@ -148,22 +157,27 @@ public class NoticeController {
 	}
 	
 	
+	/**
+	 * admin 공지사항 검색
+	 * @param mv
+	 * @param searchNotice
+	 * @param searchWord
+	 * @return
+	 */
 	@RequestMapping("ad_searchNotice.do")
-	public ModelAndView adSearchNotice(ModelAndView mv, String searchNotice, String searchWord) {
+	public ModelAndView adSearchNotice(ModelAndView mv, String adSearchNotice, String adNoticeSerchWord) {
 		
 		SearchCondition sc = new SearchCondition();
 		
-		if(searchNotice.equals("title")) {
-			sc.setTitle(searchWord);
-		} else if(searchNotice.equals("content")) {
-			sc.setContent(searchWord);
+		if(adSearchNotice.equals("title")) {
+			sc.setTitle(adNoticeSerchWord);
+		} else if(adSearchNotice.equals("content")) {
+			sc.setContent(adNoticeSerchWord);
 		}
 		
 		int currentPage = 1;
 		
 		int listCount = nService.getSearchListCount(sc);
-		
-		System.out.println(listCount);
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
 		
@@ -176,4 +190,85 @@ public class NoticeController {
 		return mv;
 	}
 	
+	
+	/**
+	 * admin 공지사항 등록하기
+	 * @param mv
+	 * @param nTitle
+	 * @param nWriter
+	 * @param nContent
+	 * @return
+	 */
+	@RequestMapping("ad_noticeInsert.do")
+	public String adNoticeInsert(Notice n) {
+		
+		n.setnWriter("admin");
+		
+		int result = nService.adNoticeInsert(n);
+		
+		if(result > 0) {
+			return "redirect:ad_noticeList.do";
+		} else {						
+			return "common/errorPage";
+		}
+	}
+	
+	/**
+	 * admin 공지사항 수정 불러오기
+	 * @param mv
+	 * @param nId
+	 * @param currentPage
+	 * @return
+	 */
+	@RequestMapping("ad_noticeModifyView.do")
+	public ModelAndView adNoticeModifyView(ModelAndView mv, int nId, int currentPage) {
+		
+		Notice n = nService.noticeSelect(nId);
+		
+		if(n != null) {
+			mv.addObject("n", n).addObject("currentPage", currentPage).setViewName("admin/ad_noticeModify");
+		}
+		
+		return mv;		
+		
+	}
+	
+	
+	/**
+	 * 공지사항 수정 저장하기
+	 * @param n
+	 * @return
+	 */
+	@RequestMapping("ad_noticeModify.do")
+	public ModelAndView adNoticeModify(ModelAndView mv, Notice n) {		
+		
+		int result = nService.adNoticeModify(n);
+		
+		
+		if(result > 0 ) {
+			
+			mv.addObject("nId", n.getnId()).setViewName("redirect:ad_noticeList.do");
+			
+		} else {
+			
+			mv.addObject("msg", "Error").addObject("msg2", "페이지 상세보기 에러").setViewName("common/errorPage");
+			
+		}
+		
+		return mv;	
+	}
+	
+	@RequestMapping("ad_noticeDelete.do")
+	public ModelAndView adNoticeDelete(ModelAndView mv, int nId) {
+		
+		int result = nService.adNoticeDelete(nId);
+		
+		if(result > 0) {
+			mv.setViewName("redirect:ad_noticeList.do");
+		} else {
+			mv.addObject("msg", "Error").addObject("msg2", "공지사항 삭제 에러").setViewName("common/errorPage");
+		}
+		
+		return mv;
+	}
 }

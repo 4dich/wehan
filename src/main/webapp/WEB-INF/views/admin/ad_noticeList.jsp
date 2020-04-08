@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -56,7 +56,7 @@
 		
 		
 		
-		<%-- <c:import url="/WEB-INF/views/common/ad_menuBar.jsp" />	 --%>
+		<c:import url="/WEB-INF/views/common/ad_menuBar.jsp" />
 		
 		<header class="header-section">
 			<div class="nav-switch">
@@ -96,13 +96,13 @@
 						<div id="searchArea">		
 							<form action="ad_searchNotice.do">					
 								<div id="searchSelect"> 
-									<select name="searchNotice" id="searchNotice">
+									<select name="adSearchNotice" id="searchNotice">
 										<option value="title">제목</option>
 										<option value="content">내용</option>
 									</select>					
 								</div>
 								<!-- 검색 -->
-								<input class="searchBox" type="search" id="adNoticeSerchWord">
+								<input class="searchBox" type="search" name="adNoticeSerchWord">
 								<button>
 									<img src="resources/images/main/search.png" alt="">
 								</button>
@@ -111,7 +111,7 @@
 
 
 						<!-- 공지사항 테이블 -->
-						<table class="noticeTable" style="width:100%">
+						<table class="qnaTable" style="width:100%">
 							
 							<tr class="thArea">								
 								<th>NO</th>								
@@ -130,7 +130,7 @@
 										<input type="hidden" value="${n.nId}">
 										${n.nId}
 									</td>									
-									<td>${n.nTitle}</td>
+									<td style="text-align:left">${n.nTitle}</td>
 									<td>${n.nWriter}</td>
 									<td>${n.nDate}</td>
 									<td>${n.nCount}</td>
@@ -195,7 +195,7 @@
 		  $('.noticeTable tr:even').css("backgroundColor","rgb(247, 247, 247)");   // even 짝수
 		});
 		
-		$('.noticeTable td').click(function(){
+		$('.qnaTable td').click(function(){
 			var nId = $(this).parent().children().find("input[type=hidden]").val();
 			var currentPage = ${pi.currentPage};
 			
