@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="challengeMapper">
+	<resultMap id="challengeResultSet" type="Challenge">
+		<id property="chid" column="CHID"/>
+		<result property="userId" column="USERID"/>
+		<result property="chName" column="CHNAME"/>
+		<result property="chPicture" column="CHPICTURE"/>
+		<result property="chContent" column="CHCONTENT"/>
+		<result property="startDate" column="STARTDATE"/>
+		<result property="endDate" column="ENDDATE"/>
+		<result property="category" column="CATEGORY"/>
+		<result property="ceMethod" column="CEMETHOD"/>
+		<result property="minPrice" column="MINPRICE"/>
+		<result property="maxPrice" column="MAXPRICE"/>
+		<result property="minPerson" column="MINPERSON"/>
+		<result property="maxPerson" column="MAXPERSON"/>
+		<result property="chPeople" column="CHPEOPLE"/>
+	</resultMap>
+	
+	<select id="getListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM CHALLENGE
+	</select>
+	
+	<select id="selectList" resultType="challengeResultSet">
+		SELECT *
+		FROM CHALLENGE
+	</select>
+</mapper>
