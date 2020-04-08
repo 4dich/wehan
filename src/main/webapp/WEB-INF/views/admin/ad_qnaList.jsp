@@ -122,75 +122,23 @@
 								<td>2020-03-25</td>
 								<td>1</td>
 							</tr>
-
-							<!-- 나중에 삭제할거 -->
-							<tr class="noticeList">
-								<td>1</td>
-								<td>문의사항제목입니다.</td>
-								<td>현스델리</td>
-								<td>2020-03-25</td>
-								<td>1</td>
+                         <c:forEach var="q" items="${list}">
+                        <tr class="questionsList">
+								<td>
+								    <input type="hidden" value="${q.qId }"/>							    
+																
+								</td>								
+								<td>${q.qTitle }</td>
+								<td>${q.qUserid }</td>
+								
+								<td>${q.qDate }</td>
+															
+								<td>${q.qCount }</td>
+								<td>${q.qContent }</td>
 							</tr>
-							<tr class="noticeList">
-								<td>1</td>
-								<td>문의사항제목입니다.</td>
-								<td>현스델리</td>
-								<td>2020-03-25</td>
-								<td>1</td>
-							</tr>
-							<tr class="noticeList">
-								<td>1</td>
-								<td>문의사항제목입니다.</td>
-								<td>현스델리</td>
-								<td>2020-03-25</td>
-								<td>1</td>
-							</tr>
-							<tr class="noticeList">
-								<td>1</td>
-								<td>문의사항제목입니다.</td>
-								<td>현스델리</td>
-								<td>2020-03-25</td>
-								<td>1</td>
-							</tr>
-							<tr class="noticeList">
-								<td>1</td>
-								<td>문의사항제목입니다.</td>
-								<td>현스델리</td>
-								<td>2020-03-25</td>
-								<td>1</td>
-							</tr>
-							<tr class="noticeList">
-								<td>1</td>
-								<td>문의사항제목입니다.</td>
-								<td>현스델리</td>
-								<td>2020-03-25</td>
-								<td>1</td>
-							</tr>
-							<tr class="noticeList">
-								<td>1</td>
-								<td>문의사항제목입니다.</td>
-								<td>현스델리</td>
-								<td>2020-03-25</td>
-								<td>1</td>
-							</tr>
-							<tr class="noticeList">
-								<td>1</td>
-								<td>문의사항제목입니다.</td>
-								<td>현스델리</td>
-								<td>2020-03-25</td>
-								<td>1</td>
-							</tr>
-							<tr class="noticeList">
-								<td>1</td>
-								<td>문의사항제목입니다.</td>
-								<td>현스델리</td>
-								<td>2020-03-25</td>
-								<td>1</td>
-							</tr>
+                      
+                      </c:forEach> 			
 							
-
-
-							<!-- 삭제 끝 -->
 
 						</table>
 						
