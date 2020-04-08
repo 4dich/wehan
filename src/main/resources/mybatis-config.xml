@@ -26,5 +26,6 @@
 		<mapper resource="mappers/notice-mapper.xml"/>
 		<mapper resource="mappers/certify-mapper.xml"/>
 		<mapper resource="mappers/pay-mapper.xml"/>
+		<mapper resource="mappers/challenge-mapper.xml"/>
 	</mappers>
 </configuration>
