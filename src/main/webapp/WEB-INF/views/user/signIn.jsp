@@ -109,7 +109,7 @@
 			<!-- Page start -->
 			<div class="page-section blog-page" style="margin-top: 40px; height: 800px;">
 				<div class="contact-section">
-					<form action="insertMember.do" method="post" onsubmit="return pattern();" enctype="multipart/form-data">
+					<form action="#" method="post" onsubmit="return pattern();" enctype="multipart/form-data">
 					<h3>회원가입</h3>
 					<div class="row" style="margin-left: 30px; height: 400px;">
 						<!-- <div class="col-xl-6">
@@ -118,7 +118,7 @@
 						<div style="margin-top: 50px; margin-right: 20px;">
                             <div class="ch-register-pic"></div>
                             <div id="View_area" style="height: 300px; width: 280px; dispaly: inline; border:1px solid;"></div>				
-							<br><br><label for="file">프로필 수정</label><input id="file" type="file" onchange="previewImage(this,'View_area')" style="margin-left: 50%;">
+							<br><br><label for="file">프로필 수정</label><input id="file" name="uploadFile" type="file" onchange="previewImage(this,'View_area')" style="margin-left: 50%;">
 						</div>
                         <div class="col-xl-6" style="margin-left: 20px;">
 							<div class="contact-text-warp">
@@ -147,6 +147,9 @@
                                         </div>
 										<div class="col-lg-12">
                                             <input id="email" name="email" type="email" style="border-top: none; border-left: none; border-right: none; width:72%" placeholder="이메일">
+                                        </div>
+										<div class="col-lg-12">
+                                            <input id="birthDay" name="birthDay" type="text" style="border-top: none; border-left: none; border-right: none; width:72%" placeholder="생년월일">
                                         </div>
 									</div>
 								</div>
@@ -276,12 +279,14 @@
 			var userName = $('#userName').val();
 			var nickName = $('#nickName').val();
 			var email = $('#email').val();
+			var birthDay = $('#birthDay').val();
 			var bankName = $('#bankName').val();
 			var accountHolder = $('#accountHolder').val();
 			var accountNumber = $('#accountNumber').val();
 			var address = $('#address').val();
 			var phone = $('#phone').val();
-			
+			var file = $('#file').val();
+			console.log(file);
 			if(userId == ""){
 				console.log(userId);
 				alert("아이디를 입력해 주세요");
@@ -333,6 +338,16 @@
 				}
 			}
 			
+			if(birthDay == ""){
+				alert("생년월일을 입력해주세요");
+				return false;
+			}else{
+				if(!check(/^[0-9]{8}$/,birthDay)){
+					alert("생년월일을 년도 까지 입력해 주세요  예시:19990101");
+					return false;
+				}
+			}
+			
 			if(email == ""){
 				alert("이메일을 입력해 주세요");
 				return false;
@@ -367,6 +382,12 @@
 					return false;
 				}
 			}
+			
+			if(file == ""){
+				alert("프로필 사진을 넣어 주세요");
+				return false;
+			}
+			
 		}
 		
 		function check(p,e){
@@ -379,6 +400,8 @@
 		$(function(){
 			$('#userId').on("keyup",function(){
 				var idCheck = $('#userId').val();
+				var file = $('#file').val();
+				console.log(file);
 				$.ajax({
 					url:"idCheck.do",
 					data:{idCheck:idCheck},

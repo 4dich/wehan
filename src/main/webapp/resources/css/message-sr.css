@@ -126,18 +126,29 @@ Inbox Message Style
     margin-top: -5px;
 }
 
-.message-body h5 span.delete{
+/* 건강  */
+.message-body h5 span.health{ 
 	background:#b1b1b1;	
 }
 
-.message-body h5 span.unread{
+/* 자기개발 */
+.message-body h5 span.development{
 	background:#07b107;	
 }
-.message-body h5 span.important{
+
+/* 경제 */
+.message-body h5 span.economy{
 	background:#dd2027;	
 }
-.message-body h5 span.pending{
+
+/* 취미 */
+.message-body h5 span.hobby{
 	background:#2196f3;	
+}
+
+/* 생활 */
+.message-body h5 span.life{
+	background:#f3d921;	
 }
 .message-body-heading span {
     float: right;

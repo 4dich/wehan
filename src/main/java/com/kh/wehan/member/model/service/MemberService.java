@@ -23,4 +23,8 @@ public interface MemberService {
 
 	int nickCheck(String nickName);
 
+	int insertMember(Member m);
+
+	int AidCheck(String idCheck);
+
 }

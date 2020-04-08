@@ -30,8 +30,6 @@ public class MypageController {
 		int follow = myService.followCount(userId);
 		int following = myService.followingCount(userId);
 		
-		
-		
 		mv.addObject("mypage", mypage);
 		mv.addObject("follow", follow);
 		mv.addObject("following", following);

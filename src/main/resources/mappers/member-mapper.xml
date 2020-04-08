@@ -42,10 +42,19 @@
 		FROM MEMBER
 		WHERE USERID=#{idCheck}
 	</select>
+	<select id="AidCheck" parameterType="string" resultType="_int">
+		SELECT COUNT(*)
+		FROM ADMIN
+		WHERE USERID=#{idCheck}
+	</select>
 	
 	<select id="nickCheck" parameterType="string" resultType="_int">
 		SELECT COUNT(*)
 		FROM MEMBER
 		WHERE NICKNAME=#{nickName}
 	</select>
+	
+	<insert id="insertMember" parameterType="Member" >
+		INSERT INTO MEMBER VALUES(#{userId},#{password},#{nickName},#{userName},#{birthDay},#{email},#{address},#{phone},#{account},#{picture},SYSDATE,DEFAULT)
+	</insert>
 </mapper>

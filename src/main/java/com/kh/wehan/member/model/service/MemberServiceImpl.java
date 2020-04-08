@@ -32,4 +32,14 @@ public class MemberServiceImpl implements MemberService{
 		return mDao.nickCheck(nickName);
 	}
 
+	@Override
+	public int insertMember(Member m) {
+		return mDao.insertMember(m);
+	}
+
+	@Override
+	public int AidCheck(String idCheck) {
+		return mDao.AidCheck(idCheck);
+	}
+
 }
