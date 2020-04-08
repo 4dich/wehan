@@ -2,6 +2,7 @@ package com.kh.wehan.member.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,8 +19,10 @@ public class MypageController {
 	public ModelAndView my_profileView(ModelAndView mv) {
 		
 		String userId = "user02";
+		Mypage mypage = myService.my_profileView(userId);
 		
-		Mypage mypage = myService.my_profileView(userId);	
+		int follow = 0;
+		int following = 0;
 
 		mv.addObject("mypage", mypage);
 		mv.setViewName("user/mypage/my_profile");

@@ -10,6 +10,7 @@
 	<meta name="keywords" content="industry, html">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
+	
 	<!-- Favicon -->
 	<link href="resources/images/favicon.ico" rel="shortcut icon"/>
 
@@ -26,7 +27,10 @@
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="resources/css/style.css"/>
 	
+	<!-- JQuery -->
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	
+	<!-- bootstrap4 toggle -->
 	<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 	
@@ -53,10 +57,6 @@
         padding: 0.5%;
     }
 
-    .profile-follow{
-        text-align: center;
-        margin-left: 10%;
-    }
     .site-logo {
         display: block;
         margin-bottom: 40px;
@@ -71,14 +71,6 @@
         margin-right: 70px;
     }
     
-    .follow{
-        float:left;
-    }
-    
-    .following{
-        float:none;
-    }
-
     .menuIcon{
     background: white;
     border-radius: 20%;
@@ -111,8 +103,6 @@
 		/* border: 2px solid #e1e1e1; */
 		border: 2px solid #242424;
 	}
-	/* 토글버튼  */
-	.slow .toggle-group { transition: left 0.7s; -webkit-transition: left 0.7s; }
     </style>
 </head>
 <body>
@@ -157,26 +147,67 @@
                         <b>디히</b>
 					</div>
 					
-					<button class="site-btn sb-dark" onclick="location.href='my_updateInfoView.do'">settings</button>
+					<button class="site-btn sb-solid mr-3 mb-3" onclick="location.href='my_updateInfoView.do'">settings</button>
 					<button class="site-btn sb-solid mr-3 mb-3" style="display:none">follow</button>
 
-					<div class="profile-aboutme" style="text-align: left; margin-top:10px; padding:10px; height:65px; overflow-y: scroll;">
+					<%-- <div class="profile-aboutme" style="text-align: left; margin-top:10px; padding:10px; height:65px; overflow-y: scroll;">
 						<p>${ mypage.intro }</p>
+                    </div> --%>
+                    
+                    <div style="text-align:center; margin:auto; width:100%">
+                    	<table style="border: 1px solid #242424;">
+                    		<tr>
+                    			<td style="width:150px; background: #242424; color:white; padding:2px;">소개 <input id="toggle3" type="checkbox" checked data-toggle="toggle" data-size="xs" data-on="<i class='fa fa-lock' aria-hidden='true'></i>" data-off="<i class='fa fa-unlock' aria-hidden='true'></i>" data-onstyle="outline-success" data-offstyle="outline-danger" onchange="toggleBtn3();"></td>
+                    			<td style="width:300px;"><textarea id="intro" rows=2 style="width:260px; height:50px; resize: none; overflow:hidden; border:0px" disabled>${ mypage.intro }</textarea></td>
+                    		</tr>
+                    	</table>
                     </div>
 
-                    <div class="profile-follow">
-                        <div class="grade">
-                                                               등급<br>
-                            <div style="width:40px; height:40px; background-color: goldenrod;"></div>
-                        </div>
-                        <div class="follow">
-                                                               팔로우<br>
-                            <b>301</b>
-                        </div>
-                        <div class="following">
-                                                               팔로잉<br>
-                            <b>243</b>
-                        </div>
+					<script>
+						function toggleBtn3(){
+					    	if(document.getElementById('toggle3').checked==false){
+					    		$('#intro').attr('disabled',false);
+					    		$('#intro').focus();
+					    		$('#intro').value = $('#intro').value;
+							}else{
+								$('#intro').attr('disabled',true);
+							}
+					    }	
+					</script>
+					
+					<br>
+					
+                 	<div style="text-align:center; margin:auto; width:70%">
+	                    <table>
+	                    	<tr>
+	                    		<td style="width:50px; font-size:16px"><b>등급</b></td>
+	                    		<td style="width:50px; text-align:right"></td>
+	                    		<td style="width:50px; font-size:16px"><b>팔로우</b></td>
+	                    		<td style="width:50px; text-align:right"></td>
+	                    		<td style="width:50px; font-size:16px"><b>팔로잉</b></td>
+	                    	</tr>
+	                    	<tr style="border-top:1px solid #242424; margin-top:10px">
+	                    		<td style="height:10px;"></td>
+	                    		<td></td>
+	                    		<td></td>
+	                    		<td></td>
+	                    		<td></td>
+	                    	</tr>
+	                    	<tr>
+	                    		<td style="background:goldenrod; height:50px;"></td>
+	                    		<td>
+	                    		<td>301</td>
+	                    		<td>
+	                    		<td>243</td>
+	                    	<tr>
+	                    	<tr style="border-bottom:1px solid #242424; margin-top:10px">
+	                    		<td style="height:10px;"></td>
+	                    		<td></td>
+	                    		<td></td>
+	                    		<td></td>
+	                    		<td></td>
+	                    	</tr>
+	                    </table>
                     </div>
 				</div>
 			</div>
@@ -187,22 +218,8 @@
 							관심 분야 &nbsp;&nbsp;&nbsp;
 							
 							<!-- 토글버튼 -->
-							<input id="cateToggle" type="checkbox" checked data-toggle="toggle" data-on="<i class='fa fa-lock' aria-hidden='true'></i> 수정하기" data-off="<i class='fa fa-unlock' aria-hidden='true'></i> 수정중" data-onstyle="outline-success" data-offstyle="outline-danger">
-							<button id="btn">테스트</button>
-							<!-- 토글 상태확인버튼 -->
-<!-- 							<button type="button" class="btn btn-outline-primary" onclick="showChkState()">Show Toggle State</button>
-							<script>
-								function showChkState(){
-									console.log(document.getElementById('cateToggle').checked);
-								}
-							</script> -->
+							<input id="toggle1" type="checkbox" checked data-toggle="toggle" data-on="<i class='fa fa-lock' aria-hidden='true'></i> 수정하기" data-off="<i class='fa fa-unlock' aria-hidden='true'></i> 수정중" data-onstyle="outline-success" data-offstyle="outline-danger" onchange="toggleBtn1();">
 							
-							<script>
-								$("#btn").click(function(event){
-									alert("문장이 클릭되었습니다.");
-									
-								});
-							</script>
 						</div>
 						<div class="main-down-content" style="height: 28%; width: 100%; margin-top: 15px; text-align:center">
 							<div style="display: inline-block; width:100%;">
@@ -217,48 +234,6 @@
 								
 								<!-- 관심분야 on/off -->
 								<script>
-									/* var cate = $('.category');
-									var cateStat = new Array(0,0,0,0,0,0);
-									var myCate = $('.myCate')[0].innerText;
-									
- 									if(myCate.includes('건강')){
-										cateStat[0]=1;
-									}
-									if(myCate.includes('취미')){
-										cateStat[1]=1;
-									}
-									if(myCate.includes('자기개발')){
-										cateStat[2]=1;
-									}
-									if(myCate.includes('경제')){
-										cateStat[3]=1;
-									}
-									if(myCate.includes('생활')){
-										cateStat[4]=1;
-									}
-									if(myCate.includes('기타')){
-										cateStat[5]=1;
-									}
-									
-									
-									$(function(){
-										for(var i=0; i<6; i++){
-											if(cateStat[i]==0){
-												$(cate[i]).css('opacity','0.2');
-											}else{
-												$(cate[i]).css('opacity','1');
-											}
-										}
-									});
-									
-									$('.category').click(function(){
-										if($(this).css('opacity') == '1'){
-											$(this).css('opacity','0.2');
-										}else{
-											$(this).css('opacity','1');
-										}
-									}); */
-									
 									var cate = $('.category');
 									for(var i=0; i<6; i++){
 										cate[i].textContent=0;
@@ -284,29 +259,18 @@
 										cate[5].textContent = 1;
 									}
 									
-									/* setInterval(function(){
-										for(var i=0; i<6; i++){
-											if(cate[i].textContent==0){
-												$(cate[i]).css('opacity','0.2');
-											}else{
-												$(cate[i]).css('opacity','1');
-											}
+									function toggleBtn1(){
+								    	if(document.getElementById('toggle1').checked==false){
+								    		cate.on("click",function(){
+								    			$(this)[0].textContent = 1 - $(this)[0].textContent;
+								            });
+										}else{
+											cate.off("click");
 										}
-									},100); */
+								    }
 									
 									$(function(){
 										setInterval(function(){
-											if(document.getElementById('cateToggle').checked==false){
-												cate.click(function(){
-													$(this)[0].textContent = 1 - $(this)[0].textContent;
-													/* var msg;
-													for(var i=0; i<6; i++){
-														msg += cate[i].textContent;
-													}
-													alert(msg); */
-												});
-											}
-											
 											for(var i=0; i<6; i++){
 												if(cate[i].textContent==0){
 													$(cate[i]).css('opacity','0.2');
@@ -316,53 +280,6 @@
 											}
 										},100);
 									});
-									
-									/* 4시에 저장함 */
-									/* $(function(){
-										setInterval(function(){
-											if(document.getElementById('cateToggle').checked==false){
-												cate.click(function(){
-													$(this)[0].textContent = 1 - $(this)[0].textContent;
-													var msg;
-													for(var i=0; i<6; i++){
-														msg += cate[i].textContent;
-													}
-													alert(msg);
-												});
-											}
-											
-											for(var i=0; i<6; i++){
-												if(cate[i].textContent==0){
-													$(cate[i]).css('opacity','0.2');
-												}else{
-													$(cate[i]).css('opacity','1');
-												}
-											}
-										},100);
-									}); */
-
-									
-									/* 아이콘클릭시 값변경 */
-									/* cate.click(function(){
-										if($(this)[0].textContent == 1){
-											$(this)[0].textContent = 0;
-										}else{
-											$(this)[0].textContent = 1;
-										}
-									}); */
-									
-									/* $(function(){
-										cate[0].textContent = "바보";
-										
-									}); */
-									
-									/* cate.click(function(){
-										if($(this).css('opacity') == '1'){
-											$(this).css('opacity','0.2');
-										}else{
-											$(this).css('opacity','1');
-										}
-									}); */
 								</script>
 							</div>
 							<div style="display: inline-block; width:100%;">
@@ -378,10 +295,23 @@
 					<div class="main-up" style="height: 52%; width: 90%; margin:20px">
 						<div class="main-up-title" style="height: 70px; background: #242424; color:white; padding: 20px; font-size: 21px; font-weight: 700;">
 							나의 목표&nbsp;&nbsp;&nbsp;
-							<input type="checkbox" checked data-toggle="toggle" data-style="slow" data-on="<i class='fa fa-lock' aria-hidden='true'></i> 수정하기" data-off="<i class='fa fa-unlock' aria-hidden='true'></i> 수정중" data-onstyle="outline-success" data-offstyle="outline-danger">
+							<input id="toggle2" type="checkbox" checked data-toggle="toggle" data-on="<i class='fa fa-lock' aria-hidden='true'></i> 수정하기" data-off="<i class='fa fa-unlock' aria-hidden='true'></i> 수정중" data-onstyle="outline-success" data-offstyle="outline-danger" onchange="toggleBtn2();">
+							
+							<!-- 나의 목표 on/off -->
+							<script>
+								function toggleBtn2(){
+							    	if(document.getElementById('toggle2').checked==false){
+							    		$('#goal').attr('disabled',false);
+							    		$('#goal').focus();
+							    		$('#goal').value = $('#goal').value;
+									}else{
+										$('#goal').attr('disabled',true);
+									}
+							    }	
+							</script>
 						</div>
-						<div class="main-up-content" style="padding:3%;">
-							${ mypage.goal }
+						<div class="main-up-content" style="font-size:20px;">
+							<textarea id="goal" cols="105" rows="9" style="resize: none; padding:3%; overflow:hidden; border:0px" disabled>${ mypage.goal }</textarea>
 						</div>
 					</div>
 				</div>
