@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+   <mapper namespace="questionsMapper">  
+     <resultMap type = "Questions" id="qnaResultSet">
+          <id property="qId" column="QID"/>
+          <result property = "qUserid" column="USERID"/>
+          <result property = "qTitle" column="QTITLE"/>         
+          <result property = "qContent" column="QCONTENT"/>
+          <result property = "qCount" column="QCOUNT"/>
+          <result property = "qDate"  column="QDATE"/>
+          <result property = "qOpen" column="QOPEN_YN"/>
+          <result property = "qDel" column="QDEL_YN"/>                        
+     
+     </resultMap>     
+        
+        <!-- 문의사항 전체 리스트 가져오기 -->
+	<select id="selectList" resultMap="qnaResultSet">
+		SELECT *
+		FROM QUESTIONS
+		WHERE QDEL_YN='N'
+		ORDER BY QID DESC	
+	</select>     
+	    <!-- 문의사항 전체 개수 가져오기 -->
+	<select id="getListCount" resultType="_int">
+	   SELECT COUNT(*)
+	   FROM QUESTIONS
+	   WHERE QDEL_YN='N'	
+	</select>
+	
+	    <!-- 문의사항 상세 페이지 가져오기 -->
+	   
+	
+	 
+    
+    
+       
+   
+    </mapper>

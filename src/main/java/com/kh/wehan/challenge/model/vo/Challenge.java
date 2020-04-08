@@ -2,7 +2,7 @@ package com.kh.wehan.challenge.model.vo;
 
 public class Challenge {
 
-	private String chid;
+	private String chId;
 	private String userId;
 	private String chName;
 	private String chPicture;
@@ -11,8 +11,7 @@ public class Challenge {
 	private String endDate;
 	private String category;
 	private String ceMethod;
-	private int minPrice;
-	private int maxPrice;
+	private int price;
 	private int minPerson;
 	private int maxPerson;
 	private String chPeople;
@@ -23,11 +22,11 @@ public class Challenge {
 	}
 
 
-	public Challenge(String chid, String userId, String chName, String chPicture, String chContent, String startDate,
-			String endDate, String category, String ceMethod, int minPrice, int maxPrice, int minPerson, int maxPerson,
+	public Challenge(String chId, String userId, String chName, String chPicture, String chContent, String startDate,
+			String endDate, String category, String ceMethod, int price, int minPerson, int maxPerson,
 			String chPeople) {
 		super();
-		this.chid = chid;
+		this.chId = chId;
 		this.userId = userId;
 		this.chName = chName;
 		this.chPicture = chPicture;
@@ -36,20 +35,19 @@ public class Challenge {
 		this.endDate = endDate;
 		this.category = category;
 		this.ceMethod = ceMethod;
-		this.minPrice = minPrice;
-		this.maxPrice = maxPrice;
+		this.price = price;
 		this.minPerson = minPerson;
 		this.maxPerson = maxPerson;
 		this.chPeople = chPeople;
 	}
 
 
-	public String getChid() {
-		return chid;
+	public String getChId() {
+		return chId;
 	}
 
-	public void setChid(String chid) {
-		this.chid = chid;
+	public void setChId(String chId) {
+		this.chId = chId;
 	}
 
 	public String getUserId() {
@@ -116,21 +114,12 @@ public class Challenge {
 		this.ceMethod = ceMethod;
 	}
 
-	public int getMinPrice() {
-		return minPrice;
+	public int getPrice() {
+		return price;
 	}
 
-	public void setMinPrice(int minPrice) {
-		this.minPrice = minPrice;
-	}
-
-
-	public int getMaxPrice() {
-		return maxPrice;
-	}
-
-	public void setMaxPrice(int maxPrice) {
-		this.maxPrice = maxPrice;
+	public void setPrice(int price) {
+		this.price = price;
 	}
 
 	public int getMinPerson() {
@@ -160,9 +149,9 @@ public class Challenge {
 
 	@Override
 	public String toString() {
-		return "Challenge [chid=" + chid + ", userId=" + userId + ", chName=" + chName + ", chPicture=" + chPicture
+		return "Challenge [chId=" + chId + ", userId=" + userId + ", chName=" + chName + ", chPicture=" + chPicture
 				+ ", chContent=" + chContent + ", startDate=" + startDate + ", endDate=" + endDate + ", category="
-				+ category + ", ceMethod=" + ceMethod + ", minPrice=" + minPrice + ", maxPrice=" + maxPrice
-				+ ", minPerson=" + minPerson + ", maxPerson=" + maxPerson + ", chPeople=" + chPeople + "]";
+				+ category + ", ceMethod=" + ceMethod + ", price=" + price + ", minPerson=" + minPerson + ", maxPerson="
+				+ maxPerson + ", chPeople=" + chPeople + "]";
 	}
 }

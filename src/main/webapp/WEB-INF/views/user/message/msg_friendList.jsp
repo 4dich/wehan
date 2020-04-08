@@ -121,13 +121,16 @@
 								<div class="job-box">
 									<div class="inbox-message">
 										<ul>
+										
+											<c:forEach var="f" items="${ friendList }">
 											<li>
 												<div class="message-avatar">
 													<img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
 												</div>
 												<div class="message-body">
 													<div class="message-body-heading">
-														<h5>넹넨네 <span class="pending">건강</span></h5>
+														
+														<h5>${ f.msgFriendName } <span class="pending">${ f.msgFriendCategory }</span></h5>
 														<span>
 															<button class="site-btn" onclick="location.href='message_msgroom.html'" style="background-color: white; padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; ">
 																메시지 보내기
@@ -137,97 +140,10 @@
 															</button>
 														</span>
 													</div>
-													<p>팔로잉 : 30명 / 팔로워 40명</p>
+													<p>팔로잉 : ${f.msgFollowingNum}명 / 팔로워 ${f.msgFollowerNum}명</p>
 												</div>												
 											</li>
-											<li>
-												<div class="message-avatar">
-													<img src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="">
-												</div>
-												<div class="message-body">
-													<div class="message-body-heading">
-														<h5>주3회 팩하기 <span class="unread">자기개발</span></h5>
-														<span>
-															<button class="site-btn" onclick="location.href='ch-detailIng.html'" style="background-color: white; padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; ">
-																챌린지 가기
-															</button>
-														</span>
-													</div>
-													<p>팔로잉 : 30명 / 팔로워 40명</p>
-												</div>
-											</li>
-											<li>
-												<div class="message-avatar">
-													<img src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="">
-												</div>
-												<div class="message-body">
-													<div class="message-body-heading">
-														<h5>Daniel Dock <span class="business">Business</span></h5>
-														<span>7 hours ago</span>
-													</div>
-													<p>Hello, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolor....</p>
-												</div>
-											</li>
-											<li>
-												<div class="message-avatar">
-													<img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
-												</div>
-												<div class="message-body">
-													<div class="message-body-heading">
-														<h5>Daniel Dock <span class="important">Important</span></h5>
-														<span>7 hours ago</span>
-													</div>
-													<p>Hello, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolor....</p>
-												</div>												
-											</li>
-											<li>												
-												<div class="message-avatar">
-													<img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
-												</div>
-												<div class="message-body">
-													<div class="message-body-heading">
-														<h5>Daniel Dock <span class="unread">Unread</span></h5>
-														<span>7 hours ago</span>
-													</div>
-													<p>Hello, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolor....</p>
-												</div>												
-											</li>
-											<li>												
-												<div class="message-avatar">
-													<img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
-												</div>
-												<div class="message-body">
-													<div class="message-body-heading">
-														<h5>Daniel Dock <span class="unread">Unread</span></h5>
-														<span>7 hours ago</span>
-													</div>
-													<p>Hello, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolor....</p>
-												</div>												
-											</li>
-											<li>
-												<div class="message-avatar">
-													<img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
-												</div>
-												<div class="message-body">
-													<div class="message-body-heading">
-														<h5>Daniel Dock <span class="unread">Unread</span></h5>
-														<span>7 hours ago</span>
-													</div>
-													<p>Hello, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolor....</p>
-												</div>
-											</li>
-											<li>
-												<div class="message-avatar">
-													<img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
-												</div>
-												<div class="message-body">
-													<div class="message-body-heading">
-														<h5>Daniel Dock <span class="unread">Unread</span></h5>
-														<span>7 hours ago</span>
-													</div>
-													<p>Hello, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolor....</p>
-												</div>
-											</li>
+											</c:forEach>											
 										</ul>
 									</div>
 								</div>

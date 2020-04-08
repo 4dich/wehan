@@ -7,8 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.kh.wehan.member.model.vo.Member;
 import com.kh.wehan.message.model.service.MessageService;
+import com.kh.wehan.message.model.vo.FriendList;
 import com.kh.wehan.message.model.vo.Message;
 
 @Controller
@@ -27,7 +27,15 @@ public class MessageController {
 		
 		userId = "user01";
 		
-		ArrayList<Member> friendList = msgService.msgFriendList(userId);
+		// 친구 데이터
+		ArrayList<FriendList> friendList = msgService.msgFriendList(userId);
+		
+		
+		if(friendList != null) {
+			mv.addObject("friendList", friendList).setViewName("user/message/msg_friendList");
+		} else {
+			mv.addObject("msg", "Error").addObject("msg2", "친구목록 에러").setViewName("common/errorPage");
+		}
 		
 		return mv;
 	}

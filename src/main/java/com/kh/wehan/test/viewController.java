@@ -137,7 +137,7 @@ public class viewController {
 	
 	@RequestMapping("msg_friendListView.do")
 	public String msg_friendListView() {
-		return "user/message/msg_friendList";
+		return "redirect:msgFriendList.do";
 	}
 	
 	@RequestMapping("msg_msgListView.do")
@@ -198,12 +198,12 @@ public class viewController {
 	
 	@RequestMapping("qnaListView.do")
 	public String qnaListView() {
-		return "user/qnaList";
+		return "user/questions/questions";
 	}
 	
 	@RequestMapping("qnaDetailView.do")
 	public String qnaDetailView() {
-		return "user/qnaDetail";
+		return "user/qnaDetail"; 
 	}
 	
 	@RequestMapping("qnaInsertView.do")
