@@ -9,7 +9,7 @@ public class viewController {
 	// admin
 	@RequestMapping("ad_challengeListView.do")
 	public String ad_challengeListView() {
-		return "admin/ad_challengeList";
+		return "common/ad_menuBar";
 	}
 	
 	@RequestMapping("ad_payListView.do")

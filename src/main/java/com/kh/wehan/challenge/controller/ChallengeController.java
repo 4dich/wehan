@@ -19,15 +19,18 @@ public class ChallengeController {
 	@Autowired
 	private ChallengeService cService;
 	
-	@RequestMapping("clist.bo")
+	@RequestMapping(value="clist.do")
 	public ModelAndView adChalList(ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
 		
 		int listCount = cService.getListCount();
-			
+		System.out.println("listCount : " + listCount);
+		
 		int pageLimit = 5;
 		int boardLimit = 10;
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, pageLimit, boardLimit);
+		
+		System.out.println("pi : " + pi);
 		
 		ArrayList<Challenge> list = cService.selectList(pi);
 		
