@@ -144,7 +144,7 @@
                         <img class="profile" src="resources/images/hansol_profile2.jpg" style="width:150px;height:150px;">
                     </div>
                     <div class="profile-text">
-                        <b>디히</b>
+                        <b>${ loginUser.nickName }</b>
 					</div>
 					
 					<button class="site-btn sb-solid mr-3 mb-3" onclick="location.href='my_updateInfoView.do'">settings</button>
@@ -195,10 +195,10 @@
 	                    	</tr>
 	                    	<tr>
 	                    		<td style="background:goldenrod; height:50px;"></td>
-	                    		<td>
-	                    		<td>301</td>
-	                    		<td>
-	                    		<td>243</td>
+	                    		<td></td>
+	                    		<td>${ follow }</td>
+	                    		<td></td>
+	                    		<td>${ following }</td>
 	                    	<tr>
 	                    	<tr style="border-bottom:1px solid #242424; margin-top:10px">
 	                    		<td style="height:10px;"></td>

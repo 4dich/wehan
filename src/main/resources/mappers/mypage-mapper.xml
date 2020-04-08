@@ -17,4 +17,16 @@
 		FROM MYPAGE
 		WHERE USERID=#{userId}
 	</select>
+	
+	<select id="followCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM FOLLOW
+		WHERE HOST=#{userId}
+	</select>
+	
+	<select id="followingCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM FOLLOW
+		WHERE FOLLOWER=#{userId}
+	</select>
 </mapper>

@@ -16,4 +16,12 @@ public class MypageDao {
 		return sqlSession.selectOne("mypageMapper.my_profileView", userId);
 	}
 
+	public int followCount(String userId) {
+		return sqlSession.selectOne("mypageMapper.followCount", userId);
+	}
+
+	public int followingCount(String userId) {
+		return sqlSession.selectOne("mypageMapper.followingCount", userId);
+	}
+
 }

@@ -21,10 +21,14 @@ public class MypageController {
 		String userId = "user02";
 		Mypage mypage = myService.my_profileView(userId);
 		
-		int follow = 0;
-		int following = 0;
-
+		int follow = myService.followCount(userId);
+		int following = myService.followingCount(userId);
+		
+		
+		
 		mv.addObject("mypage", mypage);
+		mv.addObject("follow", follow);
+		mv.addObject("following", following);
 		mv.setViewName("user/mypage/my_profile");
 		
 		return mv;

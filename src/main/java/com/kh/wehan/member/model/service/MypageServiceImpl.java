@@ -17,4 +17,14 @@ public class MypageServiceImpl implements MypageService {
 		return myDao.my_profileView(userId);
 	}
 
+	@Override
+	public int followCount(String userId) {
+		return myDao.followCount(userId);
+	}
+
+	@Override
+	public int followingCount(String userId) {
+		return myDao.followingCount(userId);
+	}
+
 }

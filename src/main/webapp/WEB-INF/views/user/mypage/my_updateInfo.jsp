@@ -24,7 +24,9 @@
 	<!-- <link rel="stylesheet" href="resources/css/main.css"/> -->
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="resources/css/style.css"/>
-
+	
+	<!-- JQuery -->
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 	<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -94,7 +96,7 @@
 						</div> -->
 						<div style="margin-top: 50px; margin-right: 20px;">
                             <div class="ch-register-pic"></div>
-                            <button class="site-btn" style="margin-top: 30px; margin-left: 100px; height: 300px; width: 280px; font-size: 15px;"> 프로필 사진 (300x280)</button>				
+                            <button class="site-btn" style="border: 2px solid #242424; margin-top: 30px; margin-left: 100px; height: 300px; width: 280px; font-size: 15px;"> 프로필 사진 (300x280)</button>				
 							<br><br><button style="margin-left: 50%;">프로필수정</button>
 						</div>
                         <div class="col-xl-6" style="margin-left: 20px;">
@@ -102,40 +104,53 @@
 								<div class="contact-form" style="margin-top: 60px;">
 									<div class="row">	
                                         <div class="col-lg-12">
-                                            <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="아이디">
+                                            <input type="text" style="border: 1px solid #242424; border-top: none; border-left: none; border-right: none;" placeholder="아이디" value="${ loginUser.userId }">
                                         </div>
 										<div class="col-lg-12">
-                                            <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="비밀번호">
+                                            <input type="password" style="border: 1px solid #242424; border-top: none; border-left: none; border-right: none;" placeholder="비밀번호" value="${ loginUser.password }">
                                         </div>
                                         <div class="col-lg-12">
-                                            <input type="select" style="border-top: none; border-left: none; border-right: none;" placeholder="비밀번호확인">
+                                            <input type="password" style="border: 1px solid #242424; border-top: none; border-left: none; border-right: none;" placeholder="비밀번호확인" value="${ loginUser.password }">
                                         </div>
                                         <div class="col-lg-12">
-                                            <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="이름">
+                                            <input type="text" style="border: 1px solid #242424; border-top: none; border-left: none; border-right: none;" placeholder="이름" value="${ loginUser.userName }">
                                         </div>
 										<div class="col-lg-12">
-                                            <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="닉네임">
+                                            <input type="text" style="border: 1px solid #242424; border-top: none; border-left: none; border-right: none;" placeholder="닉네임" value="${ loginUser.nickName }">
                                         </div>
 									</div>
 								</div>
 							</div>
 						</div>
 						
+						
+						
 							<div class="col-lg-4">
-								<input type="text" style="height: 46px; font-size:14px; font-style:italic; border: 2px solid #e1e1e1; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 90%;" placeholder="은행명">
+								<input type="text" class="account" style="height: 46px; font-size:14px; font-style:italic; border: 1px solid #242424; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 90%;" placeholder="은행명">
 							</div>
 							<div class="col-lg-4">
-								<input type="text" style="height: 46px; font-size:14px; font-style:italic; border: 2px solid #e1e1e1; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 90%;" placeholder="예금주">
+								<input type="text" class="account" style="height: 46px; font-size:14px; font-style:italic; border: 1px solid #242424; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 90%;" placeholder="예금주">
 							</div>
 							<div class="col-lg-4">
-								<input type="text" style="height: 46px; font-size:14px; font-style:italic; border: 2px solid #e1e1e1; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 90%;" placeholder="계좌번호">
+								<input type="text" class="account" style="height: 46px; font-size:14px; font-style:italic; border: 1px solid #242424; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 90%;" placeholder="계좌번호">
 							</div>
+							
+							<div id="account" style="display:none">${ loginUser.account }</div>
+						
+							<script>
+								var account = $("#account")[0].innerHTML;
+								var acSplit = account.split(',');
+								
+								$('.account')[0].value = acSplit[0];
+								$('.account')[1].value = acSplit[1];
+								$('.account')[2].value = acSplit[2];
+							</script>
 						 
 							<div class="col-lg-8" style="margin-top: 50px;">
-								<input type="text" style="height: 46px; font-size:14px; font-style:italic; border: 2px solid #e1e1e1; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 83%;" placeholder="주소"><button style="margin-left: 10px;">주소검색</button>
+								<input type="text" style="height: 46px; font-size:14px; font-style:italic; border: 1px solid #242424; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 83%;" placeholder="주소" value="${ loginUser.address }"><button style="margin-left: 10px;">주소검색</button>
 							</div>
 							<div class="col-lg-4" style="margin-top: 50px;">
-								<input type="text" style="height: 46px; font-size:14px; font-style:italic; border: 2px solid #e1e1e1; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 90%;" placeholder="전화번호">
+								<input type="text" style="height: 46px; font-size:14px; font-style:italic; border: 1px solid #242424; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 90%;" placeholder="전화번호" value="${ loginUser.phone }">
 							</div>
 						<div style="margin-top: 50px;">
 							<button type="submit" class="site-btn" style="width:20%; height: 80px; margin: 20px; margin-left: 300px;">
