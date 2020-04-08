@@ -26,18 +26,16 @@ public class MemberController {
 	@RequestMapping(value="idCheck")
 	@ResponseBody
 	public String idCheck(String idCheck) {
-		System.out.println(idCheck);
 		
 		Pattern p = Pattern.compile("^[a-zA-Z0-9].{3,11}$");
 		Matcher m = p.matcher(idCheck);
 		boolean b = m.find();
-		System.out.println(b);
 		
 		if(b == true) {
 			int Mresult = mService.idCheck(idCheck);
-			int Aresult = mService.idCheck(idCheck);
+			int Aresult = mService.AidCheck(idCheck);
 			System.out.println(Mresult);
-			if(Mresult > 0) {
+			if(Mresult > 0 && Aresult > 0) {
 				return "2";
 			}else {
 				return "1";
@@ -71,20 +69,34 @@ public class MemberController {
 	
 	@RequestMapping(value="insertMember",method=RequestMethod.POST)
 	public String insertMember(Member m, HttpServletRequest request,
-			  @RequestParam(name="uploadFile",required=false)MultipartFile file) {
+			  @RequestParam(name="uploadFile",required=false)MultipartFile file,
+			  String bankName , String accountHolder , String accountNumber) {
+		
+		System.out.println(m);
+		System.out.println(bankName);
+		System.out.println(accountHolder);
+		System.out.println(accountNumber);
+		System.out.println(file);
 		
 		if(!file.getOriginalFilename().equals("")) {
 			String picture = saveFile(file,request);
 			
-			/* if(renameFIle) */
+			if(picture != null) {
+				m.setPicture(picture);
+			}
 		}
 		
+		m.setAccount(bankName + "," + accountHolder + "," + accountNumber);
+		
+		System.out.println(m);
+		
+		int result = mService.insertMember(m);
 		return "";
 	}
 	
 	public String saveFile(MultipartFile file,HttpServletRequest request) {
 		String root = request.getSession().getServletContext().getRealPath("resources");
-		String savePath = root + "\\images\\proflie";
+		String savePath = root + "\\images\\user";
 		File folder = new File(savePath);
 		
 		if(!folder.exists()) {
@@ -99,6 +111,11 @@ public class MemberController {
 				+ originFileName.substring(originFileName.lastIndexOf(".")+1);
 		String picturePath = folder + "\\" + picture;
 		
+		try {
+			file.transferTo(new File(picturePath));
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		return picture;
 	}
 	
