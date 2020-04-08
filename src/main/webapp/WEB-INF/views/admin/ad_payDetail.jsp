@@ -39,6 +39,9 @@
 			#prof{margin-left: 105px; text-align: center; margin-top: 20px; font-size: 18px;}
 			p{margin :0}
             .infoMenu{font-size: 16px;}
+            input:disabled{
+            background-color:white;
+            }
 		</style>
 
 
@@ -104,19 +107,19 @@
 								<div class="contact-form" style="margin-top: 60px;">
 									<div class="row">	
                                         <div class="col-lg-12">
-                                            <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="mid2203">
+                                            <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="mid2203" disabled>
                                         </div>
 										<div class="col-lg-12">
-                                            <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="강한육군">
+                                            <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="강한육군" disabled>
                                         </div>
                                         <div class="col-lg-12">
-                                            <input type="select" style="border-top: none; border-left: none; border-right: none;" placeholder="카카오뱅크">
+                                            <input type="select" style="border-top: none; border-left: none; border-right: none;" placeholder="카카오뱅크" disabled>
                                         </div>
                                         <div class="col-lg-12">
-                                            <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="3322-1155-4433">
+                                            <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="3322-1155-4433" disabled>
                                         </div>
 										<div class="col-lg-12">
-                                            <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="결제완료">
+                                            <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="결제완료" disabled>
                                         </div>
 									</div>
 								</div>

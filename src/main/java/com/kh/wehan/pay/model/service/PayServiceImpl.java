@@ -27,8 +27,10 @@ public class PayServiceImpl implements PayService {
 	}
 
 	@Override
-	public Pay noticeSelect(int nId) {
-		return null;
+	public Pay slectPayDetail(int pId) {
+		return pDao.slectPayDetail(pId);
 	}
+
+	
 
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -104,7 +105,7 @@
 							</div>
 							<!-- 검색 -->
 							<input class="searchBox" type="search">
-							<button><img src="../resources/img/main/search.png" alt=""></button>
+							<!-- <button><img src="../resources/img/main/search.png" alt=""></button> -->
 						</div>
 
 
@@ -122,27 +123,26 @@
 								<th>결제정보</th>
 								<th>환급여부</th>
 							</tr>
-							<c:forEach var="p" items="${ list }">
+							<c:forEach var="l" items="${ list }">
+							 <c:forEach var="p" items="${ l.chList }">
 							<!-- 반복문 예정 -->
 							<tr class="noticeList">
 								<td><input type="checkbox"></td>
-								<td>${ p.pId }</td>
-								<td>ㅇㅇㅇㅇ</td>
-								<td>${ p.userId }</td>
-								<td>${ p.pDate }</td>
-								<td>${ p.pay_yn }</td>
-								<td><button onclick="location.href='paydetail.do?pId=${p.pId}'">정보</button></td>
-								<td>${ p.refund_yn }</td>
+								<td>${ l.pId }</td>
+								<td>${ p.chContent }</td>
+								<td>${ l.userId }</td>
+								<td>4</td>
+								<td>${ l.pay_yn }</td>
+								<td><button onclick="location.href='paydetail.do?pId=${ l.pId }'">정보</button></td>
+								<td>${ l.refund_yn }</td>
 							</tr>
 							</c:forEach>
-							
-							
-
+							</c:forEach>
 
 							<!-- 삭제 끝 -->
 
 						</table>
-					
+		
 						<div class="qnaPaging">
 						<!-- [이전] -->
 				<c:if test="${ pi.currentPage eq 1 }">

@@ -30,4 +30,9 @@ public class PayDao {
 		return (ArrayList)sqlSession.selectList("payMapper.selectList",null,rowBounds);
 	}
 
+
+	public Pay slectPayDetail(int pId) {
+		return sqlSession.selectOne("payMapper.slectPayDetail",pId);
+	}
+
 }
