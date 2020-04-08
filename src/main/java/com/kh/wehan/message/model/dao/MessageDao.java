@@ -6,7 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kh.wehan.member.model.vo.Member;
+import com.kh.wehan.message.model.vo.FriendList;
 import com.kh.wehan.message.model.vo.Message;
 
 @Repository("msgDao")
@@ -28,7 +28,7 @@ public class MessageDao {
 	 * @param userId
 	 * @return
 	 */
-	public ArrayList<Member> msgFriendList(String userId) {
+	public ArrayList<FriendList> msgFriendList(String userId) {
 		return (ArrayList)sqlSession.selectList("messageMapper.msgFriendList", userId);
 	}
 

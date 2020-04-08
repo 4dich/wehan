@@ -14,19 +14,13 @@
   		<result property="mStatus" column="MDEL_YN"/>
   	</resultMap>
   	
-  	<resultMap id="memberResultSet" type="Member">
-		<id property="userId" column="USERID"/>
-		<result property="password" column="PASSWORD"/>
-		<result property="nickName" column="NICKNAME"/>
-		<result property="userName" column="USERNAME"/>
-		<result property="birthDay" column="BIRTHDAY"/>
-		<result property="email" column="EMAIL"/>
-		<result property="address" column="ADDRESS"/>
-		<result property="phone" column="PHONE"/>
-		<result property="account" column="ACCOUNT"/>
-		<result property="picture" column="PICTURE"/>
-		<result property="joinDate" column="JOINDATE"/>
-		<result property="outYN" column="OUT_YN"/>
+  	<resultMap id="friendResultSet" type="FriendList">
+		<id property="msgMyId" column="MSGMYID"/>
+		<result property="msgFriendName" column="MSGFRIENDNAME"/>
+		<result property="msgFollowingNum" column="MSGFOLLOWINGNUM"/>
+		<result property="msgFollowerNum" column="MSGFOLLOWERNUM"/>
+		<result property="msgFriendCategory" column="MSGFRIENDCATEGORY"/>
+		
 	</resultMap>
   	
   	<!-- 메시지 리스트 가져오기 -->
@@ -39,8 +33,15 @@
   	
   	
   	<!-- 메시지 친구 리스트 가져오기 -->
-  	<!-- <select id="msgFriendList" resultMap="memberResultSet">
-  		SELECT
-  	</select> -->
+  	<select id="msgFriendList" resultMap="friendResultSet">
+  		SELECT F.HOST AS MSGMYID, NICKNAME AS MSGFRIENDNAME,
+		(SELECT COUNT(*)FROM FOLLOW WHERE HOST = F.FOLLOWER) AS MSGFOLLOWINGNUM,
+		(SELECT COUNT(*) FROM FOLLOW WHERE FOLLOWER = F.FOLLOWER) AS MSGFOLLOWERNUM,
+		 P.INTEREST MSGFRIENDCATEGORY
+		FROM MEMBER M
+		JOIN FOLLOW F ON (M.USERID = F.FOLLOWER)
+		JOIN MYPAGE P ON (F.FOLLOWER = P.USERID)
+		WHERE F.HOST = #{userId}
+  	</select>
   	
   </mapper>
