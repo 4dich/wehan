@@ -141,7 +141,7 @@
 					
 
 					<div class="profile-images">
-                        <img class="profile" src="resources/images/hansol_profile2.jpg" style="width:150px;height:150px;">
+                        <img class="profile" src="resources/images/user/${ loginUser.picture }" style="width:150px;height:150px;">
                     </div>
                     <div class="profile-text">
                         <b>${ loginUser.nickName }</b>
@@ -158,7 +158,7 @@
                     	<table style="border: 1px solid #242424;">
                     		<tr>
                     			<td style="width:150px; background: #242424; color:white; padding:2px;">소개 <input id="toggle3" type="checkbox" checked data-toggle="toggle" data-size="xs" data-on="<i class='fa fa-lock' aria-hidden='true'></i>" data-off="<i class='fa fa-unlock' aria-hidden='true'></i>" data-onstyle="outline-success" data-offstyle="outline-danger" onchange="toggleBtn3();"></td>
-                    			<td style="width:300px;"><textarea id="intro" rows=2 style="width:260px; height:50px; resize: none; overflow:hidden; border:0px" disabled>${ mypage.intro }</textarea></td>
+                    			<td style="width:300px;"><textarea id="intro" rows=2 style="width:260px; height:50px; resize: none; overflow:hidden; border:0px; background:white" disabled>${ mypage.intro }</textarea></td>
                     		</tr>
                     	</table>
                     </div>
@@ -311,7 +311,7 @@
 							</script>
 						</div>
 						<div class="main-up-content" style="font-size:20px;">
-							<textarea id="goal" cols="105" rows="9" style="resize: none; padding:3%; overflow:hidden; border:0px" disabled>${ mypage.goal }</textarea>
+							<textarea id="goal" cols="105" rows="9" style="resize: none; padding:3%; overflow:hidden; border:0px; background:white" disabled>${ mypage.goal }</textarea>
 						</div>
 					</div>
 				</div>
