@@ -1,3 +1,4 @@
+<%@page import="com.kh.wehan.challenge.model.vo.Challenge"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -98,15 +99,19 @@
 								<button><img src="resources/images/main/search.png" alt=""></button>
 							</div>
 							
+									<div class="listCount">
+										${ listCount }
+									</div>
+							
 							<table class="qnaTable">
 								<tr class="thArea">
-									<td align="center">${ b.bWriter }</td>
 									<th>챌린지 번호</th>
 									<th>챌린지명</th>
 									<th>개설 유저ID</th>
 									<th>시작 날짜</th>
 									<th>종료 날짜</th>
-									<th>참여 인원</th>
+									<th>참가 인원</th>
+									<th>참가비</th>
 									<th>총 모집 금액</th>
 									<th>상세 정보</th>
 								</tr>
@@ -117,10 +122,26 @@
 										<td>${ ch.userId }</td>
 										<td>${ ch.startDate }</td>
 										<td>${ ch.endDate }</td>
-										<td>${ ch.chPeople }</td>
-								<%-- 		<td>${ ch.chPeople }</td> --%>
+										<td class="chPeople" style="display: none;">${ ch.chPeople }</td>
+										<td class="chPeople">${ ch.chPeople }</td>
+										<td class="price">${ ch.price }</td>
+										<td class="totalPrice"></td>
 										<td><button>정보</button></td>
 									</tr>
+
+									<script>
+										var prices = $(".price");
+										var chPeoples = $(".chPeople");
+										var tp = $(".totalPrice");
+										
+										var lc = $(".listCount").text();
+										
+										for(var i = 0; i < lc; i++){
+											var a = $(".price:eq("+i+")").text();
+											var b = $(".chPeople:eq("+i+")").text().split(",").length;
+											$(".totalPrice:eq("+i+")").text(a*b);
+										}
+									</script>
 								</c:forEach>
 							</table>
 							
@@ -180,6 +201,10 @@
 		$(document).ready(function(){
 		  $('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247)");   // even 짝수
 		});
+		
+		
+		
+	
 	</script>
 	
 	<!--====== Javascripts & Jquery ======-->

@@ -5,7 +5,7 @@
 
 <mapper namespace="challengeMapper">
 	<resultMap id="challengeResultSet" type="Challenge">
-		<id property="chid" column="CHID"/>
+		<id property="chId" column="CHID"/>
 		<result property="userId" column="USERID"/>
 		<result property="chName" column="CHNAME"/>
 		<result property="chPicture" column="CHPICTURE"/>

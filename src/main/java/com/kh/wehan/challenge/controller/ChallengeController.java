@@ -36,6 +36,7 @@ public class ChallengeController {
 		
 		mv.addObject("list", list);
 		mv.addObject("pi", pi);
+		mv.addObject("listCount", listCount);
 		mv.setViewName("admin/ad_challengeList");
 		
 		return mv;

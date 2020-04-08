@@ -9,7 +9,7 @@ public class viewController {
 	// admin
 	@RequestMapping("ad_challengeListView.do")
 	public String ad_challengeListView() {
-		return "common/ad_menuBar";
+		return "redirect:clist.do";
 	}
 	
 	@RequestMapping("ad_payListView.do")
