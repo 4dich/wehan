@@ -18,10 +18,18 @@
 		<result property="joinDate" column="JOINDATE"/>
 		<result property="outYN" column="OUT_YN"/>
 	</resultMap>
-
+	
 	<resultMap id="adminResultSet"  type="admin">
 		<id property="userId" column="USERID"/>
 		<result property="password" column="PASSWORD"/>
+	</resultMap>
+	
+	<resultMap type="Black" id="blackResultSet">
+		<id property="bId" column="BID"/>
+		<result property="userId" column="USERID"/>
+		<result property="banReason" column="BANREASON"/>
+		<result property="banTerm" column="BANTERM"/>
+		<result property="banDate" column="BANDATE"/>
 	</resultMap>
 	
 	<select id="userInfo" parameterType="string" resultMap="memberResultSet">
@@ -52,11 +60,23 @@
 		FROM MEMBER
 		WHERE NICKNAME=#{nickName}
 	</select>
+	<select id="blackCheck" parameterType="string" resultType="_int">
+		SELECT COUNT(*)
+		FROM BLACKLIST
+		WHERE USERID=#{userId}
+	</select>
 	
 	<insert id="insertMember" parameterType="Member" >
 		INSERT INTO MEMBER VALUES(#{userId},#{password},#{nickName},#{userName},#{birthDay},#{email},#{address},#{phone},#{account},#{picture},SYSDATE,DEFAULT)
 	</insert>
 	
+	<update id="updateMember" parameterType="Member">
+		UPDATE MEMBER
+		SET PASSWORD=#{password},NICKNAME=#{nickName},USERNAME=#{userName},BIRTHDAY=#{birthDay},
+			ADDRESS=#{address},EMAIL=#{email},PHONE=#{phone},ACCOUNT=#{account},PICTURE=#{picture}
+		WHERE USERID=#{userId}
+	</update>
+
 	<select id="memberCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM MEMBER

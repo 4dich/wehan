@@ -9,6 +9,9 @@
 </head>
 <body>
 	<div class="site-menu-warp">
+		 <!-- 임시 index 버튼 -->
+         <button onclick="location.href='index.jsp'">index</button>
+           
          <c:if test="${empty sessionScope.loginUser && empty sessionScope.adminUser}">
          <div class="close-menu">x</div>
          <!-- Main menu -->

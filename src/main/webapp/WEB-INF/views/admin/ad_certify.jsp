@@ -81,18 +81,19 @@
 					<div class="blog-post-item">
 						<div class="sampleArea">
 							<div id="searchArea">
-								<div id="searchSelect"> 
-									<select name="" id="">
-										<option>챌린지명</option>
-										<option>ID</option>
-										<option>시작 날짜</option>
-										<option>종료 날짜</option>
-									</select>					
-								</div>
-								<!-- 검색 -->
-								<input class="searchBox" type="search">
-								<button><img src="resources/images/main/search.png" alt=""></button>
+								<form action="searchCertify.do">
+									<div id="searchSelect"> 
+										<select name="searchCertify" id="searchCertify">
+											<option value="title">챌린지명</option>
+											<option value="writer">ID</option>
+										</select>					
+									</div>
+									<!-- 검색 -->
+									<input class="searchBox" type="search" name="search">
+									<button><img src="resources/images/main/search.png" alt=""></button>
+								</form>
 							</div>
+							
 
 							<table class="qnaTable">
 								<tr class="thArea">
@@ -102,7 +103,7 @@
 									<th>개설 유저ID</th>
 									<th>시작 날짜</th>
 									<th>종료 날짜</th>
-									<th>상세 정보</th>
+									<th>비공개 여부</th>
 									<th>조회 수</th>
 								</tr>
 								<c:forEach var ="c" items="${ list }">
@@ -112,10 +113,11 @@
 										${ c.ceId }
 										</td>
 										<td>${ c.chId }</td>
-										<td>마스크팩 붙이기</td>
+										<td>${ c.chName }</td>
 										<td>${ c.userId }</td>
-										<td>2020-03-20</td>
-										<td>2020-03-25</td>
+										<td>${ c.startDate }</td>
+										<td>${ c.endDate }</td>
+										<td>${ c.ceDel }</td>
 										<td>2</td>
 									</tr>
 								</c:forEach>
@@ -185,6 +187,15 @@
 			var currentPage = ${pi.currentPage};
 			
 			location.href="ad_certifyDetail.do?ceId="+ceId+"&currentPage=" + currentPage;
+		});
+		
+		$(document).on('click','.search',function(e){
+			e.preventDefault();
+			var url = "ad_certifyView.do";
+			url = url + "?condition=" + $('#searchCondition').val();
+			url = url + "&keyword=" + $('.searchBox').val();
+			location.href = url;
+			console.log(url);
 		});
 	</script>
 	

@@ -91,21 +91,20 @@
 					<div class="blog-post-item">
 						<div id="searchArea"  style="margin-top:0 ;">
 							<div id="searchSelect"> 
-								<select name="" id="">
-									<option>아이디</option>
-									<option>닉네임</option>
-									<option>이름</option>
+								<select name="selecter" id="selecter">
+									<option value="userId">아이디</option>
+									<option value="nickName">닉네임</option>
+									<option value="userName">이름</option>
 								</select>					
 							</div>
 							<!-- 검색 -->
-							<input class="searchBox" type="search">
-							<button><img src="resources/img/main/search.png" alt=""></button>
+							<input id="searchValue"class="searchBox" type="search">
+							<button id="search"><img src="resources/images/main/search.png" alt=""></button>
 						</div>
 
 
 						<!-- 문의사항 테이블 -->
-						<table class="qnaTable">
-							
+						<table id="memberList" class="qnaTable">
 							<tr class="thArea">
 								<th>아이디</th>
 								<th>닉네임</th>
@@ -124,7 +123,7 @@
 								<td>${m.birthDay}</td>
 								<td>${m.phone}</td>
 								<td>${m.account}</td>
-								<td>${m.outYN}</td>
+								<td>${m.blacklistYN}</td>
 							</tr>
 							</c:forEach>
 						</table>
@@ -180,6 +179,19 @@
 	<script>
 		$(function(){
 			$('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247"); //even 짝수
+			
+			$('#search').click(function(){
+				var selecter = $('#selecter').val();
+				var searchValue = $('#searchValue').val();
+				
+				$.ajax({
+					url:"mlistSearch",
+					type:"post",
+					dataType:"json",
+					data{"selecter":selecter,"searchValue":searchValue}
+				});
+			});
+			
 		});
 
 	</script>

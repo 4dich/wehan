@@ -1,5 +1,6 @@
 package com.kh.wehan.member.model.service;
 
+import com.kh.wehan.member.model.vo.Member;
 import com.kh.wehan.member.model.vo.Mypage;
 
 public interface MypageService {
@@ -22,4 +23,12 @@ public interface MypageService {
 	 * @return
 	 */
 	public int followingCount(String userId);
+
+	/**
+	 * 0-3. 개인정보 업데이트
+	 * @param m
+	 * @return
+	 */
+	public int updateMember(Member m);
+
 }
