@@ -10,23 +10,31 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
 	<!-- Favicon -->
-	<link href="../resources/img/favicon.ico" rel="shortcut icon"/>
+	<link href="resources/img/favicon.ico" rel="shortcut icon"/>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,900&display=swap" rel="stylesheet">
 
 	<!-- Stylesheets -->
-	<link rel="stylesheet" href="../resources/css/bootstrap.min.css"/>
-	<link rel="stylesheet" href="../resources/css/font-awesome.min.css"/>
-	<link rel="stylesheet" href="../resources/css/magnific-popup.css"/>
-	<link rel="stylesheet" href="../resources/css/owl.carousel.min.css"/>
+	<link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="resources/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="resources/css/magnific-popup.css"/>
+	<link rel="stylesheet" href="resources/css/owl.carousel.min.css"/>
+	
+	<!-- 달력 추가 부분  -->
+	<link rel="stylesheet" href="resources/css/datetimepickerstyle.css"/>
 
 	<!-- Main Stylesheets -->
-	<link rel="stylesheet" href="../resources/css/jh-css.css"/>
-	<!-- <link rel="stylesheet" href="../resources/css/left_section.css"/> -->
-	<!-- <link rel="stylesheet" href="../resources/css/main.css"/> -->
-	<link rel="stylesheet" href="../resources/css/style.css"/>
+	<link rel="stylesheet" href="resources/css/jh-css.css"/>
+	<link rel="stylesheet" href="resources/css/style.css"/>
+
+	<!--  -->
+	​<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/locale/ko.js"></script>
 
 </head>
 <body>
@@ -82,9 +90,6 @@
 			<div class="page-section contact-page">
 				<div class="contact-section">
 					<div class="row">
-						<!-- <div class="col-xl-6">
-							<div class="map"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14376.077865872314!2d-73.879277264103!3d40.757667781624285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1546528920522" style="border:0" allowfullscreen></iframe></div>
-						</div> -->
 						<div class="sampleArea" style="display: inline-flex;">
 							<div class="col-xl-6">
 								<div class="contact-text-warp">
@@ -93,14 +98,45 @@
 											<div class="col-lg-12">
 												<input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="챌린지명">
 											</div>
-											<div class="col-lg-6">
-												<input type="select" style="border-top: none; border-left: none; border-right: none;" placeholder="기간 설정(시작)">
-											</div>
-											<div class="col-lg-6">
-												<input type="select" style="border-top: none; border-left: none; border-right: none;" placeholder="기간 설정(종료)">
-											</div>
 											<div class="col-lg-12">
-												<input type="select" style="border-top: none; border-left: none; border-right: none;" placeholder="카테고리">
+											
+											<!-- 달력 추가 부분  -->
+												<div class="form-group">
+						                            <div class="col-sm-9">
+						                               <div class='col-sm-5'>
+						                                    <div class="form-group">
+						                                        <div class='input-group date dateTimePicker' id="datepicker1">
+						                                            <input type='text' class="form-control" name="openDate" required="required"/>
+						                                            <span class="input-group-addon">
+						                                                <span class="glyphicon glyphicon-calendar"></span>
+						                                            </span>
+						                                        </div>
+						                                    </div>
+						                                </div>
+						                                <div class='col-sm-2'>
+						                                    <h4 align="center"><b>~</b></h4>
+						                                </div>
+						                                <div class='col-sm-5'>
+						                                    <div class="form-group">
+						                                        <div class='input-group date dateTimePicker' id="datepicker2">
+						                                            <input type='text' class="form-control" name="closeDate" required="required"/>
+						                                            <span class="input-group-addon">
+						                                                <span class="glyphicon glyphicon-calendar"></span>
+						                                            </span>
+						                                        </div>
+						                                    </div>
+						                                </div>
+						                            </div>
+						                        </div>
+	                        					<!-- 달력 추가 부분 종료  -->
+	                        
+											<div class="col-lg-12">
+												<select style="border-top: none; border-left: none; border-right: none;" placeholder="카테고리">
+													<option></option>
+													<option></option>
+													<option></option>
+													<option></option>
+												</select>
 											</div>
 											<div class="col-lg-12">
 												<input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="인증 방법">
@@ -142,13 +178,38 @@
 	<!-- Main section end -->
 	
 	<!--====== Javascripts & Jquery ======-->
-	<script src="../resources/js/jquery-3.2.1.min.js"></script>
-	<script src="../resources/js/bootstrap.min.js"></script>
-	<script src="../resources/js/owl.carousel.min.js"></script>
-	<script src="../resources/js/jquery.nicescroll.min.js"></script>
-	<script src="../resources/js/circle-progress.min.js"></script>
-	<script src="../resources/js/jquery.magnific-popup.min.js"></script>
-	<script src="../resources/js/main.js"></script>
+	<script src="resources/js/jquery-3.2.1.min.js"></script>
+	<script src="resources/js/bootstrap.min.js"></script>
+	<script src="resources/js/owl.carousel.min.js"></script>
+	<script src="resources/js/jquery.nicescroll.min.js"></script>
+	<script src="resources/js/circle-progress.min.js"></script>
+	<script src="resources/js/jquery.magnific-popup.min.js"></script>
+	<script src="resources/js/main.js"></script>
+	<script src="resources/js/bootstrap-datetimepicker.js"></script>
+
+
+	<script>
+		// 부트스트랩 datetimepicker 셋팅과 두개씩 링크
+	    // minDate : 오늘 이후의 날짜값만 셋팅될 수 있도록
+		 $(document).ready(function(){
+		 $('.dateTimePicker').datetimepicker({format:"YYYY-MM-DD",minDate : moment()});
+		        $('#datepicker1').datetimepicker({
+		            useCurrent: false
+		        });
+		        $('#datepicker2').datetimepicker({
+		            useCurrent: false
+		        });
+		        
+		        $("#datepicker1").on("dp.change", function (e) {
+		            $('#datepicker2').data("DateTimePicker").minDate(e.date);
+		        });
+		        $("#datepicker2").on("dp.change", function (e) {
+		            $('#datepicker1').data("DateTimePicker").maxDate(e.date);
+		        });
+
+		}); 
+	</script>
+
 
 	</body>
 </html>

@@ -29,7 +29,6 @@ public class ChallengeController {
 		int boardLimit = 10;
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, pageLimit, boardLimit);
-		
 //		System.out.println("pi : " + pi);
 		
 		ArrayList<Challenge> list = cService.selectList(pi);
@@ -55,7 +54,7 @@ public class ChallengeController {
 		Challenge chal = cService.selectOneDetail(chId);
 		
 		mv.addObject("chal", chal);
-		mv.setViewName("user/challenge/ch_detail");
+		mv.setViewName("admin/ad_challengeDetail");
 		
 		System.out.println(chal);
 		return mv;

@@ -34,8 +34,32 @@
 		tr{height: 58px;}
 		.blog-posts{height: 800px;}
 		
-		input:disabled {
-			background: white;
+		.contents-detail {
+			width: 100%; 
+			height: 40px; 
+			padding: 0 22px; 
+			margin-bottom: 35px; 
+			font-size: 20px;
+			font-family: 'Nanum Gothic Coding', monospace;
+			border: 2px solid #e1e1e1; 
+			border-top: none; 
+			border-left: none; 
+			border-right: none;
+		}
+
+		.contents-detail2 {
+			width: 100%; 
+			height: 150px; 
+			padding: 10px 22px 10px 22px; 
+			margin-bottom: 15px; 
+			font-size: 20px; 
+			font-family: 'Nanum Gothic Coding', monospace;
+			border: 2px solid #e1e1e1; 
+		}
+		
+		.contact-form input, .contact-form textarea {
+			border: 0;
+			background: none !important;
 		}
 	</style>
 	<!--</head>-->
@@ -162,6 +186,10 @@
 												</div>
 											</div>
 										</div>
+										<button class="site-btn sb-solid mr-3 mb-3" style="color: white; float: right; width: 280px; font-size: 16px;" type="submit">
+											챌린지 결제하기
+											<img src="img/arrow-righ-2.png" alt="">
+										</button>	
 									</form>
 								</div>
 							</div>
