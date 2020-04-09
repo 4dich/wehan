@@ -14,7 +14,7 @@
    <button onclick="location.href='ad_certifyView.do';"> 인증글 정보 </button>
    <button onclick="location.href='paylist.do';"> 결제 리스트 </button>
    <button onclick="location.href='ad_payDetailView.do';"> 결제 상세보기 </button>
-   <button onclick="location.href='ad_profileListView.do';"> 회원 리스트 </button>
+   <button onclick="location.href='mlist.do';"> 회원 리스트 </button>
    <button onclick="location.href='ad_profileDetailView.do';"> 회원 상세보기 </button>
    <button onclick="location.href='ad_qnaListView.do';"> 문의사항 리스트 </button>
    <button onclick="location.href='ad_qnaDetailView.do';"> 문의사항 상세보기 </button>

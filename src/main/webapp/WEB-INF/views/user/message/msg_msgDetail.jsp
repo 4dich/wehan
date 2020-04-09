@@ -111,18 +111,19 @@
 										<ul class="chat-list">
 											<li class="in">
 												<div class="chat-img" style="width: 70px;">
-													<img alt="Avtar" src="https://bootdey.com/img/Content/avatar/avatar1.png">
+													<img alt="Avtar" src="resources/images/user/${fi.fImg}">
 												</div>
 												<div class="chat-body">
 													<div style="margin-top: 15px;">
 														<h5 style="color: white;">
-															넹넨네
-															<a href="mypageProfile.html" class="fa fa-home"></a>
+															<input type="hidden" value="${fi.fId}">
+															${fi.fName}
+															<a href="mypageProfile.html" class="fa fa-home" style="color:white"></a>
 															<span class="delete">메시지 삭제</sapn>
 														</h5>
-														<h6 style="color: white;"></h6>
+														<h6 style="color: white;"></h6><br>
 														<p style="color: white;">
-															자기소개입니당
+															${fi.fIntro}
 														</p>
 													</div>													
 												</div>

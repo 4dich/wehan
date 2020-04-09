@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.wehan.member.model.vo.Member;
 import com.kh.wehan.message.model.service.MessageService;
+import com.kh.wehan.message.model.vo.FriendInfo;
 import com.kh.wehan.message.model.vo.FriendList;
 import com.kh.wehan.message.model.vo.Message;
 import com.kh.wehan.message.model.vo.MsgSearchCondition;
@@ -76,6 +77,35 @@ public class MessageController {
 		
 		return mv;
 	}
+	
+	
+	/**
+	 * 메시지 상세보기
+	 * @param mv
+	 * @param request
+	 * @return
+	 */
+	
+	@RequestMapping("msgDetail.do") public ModelAndView msgDetail(ModelAndView mv, String fId, HttpServletRequest request) {
+	
+		// userId 가져오기 
+		HttpSession session = request.getSession(); 
+		Member mem =(Member)session.getAttribute("loginUser"); 
+		String userId = mem.getUserId();
+	
+		// 친구 정보 가져오기 
+		FriendInfo fi = msgService.getFriendInfo(fId);
+		
+		// 메시지 내용 가져오기
+		
+		if(fi != null) {
+			mv.addObject("fi", fi).setViewName("user/message/msg_msgDetail");
+		}
+	
+	
+	
+	return mv; }
+	
 	
 	/**
 	 * 메시지 리스트 가져오기

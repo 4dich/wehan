@@ -20,4 +20,11 @@ public interface AdminCertifyService {
 	 */
 	ArrayList<Certify> selectList(PageInfo pi);
 
+	/**
+	 * 인증글 상세조회
+	 * @param ceId
+	 * @return
+	 */
+	Certify selectCertify(int ceId);
+
 }

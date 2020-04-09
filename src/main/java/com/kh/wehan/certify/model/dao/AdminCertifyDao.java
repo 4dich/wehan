@@ -27,6 +27,15 @@ public class AdminCertifyDao {
 		
 		return (ArrayList)sqlSession.selectList("certifyMapper.selectList",null,rowBounds);
 	}
+
+	public int updateCount(int ceId) {
+		return sqlSession.update("certifyMapper.updateCertify",ceId);
+	}
+
+	public Certify selectCertify(int ceId) {
+		
+		return sqlSession.selectOne("certifyMapper.selectCertify",ceId);
+	}
 	
 	
 }

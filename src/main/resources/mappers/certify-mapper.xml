@@ -26,6 +26,11 @@
 		WHERE CEDEL_YN='N'
         ORDER BY CEID ASC
 	</select>
+	<select id="selectCertify" resultMap="certifyResultSet">
+		SELECT * FROM CERTIFY
+		WHERE CEID = #{ceId}
+		AND CEDEL_YN='N'
+	</select>
 
 
 </mapper>

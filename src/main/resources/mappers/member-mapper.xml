@@ -47,7 +47,6 @@
 		FROM ADMIN
 		WHERE USERID=#{idCheck}
 	</select>
-	
 	<select id="nickCheck" parameterType="string" resultType="_int">
 		SELECT COUNT(*)
 		FROM MEMBER
@@ -57,4 +56,16 @@
 	<insert id="insertMember" parameterType="Member" >
 		INSERT INTO MEMBER VALUES(#{userId},#{password},#{nickName},#{userName},#{birthDay},#{email},#{address},#{phone},#{account},#{picture},SYSDATE,DEFAULT)
 	</insert>
+	
+	<select id="memberCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE OUT_YN='N'
+	</select>
+	
+	<select id="memberList" resultType="Member" resultMap="memberResultSet">
+		SELECT *
+		FROM MEMBER
+		WHERE OUT_YN='N'
+	</select>
 </mapper>
