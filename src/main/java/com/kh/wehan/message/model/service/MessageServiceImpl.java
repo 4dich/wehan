@@ -1,6 +1,7 @@
 package com.kh.wehan.message.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.kh.wehan.message.model.dao.MessageDao;
 import com.kh.wehan.message.model.vo.FriendList;
 import com.kh.wehan.message.model.vo.Message;
+import com.kh.wehan.message.model.vo.MsgSearchCondition;
 
 @Service("msgService")
 public class MessageServiceImpl implements MessageService{
@@ -28,5 +30,13 @@ public class MessageServiceImpl implements MessageService{
 	@Override
 	public ArrayList<FriendList> msgFriendList(String userId) {
 		return msgDao.msgFriendList(userId);
+	}
+
+	/**
+	 * 메시지 친구 검색
+	 */
+	@Override
+	public ArrayList<FriendList>  msgSearchFriend(MsgSearchCondition sc) {
+		return msgDao.msgSearchFriend(sc);
 	}
 }
