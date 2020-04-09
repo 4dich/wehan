@@ -9,6 +9,13 @@
 <body>
    <h1>이동 페이지</h1>
    
+<!--    <h3>한솔 페이지</h3>
+   <button onclick="location.href='loginView.do';"> 로그인 </button>
+   <button onclick="location.href='my_updateInfoView.do';"> 회원정보 수정 </button>   
+   <button onclick="location.href='my_profileView.do';"> 마이페이지 프로필 </button>
+   <button onclick="location.href='my_challengeView.do';"> 마이페이지 마이챌린지 </button>
+   <button onclick="location.href='my_diaryView.do';"> 마이페이지 마이다이어리</button> -->
+   
    <h3>admin</h3>
    <button onclick="location.href='ad_challengeListView.do';"> 챌린지 정보 </button>
    <button onclick="location.href='ad_certifyView.do';"> 인증글 정보 </button>

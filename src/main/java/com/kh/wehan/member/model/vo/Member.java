@@ -2,6 +2,10 @@ package com.kh.wehan.member.model.vo;
 
 import java.sql.Date;
 
+/**
+ * @author user2
+ *
+ */
 public class Member {
 	private String userId;
 	private String password;
@@ -38,6 +42,21 @@ public class Member {
 		this.joinDate = joinDate;
 		this.outYN = outYN;
 		this.blacklistYN = blacklistYN;
+	}
+	
+	public Member(String userId, String password, String nickName, String userName, String birthDay, String address,
+			String email, String phone, String account, String picture) {
+		super();
+		this.userId = userId;
+		this.password = password;
+		this.nickName = nickName;
+		this.userName = userName;
+		this.birthDay = birthDay;
+		this.address = address;
+		this.email = email;
+		this.phone = phone;
+		this.account = account;
+		this.picture = picture;
 	}
 
 	public String getUserId() {

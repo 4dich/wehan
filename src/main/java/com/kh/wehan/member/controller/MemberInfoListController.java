@@ -29,11 +29,25 @@ public class MemberInfoListController {
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage,mCount,10,5);
 		
-		ArrayList<Member> list = mService.memberList(); 
+		ArrayList<Member> list = mService.memberList();
+		
+		for(Member m : list) {
+			int black = mService.blackCheck(m.getUserId());
+			if(black > 0) {
+				m.setBlacklistYN("Y");
+			}else {
+				m.setBlacklistYN("N");
+			}
+		}
 		
 		mv.addObject("list",list);
 		mv.addObject("pi",pi);
 		mv.setViewName("admin/ad_profileList");
 		return mv;
+	}
+	
+	@RequestMapping("mlistSearch.do")
+	public void mlistSearch() {
+		
 	}
 }

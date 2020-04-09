@@ -109,7 +109,7 @@
 			<!-- Page start -->
 			<div class="page-section blog-page" style="margin-top: 40px; height: 800px;">
 				<div class="contact-section">
-					<form action="#" method="post" onsubmit="return pattern();" enctype="multipart/form-data">
+					<form action="insertMember.do" method="post" onsubmit="return pattern();" enctype="multipart/form-data">
 					<h3>회원가입</h3>
 					<div class="row" style="margin-left: 30px; height: 400px;">
 						<!-- <div class="col-xl-6">
@@ -174,7 +174,7 @@
 						</div>
 						<div style="margin-top: 50px;">
 							<input type="submit" value="회원가입" class="site-btn" style="width:20%; height: 80px; margin: 20px; margin-left: 300px;" >
-							<input type="button" value="취소하기" class="site-btn" style="width:20%; height: 80px;" onclick="location.href='login.html'">
+							<input type="button" value="취소하기" class="site-btn" style="width:20%; height: 80px;" onclick="location.href='login.do'">
 							
 						</div>
 					</div>

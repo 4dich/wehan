@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.wehan.member.model.service.MypageService;
@@ -30,12 +31,38 @@ public class MypageController {
 		int follow = myService.followCount(userId);
 		int following = myService.followingCount(userId);
 		
-		mv.addObject("mypage", mypage);
-		mv.addObject("follow", follow);
-		mv.addObject("following", following);
-		mv.setViewName("user/mypage/my_profile");
+		mv.addObject("mypage", mypage)
+		  .addObject("follow", follow)
+		  .addObject("following", following)
+		  .setViewName("user/mypage/my_profile");
 		
 		return mv;
+	}
+	
+	@RequestMapping("my_updateInfoView.do")
+	public String my_updateInfoView() {
+		return "user/mypage/my_updateInfo";
+	}
+	
+	@RequestMapping("my_updateInfo.do")
+	public ModelAndView updateMember(Member m, ModelAndView mv, HttpServletRequest request) {
+			
+			HttpSession session = request.getSession();
+		
+			System.out.println(m);
+			int result = myService.updateMember(m);
+			
+			session.setAttribute("loginUser", m);
+			
+			if(result>0) {
+				mv.setViewName("redirect:my_profileView.do");
+			}else {
+				mv.addObject("msg","XXX")
+				  .addObject("msg2","회원정보 수정 실패")
+				  .setViewName("common/errorPage");
+			}
+			
+			return mv;
 	}
 	
 //	@RequestMapping("my_profileView.do")
@@ -62,8 +89,4 @@ public class MypageController {
 		return "user/mypage/my_diary";
 	}
 	
-	@RequestMapping("my_updateInfoView.do")
-	public String my_updateInfoView() {
-		return "user/mypage/my_updateInfo";
-	}
 }
