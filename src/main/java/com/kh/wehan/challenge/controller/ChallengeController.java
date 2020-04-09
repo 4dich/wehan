@@ -59,4 +59,5 @@ public class ChallengeController {
 		System.out.println(chal);
 		return mv;
 	}
+	
 }
