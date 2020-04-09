@@ -81,18 +81,19 @@
 					<div class="blog-post-item">
 						<div class="sampleArea">
 							<div id="searchArea">
-								<div id="searchSelect"> 
-									<select name="" id="">
-										<option>챌린지명</option>
-										<option>ID</option>
-										<option>시작 날짜</option>
-										<option>종료 날짜</option>
-									</select>					
-								</div>
-								<!-- 검색 -->
-								<input class="searchBox" type="search">
-								<button><img src="resources/images/main/search.png" alt=""></button>
+								<form action="searchCertify.do">
+									<div id="searchSelect"> 
+										<select name="searchCertify" id="searchCertify">
+											<option value="title">챌린지명</option>
+											<option value="writer">ID</option>
+										</select>					
+									</div>
+									<!-- 검색 -->
+									<input class="searchBox" type="search" name="search">
+									<button><img src="resources/images/main/search.png" alt=""></button>
+								</form>
 							</div>
+							
 
 							<table class="qnaTable">
 								<tr class="thArea">
@@ -186,6 +187,15 @@
 			var currentPage = ${pi.currentPage};
 			
 			location.href="ad_certifyDetail.do?ceId="+ceId+"&currentPage=" + currentPage;
+		});
+		
+		$(document).on('click','.search',function(e){
+			e.preventDefault();
+			var url = "ad_certifyView.do";
+			url = url + "?condition=" + $('#searchCondition').val();
+			url = url + "&keyword=" + $('.searchBox').val();
+			location.href = url;
+			console.log(url);
 		});
 	</script>
 	
