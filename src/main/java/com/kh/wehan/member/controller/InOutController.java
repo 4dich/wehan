@@ -38,7 +38,13 @@ public class InOutController {
 		}else {
 			Member loginUser = mService.login(userId);
 			  if(loginUser != null && password.equals(loginUser.getPassword())) {
-				  int blackYN = mService.blackCheck(userId); 
+				  int blackYN = mService.blackCheck(userId);
+				  if(blackYN > 0) {
+					  loginUser.setBlacklistYN("Y");
+				  }else {
+					  loginUser.setBlacklistYN("N");
+				  }
+				  System.out.println(loginUser);
 				  model.addAttribute("loginUser",loginUser); 
 				  return "redirect:index.jsp";
 			  }else{
