@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.wehan.common.model.vo.PageInfo;
 import com.kh.wehan.questions.model.vo.Questions;
+import com.kh.wehan.questions.model.vo.SearchCondition;
 
 @Repository("qDao")
 public class QuestionsDao {	
@@ -37,8 +38,7 @@ public class QuestionsDao {
 	     * @param qId
 	     * @return
 	     */
-		public Questions questionsSelect(int qId) {
-			
+		public Questions questionsSelect(int qId) {			
 			return sqlSession.selectOne("questionsMapper.questionsSelect",qId);
 		}
 		
@@ -48,10 +48,33 @@ public class QuestionsDao {
 		 * @return
 		 */
 		
-		public int updateCount(int qId) {
-			
+		public int updateCount(int qId) {			
 			return sqlSession.update("questionsMapper.updateCount",qId);
 		}
+				
+		
+		/**
+		 * 문의사항 검색글 갯수 가져오기
+		 * @param sc
+		 * @return 
+		 */
+		public int getSearchListCount(SearchCondition sc) {
+			return sqlSession.selectOne("questionsMapper.getSearchListCount",sc);
+		}
+		
+		/**
+		 * 문의사항 검색 리스트 불러오기
+		 * @param sc
+		 * @param pi
+		 * @return
+		 */
+		public ArrayList<Questions> selectSearchList(SearchCondition sc, PageInfo pi){
+			int offset = (pi.getCurrentPage() -1)*pi.getBoardLimit();
+			RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+			return (ArrayList)sqlSession.selectList("questionsMapper.selectSearchList",sc,rowBounds);
+			
+		}
+		
 }
 
 

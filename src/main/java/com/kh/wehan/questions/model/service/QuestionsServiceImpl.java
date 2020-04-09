@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.wehan.common.model.vo.PageInfo;
-import com.kh.wehan.notice.model.vo.Notice;
 import com.kh.wehan.questions.model.dao.QuestionsDao;
 import com.kh.wehan.questions.model.vo.Questions;
+import com.kh.wehan.questions.model.vo.SearchCondition;
 
 @Service("qService")
 
@@ -47,6 +47,20 @@ public class QuestionsServiceImpl implements QuestionsService{
 	 	
 	}
 	
+	/**
+	 * 문의사항 검색글 갯수 가져오기
+	 */
+	@Override
+	public int getSearchListCount(SearchCondition sc) {
+		return qDao.getSearchListCount(sc);
+	}
+	/**
+	 * 문의사항 검색 리스트 불러오기
+	 */
+	@Override
+	public ArrayList<Questions> selectSearchList(SearchCondition sc,PageInfo pi){
+		return qDao.selectSearchList(sc,pi);
+	}
 
 	
 }
