@@ -35,7 +35,7 @@ public class MemberController {
 			int Mresult = mService.idCheck(idCheck);
 			int Aresult = mService.AidCheck(idCheck);
 			System.out.println(Mresult);
-			if(Mresult > 0 && Aresult > 0) {
+			if(Mresult > 0 || Aresult > 0) {
 				return "2";
 			}else {
 				return "1";
@@ -67,7 +67,7 @@ public class MemberController {
 		}
 	}
 	
-	@RequestMapping(value="insertMember",method=RequestMethod.POST)
+	@RequestMapping(value="insertMember.do",method=RequestMethod.POST)
 	public String insertMember(Member m, HttpServletRequest request,
 			  @RequestParam(name="uploadFile",required=false)MultipartFile file,
 			  String bankName , String accountHolder , String accountNumber) {

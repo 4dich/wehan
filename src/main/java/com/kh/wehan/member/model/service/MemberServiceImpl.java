@@ -1,5 +1,7 @@
 package com.kh.wehan.member.model.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,30 +18,42 @@ public class MemberServiceImpl implements MemberService{
 	public Member login(String userId) {
 		return mDao.login(userId);
 	}
-
-	@Override
-	public int idCheck(String idCheck) {
-		return mDao.idCheck(idCheck);
-	}
-
 	@Override
 	public Admin adminlogin(String userId) {
 		return mDao.adminlogin(userId);
 	}
 
 	@Override
+	public int idCheck(String idCheck) {
+		return mDao.idCheck(idCheck);
+	}
+	@Override
 	public int nickCheck(String nickName) {
 		return mDao.nickCheck(nickName);
+	}
+	@Override
+	public int AidCheck(String idCheck) {
+		return mDao.AidCheck(idCheck);
+	}
+	@Override
+	public int blackCheck(String userId) {
+		return mDao.blackCheck(userId);
 	}
 
 	@Override
 	public int insertMember(Member m) {
 		return mDao.insertMember(m);
 	}
+	
+	@Override
+	public int memberCount() {
+		return mDao.memberCount();
+	}
 
 	@Override
-	public int AidCheck(String idCheck) {
-		return mDao.AidCheck(idCheck);
+	public ArrayList<Member> memberList() {
+		return mDao.memberList();
 	}
+
 
 }

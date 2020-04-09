@@ -102,7 +102,7 @@
 									<th>개설 유저ID</th>
 									<th>시작 날짜</th>
 									<th>종료 날짜</th>
-									<th>상세 정보</th>
+									<th>비공개 여부</th>
 									<th>조회 수</th>
 								</tr>
 								<c:forEach var ="c" items="${ list }">
@@ -112,10 +112,11 @@
 										${ c.ceId }
 										</td>
 										<td>${ c.chId }</td>
-										<td>마스크팩 붙이기</td>
+										<td>${ c.chName }</td>
 										<td>${ c.userId }</td>
-										<td>2020-03-20</td>
-										<td>2020-03-25</td>
+										<td>${ c.startDate }</td>
+										<td>${ c.endDate }</td>
+										<td>${ c.ceDel }</td>
 										<td>2</td>
 									</tr>
 								</c:forEach>
