@@ -178,12 +178,27 @@
 	background:#b1b1b1;	
 }
 
-.chat-body h5 span.unread{
+/* 건강  */
+.message-body h5 span.health{ 
+	background:#b1b1b1;	
+}
+
+/* 자기개발 */
+.message-body h5 span.development{
 	background:#07b107;	
 }
-.chat-body h5 span.important{
+
+/* 경제 */
+.message-body h5 span.economy{
 	background:#dd2027;	
 }
-.chat-body h5 span.pending{
+
+/* 취미 */
+.message-body h5 span.hobby{
 	background:#2196f3;	
+}
+
+/* 생활 */
+.message-body h5 span.life{
+	background:#f3d921;	
 }

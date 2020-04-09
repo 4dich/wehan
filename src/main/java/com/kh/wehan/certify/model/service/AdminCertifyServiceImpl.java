@@ -26,4 +26,11 @@ public class AdminCertifyServiceImpl implements AdminCertifyService {
 		
 		return acDao.selectList(pi);
 	}
+
+	@Override
+	public Certify selectCertify(int ceId) {
+
+		return acDao.selectCertify(ceId);
+		
+	}
 }

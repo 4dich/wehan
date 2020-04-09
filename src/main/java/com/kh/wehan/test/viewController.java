@@ -60,7 +60,7 @@ public class viewController {
 	// user
 	@RequestMapping("ch_detailView.do")
 	public String ch_detailView() {
-		return "user/ch_detail";
+		return "user/challenge/ch_detail";
 	}
 	
 	@RequestMapping("ch_detailEndView.do")
@@ -173,7 +173,7 @@ public class viewController {
 	
 	@RequestMapping("indexView.do")
 	public String indexView() {
-		return "user/index";
+		return "user/main";
 	}
 	
 	@RequestMapping("ch_certifyPhotoListView.do")
