@@ -173,7 +173,7 @@ public class viewController {
 	
 	@RequestMapping("indexView.do")
 	public String indexView() {
-		return "user/index";
+		return "user/main";
 	}
 	
 	@RequestMapping("ch_certifyPhotoListView.do")

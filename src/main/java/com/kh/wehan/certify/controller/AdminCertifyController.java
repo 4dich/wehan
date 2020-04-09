@@ -47,4 +47,25 @@ public class AdminCertifyController {
 		
 		return mv;
 	}
+
+
+	@RequestMapping("ad_certifyDetail.do")
+	public ModelAndView adCerDetail(ModelAndView mv, int ceId,
+			@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage) {
+		
+		Certify c = acService.selectCertify(ceId);
+		
+		if(c != null) {
+			mv.addObject("c",c)
+			.addObject("currentPage",currentPage)
+			.setViewName("admin/ad_certifyDetail");
+		}else {
+			mv.addObject("msg","Error")
+			.addObject("msg2","인증글 상세조회 실패")
+			.setViewName("commom/errorPage");
+		}
+		
+		
+		return mv;
+	}
 }
