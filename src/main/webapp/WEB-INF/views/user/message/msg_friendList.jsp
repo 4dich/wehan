@@ -147,10 +147,11 @@
 														<div class="fCategory" style="display:none">${ f.msgFriendCategory }</div>
 														<h5 class="fName">
 															${ f.msgFriendName } 
+															<input type="hidden" class="fId" value="${f.msgFriendId }">
 															<!-- <span class="pending">건강</span> -->
 														</h5>
 														<span>
-															<button class="site-btn" onclick="location.href='message_msgroom.html'" style="background-color: white; padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; ">
+															<button class="site-btn msgSend" style="background-color: white; padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; ">
 																메시지 보내기
 															</button>
 															<button class="site-btn" onclick="location.href='mypageProfile.html'" style="background-color: white; padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; ">
@@ -180,6 +181,8 @@
 		<!-- Main section end -->
 	<script>
 	
+	
+	// 친구 카테고리 표시 기능
 	$(function(){
 		
 		var fCate = $('.fCategory');
@@ -207,6 +210,13 @@
 			
 			$.each($('.fName').append($interest));
 		}
+	});
+	
+	
+	// 메시지 보내기 이동 기능
+	$('.msgSend').click(function(){
+		var fId = $(this).parent().parent().children().find("input[type=hidden]").val();
+		location.href="msgDetail.do?fId=" + fId;
 	});
 	</script>
 	

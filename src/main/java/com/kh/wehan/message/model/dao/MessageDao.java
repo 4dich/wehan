@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.wehan.message.model.vo.FriendInfo;
 import com.kh.wehan.message.model.vo.FriendList;
 import com.kh.wehan.message.model.vo.Message;
 import com.kh.wehan.message.model.vo.MsgSearchCondition;
@@ -42,6 +43,15 @@ public class MessageDao {
 	 */
 	public ArrayList<FriendList> msgSearchFriend(MsgSearchCondition sc) {
 		return (ArrayList)sqlSession.selectList("messageMapper.msgSearchFriend", sc);
+	}
+
+	/**
+	 * 메시지 상세보기 친구 정보 불러오기
+	 * @param fId
+	 * @return
+	 */
+	public FriendInfo getFriendInfo(String fId) {
+		return sqlSession.selectOne("messageMapper.getFriendInfo", fId);
 	}
 
 
