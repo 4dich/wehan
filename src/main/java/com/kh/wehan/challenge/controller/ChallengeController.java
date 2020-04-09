@@ -34,8 +34,16 @@ public class ChallengeController {
 		
 		ArrayList<Challenge> list = cService.selectList(pi);
 		
+		for(int i=0; i<list.size(); i++) {
+			String[] str = list.get(i).getChPeople().split(",");
+			list.get(i).setChPeople(String.valueOf(str.length));
+			
+			list.get(i).setTotalPrice(str.length * list.get(i).getPrice());
+		}
+		
 		mv.addObject("list", list);
 		mv.addObject("pi", pi);
+		mv.addObject("listCount", listCount);
 		mv.setViewName("admin/ad_challengeList");
 		
 		return mv;

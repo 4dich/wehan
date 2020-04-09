@@ -17,6 +17,9 @@
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,900&display=swap" rel="stylesheet">
 
+	<!-- JQuery -->
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	
 	<!-- Stylesheets -->
 	<link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
 	<link rel="stylesheet" href="resources/css/font-awesome.min.css"/>
@@ -100,7 +103,7 @@
 
 						<!-- 검색창 -->
 						<div class="s130">
-							<form style="padding-top:0vh">
+							<form style="padding-top:0vh" action="searchFriend.do">
 							  <div class="inner-form" style="height: 50px;">
 								<div class="input-field first-wrap">
 								  <div class="svg-wrapper">
@@ -108,10 +111,10 @@
 									  <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
 									</svg>
 								  </div>
-								  <input id="search" type="text" placeholder="친구를 검색하세요">
+								  <input id="search" type="text" placeholder="친구 닉네임을 검색하세요" name="searchFriend">
 								</div>
 								<div class="input-field second-wrap" style="min-width:100px">
-								  <button class="btn-search" type="button" style="background-color: black;">SEARCH</button>
+								  <button class="btn-search" style="background-color: black;">SEARCH</button>
 								</div>
 							  </div>
 							</form>
@@ -121,18 +124,34 @@
 								<div class="job-box">
 									<div class="inbox-message">
 										<ul>
-										
+											<%-- 검색 결과가 없으면 --%>
+											<c:if test="${ empty friendList }">
+												<div style="text-align:center;">
+													<br><br>
+													검색하신 친구가 없습니다<br>
+													친구를 추가해보세요!<br><br>
+													<a href="msgFriendList.do">돌아가기</a><br>
+													<a href="">추천피드 가기</a>
+												</div>
+											</c:if>
+											<%-- 검색 결과가 있으면 --%>
+											<c:if test="${ !empty friendList }">
 											<c:forEach var="f" items="${ friendList }">
 											<li>
 												<div class="message-avatar">
-													<img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
+													<img src="resources/images/user/${f.msgFriendImg}" alt="">
 												</div>
 												<div class="message-body">
 													<div class="message-body-heading">
-														
-														<h5>${ f.msgFriendName } <span class="pending">${ f.msgFriendCategory }</span></h5>
+														<%-- <input type="hidden" class="fCategory" value="${ f.msgFriendCategory }"/> --%>
+														<div class="fCategory" style="display:none">${ f.msgFriendCategory }</div>
+														<h5 class="fName">
+															${ f.msgFriendName } 
+															<input type="hidden" class="fId" value="${f.msgFriendId }">
+															<!-- <span class="pending">건강</span> -->
+														</h5>
 														<span>
-															<button class="site-btn" onclick="location.href='message_msgroom.html'" style="background-color: white; padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; ">
+															<button class="site-btn msgSend" style="background-color: white; padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; ">
 																메시지 보내기
 															</button>
 															<button class="site-btn" onclick="location.href='mypageProfile.html'" style="background-color: white; padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; ">
@@ -143,14 +162,15 @@
 													<p>팔로잉 : ${f.msgFollowingNum}명 / 팔로워 ${f.msgFollowerNum}명</p>
 												</div>												
 											</li>
-											</c:forEach>											
+											</c:forEach>
+											</c:if>				
 										</ul>
 									</div>
 								</div>
 							</div>
 						</div>
-						</div>
-						</div>
+					</div>
+				</div>
 				</div>
 			</div>
 			<!-- Page end -->
@@ -159,7 +179,46 @@
             All rights reserved </p></div>
 		</div>
 		<!-- Main section end -->
-
+	<script>
+	
+	
+	// 친구 카테고리 표시 기능
+	$(function(){
+		
+		var fCate = $('.fCategory');
+		var fName = $('.fName');
+		var $interest;
+		
+		for(var i = 0; i < fCate.length; i++){
+			
+						
+			if(/건강/.test(fCate[i].textContent)) {
+				$interest += $('<span>').attr('class','health').text("건강"); 
+			}
+			if(/경제/.test(fCate[i].textContent)) {
+				$interest += $('<span>').attr('class','economy').text("경제");
+			}
+			if(/취미/.test(fCate[i].textContent)) {
+				$interest += $('<span>').attr('class','hobby').text("취미");
+			}
+			if(/자기개발/.test(fCate[i].textContent)) {
+				$interest += $('<span>').attr('class','development').text("자기개발");
+			}
+			if(/생활/.test(fCate[i].textContent)) {
+				$interest += $('<span>').attr('class','life').text("생활");
+			}
+			
+			$.each($('.fName').append($interest));
+		}
+	});
+	
+	
+	// 메시지 보내기 이동 기능
+	$('.msgSend').click(function(){
+		var fId = $(this).parent().parent().children().find("input[type=hidden]").val();
+		location.href="msgDetail.do?fId=" + fId;
+	});
+	</script>
 	
 	<!--====== Javascripts & Jquery ======-->
 	<script src="resources/js/jquery-3.2.1.min.js"></script>

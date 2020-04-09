@@ -9,7 +9,7 @@ public class viewController {
 	// admin
 	@RequestMapping("ad_challengeListView.do")
 	public String ad_challengeListView() {
-		return "common/ad_menuBar";
+		return "redirect:clist.do";
 	}
 	
 	@RequestMapping("ad_payListView.do")
@@ -60,7 +60,7 @@ public class viewController {
 	// user
 	@RequestMapping("ch_detailView.do")
 	public String ch_detailView() {
-		return "user/ch_detail";
+		return "user/challenge/ch_detail";
 	}
 	
 	@RequestMapping("ch_detailEndView.do")
@@ -173,7 +173,7 @@ public class viewController {
 	
 	@RequestMapping("indexView.do")
 	public String indexView() {
-		return "user/index";
+		return "user/main";
 	}
 	
 	@RequestMapping("ch_certifyPhotoListView.do")
@@ -203,7 +203,7 @@ public class viewController {
 	
 	@RequestMapping("qnaDetailView.do")
 	public String qnaDetailView() {
-		return "user/qnaDetail"; 
+		return "user/questions/questionsDetail"; 
 	}
 	
 	@RequestMapping("qnaInsertView.do")

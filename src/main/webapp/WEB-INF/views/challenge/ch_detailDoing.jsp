@@ -3,14 +3,14 @@
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
-	<title>CH_DETAIL</title>
+	<title>CH_DETAILDOING</title>
 	<meta charset="UTF-8">
 	<meta name="description" content="Nissa Photography studio html template">
 	<meta name="keywords" content="industry, html">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
 	<!-- Favicon -->
-	<link href="resources/img/favicon.ico" rel="shortcut icon"/>
+	<link href="../resources/img/favicon.ico" rel="shortcut icon"/>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap" rel="stylesheet">
@@ -18,16 +18,16 @@
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
 
 	<!-- Stylesheets -->
-	<link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
-	<link rel="stylesheet" href="resources/css/font-awesome.min.css"/>
-	<link rel="stylesheet" href="resources/css/magnific-popup.css"/>
-	<link rel="stylesheet" href="resources/css/owl.carousel.min.css"/>
+	<link rel="stylesheet" href="../resources/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="../resources/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="../resources/css/magnific-popup.css"/>
+	<link rel="stylesheet" href="../resources/css/owl.carousel.min.css"/>
 
 	<!-- Main Stylesheets -->
-	<link rel="stylesheet" href="resources/css/jh-css.css"/>
-	<!-- <link rel="stylesheet" href="../resources/css/left_section.css"/> -->
-	<!-- <link rel="stylesheet" href="../resources/css/main.css"/> -->
-	<link rel="stylesheet" href="resources/css/style.css"/>	
+	<link rel="stylesheet" href="../resources/css/jh-css.css"/>
+	<!-- <link rel="stylesheet" href="../resources/css/left_section.css"/>
+	<link rel="stylesheet" href="../resources/css/main.css"/> -->
+	<link rel="stylesheet" href="../resources/css/style.css"/>	
 
 	<style>
 		.contents-detail {
@@ -64,7 +64,7 @@
 		<div class="main-site-warp">
 
 			<include file="/WEB-INF/views/common/menuBar.jsp">
-
+			
 			<header class="header-section">
 				<div class="nav-switch">
 					<i class="fa fa-bars"></i>
@@ -106,7 +106,7 @@
 							<img src="img/arrow-righ-3.png" alt="">
 						</button>
 						<br><br>
-						 <!-- <ul class="contact-info">
+						<!-- <ul class="contact-info">
 							<li>서울특별시 강남구 테해란로14길 6</li>
 							<li>남도빌딩 3F H반 T:1544-9970</li><br>
 							<li><a href="mailto:contactme@myemail.com">contactme@myemail.com</a></li>
@@ -130,13 +130,8 @@
 							</div>
 							<div class="col-xl-6">
 								<div class="contact-text-warp">
-									<form class="contact-form" action="payinfo.do" style="margin-top: 65px;">
+									<form class="contact-form" style="margin-top: 65px;">
 										<div class="row">
-										<div style="display:none;">
-										<input type="text" name="chId" value="1">
-										<input type="text" name="price" value="2">
-										<input type="text" name="startDate" value="2020/04/09">
-										</div>
 											<div class="col-lg-12">
 												<div class="contents-detail">챌린지명</div>
 											</div>
@@ -150,31 +145,31 @@
 												<div class="contents-detail">기간 설정(종료)</div>
 											</div>
 											<div class="col-lg-6">
-												<div class="contents-detail">마감일</div>
+												<div class="contents-detail">신청 마감일</div>
 											</div>
 											<div class="col-lg-6">
-												<div class="contents-detail">참가 인원</div>
+												<div class="contents-detail">참여 인원</div>
 											</div>
 											<div class="col-lg-12">
 												<div class="contents-detail">인증 방법</div>
 											</div>
 											<div class="col-lg-6">
-												<div class="contents-detail">배팅 금액 %></div>
+												<div class="contents-detail">배팅 금액</div>
 											</div>
 											<div class="col-lg-6">
-												<div class="contents-detail">총 모집 금액 %></div>
+												<div class="contents-detail">총 모집 금액</div>
 											</div>
 											<br><br><br><br>
 											<div class="col-lg-12">
-												<div class="contents-detail2">상세 정보 %></div>
+												<div class="contents-detail2">상세 정보</div>
 											</div>
 										</div>
+									</form>
 									<br><br>
-									<button class="site-btn sb-solid mr-3 mb-3" style="color: white; float: right; width: 280px; font-size: 16px;" type="submit">
-										챌린지 결제하기
+									<button class="site-btn sb-solid mr-3 mb-3" style="color: white; float: right; width: 280px; font-size: 16px;" type="button" onclick="location.href='ch_confirmPhotoList.html'">
+										인증사진 목록가기
 										<img src="img/arrow-righ-2.png" alt="">
 									</button>
-									</form>
 								</div>
 							</div>
 						</div>
@@ -190,13 +185,13 @@
 		<!-- Main section end -->
 	
 	<!--====== Javascripts & Jquery ======-->
-	<script src="resources/js/jquery-3.2.1.min.js"></script>
-	<script src="resources/js/bootstrap.min.js"></script>
-	<script src="resources/js/owl.carousel.min.js"></script>
-	<script src="resources/js/jquery.nicescroll.min.js"></script>
-	<script src="resources/js/circle-progress.min.js"></script>
-	<script src="resources/js/jquery.magnific-popup.min.js"></script>
-	<script src="resources/js/main.js"></script>
+	<script src="../resources/js/jquery-3.2.1.min.js"></script>
+	<script src="../resources/js/bootstrap.min.js"></script>
+	<script src="../resources/js/owl.carousel.min.js"></script>
+	<script src="../resources/js/jquery.nicescroll.min.js"></script>
+	<script src="../resources/js/circle-progress.min.js"></script>
+	<script src="../resources/js/jquery.magnific-popup.min.js"></script>
+	<script src="../resources/js/main.js"></script>
 
 	</body>
 </html>

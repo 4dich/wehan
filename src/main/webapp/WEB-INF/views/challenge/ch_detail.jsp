@@ -133,9 +133,7 @@
 									<form class="contact-form" action="payinfo.do" style="margin-top: 65px;">
 										<div class="row">
 										<div style="display:none;">
-										<input type="text" name="chId" value="1">
-										<input type="text" name="price" value="2">
-										<input type="text" name="startDate" value="2020/04/09">
+										<input type="text" name="CHID" value="1">
 										</div>
 											<div class="col-lg-12">
 												<div class="contents-detail">챌린지명</div>
@@ -170,7 +168,7 @@
 											</div>
 										</div>
 									<br><br>
-									<button class="site-btn sb-solid mr-3 mb-3" style="color: white; float: right; width: 280px; font-size: 16px;" type="submit">
+									<button class="site-btn sb-solid mr-3 mb-3" style="color: white; float: right; width: 280px; font-size: 16px;" type="button">
 										챌린지 결제하기
 										<img src="img/arrow-righ-2.png" alt="">
 									</button>

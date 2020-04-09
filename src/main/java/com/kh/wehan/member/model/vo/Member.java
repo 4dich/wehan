@@ -19,13 +19,15 @@ public class Member {
 	private String picture;
 	private Date joinDate;
 	private String outYN;
+	private String blacklistYN;
 	
 	public Member() {
 		super();
 	}
 
 	public Member(String userId, String password, String nickName, String userName, String birthDay, String address,
-			String email, String phone, String account, String picture, Date joinDate, String outYN) {
+			String email, String phone, String account, String picture, Date joinDate, String outYN,
+			String blacklistYN) {
 		super();
 		this.userId = userId;
 		this.password = password;
@@ -39,6 +41,7 @@ public class Member {
 		this.picture = picture;
 		this.joinDate = joinDate;
 		this.outYN = outYN;
+		this.blacklistYN = blacklistYN;
 	}
 	
 	public Member(String userId, String password, String nickName, String userName, String birthDay, String address,
@@ -152,14 +155,20 @@ public class Member {
 		this.outYN = outYN;
 	}
 
+	public String getBlacklistYN() {
+		return blacklistYN;
+	}
+
+	public void setBlacklistYN(String blacklistYN) {
+		this.blacklistYN = blacklistYN;
+	}
+
 	@Override
 	public String toString() {
 		return "Member [userId=" + userId + ", password=" + password + ", nickName=" + nickName + ", userName="
 				+ userName + ", birthDay=" + birthDay + ", address=" + address + ", email=" + email + ", phone=" + phone
-				+ ", account=" + account + ", picture=" + picture + ", joinDate=" + joinDate + ", outYN=" + outYN + "]";
+				+ ", account=" + account + ", picture=" + picture + ", joinDate=" + joinDate + ", outYN=" + outYN
+				+ ", blicklistYN=" + blacklistYN + "]";
 	}
-
-	
-	
 	
 }

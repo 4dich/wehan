@@ -2,14 +2,19 @@ package com.kh.wehan.pay.model.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.wehan.challenge.model.vo.Challenge;
 import com.kh.wehan.common.Pagination;
 import com.kh.wehan.common.model.vo.PageInfo;
+import com.kh.wehan.member.model.vo.Member;
 import com.kh.wehan.pay.model.service.PayService;
 import com.kh.wehan.pay.model.vo.Pay;
 
@@ -46,5 +51,30 @@ public class PayController {
 		
 		return mv;
 	}
+	
+	@RequestMapping("payinfo.do")
+	public ModelAndView payinfo(Challenge ch,ModelAndView mv,HttpServletRequest request) {
+		
+		System.out.println(ch);
+		HttpSession session = request.getSession();
+		Member m = (Member)session.getAttribute("loginUser");
+		
+		mv.addObject("ch",ch);
+		mv.addObject("m",m);
+		mv.setViewName("user/payAgree");
+		
+		
+		return mv;
+	}
+	
+	
+	@RequestMapping(value="payments.do")
+	public void pay(String str) {
+		System.out.println("넘어오는가");
+		System.out.println(str);
+		
+		
+	}
+	
 	
 }

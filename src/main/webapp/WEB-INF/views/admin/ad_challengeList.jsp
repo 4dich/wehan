@@ -1,3 +1,4 @@
+<%@page import="com.kh.wehan.challenge.model.vo.Challenge"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -97,16 +98,18 @@
 								<input class="searchBox" type="search">
 								<button><img src="resources/images/main/search.png" alt=""></button>
 							</div>
-							
+
+							<div class="listCount" style="display: none;">${ listCount }</div>
+
 							<table class="qnaTable">
 								<tr class="thArea">
-									<td align="center">${ b.bWriter }</td>
 									<th>챌린지 번호</th>
 									<th>챌린지명</th>
 									<th>개설 유저ID</th>
 									<th>시작 날짜</th>
 									<th>종료 날짜</th>
-									<th>참여 인원</th>
+									<th>참가 인원</th>
+									<th>참가비</th>
 									<th>총 모집 금액</th>
 									<th>상세 정보</th>
 								</tr>
@@ -118,15 +121,29 @@
 										<td>${ ch.startDate }</td>
 										<td>${ ch.endDate }</td>
 										<td>${ ch.chPeople }</td>
-								<%-- 		<td>${ ch.chPeople }</td> --%>
+										<td class="price">${ ch.price }</td>
+										<td class="totalPrice">${ ch.totalPrice }</td>
 										<td><button>정보</button></td>
 									</tr>
+
+									<!-- <script>
+										var lc = $(".listCount").text();
+										
+										//console.log(lc);
+										
+										for(var i=0; i<lc; i++){
+											var a = $(".price:eq("+i+")").text();
+											var b = $(".chPeople:eq("+i+")").text().split(",").length;
+										
+											$(".totalPrice:eq("+i+")").text(a*b);
+								
+										}
+									
+									</script> -->
 								</c:forEach>
 							</table>
 							
 							<div class="qnaPaging">
-							<!-- 선생님께 물어보자
-							왜 번호가 0부터 시작되는지 -->
 								<!-- [이전] -->
 								<c:if test="${ pi.currentPage eq 1 }">
 									&lt; &nbsp;
@@ -180,6 +197,10 @@
 		$(document).ready(function(){
 		  $('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247)");   // even 짝수
 		});
+		
+		
+		
+	
 	</script>
 	
 	<!--====== Javascripts & Jquery ======-->

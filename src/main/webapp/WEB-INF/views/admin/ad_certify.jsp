@@ -102,18 +102,21 @@
 									<th>개설 유저ID</th>
 									<th>시작 날짜</th>
 									<th>종료 날짜</th>
-									<th>상세 정보</th>
+									<th>비공개 여부</th>
 									<th>조회 수</th>
 								</tr>
-								<c:forEach var ="ce" items="${ list }">
+								<c:forEach var ="c" items="${ list }">
 									<tr class="noticeList">
-										<td>${ ce.ceId }</td>
-										<td>${ ce.chId }</td>
-										<td>마스크팩 붙이기</td>
-										<td>${ ce.userId }</td>
-										<td>2020-03-20</td>
-										<td>2020-03-25</td>
-										<td><button>정보</button></td>
+										<td>
+										<input type="hidden" value="${c.ceId}">
+										${ c.ceId }
+										</td>
+										<td>${ c.chId }</td>
+										<td>${ c.chName }</td>
+										<td>${ c.userId }</td>
+										<td>${ c.startDate }</td>
+										<td>${ c.endDate }</td>
+										<td>${ c.ceDel }</td>
 										<td>2</td>
 									</tr>
 								</c:forEach>
@@ -175,6 +178,14 @@
 	<script>
 		$(document).ready(function(){
 		  $('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247)");   // even 짝수
+		});
+		
+		
+		$('.qnaTable td').click(function(){
+			var ceId = $(this).parent().children().find("input[type=hidden]").val();
+			var currentPage = ${pi.currentPage};
+			
+			location.href="ad_certifyDetail.do?ceId="+ceId+"&currentPage=" + currentPage;
 		});
 	</script>
 	
