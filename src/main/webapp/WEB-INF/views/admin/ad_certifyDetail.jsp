@@ -91,7 +91,7 @@
 									<ul class="chat-list">
 										<li class="in">
 											<div class="chat-img" style="width: 70px;">
-												<img alt="Avtar" src="https://bootdey.com/images/Content/avatar/avatar1.png">
+												<img alt="Avtar" src="resources/images/user/01.jpg">
 											</div>
 											<div class="chat-body">
 												<div style="margin-top: 15px;">
@@ -105,6 +105,7 @@
 														<span class="unread">자기개발</span>
 													</h6>
 													<p style="color: white;">${ c.ceDate }</p>
+													<p style="color: white;">비공개여부 : ${ c.ceDel }</p>
 												</div>
 											</div>
 										</li>
@@ -113,7 +114,7 @@
 								
 								<!-- 사진 나오는 곳 -->
 								<div class="card-body profile-userpic" style="text-align: center;">
-									<img src="resources/images/image.png" class="img-responsive" alt=""> 
+									<img src="resources/images/certify/${c.cePicture}" class="img-responsive" alt=""> 
 								</div>
 
 								<!-- 본문 나오는 곳 -->
@@ -136,9 +137,9 @@
 											<div role="tabpanel" class="tab-pane active" id="home" align="center">
 												<form>
 													<div class="form-group" style="text-align: right;">														
-														<textarea class="form-control" id="inputChallenge" style="height:100px; resize:none;" placeholder="친구의 피드에 댓글을 남겨보세요!"></textarea>
-														<button class="site-btn sb-dark" style="padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; margin-top:10px;">
-															댓글 등록
+														
+														<button onclick="notOpen()" class="site-btn sb-dark" style="padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; margin-top:10px;">
+															비공개 처리
 														</button>
 														<button class="site-btn sb-dark" type="button" onclick="location.href='ch_confirmPhotoList.html'" style="padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; margin-top:10px;">
 															목록가기
@@ -199,6 +200,13 @@
 	<script src="resources/js/circle-progress.min.js"></script>
 	<script src="resources/js/jquery.magnific-popup.min.js"></script>
 	<script src="resources/js/main.js"></script>
+	
+	<script>
+		function notOpen() {
+			alert("해당 인증사진을 비공개 처리하시겠습니까?");
+			
+		}
+	</script>
 
 	</body>
 </html>

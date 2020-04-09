@@ -98,11 +98,9 @@
 								<input class="searchBox" type="search">
 								<button><img src="resources/images/main/search.png" alt=""></button>
 							</div>
-							
-									<div class="listCount">
-										${ listCount }
-									</div>
-							
+
+							<div class="listCount" style="display: none;">${ listCount }</div>
+
 							<table class="qnaTable">
 								<tr class="thArea">
 									<th>챌린지 번호</th>
@@ -122,32 +120,30 @@
 										<td>${ ch.userId }</td>
 										<td>${ ch.startDate }</td>
 										<td>${ ch.endDate }</td>
-										<td class="chPeople" style="display: none;">${ ch.chPeople }</td>
-										<td class="chPeople">${ ch.chPeople }</td>
+										<td>${ ch.chPeople }</td>
 										<td class="price">${ ch.price }</td>
-										<td class="totalPrice"></td>
+										<td class="totalPrice">${ ch.totalPrice }</td>
 										<td><button>정보</button></td>
 									</tr>
 
-									<script>
-										var prices = $(".price");
-										var chPeoples = $(".chPeople");
-										var tp = $(".totalPrice");
-										
+									<!-- <script>
 										var lc = $(".listCount").text();
 										
-										for(var i = 0; i < lc; i++){
+										//console.log(lc);
+										
+										for(var i=0; i<lc; i++){
 											var a = $(".price:eq("+i+")").text();
 											var b = $(".chPeople:eq("+i+")").text().split(",").length;
+										
 											$(".totalPrice:eq("+i+")").text(a*b);
+								
 										}
-									</script>
+									
+									</script> -->
 								</c:forEach>
 							</table>
 							
 							<div class="qnaPaging">
-							<!-- 선생님께 물어보자
-							왜 번호가 0부터 시작되는지 -->
 								<!-- [이전] -->
 								<c:if test="${ pi.currentPage eq 1 }">
 									&lt; &nbsp;
