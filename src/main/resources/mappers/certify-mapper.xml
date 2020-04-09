@@ -13,24 +13,6 @@
 		<result property="cePicture" column="CEPICTURE"/>
 		<result property="ceDate" column="CEDATE"/>
 		<result property="ceDel" column="CEDEL_YN"/>
-		
-		<!-- <association property="Challenge" javaType="Challenge">
-			<id property="chId" column="CHID"/>
-			<result property="userId" column="USERID"/>
-			<result property="chName" column="CHNAME"/>
-			<result property="chPicture" column="CHPICTURE"/>
-			<result property="chContent" column="CHCONTENT"/>
-			<result property="startDate" column="STARTDATE"/>
-			<result property="endDate" column="ENDDATE"/>
-			<result property="category" column="CATEGORY"/>
-			<result property="ceMethod" column="CEMETHOD"/>
-			<result property="price" column="MINPRICE"/>
-			<result property="minPerson" column="MAXPRICE"/>
-			<result property="maxPerson" column="MINPERSON"/>
-			<result property="chPeople" column="MAXPERSON"/>
-			<result property="userId" column="CHPEOPLE"/>
-		
-		</association> -->
 	</resultMap>
 	<!-- 인증글 갯수 -->
 	<select id="getListCount" resultType="_int">
@@ -78,6 +60,12 @@
 		</if>
 		ORDER BY CEID ASC 	
 	</select>
+	
+	<update id="updateCertify" parameterType="_int">
+	UPDATE CERTIFY SET 
+	CEDEL_YN = 'Y' 
+	WHERE CEID = #{ceId}
+	</update>
 
 
 </mapper>

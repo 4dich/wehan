@@ -43,6 +43,15 @@ public interface AdminCertifyService {
 	 * @return
 	 */
 	ArrayList<Certify> selectSearchList(SearchCondition sc, PageInfo pi);
+	
+	/**
+	 * 인증글 비공개 처리
+	 * @param ceId
+	 * @return
+	 */	
+	int updateCertify(int ceId);
+
+
 
 	
 
