@@ -21,7 +21,7 @@
 	<!-- 자바 버전(1.6 -> 1.8) / 스프링 버전 지정(최신버전) -->
 	<properties>
 		<java-version>1.8</java-version>
-		<org.springframework-version>5.2.2.RELEASE</org.springframework-version>
+		<org.springframework-version>5.2.5.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
