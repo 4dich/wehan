@@ -16,6 +16,7 @@
   	
   	<resultMap id="friendResultSet" type="FriendList">
 		<id property="msgMyId" column="MSGMYID"/>
+		<result property="msgFriendImg" column="MSGFRIENDIMG"/>
 		<result property="msgFriendName" column="MSGFRIENDNAME"/>
 		<result property="msgFollowingNum" column="MSGFOLLOWINGNUM"/>
 		<result property="msgFollowerNum" column="MSGFOLLOWERNUM"/>
@@ -34,14 +35,31 @@
   	
   	<!-- 메시지 친구 리스트 가져오기 -->
   	<select id="msgFriendList" resultMap="friendResultSet">
-  		SELECT F.HOST AS MSGMYID, NICKNAME AS MSGFRIENDNAME,
-		(SELECT COUNT(*)FROM FOLLOW WHERE HOST = F.FOLLOWER) AS MSGFOLLOWINGNUM,
-		(SELECT COUNT(*) FROM FOLLOW WHERE FOLLOWER = F.FOLLOWER) AS MSGFOLLOWERNUM,
-		 P.INTEREST MSGFRIENDCATEGORY
+  		SELECT F.HOST AS MSGMYID, 
+		       M.PICTURE AS MSGFRIENDIMG,
+		       NICKNAME AS MSGFRIENDNAME,
+		       (SELECT COUNT(*)FROM FOLLOW WHERE HOST = F.FOLLOWER) AS MSGFOLLOWINGNUM,
+		       (SELECT COUNT(*) FROM FOLLOW WHERE FOLLOWER = F.FOLLOWER) AS MSGFOLLOWERNUM,
+		       P.INTEREST MSGFRIENDCATEGORY
 		FROM MEMBER M
 		JOIN FOLLOW F ON (M.USERID = F.FOLLOWER)
 		JOIN MYPAGE P ON (F.FOLLOWER = P.USERID)
 		WHERE F.HOST = #{userId}
+  	</select>
+  	
+  	<!-- 메시지 친구 검색 리스트 가져오기 -->
+  	<select id="msgSearchFriend" parameterType="map" resultMap="friendResultSet">
+  		SELECT F.HOST AS MSGMYID, 
+		       M.PICTURE AS MSGFRIENDIMG,
+		       NICKNAME AS MSGFRIENDNAME,
+		       (SELECT COUNT(*)FROM FOLLOW WHERE HOST = F.FOLLOWER) AS MSGFOLLOWINGNUM,
+		       (SELECT COUNT(*) FROM FOLLOW WHERE FOLLOWER = F.FOLLOWER) AS MSGFOLLOWERNUM,
+		       P.INTEREST MSGFRIENDCATEGORY
+		FROM MEMBER M
+		JOIN FOLLOW F ON (M.USERID = F.FOLLOWER)
+		JOIN MYPAGE P ON (F.FOLLOWER = P.USERID)
+		WHERE F.HOST = #{userId}
+		AND M.NICKNAME LIKE '%' || #{searchWord} || '%'
   	</select>
   	
   </mapper>

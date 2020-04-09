@@ -1,9 +1,11 @@
 package com.kh.wehan.message.model.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.kh.wehan.message.model.vo.FriendList;
 import com.kh.wehan.message.model.vo.Message;
+import com.kh.wehan.message.model.vo.MsgSearchCondition;
 
 public interface MessageService {
 
@@ -19,5 +21,12 @@ public interface MessageService {
 	 * @return
 	 */
 	ArrayList<FriendList> msgFriendList(String userId);
+
+	/**
+	 * 메시지 친구 검색
+	 * @param msgSearchFriend
+	 * @return
+	 */
+	ArrayList<FriendList> msgSearchFriend(MsgSearchCondition sc);
 
 }
