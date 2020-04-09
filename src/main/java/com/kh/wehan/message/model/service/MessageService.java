@@ -1,7 +1,7 @@
 package com.kh.wehan.message.model.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Map;
 
 import com.kh.wehan.message.model.vo.FriendInfo;
 import com.kh.wehan.message.model.vo.FriendList;
@@ -10,12 +10,7 @@ import com.kh.wehan.message.model.vo.MsgSearchCondition;
 
 public interface MessageService {
 
-	/**
-	 * 메시지 리스트 가져오기
-	 * @return
-	 */
-	ArrayList<Message> msgList();
-
+	
 	/**
 	 * 메시지 친구 목록 가져오기
 	 * @param userId
@@ -36,5 +31,12 @@ public interface MessageService {
 	 * @return
 	 */
 	FriendInfo getFriendInfo(String fId);
+	
+	/**
+	 * 메시지 리스트 가져오기
+	 * @param m 
+	 * @return
+	 */
+	ArrayList<Message> getMsgContent(Map m);
 
 }

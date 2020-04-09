@@ -27,6 +27,12 @@ public class ChallengeDao {
 		
 		return (ArrayList)sqlSession.selectList("challengeMapper.selectList", null, rowBounds);
 	}
+
+	public Challenge getSelectOneDetail(String chId) {
+		return sqlSession.selectOne("challengeMapper.selectOneDetail");
+	}
+
+
 	
 	
 }

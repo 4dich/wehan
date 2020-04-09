@@ -193,10 +193,10 @@
 			
 						
 			if(/건강/.test(fCate[i].textContent)) {
-				$interest += $('<span>').attr('class','health').text("건강"); 
+				$interest += $('<span>').attr('class','health').text("건강"); 				
 			}
 			if(/경제/.test(fCate[i].textContent)) {
-				$interest += $('<span>').attr('class','economy').text("경제");
+				$interest += $('<span>').attr('class','economy').text("경제");				
 			}
 			if(/취미/.test(fCate[i].textContent)) {
 				$interest += $('<span>').attr('class','hobby').text("취미");
@@ -208,8 +208,11 @@
 				$interest += $('<span>').attr('class','life').text("생활");
 			}
 			
-			$.each($('.fName').append($interest));
+			fName[i].append($interest);
+			
 		}
+		
+		
 	});
 	
 	
