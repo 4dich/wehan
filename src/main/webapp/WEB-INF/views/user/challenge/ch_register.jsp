@@ -23,7 +23,6 @@
 	<link rel="stylesheet" href="resources/css/owl.carousel.min.css"/>
 	
 	<!-- 달력 추가 부분  -->
-	<link rel="stylesheet" href="resources/css/datetimepickerstyle.css"/>
 
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="resources/css/jh-css.css"/>
@@ -101,33 +100,7 @@
 											<div class="col-lg-12">
 											
 											<!-- 달력 추가 부분  -->
-												<div class="form-group">
-						                            <div class="col-sm-9">
-						                               <div class='col-sm-5'>
-						                                    <div class="form-group">
-						                                        <div class='input-group date dateTimePicker' id="datepicker1">
-						                                            <input type='text' class="form-control" name="openDate" required="required"/>
-						                                            <span class="input-group-addon">
-						                                                <span class="glyphicon glyphicon-calendar"></span>
-						                                            </span>
-						                                        </div>
-						                                    </div>
-						                                </div>
-						                                <div class='col-sm-2'>
-						                                    <h4 align="center"><b>~</b></h4>
-						                                </div>
-						                                <div class='col-sm-5'>
-						                                    <div class="form-group">
-						                                        <div class='input-group date dateTimePicker' id="datepicker2">
-						                                            <input type='text' class="form-control" name="closeDate" required="required"/>
-						                                            <span class="input-group-addon">
-						                                                <span class="glyphicon glyphicon-calendar"></span>
-						                                            </span>
-						                                        </div>
-						                                    </div>
-						                                </div>
-						                            </div>
-						                        </div>
+												
 	                        					<!-- 달력 추가 부분 종료  -->
 	                        
 											<div class="col-lg-12">
@@ -185,31 +158,6 @@
 	<script src="resources/js/circle-progress.min.js"></script>
 	<script src="resources/js/jquery.magnific-popup.min.js"></script>
 	<script src="resources/js/main.js"></script>
-	<script src="resources/js/bootstrap-datetimepicker.js"></script>
-
-
-	<script>
-		// 부트스트랩 datetimepicker 셋팅과 두개씩 링크
-	    // minDate : 오늘 이후의 날짜값만 셋팅될 수 있도록
-		 $(document).ready(function(){
-		 $('.dateTimePicker').datetimepicker({format:"YYYY-MM-DD",minDate : moment()});
-		        $('#datepicker1').datetimepicker({
-		            useCurrent: false
-		        });
-		        $('#datepicker2').datetimepicker({
-		            useCurrent: false
-		        });
-		        
-		        $("#datepicker1").on("dp.change", function (e) {
-		            $('#datepicker2').data("DateTimePicker").minDate(e.date);
-		        });
-		        $("#datepicker2").on("dp.change", function (e) {
-		            $('#datepicker1').data("DateTimePicker").maxDate(e.date);
-		        });
-
-		}); 
-	</script>
-
 
 	</body>
 </html>
