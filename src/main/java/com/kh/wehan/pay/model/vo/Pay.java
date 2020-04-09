@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import com.kh.wehan.challenge.model.vo.Challenge;
+import com.kh.wehan.member.model.vo.Member;
 
 public class Pay {
   private String pId;
@@ -13,18 +14,17 @@ public class Pay {
   private String pmethod;
   private String chName;
   private Date pDate;
-  private String pay_yn;
   private String refund_yn;
   private String pdel_yn;
- 
+  private ArrayList<Member> mList;
   private ArrayList<Challenge> chList; // 챌린지 에서 받아오는 정보
   
   public Pay() {
 	  super();
   }
 
-public Pay(String pId, String chId, String userId, int price, String pmethod, String chName, Date pDate, String pay_yn,
-		String refund_yn, String pdel_yn, ArrayList<Challenge> chList) {
+public Pay(String pId, String chId, String userId, int price, String pmethod, String chName, Date pDate,
+		String refund_yn, String pdel_yn, ArrayList<Member> mList, ArrayList<Challenge> chList) {
 	super();
 	this.pId = pId;
 	this.chId = chId;
@@ -33,9 +33,9 @@ public Pay(String pId, String chId, String userId, int price, String pmethod, St
 	this.pmethod = pmethod;
 	this.chName = chName;
 	this.pDate = pDate;
-	this.pay_yn = pay_yn;
 	this.refund_yn = refund_yn;
 	this.pdel_yn = pdel_yn;
+	this.mList = mList;
 	this.chList = chList;
 }
 
@@ -95,14 +95,6 @@ public void setpDate(Date pDate) {
 	this.pDate = pDate;
 }
 
-public String getPay_yn() {
-	return pay_yn;
-}
-
-public void setPay_yn(String pay_yn) {
-	this.pay_yn = pay_yn;
-}
-
 public String getRefund_yn() {
 	return refund_yn;
 }
@@ -119,6 +111,14 @@ public void setPdel_yn(String pdel_yn) {
 	this.pdel_yn = pdel_yn;
 }
 
+public ArrayList<Member> getmList() {
+	return mList;
+}
+
+public void setmList(ArrayList<Member> mList) {
+	this.mList = mList;
+}
+
 public ArrayList<Challenge> getChList() {
 	return chList;
 }
@@ -130,8 +130,9 @@ public void setChList(ArrayList<Challenge> chList) {
 @Override
 public String toString() {
 	return "Pay [pId=" + pId + ", chId=" + chId + ", userId=" + userId + ", price=" + price + ", pmethod=" + pmethod
-			+ ", chName=" + chName + ", pDate=" + pDate + ", pay_yn=" + pay_yn + ", refund_yn=" + refund_yn
-			+ ", pdel_yn=" + pdel_yn + ", chList=" + chList + "]";
+			+ ", chName=" + chName + ", pDate=" + pDate + ", refund_yn=" + refund_yn + ", pdel_yn=" + pdel_yn
+			+ ", mList=" + mList + ", chList=" + chList + "]";
 }
+
 
 }

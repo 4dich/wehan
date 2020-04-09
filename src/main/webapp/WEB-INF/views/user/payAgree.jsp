@@ -77,9 +77,9 @@
 						<h2>결제하기</h2>
                         <!-- 감성글 작성 -->
                         <p> 나의 도전에 관한 <b>결제페이지</b>입니다.
-                            도전을 위해 투자하세요,<br>
-                            이 도전을 성공해 돈을벌어보세요,
-                            도전을 성공해서 돈과 재미를 가지세요!  </p>
+                           	 도전을 위해 투자하세요,<br>
+                           	 이 도전을 성공해 돈을벌어보세요,
+                          	  도전을 성공해서 돈과 재미를 가지세요!  </p>
 					</div>
 					<ul class="contact-info">
 						<li>서울특별시 강남구 테해란로14길 6</li>
@@ -445,24 +445,16 @@
 		</div>
 	</div>
 	<!-- Main section end -->
-	
+	<div id='div0' style="display:none;">${loginUser.userId }</div>
 	<div id='div1' style="display:none;">${loginUser.userName}</div>
 	<div id='div2' style="display:none;">${loginUser.phone}</div>
 	<div id='div3' style="display:none;">${loginUser.email}</div>
-	<div id='div4' style="display:none;">${loginUser.userName}</div>
-	<div id='div5' style="display:none;">${loginUser.userName}</div>
-	<div id='div6' style="display:none;">${loginUser.userName}</div>
-	<div id='div7' style="display:none;">${loginUser.userName}</div>
-	<div id='div8' style="display:none;">${loginUser.userName}</div>
-	<script>
-		
+	<div id='div4' style="display:none;">${ch.price}</div>
+	<div id='div5' style="display:none;">${ch.chId}</div>
+	<div id='div6' style="display:none;">${ch.chName}</div>
+
 	
-		var userName = $('#div1')[0].innerText;
-		var phone = $('#div2')[0].innerText;
-		var email = $('#div3')[0].innerText;
-		
-		
-		
+	<script>
 		$( document ).ready(function(){
 			$('#agreeall').click(function(){
 				$('.ay').prop('checked',this.checked);
@@ -470,44 +462,26 @@
 		});
 		
 		
+		var userId = $('#div0')[0].innerText;
+		var price = $('#div4')[0].innerText;
+		var userName = $('#div1')[0].innerText;
+		var phone = $('#div2')[0].innerText;
+		var email = $('#div3')[0].innerText;
+		var chId = $('#div5')[0].innerText;
+		var chName = $('#div6')[0].innerText;
 		
-		/*  IMP.request_pay({ // param
-			    pg: "inicis",
-			    pay_method: "card",
-			    merchant_uid: "ORD20180131-0000011",
-			    name: "노르웨이 회전 의자",
-			    amount: 64900,
-			    buyer_email: "gildong@gmail.com",
-			    buyer_name: "홍길동",
-			    buyer_tel: "010-4242-4242",
-			    buyer_addr: "서울특별시 강남구 신사동",
-			    buyer_postcode: "01181"
-			  }, function (rsp) { // callback
-			    if (rsp.success) {
-			        ...,
-			        // 결제 성공 시 로직,
-			        ...
-			    } else {
-			        ...,
-			        // 결제 실패 시 로직,
-			        ...
-			    }
-			  }); */
-		
-		
+		console.log(chName);
 		function paynow(){
 			var msg
 		if( $("input:radio[class='ay']:checked").length == 4){
 			IMP.request_pay({
 				merchant_uid : 'merchant_' + new Date().getTime(),
 				pay_method: "card",
-				name : '결제테스트',
-				amount : 1,
-				buyer_email : 'iamport@siot.do',
-				buyer_name : '구매자',
-				buyer_tel : '010-1234-5678',
-				buyer_addr : '서울특별시 강남구 삼성동',
-				buyer_postcode : '123-456',
+				name : chName,
+				amount : price,
+				buyer_email : email,
+				buyer_name : userName,
+				buyer_tel : phone,
 				
 			}, function (rsp) { // callback
 				if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
@@ -518,7 +492,24 @@
 			        alert(rsp.pg_provider);
 			        alert(rsp.pay_method);
 			        alert(rsp.status);
-			      
+			      	
+			        $.ajax({
+			        	url:"payments.do",
+			        	type:"post",
+			        	data:{
+			        		chId:chId,
+			        		userId:userId,
+			        		price:price,
+			        		pmethod:rsp.pay_method,
+			        		chName:chName
+			        	},success:function(result){
+			        		alert('성공');
+			        		location.href=result;
+			        	},error : function(request,errorcode,error){
+							console.log("결제 실패입니다!");
+						}
+			        	
+			        });
 			    
 			    }else{
 			    	alert('결제가 실패 하였습니다.');

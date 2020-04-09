@@ -123,13 +123,10 @@
 										<td>${ ch.chPeople }</td>
 										<td class="price">${ ch.price }</td>
 										<td class="totalPrice">${ ch.totalPrice }</td>
-										<td><button>정보</button></td>
+										<td><button class="showDetailBtn" onclick="showDetailBtn();">정보</button></td>
 									</tr>
-
 									<!-- <script>
 										var lc = $(".listCount").text();
-										
-										//console.log(lc);
 										
 										for(var i=0; i<lc; i++){
 											var a = $(".price:eq("+i+")").text();
@@ -197,10 +194,11 @@
 		$(document).ready(function(){
 		  $('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247)");   // even 짝수
 		});
-		
-		
-		
-	
+
+		$('.showDetailBtn').click(function() {
+			var chId = $(this).parent().children().find('chId').val();
+			location.href="selectOneDetail.do?chId=" + chId;		
+		});
 	</script>
 	
 	<!--====== Javascripts & Jquery ======-->

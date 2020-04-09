@@ -14,8 +14,8 @@
 		<result property="endDate" column="ENDDATE"/>
 		<result property="category" column="CATEGORY"/>
 		<result property="ceMethod" column="CEMETHOD"/>
-		<result property="minPrice" column="MINPRICE"/>
-		<result property="maxPrice" column="MAXPRICE"/>
+		<result property="price" column="PRICE"/>
+		<result property="totalPrice" column="TOTALPRICE"/>
 		<result property="minPerson" column="MINPERSON"/>
 		<result property="maxPerson" column="MAXPERSON"/>
 		<result property="chPeople" column="CHPEOPLE"/>
@@ -29,5 +29,11 @@
 	<select id="selectList" resultMap="challengeResultSet">
 		SELECT *
 		FROM CHALLENGE
+	</select>
+	
+	<select id="selectOneDetail" resultMap="challengeResultSet">
+		SELECT *
+		FROM CHALLENGE
+		WHERE CHID=#{chId}
 	</select>
 </mapper>
