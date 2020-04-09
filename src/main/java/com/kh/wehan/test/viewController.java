@@ -173,7 +173,7 @@ public class viewController {
 	
 	@RequestMapping("indexView.do")
 	public String indexView() {
-		return "user/index";
+		return "user/main";
 	}
 	
 	@RequestMapping("ch_certifyPhotoListView.do")
@@ -203,7 +203,7 @@ public class viewController {
 	
 	@RequestMapping("qnaDetailView.do")
 	public String qnaDetailView() {
-		return "user/qnaDetail"; 
+		return "user/questions/questionsDetail"; 
 	}
 	
 	@RequestMapping("qnaInsertView.do")
