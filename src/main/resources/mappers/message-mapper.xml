@@ -6,12 +6,15 @@
   <mapper namespace="messageMapper">
   	<resultMap type="Message" id="messageResultSet">
   		<id property="mId" column="MID"/>
+  		<result property="mImg" column="IMG"/>
   		<result property="mSender" column="SENDER"/>
+  		<result property="mSenderId" column="SENDERID"/>  		
   		<result property="mReceiver" column="RECEIVER"/>
+  		<result property="mReceiverId" column="RECEIVERID"/>  		
   		<result property="mContent" column="MCONTENT"/>
   		<result property="mDate" column="MDATE"/>
   		<result property="mRead" column="MREAD"/>
-  		<result property="mStatus" column="MDEL_YN"/>
+  		<result property="mStatus" column="MSTATUS"/>
   	</resultMap>
   	
   	<resultMap id="friendResultSet" type="FriendList">
@@ -80,6 +83,37 @@
 		FROM MEMBER M
 		JOIN MYPAGE P ON (M.USERID = P.USERID)
 		WHERE M.USERID = #{fId}
+  	</select>
+  	
+  	<!-- 메시지 상세보기 - 메시지 내용 불러오기 -->
+  	<select id="getMsgContent" parameterType="java.util.Map" resultMap="messageResultSet">
+  		SELECT M.MID AS MID,
+		       MM.PICTURE AS IMG,
+		       MM.NICKNAME AS SENDER,
+		       M.SENDER AS SENDERID,  
+		       (SELECT NICKNAME FROM MEMBER WHERE USERID = M.RECEIVER) AS RECEIVER,
+		       M.RECEIVER AS RECEIVERID,
+		       M.MCONTENT AS MCONTENT,
+		       M.MDATE AS MDATE,
+		       M.MREAD AS MREAD,
+		       M.MDEL_YN AS MSTATUS
+		FROM MESSAGE M
+		JOIN MEMBER MM ON (MM.USERID = M.SENDER)
+		WHERE SENDER = #{userId} AND RECEIVER = #{fId}
+		UNION
+		SELECT M.MID AS MID,
+		       MM.PICTURE AS IMG,
+		       MM.NICKNAME AS SENDER,
+		       M.SENDER AS SENDERID,  
+		       (SELECT NICKNAME FROM MEMBER WHERE USERID = M.RECEIVER) AS RECEIVER,
+		       M.RECEIVER AS RECEIVERID,
+		       M.MCONTENT AS MCONTENT,
+		       M.MDATE AS MDATE,
+		       M.MREAD AS MREAD,
+		       M.MDEL_YN AS MSTATUS
+		FROM MESSAGE M
+		JOIN MEMBER MM ON (MM.USERID = M.SENDER)
+		WHERE SENDER = #{fId} AND RECEIVER = #{userId}
   	</select>
   	
   </mapper>

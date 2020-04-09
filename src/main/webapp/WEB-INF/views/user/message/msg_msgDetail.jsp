@@ -134,60 +134,42 @@
 									<!-- 메시지 내용 시작 -->
 									<div class="card-body height3">
 										<ul class="chat-list">
-											<li class="in">
-												<div class="chat-img">
-													<img alt="Avtar" src="https://bootdey.com/img/Content/avatar/avatar1.png">
-												</div>
-												<div class="chat-body">
-													<div class="chat-message">
-														<h5>Jimmy Willams
-															<p>2020-03-27</p>
-														</h5>														
-														<p>Raw denim heard of them tofu master cleanse</p>
+										
+										<c:forEach var="m" items="${list}">
+											<!-- 친구 메시지 -->
+											<c:if test="${ sessionScope.loginUser.userId ne m.mSenderId }">												
+												<li class="in">	
+													<div class="chat-img">
+														<img alt="Avtar" src="https://bootdey.com/img/Content/avatar/avatar1.png">
 													</div>
-												</div>
-											</li>
-											<li class="out">
-												<div class="chat-img">
-													<img alt="Avtar" src="https://bootdey.com/img/Content/avatar/avatar6.png">
-												</div>
-												<div class="chat-body">
-													<div class="chat-message">
-														<h5>Serena
-															<p>2020-03-27</p>
-														</h5>
-														<p>Next level veard</p>
+													<div class="chat-body">
+														<div class="chat-message">
+															<h5>${ m.mReceiver }
+																<p>${ m.mDate }</p>
+															</h5>														
+															<p>${ m.mContent }</p>
+														</div>
 													</div>
-												</div>
-											</li>
-											<li class="in">
-												<div class="chat-img">
-													<img alt="Avtar" src="https://bootdey.com/img/Content/avatar/avatar1.png">
-												</div>
-												<div class="chat-body">
-													<div class="chat-message">
-														<h5 class="name">
-															Jimmy Willams
-															<p>2020-03-27</p>
-														</h5>
-														<p>Will stumptown scenes coffee viral.</p>
+												</li>
+											</c:if>	
+											<!-- 내 메시지 -->
+											<c:if test="${ sessionScope.loginUser.userId eq m.mSenderId }">												
+												<li class="out">
+													<div class="chat-img">
+														<img alt="Avtar" src="https://bootdey.com/img/Content/avatar/avatar6.png">
 													</div>
-												</div>
-											</li>
-											<li class="out">
-												<div class="chat-img">
-													<img alt="Avtar" src="https://bootdey.com/img/Content/avatar/avatar6.png">
-												</div>
-												<div class="chat-body">
-													<div class="chat-message">
-														<h5>
-															Serena
-															<p>2020-03-27</p>
-														</h5>
-														<p>Tofu master best deal</p>
+													<div class="chat-body">
+														<div class="chat-message">
+															<h5>${ m.mSender }
+																<p>${ m.mDate }</p>
+															</h5>
+															<p>${ m.mContent }</p>
+														</div>
 													</div>
-												</div>
-											</li>
+												</li>
+											</c:if>	
+										</c:forEach>
+											
 										</ul>
 									</div>
 									<br><br><br><br><br><br>
@@ -218,7 +200,7 @@
 		</div>
 		<!-- Main section end -->
 	
-
+	
 	
 	<!--====== Javascripts & Jquery ======-->
 	<script src="resources/js/jquery-3.2.1.min.js"></script>

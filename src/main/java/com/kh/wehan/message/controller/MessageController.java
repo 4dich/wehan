@@ -1,6 +1,8 @@
 package com.kh.wehan.message.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -38,7 +40,6 @@ public class MessageController {
 		
 		// 친구 데이터
 		ArrayList<FriendList> friendList = msgService.msgFriendList(userId);
-		
 		
 		if(friendList != null) {
 			mv.addObject("friendList", friendList).setViewName("user/message/msg_friendList");
@@ -96,35 +97,27 @@ public class MessageController {
 		// 친구 정보 가져오기 
 		FriendInfo fi = msgService.getFriendInfo(fId);
 		
+		Map m = new HashMap();
+		
+		m.put("userId", userId);
+		m.put("fId", fId);
+		
+		System.out.println(m.toString());
 		// 메시지 내용 가져오기
+		ArrayList<Message> list = msgService.getMsgContent(m);
+		
+		System.out.println(list.toString());
 		
 		if(fi != null) {
-			mv.addObject("fi", fi).setViewName("user/message/msg_msgDetail");
+			mv.addObject("fi", fi).addObject("list", list).setViewName("user/message/msg_msgDetail");
 		}
 	
 	
 	
-	return mv; }
+	return mv; 
 	
-	
-	/**
-	 * 메시지 리스트 가져오기
-	 * @param mv
-	 * @return
-	 */
-	@RequestMapping("msgList.do")
-	public ModelAndView msgList(ModelAndView mv) {
-		
-		ArrayList<Message> list = msgService.msgList();
-		
-		return mv;
 	}
 	
-	@RequestMapping("msgSend.do")
-	public ModelAndView msgSend(ModelAndView mv) {
-		
-		return mv;
-	}
 	
 	
 	

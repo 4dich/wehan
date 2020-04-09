@@ -1,7 +1,7 @@
 package com.kh.wehan.message.model.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,14 +17,7 @@ public class MessageServiceImpl implements MessageService{
 	@Autowired
 	private MessageDao msgDao;
 
-	/**
-	 * 메시지 리스트 가져오기
-	 */
-	@Override
-	public ArrayList<Message> msgList() {
-		return msgDao.msgList();
-	}
-
+	
 	/**
 	 * 메시지 친구 목록 가져오기
 	 */
@@ -47,5 +40,13 @@ public class MessageServiceImpl implements MessageService{
 	@Override
 	public FriendInfo getFriendInfo(String fId) {
 		return msgDao.getFriendInfo(fId);
+	}
+
+	/**
+	 * 메시지 내용 불러오기
+	 */
+	@Override
+	public ArrayList<Message> getMsgContent(Map m) {
+		return msgDao.getMsgContent(m);
 	}
 }
