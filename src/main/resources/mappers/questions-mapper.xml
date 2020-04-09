@@ -32,10 +32,47 @@
 	
 	    <!-- 문의사항 상세 페이지 가져오기 -->
 	   
+	   <select id="questionsSelect" resultMap="qnaResultSet">
+	              SELECT*
+	              FROM QUESTIONS
+	              WHERE QID=#{qId}
+	              AND QDEL_YN='N'              
+	      
+	   </select>
+	   
+	   <!-- 조회수 올리기 -->
+	   <update id="updateCount">
+	            UPDATE QUESTIONS
+	            SET QCOUNT = QCOUNT + 1
+	            WHERE QID = #{qId}
+	   </update>
 	
-	 
-    
-    
-       
+	   <!-- 문의사항 검색 갯수 확인 -->
+	<select id="getSearchListCount" parameterType="SearchCondition" resultType="_int">
+		SELECT COUNT(*)
+		FROM QUESTIONS
+		WHERE QDEL_YN = 'N'
+		
+		<if test="title != null">
+			AND QTITLE LIKE '%' || #{title} || '%'
+		</if>
+		<if test="content != null">
+			AND QCONTENT LIKE '%' || #{content} || '%'
+		</if>
+	</select>
+	
+	<!-- 문의사항 검색 리스트 불러오기 -->
+  	<select id="selectSearchList" resultMap="qnaResultSet">
+  		SELECT *
+  		FROM QUESTIONS
+  		WHERE QDEL_YN = 'N'  		
+  		<if test="title != null">
+			AND QTITLE LIKE '%' || #{title} || '%'
+		</if>
+		<if test="content != null">
+			AND QCONTENT LIKE '%' || #{content} || '%'
+		</if>
+		ORDER BY QID DESC  		
+  	</select>  	           
    
     </mapper>

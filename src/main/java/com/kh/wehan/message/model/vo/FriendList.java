@@ -3,6 +3,7 @@ package com.kh.wehan.message.model.vo;
 public class FriendList {
 	
 	private String msgMyId;			// 내 아이디
+	private String msgFriendId;		// 친구 아이디
 	private String msgFriendImg;	// 친구 이미지
 	private String msgFriendName;	// 친구 닉네임
 	private int msgFollowingNum;	// 친구 팔로잉 갯수
@@ -16,10 +17,11 @@ public class FriendList {
 	}
 
 
-	public FriendList(String msgMyId, String msgFriendImg, String msgFriendName, int msgFollowingNum,
-			int msgFollowerNum, String msgFriendCategory) {
+	public FriendList(String msgMyId, String msgFriendId, String msgFriendImg, String msgFriendName,
+			int msgFollowingNum, int msgFollowerNum, String msgFriendCategory) {
 		super();
 		this.msgMyId = msgMyId;
+		this.msgFriendId = msgFriendId;
 		this.msgFriendImg = msgFriendImg;
 		this.msgFriendName = msgFriendName;
 		this.msgFollowingNum = msgFollowingNum;
@@ -35,6 +37,16 @@ public class FriendList {
 
 	public void setMsgMyId(String msgMyId) {
 		this.msgMyId = msgMyId;
+	}
+
+
+	public String getMsgFriendId() {
+		return msgFriendId;
+	}
+
+
+	public void setMsgFriendId(String msgFriendId) {
+		this.msgFriendId = msgFriendId;
 	}
 
 
@@ -90,12 +102,13 @@ public class FriendList {
 
 	@Override
 	public String toString() {
-		return "FriendList [msgMyId=" + msgMyId + ", msgFriendImg=" + msgFriendImg + ", msgFriendName=" + msgFriendName
-				+ ", msgFollowingNum=" + msgFollowingNum + ", msgFollowerNum=" + msgFollowerNum + ", msgFriendCategory="
-				+ msgFriendCategory + "]";
+		return "FriendList [msgMyId=" + msgMyId + ", msgFriendId=" + msgFriendId + ", msgFriendImg=" + msgFriendImg
+				+ ", msgFriendName=" + msgFriendName + ", msgFollowingNum=" + msgFollowingNum + ", msgFollowerNum="
+				+ msgFollowerNum + ", msgFriendCategory=" + msgFriendCategory + "]";
 	}
-	
 
+
+	
 	
 
 	

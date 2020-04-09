@@ -203,7 +203,7 @@ public class viewController {
 	
 	@RequestMapping("qnaDetailView.do")
 	public String qnaDetailView() {
-		return "user/qnaDetail"; 
+		return "user/questions/questionsDetail"; 
 	}
 	
 	@RequestMapping("qnaInsertView.do")

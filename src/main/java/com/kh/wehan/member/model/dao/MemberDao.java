@@ -1,5 +1,7 @@
 package com.kh.wehan.member.model.dao;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -16,24 +18,35 @@ public class MemberDao {
 		return (Member)sqlSession.selectOne("memberMapper.userInfo",userId);
 	}
 
-	public int idCheck(String idCheck) {
-		return sqlSession.selectOne("memberMapper.idCheck",idCheck);
-	}
 
 	public Admin adminlogin(String userId) {
 		return (Admin)sqlSession.selectOne("memberMapper.adminInfo",userId);
 	}
 
+	public int idCheck(String idCheck) {
+		return sqlSession.selectOne("memberMapper.idCheck",idCheck);
+	}
 	public int nickCheck(String nickName) {
 		return sqlSession.selectOne("memberMapper.nickCheck",nickName);
+	}
+	public int AidCheck(String idCheck) {
+		return sqlSession.selectOne("memberMapper.AidCheck",idCheck);
+	}
+	public int blackCheck(String userId) {
+		return sqlSession.selectOne("memberMapper.blackCheck",userId);
 	}
 
 	public int insertMember(Member m) {
 		return sqlSession.insert("memberMapper.insertMember",m);
 	}
 
-	public int AidCheck(String idCheck) {
-		return sqlSession.selectOne("memberMapper.AidCheck",idCheck);
+	public int memberCount() {
+		return sqlSession.selectOne("memberMapper.memberCount");
 	}
+
+	public ArrayList<Member> memberList() {
+		return (ArrayList)sqlSession.selectList("memberMapper.memberList");
+	}
+
 
 }
