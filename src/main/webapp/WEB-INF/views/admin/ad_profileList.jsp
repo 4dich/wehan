@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
-<html lang="zxx">
+<html>
 <head>
 	<title>NISSA - PHOTOGRAPHY STUDIO HTML TEMPLATE</title>
 	<meta charset="UTF-8">
@@ -11,7 +10,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
 	<!-- Favicon -->
-	<link href="resources/images/favicon.ico" rel="shortcut icon"/>
+	<link href="../resources/img/favicon.ico" rel="shortcut icon"/>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap" rel="stylesheet">
@@ -36,6 +35,7 @@
 
 	<style>
 		.infoMenu{font-size: 16px;}
+		
 		button{font-size:14px;}
 		#searchArea{width: 316px; margin-top: 0px; }
 		tr{height: 58px;}
@@ -52,9 +52,8 @@
 	<!-- Main section start -->
 	<div class="main-site-warp">
 
-		<%@ include file="/WEB-INF/views/common/ad_menuBar.jsp" %>
-	
-		
+	<%@ include file="/WEB-INF/views/common/ad_menuBar.jsp" %>
+
 		<header class="header-section">
 			<div class="nav-switch">
 				<i class="fa fa-bars"></i>
@@ -66,105 +65,103 @@
 			<div class="main-sidebar">
 			
 				<div class="mb-warp">
-					<a href="homepage/index.html" class="site-logo">
+					<a href="index.html" class="site-logo">
 						<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
 
 					<div class="about-info">
-						<h2>문의사항</h2>
+						<h2>회원정보</h2>
 						<a href="pay.html" id="ad_profile" class="infoMenu">결제정보</a><br><br>
-						<a href="adminProfile.html" id="ad_profile" class="infoMenu">회원정보</a><br><br>
 						<a href="ad-chal.html" id="ad_challenge" class="infoMenu">챌린지 정보</a><br><br>
 						<a href="ad-cert.html" id="ad_certify" class="infoMenu">인증글 정보</a><br><br>
 						<a href="admin_notice.html" id="ad_notice" class="infoMenu">공지사항</a><br><br>
-					</div>	
+						<a href="admin_qna.html" id="ad_questions" class="infoMenu">문의사항</a><br><br>
+					</div>
 					
 					
 				</div>
 			</div>
 			<!-- Left Side section end -->
 			<!-- Page start -->
+			<!-- Page start -->
 			<div class="page-section blog-page">
 				<div class="blog-posts">
-								
+					
 					<div class="blog-post-item">
-
-						<div id="searchArea">
+						<div id="searchArea"  style="margin-top:0 ;">
 							<div id="searchSelect"> 
-								<select name="" id="">
-									<option>작성자</option>
-									<option>챌린지명</option>
-									<option>결제번호</option>
+								<select name="selecter" id="selecter">
+									<option value="userId">아이디</option>
+									<option value="nickName">닉네임</option>
+									<option value="userName">이름</option>
 								</select>					
 							</div>
 							<!-- 검색 -->
-							<input class="searchBox" type="search">
-							<button><img src="resources/images/main/search.png" alt=""></button>
+							<input id="searchValue"class="searchBox" type="search">
+							<button id="search"><img src="resources/images/main/search.png" alt=""></button>
 						</div>
 
 
 						<!-- 문의사항 테이블 -->
-						<table class="qnaTable">
-							
+						<table id="memberList" class="qnaTable">
 							<tr class="thArea">
-								<th>NO</th>
-								<th>제목</th>
-								<th>유저명</th>
-								<th>날짜</th>
-								<th>조회수</th>
+								<th>아이디</th>
+								<th>닉네임</th>
+								<th>이름</th>
+								<th>생년월일</th>
+								<th>휴대폰번호</th>
+								<th>계좌번호</th>
+								<th>블랙리스트</th>
 							</tr>
 							<!-- 반복문 예정 -->
+							<c:forEach var="m" items="${list}">
 							<tr class="noticeList">
-								<td>1</td>
-								<td><a href="admin_qnaDetail.html"> 문의사항제목입니다.</a></td>
-								<td>현스델리</td>
-								<td>2020-03-25</td>
-								<td>1</td>
+								<td>${m.userId}</td>
+								<td>${m.nickName}</td>
+								<td>${m.userName}</td>
+								<td>${m.birthDay}</td>
+								<td>${m.phone}</td>
+								<td>${m.account}</td>
+								<td>${m.blacklistYN}</td>
 							</tr>
-                         <c:forEach var="q" items="${list}">
-                        <tr class="questionsList">
-								<td>
-								    <input type="hidden" value="${q.qId }"/>							    
-																
-								</td>								
-								<td>${q.qTitle }</td>
-								<td>${q.qUserid }</td>
-								
-								<td>${q.qDate }</td>
-															
-								<td>${q.qCount }</td>
-								<td>${q.qContent }</td>
-							</tr>
-                      
-                      </c:forEach> 			
-							
-
+							</c:forEach>
 						</table>
 						
-						<!-- 페이지 -->
-							<c:forEach var="p" begin="${pi.startPage}" end="${pi.endPage }">
+						<div class="qnaPaging">
+							<c:if test="${ pi.currentPage eq 1 }">
+								< &nbsp;
+							</c:if>
+							<c:if test="${ pi.currentPage ne 1 }">
+								<c:url var="before" value="mlist.do">
+									<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
+								</c:url>
+								<a href="${ before }"><</a> &nbsp;
+							</c:if>
+							
+							<!-- 페이지 -->
+							<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
 								<c:if test="${ p eq pi.currentPage }">
-									<font color="red" size = "4"><b>[${ p }]</b></font>
+									<font color="red" size="4"><b>[${ p }]</b></font>
 								</c:if>
 								
 								<c:if test="${ p ne pi.currentPage }">
-									<c:url var="pagenation" value="ad_questionsList.do">
+									<c:url var="pagination" value="mlist.do">
 										<c:param name="currentPage" value="${ p }"/>
 									</c:url>
-									<a href="${ pagination }">${p}</a>
+									<a href="${ pagination }">${ p }</a> &nbsp;
 								</c:if>
 							</c:forEach>
 							
-							<!-- 다음 -->
-							<c:if test="${pi.currentPage eq pi.maxPage }">
+							<!-- [다음] -->
+							<c:if test="${ pi.currentPage eq pi.maxPage }">
 								>
 							</c:if>
-							<c:if test="${pi.currentPage ne pi.maxPage }">
-								<c:url var="after" value="ad_questionsList.do">
-									<c:param name="currentPage" value="${pi.currentPage + 1 }"/>
-								</c:url>
-								<a href="${after}">></a>
+							<c:if test="${ pi.currentPage ne pi.maxPage }">
+								<c:url var="after" value="mlist.do">
+									<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
+								</c:url> 
+								<a href="${ after }">></a>
 							</c:if>
 						</div>
 					</div>
@@ -172,16 +169,31 @@
 			</div>
 			<!-- Page end -->
 		</div>
-		<div class="copyright"><p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
-			All rights reserved </p></div>
-			</div>
+	
+	
+		<div class="copyright"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  			Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved 
+  			<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
+		</div>
 	<!-- Main section end -->
-
-	<!-- 리스트 짝수 배경색 변경 -->
 	<script>
-		$(document).ready(function(){
-		  $('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247)");   // even 짝수
+		$(function(){
+			$('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247"); //even 짝수
+			
+			$('#search').click(function(){
+				var selecter = $('#selecter').val();
+				var searchValue = $('#searchValue').val();
+				
+				$.ajax({
+					url:"mlistSearch",
+					type:"post",
+					dataType:"json",
+					data{"selecter":selecter,"searchValue":searchValue}
+				});
+			});
+			
 		});
+
 	</script>
 	
 	<!--====== Javascripts & Jquery ======-->

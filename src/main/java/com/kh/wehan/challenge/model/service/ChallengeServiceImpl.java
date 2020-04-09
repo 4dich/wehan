@@ -24,4 +24,12 @@ public class ChallengeServiceImpl implements ChallengeService {
 	public ArrayList<Challenge> selectList(PageInfo pi) {
 		return cDao.getSelectList(pi);
 	}
+
+	@Override
+	public Challenge selectOneDetail(String chId) {
+		return cDao.getSelectOneDetail(chId);
+	}
+
+
+
 }

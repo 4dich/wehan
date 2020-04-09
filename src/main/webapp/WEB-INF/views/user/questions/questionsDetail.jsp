@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="ko">
 <head>
 	<title>NISSA - PHOTOGRAPHY STUDIO HTML TEMPLATE</title>
 	<meta charset="UTF-8">
@@ -57,30 +57,30 @@
 				<a href=""><i class="fa fa-twitter"></i></a>
 				<a href=""><i class="fa fa-dribbble"></i></a>
                 <a href=""><i class="fa fa-behance"></i></a> -->
-                <a href="notice.html">°øÁö»çÇ×</a>
-                <a href="qna.html" style="color: red;">¹®ÀÇ»çÇ×</a>
+                <a href="notice.html">ê³µì§€ì‚¬í•­</a>
+                <a href="qna.html" style="color: red;">ë¬¸ì˜ì‚¬í•­</a>
 			</div>
 		
 		</header>
 		<div class="site-content-warp">
 			<!-- Left Side section -->
 			<div class="main-sidebar">
-			<!-- ·Î°í ±¸¿ª -->
+			<!-- ë¡œê³  êµ¬ì—­ -->
 			<div class="mb-warp">
 				<a href="index.html" class="site-logo">
-					<h2 style="margin-left: 6px;">À§´ëÇÑ ÇÑ°ÉÀ½</h2>
+					<h2 style="margin-left: 6px;">ìœ„ëŒ€í•œ í•œê±¸ìŒ</h2>
 					<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 				</a>
-			<!-- ¼­ºê¸Þ´º -->
+			<!-- ì„œë¸Œë©”ë‰´ -->
 			<div class="about-info">
-				<h2>¹®ÀÇ»çÇ×</h2>
-				<!-- °¨¼º±Û ÀÛ¼º -->
-				<p>À§´ëÇÑ ÇÑ°ÉÀ½¿¡ ±Ã±ÝÁõÀÌ »ý±â½Å´Ù¸é <br>
-				¾ðÁ¦µçÁö ¹®ÀÇÇØÁÖ¼¼¿ä! </p>
+				<h2>ë¬¸ì˜ì‚¬í•­</h2>
+				<!-- ê°ì„±ê¸€ ìž‘ì„± -->
+				<p>ìœ„ëŒ€í•œ í•œê±¸ìŒì— ê¶ê¸ˆì¦ì´ ìƒê¸°ì‹ ë‹¤ë©´ <br>
+				ì–¸ì œë“ ì§€ ë¬¸ì˜í•´ì£¼ì„¸ìš”! </p>
 			</div>
 			<ul class="contact-info">
-				<li>¼­¿ïÆ¯º°½Ã °­³²±¸ Å×ÇØ¶õ·Î14±æ 6</li>
-				<li>³²µµºôµù 3F H¹Ý T:1544-9970</li><br>
+				<li>ì„œìš¸íŠ¹ë³„ì‹œ ê°•ë‚¨êµ¬ í…Œí•´ëž€ë¡œ14ê¸¸ 6</li>
+				<li>ë‚¨ë„ë¹Œë”© 3F Hë°˜ T:1544-9970</li><br>
 				<li><a href="mailto:contactme@myemail.com">contactme@myemail.com</a></li>
 			</ul>
 					
@@ -91,7 +91,7 @@
 			<div class="page-section blog-page">
 				<div class="blog-posts">
 					<div class="arrowBack">
-						<a href="noticeList.do">
+						<a href="questionsList.do">
 							<img src="resources/images/arrow-righ-3.png" alt="">
 						</a>
 					</div>
@@ -103,24 +103,24 @@
 
 								<table class="detailArea">
 									<tr class="qnaNumber">
-										<td>¹øÈ£</td>
-										<td>${n.nId}</td>
+										<td>ë²ˆí˜¸</td>
+										<td>${q.qId}</td>
 									</tr>
 									<tr class="qnaTitleArea">
-										<td class="qnaTitle1">Á¦¸ñ</td>
-										<td class="qnaTitle2">${n.nTitle}</td>
+										<td class="qnaTitle1">ì œëª©</td>
+										<td class="qnaTitle2">${q.qTitle}</td>
 									</tr>
 									<tr class="qnaUserNameArea">
-										<td class="qnaUserName1">ÀÛ¼ºÀÚ¸í</td>
-										<td class="qnaUserName2">${n.nWriter}</td>
+										<td class="qnaUserName1">ìž‘ì„±ìžëª…</td>
+										<td class="qnaUserName2">${q.qWriter}</td>
 									</tr>
 									<tr class="qnaDateArea">
-										<td class="qnaDate1">µî·Ï³¯Â¥</td>
-										<td class="qnaDate2">${n.nDate}</td>
+										<td class="qnaDate1">ë“±ë¡ë‚ ì§œ</td>
+										<td class="qnaDate2">${q.qDate}</td>
 									</tr>
 									<tr class="qnaTextBox">
 										<td class="qnaTextArea"  colspan="2"> 
-										${n.nContent}
+										${q.qContent}
 										</td>
 									</tr>							
 									
@@ -138,10 +138,10 @@
 	</div>
 	<!-- Main section end -->
 
-	<!-- ¸®½ºÆ® Â¦¼ö ¹è°æ»ö º¯°æ -->
+	<!-- ë¦¬ìŠ¤íŠ¸ ì§ìˆ˜ ë°°ê²½ìƒ‰ ë³€ê²½ -->
 	<script>
 		$(document).ready(function(){
-		  $('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247)");   // even Â¦¼ö
+		  $('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247)");   // even ì§ìˆ˜
 		});
 	</script>
 	

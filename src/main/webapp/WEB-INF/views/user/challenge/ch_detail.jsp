@@ -52,6 +52,11 @@
 			font-family: 'Nanum Gothic Coding', monospace;
 			border: 2px solid #e1e1e1; 
 		}
+		
+		.contact-form input, .contact-form textarea {
+			border: 0;
+			background: none !important;
+		}
 	</style>
 </head>
 <body>
@@ -139,35 +144,65 @@
 										<input type="text" name="chName" value="챌린지명 가져가시오">
 										</div>
 											<div class="col-lg-12">
-												<div class="contents-detail">챌린지명</div>
+												<div class="contents-detail">
+													<input type="text" class="challengeDetail" name="chChName" value="${ ch.chName }" disabled>
+													${ ch.chName }
+												</div>
 											</div>
 											<div class="col-lg-12">
-												<div class="contents-detail">카테고리</div>
+												<div class="contents-detail">
+													<input type="text" class="challengeDetail" name="chCategory" value="${ ch.category }" disabled>
+													${ ch.category }
+												</div>
 											</div>
 											<div class="col-lg-6">
-												<div class="contents-detail">기간 설정(시작)</div>
+												<div class="contents-detail">
+													<input type="text" class="challengeDetail" name="chChId" value="${ ch.chId }" disabled>
+													${ ch.chId }
+												</div>
 											</div>
 											<div class="col-lg-6">
-												<div class="contents-detail">기간 설정(종료)</div>
+												<div class="contents-detail">
+													<input type="text" class="challengeDetail" name="chChPeople" value="${ ch.chPeople }" disabled>
+													${ ch.chPeople }
+												</div>
 											</div>
 											<div class="col-lg-6">
-												<div class="contents-detail">마감일</div>
+												<div class="contents-detail">
+													<input type="text" class="challengeDetail" name="chDeadLine" value="${ ch.startDate }" disabled>
+													${ ch.startDate }
+												</div>
 											</div>
 											<div class="col-lg-6">
-												<div class="contents-detail">참가 인원</div>
+												<div class="contents-detail">
+													<input type="text" class="challengeDetail" name="chEndDate" value="${ ch.endDate }" disabled>
+													${ ch.endDate }
+												</div>
 											</div>
 											<div class="col-lg-12">
-												<div class="contents-detail">인증 방법</div>
+												<div class="contents-detail">
+													<input type="text" class="challengeDetail" name="chCeMethod" value="${ ch.ceMethod }" disabled>
+													${ ch.ceMethod }
+												</div>
 											</div>
 											<div class="col-lg-6">
-												<div class="contents-detail">배팅 금액 %></div>
+												<div class="contents-detail">
+													<input type="text" class="challengeDetail" name="chPrice" value="${ ch.price }" disabled>
+													${ ch.price }
+												</div>
 											</div>
 											<div class="col-lg-6">
-												<div class="contents-detail">총 모집 금액 %></div>
+												<div class="contents-detail">
+													<input type="text" class="challengeDetail" name="chTotalPrice" value="${ ch.totalPrice }" disabled>
+													${ ch.totalPrice }
+												</div>
 											</div>
 											<br><br><br><br>
 											<div class="col-lg-12">
-												<div class="contents-detail2">상세 정보 %></div>
+												<div class="contents-detail2">
+													<input type="text" class="challengeDetail" name="chChContent" value="${ ch.chContent }" disabled>
+													${ ch.chContent }
+												</div>
 											</div>
 										</div>
 									<br><br>

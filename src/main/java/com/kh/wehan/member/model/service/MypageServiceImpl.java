@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.wehan.member.model.dao.MypageDao;
+import com.kh.wehan.member.model.vo.Member;
 import com.kh.wehan.member.model.vo.Mypage;
 
 @Service("myService")
@@ -25,6 +26,11 @@ public class MypageServiceImpl implements MypageService {
 	@Override
 	public int followingCount(String userId) {
 		return myDao.followingCount(userId);
+	}
+
+	@Override
+	public int updateMember(Member m) {
+		return myDao.updateMember(m);
 	}
 
 }

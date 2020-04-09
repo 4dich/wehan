@@ -65,32 +65,32 @@ public class viewController {
 	
 	@RequestMapping("ch_detailEndView.do")
 	public String ch_detailEndView() {
-		return "user/ch_detailEnd";
+		return "user/challenge/ch_detailEnd";
 	}
 	
 	@RequestMapping("ch_detailDoingView.do")
 	public String ch_detailDoingView() {
-		return "user/ch_detailDoing";
+		return "user/challenge/ch_detailDoing";
 	}
 	
 	@RequestMapping("ch_listView.do")
 	public String ch_listView() {
-		return "user/ch_list";
+		return "user/challenge/ch_list";
 	}
 	
 	@RequestMapping("ch_premiumListView.do")
 	public String ch_premiumListView() {
-		return "user/ch_premiumList";
+		return "user/challenge/ch_premiumList";
 	}
 	
 	@RequestMapping("ch_top10ListView.do")
 	public String ch_top10ListView() {
-		return "user/ch_top10List";
+		return "user/challenge/ch_top10List";
 	}
 	
 	@RequestMapping("ch_registerView.do")
 	public String ch_registerView() {
-		return "user/ch_register";
+		return "user/challenge/ch_register";
 	}
 	
 	
@@ -173,7 +173,7 @@ public class viewController {
 	
 	@RequestMapping("indexView.do")
 	public String indexView() {
-		return "user/index";
+		return "user/main";
 	}
 	
 	@RequestMapping("ch_certifyPhotoListView.do")
@@ -203,7 +203,7 @@ public class viewController {
 	
 	@RequestMapping("qnaDetailView.do")
 	public String qnaDetailView() {
-		return "user/qnaDetail"; 
+		return "user/questions/questionsDetail"; 
 	}
 	
 	@RequestMapping("qnaInsertView.do")
