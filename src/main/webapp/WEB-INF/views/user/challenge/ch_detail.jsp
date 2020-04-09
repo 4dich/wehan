@@ -135,12 +135,13 @@
 							</div>
 							<div class="col-xl-6">
 								<div class="contact-text-warp">
-									<form class="contact-form" action="payinfo.do" style="margin-top: 65px;">
+									<form class="contact-form" method="post" action="payinfo.do" style="margin-top: 65px;">
 										<div class="row">
 										<div style="display:none;">
 										<input type="text" name="chId" value="1">
 										<input type="text" name="price" value="2">
 										<input type="text" name="startDate" value="2020/04/09">
+										<input type="text" name="chName" value="챌린지명 가져가시오">
 										</div>
 											<div class="col-lg-12">
 												<div class="contents-detail">

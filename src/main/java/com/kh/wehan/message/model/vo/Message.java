@@ -3,9 +3,12 @@ package com.kh.wehan.message.model.vo;
 
 public class Message {
 	
-	private int mId;
+	private int mId;		
+	private String mImg;	
 	private String mSender;
+	private String mSenderId;
 	private String mReceiver;
+	private String mReceiverId;
 	private String mContent;
 	private String mDate;
 	private int mRead;
@@ -18,12 +21,15 @@ public class Message {
 	}
 
 
-	public Message(int mId, String mSender, String mReceiver, String mContent, String mDate, int mRead,
-			String mStatus) {
+	public Message(int mId, String mImg, String mSender, String mSenderId, String mReceiver, String mReceiverId,
+			String mContent, String mDate, int mRead, String mStatus) {
 		super();
 		this.mId = mId;
+		this.mImg = mImg;
 		this.mSender = mSender;
+		this.mSenderId = mSenderId;
 		this.mReceiver = mReceiver;
+		this.mReceiverId = mReceiverId;
 		this.mContent = mContent;
 		this.mDate = mDate;
 		this.mRead = mRead;
@@ -41,6 +47,16 @@ public class Message {
 	}
 
 
+	public String getmImg() {
+		return mImg;
+	}
+
+
+	public void setmImg(String mImg) {
+		this.mImg = mImg;
+	}
+
+
 	public String getmSender() {
 		return mSender;
 	}
@@ -51,6 +67,16 @@ public class Message {
 	}
 
 
+	public String getmSenderId() {
+		return mSenderId;
+	}
+
+
+	public void setmSenderId(String mSenderId) {
+		this.mSenderId = mSenderId;
+	}
+
+
 	public String getmReceiver() {
 		return mReceiver;
 	}
@@ -58,6 +84,16 @@ public class Message {
 
 	public void setmReceiver(String mReceiver) {
 		this.mReceiver = mReceiver;
+	}
+
+
+	public String getmReceiverId() {
+		return mReceiverId;
+	}
+
+
+	public void setmReceiverId(String mReceiverId) {
+		this.mReceiverId = mReceiverId;
 	}
 
 
@@ -103,10 +139,12 @@ public class Message {
 
 	@Override
 	public String toString() {
-		return "Message [mId=" + mId + ", mSender=" + mSender + ", mReceiver=" + mReceiver + ", mContent=" + mContent
-				+ ", mDate=" + mDate + ", mRead=" + mRead + ", mStatus=" + mStatus + "]";
+		return "Message [mId=" + mId + ", mImg=" + mImg + ", mSender=" + mSender + ", mSenderId=" + mSenderId
+				+ ", mReceiver=" + mReceiver + ", mReceiverId=" + mReceiverId + ", mContent=" + mContent + ", mDate="
+				+ mDate + ", mRead=" + mRead + ", mStatus=" + mStatus + "]";
 	}
-	
+
+
 	
 	
 	

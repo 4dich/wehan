@@ -1,8 +1,10 @@
 package com.kh.wehan.pay.model.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +35,7 @@ public class PayController {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
 		
 		ArrayList<Pay> list = pService.selectList(pi);
-		System.out.println("페이지 리스트 입니다." + list);
+		
 		mv.addObject("list",list);
 		mv.addObject("pi",pi);
 		mv.setViewName("admin/ad_payList");
@@ -46,7 +48,11 @@ public class PayController {
 			int pId) {
 		 
 		Pay p = pService.slectPayDetail(pId);
+		Challenge ch = pService.slectchDetail(pId);
+		System.out.println(p);
+		
 		mv.addObject("p",p);
+		mv.addObject("ch",ch);
 		mv.setViewName("admin/ad_payDetail");	
 		
 		return mv;
@@ -55,7 +61,6 @@ public class PayController {
 	@RequestMapping("payinfo.do")
 	public ModelAndView payinfo(Challenge ch,ModelAndView mv,HttpServletRequest request) {
 		
-		System.out.println(ch);
 		HttpSession session = request.getSession();
 		Member m = (Member)session.getAttribute("loginUser");
 		
@@ -68,12 +73,32 @@ public class PayController {
 	}
 	
 	
-	@RequestMapping(value="payments.do")
-	public void pay(String str) {
-		System.out.println("넘어오는가");
-		System.out.println(str);
+	@RequestMapping("payments.do")
+	public void pay(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		
 		
+		String chId = request.getParameter("chId");
+		String userId = request.getParameter("userId");
+		int price = Integer.parseInt(request.getParameter("price"));
+		String pmethod = request.getParameter("pmethod");
+		String chName = request.getParameter("chName");
+		
+		Pay pay = new Pay();
+		pay.setChId(chId);
+		pay.setUserId(userId);
+		pay.setPrice(price);
+		pay.setPmethod(pmethod);
+		pay.setChName(chName);
+		
+		int payResult = pService.insertPay(pay);
+		
+		if(payResult>0) {
+		
+		String result = "index.jsp";
+		response.getWriter().print(result);
+		}else{
+		System.out.println("결제실패");	
+		}
 	}
 	
 	

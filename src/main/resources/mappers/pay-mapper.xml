@@ -12,13 +12,12 @@
   		<result property="price" column="PRICE"/>
   		<result property="pmethod" column="PMETHOD"/>
   		<result property="pDate" column="PDATE"/>
-  		<result property="pay_yn" column="PAY_YN"/>
   		<result property="refund_yn" column="REFUND_YN"/>
   		<result property="pdel_yn" column="PDEL_YN"/>
   	</resultMap>
   	
   	<resultMap id="chResultSet" type="Challenge">
-  		<id property="chid" column="CHID"/>
+  		<id property="chId" column="CHID"/>
   		<result property="userId" column="USERID"/>
   		<result property="chName" column="CHNAME"/>
   		<result property="chPicture" column="CHPICTURE"/>
@@ -27,8 +26,7 @@
   		<result property="endDate" column="ENDDATE"/>
   		<result property="category" column="CATEGORY"/>
   		<result property="ceMethod" column="CEMETHOD"/>
-  		<result property="minPrice" column="MINORICE"/>
-  		<result property="maxPrice" column="MAXPRICE"/>
+  		<result property="price" column="PRICE"/>
   		<result property="minPerson" column="MINPERSON"/>
   		<result property="maxPerson" column="MAXPERSON"/>
   		<result property="chPeople" column="CHPEOPLE"/>
@@ -41,18 +39,43 @@
   		<result property="price" column="PRICE"/>
   		<result property="pmethod" column="PMETHOD"/>
   		<result property="pDate" column="PDATE"/>
-  		<result property="pay_yn" column="PAY_YN"/>
   		<result property="refund_yn" column="REFUND_YN"/>
   		<result property="pdel_yn" column="PDEL_YN"/>
   		
   		<collection property="chList" javaType="java.util.ArrayList" resultMap="chResultSet"/>
   	</resultMap>
   	
-  
+  	<resultMap id="paymResultSet" type="Member">
+		<id property="userId" column="USERID"/>
+		<result property="password" column="PASSWORD"/>
+		<result property="nickName" column="NICKNAME"/>
+		<result property="userName" column="USERNAME"/>
+		<result property="birthDay" column="BIRTHDAY"/>
+		<result property="email" column="EMAIL"/>
+		<result property="address" column="ADDRESS"/>
+		<result property="phone" column="PHONE"/>
+		<result property="account" column="ACCOUNT"/>
+		<result property="picture" column="PICTURE"/>
+		<result property="joinDate" column="JOINDATE"/>
+		<result property="outYN" column="OUT_YN"/>
+	</resultMap>
+  	
+  	<resultMap id="payMemberListResultSet" type="Pay">
+  		<id property="pId" column="PID"/>
+  		<result property="chId" column="CHID"/>
+  		<result property="userId" column="USERID"/>
+  		<result property="price" column="PRICE"/>
+  		<result property="pmethod" column="PMETHOD"/>
+  		<result property="pDate" column="PDATE"/>
+  		<result property="refund_yn" column="REFUND_YN"/>
+  		<result property="pdel_yn" column="PDEL_YN"/>
+  		<collection property="mList" javaType="java.util.ArrayList" resultMap="paymResultSet"/>
+  	</resultMap>
+  	
   	<select id="getListCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM PAY
-		WHERE PAY_YN='Y'
+		WHERE PDEL_YN='N'
 	</select>
   
   	<select id="selectList" resultMap="payListResultSet">
@@ -62,12 +85,23 @@
 		ORDER BY PID DESC
 	</select>
   
- 	<select id="slectPayDetail" resultMap="payListResultSet">
+ 	<select id="slectPayDetail" resultMap="payMemberListResultSet">
+		SELECT *
+		FROM PAY
+		JOIN MEMBER USING(USERID)
+        WHERE PID=#{pId}
+ 	</select>
+ 	
+ 	<select id="slectChDetail" resultMap="chResultSet">
  		SELECT *
 		FROM PAY
 		JOIN CHALLENGE USING(CHID)
 		WHERE PID=#{pId}
  	</select>
   
-  
+  	<insert id="insertPay" parameterType="Pay">
+  		INSERT INTO PAY
+  		VALUES(SEQ_PID.NEXTVAL,#{chId},#{userId},#{price},#{pmethod},SYSDATE,DEFAULT,DEFAULT)
+  	</insert>
+  	
   </mapper>
