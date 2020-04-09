@@ -35,7 +35,7 @@ public class MemberController {
 			int Mresult = mService.idCheck(idCheck);
 			int Aresult = mService.AidCheck(idCheck);
 			System.out.println(Mresult);
-			if(Mresult > 0 && Aresult > 0) {
+			if(Mresult > 0 || Aresult > 0) {
 				return "2";
 			}else {
 				return "1";
