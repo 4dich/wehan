@@ -52,7 +52,7 @@
 	<!-- Main section start -->
 	<div class="main-site-warp">
 
-		<%@ C:import url="/WEB-INF/views/common/ad_menuBar.jsp" %> 
+		<%-- <%@ C:import url="/WEB-INF/views/common/ad_menuBar.jsp" %>  --%>
 	
 		
 		<header class="header-section">

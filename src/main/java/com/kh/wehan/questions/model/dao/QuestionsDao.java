@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.wehan.common.model.vo.PageInfo;
+import com.kh.wehan.notice.model.vo.Notice;
 import com.kh.wehan.questions.model.vo.Questions;
 import com.kh.wehan.questions.model.vo.SearchCondition;
 
@@ -73,9 +74,41 @@ public class QuestionsDao {
 			RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
 			return (ArrayList)sqlSession.selectList("questionsMapper.selectSearchList",sc,rowBounds);
 			
+		}				
+		
+		/**
+		 * 문의사항 입력
+		 * @param n
+		 * @return
+		 */
+		public int questionsInsert(Questions n) {
+			return sqlSession.insert("questionsMapper.questionsInsert", n);
 		}
+
+		/**
+		 * 문의사항 수정하기
+		 * @param n
+		 * @return
+		 */
+		public int questionsModify(Questions n) {
+			return sqlSession.update("questionsMapper.questionsModify", n);
+		}
+
+		/**
+		 * 문의사항 삭제하기
+		 * @param nId
+		 * @return
+		 */
+		public int questionsDelete(int qId) {
+			return sqlSession.update("questionsMapper.questionsDelete", qId);
+		}
+
+
+
 		
 		
+
+
 }
 
 
