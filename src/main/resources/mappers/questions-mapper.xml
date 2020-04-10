@@ -79,7 +79,7 @@
   	<!-- 문의사항 입력 -->
   	<insert id="questionsInsert" parameterType="Questions">
   		INSERT INTO QUESTIONS 
-  		VALUES(SEQ_NID.NEXTVAL,#{qUserid},#{qTitle},#{qContent},DEFAULT,SYSDATE,DEFUALT,DEFAULT)  	
+  		VALUES(SEQ_QID.NEXTVAL,#{qUserid},#{qTitle},#{qContent},DEFAULT,SYSDATE,DEFAULT,DEFAULT)  	
   	</insert>
   	
   	<!-- 문의사항 수정 -->

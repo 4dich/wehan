@@ -110,7 +110,7 @@
 										<tr class="questionsUserNameArea">
 											<td class="questionsUserName1">작성자</td>
 											<td class="questionsUserName2">
-												<input type="text" name="qUserid" value="${loginUser.userId}" disabled>
+												<input type="text" name="qUserid" value="${loginUser.userId}" >
 											</td>
 										</tr>
 										<tr class="questionsTextBox">

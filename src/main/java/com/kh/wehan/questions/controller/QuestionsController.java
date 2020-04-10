@@ -157,15 +157,16 @@ public class QuestionsController {
  * @return
  */
 	@RequestMapping("questionsInsert.do")
-	public String questionsInsert(Questions n, String qUserid) {
-		System.out.println(qUserid);
-		n.setqUserid(qUserid);
+	public String questionsInsert(Questions n) {
+		System.out.println(n.getqUserid());
 		
 		System.out.println(n);
+		
 		int result = qService.questionsInsert(n);
+		System.out.println(result);
 		
 		if(result > 0) {
-			return "redirect:questionsList.do";
+			return "redirect:qnaListView.do";
 		} else {						
 			return "common/errorPage";
 		}

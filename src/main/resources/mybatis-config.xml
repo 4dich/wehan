@@ -34,5 +34,6 @@
 		<mapper resource="mappers/certify-mapper.xml"/>
 		<mapper resource="mappers/pay-mapper.xml"/>
 		<mapper resource="mappers/challenge-mapper.xml"/>
+		<mapper resource="mappers/questions-mapper.xml"/>
 	</mappers>
 </configuration>
