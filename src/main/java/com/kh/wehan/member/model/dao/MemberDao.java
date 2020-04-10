@@ -48,10 +48,18 @@ public class MemberDao {
 		return (ArrayList)sqlSession.selectList("memberMapper.memberList");
 	}
 
-
 	public int updateMember(Member m) {
 		return sqlSession.update("memberMapper.updateMember", m);
 	}
 
+	public ArrayList<Member> mlistSearch(Member mem) {
+		return (ArrayList)sqlSession.selectList("memberMapper.mlistSearch",mem);
+	}
+
+
+	public Member memberSearch(String userId) {
+		return (Member)sqlSession.selectOne("memberMapper.userInfo",userId);
+	}
 
 }
+
