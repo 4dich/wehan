@@ -175,6 +175,9 @@
 												</div>
 											</div>
 										</div>
+										
+										
+										
 									</div>
 								</div>
 							</div>
@@ -211,6 +214,23 @@
 			location.href="ad_certifyView.do";
 		});
 	});
+	
+	function getReplyList() {
+		var ceId = ${c.ceId};
+		
+		$.ajax({
+			url : "replyList.do",
+			data : {ceId:ceId},
+			//  	속성명 : 위에 선언된 변수명
+			dataType: "json",
+			success : function(data){
+				
+			},error:function(){
+				console.log("전송실패");
+			}
+		});
+		
+	}
 	</script>
 
 	</body>

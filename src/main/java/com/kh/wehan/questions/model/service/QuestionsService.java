@@ -44,8 +44,31 @@ public interface QuestionsService {
 	 * @param pi
 	 * @return
 	 */	
-	ArrayList<Questions> selectSearchList(SearchCondition sc, PageInfo pi);
 	
+	
+	ArrayList<Questions> selectSearchList(SearchCondition sc, PageInfo pi);
+
+	/**
+	 * 유저 문의사항 등록하기
+	 * @param n
+	 * @return
+	 */
+	int questionsInsert(Questions n);
+	
+	/**
+	 * 유저 문의사항 수정
+	 * @param n
+	 * @return
+	 */
+	int questionsModify(Questions n);
+
+	/**
+	 * 공지사항 삭제
+	 * @param qId
+	 * @return
+	 */
+	int questionsDelete(int qId);
+
 	
 }
 
