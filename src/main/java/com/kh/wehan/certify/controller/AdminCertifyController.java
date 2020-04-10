@@ -143,7 +143,7 @@ public class AdminCertifyController {
 		ArrayList<CertifyReply> rList = acService.selectReply(ceId);
 		
 		response.setContentType("application/json; charset=utf-8");
-		
+		System.out.println("뭐");
 		// 만약 날짜가 들어있다면
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		// json에게 보내겠음
