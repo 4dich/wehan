@@ -98,11 +98,18 @@
         right: -10px;
 	}
 	
-	.main-up, .main-down, .profile-aboutme{
-		font-size: 14px;
-		/* border: 2px solid #e1e1e1; */
-		border: 2px solid #242424;
+	/*스크롤바*/
+	#goal::-webkit-scrollbar{
+		width: 5px;
 	}
+	
+	#goal::-webkit-scrollbar-thumb{
+		background-color: #242424;
+	}
+	#goal::-webkit-scrollbar-track{
+		background-color: grey;
+	}
+	
     </style>
 </head>
 <body>
@@ -134,93 +141,49 @@
 			<div class="main-sidebar">
 				<div class="mb-warp" style="text-align: center;">
                     
-					<a href="index.html" class="site-logo">
+					<a href="indexView.do" class="site-logo">
 						<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
 					
-					<div class="profile-images">
-                        <img class="profile" src="resources/images/user/${ loginUser.picture }" style="width:150px;height:150px;">
-                    </div>
-                    <div class="profile-text">
-                        <b>${ loginUser.nickName }</b>
-					</div>
-					
-					<button class="site-btn sb-solid mr-3 mb-3" onclick="location.href='my_updateInfoView.do'">settings</button>
-					<button class="site-btn sb-solid mr-3 mb-3" style="display:none">follow</button>
+					<div id="divAll">
+				        <div id="pic" style="display:inline-block">
+				            <img src="resources/images/user/${ loginUser.picture }" style="width: 100px; height:100px; margin-top: -70px">
+				        </div>
+				        <div id="foAll" style="display:inline-block; margin-left: 20px">
+				            <div id="fo1" style="display:inline-block; text-align:center; width:60px;">
+				            	<div style="font-weight:bold;font-size:30px">2</div><div style="font-size:12px; color:gray">grade</div></div>
+				            <div id="fo2" style="display:inline-block; text-align:center; width:60px;">
+				            	<div style="font-weight:bold;font-size:30px">${ follow }</div><div style="font-size:12px; color:gray">followers</div></div>
+				            <div id="fo3" style="display:inline-block; text-align:center; width:60px;">
+				            	<div style="font-weight:bold;font-size:30px">${ following }</div><div style="font-size:12px; color:gray">following</div></div>
+				            <br>
+				            <button style="display: block; width:100%; margin-top: 20px" onclick="location.href='my_updateInfoView.do'">Settings</button>
+				        </div>
+				    </div>
+				    
+				    <div id="divAll2" style="margin-top:30px; text-align:left">
+				        <div style="font-weight:bold;font-size:24px"><i>${ loginUser.nickName }</i></div>
 
-					<%-- <div class="profile-aboutme" style="text-align: left; margin-top:10px; padding:10px; height:65px; overflow-y: scroll;">
-						<p>${ mypage.intro }</p>
-                    </div> --%>
-                    
-                    <div style="text-align:center; margin:auto; width:100%">
-                    	<table style="border: 1px solid #242424;">
-                    		<tr>
-                    			<td style="width:150px; background: #242424; color:white; padding:2px;">소개 <input id="toggle3" type="checkbox" checked data-toggle="toggle" data-size="xs" data-on="<i class='fa fa-lock' aria-hidden='true'></i>" data-off="<i class='fa fa-unlock' aria-hidden='true'></i>" data-onstyle="outline-success" data-offstyle="outline-danger" onchange="toggleBtn3();"></td>
-                    			<td style="width:300px;"><textarea id="intro" rows=2 style="width:260px; height:50px; resize: none; overflow:hidden; border:0px; background:white" disabled>${ mypage.intro }</textarea></td>
-                    		</tr>
-                    	</table>
-                    </div>
-
-					<script>
-						function toggleBtn3(){
-					    	if(document.getElementById('toggle3').checked==false){
-					    		$('#intro').attr('disabled',false);
-					    		$('#intro').focus();
-					    		$('#intro').value = $('#intro').value;
-							}else{
-								$('#intro').attr('disabled',true);
-							}
-					    }	
-					</script>
-					
-					<br>
-					
-                 	<div style="text-align:center; margin:auto; width:70%">
-	                    <table>
-	                    	<tr>
-	                    		<td style="width:50px; font-size:16px"><b>등급</b></td>
-	                    		<td style="width:50px; text-align:right"></td>
-	                    		<td style="width:50px; font-size:16px"><b>팔로우</b></td>
-	                    		<td style="width:50px; text-align:right"></td>
-	                    		<td style="width:50px; font-size:16px"><b>팔로잉</b></td>
-	                    	</tr>
-	                    	<tr style="border-top:1px solid #242424; margin-top:10px">
-	                    		<td style="height:10px;"></td>
-	                    		<td></td>
-	                    		<td></td>
-	                    		<td></td>
-	                    		<td></td>
-	                    	</tr>
-	                    	<tr>
-	                    		<td style="background:goldenrod; height:50px;"></td>
-	                    		<td></td>
-	                    		<td>${ follow }</td>
-	                    		<td></td>
-	                    		<td>${ following }</td>
-	                    	<tr>
-	                    	<tr style="border-bottom:1px solid #242424; margin-top:10px">
-	                    		<td style="height:10px;"></td>
-	                    		<td></td>
-	                    		<td></td>
-	                    		<td></td>
-	                    		<td></td>
-	                    	</tr>
-	                    </table>
-                    </div>
+				    <div id="divAll3" style="margin-top:30px; text-align:left">    
+				       	<div style="margin-bottom:5px; font-weight: 700;"><i>OWNER MESSAGE&nbsp;</i>
+				       	<input id="toggle3" style="margin-left:60px;" type="checkbox" checked data-toggle="toggle" data-on="<i class='fa fa-lock' aria-hidden='true'></i> 수정하기" data-off="<i class='fa fa-unlock' aria-hidden='true'></i> 수정중" data-onstyle="dark" data-offstyle="outline-dark" onchange="toggleBtn3();"></div>
+				       	<div style="border:1px solid gray; height:180px;"><textarea id="intro" rows=2 style="width:100%; height:50px; resize: none; overflow:hidden; border:0px; background:white" disabled>${ mypage.intro }</textarea></div> 
+				    </div>
+				        
+				    </div>
 				</div>
 			</div>
 			<div class="page-section portfolio-page">
 				<div class="portfolio-section">
 					<div class="main-down" style="height: 40%; width:90%; margin:20px">
-						<div class="main-down-title" style="height: 70px; background: #242424; color:white; padding: 20px; font-size: 21px; font-weight: 700;">
-							관심 분야 &nbsp;&nbsp;&nbsp;
-							
-							<!-- 토글버튼 -->
-							<input id="toggle1" type="checkbox" checked data-toggle="toggle" data-on="<i class='fa fa-lock' aria-hidden='true'></i> 수정하기" data-off="<i class='fa fa-unlock' aria-hidden='true'></i> 수정중" data-onstyle="outline-success" data-offstyle="outline-danger" onchange="toggleBtn1();">
-							
+						<div class="main-down-title" style="height: 70px; padding: 20px; font-weight:900; font-size: 21px; font-weight: 700;">
+							<div style="width:100px; height:100px; margin-left:-39px; display:inline-block; background-image: url('resources/images/icons/bookmark.png'); background-repeat : no-repeat; background-size : cover;"></div>
+							<div style="margin:-100px 24px 0 60px;">
+								<i>Interests</i>
+							</div>
 						</div>
-						<div class="main-down-content" style="height: 28%; width: 100%; margin-top: 15px; text-align:center">
+						<div class="main-down-content" style="height: 75%; width: 100%; margin-top: 5px; text-align:center; border:1px solid gray;">
 							<div style="display: inline-block; width:100%;">
 								<div style="display: inline;"><img class='category' src="resources/images/mypage/lifestyle.png" style="width:150px; height:150px; margin: 15px;"></div>
 								<div style="display: inline;"><img class='category' src="resources/images/mypage/poker.png" style="width:150px; height:150px; margin: 15px;"></div>
@@ -232,57 +195,6 @@
 								<div class="myCate" style="display:none">${ mypage.interest }</div>
 								
 								<!-- 관심분야 on/off -->
-								<script>
-									var cate = $('.category');
-									for(var i=0; i<6; i++){
-										cate[i].textContent=0;
-									}
-									var myCate = $('.myCate')[0].innerText;
-									
- 									if(myCate.includes('건강')){
- 										cate[0].textContent = 1;
-									}
-									if(myCate.includes('취미')){
-										cate[1].textContent = 1;
-									}
-									if(myCate.includes('자기개발')){
-										cate[2].textContent = 1;
-									}
-									if(myCate.includes('경제')){
-										cate[3].textContent = 1;
-									}
-									if(myCate.includes('생활')){
-										cate[4].textContent = 1;
-									}
-									if(myCate.includes('기타')){
-										cate[5].textContent = 1;
-									}
-									
-									function toggleBtn1(){
-								    	if(document.getElementById('toggle1').checked==false){
-								    		cate.on("click",function(){
-								    			$(this)[0].textContent = 1 - $(this)[0].textContent;
-								            });
-								    		console.log("수정가능");
-								    		
-										}else{
-											cate.off("click");
-											console.log("수정불가");
-										}
-								    }
-									
-									$(function(){
-										setInterval(function(){
-											for(var i=0; i<6; i++){
-												if(cate[i].textContent==0){
-													$(cate[i]).css('opacity','0.2');
-												}else{
-													$(cate[i]).css('opacity','1');
-												}
-											}
-										},100);
-									});
-								</script>
 							</div>
 							<div style="display: inline-block; width:100%;">
 								<div style="width:150px; margin: 15px; float:left; padding-left:70px;">건강</div>
@@ -294,43 +206,120 @@
 							</div>                        
 						</div>
 					</div>
-					<div class="main-up" style="height: 52%; width: 90%; margin:20px">
-						<div class="main-up-title" style="height: 70px; background: #242424; color:white; padding: 20px; font-size: 21px; font-weight: 700;">
-							나의 목표&nbsp;&nbsp;&nbsp;
-							<input id="toggle2" type="checkbox" checked data-toggle="toggle" data-on="<i class='fa fa-lock' aria-hidden='true'></i> 수정하기" data-off="<i class='fa fa-unlock' aria-hidden='true'></i> 수정중" data-onstyle="outline-success" data-offstyle="outline-danger" onchange="toggleBtn2();">
+					<div class="main-up" style="height: 40%; width: 90%; margin:20px">
+						<div class="main-up-title" style="height: 70px; padding: 20px; font-size: 21px; font-weight: 700;">
+							<div style="width:100px; height:100px; margin-left:-39px; display:inline-block; background-image: url('resources/images/icons/bookmark.png'); background-repeat : no-repeat; background-size : cover; z-index:10"></div>
+							<div style="margin:-100px 24px 0 60px;"><i>Goal</i></div>
 							
-							<div id="userId" style="display:none"> ${loginUser.userId} </div>
 							
-							<!-- 나의 목표 on/off -->
-							<script>
-							    var userId = $('#userId')[0].value;
-								function toggleBtn2(){
-							    	if(document.getElementById('toggle2').checked==false){
-							    		$('#goal').attr('disabled',false);
-							    		$('#goal').focus();
-							    		$('#goal').value = $('#goal').value;
-							    		console.log("수정가능");
-							    		
-							    		$.ajax({
-											url:"updateGoal.do",
-											data:{userId:userId},
-											type:"post",
-											success:function(data){
-												$('#goal').val(data);
-											},error:function(){
-												console.log("에러");
-											}
-										});
-									}else{
-										$('#goal').attr('disabled',true);
-										console.log("수정불가");
+							<div id="userId" style="display:none">${loginUser.userId}</div>
+							
+						</div>
+						<div class="main-up-content" style="font-size:20px; height: 306px; width: 100%; margin-top: 5px; text-align:right; border:1px solid gray;">
+							<textarea id="goal" cols="105" rows="10" style="resize: none; border:0px; background:white" disabled>${ mypage.goal }</textarea>
+						</div>
+
+						<script>
+							var cate = $('.category');
+							for(var i=0; i<6; i++){
+								cate[i].textContent=0;
+							}
+							var myCate = $('.myCate')[0].innerText;
+							
+							if(myCate.includes('건강')){
+								cate[0].textContent = 1;
+							}
+							if(myCate.includes('취미')){
+								cate[1].textContent = 1;
+							}
+							if(myCate.includes('자기개발')){
+								cate[2].textContent = 1;
+							}
+							if(myCate.includes('경제')){
+								cate[3].textContent = 1;
+							}
+							if(myCate.includes('생활')){
+								cate[4].textContent = 1;
+							}
+							if(myCate.includes('기타')){
+								cate[5].textContent = 1;
+							}
+						
+							function toggleBtn3(){
+						    	if(document.getElementById('toggle3').checked==false){
+						    		$('#intro').attr('disabled',false);
+						    		$('#goal').attr('disabled',false);
+						    		
+						    		cate.on("click",function(){
+						    			$(this)[0].textContent = 1 - $(this)[0].textContent;
+						            });
+									$('body').css({'background-color':'black',
+												   '-webkit-filter':'invert(100%)',
+												   'filter':'invert(100%)'});
+
+								}else{
+									$('body').css({'background-color':'white',
+												   '-webkit-filter':'invert(0%)',
+												   'filter':'invert(0%)'});
+									
+									$('#intro').attr('disabled',true);
+									$('#goal').attr('disabled',true);
+									var userId = $('#userId')[0].innerText;
+						   			var intro = $('#intro')[0].value;
+						   			var goal = $('#goal')[0].value;
+									
+						   			myCate=""
+						   			if(cate[0].textContent==1){
+						   				myCate+="건강,"
+						   			}
+						   			if(cate[1].textContent==1){
+						   				myCate+="취미,"
+						   			}
+						   			if(cate[2].textContent==1){
+						   				myCate+="자기개발,"
+						   			}
+						   			if(cate[3].textContent==1){
+						   				myCate+="경제,"
+						   			}
+						   			if(cate[4].textContent==1){
+						   				myCate+="생활,"
+						   			}
+						   			if(cate[5].textContent==1){
+						   				myCate+="기타,"
+						   			}
+						   			
+						   			var interest = myCate;
+						   			
+						   			cate.off("click");
+						    		
+						    		$.ajax({
+										url:"updateProfile.do",
+										data:{userId:userId,goal:goal,intro:intro,interest:interest},
+										type:"post",
+										success:function(data){
+											$('#intro').val(data.intro);
+											$('#goal').val(data.goal);
+											$('.myCate').val(data.interest);
+										},error:function(){
+											console.log("error");
+										}
+									});
+								}
+						    }
+							
+							$(function(){
+								setInterval(function(){
+									for(var i=0; i<6; i++){
+										if(cate[i].textContent==0){
+											$(cate[i]).css('opacity','0.2');
+										}else{
+											$(cate[i]).css('opacity','1');
+										}
 									}
-							    }	
-							</script>
-						</div>
-						<div class="main-up-content" style="font-size:20px;">
-							<textarea id="goal" cols="105" rows="9" style="resize: none; padding:3%; overflow:hidden; border:0px; background:white" disabled>${ mypage.goal }</textarea>
-						</div>
+								},100);
+							});
+
+						</script>
 					</div>
 				</div>
 			</div>

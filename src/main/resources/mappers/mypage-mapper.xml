@@ -29,4 +29,10 @@
 		FROM FOLLOW
 		WHERE FOLLOWER=#{userId}
 	</select>
+	
+	<update id="updateProfile" parameterType="Mypage">
+		UPDATE MYPAGE
+		SET INTRO=#{intro},GOAL=#{goal},INTEREST=#{interest}
+		WHERE USERID=#{userId}
+	</update>
 </mapper>

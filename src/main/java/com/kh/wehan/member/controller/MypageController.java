@@ -1,19 +1,18 @@
 package com.kh.wehan.member.controller;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
 import com.kh.wehan.member.model.service.MypageService;
 import com.kh.wehan.member.model.vo.Member;
 import com.kh.wehan.member.model.vo.Mypage;
@@ -63,12 +62,37 @@ public class MypageController {
 //		gson.toJson(mypage ,response.getWriter());
 //	}
 	
-	@RequestMapping(value="updateGoal.do",method=RequestMethod.POST)
-	@ResponseBody
-	public String updateGoal(String userId) {
-		System.out.println("업데이트 : " + userId);
+//	/**
+//	 * 목표 업데이트, ajax/jackson사용, 근데 영어만 됨
+//	 * @param userId
+//	 * @param goal
+//	 * @return
+//	 * @throws UnsupportedEncodingException 
+//	 */
+//	@RequestMapping("updateGoal.do")
+//	@ResponseBody
+//	public String updateGoal(String userId, String goal){
+//		Mypage mp = new Mypage(userId, goal);
+//		
+//		int result = myService.updateGoal(mp);
+//		
+//		if(result>0) {
+//			return mp.getGoal();
+//		}else {
+//			return "error";
+//		}
+//	}
+	
+	@RequestMapping("updateProfile.do")
+	public void updateGoal(HttpServletResponse response,String userId,String intro,String goal,String interest) throws JsonIOException, IOException {
+		Mypage mp = new Mypage(userId,intro,goal,interest);
 		
-		return "하이";
+		int result = myService.updateProfile(mp);
+		
+		response.setContentType("application/json; charset=utf-8");
+		
+		Gson gson = new Gson();
+		gson.toJson(mp,response.getWriter());
 	}
 	
 	@RequestMapping("my_challengeView.do")
