@@ -54,6 +54,10 @@ public class MemberServiceImpl implements MemberService{
 	public ArrayList<Member> memberList() {
 		return mDao.memberList();
 	}
+	@Override
+	public int updateMember(Member m) {
+		return mDao.updateMember(m);
+	}
 
 
 }

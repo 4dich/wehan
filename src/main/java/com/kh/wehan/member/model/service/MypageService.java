@@ -24,11 +24,4 @@ public interface MypageService {
 	 */
 	public int followingCount(String userId);
 
-	/**
-	 * 0-3. 개인정보 업데이트
-	 * @param m
-	 * @return
-	 */
-	public int updateMember(Member m);
-
 }

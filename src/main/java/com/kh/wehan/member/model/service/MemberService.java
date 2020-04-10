@@ -46,5 +46,12 @@ public interface MemberService {
 	 */
 	ArrayList<Member> memberList();
 	
+	/**
+	 * 유저정보 업데이트
+	 * @param m
+	 * @return
+	 */
+	int updateMember(Member m);
+	
 
 }

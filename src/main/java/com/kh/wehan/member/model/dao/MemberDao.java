@@ -49,4 +49,9 @@ public class MemberDao {
 	}
 
 
+	public int updateMember(Member m) {
+		return sqlSession.update("memberMapper.updateMember", m);
+	}
+
+
 }

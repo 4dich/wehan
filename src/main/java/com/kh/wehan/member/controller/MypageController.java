@@ -44,26 +44,6 @@ public class MypageController {
 		return "user/mypage/my_updateInfo";
 	}
 	
-	@RequestMapping("my_updateInfo.do")
-	public ModelAndView updateMember(Member m, ModelAndView mv, HttpServletRequest request) {
-			
-			HttpSession session = request.getSession();
-		
-			System.out.println(m);
-			int result = myService.updateMember(m);
-			
-			session.setAttribute("loginUser", m);
-			
-			if(result>0) {
-				mv.setViewName("redirect:my_profileView.do");
-			}else {
-				mv.addObject("msg","XXX")
-				  .addObject("msg2","회원정보 수정 실패")
-				  .setViewName("common/errorPage");
-			}
-			
-			return mv;
-	}
 	
 //	@RequestMapping("my_profileView.do")
 //	public void my_profileView(HttpServletResponse response) throws JsonIOException, IOException {

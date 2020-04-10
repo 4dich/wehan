@@ -103,7 +103,7 @@
 			<!-- Page start -->
 			<div class="page-section blog-page" style="margin-top: 40px; height: 800px;">
 				<div class="contact-section">
-					<form action="my_updateInfo.do" method="post" onsubmit="return pattern();" enctype="multipart/form-data">
+					<form action="updateMember.do" method="post" onsubmit="return pattern();" enctype="multipart/form-data">
 					<h3>회원정보 - 회원정보수정</h3>
 					<div class="row" style="margin-left: 30px; height: 400px;">
 						<!-- <div class="col-xl-6">
@@ -114,20 +114,16 @@
                             <%-- <img class="profile" src="resources/images/user/${ loginUser.picture }" style="width:300px;height:300px; object-fit:contain; border:1px solid #242424;"> --%>
 							<input type="text" id="picture" name="picture" style="display:none" value="${ loginUser.picture }">
 							<input id="file" name="uploadFile" type="file" onchange="previewImage(this,'View_area')" style="margin-left: 50%;">
-							<div id="View_area" style="height: 350px; width: 350px; dispaly: inline; border:1px solid; text-align:center; padding-top:5%">
-							
+							<div id="View_area" style="height: 350px; width: 350px; dispaly: inline; border:1px solid black; text-align:center; padding-top:25px;">
+								<div id="View_area_in" style="height: 300px; width: 300px; margin-left:25px"></div>
 							</div>
-<script>
-								$(function(){
-/* 		var picture = $("#picture")[0];// input text
-		var view = $("#View_area")[0];	//div */
-		/* $("#View_area").css('background-image', 'url(' + encodeURIComponent(resources/images/user/01.jpg) + ')'); */
-		/* $("#View_area").css('background','red'); */
-		$("#View_area").css('background-image','url(resources/images/user/01.jpg)');
-		
-		/* $("#View_area")[0].css('background-image', 'url(' + encodeURIComponent(resources/images/user/01.jpg) + ')'); */
-	});
-</script>
+						<script>
+							$(function(){
+								/* $("#View_area_in").css('background-image','url(resources/images/user/01.jpg)'); */
+								$("#View_area_in").css('background-image','url(resources/images/user/'+$('#picture')[0].value+')');
+								$("#View_area_in").css('background-size','contain');
+							});
+						</script>
 							<label for="file" style="margin-left: 35%; border:1px solid black; margin-top: 30px; padding: 10px;">파일버튼</label><input id="file" name="uploadFile" type="file" onchange="previewImage(this,'View_area')" style="margin-left: 50%;">
 
 						</div>
@@ -226,7 +222,7 @@
 	<script>
 	function previewImage(targetObj, View_area) {
 		
-		$("#View_area").css('background-image','none');
+		$("#View_area_in").css('display','none');
 		
 		var preview = document.getElementById(View_area); //div id
 		var ua = window.navigator.userAgent;
@@ -271,8 +267,8 @@
 				img.id = "prev_" + View_area;
 				img.classList.add("obj");
 				img.file = file;
-				img.style.width = '279px'; 
-				img.style.height = '299px';
+				img.style.width = '300px'; 
+				img.style.height = '300px';
 				preview.appendChild(img);
 				if (window.FileReader) { // FireFox, Chrome, Opera 확인.
 					var reader = new FileReader();
