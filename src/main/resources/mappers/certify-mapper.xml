@@ -12,7 +12,6 @@
 		<result property="ceContent" column="CECONTENT"/>
 		<result property="cePicture" column="CEPICTURE"/>
 		<result property="ceDate" column="CEDATE"/>
-		<result property="ceDel" column="CEDEL_YN"/>
 	</resultMap>
 	
 	<!-- certifyReply resultMap  -->
@@ -23,10 +22,9 @@
 		<result property="ccContent" column="CCCONTENT"/>
 		<result property="ccDate" column="CCDATE"/>
 		<result property="ccDel" column="CCDEL_YN"/>
+		<result property="picture" column="PICTURE"/>
 	
 	</resultMap>
-	
-	
 	
 	<!-- 인증글 갯수 -->
 	<select id="getListCount" resultType="_int">
@@ -88,9 +86,11 @@
 	
 	<!-- 댓글 -->
 	<select id="selectReply" resultMap="certifyReplyResultSet">
-	SELECT * FROM 
-	CERTIFYREPLY
-	WHERE CEID = #{ceId}	
+	SELECT M.PICTURE, C.*
+	FROM CERTIFYREPLY C
+	JOIN MEMBER M
+	ON C.USERID = M.USERID
+	WHERE CEID = #{ceId}
 	</select>
 
 </mapper>
