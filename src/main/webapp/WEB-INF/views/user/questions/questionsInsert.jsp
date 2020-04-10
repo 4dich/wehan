@@ -54,7 +54,7 @@
 	<!-- Main section start -->
 	<div class="main-site-warp">
 
-		<%-- <c:import url="/WEB-INF/views/common/ad_menuBar.jsp"/> --%>
+		<c:import url="/WEB-INF/views/common/menuBar.jsp"/>
 	
 		
 		<header class="header-section">
@@ -99,7 +99,7 @@
 						<div class="questionsInfo">
 							<div class="questionsInfoArea">
 								
-								<form action="user_questionsInsert.do" method="post">
+								<form action="questionsInsert.do" method="post">
 									<table class="detailArea">
 										<tr class="questionsTitleArea">
 											<td class="questionsTitle1">제목</td>
@@ -110,7 +110,7 @@
 										<tr class="questionsUserNameArea">
 											<td class="questionsUserName1">작성자</td>
 											<td class="questionsUserName2">
-												<input type="text" name="qId" value="${loginUser.id}" disabled>
+												<input type="text" name="qUserid" value="${loginUser.userId}" disabled>
 											</td>
 										</tr>
 										<tr class="questionsTextBox">

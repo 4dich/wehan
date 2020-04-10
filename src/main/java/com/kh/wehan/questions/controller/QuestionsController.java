@@ -150,19 +150,18 @@ public class QuestionsController {
 		return mv;
 	}
 	
-	/**
-	 * 유저 문의사항 등록하기
-	 * @param mv
-	 * @param qTitle
-	 * @param nWriter
-	 * @param nContent
-	 * @return
-	 */
+/**
+ * 유저 문의사항 등록하기
+ * @param n
+ * @param qUserid
+ * @return
+ */
 	@RequestMapping("questionsInsert.do")
-	public String questionsInsert(Questions n) {
+	public String questionsInsert(Questions n, String qUserid) {
+		System.out.println(qUserid);
+		n.setqUserid(qUserid);
 		
-		n.setqId("user");
-		
+		System.out.println(n);
 		int result = qService.questionsInsert(n);
 		
 		if(result > 0) {
