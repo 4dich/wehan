@@ -53,5 +53,15 @@ public class AdminCertifyServiceImpl implements AdminCertifyService {
 		return acDao.selectSearchList(sc,pi);
 	}
 
+	/**
+	 * 인증글 비공개 처리
+	 */
+	
+	@Override
+	public int updateCertify(int ceId) {
+		return acDao.updateCertify(ceId);
+	}
+
+
 
 }

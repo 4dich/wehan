@@ -24,9 +24,4 @@ public class MypageDao {
 	public int followingCount(String userId) {
 		return sqlSession.selectOne("mypageMapper.followingCount", userId);
 	}
-
-	public int updateMember(Member m) {
-		return sqlSession.update("memberMapper.updateMember", m);
-	}
-
 }

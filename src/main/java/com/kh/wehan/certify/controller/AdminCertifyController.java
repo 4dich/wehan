@@ -113,6 +113,26 @@ public class AdminCertifyController {
 		return mv;
 	}
 	
+	@RequestMapping("ad_certifyDetailUpdate.do")
+	public ModelAndView adCerDetailUpdate(ModelAndView mv, int ceId,
+			@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage) {
+		
+		int result = acService.updateCertify(ceId);
+		
+		if(result > 0) {
+			mv.addObject("currentPage",currentPage)
+			.setViewName("admin/ad_certifyDetail");
+		}else {
+			mv.addObject("msg","Error")
+			.addObject("msg2","비공개처리실패")
+			.setViewName("commom/errorPage");
+		}
+		
+		
+		return mv;
+	}
+	
+	
 	
 	
 	

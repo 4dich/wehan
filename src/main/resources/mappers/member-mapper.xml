@@ -19,7 +19,7 @@
 		<result property="outYN" column="OUT_YN"/>
 	</resultMap>
 	
-	<resultMap id="adminResultSet"  type="admin">
+	<resultMap id="adminResultSet" type="admin">
 		<id property="userId" column="USERID"/>
 		<result property="password" column="PASSWORD"/>
 	</resultMap>
@@ -33,59 +33,50 @@
 	</resultMap>
 	
 	<select id="userInfo" parameterType="string" resultMap="memberResultSet">
-		SELECT *
-		FROM MEMBER
-		WHERE USERID=#{userId}
-		AND OUT_YN='N'
+		SELECT * FROM MEMBER WHERE USERID=#{userId} AND OUT_YN='N'
 	</select>
 	
-	<select id="adminInfo" parameterType="string" resultMap="adminResultSet">
-		SELECT *
-		FROM ADMIN
-		WHERE USERID=#{userId}
+	<select id="adminInfo" parameterType="string" resultMap="adminResultSet"> 
+		SELECT * FROM ADMIN WHERE USERID=#{userId} 
 	</select>
 	
 	<select id="idCheck" parameterType="string" resultType="_int">
-		SELECT COUNT(*)
-		FROM MEMBER
-		WHERE USERID=#{idCheck}
-	</select>
-	<select id="AidCheck" parameterType="string" resultType="_int">
-		SELECT COUNT(*)
-		FROM ADMIN
-		WHERE USERID=#{idCheck}
-	</select>
-	<select id="nickCheck" parameterType="string" resultType="_int">
-		SELECT COUNT(*)
-		FROM MEMBER
-		WHERE NICKNAME=#{nickName}
-	</select>
-	<select id="blackCheck" parameterType="string" resultType="_int">
-		SELECT COUNT(*)
-		FROM BLACKLIST
-		WHERE USERID=#{userId}
+		SELECT COUNT(*) FROM MEMBER WHERE USERID=#{idCheck}
 	</select>
 	
-	<insert id="insertMember" parameterType="Member" >
+	<select id="AidCheck" parameterType="string" resultType="_int"> 
+		SELECT COUNT(*) FROM ADMIN WHERE USERID=#{idCheck} 
+	</select>
+	
+	<select id="nickCheck" parameterType="string" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER WHERE NICKNAME=#{nickName}
+	</select>
+	
+	<select id="blackCheck" parameterType="string" resultType="_int">
+		SELECT COUNT(*) FROM BLACKLIST WHERE USERID=#{userId}
+	</select>
+	
+	<insert id="insertMember" parameterType="Member">
 		INSERT INTO MEMBER VALUES(#{userId},#{password},#{nickName},#{userName},#{birthDay},#{email},#{address},#{phone},#{account},#{picture},SYSDATE,DEFAULT)
 	</insert>
 	
-	<update id="updateMember" parameterType="Member">
-		UPDATE MEMBER
-		SET PASSWORD=#{password},NICKNAME=#{nickName},USERNAME=#{userName},BIRTHDAY=#{birthDay},
-			ADDRESS=#{address},EMAIL=#{email},PHONE=#{phone},ACCOUNT=#{account},PICTURE=#{picture}
-		WHERE USERID=#{userId}
-	</update>
-
-	<select id="memberCount" resultType="_int">
-		SELECT COUNT(*)
-		FROM MEMBER
-		WHERE OUT_YN='N'
+	<select id="memberCount" resultType="_int"> 
+		SELECT COUNT(*) FROM MEMBER WHERE OUT_YN='N' 
 	</select>
 	
 	<select id="memberList" resultType="Member" resultMap="memberResultSet">
-		SELECT *
-		FROM MEMBER
-		WHERE OUT_YN='N'
+	 	SELECT * FROM MEMBER WHERE OUT_YN='N' 
+	 </select>
+	
+	<select id="mlistSearch" parameterType="Member" resultMap="memberResultSet">
+		<if test="userId != null">
+		SELECT * FROM MEMBER WHERE OUT_YN='N' AND USERID=#{userId}
+		</if>
+		<if test="nickName != null">
+		SELECT * FROM MEMBER WHERE OUT_YN='N' AND NICKNAME=#{nickName}
+		</if>
+		<if test="userName != null">
+		SELECT * FROM MEMBER WHERE OUT_YN='N' AND USERNAME=#{userName}
+		</if>
 	</select>
 </mapper>

@@ -49,8 +49,17 @@ public class PayController {
 		 
 		Pay p = pService.slectPayDetail(pId);
 		Challenge ch = pService.slectchDetail(pId);
-		System.out.println(p);
 		
+		
+		String str = p.getmList().get(0).getAccount();
+		String[] starr = str.split(",");
+	
+		
+		Object bank = starr[0];
+		Object number = starr[2];
+		
+		mv.addObject("bank",bank);
+		mv.addObject("number",number);
 		mv.addObject("p",p);
 		mv.addObject("ch",ch);
 		mv.setViewName("admin/ad_payDetail");	

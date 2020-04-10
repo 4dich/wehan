@@ -52,6 +52,13 @@ public class AdminCertifyDao {
 		return (ArrayList)sqlSession.selectList("certifyMapper.selectSearchList",sc, rowBounds);
 	}
 
+	public int updateCertify(int ceId) {
+		
+		return sqlSession.update("certifyMapper.updateCertify",ceId);
+	}
+
+
+
 	
 	
 	
