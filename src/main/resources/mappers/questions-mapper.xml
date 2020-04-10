@@ -73,6 +73,28 @@
 			AND QCONTENT LIKE '%' || #{content} || '%'
 		</if>
 		ORDER BY QID DESC  		
-  	</select>  	           
+  	</select>  	          
+  	
+  	
+  	<!-- 문의사항 입력 -->
+  	<insert id="questionsInsert">
+  		INSERT INTO QUESTIONS 
+  		VALUES(SEQ_NID.NEXTVAL,#{qTitle},#{qContent},#{qId},DEFAULT,NULL,SYSDATE,DEFAULT)  	
+  	</insert>
+  	
+  	<!-- 문의사항 수정 -->
+  	<update id="questionsModify">
+  		UPDATE QUESTIONS 
+  		SET QTITLE = #{qTitle},QCONTENT = #{qContent}, QDATE=SYSDATE 
+  		WHERE QID = #{qId}
+  		AND QDEL_YN = 'N'
+  	</update>
+  	
+  	<!-- 문의사항 삭제 -->
+  	<update id="questionsDelete">
+  		UPDATE QUESTIONS
+  		SET QDEL_YN = 'Y'
+  		WHERE QID = #{qId}
+  	</update>  	  	  	
    
     </mapper>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.wehan.common.model.vo.PageInfo;
+import com.kh.wehan.notice.model.vo.Notice;
 import com.kh.wehan.questions.model.dao.QuestionsDao;
 import com.kh.wehan.questions.model.vo.Questions;
 import com.kh.wehan.questions.model.vo.SearchCondition;
@@ -62,7 +63,32 @@ public class QuestionsServiceImpl implements QuestionsService{
 		return qDao.selectSearchList(sc,pi);
 	}
 
+	/**
+	 * 문의사항 입력하기
+	 */
+	@Override
+	public int questionsInsert(Questions n) {
+		return qDao.questionsInsert(n);
+	}
+
+	/**
+	 * 문의사항 수정하기
+	 */
+	@Override
+	public int questionsModify(Questions n) {
+		return qDao.questionsModify(n);
+	}
+
+	/**
+	 * 문의사항 삭제하기
+	 */
+	@Override
+	public int questionsDelete(int qId) {
+		return qDao.questionsDelete(qId);
+	}
+
 	
+
 }
 
 

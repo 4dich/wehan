@@ -3,6 +3,7 @@ package com.kh.wehan.certify.model.service;
 import java.util.ArrayList;
 
 import com.kh.wehan.certify.model.vo.Certify;
+import com.kh.wehan.certify.model.vo.CertifyReply;
 import com.kh.wehan.certify.model.vo.SearchCondition;
 import com.kh.wehan.common.model.vo.PageInfo;
 import com.kh.wehan.notice.model.vo.Notice;
@@ -50,6 +51,13 @@ public interface AdminCertifyService {
 	 * @return
 	 */	
 	int updateCertify(int ceId);
+
+	/**
+	 * 인증글 댓글 리스트
+	 * @param ceId
+	 * @return
+	 */
+	ArrayList<CertifyReply> selectReply(int ceId);
 
 
 
