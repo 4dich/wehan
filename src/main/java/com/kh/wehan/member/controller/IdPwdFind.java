@@ -13,6 +13,9 @@ public class IdPwdFind {
 	@Autowired
 	MemberService mService;
 	
+	private boolean lowerCheck;
+	private int size;
+	
 	@RequestMapping("idFind.do")
 	public String idFind(String email,HttpServletRequest request) {
 		
@@ -26,11 +29,16 @@ public class IdPwdFind {
 	}
 	
 	private String init() {
+		
+		
 		return "";
 	}
 	
-	private String getKey() {
-		return "";
+	
+	private String getKey(boolean lowercheck, int size) {
+		this.lowerCheck = lowercheck;
+		this.size = size;
+		return init();
 	}
 	
 	private void SendMail(String email, String userId,HttpServletRequest request) {

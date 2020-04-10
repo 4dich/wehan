@@ -53,9 +53,6 @@ public class MemberInfoListController {
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage,mCount,10,10);
 		
-		System.out.println(selecter);
-		System.out.println(searchValue);
-		
 		Member mem = new Member();
 		if(selecter.equals("userId")) {
 			mem.setUserId(searchValue);

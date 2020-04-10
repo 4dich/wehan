@@ -11,6 +11,7 @@ public class Pay {
   private String chId;
   private String userId;
   private int price;
+  private int sc_price;
   private String pmethod;
   private String chName;
   private Date pDate;
@@ -23,13 +24,14 @@ public class Pay {
 	  super();
   }
 
-public Pay(String pId, String chId, String userId, int price, String pmethod, String chName, Date pDate,
+public Pay(String pId, String chId, String userId, int price, int sc_price, String pmethod, String chName, Date pDate,
 		String refund_yn, String pdel_yn, ArrayList<Member> mList, ArrayList<Challenge> chList) {
 	super();
 	this.pId = pId;
 	this.chId = chId;
 	this.userId = userId;
 	this.price = price;
+	this.sc_price = sc_price;
 	this.pmethod = pmethod;
 	this.chName = chName;
 	this.pDate = pDate;
@@ -69,6 +71,14 @@ public int getPrice() {
 
 public void setPrice(int price) {
 	this.price = price;
+}
+
+public int getSc_price() {
+	return sc_price;
+}
+
+public void setSc_price(int sc_price) {
+	this.sc_price = sc_price;
 }
 
 public String getPmethod() {
@@ -129,10 +139,11 @@ public void setChList(ArrayList<Challenge> chList) {
 
 @Override
 public String toString() {
-	return "Pay [pId=" + pId + ", chId=" + chId + ", userId=" + userId + ", price=" + price + ", pmethod=" + pmethod
-			+ ", chName=" + chName + ", pDate=" + pDate + ", refund_yn=" + refund_yn + ", pdel_yn=" + pdel_yn
-			+ ", mList=" + mList + ", chList=" + chList + "]";
+	return "Pay [pId=" + pId + ", chId=" + chId + ", userId=" + userId + ", price=" + price + ", sc_price=" + sc_price
+			+ ", pmethod=" + pmethod + ", chName=" + chName + ", pDate=" + pDate + ", refund_yn=" + refund_yn
+			+ ", pdel_yn=" + pdel_yn + ", mList=" + mList + ", chList=" + chList + "]";
 }
+
 
 
 }
