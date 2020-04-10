@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import com.kh.wehan.certify.model.vo.Certify;
 import com.kh.wehan.challenge.model.vo.Challenge;
-import com.kh.wehan.challenge.model.vo.searchChallenge;
 import com.kh.wehan.common.model.vo.PageInfo;
 
 public interface ChallengeService {
@@ -34,7 +33,7 @@ public interface ChallengeService {
 	 * @param chal
 	 * @return
 	 */
-	int getSearchListCount(searchChallenge chal);
+	int getSearchListCount(Challenge chal);
 
 	/**
 	 * 관리자 챌린지 리스트 조건 검색
@@ -42,7 +41,14 @@ public interface ChallengeService {
 	 * @param pi
 	 * @return
 	 */
-	ArrayList<Challenge> selectSearchList(searchChallenge chal, PageInfo pi);
+	ArrayList<Challenge> selectSearchList(Challenge chal, PageInfo pi);
+
+	/**
+	 * 사용자 챌린지 등록
+	 * @param chal
+	 * @return
+	 */
+	int insertChallenge(Challenge chal);
 
 	
 	

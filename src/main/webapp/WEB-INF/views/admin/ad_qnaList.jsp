@@ -89,6 +89,9 @@
 				<div class="blog-posts">
 								
 					<div class="blog-post-item">
+                        <button class="site-btn sb-dark" style="width: 170px; font-size: 15px; margin-bottom: 40px;" type="button" onclick="location.href='ad_questionsInsertView.do'">
+							등록하기							
+						</button>
 
 						<div id="searchArea">
 							<div id="searchSelect"> 
@@ -142,14 +145,14 @@
 
 						</table>
 						
-						<!-- 페이지 -->
+										<!-- 페이지 -->
 							<c:forEach var="p" begin="${pi.startPage}" end="${pi.endPage }">
 								<c:if test="${ p eq pi.currentPage }">
 									<font color="red" size = "4"><b>[${ p }]</b></font>
 								</c:if>
 								
 								<c:if test="${ p ne pi.currentPage }">
-									<c:url var="pagenation" value="ad_questionsList.do">
+									<c:url var="pagenation" value="ad_noticeList.do">
 										<c:param name="currentPage" value="${ p }"/>
 									</c:url>
 									<a href="${ pagination }">${p}</a>
@@ -161,7 +164,7 @@
 								>
 							</c:if>
 							<c:if test="${pi.currentPage ne pi.maxPage }">
-								<c:url var="after" value="ad_questionsList.do">
+								<c:url var="after" value="ad_noticeList.do">
 									<c:param name="currentPage" value="${pi.currentPage + 1 }"/>
 								</c:url>
 								<a href="${after}">></a>

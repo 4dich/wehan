@@ -150,8 +150,95 @@ public class QuestionsController {
 		return mv;
 	}
 	
-  
+/**
+ * 유저 문의사항 등록하기
+ * @param n
+ * @param qUserid
+ * @return
+ */
+	@RequestMapping("questionsInsert.do")
+	public String questionsInsert(Questions n, String qUserid) {
+		System.out.println(qUserid);
+		n.setqUserid(qUserid);
+		
+		System.out.println(n);
+		int result = qService.questionsInsert(n);
+		
+		if(result > 0) {
+			return "redirect:questionsList.do";
+		} else {						
+			return "common/errorPage";
+		}
+	}
+	
+	/**
+	 * 유저 문의사항 수정 불러오기
+	 * @param mv
+	 * @param nId
+	 * @param currentPage
+	 * @return
+	 */
+	@RequestMapping("questionsModifyView.do")
+	public ModelAndView questionsModifyView(ModelAndView mv, int qId, int currentPage) {
+		
+		Questions n = qService.questionsSelect(qId);
+		
+		if(n != null) {
+			mv.addObject("n", n).addObject("currentPage", currentPage).setViewName("user/quetionsModify");
+		}
+		
+		return mv;		
+		
+	}
+	
+	/**
+	 * 문의사항 수정 저장하기
+	 * @param n
+	 * @return
+	 */
+	@RequestMapping("questionsModify.do")
+	public ModelAndView questionsModify(ModelAndView mv, Questions n) {		
+		
+		int result = qService.questionsModify(n);
+		
+		
+		if(result > 0 ) {
+			
+			mv.addObject("qId", n.getqId()).setViewName("redirect:questionsList.do");
+			
+		} else {
+			
+			mv.addObject("msg", "Error").addObject("msg2", "페이지 상세보기 에러").setViewName("common/errorPage");
+			
+		}
+		
+		return mv;	
+	}
+	
+		
+	@RequestMapping("questionsDelete.do")
+	public ModelAndView questionsDelete(ModelAndView mv, int qId) {
+		
+		int result = qService.questionsDelete(qId);
+		
+		if(result > 0) {
+			mv.setViewName("redirect:questionsList.do");
+		} else {
+			mv.addObject("msg", "Error").addObject("msg2", "문의사항 삭제 에러").setViewName("common/errorPage");
+		}
+		
+		return mv;
+	}
+	
+	@RequestMapping("questionsInsertView.do")
+	public String qInsertView() {
+		
+		return "user/questions/questionsInsert";
+	}
 }
+	
+
+
 
 
 

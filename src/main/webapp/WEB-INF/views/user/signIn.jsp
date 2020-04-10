@@ -98,7 +98,6 @@
 			</div>
             <!-- Left Side section end -->
             
-
             <!-- page end Main section end 사이에 그대로 붙여넣어-->
             <!-- 카피라이트 -->
             <!-- Page end -->
@@ -189,7 +188,7 @@
 	
 	<!-- Main section end -->
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script>
+	<script>3
 
 	function previewImage(targetObj, View_area) {
 		var preview = document.getElementById(View_area); //div id

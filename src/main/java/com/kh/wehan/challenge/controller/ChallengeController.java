@@ -1,16 +1,20 @@
 package com.kh.wehan.challenge.controller;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.wehan.challenge.model.service.ChallengeService;
 import com.kh.wehan.challenge.model.vo.Challenge;
-import com.kh.wehan.challenge.model.vo.searchChallenge;
 import com.kh.wehan.common.Pagination;
 import com.kh.wehan.common.model.vo.PageInfo;
 
@@ -73,11 +77,18 @@ public class ChallengeController {
 		return mv;
 	}
 	
+	/**
+	 * 3. 관리자 챌린지 게시판 > 조건 검색
+	 * @param mv
+	 * @param searchChallengeAdmin
+	 * @param search
+	 * @return
+	 */
 	@RequestMapping("searchChallengeAdmin.do")
 	public ModelAndView searchChallengeAdmin(ModelAndView mv, String searchChallengeAdmin, String search) {
 		
-	searchChallenge chal = new searchChallenge();
-		
+		Challenge chal = new Challenge();
+		System.out.println(searchChallengeAdmin);
 		if(searchChallengeAdmin.equals("chName")) {
 			chal.setChName(search);
 		} else if(searchChallengeAdmin.equals("userId")) {
@@ -87,7 +98,8 @@ public class ChallengeController {
 		} else if(searchChallengeAdmin.equals("endDate")) {
 			chal.setEndDate(search);
 		}	
-			
+		
+		System.out.println(chal);
 		int currentPage = 1;
 		
 		int listCount = cService.getSearchListCount(chal);
@@ -104,9 +116,76 @@ public class ChallengeController {
 			
 			list.get(i).setTotalPrice(str.length * list.get(i).getPrice());
 		}
+		System.out.println(list);
 		
 		mv.addObject("list", list).addObject("pi", pi).setViewName("admin/ad_challengeList");
 		
 		return mv;
 	}
+	
+	/**
+	 * 4. 이미지 파일 저장(챌린지 등록)
+	 * @param file
+	 * @param request
+	 * @return
+	 */
+	public String saveFile(MultipartFile file,HttpServletRequest request) {
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String savePath = root + "\\images\\user";
+		File folder = new File(savePath);
+		
+		if(!folder.exists()) {
+			folder.mkdir();
+		}
+		
+		String originFileName = file.getOriginalFilename();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		
+		String picture = sdf.format(new java.sql.Date(System.currentTimeMillis()))+ "."
+				+ originFileName.substring(originFileName.lastIndexOf(".")+1);
+		String picturePath = folder + "\\" + picture;
+		
+		try {
+			file.transferTo(new File(picturePath));
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return picture;
+	}
+		
+	/**
+	 * 5. 사용자 챌린지 등록
+	 * @param chal
+	 * @param mv
+	 * @param request
+	 * @param file
+	 * @return
+	 */
+	@RequestMapping("registerChallenge.do")
+	public String registerChallenge(Challenge chal, ModelAndView mv, HttpServletRequest request,
+										  @RequestParam(name="uploadFile", required=false) MultipartFile file) {
+		
+		if(!file.getOriginalFilename().equals("")) {
+			String picture = saveFile(file,request);
+			
+			if(picture != null) {
+				chal.setChPicture(picture);
+			}
+		}
+		
+		System.out.println(chal);
+		
+		int result = cService.insertChallenge(chal);
+		
+		if(result > 0) {
+			return "user/challenge/ch_detail";
+		}else {
+			return "common/errorPage";
+		}
+			
+	}
+	
+
+		
 }

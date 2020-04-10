@@ -61,5 +61,10 @@ public class MemberDao {
 		return (Member)sqlSession.selectOne("memberMapper.userInfo",userId);
 	}
 
+
+	public String idFind(String email) {
+		return sqlSession.selectOne("memberMapper.idFind",email);
+	}
+
 }
 

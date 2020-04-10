@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.wehan.certify.model.vo.Certify;
 import com.kh.wehan.challenge.model.vo.Challenge;
-import com.kh.wehan.challenge.model.vo.searchChallenge;
 import com.kh.wehan.common.model.vo.PageInfo;
 
 @Repository("cDao")
@@ -34,16 +33,20 @@ public class ChallengeDao {
 		return sqlSession.selectOne("challengeMapper.selectOneDetail");
 	}
 
-	public int getSearchListCount(searchChallenge chal) {
-		return sqlSession.selectOne("challengeMapper.getSearchListCount");
+	public int getSearchListCount(Challenge chal) {
+		return sqlSession.selectOne("challengeMapper.getSearchListCount",chal);
 	}
 
-	public ArrayList<Challenge> getSelectSearchList(searchChallenge chal, PageInfo pi) {
+	public ArrayList<Challenge> getSelectSearchList(Challenge chal, PageInfo pi) {
 		
 		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
 		return (ArrayList)sqlSession.selectList("challengeMapper.getSelectSearchList", chal, rowBounds);
+	}
+
+	public int getInsertChallenge(Challenge chal) {
+		return sqlSession.selectOne("challengeMapper.insertChallenge");
 	}
 
 

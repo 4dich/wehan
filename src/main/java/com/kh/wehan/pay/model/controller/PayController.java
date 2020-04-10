@@ -110,5 +110,32 @@ public class PayController {
 		}
 	}
 	
+	@RequestMapping("plistSearch.do")
+	public ModelAndView plistSearch(ModelAndView mv,@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage
+			,String selecter,String searchValue) {
+		
+		
+		Pay p = new Pay();
+		Challenge ch = new Challenge();
+		if(selecter.equals("userId")) {
+			p.setUserId(searchValue);
+		}
+		if(selecter.equals("chName")) {
+			ch.setChName(searchValue);
+		}
+		if(selecter.equals("pNo")) {
+			p.setpId(searchValue);
+		}
+		
+		ArrayList<Pay> psearch = pService.pSearch(p);
+		ArrayList<Challenge> chsearch = pService.chSearch(ch);
+		
+		System.out.println(psearch);
+		System.out.println(chsearch);
+		
+		
+		return mv;
+		
+	}
 	
 }
