@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.wehan.member.model.service.MemberService;
 import com.kh.wehan.member.model.vo.Member;
@@ -53,7 +55,6 @@ public class MemberController {
 		Pattern p = Pattern.compile("^[a-zA-Z가-힣0-9].{2,7}$");
 		Matcher m = p.matcher(nickName);
 		boolean b = m.find();
-		System.out.println(b);
 		
 		if(b == true) {
 			int result = mService.nickCheck(nickName);
@@ -71,13 +72,7 @@ public class MemberController {
 	public String insertMember(Member m, HttpServletRequest request,
 			  @RequestParam(name="uploadFile",required=false)MultipartFile file,
 			  String bankName , String accountHolder , String accountNumber) {
-		
-		System.out.println(m);
-		System.out.println(bankName);
-		System.out.println(accountHolder);
-		System.out.println(accountNumber);
-		System.out.println(file);
-		
+				
 		if(!file.getOriginalFilename().equals("")) {
 			String picture = saveFile(file,request);
 			
@@ -91,7 +86,13 @@ public class MemberController {
 		System.out.println(m);
 		
 		int result = mService.insertMember(m);
-		return "";
+		
+		if(result>0) {
+			return "user/login";
+		}else {
+			return "common/errorPage";
+		}
+			
 	}
 	
 	public String saveFile(MultipartFile file,HttpServletRequest request) {
@@ -119,4 +120,43 @@ public class MemberController {
 		return picture;
 	}
 	
+	/**
+	 * 회원정보 수정
+	 * @param m
+	 * @param mv
+	 * @param request
+	 * @param file
+	 * @return
+	 */
+	@RequestMapping("updateMember.do")
+	public ModelAndView updateMember(Member m, ModelAndView mv, HttpServletRequest request,
+			@RequestParam(name="uploadFile",required=false)MultipartFile file) {
+			
+			HttpSession session = request.getSession();
+			
+			if(!file.getOriginalFilename().equals("")) {
+				String picture = saveFile(file,request);
+				
+				if(picture != null) {
+					m.setPicture(picture);
+				}
+			}
+			
+			System.out.println(m);
+			int result = mService.updateMember(m);
+			
+			session.setAttribute("loginUser", m);
+			
+			if(result>0) {
+				mv.setViewName("redirect:my_profileView.do");
+			}else {
+				mv.addObject("msg","XXX")
+				  .addObject("msg2","회원정보 수정 실패")
+				  .setViewName("common/errorPage");
+			}
+			
+			return mv;
+	}
+	
 }
+

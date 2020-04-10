@@ -27,10 +27,4 @@ public class MypageServiceImpl implements MypageService {
 	public int followingCount(String userId) {
 		return myDao.followingCount(userId);
 	}
-
-	@Override
-	public int updateMember(Member m) {
-		return myDao.updateMember(m);
-	}
-
 }
