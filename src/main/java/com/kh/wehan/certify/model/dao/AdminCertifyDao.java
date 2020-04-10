@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.wehan.certify.model.vo.Certify;
+import com.kh.wehan.certify.model.vo.CertifyReply;
 import com.kh.wehan.certify.model.vo.SearchCondition;
 import com.kh.wehan.common.model.vo.PageInfo;
 import com.kh.wehan.notice.model.vo.Notice;
@@ -55,6 +56,11 @@ public class AdminCertifyDao {
 	public int updateCertify(int ceId) {
 		
 		return sqlSession.update("certifyMapper.updateCertify",ceId);
+	}
+
+	public ArrayList<CertifyReply> selectReply(int ceId) {
+		
+		return (ArrayList)sqlSession.selectList("certifyMapper.selectReply",ceId);
 	}
 
 
