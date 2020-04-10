@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.wehan.challenge.model.vo.Challenge;
 import com.kh.wehan.common.model.vo.PageInfo;
 import com.kh.wehan.pay.model.vo.Pay;
 
@@ -33,6 +34,16 @@ public class PayDao {
 
 	public Pay slectPayDetail(int pId) {
 		return sqlSession.selectOne("payMapper.slectPayDetail",pId);
+	}
+
+
+	public int insertPay(Pay pay) {
+		return sqlSession.insert("payMapper.insertPay",pay);
+	}
+
+
+	public Challenge slectChDetail(int pId) {
+		return sqlSession.selectOne("payMapper.slectChDetail",pId);
 	}
 
 }

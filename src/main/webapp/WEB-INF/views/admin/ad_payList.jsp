@@ -119,7 +119,6 @@
 								<th>챌린지명</th>
 								<th>유저ID</th>
 								<th>마감기한</th>
-								<th>결제여부</th>
 								<th>결제정보</th>
 								<th>환급여부</th>
 							</tr>
@@ -129,10 +128,9 @@
 							<tr class="noticeList">
 								<td><input type="checkbox"></td>
 								<td>${ l.pId }</td>
-								<td>${ p.chContent }</td>
+								<td>${ p.chName }</td>
 								<td>${ l.userId }</td>
-								<td>4</td>
-								<td>${ l.pay_yn }</td>
+								<td>${ l.pDate }</td>
 								<td><button onclick="location.href='paydetail.do?pId=${ l.pId }'">정보</button></td>
 								<td>${ l.refund_yn }</td>
 							</tr>

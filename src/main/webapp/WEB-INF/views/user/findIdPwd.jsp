@@ -25,7 +25,7 @@
 	<!-- Main Stylesheets -->
 	<!-- <link rel="stylesheet" href="../resources/css/main.css"/> -->
 	<link rel="stylesheet" href="resources/css/style.css"/>
-
+	<script src="resources/js/jquery-3.2.1.min.js"></script>
 	<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -131,20 +131,24 @@
 
 							<div class="selectFind">
 								<br><br><br>
-								<div id="idFind" >
-									<input class="input" type="email" placeholder="이메일 입력">
-									<br><br><br><br>
-									<input type="button" class="btn btn-danger" value="확인하기">
-									<br><br>
-								</div>
-								<div id="pwdFind">
-									<input class="input" type="text" placeholder="id입력">
-									<br><br>
-									<input class="input" type="email" placeholder="이메일 입력">
-									<br><br><br><br>
-									<input type="button" class="btn btn-danger" value="확인하기">
-									<br><br>
-								</div>
+								<form action="idFind.do">
+									<div id="idFind" >
+										<input name="email" class="input" type="email" placeholder="이메일 입력">
+										<br><br><br><br>
+										<input type="submit" class="btn btn-danger" value="확인하기">
+										<br><br>
+									</div>
+								</form>
+								<form action="pwdFind.do">
+									<div id="pwdFind">
+										<input name="userId" class="input" type="text" placeholder="id입력">
+										<br><br>
+										<input name="email" class="input" type="email" placeholder="이메일 입력">
+										<br><br><br><br>
+										<input type="submit" class="btn btn-danger" value="확인하기">
+										<br><br>
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -159,6 +163,10 @@
 	</div>
 	<!-- Main section end -->
 	<script>
+		$(function(){
+			$('.Find').eq(0).css({'color':'#bd362f'});
+		});
+		
 		function Find(select){
 			if(select == 'id'){
 				$('.Find').eq(0).css({'color':'#bd362f'});
@@ -172,9 +180,11 @@
 				$('#pwdFind').show();
 			}			
 		}
+		
+		
 	</script>
 	<!--====== Javascripts & Jquery ======-->
-	<script src="resources/js/jquery-3.2.1.min.js"></script>
+	
 	<script src="resources/js/bootstrap.min.js"></script>
 	<script src="resources/js/owl.carousel.min.js"></script>
 	<script src="resources/js/jquery.nicescroll.min.js"></script>

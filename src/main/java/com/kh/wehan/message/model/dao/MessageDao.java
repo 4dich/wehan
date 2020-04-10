@@ -2,6 +2,7 @@ package com.kh.wehan.message.model.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -52,6 +53,15 @@ public class MessageDao {
 	 */
 	public FriendInfo getFriendInfo(String fId) {
 		return sqlSession.selectOne("messageMapper.getFriendInfo", fId);
+	}
+
+	/**
+	 * 메시지 내용 가져오기
+	 * @param m
+	 * @return
+	 */
+	public ArrayList<Message> getMsgContent(Map m) {
+		return (ArrayList)sqlSession.selectList("messageMapper.getMsgContent", m);
 	}
 
 

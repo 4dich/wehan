@@ -93,7 +93,9 @@
 						</div> -->
 						<div style="margin-top: 50px; margin-right: 20px;">
                             <div class="ch-register-pic"></div>
-                            <button class="site-btn" style="margin-top: 30px; margin-left: 100px; height: 300px; width: 280px; font-size: 15px;"> 프로필 사진 (300x280)</button>				
+                            <div  style="margin-top: 30px; margin-left: 100px; height: 300px; width: 280px; font-size: 15px;">
+                           		 <img src='resources/images/user/${m.picture }' style="height: 300px; width: 280px;">
+                            </div>				
 							<div id="prof">
 							<p>회원 마이페이지</p>
 							<!-- <p style="font-size: 20px; margin-top: 20px;"><b>챌린지명</b></p>
@@ -105,25 +107,25 @@
 								<form class="contact-form" style="margin-top: 60px;">
 									<div class="row">	
                                         <div class="col-lg-12">
-                                            <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="4dich">
+                                            <input value="${m.userId}" type="text" style="border-top: none; border-left: none; border-right: none;" disabled>
                                         </div>
 										<div class="col-lg-12">
-                                            <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="디히">
+                                            <input value="${m.nickName}" type="text" style="border-top: none; border-left: none; border-right: none;" disabled>
                                         </div>
                                         <div class="col-lg-12">
-                                            <input type="select" style="border-top: none; border-left: none; border-right: none;" placeholder="장한솔">
+                                            <input value="${m.userName}" type="text" style="border-top: none; border-left: none; border-right: none;" disabled>
                                         </div>
                                         <div class="col-lg-12">
-                                            <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="89년 12월 22일">
+                                            <input value="${m.birthDay}" type="text" style="border-top: none; border-left: none; border-right: none;" disabled>
                                         </div>
 										<div class="col-lg-12">
-                                            <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="010-8947-7489">
+                                            <input value="${m.phone}" type="text" style="border-top: none; border-left: none; border-right: none;" disabled>
                                         </div>
 										<div class="col-lg-12">
-                                            <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="352-8977-7489-02">
+                                            <input value="${m.account}" type="text" style="border-top: none; border-left: none; border-right: none;" disabled>
                                         </div>
 										<div class="col-lg-12">
-                                            <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="블랙리스트 : N">
+                                            <input value="${m.blacklistYN}" type="text" style="border-top: none; border-left: none; border-right: none;" disabled>
                                         </div>
 									</div>
 								</form>

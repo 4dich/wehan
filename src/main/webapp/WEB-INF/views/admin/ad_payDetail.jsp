@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -98,34 +101,45 @@
                             <button class="site-btn" style="margin-top: 30px; margin-left: 100px; height: 300px; width: 280px; font-size: 15px;"> 프로필 사진 (300x280)</button>				
 							<div id="prof">
 							<p>카테고리 > 세부카테고리</p>
-							<p style="font-size: 14px; margin-top: 20px;"><b>하루에 3번씩 팩하기</b></p>
-							<p>25,000,000원</p>
+							<p style="font-size: 14px; margin-top: 10px;"><b>${ch.chName}</b></p>
+							
 							</div>
 						</div>
+						
                         <div class="col-xl-6" style="margin-left: 20px;">
 							<div class="contact-text-warp">
 								<div class="contact-form" style="margin-top: 60px;">
 									<div class="row">	
                                         <div class="col-lg-12">
-                                            <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="mid2203" disabled>
+                                            <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="${p.userId}" disabled>
                                         </div>
 										<div class="col-lg-12">
-                                            <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="강한육군" disabled>
+                                            <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="${ p.mList[0].userName}" disabled>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <input type="select" style="border-top: none; border-left: none; border-right: none;" placeholder="${p.pmethod}" disabled>
+                                        </div>  
+                                        <div class="col-lg-6">
+                                            <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="${p.price} (원 )" disabled>
+                                        </div>                                
+										<div class="col-lg-6">
+                                            <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="${bank}" disabled>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="${number}" disabled>
                                         </div>
                                         <div class="col-lg-12">
-                                            <input type="select" style="border-top: none; border-left: none; border-right: none;" placeholder="카카오뱅크" disabled>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="3322-1155-4433" disabled>
-                                        </div>
-										<div class="col-lg-12">
                                             <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="결제완료" disabled>
+                                        </div>
+                                     
+                                      
                                         </div>
 									</div>
 								</div>
 							</div>
 						</div>
 						<div>
+						<br><br><br><br><br><br>
 							<button type="submit" class="site-btn" style="width:20%; height: 80px; margin: 20px; margin-left: 300px;">
 								환불하기
 							<button class="site-btn" style="width:20%; height: 80px;" onclick="location.href='serviceInfo.html'">
