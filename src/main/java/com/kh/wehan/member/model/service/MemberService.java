@@ -67,5 +67,12 @@ public interface MemberService {
 	 * @return
 	 */
 	Member memberDetail(String userId);
+	
+	/**
+	 * 아이디 찾기
+	 * @param eamil
+	 * @return
+	 */
+	String idFind(String email);
 
 }

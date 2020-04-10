@@ -70,13 +70,19 @@
 	
 	<select id="mlistSearch" parameterType="Member" resultMap="memberResultSet">
 		<if test="userId != null">
-		SELECT * FROM MEMBER WHERE OUT_YN='N' AND USERID=#{userId}
+			SELECT * FROM MEMBER WHERE OUT_YN='N' AND USERID=#{userId}
 		</if>
 		<if test="nickName != null">
-		SELECT * FROM MEMBER WHERE OUT_YN='N' AND NICKNAME=#{nickName}
+			SELECT * FROM MEMBER WHERE OUT_YN='N' AND NICKNAME=#{nickName}
 		</if>
 		<if test="userName != null">
-		SELECT * FROM MEMBER WHERE OUT_YN='N' AND USERNAME=#{userName}
+			SELECT * FROM MEMBER WHERE OUT_YN='N' AND USERNAME=#{userName}
 		</if>
+	</select>
+	
+	<select id="memberMapper.idFind" parameterType="string" resultType="string">
+		SELECT USERID
+		FROM MEMBER
+		WHERE EMAIL=#{email}
 	</select>
 </mapper>

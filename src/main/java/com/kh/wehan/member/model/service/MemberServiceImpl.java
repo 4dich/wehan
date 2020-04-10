@@ -68,4 +68,8 @@ public class MemberServiceImpl implements MemberService{
 	public Member memberDetail(String userId) {
 		return mDao.memberSearch(userId);
 	}
+	@Override
+	public String idFind(String email) {
+		return mDao.idFind(email);
+	}
 }
