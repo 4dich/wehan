@@ -32,7 +32,6 @@
 	<select id="selectCertify" resultMap="certifyResultSet">
 		SELECT * FROM CERTIFY
 		WHERE CEID = #{ceId}
-		AND CEDEL_YN='N'
 	</select>
 	<!-- 인증글 검색 갯수 -->
 	<select id="getSearchListCount" parameterType="SearchCondition" resultType="_int">
