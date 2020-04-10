@@ -64,6 +64,15 @@ public class MessageDao {
 		return (ArrayList)sqlSession.selectList("messageMapper.getMsgContent", m);
 	}
 
+	/**
+	 * 메시지 저장하기
+	 * @param msg
+	 * @return
+	 */
+	public int saveMsgContent(Map msg) {
+		return sqlSession.insert("messageMapper.saveMsgContent", msg);
+	}
+
 
 	
 }

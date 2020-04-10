@@ -39,4 +39,11 @@ public interface MessageService {
 	 */
 	ArrayList<Message> getMsgContent(Map m);
 
+	/**
+	 * 메시지 저장
+	 * @param msg
+	 * @return
+	 */
+	int saveMsgContent(Map msg);
+
 }
