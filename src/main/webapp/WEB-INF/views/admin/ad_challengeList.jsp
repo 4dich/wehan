@@ -49,7 +49,7 @@
 	<!-- Main section start -->
 	<div class="main-site-warp">
 	
-		<include file="/WEB-INF/views/common/ad_menuBar"/>
+		<c:import url="/WEB-INF/views/common/ad_menuBar.jsp" />
 		
 		<header class="header-section">
 			<div class="nav-switch">
@@ -89,14 +89,14 @@
 								<div id="searchArea">
 									<div id="searchSelect"> 
 										<select name="searchChallengeAdmin" id="searchChallengeAdmin">
-											<option value="challengeName">챌린지명</option>
+											<option value="chName">챌린지명</option>
 											<option value="userId">ID</option>
 											<option value="startDate">시작 날짜</option>
 											<option value="endDate">종료 날짜</option>
 										</select>					
 									</div>
 									<!-- 검색 -->
-									<input class="searchBox" type="search">
+									<input class="searchBox" name="search" type="search">
 									<button><img src="resources/images/main/search.png" alt=""></button>
 								</div>
 							</form>

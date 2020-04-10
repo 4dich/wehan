@@ -42,16 +42,16 @@
 		FROM CHALLENGE
 		
 			<if test="chName != null">
-				AND CHNAME LIKE '%' || #{chName} || '%'
+			WHERE CHNAME LIKE '%' || #{chName} || '%'
 			</if>
 			<if test="userId != null">
-				AND USERID LIKE '%' || #{userId} || '%'
+			WHERE USERID LIKE '%' || #{userId} || '%'
 			</if>
 			<if test="startDate != null">
-				AND STARTDATE LIKE '%' || #{startDate} || '%'
+			WHERE STARTDATE LIKE '%' || #{startDate} || '%'
 			</if>
 			<if test="endDate != null">
-				AND ENDDATE LIKE '%' || #{endDate} || '%'
+			WHERE ENDDATE LIKE '%' || #{endDate} || '%'
 			</if>
 	</select> 
 	
@@ -73,4 +73,10 @@
 			</if>
 		ORDER BY CHID DESC
 	</select>
+	
+	<insert id="insertChallenge">
+		INSERT INTO CHALLENGE
+		(CHID, USERID, CHNAME, STARTDATE, ENDDATE, CATEGORY, CEMETHOD, MAXPERSON, PRICE, CHCONTENT, CHPICTURE)
+		VALUES(#{chId},#{userId},#{chName},#{startDate},#{endDate},#{category},)
+	</insert>
 </mapper>

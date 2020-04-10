@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.kh.wehan.certify.model.vo.Certify;
 import com.kh.wehan.challenge.model.dao.ChallengeDao;
 import com.kh.wehan.challenge.model.vo.Challenge;
-import com.kh.wehan.challenge.model.vo.searchChallenge;
 import com.kh.wehan.common.model.vo.PageInfo;
 
 @Service("cService")
@@ -33,13 +32,18 @@ public class ChallengeServiceImpl implements ChallengeService {
 	}
 
 	@Override
-	public int getSearchListCount(searchChallenge chal) {
+	public int getSearchListCount(Challenge chal) {
 		return cDao.getSearchListCount(chal);
 	}
 
 	@Override
-	public ArrayList<Challenge> selectSearchList(searchChallenge chal, PageInfo pi) {
+	public ArrayList<Challenge> selectSearchList(Challenge chal, PageInfo pi) {
 		return cDao.getSelectSearchList(chal, pi);
+	}
+
+	@Override
+	public int insertChallenge(Challenge chal) {
+		return cDao.getInsertChallenge(chal);
 	}
 
 
