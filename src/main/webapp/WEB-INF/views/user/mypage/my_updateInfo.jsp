@@ -114,13 +114,22 @@
                             <%-- <img class="profile" src="resources/images/user/${ loginUser.picture }" style="width:300px;height:300px; object-fit:contain; border:1px solid #242424;"> --%>
 							<input type="text" id="picture" name="picture" style="display:none" value="${ loginUser.picture }">
 							<input id="file" name="uploadFile" type="file" onchange="previewImage(this,'View_area')" style="margin-left: 50%;">
-							<div id="View_area" style="height: 350px; width: 350px; dispaly: inline; border:1px solid; text-align:center; padding-top:5%"></div>
+							<div id="View_area" style="height: 350px; width: 350px; dispaly: inline; border:1px solid; text-align:center; padding-top:5%">
 							
+							</div>
+<script>
+								$(function(){
+/* 		var picture = $("#picture")[0];// input text
+		var view = $("#View_area")[0];	//div */
+		/* $("#View_area").css('background-image', 'url(' + encodeURIComponent(resources/images/user/01.jpg) + ')'); */
+		/* $("#View_area").css('background','red'); */
+		$("#View_area").css('background-image','url(resources/images/user/01.jpg)');
+		
+		/* $("#View_area")[0].css('background-image', 'url(' + encodeURIComponent(resources/images/user/01.jpg) + ')'); */
+	});
+</script>
 							<label for="file" style="margin-left: 35%; border:1px solid black; margin-top: 30px; padding: 10px;">파일버튼</label><input id="file" name="uploadFile" type="file" onchange="previewImage(this,'View_area')" style="margin-left: 50%;">
-							<!-- <br><br><input type="button" style="margin-left: 33%;" value="프로필수정"> -->
-							<!-- <div id="View_area" style="height: 300px; width: 280px; dispaly: inline; border:1px solid;"></div>				
-								<br><br><label for="file"></label><input id="file" name="uploadFile" type="file" onchange="previewImage(this,'View_area')" style="margin-left: 50%;">
-							</div> -->
+
 						</div>
                         <div class="col-xl-6" style="margin-left: 20px;">
 							<div class="contact-text-warp">
@@ -215,8 +224,10 @@
 	
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
-
 	function previewImage(targetObj, View_area) {
+		
+		$("#View_area").css('background-image','none');
+		
 		var preview = document.getElementById(View_area); //div id
 		var ua = window.navigator.userAgent;
 
