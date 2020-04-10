@@ -114,14 +114,13 @@
                             <%-- <img class="profile" src="resources/images/user/${ loginUser.picture }" style="width:300px;height:300px; object-fit:contain; border:1px solid #242424;"> --%>
 							<input type="text" id="picture" name="picture" style="display:none" value="${ loginUser.picture }">
 							<input id="file" name="uploadFile" type="file" onchange="previewImage(this,'View_area')" style="margin-left: 50%;">
-							<div id="View_area" style="height: 350px; width: 350px; dispaly: inline; border:1px solid black; text-align:center; padding-top:25px;">
-								<div id="View_area_in" style="height: 300px; width: 300px; margin-left:25px"></div>
+							<div id="View_area" style="height: 350px; width: 350px; dispaly: inline; border:1px solid black; text-align:center; padding-top:24px;">
+								<div id="View_area_in" style="height: 300px; width: 300px; margin-left:24px; border:1px solid black; text-align:center; background-repeat:no-repeat; background-size:contain;"></div>
 							</div>
 						<script>
 							$(function(){
 								/* $("#View_area_in").css('background-image','url(resources/images/user/01.jpg)'); */
 								$("#View_area_in").css('background-image','url(resources/images/user/'+$('#picture')[0].value+')');
-								$("#View_area_in").css('background-size','contain');
 							});
 						</script>
 							<label for="file" style="margin-left: 35%; border:1px solid black; margin-top: 30px; padding: 10px;">파일버튼</label><input id="file" name="uploadFile" type="file" onchange="previewImage(this,'View_area')" style="margin-left: 50%;">

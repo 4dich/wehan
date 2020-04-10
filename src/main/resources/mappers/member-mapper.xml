@@ -79,4 +79,11 @@
 		SELECT * FROM MEMBER WHERE OUT_YN='N' AND USERNAME=#{userName}
 		</if>
 	</select>
+	
+	<update id="updateMember" parameterType="Member">
+		UPDATE MEMBER
+		SET PASSWORD=#{password},NICKNAME=#{nickName},USERNAME=#{userName},BIRTHDAY=#{birthDay},
+			ADDRESS=#{address},EMAIL=#{email},PHONE=#{phone},ACCOUNT=#{account},PICTURE=#{picture}
+		WHERE USERID=#{userId}
+	</update>
 </mapper>

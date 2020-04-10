@@ -139,7 +139,6 @@
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
 					
-
 					<div class="profile-images">
                         <img class="profile" src="resources/images/user/${ loginUser.picture }" style="width:150px;height:150px;">
                     </div>
@@ -264,8 +263,11 @@
 								    		cate.on("click",function(){
 								    			$(this)[0].textContent = 1 - $(this)[0].textContent;
 								            });
+								    		console.log("수정가능");
+								    		
 										}else{
 											cate.off("click");
+											console.log("수정불가");
 										}
 								    }
 									
@@ -297,15 +299,31 @@
 							나의 목표&nbsp;&nbsp;&nbsp;
 							<input id="toggle2" type="checkbox" checked data-toggle="toggle" data-on="<i class='fa fa-lock' aria-hidden='true'></i> 수정하기" data-off="<i class='fa fa-unlock' aria-hidden='true'></i> 수정중" data-onstyle="outline-success" data-offstyle="outline-danger" onchange="toggleBtn2();">
 							
+							<div id="userId" style="display:none"> ${loginUser.userId} </div>
+							
 							<!-- 나의 목표 on/off -->
 							<script>
+							    var userId = $('#userId')[0].value;
 								function toggleBtn2(){
 							    	if(document.getElementById('toggle2').checked==false){
 							    		$('#goal').attr('disabled',false);
 							    		$('#goal').focus();
 							    		$('#goal').value = $('#goal').value;
+							    		console.log("수정가능");
+							    		
+							    		$.ajax({
+											url:"updateGoal.do",
+											data:{userId:userId},
+											type:"post",
+											success:function(data){
+												$('#goal').val(data);
+											},error:function(){
+												console.log("에러");
+											}
+										});
 									}else{
 										$('#goal').attr('disabled',true);
+										console.log("수정불가");
 									}
 							    }	
 							</script>

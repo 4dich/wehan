@@ -1,12 +1,17 @@
 package com.kh.wehan.member.controller;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.wehan.member.model.service.MypageService;
@@ -58,6 +63,13 @@ public class MypageController {
 //		gson.toJson(mypage ,response.getWriter());
 //	}
 	
+	@RequestMapping(value="updateGoal.do",method=RequestMethod.POST)
+	@ResponseBody
+	public String updateGoal(String userId) {
+		System.out.println("업데이트 : " + userId);
+		
+		return "하이";
+	}
 	
 	@RequestMapping("my_challengeView.do")
 	public String my_challengeView() {
