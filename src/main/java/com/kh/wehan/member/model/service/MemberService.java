@@ -46,5 +46,19 @@ public interface MemberService {
 	 */
 	ArrayList<Member> memberList();
 	
+	/**
+	 * 검색된 유저 list
+	 * @param selecter
+	 * @param searchValue
+	 * @return
+	 */
+	ArrayList<Member> mlistSearch(Member mem);
+	
+	/**
+	 * 유저리스트 상세보기
+	 * @param mem
+	 * @return
+	 */
+	Member memberDetail(String userId);
 
 }

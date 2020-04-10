@@ -54,6 +54,15 @@ public class MemberServiceImpl implements MemberService{
 	public ArrayList<Member> memberList() {
 		return mDao.memberList();
 	}
+	@Override
+	public ArrayList<Member> mlistSearch(Member mem) {
+		return mDao.mlistSearch(mem);
+	}
+	@Override
+	public Member memberDetail(String userId) {
+		return mDao.memberSearch(userId);
+	}
+	
 
 
 }

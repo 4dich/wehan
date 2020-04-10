@@ -53,7 +53,6 @@ public class MemberController {
 		Pattern p = Pattern.compile("^[a-zA-Z가-힣0-9].{2,7}$");
 		Matcher m = p.matcher(nickName);
 		boolean b = m.find();
-		System.out.println(b);
 		
 		if(b == true) {
 			int result = mService.nickCheck(nickName);
@@ -71,13 +70,7 @@ public class MemberController {
 	public String insertMember(Member m, HttpServletRequest request,
 			  @RequestParam(name="uploadFile",required=false)MultipartFile file,
 			  String bankName , String accountHolder , String accountNumber) {
-		
-		System.out.println(m);
-		System.out.println(bankName);
-		System.out.println(accountHolder);
-		System.out.println(accountNumber);
-		System.out.println(file);
-		
+				
 		if(!file.getOriginalFilename().equals("")) {
 			String picture = saveFile(file,request);
 			
@@ -91,7 +84,13 @@ public class MemberController {
 		System.out.println(m);
 		
 		int result = mService.insertMember(m);
-		return "";
+		
+		if(result>0) {
+			return "user/login";
+		}else {
+			return "common/errorPage";
+		}
+			
 	}
 	
 	public String saveFile(MultipartFile file,HttpServletRequest request) {

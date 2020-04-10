@@ -49,4 +49,13 @@ public class MemberDao {
 	}
 
 
+	public ArrayList<Member> mlistSearch(Member mem) {
+		return (ArrayList)sqlSession.selectList("memberMapper.mlistSearch",mem);
+	}
+
+
+	public Member memberSearch(String userId) {
+		return (Member)sqlSession.selectOne("memberMapper.userInfo",userId);
+	}
+
 }

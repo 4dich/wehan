@@ -89,20 +89,20 @@
 				<div class="blog-posts">
 					
 					<div class="blog-post-item">
-						<div id="searchArea"  style="margin-top:0 ;">
-							<div id="searchSelect"> 
-								<select name="selecter" id="selecter">
-									<option value="userId">아이디</option>
-									<option value="nickName">닉네임</option>
-									<option value="userName">이름</option>
-								</select>					
+						<form action="mlistSearch.do">
+							<div id="searchArea"  style="margin-top:0 ;">
+								<div id="searchSelect"> 
+									<select name="selecter" id="selecter">
+										<option value="userId">아이디</option>
+										<option value="nickName">닉네임</option>
+										<option value="userName">이름</option>
+									</select>					
+								</div>
+								<!-- 검색 -->
+								<input id="searchValue" name="searchValue" class="searchBox" type="search">
+								<button id="search"><img src="resources/images/main/search.png" alt=""></button>
 							</div>
-							<!-- 검색 -->
-							<input id="searchValue"class="searchBox" type="search">
-							<button id="search"><img src="resources/images/main/search.png" alt=""></button>
-						</div>
-
-
+						</form>
 						<!-- 문의사항 테이블 -->
 						<table id="memberList" class="qnaTable">
 							<tr class="thArea">
@@ -128,6 +128,46 @@
 							</c:forEach>
 						</table>
 						
+						<c:if test="${!empty searchValue}">
+						<div class="qnaPaging">
+							<c:if test="${ pi.currentPage eq 1 }">
+								< &nbsp;
+							</c:if>
+							<c:if test="${ pi.currentPage ne 1 }">
+								<c:url var="before" value="mlistSearch.do">
+									<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
+								</c:url>
+								<a href="${ before }"><</a> &nbsp;
+							</c:if>
+							
+							<!-- 페이지 -->
+							<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+								<c:if test="${ p eq pi.currentPage }">
+									<font color="red" size="4"><b>[${ p }]</b></font>
+								</c:if>
+								
+								<c:if test="${ p ne pi.currentPage }">
+									<c:url var="pagination" value="mlistSearch.do">
+										<c:param name="currentPage" value="${ p }"/>
+									</c:url>
+									<a href="${ pagination }">${ p }</a> &nbsp;
+								</c:if>
+							</c:forEach>
+							
+							<!-- [다음] -->
+							<c:if test="${ pi.currentPage eq pi.maxPage }">
+								>
+							</c:if>
+							<c:if test="${ pi.currentPage ne pi.maxPage }">
+								<c:url var="after" value="mlistSearch.do">
+									<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
+								</c:url> 
+								<a href="${ after }">></a>
+							</c:if>
+						</div>
+						</c:if>
+						
+						<c:if test="${empty searchValue}">
 						<div class="qnaPaging">
 							<c:if test="${ pi.currentPage eq 1 }">
 								< &nbsp;
@@ -164,6 +204,7 @@
 								<a href="${ after }">></a>
 							</c:if>
 						</div>
+						</c:if>
 					</div>
 				</div>
 			</div>
@@ -177,23 +218,18 @@
 		</div>
 	<!-- Main section end -->
 	<script>
-		$(function(){
-			$('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247"); //even 짝수
-			
-			$('#search').click(function(){
-				var selecter = $('#selecter').val();
-				var searchValue = $('#searchValue').val();
-				
-				$.ajax({
-					url:"mlistSearch",
-					type:"post",
-					dataType:"json",
-					data{"selecter":selecter,"searchValue":searchValue}
-				});
-			});
+		$(document).ready(function(){
+			  $('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247)");   // even 짝수
 			
 		});
-
+		
+		$(".noticeList").click(function(){
+			var index = $('.noticeList').index(this) + 1;
+			var userId = $('.qnaTable tr:eq('+index+')').children().eq(0).text();
+			console.log(userId);
+			location.href='mlistDetail.do?userId='+ userId;
+		});
+		
 	</script>
 	
 	<!--====== Javascripts & Jquery ======-->
