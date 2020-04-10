@@ -36,4 +36,41 @@
 		FROM CHALLENGE
 		WHERE CHID=#{chId}
 	</select>
+	
+	<select id="getSearchListCount" parameterType="Challenge" resultType="_int">
+		SELECT COUNT(*)
+		FROM CHALLENGE
+		
+			<if test="chName != null">
+				AND CHNAME LIKE '%' || #{chName} || '%'
+			</if>
+			<if test="userId != null">
+				AND USERID LIKE '%' || #{userId} || '%'
+			</if>
+			<if test="startDate != null">
+				AND STARTDATE LIKE '%' || #{startDate} || '%'
+			</if>
+			<if test="endDate != null">
+				AND ENDDATE LIKE '%' || #{endDate} || '%'
+			</if>
+	</select> 
+	
+	<select id="getSelectSearchList" resultMap="challengeResultSet">
+		SELECT *
+		FROM CHALLENGE
+		
+			<if test="chName != null">
+				WHERE CHNAME LIKE '%' || #{chName} || '%'
+			</if>
+			<if test="userId != null">
+				WHERE USERID LIKE '%' || #{userId} || '%'
+			</if>
+			<if test="startDate != null">
+				WHERE STARTDATE LIKE '%' || #{startDate} || '%'
+			</if>
+			<if test="endDate != null">
+				WHERE ENDDATE LIKE '%' || #{endDate} || '%'
+			</if>
+		ORDER BY CHID DESC
+	</select>
 </mapper>

@@ -85,20 +85,22 @@
 				<div class="page-section blog-page">
 					<div class="blog-posts">
 						<div class="blog-post-item">
-							<div id="searchArea">
-								<div id="searchSelect"> 
-									<select name="" id="">
-										<option>챌린지명</option>
-										<option>ID</option>
-										<option>시작 날짜</option>
-										<option>종료 날짜</option>
-									</select>					
+							<form action="searchChallengeAdmin.do">
+								<div id="searchArea">
+									<div id="searchSelect"> 
+										<select name="searchChallengeAdmin" id="searchChallengeAdmin">
+											<option value="challengeName">챌린지명</option>
+											<option value="userId">ID</option>
+											<option value="startDate">시작 날짜</option>
+											<option value="endDate">종료 날짜</option>
+										</select>					
+									</div>
+									<!-- 검색 -->
+									<input class="searchBox" type="search">
+									<button><img src="resources/images/main/search.png" alt=""></button>
 								</div>
-								<!-- 검색 -->
-								<input class="searchBox" type="search">
-								<button><img src="resources/images/main/search.png" alt=""></button>
-							</div>
-
+							</form>
+							
 							<div class="listCount" style="display: none;">${ listCount }</div>
 
 							<table class="qnaTable">
@@ -199,6 +201,16 @@
 			var chId = $(this).parent().children().find('chId').val();
 			location.href="selectOneDetail.do?chId=" + chId;		
 		});
+		
+		$(document).on('click','.search',function(e){
+			e.preventDefault();
+			var url = "ad_challengeListView.do";
+			url = url + "?searchChallenge=" + $('#searchChallenge').val();
+			url = url + "&keyword=" + $('.searchBox').val();
+			location.href = url;
+			console.log(url);
+		});
+		
 	</script>
 	
 	<!--====== Javascripts & Jquery ======-->
