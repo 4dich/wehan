@@ -128,7 +128,7 @@
 							<tr class="noticeList">
 								<td><input type="checkbox"></td>
 								<td>${ l.pId }</td>
-								<td>${ p.chContent }</td>
+								<td>${ p.chName }</td>
 								<td>${ l.userId }</td>
 								<td>${ l.pDate }</td>
 								<td><button onclick="location.href='paydetail.do?pId=${ l.pId }'">정보</button></td>
