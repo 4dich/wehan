@@ -50,7 +50,6 @@ public class MemberController {
 	@RequestMapping(value="nickCheck.do")
 	@ResponseBody
 	public String nickCheck(String nickName) {
-		System.out.println(nickName);
 		
 		Pattern p = Pattern.compile("^[a-zA-Z가-힣0-9].{2,7}$");
 		Matcher m = p.matcher(nickName);

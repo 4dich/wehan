@@ -26,7 +26,7 @@ public class MemberInfoListController {
 		
 		int mCount = mService.memberCount();
 		
-		PageInfo pi = Pagination.getPageInfo(currentPage,mCount,10,5);
+		PageInfo pi = Pagination.getPageInfo(currentPage,mCount,10,10);
 		
 		ArrayList<Member> list = mService.memberList();
 		
@@ -51,10 +51,7 @@ public class MemberInfoListController {
 		
 		int mCount = mService.memberCount();
 		
-		PageInfo pi = Pagination.getPageInfo(currentPage,mCount,10,5);
-		
-		System.out.println(selecter);
-		System.out.println(searchValue);
+		PageInfo pi = Pagination.getPageInfo(currentPage,mCount,10,10);
 		
 		Member mem = new Member();
 		if(selecter.equals("userId")) {

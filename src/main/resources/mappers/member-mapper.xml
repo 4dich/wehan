@@ -70,20 +70,26 @@
 	
 	<select id="mlistSearch" parameterType="Member" resultMap="memberResultSet">
 		<if test="userId != null">
-		SELECT * FROM MEMBER WHERE OUT_YN='N' AND USERID=#{userId}
+			SELECT * FROM MEMBER WHERE OUT_YN='N' AND USERID=#{userId}
 		</if>
 		<if test="nickName != null">
-		SELECT * FROM MEMBER WHERE OUT_YN='N' AND NICKNAME=#{nickName}
+			SELECT * FROM MEMBER WHERE OUT_YN='N' AND NICKNAME=#{nickName}
 		</if>
 		<if test="userName != null">
-		SELECT * FROM MEMBER WHERE OUT_YN='N' AND USERNAME=#{userName}
+			SELECT * FROM MEMBER WHERE OUT_YN='N' AND USERNAME=#{userName}
 		</if>
 	</select>
-	
+
 	<update id="updateMember" parameterType="Member">
 		UPDATE MEMBER
 		SET PASSWORD=#{password},NICKNAME=#{nickName},USERNAME=#{userName},BIRTHDAY=#{birthDay},
 			ADDRESS=#{address},EMAIL=#{email},PHONE=#{phone},ACCOUNT=#{account},PICTURE=#{picture}
 		WHERE USERID=#{userId}
 	</update>
+
+	<select id="memberMapper.idFind" parameterType="string" resultType="string">
+		SELECT USERID
+		FROM MEMBER
+		WHERE EMAIL=#{email}
+	</select>
 </mapper>

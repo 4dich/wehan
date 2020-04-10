@@ -93,21 +93,22 @@
 			<div class="page-section blog-page">
 				<div class="blog-posts">
 					
-					<div class="blog-post-item">
+				<div class="blog-post-item">
+					<form action="plistSearch.do">
 						<button style="margin-top: 12px;">환불하기</button>
 						<div id="searchArea">
 							<div id="searchSelect"> 
-								<select name="" id="">
-									<option>작성자</option>
-									<option>챌린지명</option>
-									<option>결제번호</option>
+								<select name="selecter" id="selecter">
+									<option value="userId">유저ID</option>
+									<option value="chName">챌린지명</option>
+									<option value="pNo">결제번호</option>
 								</select>					
 							</div>
 							<!-- 검색 -->
-							<input class="searchBox" type="search">
-							<!-- <button><img src="../resources/img/main/search.png" alt=""></button> -->
+							<input class="searchBox" type="search" name="searchValue">
+							<button><img src="resources/images/main/search.png" alt=""></button>
 						</div>
-
+					</form>
 
 						<!-- 문의사항 테이블 -->
 						총게시글 갯수:${ pi.listCount }

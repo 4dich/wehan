@@ -24,8 +24,6 @@ public class InOutController {
 	
 	@RequestMapping(value="login.do",method=RequestMethod.POST)
 	public String login(String userId,String password,Model model,HttpSession session) {
-		System.out.println(userId);
-		System.out.println(password);
 		
 		if(userId.equals("admin")){
 			Admin adminUser = mService.adminlogin(userId);
@@ -44,7 +42,6 @@ public class InOutController {
 				  }else {
 					  loginUser.setBlacklistYN("N");
 				  }
-				  System.out.println(loginUser);
 				  model.addAttribute("loginUser",loginUser); 
 				  return "redirect:index.jsp";
 			  }else{

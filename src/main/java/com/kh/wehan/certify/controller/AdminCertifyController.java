@@ -1,6 +1,9 @@
 package com.kh.wehan.certify.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,12 +12,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
 import com.kh.wehan.certify.model.service.AdminCertifyService;
 import com.kh.wehan.certify.model.vo.Certify;
+import com.kh.wehan.certify.model.vo.CertifyReply;
 import com.kh.wehan.certify.model.vo.SearchCondition;
 import com.kh.wehan.common.Pagination;
 import com.kh.wehan.common.model.vo.PageInfo;
-import com.kh.wehan.notice.model.vo.Notice;
 
 @SessionAttributes("loginUser")
 @Controller
@@ -130,6 +136,19 @@ public class AdminCertifyController {
 		
 		
 		return mv;
+	}
+	
+	@RequestMapping("replyList.do")
+	public void getReplyList(HttpServletResponse response,int ceId) throws JsonIOException, IOException {
+		ArrayList<CertifyReply> rList = acService.selectReply(ceId);
+		
+		response.setContentType("application/json; charset=utf-8");
+		System.out.println("뭐");
+		// 만약 날짜가 들어있다면
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		// json에게 보내겠음
+		gson.toJson(rList,response.getWriter());
+		
 	}
 	
 	

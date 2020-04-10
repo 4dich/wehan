@@ -79,7 +79,7 @@
 				<p>위대한 한걸음에 궁금증이 생기신다면 <br>
 				언제든지 문의해주세요! </p>
 			</div>
-			<button class="site-btn sb-dark" style="width: 280px; font-size: 15px; margin-bottom: 40px;" type="button" onclick="location.href='ch-register.html'">
+			<button class="site-btn sb-dark" style="width: 280px; font-size: 15px; margin-bottom: 40px;" type="button" onclick="location.href='questionsInsertView.do'">
 				문의사항 등록하기
 				<images src="resources/images/arrow-righ-3.png" alt="">
 			</button>
@@ -99,6 +99,9 @@
 					<h3 class="qnaText">문의사항</h3>
 					
 					<div class="blog-post-item">
+					<button class="site-btn sb-dark" style="width: 170px; font-size: 15px; margin-bottom: 40px;" type="button" onclick="location.href='questionsInsertView.do'">
+							등록하기							
+						</button>
 
 						<div id="searchArea">
 							<div id="searchSelect"> 

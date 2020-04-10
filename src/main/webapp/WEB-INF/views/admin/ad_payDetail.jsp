@@ -129,7 +129,12 @@
                                             <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="${number}" disabled>
                                         </div>
                                         <div class="col-lg-12">
+                                        	<c:if test="${p.pdel_yn eq 'N'}">
                                             <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="결제완료" disabled>
+                                            </c:if>
+                                            <c:if test="${p.pdel_yn eq 'Y'}">
+                                            <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="환불완료" disabled>
+                                            </c:if>
                                         </div>
                                      
                                       
