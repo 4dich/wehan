@@ -118,8 +118,8 @@
 						<div style="margin-top: 50px; margin-right: 20px;">
                             <div class="ch-register-pic"></div>
                             <div id="View_area" style="height: 300px; width: 280px; dispaly: inline; border:1px solid;"></div>				
-							<br><br><label for="file">프로필 수정</label><input id="file" name="uploadFile" type="file" onchange="previewImage(this,'View_area')" style="margin-left: 50%;">
-						</div>
+								<br><br><label for="file">프로필 수정</label><input id="file" name="uploadFile" type="file" onchange="previewImage(this,'View_area')" style="margin-left: 50%;">
+							</div>
                         <div class="col-xl-6" style="margin-left: 20px;">
 							<div class="contact-text-warp">
 								<div class="contact-form" style="margin-top: 60px;">
