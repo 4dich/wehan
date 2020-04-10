@@ -114,6 +114,13 @@
 		FROM MESSAGE M
 		JOIN MEMBER MM ON (MM.USERID = M.SENDER)
 		WHERE SENDER = #{fId} AND RECEIVER = #{userId}
+		ORDER BY MDATE ASC
   	</select>
+  	
+  	<!-- 메시지 저장하기 -->
+  	<insert id="saveMsgContent" parameterType="java.util.Map">
+  		INSERT INTO MESSAGE 
+  		VALUES(SEQ_MID.NEXTVAL, #{userId}, #{fId}, #{mContent}, (TO_CHAR(SYSDATE,'yyyy-mm-dd hh24:mi:ss')), DEFAULT, DEFAULT)
+  	</insert>
   	
   </mapper>

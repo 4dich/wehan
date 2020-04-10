@@ -49,4 +49,12 @@ public class MessageServiceImpl implements MessageService{
 	public ArrayList<Message> getMsgContent(Map m) {
 		return msgDao.getMsgContent(m);
 	}
+
+	/**
+	 * 메시지 저장하기
+	 */
+	@Override
+	public int saveMsgContent(Map msg) {
+		return msgDao.saveMsgContent(msg);
+	}
 }

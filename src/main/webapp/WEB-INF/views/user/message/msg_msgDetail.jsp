@@ -18,6 +18,9 @@
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,900&display=swap" rel="stylesheet">
 
+	<!-- JQuery -->
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	
 	<!-- Stylesheets -->
 	<link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
 	<link rel="stylesheet" href="resources/css/font-awesome.min.css"/>
@@ -140,11 +143,12 @@
 											<c:if test="${ sessionScope.loginUser.userId ne m.mSenderId }">												
 												<li class="in">	
 													<div class="chat-img">
-														<img alt="Avtar" src="https://bootdey.com/img/Content/avatar/avatar1.png">
+														<input type="hidden" class="msgId" value="${m.mId}">
+														<img alt="Avtar" src="resources/images/user/${m.mImg}">
 													</div>
 													<div class="chat-body">
 														<div class="chat-message">
-															<h5>${ m.mReceiver }
+															<h5>${ m.mSender  }
 																<p>${ m.mDate }</p>
 															</h5>														
 															<p>${ m.mContent }</p>
@@ -156,7 +160,8 @@
 											<c:if test="${ sessionScope.loginUser.userId eq m.mSenderId }">												
 												<li class="out">
 													<div class="chat-img">
-														<img alt="Avtar" src="https://bootdey.com/img/Content/avatar/avatar6.png">
+													<input type="hidden" class="msgId" value="${m.mId}">
+														<img alt="Avtar" src="resources/images/user/${m.mImg}">
 													</div>
 													<div class="chat-body">
 														<div class="chat-message">
@@ -176,18 +181,13 @@
 									<!-- 메시지 입력 -->
 									<div class="bottom_wrapper clearfix">
 										<div class="message_input_wrapper">
-											<input class="message_input" placeholder="메시지를 넣어주세요" />
-										</div>
-										<div class="send_message">
-											<div class="icon"></div>
-											<div class="text">Send</div>
-										</div>
-									</div>
+											<input class="message_input" id="content" placeholder="메시지를 넣어주세요" />
+										</div>										
+										<button type="button" class="send_message" id="sendButton">Send</button>										
+									</div>	
 								</div>
-							</div>	
-							
-							
-							
+							</div>
+						</div>
 						</div>
 					</div>
 					
@@ -200,6 +200,70 @@
 		</div>
 		<!-- Main section end -->
 	
+	<script>
+		
+	
+		// 메시지 전송용
+		$('#sendButton').on("click",function(){
+			var fId = '${fi.fId}';
+			var content = $('#content').val();
+			
+			$.ajax({
+				url:"saveMsgContent.do",				
+				data:{
+					"fId" : fId, 
+					"content" : content},
+				type:"post",
+				success:function(data){
+					getMsgList();
+					/* location.href="msgDetail.do?fId=" + fId; */
+				}, error:function(){
+					console.log("오류")
+				}
+				
+			});
+			
+		});
+		
+		// 메시지 받기용
+		function getMsgList(){
+			var myId = '${sessionScope.loginUser}';
+			var fId = '${fi.fId}';
+			var mId = $('.msgId');
+			
+			$.ajax({
+				url:"getMsgRealtime.do",
+				data:{fId:fId},
+				dataType:"json",
+				success:function(data){
+					
+					console.log(data);
+					console.log(mId[0].val());
+					console.log(data[1].mId);
+					console.log(mId.length);
+					
+					for(var i = 0; i < mId.length; i++){
+						
+						if(mId[i] != data[i].mId){
+							console.log("mId"+ mId[i].val() + ": data" + data[i].mId);
+						} else {
+							console.log("시바");
+						}
+					}
+					
+					
+					
+				}, error:function(){
+					console.log("오류");
+				}
+				
+				
+			});
+			
+		}
+		
+		
+	</script>
 	
 	
 	<!--====== Javascripts & Jquery ======-->
