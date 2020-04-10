@@ -33,5 +33,9 @@ public interface PayService {
 	
 	int insertPay(Pay pay);
 
+	ArrayList<Pay> pSearch(Pay p);
+
+	ArrayList<Challenge> chSearch(Challenge ch);
+
 	
 }
