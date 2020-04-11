@@ -26,6 +26,9 @@
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="resources/css/style.css"/>
 	
+	<!-- JQuery -->
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	
     <style>
 
 	.main-down::-webkit-scrollbar{
@@ -122,6 +125,88 @@
 		display: none;
 		/* top: -30px; */
 	}
+	
+	/* tab css 수정 */
+	.tab-element .nav-tabs .nav-link {
+		border: 1px solid gray;
+		text-align: left;
+		background-color: white;
+		border-radius: 0;
+		position: relative;
+		width: 100%;
+		padding: 17px 30px;
+		font-size: 14px;
+		text-transform: uppercase;
+		color: #323232;
+		font-weight: 700;
+		line-height: 1.3;
+		cursor: pointer;
+	}
+	
+	.tab-element .nav-tabs .nav-link.active {
+		background: #242424;
+		color: #fff;
+		border-color: #242424;
+	}
+	
+	.tab-element .nav-tabs {
+		border-bottom: none;
+		margin-bottom: 25px;
+	}
+	
+	.tab-element .nav-item {
+		margin-right: 10px;
+		margin-bottom: 10px;
+	}
+	
+	.circle-item-warp {
+		margin-bottom: 30px;
+		overflow: hidden;
+	}
+	
+	.circle-progress {
+		float: left;
+		margin-right: 10px;
+	}
+	
+	.circle-progress canvas {
+		-webkit-transform: rotate(90deg);
+		transform: rotate(90deg);
+	}
+	
+	.circle-progress .circle-warp {
+		float: left;
+		margin-right: 20px;
+	}
+	
+	.circle-progress h2 {
+		padding-bottom: 18px;
+		overflow: hidden;
+		font-size: 72px;
+		font-family: "Playfair Display", serif;
+		line-height: 1;
+		font-weight: 900;
+		position: relative;
+	}
+	
+	.circle-progress h2 span {
+		font-size: 40px;
+		position: relative;
+		top: -30px;
+	}
+	
+	.circle-progress-text {
+		padding-top: 15px;
+	}
+	
+	.circle-progress-text h5 {
+		font-weight: 700;
+	}
+	
+	.circle-progress-text p {
+		margin-bottom: 0;
+		color: #828282;
+	}
     </style>
 </head>
 <body>
@@ -173,106 +258,145 @@
 			<!-- Page start -->
 			<div class="page-section portfolio-page">
 				<div class="portfolio-section">
-					<div class="main-up" style="height: 260px; width: 1200px; padding:3%; margin:20px; white-space:nowrap; overflow:hidden;">
-						<ul style="list-style: none; padding-left:0px">
-						<li style="display: inline-block;">
-							<div style="height:180px; width:355px; background: white; border:2px solid #242424; margin-right:25px; text-align:center; padding: 25px;">
-								<div class="circle-item-warp">
-									<div class="circle-progress-text">
-										<p>챌린지 달성률</p>
-									</div>
-									<div class="circle-progress" data-cptitle="Passion" data-cpid="id-1" data-cpvalue="95" data-cpcolor="#242424" style="display: inline-block;"></div>
-									<div style="display: inline-block; font-size: 30px; margin-left: 20px;">%</div>
-								</div>
+					<!-- 붙여넣기 시작 -->
+					<!-- interest 영역 -->				
+					<div class="main-down" style="height: 40%; width:90%; margin-left:20px">
+						<div class="main-down-title" style="height: 70px; padding: 20px; font-weight:900; font-size: 21px; font-weight: 700;">
+							<div style="width:100px; height:100px; margin-left:-39px; display:inline-block; background-image: url('resources/images/icons/bookmark.png'); background-repeat : no-repeat; background-size : cover;"></div>
+							<div style="margin:-100px 24px 0 60px;">
+								<i>Statistics</i>
 							</div>
-						</li>
-						<li style="display: inline-block;">
-							<div style="height:180px; width:355px; background: white; border:2px solid #242424; margin-right:25px; text-align:center; padding: 25px;" >
-								<div class="circle-item-warp">
-									<div class="circle-progress-text"> 
-										<p>챌린지 달성수</p>
+						</div>
+						<div class="main-down-content" style="height: 75%; width: 100%; margin-top: 5px; text-align:center; border:1px solid gray;">
+							<div style="display: inline-block; width:100%; margin-top:15px;">
+								<div style="display: inline-block; width:300px; height:40px; margin: 0 15px 0 15px; padding: 5px">챌린지 달성률</div>
+								<div style="display: inline-block; width:300px; height:40px; margin: 0 15px 0 15px; padding: 5px">챌린지 달성수</div>
+								<div style="display: inline-block; width:300px; height:40px; margin: 0 15px 0 15px; padding: 5px">사이트 가입일</div>
+							</div>
+							<div style="display: inline-block; width:100%; margin-top:8px;">
+								<div class="circle-item-warp" style="display: inline-block; width:320px; height:165px; margin: 0 15px 0 15px; border:1px solid gray; border-radius:15px; padding: 10px" >
+									<div class="circle-progress" data-cptitle="Passion" data-cpid="id-1" data-cpvalue="80" data-cpcolor="#242424" style="margin-left: 20px; margin-top: 20px"></div>
+									<div style="display:inline-block; font-size:50px; font-family: 'Playfair Display', serif; font-weight:700; margin-left: -50px; margin-top: 20px">%</div>
+									<div class="circle-progress-text">
+										<p>50, Total challenges</p>
+									</div>
+								</div>
+								<div class="circle-item-warp" style="display: inline-block; width:320px; height:165px; margin: 0 15px 0 15px; border:1px solid gray; border-radius:15px; padding: 25px 10px 0 40px;" >
+									<div class="milestone">
+										<h2>40</h2>
+										<div class="milestone-info" style="text-align:left;">
+											<h5>Challenges<br>completed</h5>
+											<p id="exp" style="color:gray">Level 4, Exp 10</p>
+										</div>
+									</div>
+								</div>
+								<div class="circle-item-warp" style="display: inline-block; width:320px; height:165px; margin: 0 15px 0 5px; border:1px solid gray; border-radius:15px; padding: 25px 10px 0 40px;" >
+									<div class="milestone">
+										<h2 id="gapDate"></h2>
+										<div class="milestone-info" style="text-align:left;">
+											<h5>Days<br>have passed</h5>
+											<p id="joinDate" style="color:gray">${ loginUser.joinDate }</p>
+										</div>
 									</div>
 									
-									<div class="circle-progress" data-cptitle="Passion" data-cpid="id-2" data-cpvalue="105" data-cpcolor="#242424";"></div>
+									<script>
+										var nDate = new Date();
+										var jDateString = $("#joinDate")[0].innerText;
+										var jDateArr = jDateString.split('-');
+										var jDate = new Date(jDateArr[0],jDateArr[1]-1,jDateArr[2]);
+										
+										var gap = nDate.getTime() - jDate.getTime();
+										var result = Math.floor(gap / (1000 * 60 * 60 * 24)) + 1;
+										
+										$("#gapDate")[0].innerText = result;
+										
+										/* $(function(){
+											$("#t1").data("cpvalue",90);
+										}); */
+									</script>
 								</div>
+								<!-- <div style="display: inline-block; width:300px; height:165px; margin: 0 15px 0 15px; border:1px solid gray">3</div> -->
 							</div>
-						</li>
-						<li style="display: inline-block;">
-							<div style="height:180px; width:355px; background: white; border:2px solid #242424; margin-right:25px; text-align:center; padding: 25px;" >
-								<!-- 나무의 경험치 <br><br>
-								<b>LV3, 90%</b> -->
-								<div class="circle-item-warp">
-									<div class="circle-progress-text">
-										<p>출석일</p>
-									</div>
-									<div class="circle-progress" data-cptitle="Passion" data-cpid="id-3" data-cpvalue="25" data-cpcolor="#242424";"></div>
-								</div>
-							</div>
-						</li>
-						</ul>
+             
+						</div>
 					</div>
-					<!-- <div class="main-down" style="height: 56%; width: 90%; border: 1px dotted gray; padding:3%; margin:20px; overflow:auto;">
-						<div style="height: 24%; width: 98%; border: 1px dotted gray;"></div>
-						<div style="height: 24%; width: 98%; border: 1px dotted gray;"></div>
-						<div style="height: 24%; width: 98%; border: 1px dotted gray;"></div>
-						<div style="height: 24%; width: 98%; border: 1px dotted gray;"></div>
-						<div style="height: 24%; width: 98%; border: 1px dotted gray;"></div>
-						<div style="height: 24%; width: 98%; border: 1px dotted gray;"></div>
-						<div style="height: 24%; width: 98%; border: 1px dotted gray;"></div>
-						<div style="height: 24%; width: 98%; border: 1px dotted gray;"></div>
-					</div> -->
-					<div class="tab-element">
-						<ul class="nav nav-tabs" id="myTab" role="tablist" style="margin-left: 20px; margin-bottom: 0px; margin-bottom: -30px;">
-							<li class="nav-item" >
-								<a class="nav-link active" id="1-tab" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">전체</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" id="4-tab" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false">진행예정</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" id="2-tab" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">진행중</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" id="3-tab" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false"">진행완료</a>
-							</li>
-						</ul>
-						<div class="tab-content" id="myTabContent" >
-							<!-- single tab content -->
-							<div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="tab-1">
-								<div class="main-down" style="width: 1200px; height: 400px; border: 2px solid #242424; padding:3%; margin:20px; overflow:auto;">
-									<div style="height: 24%; width: 98%;  background: white; border: 1px solid #e1e1e1;">
-										<div style="display: inline-block; width: 100px; height: 100%; background:gold;  padding: 25px; text-align: center;">진행중</div>
-										<img src="resources/images/hansol_profile.jpg" style="width: 50px; height: 50px;">
-										<div style="display: inline-block; width: 200px; height: 100%; background:orange; padding: 25px; text-align: center; ">1번 퀘스트</div>
+					
+					<!-- goal 영역 -->
+					<div class="main-up" style="height: 40%; width: 90%; margin-left:20px">
+						<div class="main-up-title" style="height: 70px; padding: 20px; font-size: 21px; font-weight: 700;">
+							<div style="width:100px; height:100px; margin-left:-39px; margin-top:12px; display:inline-block; background-image: url('resources/images/icons/bookmark.png'); background-repeat : no-repeat; background-size : cover;"></div>
+							<div style="margin:-100px 24px 0 60px;"><i>Challenges</i></div>
+						</div>
+						
+						
+						<div class="tab-element">
+							<ul class="nav nav-tabs" id="myTab" role="tablist" style="margin: 0px 0px -30px 80px;">
+								<li class="nav-item">
+									<a class="nav-link active" style="width:250px; text-align:center" id="1-tab" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">전체</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" style="width:250px; text-align:center" id="2-tab" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">진행중</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" style="width:250px; text-align:center" id="3-tab" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">진행예정</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" style="width:250px; text-align:center" id="4-tab" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false">진행완료</a>
+								</li>
+							</ul>
+							<div class="tab-content" id="myTabContent" >
+								<!-- single tab content -->
+								<div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="tab-1">
+									<div class="main-down" style="width: 100%; height: 400px; border: 1px solid gray; padding:3%; margin:0px; overflow:auto;">
+										<div style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
+											<div style="display: inline-block; width: 150px; height: 100%; background:#FE736C;  padding: 25px; text-align: center;">진행중</div>
+											<img src="resources/images/hansol_profile.jpg" style="width: 75px; height: auto">
+											<div style="display: inline-block; width: 200px; height: 100%; background:#FE736C; padding: 25px; text-align: center; ">1번 퀘스트</div>
+										</div>
+										<div style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
+											<div style="display: inline-block; width: 150px; height: 100%; background:#F7D147;  padding: 25px; text-align: center;">진행예정</div>
+											<img src="resources/images/hansol_profile.jpg" style="width: 75px; height: auto">
+											<div style="display: inline-block; width: 200px; height: 100%; background:#F7D147; padding: 25px; text-align: center; ">2번 퀘스트</div>
+										</div>
+										<div style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
+											<div style="display: inline-block; width: 150px; height: 100%; background:#3A7D7C;  padding: 25px; text-align: center;">진행완료</div>
+											<img src="resources/images/hansol_profile.jpg" style="width: 75px; height: auto">
+											<div style="display: inline-block; width: 200px; height: 100%; background:#3A7D7C; padding: 25px; text-align: center; ">3번 퀘스트</div>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="tab-pane fade" id="tab-4" role="tabpanel" aria-labelledby="tab-4">
-								<div class="main-down" style="width: 1200px; height: 400px; border: 2px solid #242424; padding:3%; margin:20px; overflow:auto;">
-									<div style="height: 24%; width: 98%; background: white; border: 1px solid #e1e1e1;">
-										<div style="display: inline-block; width: 100px; height: 100%; background:linear-gradient( to right, yellow, white );  padding: 25px; text-align: center;">예정</div>
-										<div style="display: inline-block; height: 100%; padding: 25px;">2번 퀘스트</div>
+								<div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="tab-2">
+									<div class="main-down" style="width: 100%; height: 400px; border: 1px solid gray; padding:3%; margin:0px; overflow:auto;">
+										<div style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
+											<div style="display: inline-block; width: 150px; height: 100%; background:#FE736C;  padding: 25px; text-align: center;">진행중</div>
+											<img src="resources/images/hansol_profile.jpg" style="width: 75px; height: auto">
+											<div style="display: inline-block; width: 200px; height: 100%; background:#FE736C; padding: 25px; text-align: center; ">1번 퀘스트</div>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="tab-2">
-								<div class="main-down" style="width: 1200px; height: 400px; border: 2px solid #242424; padding:3%; margin:20px; overflow:auto;">
-									<div style="height: 24%; width: 98%;  background: white; border: 1px solid #e1e1e1;">
-										<div style="display: inline-block; width: 100px; height: 100%; background:linear-gradient( to right, red, white );  padding: 25px; text-align: center;">진행중</div>
-										<div style="display: inline-block; height: 100%; padding: 25px; ">3번 퀘스트</div>
+								<div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="tab-3">
+									<div class="main-down" style="width: 100%; height: 400px; border: 1px solid gray; padding:3%; margin:0px; overflow:auto;">
+										<div style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
+											<div style="display: inline-block; width: 150px; height: 100%; background:#F7D147;  padding: 25px; text-align: center;">진행예정</div>
+											<img src="resources/images/hansol_profile.jpg" style="width: 75px; height: auto">
+											<div style="display: inline-block; width: 200px; height: 100%; background:#F7D147; padding: 25px; text-align: center; ">2번 퀘스트</div>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="tab-3">
-								<div class="main-down" style="width: 1200px; height: 400px; border: 2px solid #242424; padding:3%; margin:20px; overflow:auto;">
-									<div style="height: 24%; width: 98%; background: white; border: 1px solid #e1e1e1;">
-										<div style="display: inline-block; width: 100px; height: 100%; background:linear-gradient( to right, greenyellow, white );  padding: 25px; text-align: center;">완료</div>
-										<div style="display: inline-block; height: 100%; padding: 25px;">4번 퀘스트</div>
+								<div class="tab-pane fade" id="tab-4" role="tabpanel" aria-labelledby="tab-4">
+									<div class="main-down" style="width: 100%; height: 400px; border: 1px solid gray; padding:3%; margin:0px; overflow:auto;">
+										<div style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
+											<div style="display: inline-block; width: 150px; height: 100%; background:#3A7D7C;  padding: 25px; text-align: center;">진행완료</div>
+											<img src="resources/images/hansol_profile.jpg" style="width: 75px; height: auto">
+											<div style="display: inline-block; width: 200px; height: 100%; background:#3A7D7C; padding: 25px; text-align: center; ">3번 퀘스트</div>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+					<!-- 붙여넣기 끝 -->
+					
 				</div>
 			</div>
 			<!-- Page end -->

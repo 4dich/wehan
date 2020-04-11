@@ -36,7 +36,7 @@
 	
 	
     <style>
-    .profile-images {
+/*     .profile-images {
         width: 150px;
         height: 150px; 
         border-radius: 70%;
@@ -55,7 +55,7 @@
         border: 2px solid #efefef;
         margin-bottom: 20px;
         padding: 0.5%;
-    }
+    } */
 
     .site-logo {
         display: block;
@@ -99,14 +99,14 @@
 	}
 	
 	/*스크롤바*/
-	#goal::-webkit-scrollbar{
+	#goal::-webkit-scrollbar, #intro::-webkit-scrollbar{
 		width: 5px;
 	}
 	
-	#goal::-webkit-scrollbar-thumb{
+	#goal::-webkit-scrollbar-thumb, #intro::-webkit-scrollbar-thumb{
 		background-color: #242424;
 	}
-	#goal::-webkit-scrollbar-track{
+	#goal::-webkit-scrollbar-track, #intro::-webkit-scrollbar-track{
 		background-color: grey;
 	}
 	
@@ -124,7 +124,6 @@
 		<%@ include file="/WEB-INF/views/common/menuBar.jsp" %>
 		
         <!-- 메뉴 끝 -->
-        
 
 		<header class="header-section">
 			<div class="nav-switch">
@@ -136,6 +135,7 @@
                 <a href="my_diaryView.do">My Diary</a>
 			</div>
 		</header>
+		
 		<div class="site-content-warp">
 			<!-- Left Side section -->
 			<div class="main-sidebar">
@@ -146,6 +146,7 @@
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
 					
+					<!-- follow 영역 -->
 					<div id="divAll">
 				        <div id="pic" style="display:inline-block">
 				            <img src="resources/images/user/${ loginUser.picture }" style="width: 100px; height:100px; margin-top: -70px">
@@ -162,13 +163,15 @@
 				        </div>
 				    </div>
 				    
+				    <!-- nickname 영역 -->
 				    <div id="divAll2" style="margin-top:30px; text-align:left">
 				        <div style="font-weight:bold;font-size:24px"><i>${ loginUser.nickName }</i></div>
-
+					
+					<!-- intro 영역 -->
 				    <div id="divAll3" style="margin-top:30px; text-align:left">    
 				       	<div style="margin-bottom:5px; font-weight: 700;"><i>OWNER MESSAGE&nbsp;</i>
 				       	<input id="toggle3" style="margin-left:60px;" type="checkbox" checked data-toggle="toggle" data-on="<i class='fa fa-lock' aria-hidden='true'></i> 수정하기" data-off="<i class='fa fa-unlock' aria-hidden='true'></i> 수정중" data-onstyle="dark" data-offstyle="outline-dark" onchange="toggleBtn3();"></div>
-				       	<div style="border:1px solid gray; height:180px;"><textarea id="intro" rows=2 style="width:100%; height:50px; resize: none; overflow:hidden; border:0px; background:white" disabled>${ mypage.intro }</textarea></div> 
+				       	<div style="border:1px solid gray; height:180px;"><textarea id="intro" cols="41" rows="6" style="resize: none; border:0px; background:white; margin:12px;" disabled>${ mypage.intro }</textarea></div> 
 				    </div>
 				        
 				    </div>
@@ -176,7 +179,8 @@
 			</div>
 			<div class="page-section portfolio-page">
 				<div class="portfolio-section">
-					<div class="main-down" style="height: 40%; width:90%; margin:20px">
+					<!-- interest 영역 -->				
+					<div class="main-down" style="height: 40%; width:90%; margin-left:20px">
 						<div class="main-down-title" style="height: 70px; padding: 20px; font-weight:900; font-size: 21px; font-weight: 700;">
 							<div style="width:100px; height:100px; margin-left:-39px; display:inline-block; background-image: url('resources/images/icons/bookmark.png'); background-repeat : no-repeat; background-size : cover;"></div>
 							<div style="margin:-100px 24px 0 60px;">
@@ -184,7 +188,7 @@
 							</div>
 						</div>
 						<div class="main-down-content" style="height: 75%; width: 100%; margin-top: 5px; text-align:center; border:1px solid gray;">
-							<div style="display: inline-block; width:100%;">
+							<div style="display: inline-block; width:100%; margin-top:15px;">
 								<div style="display: inline;"><img class='category' src="resources/images/mypage/lifestyle.png" style="width:150px; height:150px; margin: 15px;"></div>
 								<div style="display: inline;"><img class='category' src="resources/images/mypage/poker.png" style="width:150px; height:150px; margin: 15px;"></div>
 								<div style="display: inline;"><img class='category' src="resources/images/mypage/document.png" style="width:150px; height:150px; margin: 15px;"></div>
@@ -194,7 +198,6 @@
 								
 								<div class="myCate" style="display:none">${ mypage.interest }</div>
 								
-								<!-- 관심분야 on/off -->
 							</div>
 							<div style="display: inline-block; width:100%;">
 								<div style="width:150px; margin: 15px; float:left; padding-left:70px;">건강</div>
@@ -206,9 +209,11 @@
 							</div>                        
 						</div>
 					</div>
-					<div class="main-up" style="height: 40%; width: 90%; margin:20px">
+					
+					<!-- goal 영역 -->
+					<div class="main-up" style="height: 40%; width: 90%; margin-left:20px">
 						<div class="main-up-title" style="height: 70px; padding: 20px; font-size: 21px; font-weight: 700;">
-							<div style="width:100px; height:100px; margin-left:-39px; display:inline-block; background-image: url('resources/images/icons/bookmark.png'); background-repeat : no-repeat; background-size : cover; z-index:10"></div>
+							<div style="width:100px; height:100px; margin-left:-39px; display:inline-block; background-image: url('resources/images/icons/bookmark.png'); background-repeat : no-repeat; background-size : cover;"></div>
 							<div style="margin:-100px 24px 0 60px;"><i>Goal</i></div>
 							
 							
@@ -216,7 +221,7 @@
 							
 						</div>
 						<div class="main-up-content" style="font-size:20px; height: 306px; width: 100%; margin-top: 5px; text-align:right; border:1px solid gray;">
-							<textarea id="goal" cols="105" rows="10" style="resize: none; border:0px; background:white" disabled>${ mypage.goal }</textarea>
+							<textarea id="goal" cols="104" rows="9" style="resize: none; border:0px; background:white; margin-top: 12px; margin-right:12px"  disabled>${ mypage.goal }</textarea>
 						</div>
 
 						<script>
