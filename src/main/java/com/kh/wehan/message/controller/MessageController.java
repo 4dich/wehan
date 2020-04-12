@@ -190,9 +190,37 @@ public class MessageController {
 		gson.toJson(list, response.getWriter());
 		
 		
-		
-		
 	}
 	
+	
+	/**
+	 * 메시지 삭제하기
+	 * @param fId
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("msgDelete.do")
+	public int msgDelete(String fId, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		Member mem = (Member)session.getAttribute("loginUser");
+		String userId = mem.getUserId();
+		
+		Map m = new HashMap();
+		
+		m.put("userId", userId);
+		m.put("fId", fId);
+		
+		
+		int result = msgService.msgDelete(m);
+		
+		if(result > 0) {
+			
+		} else {
+			
+		}
+		
+		return result;
+	}
 	
 }

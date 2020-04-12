@@ -73,6 +73,15 @@ public class MessageDao {
 		return sqlSession.insert("messageMapper.saveMsgContent", msg);
 	}
 
+	/**
+	 * 메시지 삭제하기
+	 * @param m
+	 * @return
+	 */
+	public int msgDelete(Map m) {
+		return sqlSession.update("messgeMapper.msgDelete");
+	}
+
 
 	
 }

@@ -100,6 +100,7 @@
 		FROM MESSAGE M
 		JOIN MEMBER MM ON (MM.USERID = M.SENDER)
 		WHERE SENDER = #{userId} AND RECEIVER = #{fId}
+		AND MDEL_YN = 'N'
 		UNION
 		SELECT M.MID AS MID,
 		       MM.PICTURE AS IMG,
@@ -114,6 +115,7 @@
 		FROM MESSAGE M
 		JOIN MEMBER MM ON (MM.USERID = M.SENDER)
 		WHERE SENDER = #{fId} AND RECEIVER = #{userId}
+		AND MDEL_YN = 'N'
 		ORDER BY MDATE ASC
   	</select>
   	
@@ -122,5 +124,10 @@
   		INSERT INTO MESSAGE 
   		VALUES(SEQ_MID.NEXTVAL, #{userId}, #{fId}, #{mContent}, (TO_CHAR(SYSDATE,'yyyy-mm-dd hh24:mi:ss')), DEFAULT, DEFAULT)
   	</insert>
+  	
+  	<!-- 메시지 삭제하기 -->
+  	<update id="msgDelete">
+  		
+  	</update>
   	
   </mapper>

@@ -122,7 +122,9 @@
 															<input type="hidden" value="${fi.fId}">
 															${fi.fName}
 															<a href="mypageProfile.html" class="fa fa-home" style="color:white"></a>
-															<span class="delete">메시지 삭제</sapn>
+															<span class="delete" style="cursor:pointer;" onclick="msgDelete();">
+																메시지 삭제
+															</sapn>
 														</h5>
 														<h6 style="color: white;"></h6><br>
 														<p style="color: white;">
@@ -133,18 +135,27 @@
 											</li>
 										</ul>
 									</div>
-
+									
 									<!-- 메시지 내용 시작 -->
 									<div class="card-body height3">
-										<ul class="chat-list">
+										<ul class="chat-list messageBody">
+										<%-- 메시지가 없으면 --%>
+										<c:if test="${ empty list }">
+											<div id="emptyMsg" style="text-align:center;">
+												<br><br>
+												친구에게 메시지를 보내보세요!<br><br>
+											</div>
+										</c:if>
 										
+										<%-- 메시지가 있으면 --%>
+										<c:if test="${ !empty list }">									
 										<c:forEach var="m" items="${list}">
 											<!-- 친구 메시지 -->
 											<c:if test="${ sessionScope.loginUser.userId ne m.mSenderId }">												
 												<li class="in">	
 													<div class="chat-img">
 														<input type="hidden" class="msgId" value="${m.mId}">
-														<img alt="Avtar" src="resources/images/user/${m.mImg}">
+														<img alt="Avtar" class="mImg" src="resources/images/user/${m.mImg}">
 													</div>
 													<div class="chat-body">
 														<div class="chat-message">
@@ -174,7 +185,7 @@
 												</li>
 											</c:if>	
 										</c:forEach>
-											
+										</c:if>
 										</ul>
 									</div>
 									<br><br><br><br><br><br>
@@ -202,6 +213,19 @@
 	
 	<script>
 		
+		// 엔터키로 메시지 전송
+		$('#content').keyup(function(event){
+			if(event.keyCode == 13) {
+				$('#sendButton').click();
+				return false;
+			}
+		});
+	
+		// 채팅 올라올때마다 스크롤 내리기 --> 안됨 ㅡㅡ
+		$('.messageBody').stop().animate({
+			scrollTop: $('.messageBody')[0].scrollHeight},
+			1000);
+	
 	
 		// 메시지 전송용
 		$('#sendButton').on("click",function(){
@@ -215,8 +239,12 @@
 					"content" : content},
 				type:"post",
 				success:function(data){
+					// 실시간 불러오기
 					getMsgList();
-					/* location.href="msgDetail.do?fId=" + fId; */
+					
+					// input창 지우기
+					$('#content').val('');
+					
 				}, error:function(){
 					console.log("오류")
 				}
@@ -225,11 +253,21 @@
 			
 		});
 		
-		// 메시지 받기용
+		// 실시간 메시지받기 3초마다 한번씩 실행하기
+		$(function(){
+			getMsgList();
+			
+			setInterval(function(){
+				getMsgList();
+			}, 3000);
+		});
+		
+		
+		// 메시지 전송 후 실시간으로 메시지 받기
 		function getMsgList(){
-			var myId = '${sessionScope.loginUser}';
+			var myId = '${sessionScope.loginUser.userId}';
 			var fId = '${fi.fId}';
-			var mId = $('.msgId');
+			var mId = [];
 			
 			$.ajax({
 				url:"getMsgRealtime.do",
@@ -237,29 +275,80 @@
 				dataType:"json",
 				success:function(data){
 					
-					console.log(data);
-					console.log(mId[0].val());
-					console.log(data[1].mId);
-					console.log(mId.length);
 					
-					for(var i = 0; i < mId.length; i++){
+					$('.msgId').each(function(idx, elem){
+						/* console.log('index('+idx+') : ' + $(this).val() ); */
+						mId.push( $(this).val());
+					});
+					
+					
+					for(var i = 0; i < data.length; i++) {
 						
-						if(mId[i] != data[i].mId){
-							console.log("mId"+ mId[i].val() + ": data" + data[i].mId);
-						} else {
-							console.log("시바");
+						// 위에 있는 mId와 DB에 있는 mId의 숫자가 맞지 않으면 메시지가 추가된 것
+						// 메시지가 추가되면 새로운 메시지 가져오기
+						if(mId[i] != data[i].mId) {
+							
+							// 보낸사람 Id와 내 Id가 같으면 내가 보낸 것
+							if(data[i].mSenderId == myId){
+																
+								var $li = $('<li>').attr('class','out');
+								var $div1 = $('<div>').attr('class','chat-img');
+								var $input = $('<input>').attr({ 'type' : 'hidden',
+																  'class' : 'msgId'}).val(data[i].mId);
+								var $img = $('<img>').attr({ 'alt' : 'Avtar',
+															  'src'	: 'resources/images/user/' + data[i].mImg });
+								
+								
+								var $div2 = $('<div>').attr('class','chat-body');
+								var $div3 = $('<div>').attr('class','chat-message');
+								var $h5 = $('<h5>').text(data[i].mSender);
+								var $p1 = $('<p>').text(data[i].mDate);
+								var $p2 = $('<p>').text(data[i].mContent);
+								
+								
+								$li.append($div1.append($input).append($img));
+								$li.append($div2.append($div3.append($h5.append($p1)).append($p2)));
+								
+								$('.messageBody').append($li);
+								
+							// 보낸사람 id와 내 id가 다르면 친구가 보낸 것
+							} else {								
+								var $li = $('<li>').attr('class','in');
+								var $div1 = $('<div>').attr('class','chat-img');
+								var $input = $('<input>').attr({ 'type' : 'hidden',
+																  'class' : 'msgId'}).val(data[i].mId);
+								var $img = $('<img>').attr({ 'alt' : 'Avtar',
+															  'src'	: 'resources/images/user/' + data[i].mImg });
+								
+								
+								var $div2 = $('<div>').attr('class','chat-body');
+								var $div3 = $('<div>').attr('class','chat-message');
+								var $h5 = $('<h5>').text(data[i].mSender);
+								var $p1 = $('<p>').text(data[i].mDate);
+								var $p2 = $('<p>').text(data[i].mContent);
+								
+								
+								$li.append($div1.append($input).append($img));
+								$li.append($div2.append($div3.append($h5.append($p1)).append($p2)));
+								
+								$('.messageBody').append($li);
+							}
+							
+							
 						}
 					}
-					
-					
 					
 				}, error:function(){
 					console.log("오류");
 				}
-				
-				
-			});
+			});			
+		}
+		
+		// 메시지 삭제
+		function msgDelete(){
+			var fId = '${fi.fId}';
 			
+			location.href="msgDelete.do?fId=" + fId;
 		}
 		
 		

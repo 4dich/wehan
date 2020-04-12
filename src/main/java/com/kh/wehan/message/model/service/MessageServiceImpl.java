@@ -57,4 +57,12 @@ public class MessageServiceImpl implements MessageService{
 	public int saveMsgContent(Map msg) {
 		return msgDao.saveMsgContent(msg);
 	}
+
+	/**
+	 * 메시지 삭제하기
+	 */
+	@Override
+	public int msgDelete(Map m) {
+		return msgDao.msgDelete(m);
+	}
 }
