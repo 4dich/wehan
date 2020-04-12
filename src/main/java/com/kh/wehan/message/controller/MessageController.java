@@ -1,17 +1,22 @@
 package com.kh.wehan.message.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonIOException;
 import com.kh.wehan.member.model.vo.Member;
 import com.kh.wehan.message.model.service.MessageService;
 import com.kh.wehan.message.model.vo.FriendInfo;
@@ -87,7 +92,8 @@ public class MessageController {
 	 * @return
 	 */
 	
-	@RequestMapping("msgDetail.do") public ModelAndView msgDetail(ModelAndView mv, String fId, HttpServletRequest request) {
+	@RequestMapping("msgDetail.do") 
+	public ModelAndView msgDetail(ModelAndView mv, String fId, HttpServletRequest request) {
 	
 		// userId 가져오기 
 		HttpSession session = request.getSession(); 
@@ -102,16 +108,15 @@ public class MessageController {
 		m.put("userId", userId);
 		m.put("fId", fId);
 		
-		System.out.println(m.toString());
 		// 메시지 내용 가져오기
 		ArrayList<Message> list = msgService.getMsgContent(m);
-		
-		System.out.println(list.toString());
+			
 		
 		if(fi != null) {
 			mv.addObject("fi", fi).addObject("list", list).setViewName("user/message/msg_msgDetail");
+		} else {
+			mv.addObject("msg", "Error").addObject("msg2", "메시지를 가져올 수 없습니다").setViewName("common/errorPage");
 		}
-	
 	
 	
 	return mv; 
@@ -119,6 +124,75 @@ public class MessageController {
 	}
 	
 	
+	/**
+	 * 메시지 저장
+	 * @param mv
+	 * @return
+	 */
+	@RequestMapping("saveMsgContent.do")
+	@ResponseBody
+	public String saveMsgContent(String fId, String content, HttpServletRequest request) {
+		
+		
+		
+		// userId 가져오기 
+		HttpSession session = request.getSession(); 
+		Member mem =(Member)session.getAttribute("loginUser"); 
+		String userId = mem.getUserId();
+		
+		
+		// Map에 저장하기
+		Map msg = new HashMap();
+		msg.put("userId", userId);
+		msg.put("fId", fId);
+		msg.put("mContent", content);
+		
+		// DB에 저장하기
+		int result = msgService.saveMsgContent(msg);
+
+		if(result > 0) {
+			return "success";
+		} else {
+			return "fail";
+		}
+		
+	}
+	
+	/**
+	 * 메시지 실시간 리스트 가져오기 
+	 * @param response
+	 * @param request
+	 * @param fId
+	 * @throws JsonIOException
+	 * @throws IOException
+	 */
+	@RequestMapping("getMsgRealtime.do")
+	public void getMsgRealtime(HttpServletResponse response, HttpServletRequest request, String fId) throws JsonIOException, IOException {
+		
+		// userId 가져오기 
+		HttpSession session = request.getSession(); 
+		Member mem =(Member)session.getAttribute("loginUser"); 
+		String userId = mem.getUserId();
+	
+				
+		Map m = new HashMap();
+		
+		m.put("userId", userId);
+		m.put("fId", fId);
+		
+		// 메시지 내용 가져오기
+		ArrayList<Message> list = msgService.getMsgContent(m);
+			
+		response.setContentType("application/json; charset=UTF-8");
+		
+		Gson gson = new Gson();
+		
+		gson.toJson(list, response.getWriter());
+		
+		
+		
+		
+	}
 	
 	
 }

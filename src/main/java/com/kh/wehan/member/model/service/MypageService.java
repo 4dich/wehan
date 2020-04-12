@@ -24,4 +24,12 @@ public interface MypageService {
 	 */
 	public int followingCount(String userId);
 
+	/**
+	 * 0-3. 마이페이지 프로필 업데이트
+	 * @param mp
+	 * @return
+	 */
+	public int updateProfile(Mypage mp);
+
+
 }

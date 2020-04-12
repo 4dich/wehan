@@ -115,7 +115,7 @@
 							<input type="text" id="picture" name="picture" style="display:none" value="${ loginUser.picture }">
 							<input id="file" name="uploadFile" type="file" onchange="previewImage(this,'View_area')" style="margin-left: 50%;">
 							<div id="View_area" style="height: 350px; width: 350px; dispaly: inline; border:1px solid black; text-align:center; padding-top:24px;">
-								<div id="View_area_in" style="height: 300px; width: 300px; margin-left:24px; border:1px solid black; text-align:center; background-repeat:no-repeat; background-size:contain;"></div>
+								<div id="View_area_in" style="height: 300px; width: 300px; margin-left:24px; text-align:center; background-repeat:no-repeat; background-size:contain;"></div>
 							</div>
 						<script>
 							$(function(){
@@ -123,7 +123,7 @@
 								$("#View_area_in").css('background-image','url(resources/images/user/'+$('#picture')[0].value+')');
 							});
 						</script>
-							<label for="file" style="margin-left: 35%; border:1px solid black; margin-top: 30px; padding: 10px;">파일버튼</label><input id="file" name="uploadFile" type="file" onchange="previewImage(this,'View_area')" style="margin-left: 50%;">
+							<label for="file" style="margin-left: 35%; width:100px; border:1px solid black; margin-top: 20px; padding: 8px; text-align:center; cursor:pointer">Image</label><input id="file" name="uploadFile" type="file" onchange="previewImage(this,'View_area')" style="margin-left: 50%;">
 
 						</div>
                         <div class="col-xl-6" style="margin-left: 20px;">
@@ -414,10 +414,10 @@
 				}
 			}
 			
-			if(file == ""){
+			/* if(file == ""){
 				alert("프로필 사진을 넣어 주세요");
 				return false;
-			}
+			} */
 			
 		}
 		

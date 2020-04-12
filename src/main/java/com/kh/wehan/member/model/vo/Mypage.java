@@ -11,15 +11,23 @@ public class Mypage {
       super();
    }
    public Mypage(String userId, String intro, String goal, String interest, int myExp, int myLevel) {
-      super();
-      this.userId = userId;
-      this.intro = intro;
-      this.goal = goal;
-      this.interest = interest;
-      this.myExp = myExp;
-      this.myLevel = myLevel;
+	  super();
+	  this.userId = userId;
+	  this.intro = intro;
+	  this.goal = goal;
+	  this.interest = interest;
+	  this.myExp = myExp;
+	  this.myLevel = myLevel;
    }
-   public String getUserId() {
+   
+   public Mypage(String userId, String intro, String goal, String interest) {
+		super();
+		this.userId = userId;
+		this.intro = intro;
+		this.goal = goal;
+		this.interest = interest;
+	}
+	public String getUserId() {
       return userId;
    }
    public void setUserId(String userId) {
