@@ -26,8 +26,6 @@ public class InOutController {
 	@ResponseBody
 	public String login(String userId,String password,Model model,HttpSession session,SessionStatus status) {
 		
-		status.setComplete();
-		
 		if(userId.equals("admin")){
 			Admin adminUser = mService.adminlogin(userId);
 			if(adminUser != null && password.equals(adminUser.getPassword())) {
