@@ -219,7 +219,13 @@
 	<!-- Main section end -->
 	<script>
 		$(document).ready(function(){
-			  $('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247)");   // even 짝수
+			var msg2 = "<%= request.getAttribute("msg2")%>";
+			if(msg2 != "null"){
+				alert(msg2);
+				location.href="loginView.do";
+			}
+			
+			$('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247)");   // even 짝수
 			
 		});
 		

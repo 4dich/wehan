@@ -57,7 +57,7 @@
 	</select>
 	
 	<insert id="insertMember" parameterType="Member">
-		INSERT INTO MEMBER VALUES(#{userId},#{password},#{nickName},#{userName},#{birthDay},#{email},#{address},#{phone},#{account},#{picture},SYSDATE,DEFAULT)
+		INSERT INTO MEMBER VALUES(#{userId},#{password},#{nickName},#{userName},#{birthDay},#{address},#{email},#{phone},#{account},#{picture},SYSDATE,DEFAULT)
 	</insert>
 	
 	<select id="memberCount" resultType="_int"> 
@@ -87,9 +87,23 @@
 		WHERE USERID=#{userId}
 	</update>
 
-	<select id="memberMapper.idFind" parameterType="string" resultType="string">
+	<select id="idFind" parameterType="string" resultType="string">
 		SELECT USERID
 		FROM MEMBER
 		WHERE EMAIL=#{email}
 	</select>
+	<select id="pwdFind" parameterType="Member" resultType="_int">
+		SELECT COUNT(*) FROM MEMBER WHERE EMAIL=#{email} AND USERID=#{userId}
+	</select>
+	<select id="insertKey" parameterType="FindKey" resultType="_int"> 
+		INSERT INTO FINDKEY VALUES(#{userId},#{key}) </select>
+	<select id="matchKey" parameterType="FindKey" resultType="_int">
+		SELECT COUNT(*) FROM FINDKEY WHERE USERID=#{userId} AND KEY=#{key}
+	</select>
+	<select id="DeleteFindKey" parameterType="string" resultType="_int">
+	 	DELETE FROM FINDKEY WHERE USERID = #{userId} 
+	 </select>
+	<update id="updatePwd" parameterType="Member">
+		UPDATE MEMBER SET PASSWORD = #{password} WHERE USERID = #{userId}
+	</update>
 </mapper>

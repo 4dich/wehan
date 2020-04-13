@@ -33,12 +33,16 @@
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 	<style>
+		.black{
+			position: fixed;
+			display:flex;
+			justify-content:center;
+		}	
 		.infoMenu{font-size: 16px;}
 		tbody  td {padding:20px; padding-bottom: 0;}
 		tbody  th {padding:10px;}
 		#prof{margin-left: 105px; text-align: center; margin-top: 20px; font-size: 18px;}
 		p{margin :0}
-		
 	</style>
 </head>
 <body>
@@ -57,10 +61,56 @@
 			<div class="nav-switch">
 				<i class="fa fa-bars"></i>
 			</div>
-		
 		</header>
+		<%-- <div class="black">
+			<div class="blackinsert">
+				<table>
+					<tr>
+						<th>아이디</th>
+						<td><input type="text" value="${m.userId}"></td>
+					</tr>
+					<tr>
+						<th>차단 사유</th>
+						<td><textarea rows="3"></textarea></td>
+					</tr>
+					<tr>
+						<th>차단 기간</th>
+						<td><input type="text" placeholder="차단 기간"></td>
+					</tr>
+					<tr>
+						<td><button>등록</button></td>
+						<td><button>취소</button></td>
+					</tr>
+				</table>
+			</div>
+			<div class="blackcancle">
+				<table>
+					<tr>
+						<th>아이디</th>
+						<td><input type="text" value="${m.userId}"></td>
+					</tr>
+					<tr>
+						<th>차단 사유</th>
+						<td><textarea rows="3"></textarea></td>
+					</tr>
+					<tr>
+						<th>차단 날짜</th>
+						<td><input type="text"></td>
+					</tr>
+					<tr>
+						<th>차단 기간</th>
+						<td><input type="text"></td>
+					</tr>
+					<tr>
+						<td><button>등록</button></td>
+						<td><button>취소</button></td>
+					</tr>
+				</table>
+			</div>
+		</div> --%>
 		<div class="site-content-warp">
 			<!-- Left Side section -->
+			
 			<div class="main-sidebar">
 			
 				<div class="mb-warp">

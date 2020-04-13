@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.wehan.member.model.dao.MemberDao;
 import com.kh.wehan.member.model.vo.Admin;
+import com.kh.wehan.member.model.vo.FindKey;
 import com.kh.wehan.member.model.vo.Member;
 
 @Service("mService")
@@ -71,5 +72,25 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public String idFind(String email) {
 		return mDao.idFind(email);
+	}
+	@Override
+	public int pwdFind(Member m) {
+		return mDao.pwdFind(m);
+	}
+	@Override
+	public int insertFindKey(FindKey c) {
+		return mDao.insertFindKey(c);
+	}
+	@Override
+	public int matchKey(FindKey c) {
+		return mDao.matchKey(c);
+	}
+	@Override
+	public int DeleteFindKey(String userId) {
+		return mDao.DeleteFindKey(userId);
+	}
+	@Override
+	public int updatePwd(Member m) {
+		return mDao.updatePwd(m);
 	}
 }
