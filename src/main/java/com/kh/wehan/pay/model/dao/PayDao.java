@@ -48,7 +48,6 @@ public class PayDao {
 
 
 	public ArrayList<Pay> pSearch(Pay p) {
-		System.out.println("여기오니?" + p);
 		return (ArrayList)sqlSession.selectList("payMapper.searchplist",p);
 	}
 	
@@ -56,4 +55,12 @@ public class PayDao {
 		return (ArrayList)sqlSession.selectList("payMapper.searchchlist",ch);
 	}
 
+
+	public int searchCount(Challenge ch) {
+		return sqlSession.selectOne("payMapper.chSearchResultCount",ch);
+	}
+
+	public int searchCount(Pay p) {
+		return sqlSession.selectOne("payMapper.paySearchResultCount",p);
+	}
 }

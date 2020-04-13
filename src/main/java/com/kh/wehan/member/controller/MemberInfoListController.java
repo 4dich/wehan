@@ -13,6 +13,7 @@ import com.google.gson.JsonIOException;
 import com.kh.wehan.common.Pagination;
 import com.kh.wehan.common.model.vo.PageInfo;
 import com.kh.wehan.member.model.service.MemberService;
+import com.kh.wehan.member.model.vo.BlackList;
 import com.kh.wehan.member.model.vo.Member;
 
 @Controller
@@ -64,8 +65,6 @@ public class MemberInfoListController {
 			mem.setUserName(searchValue);
 		}
 		
-		System.out.println(mem);
-		
 		ArrayList<Member> list = mService.mlistSearch(mem);
 		
 		for(Member m : list) {
@@ -87,7 +86,6 @@ public class MemberInfoListController {
 	
 	@RequestMapping("mlistDetail.do")
 	public ModelAndView mlistDetaile(ModelAndView mv,String userId) {
-		System.out.println(userId);
 		
 		Member m = mService.memberDetail(userId);
 		if(m != null) {
@@ -98,7 +96,13 @@ public class MemberInfoListController {
 				m.setBlacklistYN("N");
 			}
 		}
-		System.out.println(m);
+		
+		BlackList b = null;
+		if(m.getBlacklistYN().equals("Y")){
+			b = mService.BlackListInfo(userId);
+			mv.addObject("b",b);
+		}
+		System.out.println(b);
 		mv.addObject("m",m);
 		mv.setViewName("admin/ad_profileDetail");
 		return mv;

@@ -114,9 +114,14 @@ public class PayController {
 	public ModelAndView plistSearch(ModelAndView mv,@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage
 			,String selecter,String searchValue) {
 		
+		int listCount = 0;
+		
+		PageInfo pi = null;
 		
 		Pay p = new Pay();
 		Challenge ch = new Challenge();
+		ArrayList<Challenge> chsearch = null;
+		ArrayList<Pay> psearch = null;
 		if(selecter.equals("userId")) {
 			p.setUserId(searchValue);
 		}
@@ -127,15 +132,40 @@ public class PayController {
 			p.setpId(searchValue);
 		}
 		
-		ArrayList<Pay> psearch = pService.pSearch(p);
-		ArrayList<Challenge> chsearch = pService.chSearch(ch);
 		
-		System.out.println(psearch);
-		System.out.println(chsearch);
+		if(ch.getChName() != null) {
+			listCount = pService.getSearchListCount(ch); //1
+			chsearch = pService.chSearch(ch);
+			pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
+			mv.addObject("chsearch",chsearch);
+			mv.addObject("pi",pi);
+		}
 		
+		if(p.getUserId() != null || p.getpId() !=null) {
+			listCount = pService.getSearchListCount(p);
+		    psearch = pService.pSearch(p);
+		    pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
+		    mv.addObject("psearch",psearch);
+		    mv.addObject("pi",pi);
+		}
+			
+		mv.setViewName("admin/ad_payList");
+	
 		
 		return mv;
 		
+	}
+	
+	@RequestMapping("refund.do")
+	public ModelAndView refund(ModelAndView mv,HttpServletRequest request) {
+		
+		String[] payr = request.getParameterValues("result");		
+		for(int i=0; i<payr.length;i++) {
+			System.out.println(payr[i]);
+		}
+		
+		
+		return mv;
 	}
 	
 }
