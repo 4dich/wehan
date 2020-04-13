@@ -186,10 +186,10 @@ public class viewController {
 		return "user/fid/fid_friendList";
 	}
 	
-	@RequestMapping("fid_ch_recommendView.do")
-	public String fid_ch_recommendView() {
-		return "user/fid/fid_ch_recommend";
-	}
+//	@RequestMapping("fid_ch_recommendView.do")
+//	public String fid_ch_recommendView() {
+//		return "user/fid/fid_ch_recommend";
+//	}
 	
 	@RequestMapping("fid_followView.do")
 	public String fid_followView() {
