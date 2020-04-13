@@ -186,29 +186,40 @@
 	$(function(){
 		
 		var fCate = $('.fCategory');
-		var fName = $('.fName');
+		var $fName = [];
 		var $interest;
+		
+		$('.fName').each(function(idx, elem){
+			console.log('index('+idx+') : ' + $(this).val() );
+			$fName.push($(this));
+		});
 		
 		for(var i = 0; i < fCate.length; i++){
 			
+			console.log($fName[i]);
 						
 			if(/건강/.test(fCate[i].textContent)) {
-				$interest += $('<span>').attr('class','health').text("건강"); 				
+				$interest = $('<span>').attr('class','health').text("건강"); 				
+				console.log($interest);
+				$fName[i].append($interest);
 			}
 			if(/경제/.test(fCate[i].textContent)) {
-				$interest += $('<span>').attr('class','economy').text("경제");				
+				$interest = $('<span>').attr('class','economy').text("경제");				
+				$fName[i].append($interest);
 			}
 			if(/취미/.test(fCate[i].textContent)) {
-				$interest += $('<span>').attr('class','hobby').text("취미");
+				$interest = $('<span>').attr('class','hobby').text("취미");
+				$fName[i].append($interest);
 			}
 			if(/자기개발/.test(fCate[i].textContent)) {
-				$interest += $('<span>').attr('class','development').text("자기개발");
+				$interest = $('<span>').attr('class','development').text("자기개발");
+				$fName[i].append($interest);
 			}
 			if(/생활/.test(fCate[i].textContent)) {
-				$interest += $('<span>').attr('class','life').text("생활");
+				$interest = $('<span>').attr('class','life').text("생활");
+				$fName[i].append($interest);
 			}
 			
-			fName[i].append($interest);
 			
 		}
 		

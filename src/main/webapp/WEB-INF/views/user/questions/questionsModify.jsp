@@ -104,19 +104,19 @@
 										<tr class="questionsTitleArea">
 											<td class="questionsTitle1">제목</td>
 											<td class="questionsTitle2">
-												<input type="text" name="qTitle" value="${n.nTitle }">
-												<input type="hidden" name="qId" value="${n.nId}">
+												<input type="text" name="qTitle" value="${q.qTitle }">
+												<input type="hidden" name="qId" value="${q.qId}">
 											</td>
 										</tr>
 										<tr class="questionsUserNameArea">
 											<td class="questionsUserName1">작성자</td>
 											<td class="questionsUserName2">
-												<input type="text" name="qId" value="${n.nWriter}" disabled>
+												<input type="text" name="qId" value="${q.qWriter}" disabled>
 											</td>
 										</tr>
 										<tr class="questionsTextBox">
 											<td class="questionsTextArea"  colspan="2" style="height:500px; text-align:-webkit-auto;"> 
-												<textarea name="qContent" style="width:100%; height:100%; padding:5%; resize:none">${n.nContent}</textarea>
+												<textarea name="qContent" style="width:100%; height:100%; padding:5%; resize:none">${q.qContent}</textarea>
 											</td>
 										</tr>
 										

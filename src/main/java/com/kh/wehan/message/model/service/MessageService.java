@@ -40,10 +40,17 @@ public interface MessageService {
 	ArrayList<Message> getMsgContent(Map m);
 
 	/**
-	 * 메시지 저장
+	 * 메시지 저장하기
 	 * @param msg
 	 * @return
 	 */
 	int saveMsgContent(Map msg);
+
+	/**
+	 * 메시지 삭제하기
+	 * @param m
+	 * @return
+	 */
+	int msgDelete(Map m);
 
 }

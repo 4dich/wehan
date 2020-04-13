@@ -117,7 +117,7 @@
 
 
 						<!-- 문의사항 테이블 -->
-						<table class="qnaTable">
+						<table class="qnaTable" style="width:100%">
 							
 							<tr class="thArea">
 								<th>NO</th>
@@ -133,14 +133,16 @@
 								<td>
 								    <input type="hidden" value="${q.qId }"/>							    
 																
-								</td>								
-								<td>${q.qTitle }</td>
+								</td>			
+								<td>${q.qId }		</td>
+											
+								<td style="text-align:left">${q.qTitle}</td>
 								<td>${q.qUserid }</td>
 								
 								<td>${q.qDate }</td>
 															
 								<td>${q.qCount }</td>
-								<td>${q.qContent }</td>
+								
 							</tr>
                       
                       </c:forEach> 			
