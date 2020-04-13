@@ -95,6 +95,8 @@
 							<img src="resources/images/arrow-righ-3.png" alt="">
 						</a>
 					</div>
+
+					
 					<br>
 					<div class="blog-post-item">
 
@@ -122,7 +124,28 @@
 										<td class="qnaTextArea"  colspan="2"> 
 										${q.qContent}
 										</td>
-									</tr>							
+									</tr>						
+										
+										<c:if test="${'user' eq q.qUserid }">
+										<tr class="replybuttonArea">
+											<c:url var="qModifyView" value="questionsModifyView.do">
+												<c:param name="qId" value="${ q.qId }" />
+												<c:param name="currentPage" value="${currentPage}" />
+											</c:url>
+											<c:url var="qDelete" value="questionsDelete.do">
+												<c:param name="qId" value="${ q.qId }" />
+												<c:param name="currentPage" value="${currentPage}" />
+											</c:url>										
+											<td class="buttonArea"  colspan="2">
+												<a class="site-btn" href="${qModifyView}" style="background-color: white; padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px;">
+													수정하기
+												</a>
+												<a class="site-btn" href="${qDelete}" style="background-color: white; padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px;">
+													삭제하기
+												</a>
+											</td>
+										</tr>
+									</c:if>	
 									
 								</table>								
 							</div>							
