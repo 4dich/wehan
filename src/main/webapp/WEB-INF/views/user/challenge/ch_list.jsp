@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="ko">
 <head>
 	<title>CH_LIST</title>
 	<meta charset="UTF-8">
@@ -10,25 +11,25 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
 	<!-- Favicon -->
-	<link href="../resources/img/favicon.ico" rel="shortcut icon"/>
+	<link href="resources/img/favicon.ico" rel="shortcut icon"/>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,900&display=swap" rel="stylesheet">
 
 	<!-- Stylesheets -->
-	<link rel="stylesheet" href="../resources/css/bootstrap.min.css"/>
-	<link rel="stylesheet" href="../resources/css/font-awesome.min.css"/>
-	<link rel="stylesheet" href="../resources/css/magnific-popup.css"/>
-	<link rel="stylesheet" href="../resources/css/owl.carousel.min.css"/>
+	<link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="resources/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="resources/css/magnific-popup.css"/>
+	<link rel="stylesheet" href="resources/css/owl.carousel.min.css"/>
 
 	<!-- Main Stylesheets -->
-    <link rel="stylesheet" href="../resources/css/ch-list.css"/>
-    <!-- <link rel="stylesheet" href="../resources/css/main.css"/> -->
-    <!-- <link rel="stylesheet" href="../resources/css/left_section.css"/> -->
-    <link rel="stylesheet" href="../resources/css/style.css"/>	
+    <link rel="stylesheet" href="resources/css/ch-list.css"/>
+    <!-- <link rel="stylesheet" href="resources/css/main.css"/> -->
+    <!-- <link rel="stylesheet" href="resources/css/left_section.css"/> -->
+    <link rel="stylesheet" href="resources/css/style.css"/>	
     
-	<link rel="stylesheet" href="../resources/css/category.css"/>
+	<link rel="stylesheet" href="resources/css/category.css"/>
 
     <style>
         .textBox {
@@ -52,7 +53,7 @@
 	<!-- Main section start -->
 	<div class="main-site-warp">
 
-		<include file="/WEB-INF/views/common/menuBar.jsp">
+		<%@ include file="/WEB-INF/views/common/menuBar.jsp"%>
 
 		<header class="header-section">
 			<div class="nav-switch">
@@ -76,7 +77,7 @@
                     <div class="challenges-search">
 						<input type="textarea" style="padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 3px solid black;" placeholder="챌린지 검색">
                         <a href="" class="site-btn2">
-                            <img src="../resources/img/main/search.png" style="padding-left: 10px;" alt="">
+                            <img src="resources/img/main/search.png" style="padding-left: 10px;" alt="">
                         </a>
                     </div>
 
@@ -93,7 +94,7 @@
                     </div>
                     <button class="site-btn sb-dark" style="margin-left: 40px; width: 280px; font-size: 15px;" type="button" onclick="location.href='ch-register.html'">
                         	챌린지 등록하기
-                        <img src="../resources/img/arrow-righ-3.png" alt="">
+                        <img src="resources/img/arrow-righ-3.png" alt="">
                     </button>
                     <br><br>
                 
@@ -124,18 +125,13 @@
 							<div class="map"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14376.077865872314!2d-73.879277264103!3d40.757667781624285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1546528920522" style="border:0" allowfullscreen></iframe></div>
                         </div> -->
 
-
-                        
-						
-
-
                         <div class="sampleArea">
 
                             <div id="ch_confirmPhotoListArea">
                                 <div id="photoList">
                                     <a href="ch-detail.html">
                                         <div class="photoBox">                                        
-                                            <img src="../resources/img/blog/1.jpg" alt=""/>
+                                            <img src="resources/img/blog/1.jpg" alt=""/>
                                             <div class="textBox">
                                                 <h5>참가 전 챌린지 상세보기 가기</h5>
                                                 <br>
@@ -146,7 +142,7 @@
                                     </a>
                                     <a href="ch-end.html">
                                         <div class="photoBox">
-                                            <img src="../resources/img/blog/1.jpg" alt="">
+                                            <img src="resources/img/blog/1.jpg" alt="">
                                             <div class="textBox">
                                                 <h5>마감된 챌린지 상세보기</h5>
                                                 <br>
@@ -157,7 +153,7 @@
                                     </a>
                                     <a href="ch-detailIng.html">
                                         <div class="photoBox">
-                                            <img src="../resources/img/blog/1.jpg" alt="">
+                                            <img src="resources/img/blog/1.jpg" alt="">
                                             <div class="textBox">
                                                 <h5>진행중인 챌린지 상세보기</h5>
                                                 <br>
@@ -168,7 +164,7 @@
                                     </a>
                                     
                                     <div class="photoBox">
-                                        <img src="../resources/img/blog/1.jpg" alt="">
+                                        <img src="resources/img/blog/1.jpg" alt="">
                                         <div class="textBox">
                                             <h5>누가 집에 먼저 들어가나</h5>
                                             <br>
@@ -177,7 +173,7 @@
                                         </div>
                                     </div>
                                     <div class="photoBox">
-                                        <img src="../resources/img/blog/1.jpg" alt="">
+                                        <img src="resources/img/blog/1.jpg" alt="">
                                         <div class="textBox">
                                             <h5>누가 집에 먼저 들어가나</h5>
                                             <br>
@@ -186,7 +182,7 @@
                                         </div>
                                     </div>
                                     <div class="photoBox">
-                                        <img src="../resources/img/blog/1.jpg" alt="">
+                                        <img src="resources/img/blog/1.jpg" alt="">
                                         <div class="textBox">
                                             <h5>누가 집에 먼저 들어가나</h5>
                                             <br>
@@ -196,7 +192,7 @@
                                     </div>
                                     
                                     <div class="photoBox">
-                                        <img src="../resources/img/blog/1.jpg" alt="">
+                                        <img src="resources/img/blog/1.jpg" alt="">
                                         <div class="textBox">
                                             <h5>누가 집에 먼저 들어가나</h5>
                                             <br>
@@ -205,7 +201,7 @@
                                         </div>
                                     </div>
                                     <div class="photoBox">
-                                        <img src="../resources/img/blog/1.jpg" alt="">
+                                        <img src="resources/img/blog/1.jpg" alt="">
                                         <div class="textBox">
                                             <h5>누가 집에 먼저 들어가나</h5>
                                             <br>
@@ -214,7 +210,7 @@
                                         </div>
                                     </div>
                                     <div class="photoBox">
-                                        <img src="../resources/img/blog/1.jpg" alt="">
+                                        <img src="resources/img/blog/1.jpg" alt="">
                                         <div class="textBox">
                                             <h5>누가 집에 먼저 들어가나</h5>
                                             <br>
@@ -224,14 +220,42 @@
                                     </div>
                                 </div>  
                                     <div class="qnaPaging" style="float: right; margin-right: 7px; margin-top: 20px;">
-                                        <a><</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a>●</a>
-                                        <a>●</a>
-                                        <a>●</a>
-                                        <a>●</a>
-                                        <a>●</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a>></a>
-                                    </div>
+										<!-- [이전] -->
+										<c:if test="${ pi.currentPage eq 1 }">
+											&lt; &nbsp;
+										</c:if>
+										<c:if test="${ pi.currentPage ne 1 }">
+											<c:url var="before" value="clist.do">
+												<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
+											</c:url>
+											<a href="${ before }">&lt;</a> &nbsp;
+										</c:if>
+										
+										<!-- 페이지 -->
+										<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+											<c:if test="${ p eq pi.currentPage }">
+												<b>${ p }</b> &nbsp;
+											</c:if>
+											
+											<c:if test="${ p ne pi.currentPage }">
+												<c:url var="pagination" value="clist.do">
+													<c:param name="currentPage" value="${ p }"/>
+												</c:url>
+												<a href="${ pagination }">${ p }</a> &nbsp;
+											</c:if>
+										</c:forEach>
+										
+										<!-- [다음] -->
+										<c:if test="${ pi.currentPage eq pi.maxPage }">
+											>
+										</c:if>
+										<c:if test="${ pi.currentPage ne pi.maxPage }">
+											<c:url var="after" value="clist.do">
+												<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
+											</c:url> 
+											<a href="${ after }">></a>
+										</c:if>				
+									</div>
                                 </div>
                             </div>
                         </div>
@@ -245,13 +269,13 @@
             </div>
 	
 	<!--====== Javascripts & Jquery ======-->
-	<script src="../resources/js/jquery-3.2.1.min.js"></script>
-	<script src="../resources/js/bootstrap.min.js"></script>
-	<script src="../resources/js/owl.carousel.min.js"></script>
-	<script src="../resources/js/jquery.nicescroll.min.js"></script>
-	<script src="../resources/js/circle-progress.min.js"></script>
-	<script src="../resources/js/jquery.magnific-popup.min.js"></script>
-	<script src="../resources/js/main.js"></script>
+	<script src="resources/js/jquery-3.2.1.min.js"></script>
+	<script src="resources/js/bootstrap.min.js"></script>
+	<script src="resources/js/owl.carousel.min.js"></script>
+	<script src="resources/js/jquery.nicescroll.min.js"></script>
+	<script src="resources/js/circle-progress.min.js"></script>
+	<script src="resources/js/jquery.magnific-popup.min.js"></script>
+	<script src="resources/js/main.js"></script>
 
     
 

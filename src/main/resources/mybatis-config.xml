@@ -18,12 +18,14 @@
 		<typeAlias type="com.kh.wehan.message.model.vo.Message" alias="Message"/>
 		<typeAlias type="com.kh.wehan.message.model.vo.FriendList" alias="FriendList"/>
 		<typeAlias type="com.kh.wehan.message.model.vo.FriendInfo" alias="FriendInfo"/>
+		<typeAlias type="com.kh.wehan.message.model.vo.MessageList" alias="MessageList"/>
 		<typeAlias type="com.kh.wehan.certify.model.vo.Certify" alias="Certify"/>
 		<typeAlias type="com.kh.wehan.certify.model.vo.CertifyReply" alias="CertifyReply"/>
 		<typeAlias type="com.kh.wehan.member.model.vo.Admin" alias="Admin"/>
 		<typeAlias type="com.kh.wehan.pay.model.vo.Pay" alias="Pay"/>
 		<typeAlias type="com.kh.wehan.challenge.model.vo.Challenge" alias="Challenge"/>
 		<typeAlias type="com.kh.wehan.questions.model.vo.Questions" alias="Questions"/>
+		<typeAlias type="com.kh.wehan.member.model.vo.FindKey" alias="FindKey"/>
 	</typeAliases>
 	
 	<mappers>

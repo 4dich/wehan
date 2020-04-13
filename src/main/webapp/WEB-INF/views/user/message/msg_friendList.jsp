@@ -81,7 +81,7 @@
 							친구와 대화를 나눠보세요.<br>
 							함께 도전하면 성공할 확률도 올라갑니다. <br><br>
 						</p>
-						<a class="site-btn sb-dark" href="msg_msgListView.do" style="color:black">
+						<a class="site-btn sb-dark" href="getMsgList.do" style="color:black">
 							메시지 목록
 							<img src="resources/images/arrow-righ-3.png" alt="">
 						</a>

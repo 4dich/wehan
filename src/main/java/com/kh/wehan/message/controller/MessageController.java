@@ -22,6 +22,7 @@ import com.kh.wehan.message.model.service.MessageService;
 import com.kh.wehan.message.model.vo.FriendInfo;
 import com.kh.wehan.message.model.vo.FriendList;
 import com.kh.wehan.message.model.vo.Message;
+import com.kh.wehan.message.model.vo.MessageList;
 import com.kh.wehan.message.model.vo.MsgSearchCondition;
 
 @Controller
@@ -223,4 +224,64 @@ public class MessageController {
 		return result;
 	}
 	
+
+	/**
+	 * 메시지 목록 가져오기
+	 * @param mv
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("getMsgList.do")
+	public ModelAndView getMsgList(ModelAndView mv, HttpServletRequest request) {
+		
+		// 내 id 가져오기
+		HttpSession session = request.getSession();
+		Member mem = (Member)session.getAttribute("loginUser");
+		String userId = mem.getUserId();
+		
+		
+		ArrayList<MessageList> msgList = msgService.getMsgList(userId);
+		
+		if(msgList != null) {
+			mv.addObject("msgList", msgList).setViewName("user/message/msg_msgList");
+		} else {
+			mv.addObject("msg", "Error").addObject("msg2","메시지 목록을 불러 올 수 없습니다.").setViewName("common/errorPage");
+		}
+		
+		
+		return mv;
+	}
+
+	
+	/**
+	 * 메시지 친구 서치
+	 * @param mv
+	 * @return
+	 */
+	@RequestMapping("searchFriendMsg.do")
+	public ModelAndView searchFriendMsg(ModelAndView mv, String searchFriend, HttpServletRequest request) {
+		
+		// userId 가져오기
+		HttpSession session = request.getSession();
+		Member mem = (Member)session.getAttribute("loginUser");
+		String userId = mem.getUserId();
+		
+		// userId, 검색어 객체에 집어넣기
+		MsgSearchCondition sc = new MsgSearchCondition(userId, searchFriend);
+		
+		// 리스트 불러오기
+		ArrayList<MessageList> msgList = msgService.msgSearchFriendMsg(sc);
+		
+		System.out.println(msgList.toString());
+				
+		
+		if(msgList != null) {
+			mv.addObject("msgList", msgList).setViewName("user/message/msg_msgList");
+		} else {
+			mv.addObject("msg", "Error").addObject("msg2", "친구 메시지 에러").setViewName("common/errorPage");
+		}
+		
+		return mv;
+	}
+
 }

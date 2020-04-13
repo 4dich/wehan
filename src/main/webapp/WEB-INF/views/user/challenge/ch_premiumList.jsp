@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="ko">
 <head>
 	<title>CH_PREMIUMLIST</title>
 	<meta charset="UTF-8">
@@ -50,7 +51,7 @@
 	<!-- Main section start -->
 	<div class="main-site-warp">
 
-		<include file="/WEB-INF/views/common/menubar.jsp">
+		<%@ include file="/WEB-INF/views/common/menubar.jsp"%>
 
 		<header class="header-section">
 			<div class="nav-switch">

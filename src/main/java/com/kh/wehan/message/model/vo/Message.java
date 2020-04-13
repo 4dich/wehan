@@ -3,16 +3,16 @@ package com.kh.wehan.message.model.vo;
 
 public class Message {
 	
-	private int mId;		
-	private String mImg;	
-	private String mSender;
-	private String mSenderId;
-	private String mReceiver;
-	private String mReceiverId;
-	private String mContent;
-	private String mDate;
-	private int mRead;
-	private String mStatus;
+	private int mId;			// 메시지 ID
+	private String mImg;		// Sender 이미지
+	private String mSender;		// 보내는 유저 닉네임
+	private String mSenderId;	// 보내는 유저 id
+	private String mReceiver;	// 받는 유저 닉네임
+	private String mReceiverId;	// 받는 유저 id
+	private String mContent;	// 내용
+	private String mDate;		// 날짜
+	private int mRead;			// 읽음 여부
+	private String mStatus;		// 삭제여부
 	
 	
 	public Message() {

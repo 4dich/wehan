@@ -210,6 +210,7 @@
 		
 		var ceId = ${c.ceId};
 		console.log("anj");
+		
 		$.ajax({
 			url : "replyList.do",
 			data : {ceId:ceId},

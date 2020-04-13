@@ -3,7 +3,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="ko">
 <head>
 	<title>AD_CHALLENEGELIST</title>
 	<meta charset="UTF-8">
@@ -49,7 +49,7 @@
 	<!-- Main section start -->
 	<div class="main-site-warp">
 	
-		<c:import url="/WEB-INF/views/common/ad_menuBar.jsp" />
+		<c:import url="/WEB-INF/views/common/ad_menuBar.jsp"/>
 		
 		<header class="header-section">
 			<div class="nav-switch">
@@ -148,7 +148,7 @@
 									&lt; &nbsp;
 								</c:if>
 								<c:if test="${ pi.currentPage ne 1 }">
-									<c:url var="before" value="clist.bo">
+									<c:url var="before" value="clist.do">
 										<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
 									</c:url>
 									<a href="${ before }">&lt;</a> &nbsp;
@@ -161,7 +161,7 @@
 									</c:if>
 									
 									<c:if test="${ p ne pi.currentPage }">
-										<c:url var="pagination" value="clist.bo">
+										<c:url var="pagination" value="clist.do">
 											<c:param name="currentPage" value="${ p }"/>
 										</c:url>
 										<a href="${ pagination }">${ p }</a> &nbsp;
@@ -173,7 +173,7 @@
 									>
 								</c:if>
 								<c:if test="${ pi.currentPage ne pi.maxPage }">
-									<c:url var="after" value="clist.bo">
+									<c:url var="after" value="clist.do">
 										<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
 									</c:url> 
 									<a href="${ after }">></a>

@@ -258,6 +258,12 @@ public class NoticeController {
 		return mv;	
 	}
 	
+	/**
+	 * admin 공지사항 삭ㅈ
+	 * @param mv
+	 * @param nId
+	 * @return
+	 */
 	@RequestMapping("ad_noticeDelete.do")
 	public ModelAndView adNoticeDelete(ModelAndView mv, int nId) {
 		

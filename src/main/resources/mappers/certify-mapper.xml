@@ -11,7 +11,11 @@
 		<result property="userId" column="USERID"/>
 		<result property="ceContent" column="CECONTENT"/>
 		<result property="cePicture" column="CEPICTURE"/>
+		<result property="ceDel" column="CEDEL_YN"/>
 		<result property="ceDate" column="CEDATE"/>
+		<result property="chName" column="CHNAME"/>
+		<result property="category" column="CATEGORY"/>
+		<result property="nickName" column="NICKNAME"/>
 	</resultMap>
 	
 	<!-- certifyReply resultMap  -->
@@ -25,6 +29,8 @@
 		<result property="picture" column="PICTURE"/>
 	
 	</resultMap>
+	
+	<!-- 관리자 -->
 	
 	<!-- 인증글 갯수 -->
 	<select id="getListCount" resultType="_int">
@@ -91,6 +97,36 @@
 	JOIN MEMBER M
 	ON C.USERID = M.USERID
 	WHERE CEID = #{ceId}
+	</select>
+	
+	<!-- 피드 -->
+	
+	<!-- 피드 인증글 총 개수 -->
+	<select id="getFidListCount" resultType="_int">
+	SELECT COUNT(*)
+	FROM CERTIFY
+	WHERE CEDEL_YN='N'
+	</select>
+	
+	<!-- 피드 리스트 출력  -->
+	<select id="fidSelectList" resultMap="certifyResultSet">
+	SELECT C.CHNAME,C.CATEGORY,M.NICKNAME,R.*
+	FROM CHALLENGE C
+	JOIN CERTIFY R
+	ON C.CHID = R.CHID
+	JOIN MEMBER M
+	ON R.USERID = M.USERID
+	WHERE CEDEL_YN = 'N'
+	</select>
+	
+	<select id="friendFidSelectList" resultMap="certifyResultSet">
+	SELECT C.CHNAME,C.CATEGORY,M.NICKNAME,R.*
+	FROM CHALLENGE C
+	JOIN CERTIFY R
+	ON C.CHID = R.CHID
+	JOIN MEMBER M
+	ON R.USERID = M.USERID
+	WHERE CEDEL_YN = 'N'
 	</select>
 
 </mapper>

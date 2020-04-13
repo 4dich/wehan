@@ -3,6 +3,8 @@ package com.kh.wehan.member.model.service;
 import java.util.ArrayList;
 
 import com.kh.wehan.member.model.vo.Admin;
+import com.kh.wehan.member.model.vo.BlackList;
+import com.kh.wehan.member.model.vo.FindKey;
 import com.kh.wehan.member.model.vo.Member;
 
 public interface MemberService {
@@ -69,10 +71,52 @@ public interface MemberService {
 	Member memberDetail(String userId);
 	
 	/**
+	 * 블랙리스트 정보 가져오기
+	 * @return
+	 */
+	BlackList BlackListInfo(String userId);
+	
+	/**
 	 * 아이디 찾기
 	 * @param eamil
 	 * @return
 	 */
 	String idFind(String email);
+	
+	/**
+	 * 비밀번호 찾기
+	 * @param m
+	 * @return
+	 */
+	int pwdFind(Member m);
+	
+	/**
+	 * 비밀번호 인증키 
+	 * @param c
+	 * @return
+	 */
+	int insertFindKey(FindKey c);
+	
+	/**
+	 * 인증키 매칭
+	 * @param c
+	 * @return
+	 */
+	int matchKey(FindKey c);
+	
+	/**
+	 * 인증키 삭제
+	 * @param userId
+	 * @return
+	 */
+	int DeleteFindKey(String userId);
+	
+	/**
+	 * 비밀번호 변경
+	 * @param m
+	 * @return
+	 */
+	int updatePwd(Member m);
+	
 
 }

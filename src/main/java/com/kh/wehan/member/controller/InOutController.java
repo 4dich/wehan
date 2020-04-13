@@ -5,9 +5,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -23,15 +23,18 @@ public class InOutController {
 	private MemberService mService;
 	
 	@RequestMapping(value="login.do",method=RequestMethod.POST)
-	public String login(String userId,String password,Model model,HttpSession session) {
+	@ResponseBody
+	public String login(String userId,String password,Model model,HttpSession session,SessionStatus status) {
+		
+		status.setComplete();
 		
 		if(userId.equals("admin")){
 			Admin adminUser = mService.adminlogin(userId);
 			if(adminUser != null && password.equals(adminUser.getPassword())) {
 				session.setAttribute("adminUser",adminUser);
-				return "admin/ad_noticeList";
+				return "ok1";
 			}else {
-				return "common/errorPage";
+				return "fail";
 			}
 		}else {
 			Member loginUser = mService.login(userId);
@@ -43,14 +46,12 @@ public class InOutController {
 					  loginUser.setBlacklistYN("N");
 				  }
 				  model.addAttribute("loginUser",loginUser); 
-				  return "redirect:index.jsp";
+				  return "ok2";
 			  }else{
-				  return "common/errorPage"; 
+				  return "fail"; 
 			  }
 		}
 	}
-	
-	
 	
 	@RequestMapping("logout.do")
 	public String logout(SessionStatus status) {
