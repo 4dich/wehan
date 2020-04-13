@@ -94,8 +94,8 @@
 				<div class="blog-posts">
 					
 				<div class="blog-post-item">
+						<button style="margin-top: 12px;" onclick="refundSelect();">환불하기</button>
 					<form action="plistSearch.do">
-						<button style="margin-top: 12px;">환불하기</button>
 						<div id="searchArea">
 							<div id="searchSelect"> 
 								<select name="selecter" id="selecter">
@@ -111,7 +111,6 @@
 					</form>
 
 						<!-- 문의사항 테이블 -->
-						총게시글 갯수:${ pi.listCount }
 						<table class="qnaTable">
 							
 							<tr class="thArea">
@@ -123,11 +122,13 @@
 								<th>결제정보</th>
 								<th>환급여부</th>
 							</tr>
-							<c:forEach var="l" items="${ list }">
+						
+							<c:if test="${!empty psearch}">
+							<c:forEach var="l" items="${ psearch }">
 							 <c:forEach var="p" items="${ l.chList }">
 							<!-- 반복문 예정 -->
 							<tr class="noticeList">
-								<td><input type="checkbox"></td>
+								<td><input type="checkbox" name="refund"></td>
 								<td>${ l.pId }</td>
 								<td>${ p.chName }</td>
 								<td>${ l.userId }</td>
@@ -137,7 +138,42 @@
 							</tr>
 							</c:forEach>
 							</c:forEach>
-
+							</c:if>
+							
+							<c:if test="${chsearch != null}">
+							<c:forEach var="l" items="${ chsearch }">
+							 <c:forEach var="p" items="${ l.chList }">
+							<!-- 반복문 예정 -->
+							<tr class="noticeList">
+								<td><input type="checkbox" name="refund"></td>
+								<td>${ l.pId }</td>
+								<td>${ p.chName }</td>
+								<td>${ l.userId }</td>
+								<td>${ l.pDate }</td>
+								<td><button onclick="location.href='paydetail.do?pId=${ l.pId }'">정보</button></td>
+								<td>${ l.refund_yn }</td>
+							</tr>
+							</c:forEach>
+							</c:forEach>
+							</c:if>
+							
+							<c:if test="${psearch == null && chsearch == null}">
+							<c:forEach var="l" items="${ list }">
+							 <c:forEach var="p" items="${ l.chList }">
+							<!-- 반복문 예정 -->
+							<tr class="noticeList">
+								<td><input type="checkbox" name="refund"></td>
+								<td>${ l.pId }</td>
+								<td>${ p.chName }</td>
+								<td>${ l.userId }</td>
+								<td>${ l.pDate }</td>
+								<td><button onclick="location.href='paydetail.do?pId=${ l.pId }'">정보</button></td>
+								<td>${ l.refund_yn }</td>
+							</tr>
+							</c:forEach>
+							</c:forEach>
+							</c:if>
+							
 							<!-- 삭제 끝 -->
 
 						</table>
@@ -195,6 +231,42 @@
 		$(function(){
 			$('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247"); //even 짝수
 		});
+		
+		var checkbox = $("input:checkbox[name=refund]:checked");	
+		var nameList = "";
+		
+		function refundSelect(){
+			
+			var result = [];
+			$('input:checkbox[name=refund]:checked').each(function(i){
+				
+			 
+			var	td = $(this).parents().parents().children().eq(1).text();
+			 
+				result.push(td);
+			 
+			 });
+			 $.ajax({
+				 url:"refund.do",
+				 type:"POST",
+				 traditional : true,
+				 data:{"result" : result },
+				 success:function(result){
+						alert('성공');
+		        	},error : function(request,errorcode,error){
+						console.log("결제 실패입니다!");
+					}
+		        	
+		        });
+			
+			 
+			 console.log(result);
+			 
+		
+			
+		}
+			
+		
 		
 			
 	</script>

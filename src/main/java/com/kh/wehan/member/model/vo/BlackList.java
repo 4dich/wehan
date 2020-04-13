@@ -6,20 +6,20 @@ public class BlackList {
 	private String bId;
 	private String userId;
 	private String banReason;
-	private int beanTern;
-	private Date BanDate;
+	private int banTerm;
+	private Date banDate;
 	
 	public BlackList() {
 		super();
 	}
 
-	public BlackList(String bId, String userId, String banReason, int beanTern, Date banDate) {
+	public BlackList(String bId, String userId, String banReason, int banTerm, Date banDate) {
 		super();
 		this.bId = bId;
 		this.userId = userId;
 		this.banReason = banReason;
-		this.beanTern = beanTern;
-		BanDate = banDate;
+		this.banTerm = banTerm;
+		this.banDate = banDate;
 	}
 
 	public String getbId() {
@@ -46,26 +46,26 @@ public class BlackList {
 		this.banReason = banReason;
 	}
 
-	public int getBeanTern() {
-		return beanTern;
+	public int getBanTerm() {
+		return banTerm;
 	}
 
-	public void setBeanTern(int beanTern) {
-		this.beanTern = beanTern;
+	public void setBanTerm(int banTerm) {
+		this.banTerm = banTerm;
 	}
 
 	public Date getBanDate() {
-		return BanDate;
+		return banDate;
 	}
 
 	public void setBanDate(Date banDate) {
-		BanDate = banDate;
+		this.banDate = banDate;
 	}
 
 	@Override
 	public String toString() {
-		return "BlackList [bId=" + bId + ", userId=" + userId + ", banReason=" + banReason + ", beanTern=" + beanTern
-				+ ", BanDate=" + BanDate + "]";
+		return "BlackList [bId=" + bId + ", userId=" + userId + ", banReason=" + banReason + ", banTerm=" + banTerm
+				+ ", banDate=" + banDate + "]";
 	}
 	
 	

@@ -10,6 +10,7 @@ import com.kh.wehan.message.model.dao.MessageDao;
 import com.kh.wehan.message.model.vo.FriendInfo;
 import com.kh.wehan.message.model.vo.FriendList;
 import com.kh.wehan.message.model.vo.Message;
+import com.kh.wehan.message.model.vo.MessageList;
 import com.kh.wehan.message.model.vo.MsgSearchCondition;
 
 @Service("msgService")
@@ -64,5 +65,21 @@ public class MessageServiceImpl implements MessageService{
 	@Override
 	public int msgDelete(Map m) {
 		return msgDao.msgDelete(m);
+	}
+
+	/**
+	 * 메시지 리스트 가져오기
+	 */
+	@Override
+	public ArrayList<MessageList> getMsgList(String userId) {
+		return msgDao.getMsgList(userId);
+	}
+
+	/**
+	 * 메시지 리스트 
+	 */
+	@Override
+	public ArrayList<MessageList> msgSearchFriendMsg(MsgSearchCondition sc) {
+		return msgDao.msgSearchFriendMsg(sc);
 	}
 }

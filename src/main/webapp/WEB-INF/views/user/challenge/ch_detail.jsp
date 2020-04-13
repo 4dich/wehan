@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="ko">
 <head>
 	<title>CH_DETAIL</title>
 	<meta charset="UTF-8">
@@ -68,7 +69,7 @@
 		<!-- Main section start -->
 		<div class="main-site-warp">
 
-			<include file="/WEB-INF/views/common/menuBar.jsp">
+			<%@ include file="/WEB-INF/views/common/menuBar.jsp"%>
 
 			<header class="header-section">
 				<div class="nav-switch">
@@ -138,70 +139,60 @@
 									<form class="contact-form" method="post" action="payinfo.do" style="margin-top: 65px;">
 										<div class="row">
 										<div style="display:none;">
-										<input type="text" name="chId" value="1">
-										<input type="text" name="price" value="2">
-										<input type="text" name="startDate" value="2020/04/09">
-										<input type="text" name="chName" value="챌린지명 가져가시오">
+										<input type="text" name="chId">
+										<input type="text" name="price">
+										<input type="text" name="startDate">
+										<input type="text" name="chName">
 										</div>
 											<div class="col-lg-12">
 												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chChName" value="${ ch.chName }" disabled>
-													${ ch.chName }
+													<input type="text" class="challengeDetail" name="chChName" value="${ chal.chName }" disabled>
 												</div>
 											</div>
 											<div class="col-lg-12">
 												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chCategory" value="${ ch.category }" disabled>
-													${ ch.category }
+													<input type="text" class="challengeDetail" name="chCategory" value="${ chal.category }" disabled>
 												</div>
 											</div>
 											<div class="col-lg-6">
 												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chChId" value="${ ch.chId }" disabled>
-													${ ch.chId }
+													<input type="text" class="challengeDetail" name="chChId" value="${ chal.chId }" disabled>
 												</div>
 											</div>
 											<div class="col-lg-6">
 												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chChPeople" value="${ ch.chPeople }" disabled>
-													${ ch.chPeople }
+													<input type="text" class="challengeDetail" name="chChPeople" value="${ chal.chPeople }" disabled>
 												</div>
 											</div>
 											<div class="col-lg-6">
 												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chDeadLine" value="${ ch.startDate }" disabled>
-													${ ch.startDate }
+													<input type="text" class="challengeDetail" name="chDeadLine" value="${ chal.startDate }" disabled>
 												</div>
 											</div>
 											<div class="col-lg-6">
 												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chEndDate" value="${ ch.endDate }" disabled>
-													${ ch.endDate }
+													<input type="text" class="challengeDetail" name="chEndDate" value="${ chal.endDate }" disabled>
 												</div>
 											</div>
 											<div class="col-lg-12">
 												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chCeMethod" value="${ ch.ceMethod }" disabled>
-													${ ch.ceMethod }
+													<input type="text" class="challengeDetail" name="chCeMethod" value="${ chal.ceMethod }" disabled>
 												</div>
 											</div>
 											<div class="col-lg-6">
 												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chPrice" value="${ ch.price }" disabled>
-													${ ch.price }
+													<input type="text" class="challengeDetail" name="chPrice" value="${ chal.price }" disabled>
 												</div>
 											</div>
 											<div class="col-lg-6">
 												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chTotalPrice" value="${ ch.totalPrice }" disabled>
-													${ ch.totalPrice }
+													<input type="text" class="challengeDetail" name="chTotalPrice" value="${ chal.totalPrice }" disabled>
 												</div>
 											</div>
 											<br><br><br><br>
 											<div class="col-lg-12">
 												<div class="contents-detail2">
-													<input type="text" class="challengeDetail" name="chChContent" value="${ ch.chContent }" disabled>
-													${ ch.chContent }
+													<input type="text" class="challengeDetail" name="chChContent" value="${ chal.chContent }" disabled>
 												</div>
 											</div>
 										</div>

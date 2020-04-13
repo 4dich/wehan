@@ -196,10 +196,10 @@ public class viewController {
 		return "user/fid/fid_follow";
 	}
 	
-	@RequestMapping("qnaListView.do")
-	public String qnaListView() {
-		return "user/questions/questions";
-	}
+	/*
+	 * @RequestMapping("qnaListView.do") public String qnaListView() { return
+	 * "user/questions/questions"; }
+	 */
 	
 	@RequestMapping("qnaDetailView.do")
 	public String qnaDetailView() {

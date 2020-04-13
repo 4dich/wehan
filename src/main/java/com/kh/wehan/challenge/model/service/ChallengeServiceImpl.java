@@ -46,6 +46,11 @@ public class ChallengeServiceImpl implements ChallengeService {
 		return cDao.getInsertChallenge(chal);
 	}
 
+	@Override
+	public ArrayList<Challenge> selectChallengeList(PageInfo pi) {
+		return cDao.selectChallengeList(pi);
+	}
+
 
 
 }

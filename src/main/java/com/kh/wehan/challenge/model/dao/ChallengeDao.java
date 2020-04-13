@@ -46,7 +46,15 @@ public class ChallengeDao {
 	}
 
 	public int getInsertChallenge(Challenge chal) {
-		return sqlSession.selectOne("challengeMapper.insertChallenge");
+		return sqlSession.insert("challengeMapper.insertChallenge", chal);
+	}
+
+	public ArrayList<Challenge> selectChallengeList(PageInfo pi) {
+		
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("challengeMapper.selectChallengeList", null, rowBounds);
 	}
 
 

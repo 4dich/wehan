@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.wehan.member.model.dao.MemberDao;
 import com.kh.wehan.member.model.vo.Admin;
+import com.kh.wehan.member.model.vo.BlackList;
 import com.kh.wehan.member.model.vo.FindKey;
 import com.kh.wehan.member.model.vo.Member;
 
@@ -70,6 +71,11 @@ public class MemberServiceImpl implements MemberService{
 		return mDao.memberSearch(userId);
 	}
 	@Override
+	public BlackList BlackListInfo(String userId) {
+		return mDao.BlackListInfo(userId);
+	}
+	
+	@Override
 	public String idFind(String email) {
 		return mDao.idFind(email);
 	}
@@ -93,4 +99,5 @@ public class MemberServiceImpl implements MemberService{
 	public int updatePwd(Member m) {
 		return mDao.updatePwd(m);
 	}
+	
 }

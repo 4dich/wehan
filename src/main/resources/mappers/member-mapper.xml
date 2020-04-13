@@ -32,30 +32,29 @@
 		<result property="banDate" column="BANDATE"/>
 	</resultMap>
 	
+	<resultMap type="FindKey" id="FindKeyResultSet">
+		<id property="userId" column="USERID"/>
+		<result property="key" column="KEY"/>
+	</resultMap>
+	
 	<select id="userInfo" parameterType="string" resultMap="memberResultSet">
 		SELECT * FROM MEMBER WHERE USERID=#{userId} AND OUT_YN='N'
 	</select>
-	
 	<select id="adminInfo" parameterType="string" resultMap="adminResultSet"> 
 		SELECT * FROM ADMIN WHERE USERID=#{userId} 
 	</select>
-	
 	<select id="idCheck" parameterType="string" resultType="_int">
 		SELECT COUNT(*) FROM MEMBER WHERE USERID=#{idCheck}
 	</select>
-	
 	<select id="AidCheck" parameterType="string" resultType="_int"> 
 		SELECT COUNT(*) FROM ADMIN WHERE USERID=#{idCheck} 
 	</select>
-	
 	<select id="nickCheck" parameterType="string" resultType="_int">
 		SELECT COUNT(*) FROM MEMBER WHERE NICKNAME=#{nickName}
 	</select>
-	
 	<select id="blackCheck" parameterType="string" resultType="_int">
 		SELECT COUNT(*) FROM BLACKLIST WHERE USERID=#{userId}
 	</select>
-	
 	<insert id="insertMember" parameterType="Member">
 		INSERT INTO MEMBER VALUES(#{userId},#{password},#{nickName},#{userName},#{birthDay},#{address},#{email},#{phone},#{account},#{picture},SYSDATE,DEFAULT)
 	</insert>
@@ -63,11 +62,9 @@
 	<select id="memberCount" resultType="_int"> 
 		SELECT COUNT(*) FROM MEMBER WHERE OUT_YN='N' 
 	</select>
-	
-	<select id="memberList" resultType="Member" resultMap="memberResultSet">
-	 	SELECT * FROM MEMBER WHERE OUT_YN='N' 
-	 </select>
-	
+	<select id="memberList" resultType="Member" resultMap="memberResultSet"> 
+		SELECT * FROM MEMBER WHERE OUT_YN='N' 
+	</select>
 	<select id="mlistSearch" parameterType="Member" resultMap="memberResultSet">
 		<if test="userId != null">
 			SELECT * FROM MEMBER WHERE OUT_YN='N' AND USERID=#{userId}
@@ -79,30 +76,29 @@
 			SELECT * FROM MEMBER WHERE OUT_YN='N' AND USERNAME=#{userName}
 		</if>
 	</select>
-
+	<select id="BlackListInfo" parameterType="Black" resultMap="blackResultSet">
+		SELECT * FROM BLACKLIST WHERE USERID=#{userId}
+	</select>
+	
 	<update id="updateMember" parameterType="Member">
-		UPDATE MEMBER
-		SET PASSWORD=#{password},NICKNAME=#{nickName},USERNAME=#{userName},BIRTHDAY=#{birthDay},
-			ADDRESS=#{address},EMAIL=#{email},PHONE=#{phone},ACCOUNT=#{account},PICTURE=#{picture}
-		WHERE USERID=#{userId}
+		UPDATE MEMBER SET PASSWORD=#{password},NICKNAME=#{nickName},USERNAME=#{userName},BIRTHDAY=#{birthDay}, ADDRESS=#{address},EMAIL=#{email},PHONE=#{phone},ACCOUNT=#{account},PICTURE=#{picture} WHERE USERID=#{userId}
 	</update>
-
-	<select id="idFind" parameterType="string" resultType="string">
-		SELECT USERID
-		FROM MEMBER
-		WHERE EMAIL=#{email}
+	
+	<select id="idFind" parameterType="string" resultType="string"> 
+		SELECT USERID FROM MEMBER WHERE EMAIL=#{email} 
 	</select>
 	<select id="pwdFind" parameterType="Member" resultType="_int">
 		SELECT COUNT(*) FROM MEMBER WHERE EMAIL=#{email} AND USERID=#{userId}
 	</select>
-	<select id="insertKey" parameterType="FindKey" resultType="_int"> 
-		INSERT INTO FINDKEY VALUES(#{userId},#{key}) </select>
+	<select id="insertKey" parameterType="FindKey" resultType="_int">
+		 INSERT INTO FINDKEY VALUES(#{userId},#{key}) 
+	</select>
 	<select id="matchKey" parameterType="FindKey" resultType="_int">
 		SELECT COUNT(*) FROM FINDKEY WHERE USERID=#{userId} AND KEY=#{key}
 	</select>
-	<select id="DeleteFindKey" parameterType="string" resultType="_int">
-	 	DELETE FROM FINDKEY WHERE USERID = #{userId} 
-	 </select>
+	<select id="DeleteFindKey" parameterType="string" resultType="_int"> 
+		DELETE FROM FINDKEY WHERE USERID = #{userId}
+	</select>
 	<update id="updatePwd" parameterType="Member">
 		UPDATE MEMBER SET PASSWORD = #{password} WHERE USERID = #{userId}
 	</update>
