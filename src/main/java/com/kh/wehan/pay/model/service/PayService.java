@@ -9,24 +9,11 @@ import com.kh.wehan.pay.model.vo.Pay;
 
 public interface PayService {
 
-	/**
-	 * 공지사항 글 갯수 가져오기
-	 * @return
-	 */
+	
 	int getListCount();
 
-	/**
-	 * 공지사항 리스트 조회
-	 * @param pi
-	 * @return
-	 */
 	ArrayList<Pay> selectList(PageInfo pi);
 
-	/**
-	 * 공지사항 상세보기
-	 * @param nId
-	 * @return
-	 */
 	Challenge slectchDetail(int pId);
 
 	Pay slectPayDetail(int pId);
@@ -36,6 +23,10 @@ public interface PayService {
 	ArrayList<Pay> pSearch(Pay p);
 
 	ArrayList<Challenge> chSearch(Challenge ch);
+
+	int getSearchListCount(Challenge ch);
+
+	int getSearchListCount(Pay p);
 
 	
 }
