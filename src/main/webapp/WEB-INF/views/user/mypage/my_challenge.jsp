@@ -316,7 +316,7 @@
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
 					<div id="lv" style="width: 350px; height: 470px; border: 1px solid gray; padding:20px; margin:auto; margin-top: -30px">
-						<div id="lv-img" style="width: 300px; height:320px; margin:auto; background-image: url('resources/images/level/astro.gif'); background-size: cover; border-radius: 15px;">
+						<div id="lv-img" style="width: 300px; height:320px; margin:auto; background-image: url('resources/images/level/astro2.gif'); background-size: cover; border-radius: 15px;">
 							<img src="resources/images/level/lv4.png">
 						</div>
 						<div id="lv-progress" style="width: 300px; margin:auto; margin-top: 10px;">
@@ -408,7 +408,7 @@
 					<!-- Challenge 영역 -->
 					<div class="main-up" id="challenge" style="height: 40%; width: 90%; margin-left:20px">
 						<div class="main-up-title" style="height: 70px; padding: 20px; font-size: 21px; font-weight: 700;">
-							<div style="width:100px; height:100px; margin-left:-39px; margin-top:12px; display:inline-block; background-image: url('resources/images/icons/bookmark.png'); background-repeat : no-repeat; background-size : cover; z-index:2"></div>
+							<div style="width:100px; height:90px; margin-left:-38px; margin-top:13px; display:inline-block; background-image: url('resources/images/icons/bookmark.png'); background-repeat : no-repeat; background-size : cover; z-index:2"></div>
 							<div style="margin:-100px 24px 0 60px;"><i>Challenges</i></div>
 						</div>
 						
@@ -416,29 +416,84 @@
 						<div class="tab-element">
 							<ul class="nav nav-tabs" id="myTab" role="tablist" style="margin: 0px 0px -30px 80px;">
 								<li class="nav-item">
-									<a class="nav-link active" style="width:250px; text-align:center" id="1-tab" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">전체</a>
+									<a class="nav-link active" style="width:259px; text-align:center" id="1-tab" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">전체</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" style="width:250px; text-align:center" id="2-tab" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">진행중</a>
+									<a class="nav-link" style="width:259px; text-align:center" id="2-tab" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">진행중</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" style="width:250px; text-align:center" id="3-tab" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">진행예정</a>
+									<a class="nav-link" style="width:259px; text-align:center" id="3-tab" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">진행예정</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" style="width:250px; text-align:center" id="4-tab" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false">진행완료</a>
+									<a class="nav-link" style="width:259px; text-align:center" id="4-tab" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false">진행완료</a>
 								</li>
 							</ul>
 							<div class="tab-content" id="myTabContent" >
 								<!-- 전체 챌린지 -->
 								<div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="tab-1">
-									<div class="main-down" style="width: 100%; height: 350px; border: 1px solid gray; padding:3%; margin:0px; overflow-y:scroll; border-top: 1px solid black">
+									<div class="main-down" style="width: 100%; height: 350px; border: 1px solid gray; padding:3%; margin-top:19px; overflow-y:scroll;">
+									
 										<c:forEach var="c" items="${ clist }">
+											<div class="startDate" style="display:none">${ c.startDate }</div>
+											<div class="endDate" style="display:none">${ c.endDate }</div>
+											
 											<div style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
-												<div style="display: inline-block; width: 150px; height: 100%; background:#FE736C;  padding: 25px; text-align: center;">진행중</div>
+												<div class="chStat" style="display: inline-block; width: 150px; height: 100%; background:#FE736C;  padding: 25px; text-align: center;"></div>
 												<img src="resources/images/hansol_profile.jpg" style="width: 75px; height: auto">
-												<div style="display: inline-block; width: 400px; height: 100%; background:#FE736C; padding: 25px; text-align: center; ">${ c.chName }</div>
+												<div style="display: inline-block; width: 400px; height: 100%; background:#FE736C; padding: 25px; text-align: center;">${ c.chName }</div>
+												<script>
+													$(function(){
+													
+													var sDate = new Array();
+													var eDate = new Array();
+													var today = new Date().getTime();
+													for(var i=0; i<4; i++){
+														var startDate = $('.startDate')[i].innerText;
+														var endDate = $('.endDate')[i].innerText;
+														
+														var splitSDate = startDate.split("/");
+														var splitEDate = endDate.split("/");
+														sDate[i] = new Date(splitSDate[0],splitSDate[1]-1,splitSDate[2]).getTime();
+														eDate[i] = new Date(splitEDate[0],splitEDate[1]-1,splitEDate[2]).getTime();
+															if(today-sDate[i]<0){
+																console.log("진행예정");
+																$('.chStat')[i].innerText = '진행예정';
+																$('.chStat').css("background-color","blue");
+															}else if(today-sDate[i]>0 && eDate[i]-today>0){
+																console.log("진행중");
+																$('.chStat')[i].innerText = '진행중';
+																$('.chStat').css("background-color","red");
+															}else if(today>eDate[i]){
+																console.log("진행완료");
+																$('.chStat')[i].innerText = '진행완료';
+																$('.chStat').css("background-color","yellow");
+															}
+														}
+													});
+												</script>
+											<%-- <c:set var="chDate" />
+											<c:choose>
+												<c:when >
+													<div style="display: inline-block; width: 150px; height: 100%; background:#FE736C;  padding: 25px; text-align: center;">진행중</div>
+												</c:when>
+												
+												<c:when>
+													<div style="display: inline-block; width: 150px; height: 100%; background:#FE736C;  padding: 25px; text-align: center;">진행중</div>
+												</c:when>
+												
+												<c:otherwise>
+													<div style="display: inline-block; width: 150px; height: 100%; background:#FE736C;  padding: 25px; text-align: center;">진행중</div>
+												</c:otherwise>
+													<img src="resources/images/hansol_profile.jpg" style="width: 75px; height: auto">
+													<div style="display: inline-block; width: 400px; height: 100%; background:#FE736C; padding: 25px; text-align: center;">${ c.chName }</div>
+											</c:choose> --%>
 											</div>
 										</c:forEach>
+									</div>
+								</div>
+								<!-- 진행중 챌린지 -->
+								<div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="tab-2">
+									<div class="main-down" style="width: 100%; height: 350px; border: 1px solid gray; padding:3%; margin-top:19px; overflow-y:scroll;">
 										<div style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
 											<div style="display: inline-block; width: 150px; height: 100%; background:#FE736C;  padding: 25px; text-align: center;">진행중</div>
 											<img src="resources/images/hansol_profile.jpg" style="width: 75px; height: auto">
@@ -454,11 +509,6 @@
 											<img src="resources/images/hansol_profile.jpg" style="width: 75px; height: auto">
 											<div style="display: inline-block; width: 400px; height: 100%; background:#3A7D7C; padding: 25px; text-align: center; ">3번 퀘스트</div>
 										</div>
-									</div>
-								</div>
-								<!-- 진행중 챌린지 -->
-								<div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="tab-2">
-									<div class="main-down" style="width: 100%; height: 400px; border: 1px solid gray; padding:3%; margin:0px; overflow:auto;">
 										<div style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
 											<div style="display: inline-block; width: 150px; height: 100%; background:#FE736C;  padding: 25px; text-align: center;">진행중</div>
 											<img src="resources/images/hansol_profile.jpg" style="width: 75px; height: auto">
@@ -468,7 +518,7 @@
 								</div>
 								<!-- 진행예정 챌린지 -->
 								<div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="tab-3">
-									<div class="main-down" style="width: 100%; height: 400px; border: 1px solid gray; padding:3%; margin:0px; overflow:auto;">
+									<div class="main-down" style="width: 100%; height: 350px; border: 1px solid gray; padding:3%; margin-top:19px; overflow-y:scroll;">
 										<div style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
 											<div style="display: inline-block; width: 150px; height: 100%; background:#F7D147;  padding: 25px; text-align: center;">진행예정</div>
 											<img src="resources/images/hansol_profile.jpg" style="width: 75px; height: auto">
@@ -478,7 +528,7 @@
 								</div>
 								<!-- 진행완료 챌린지 -->
 								<div class="tab-pane fade" id="tab-4" role="tabpanel" aria-labelledby="tab-4">
-									<div class="main-down" style="width: 100%; height: 400px; border: 1px solid gray; padding:3%; margin:0px; overflow:auto;">
+									<div class="main-down" style="width: 100%; height: 350px; border: 1px solid gray; padding:3%; margin-top:19px; overflow-y:scroll;">
 										<div style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
 											<div style="display: inline-block; width: 150px; height: 100%; background:#3A7D7C;  padding: 25px; text-align: center;">진행완료</div>
 											<img src="resources/images/hansol_profile.jpg" style="width: 75px; height: auto">
