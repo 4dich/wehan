@@ -57,10 +57,10 @@ public class QuestionsController {
 	@RequestMapping("questionsDetail.do")
 	public ModelAndView questionsDetail(ModelAndView mv, int qId, int currentPage) {
 		
-		Questions n = qService.questionsSelect(qId);
+		Questions q = qService.questionsSelect(qId);
 		
-		if(n != null) {
-			mv.addObject("n", n) // 문의사항 내용 보내기
+		if(q != null) {
+			mv.addObject("q", q) // 문의사항 내용 보내기
 			.addObject("currentPage",currentPage) // 현재 페이지 보내기
 			.setViewName("user/questions/questionsDetail");
 		} else {
