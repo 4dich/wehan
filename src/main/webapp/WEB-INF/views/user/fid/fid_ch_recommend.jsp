@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -23,10 +24,18 @@
 	<link rel="stylesheet" href="resources/css/owl.carousel.min.css"/>
 
 	<!-- Main Stylesheets -->
-	<link rel="stylesheet" href="resources/css/fidRecommend.css"/>
 	<link rel="stylesheet" href="resources/css/style.css"/>
 	<link rel="stylesheet" href="resources/css/category.css"/>
+	<link rel="stylesheet" href="resources/css/fidRecommend.css"/>
 	
+	<style>
+	#fidListArea {
+    width: 100%;
+    height: 100%;
+    margin-left: 15px;
+    margin-top: 15px;
+	}
+	</style>
 	
 	
 
@@ -140,226 +149,20 @@
 							<!-- 인증사진리스트영역 -->
 							<div id="photoList">
 								<!-- 피드 디테일로 연결 -->
-						
+								<c:forEach var ="f" items="${ list }">
+								
 									<div class="photoBox" onclick="location.href='fid_detailView.do';">
 										<!-- 인증사진 -->
-										<img src="resources/images/blog/1.jpg" alt="">
+										<img src="resources/images/certify/${ f.cePicture }" alt="">
 										<!-- 인증날짜 -->
-										<p class="fidUploadDate">2020-03-24</p>
+										<p class="fidUploadDate">${ f.ceDate }</p>
 										<!-- 인증유저 -->
-										<p class="nick">현스델리</p>
-										<p class="fidName">디테일로 연결</p>
+										<p class="nick">${ f.nickName }</p>
+										<p class="fidName">${ f.chName }</p>
 									</div>
-							<!-- 삭제예정 -->
-								<div class="photoBox">
-									<!-- 인증사진 -->
-									<img src="resources/images/blog/1.jpg" alt="">
-									<!-- 인증날짜 -->
-									<p class="fidUploadDate">2020-03-24</p>
-									<!-- 인증유저 -->
-									<p class="nick">현스델리</p>
-									<p class="fidName">하루 물3잔 마시기</p>
-								</div>
-								<div class="photoBox">
-									<!-- 인증사진 -->
-									<img src="resources/images/blog/1.jpg" alt="">
-									<!-- 인증날짜 -->
-									<p class="fidUploadDate">2020-03-24</p>
-									<!-- 인증유저 -->
-									<p class="nick">현스델리</p>
-									<p class="fidName">하루 물3잔 마시기</p>
-								</div>
-								<div class="photoBox">
-									<!-- 인증사진 -->
-									<img src="resources/images/blog/1.jpg" alt="">
-									<!-- 인증날짜 -->
-									<p class="fidUploadDate">2020-03-24</p>
-									<!-- 인증유저 -->
-									<p class="nick">현스델리</p>
-									<p class="fidName">하루 물3잔 마시기</p>
-								</div>
-								<div class="photoBox">
-									<!-- 인증사진 -->
-									<img src="resources/images/blog/1.jpg" alt="">
-									<!-- 인증날짜 -->
-									<p class="fidUploadDate">2020-03-24</p>
-									<!-- 인증유저 -->
-									<p class="nick">현스델리</p>
-									<p class="fidName">하루 물3잔 마시기</p>
-								</div>
-								<div class="photoBox">
-									<!-- 인증사진 -->
-									<img src="resources/images/blog/1.jpg" alt="">
-									<!-- 인증날짜 -->
-									<p class="fidUploadDate">2020-03-24</p>
-									<!-- 인증유저 -->
-									<p class="nick">현스델리</p>
-									<p class="fidName">하루 물3잔 마시기</p>
-								</div>
-								<div class="photoBox">
-									<!-- 인증사진 -->
-									<img src="resources/images/blog/1.jpg" alt="">
-									<!-- 인증날짜 -->
-									<p class="fidUploadDate">2020-03-24</p>
-									<!-- 인증유저 -->
-									<p class="nick">현스델리</p>
-									<p class="fidName">하루 물3잔 마시기</p>
-								</div>
-								<div class="photoBox">
-									<!-- 인증사진 -->
-									<img src="resources/images/blog/1.jpg" alt="">
-									<!-- 인증날짜 -->
-									<p class="fidUploadDate">2020-03-24</p>
-									<!-- 인증유저 -->
-									<p class="nick">현스델리</p>
-									<p class="fidName">하루 물3잔 마시기</p>
-								</div>
-								<div class="photoBox">
-									<!-- 인증사진 -->
-									<img src="resources/images/blog/1.jpg" alt="">
-									<!-- 인증날짜 -->
-									<p class="fidUploadDate">2020-03-24</p>
-									<!-- 인증유저 -->
-									<p class="nick">현스델리</p>
-									<p class="fidName">하루 물3잔 마시기</p>
-								</div>
-								<div class="photoBox">
-									<!-- 인증사진 -->
-									<img src="resources/images/blog/1.jpg" alt="">
-									<!-- 인증날짜 -->
-									<p class="fidUploadDate">2020-03-24</p>
-									<!-- 인증유저 -->
-									<p class="nick">현스델리</p>
-									<p class="fidName">하루 물3잔 마시기</p>
-								</div>
-								<div class="photoBox">
-									<!-- 인증사진 -->
-									<img src="resources/images/blog/1.jpg" alt="">
-									<!-- 인증날짜 -->
-									<p class="fidUploadDate">2020-03-24</p>
-									<!-- 인증유저 -->
-									<p class="nick">현스델리</p>
-									<p class="fidName">하루 물3잔 마시기</p>
-								</div>
-								<div class="photoBox">
-									<!-- 인증사진 -->
-									<img src="resources/images/blog/1.jpg" alt="">
-									<!-- 인증날짜 -->
-									<p class="fidUploadDate">2020-03-24</p>
-									<!-- 인증유저 -->
-									<p class="nick">현스델리</p>
-									<p class="fidName">하루 물3잔 마시기</p>
-								</div>
-								<div class="photoBox">
-									<!-- 인증사진 -->
-									<img src="resources/images/blog/1.jpg" alt="">
-									<!-- 인증날짜 -->
-									<p class="fidUploadDate">2020-03-24</p>
-									<!-- 인증유저 -->
-									<p class="nick">현스델리</p>
-									<p class="fidName">하루 물3잔 마시기</p>
-								</div>
-								<div class="photoBox">
-									<!-- 인증사진 -->
-									<img src="resources/images/blog/1.jpg" alt="">
-									<!-- 인증날짜 -->
-									<p class="fidUploadDate">2020-03-24</p>
-									<!-- 인증유저 -->
-									<p class="nick">현스델리</p>
-									<p class="fidName">하루 물3잔 마시기</p>
-								</div>
-								<div class="photoBox">
-									<!-- 인증사진 -->
-									<img src="resources/images/blog/1.jpg" alt="">
-									<!-- 인증날짜 -->
-									<p class="fidUploadDate">2020-03-24</p>
-									<!-- 인증유저 -->
-									<p class="nick">현스델리</p>
-									<p class="fidName">하루 물3잔 마시기</p>
-								</div>
-								<div class="photoBox">
-									<!-- 인증사진 -->
-									<img src="resources/images/blog/1.jpg" alt="">
-									<!-- 인증날짜 -->
-									<p class="fidUploadDate">2020-03-24</p>
-									<!-- 인증유저 -->
-									<p class="nick">현스델리</p>
-									<p class="fidName">하루 물3잔 마시기</p>
-								</div>
-								<div class="photoBox">
-									<!-- 인증사진 -->
-									<img src="resources/images/blog/1.jpg" alt="">
-									<!-- 인증날짜 -->
-									<p class="fidUploadDate">2020-03-24</p>
-									<!-- 인증유저 -->
-									<p class="nick">현스델리</p>
-									<p class="fidName">하루 물3잔 마시기</p>
-								</div>
-								<div class="photoBox">
-									<!-- 인증사진 -->
-									<img src="resources/images/blog/1.jpg" alt="">
-									<!-- 인증날짜 -->
-									<p class="fidUploadDate">2020-03-24</p>
-									<!-- 인증유저 -->
-									<p class="nick">현스델리</p>
-									<p class="fidName">하루 물3잔 마시기</p>
-								</div>
-								<div class="photoBox">
-									<!-- 인증사진 -->
-									<img src="resources/images/blog/1.jpg" alt="">
-									<!-- 인증날짜 -->
-									<p class="fidUploadDate">2020-03-24</p>
-									<!-- 인증유저 -->
-									<p class="nick">현스델리</p>
-									<p class="fidName">하루 물3잔 마시기</p>
-								</div>
-								<div class="photoBox">
-									<!-- 인증사진 -->
-									<img src="resources/images/blog/1.jpg" alt="">
-									<!-- 인증날짜 -->
-									<p class="fidUploadDate">2020-03-24</p>
-									<!-- 인증유저 -->
-									<p class="nick">현스델리</p>
-									<p class="fidName">하루 물3잔 마시기</p>
-								</div>
-								<div class="photoBox">
-									<!-- 인증사진 -->
-									<img src="resources/images/blog/1.jpg" alt="">
-									<!-- 인증날짜 -->
-									<p class="fidUploadDate">2020-03-24</p>
-									<!-- 인증유저 -->
-									<p class="nick">현스델리</p>
-									<p class="fidName">하루 물3잔 마시기</p>
-								</div>
-								<div class="photoBox">
-									<!-- 인증사진 -->
-									<img src="resources/images/blog/1.jpg" alt="">
-									<!-- 인증날짜 -->
-									<p class="fidUploadDate">2020-03-24</p>
-									<!-- 인증유저 -->
-									<p class="nick">현스델리</p>
-									<p class="fidName">하루 물3잔 마시기</p>
-								</div>
-								<div class="photoBox">
-									<!-- 인증사진 -->
-									<img src="resources/images/blog/1.jpg" alt="">
-									<!-- 인증날짜 -->
-									<p class="fidUploadDate">2020-03-24</p>
-									<!-- 인증유저 -->
-									<p class="nick">현스델리</p>
-									<p class="fidName">하루 물3잔 마시기</p>
-								</div><div class="photoBox">
-									<!-- 인증사진 -->
-									<img src="resources/images/blog/1.jpg" alt="">
-									<!-- 인증날짜 -->
-									<p class="fidUploadDate">2020-03-24</p>
-									<!-- 인증유저 -->
-									<p class="nick">현스델리</p>
-									<p class="fidName">하루 물3잔 마시기</p>
-								</div>
 								
-							<!-- 삭제예정 끝 -->
-
+								</c:forEach>
+								
 							</div>
 
 
