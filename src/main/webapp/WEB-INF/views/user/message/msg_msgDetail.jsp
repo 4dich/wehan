@@ -89,7 +89,7 @@
 							<img src="resources/images/arrow-righ-3.png" alt="">
 						</a>
 						<br><br>
-						<a class="site-btn sb-dark" href="msg_msgListView.do" style="color:black">
+						<a class="site-btn sb-dark" href="getMsgList.do" style="color:black">
 							메시지 목록
 							<img src="resources/images/arrow-righ-3.png" alt="">
 						</a>

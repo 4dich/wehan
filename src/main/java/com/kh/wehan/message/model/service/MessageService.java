@@ -6,6 +6,7 @@ import java.util.Map;
 import com.kh.wehan.message.model.vo.FriendInfo;
 import com.kh.wehan.message.model.vo.FriendList;
 import com.kh.wehan.message.model.vo.Message;
+import com.kh.wehan.message.model.vo.MessageList;
 import com.kh.wehan.message.model.vo.MsgSearchCondition;
 
 public interface MessageService {
@@ -52,5 +53,19 @@ public interface MessageService {
 	 * @return
 	 */
 	int msgDelete(Map m);
+
+	/**
+	 * 메시지 리스트 가져오기
+	 * @param userId
+	 * @return
+	 */
+	ArrayList<MessageList> getMsgList(String userId);
+
+	/**
+	 * 메시지 리스트 친구 검색
+	 * @param sc
+	 * @return
+	 */
+	ArrayList<MessageList> msgSearchFriendMsg(MsgSearchCondition sc);
 
 }

@@ -1,10 +1,8 @@
 package com.kh.wehan.message.model.dao;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -12,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.wehan.message.model.vo.FriendInfo;
 import com.kh.wehan.message.model.vo.FriendList;
 import com.kh.wehan.message.model.vo.Message;
+import com.kh.wehan.message.model.vo.MessageList;
 import com.kh.wehan.message.model.vo.MsgSearchCondition;
 
 @Repository("msgDao")
@@ -80,6 +79,24 @@ public class MessageDao {
 	 */
 	public int msgDelete(Map m) {
 		return sqlSession.update("messgeMapper.msgDelete");
+	}
+
+	/**
+	 * 메시지 리스트 가져오기
+	 * @param userId
+	 * @return
+	 */
+	public ArrayList<MessageList> getMsgList(String userId) {
+		return (ArrayList)sqlSession.selectList("messageMapper.getMsgList", userId);
+	}
+
+	/**
+	 * 메시지 리스트 친구 서치
+	 * @param sc
+	 * @return
+	 */
+	public ArrayList<MessageList> msgSearchFriendMsg(MsgSearchCondition sc) {
+		return (ArrayList)sqlSession.selectList("messageMapper.msgSearchFriendMsg", sc);
 	}
 
 

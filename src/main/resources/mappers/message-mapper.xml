@@ -4,6 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="messageMapper">
+  
   	<resultMap type="Message" id="messageResultSet">
   		<id property="mId" column="MID"/>
   		<result property="mImg" column="IMG"/>
@@ -32,6 +33,16 @@
 		<result property="fName" column="FNAME"/>
 		<result property="fImg" column="FIMG"/>
 		<result property="fIntro" column="FINTRO"/>		
+	</resultMap>
+	
+	<resultMap id="messageListResultSet" type="MessageList">
+		<id property="fId" column="FID"/>
+		<result property="fName" column="FNAME"/>
+		<result property="fImg" column="FIMG"/>
+		<result property="mId" column="MID"/>
+		<result property="mContent" column="MCONTENT"/>
+		<result property="mDate" column="MDATE"/>
+		<result property="rowNum" column="MROWNUM"/>
 	</resultMap>
   	
   	<!-- 메시지 리스트 가져오기 -->
@@ -129,5 +140,40 @@
   	<update id="msgDelete">
   		
   	</update>
+  	
+  	<!-- 메시지 리스트 가져오기 -->
+  	<select id="getMsgList" resultMap="messageListResultSet">
+  		SELECT *
+		FROM 
+		    (SELECT 
+		       (SELECT USERID FROM MEMBER WHERE USERID = MSG.SENDER) AS FID,
+		       (SELECT NICKNAME FROM MEMBER WHERE USERID = MSG.SENDER) AS FNAME,  
+		       (SELECT PICTURE FROM MEMBER WHERE USERID = MSG.SENDER) AS FIMG,
+		       MSG.MID AS MID,
+		       MSG.MCONTENT AS MCONTENT,
+		       MSG.MDATE AS MDATE,
+		       ROW_NUMBER() OVER(PARTITION BY (SELECT USERID FROM MEMBER WHERE USERID = MSG.SENDER) ORDER BY MDATE DESC) AS MROWNUM
+		    FROM MEMBER MEM
+		    JOIN MESSAGE MSG ON (MEM.USERID = MSG.RECEIVER)
+		    WHERE MSG.RECEIVER = #{userId} OR MSG.SENDER = #{userId})
+		WHERE MROWNUM = 1
+		AND FID != #{userId}
+  	</select>
+  	
+  	<!-- 메시지 리스트 친구 서치 -->
+  	<select id="msgSearchFriendMsg"  resultMap="messageListResultSet">
+  		SELECT F.HOST AS MSGMYID, 
+  			   F.FOLLOWER AS MSGFRIENDID,
+		       M.PICTURE AS MSGFRIENDIMG,
+		       NICKNAME AS MSGFRIENDNAME,
+		       (SELECT COUNT(*)FROM FOLLOW WHERE HOST = F.FOLLOWER) AS MSGFOLLOWINGNUM,
+		       (SELECT COUNT(*) FROM FOLLOW WHERE FOLLOWER = F.FOLLOWER) AS MSGFOLLOWERNUM,
+		       P.INTEREST MSGFRIENDCATEGORY
+		FROM MEMBER M
+		JOIN FOLLOW F ON (M.USERID = F.FOLLOWER)
+		JOIN MYPAGE P ON (F.FOLLOWER = P.USERID)
+		WHERE F.HOST = #{userId}
+		AND M.NICKNAME LIKE '%' || #{searchWord} || '%'
+  	</select>
   	
   </mapper>
