@@ -112,7 +112,7 @@
 									</tr>
 									<tr class="qnaUserNameArea">
 										<td class="qnaUserName1">작성자명</td>
-										<td class="qnaUserName2">${q.qWriter}</td>
+										<td class="qnaUserName2">${q.qUserid}</td>
 									</tr>
 									<tr class="qnaDateArea">
 										<td class="qnaDate1">등록날짜</td>

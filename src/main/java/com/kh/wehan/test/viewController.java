@@ -186,20 +186,20 @@ public class viewController {
 		return "user/fid/fid_friendList";
 	}
 	
-	@RequestMapping("fid_ch_recommendView.do")
-	public String fid_ch_recommendView() {
-		return "user/fid/fid_ch_recommend";
-	}
+//	@RequestMapping("fid_ch_recommendView.do")
+//	public String fid_ch_recommendView() {
+//		return "user/fid/fid_ch_recommend";
+//	}
 	
 	@RequestMapping("fid_followView.do")
 	public String fid_followView() {
 		return "user/fid/fid_follow";
 	}
 	
-	@RequestMapping("qnaListView.do")
-	public String qnaListView() {
-		return "user/questions/questions";
-	}
+	/*
+	 * @RequestMapping("qnaListView.do") public String qnaListView() { return
+	 * "user/questions/questions"; }
+	 */
 	
 	@RequestMapping("qnaDetailView.do")
 	public String qnaDetailView() {

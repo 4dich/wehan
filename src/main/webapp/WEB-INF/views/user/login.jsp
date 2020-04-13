@@ -26,7 +26,7 @@
 	<!-- Main Stylesheets -->
 	<!-- <link rel="stylesheet" href="../resources/css/main.css"/> -->
 	<link rel="stylesheet" href="resources/css/style.css"/>
-
+	<script src="resources/js/jquery-3.2.1.min.js"></script>
 	<!-- 부트스트랩 -->
 
 	 
@@ -109,32 +109,32 @@
 				<div class="hero-section">
 					<div class="hero-track">
 						<div class="container" >
-							<form action="login.do" method="post">
+							<!-- <form action="login.do" method="post"> -->
 								<br><br>
 								<h2 style="color: #bd362f; margin-left: 43px;">생각말고</h2>
 								<h2 style="color: black; margin-left: 43px;">실천하자</h2><br>
 								<h2 style="color:#bd362f; margin-left: 400px;">Challenge</h2><br>
 								<br><br>
 								<div align="center">
-									<input type="text" class="login" name="userId" placeholder="아이디 입력"><br><br>
-									<input type="password" class="login" name="password" placeholder="패스워드 입력"><br>
+									<input id="userId" type="text" class="login" name="userId" placeholder="아이디 입력"><br><br>
+									<input id="password" type="password" class="login" name="password" placeholder="패스워드 입력"><br>
 								</div>								
 								<br><br><br>								
 								
 								<div class="row" style="margin-left: 48px;">
 									<div>
-										<a href="find.html" style="color: black;">아이디 찾기/비밀번호 찾기</a>
+										<a href="findIdPwdView.do" style="color: black;">아이디 찾기/비밀번호 찾기</a>
 									</div>									
 								</div>
 								<br><br><br>
 								<div class="row">
 									<div>
-										<b><a href="pAgree.html" style="color: #bd362f; font-size: 20px; margin-left: 65px;">회원가입</a></b>
-										<input type="submit" class="btn btn-danger" style=" margin-left:290px; width:150px" value="로그인">
+										<b><a href="signInAgreeView.do" style="color: #bd362f; font-size: 20px; margin-left: 65px;">회원가입</a></b>
+										<input id="submit" type="button" class="btn btn-danger" style=" margin-left:290px; width:150px" value="로그인">
 									</div>
 								</div>
 								<br><br>
-							</form>
+							<!-- </form> -->
 						</div>
 					</div>
 				</div>
@@ -146,9 +146,33 @@
 		</div>
 	</div>
 	<!-- Main section end -->
-	
+	<script>
+		$('#submit').click(function(){
+			var userId = $('#userId').val();
+			var password = $('#password').val();
+			$.ajax({
+				url:"login.do",
+				type:"post",
+				data:{"userId":userId,"password":password},
+				success:function(data){
+					console.log(data);
+					if(data == "ok1"){
+						alert("관리자 권한으로 로그인 되었습니다.");
+						location.href="ad_noticeListView.do";
+					}else if(data == "ok2"){
+						alert("로그인 되었습니다");
+						location.href="index.jsp";
+					}else{
+						alert("로그인 실패");
+					}
+				},error:function(){
+					
+				}
+			});
+		});	
+	</script>
 	<!--====== Javascripts & Jquery ======-->
-	<script src="resources/js/jquery-3.2.1.min.js"></script>
+	
 	<script src="resources/js/bootstrap.min.js"></script>
 	<script src="resources/js/owl.carousel.min.js"></script>
 	<script src="resources/js/jquery.nicescroll.min.js"></script>
