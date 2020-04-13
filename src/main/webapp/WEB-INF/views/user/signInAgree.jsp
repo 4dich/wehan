@@ -322,7 +322,7 @@
 							<button id="agree" class="site-btn" style="width:20%; height: 80px;">
                                 동의
                             </button>
-							<button class="site-btn" style="width:20%; height: 80px;" onclick="location.href='login.html'">
+							<button class="site-btn" style="width:20%; height: 80px;" onclick="location.href='loginView.do'">
 									취소하기
 							</button>
 						</div>
@@ -370,7 +370,7 @@
 					return;					
 				}
 			}
-			location.href='signUp.html'						
+			location.href='signInView.do'						
 		});
 		
 	});
