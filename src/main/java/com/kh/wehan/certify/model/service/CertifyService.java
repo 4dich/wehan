@@ -20,4 +20,11 @@ public interface CertifyService {
 	 */
 	ArrayList<Certify> selectList(PageInfo pi);
 
+	/**
+	 * 친구 피드 리스트 출력
+	 * @param pi
+	 * @return
+	 */
+	ArrayList<Certify> getFriendList(PageInfo pi);
+
 }

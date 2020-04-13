@@ -181,10 +181,10 @@ public class viewController {
 		return "user/ceritify/ch_certifyPhotoList";
 	}
 	
-	@RequestMapping("fid_friendListView.do")
-	public String fid_friendListView() {
-		return "user/fid/fid_friendList";
-	}
+//	@RequestMapping("fid_friendListView.do")
+//	public String fid_friendListView() {
+//		return "user/fid/fid_friendList";
+//	}
 	
 //	@RequestMapping("fid_ch_recommendView.do")
 //	public String fid_ch_recommendView() {

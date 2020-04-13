@@ -118,6 +118,16 @@
 	ON R.USERID = M.USERID
 	WHERE CEDEL_YN = 'N'
 	</select>
+	
+	<select id="friendFidSelectList" resultMap="certifyResultSet">
+	SELECT C.CHNAME,C.CATEGORY,M.NICKNAME,R.*
+	FROM CHALLENGE C
+	JOIN CERTIFY R
+	ON C.CHID = R.CHID
+	JOIN MEMBER M
+	ON R.USERID = M.USERID
+	WHERE CEDEL_YN = 'N'
+	</select>
 
 </mapper>
 

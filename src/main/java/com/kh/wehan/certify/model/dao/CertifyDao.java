@@ -37,4 +37,10 @@ public class CertifyDao {
 		return (ArrayList)sqlSession.selectList("certifyMapper.fidSelectList",null,rowBounds);
 	}
 
+	public ArrayList<Certify> selectFriendList(PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("certifyMapper.friendFidSelectList",null,rowBounds);
+	}
+
 }
