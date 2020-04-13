@@ -1,6 +1,7 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -23,6 +24,10 @@
 	<link rel="stylesheet" href="resources/css/magnific-popup.css"/>
 	<link rel="stylesheet" href="resources/css/owl.carousel.min.css"/>
 	
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+    
+    
+    
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="resources/css/style.css"/>
 	
@@ -30,48 +35,7 @@
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	
     <style>
-
-	.main-down::-webkit-scrollbar{
-		height: 10px;
-	}
-
-	.main-up::-webkit-scrollbar {
-		width: 10px;
-	}
-	.main-up::-webkit-scrollbar-thumb, .main-down::-webkit-scrollbar-thumb {
-		background-color: #242424;
-	}
-	.main-up::-webkit-scrollbar-track, .main-down::-webkit-scrollbar-track {
-		background-color: grey;
-	}
-
-    .profile-img {
-        width: 150px;
-        height: 150px; 
-        border-radius: 70%;
-        overflow: hidden;
-
-        background: #BDBDBD; 
-        margin-left: 30%;
-        margin-bottom: 20px;
-    }
-
-    .profile-text{
-        margin-bottom: 20px;
-    }
-
-    .profile-aboutme{
-        border: 2px solid #efefef;
-        margin-bottom: 20px;
-        padding: 0.5%;
-    }
-
-    .profile-follow{
-        text-align: center;
-        margin-left: 10%;
-    }
     .site-logo {
-        display: block;
         margin-bottom: 40px;
     }
 
@@ -159,6 +123,7 @@
 		margin-bottom: 10px;
 	}
 	
+	/* circle bar */
 	.circle-item-warp {
 		margin-bottom: 30px;
 		overflow: hidden;
@@ -207,6 +172,115 @@
 		margin-bottom: 0;
 		color: #828282;
 	}
+	
+	/* progress-bar */
+	@-webkit-keyframes progress-bar-stripes {
+	  from {
+	    background-position: 40px 0;
+	  }
+	  to {
+	    background-position: 0 0;
+	  }
+	}
+	@-o-keyframes progress-bar-stripes {
+	  from {
+	    background-position: 40px 0;
+	  }
+	  to {
+	    background-position: 0 0;
+	  }
+	}
+	@keyframes progress-bar-stripes {
+	  from {
+	    background-position: 40px 0;
+	  }
+	  to {
+	    background-position: 0 0;
+	  }
+	}
+	.progress {
+	  height: 20px;
+	  margin-bottom: 20px;
+	  overflow: hidden;
+	  background-color: #f5f5f5;
+	  border-radius: 4px;
+	  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+	  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+	}
+	.progress-bar {
+	  float: left;
+	  width: 0%;
+	  height: 100%;
+	  font-size: 12px;
+	  line-height: 20px;
+	  color: #fff;
+	  text-align: center;
+	  background-color: #337ab7;
+	  -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+	  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+	  -webkit-transition: width 0.6s ease;
+	  -o-transition: width 0.6s ease;
+	  transition: width 0.6s ease;
+	}
+	.progress-striped .progress-bar,
+	.progress-bar-striped {
+	  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+	  background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+	  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+	  -webkit-background-size: 40px 40px;
+	  background-size: 40px 40px;
+	}
+	.progress.active .progress-bar,
+	.progress-bar.active {
+	  -webkit-animation: progress-bar-stripes 2s linear infinite;
+	  -o-animation: progress-bar-stripes 2s linear infinite;
+	  animation: progress-bar-stripes 2s linear infinite;
+	}
+	.progress-bar-success {
+	  background-color: #5cb85c;
+	}
+	.progress-striped .progress-bar-success {
+	  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+	  background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+	  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+	}
+	.progress-bar-info {
+	  background-color: #5bc0de;
+	}
+	.progress-striped .progress-bar-info {
+	  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+	  background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+	  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+	}
+	.progress-bar-warning {
+	  background-color: #f0ad4e;
+	}
+	.progress-striped .progress-bar-warning {
+	  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+	  background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+	  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+	}
+	.progress-bar-danger {
+	  /* background-color: #d9534f; */
+	  background-color: #242424;
+	}
+	.progress-striped .progress-bar-danger {
+	  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+	  background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+	  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+	}
+	
+	/*스크롤바*/
+	.main-down::-webkit-scrollbar{
+		width: 5px;
+	}
+	
+	.main-down::-webkit-scrollbar-thumb{
+		background-color: #242424;
+	}
+	.main-down::-webkit-scrollbar-track{
+		background-color: grey;
+	}
     </style>
 </head>
 <body>
@@ -241,14 +315,25 @@
 						<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
-
-					<div class="challenge-tree" style="width: 300px; margin:auto">
-						<img src="resources/images/tree.jpg">
-					</div>
-					<div class="challenge-exp" style="margin:auto">
-						<div class="progress">
-							<div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:90%">
-							  90%
+					<div id="lv" style="width: 350px; height: 470px; border: 1px solid gray; padding:20px; margin:auto; margin-top: -30px">
+						<div id="lv-img" style="width: 300px; height:320px; margin:auto; background-image: url('resources/images/level/astro.gif'); background-size: cover; border-radius: 15px;">
+							<img src="resources/images/level/lv4.png">
+						</div>
+						<div id="lv-progress" style="width: 300px; margin:auto; margin-top: 10px;">
+							<div>
+								<div id="nickName" style="font-size:24px; margin-bottom: 10px; text-align:left"><b>${loginUser.nickName}</b></div>
+								<div id="lv-text" style="font-size:16px; margin-bottom: 5px; text-align:left" >Lv 4</div>
+							</div>
+							<div class="progress" style="border:1px solid gray; margin-bottom:-3px; ">
+								<div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar"
+									aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:66%"> Exp 10
+								</div>
+						    </div>
+							<div id="lv-progress1" style="width: 140px; text-align:left; display:inline-block; font-size: 12px">
+								0
+							</div>
+							<div id="lv-progress2" style="width: 140px; text-align:right; display:inline-block; font-size: 12px">
+								15
 							</div>
 						</div>
 					</div>
@@ -258,9 +343,8 @@
 			<!-- Page start -->
 			<div class="page-section portfolio-page">
 				<div class="portfolio-section">
-					<!-- 붙여넣기 시작 -->
-					<!-- interest 영역 -->				
-					<div class="main-down" style="height: 40%; width:90%; margin-left:20px">
+					<!-- Statistics 영역 -->				
+					<div class="main-down" id="statistics" style="height: 40%; width:90%; margin-left:20px">
 						<div class="main-down-title" style="height: 70px; padding: 20px; font-weight:900; font-size: 21px; font-weight: 700;">
 							<div style="width:100px; height:100px; margin-left:-39px; display:inline-block; background-image: url('resources/images/icons/bookmark.png'); background-repeat : no-repeat; background-size : cover;"></div>
 							<div style="margin:-100px 24px 0 60px;">
@@ -286,7 +370,7 @@
 										<h2>40</h2>
 										<div class="milestone-info" style="text-align:left;">
 											<h5>Challenges<br>completed</h5>
-											<p id="exp" style="color:gray">Level 4, Exp 10</p>
+											<p id="exp" style="color:gray">Lv 4, Exp 10</p>
 										</div>
 									</div>
 								</div>
@@ -321,10 +405,10 @@
 						</div>
 					</div>
 					
-					<!-- goal 영역 -->
-					<div class="main-up" style="height: 40%; width: 90%; margin-left:20px">
+					<!-- Challenge 영역 -->
+					<div class="main-up" id="challenge" style="height: 40%; width: 90%; margin-left:20px">
 						<div class="main-up-title" style="height: 70px; padding: 20px; font-size: 21px; font-weight: 700;">
-							<div style="width:100px; height:100px; margin-left:-39px; margin-top:12px; display:inline-block; background-image: url('resources/images/icons/bookmark.png'); background-repeat : no-repeat; background-size : cover;"></div>
+							<div style="width:100px; height:100px; margin-left:-39px; margin-top:12px; display:inline-block; background-image: url('resources/images/icons/bookmark.png'); background-repeat : no-repeat; background-size : cover; z-index:2"></div>
 							<div style="margin:-100px 24px 0 60px;"><i>Challenges</i></div>
 						</div>
 						
@@ -345,58 +429,66 @@
 								</li>
 							</ul>
 							<div class="tab-content" id="myTabContent" >
-								<!-- single tab content -->
+								<!-- 전체 챌린지 -->
 								<div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="tab-1">
-									<div class="main-down" style="width: 100%; height: 400px; border: 1px solid gray; padding:3%; margin:0px; overflow:auto;">
+									<div class="main-down" style="width: 100%; height: 350px; border: 1px solid gray; padding:3%; margin:0px; overflow-y:scroll; border-top: 1px solid black">
+										<c:forEach var="c" items="${ clist }">
+											<div style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
+												<div style="display: inline-block; width: 150px; height: 100%; background:#FE736C;  padding: 25px; text-align: center;">진행중</div>
+												<img src="resources/images/hansol_profile.jpg" style="width: 75px; height: auto">
+												<div style="display: inline-block; width: 400px; height: 100%; background:#FE736C; padding: 25px; text-align: center; ">${ c.chName }</div>
+											</div>
+										</c:forEach>
 										<div style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
 											<div style="display: inline-block; width: 150px; height: 100%; background:#FE736C;  padding: 25px; text-align: center;">진행중</div>
 											<img src="resources/images/hansol_profile.jpg" style="width: 75px; height: auto">
-											<div style="display: inline-block; width: 200px; height: 100%; background:#FE736C; padding: 25px; text-align: center; ">1번 퀘스트</div>
+											<div style="display: inline-block; width: 400px; height: 100%; background:#FE736C; padding: 25px; text-align: center; ">1번 퀘스트</div>
 										</div>
 										<div style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
 											<div style="display: inline-block; width: 150px; height: 100%; background:#F7D147;  padding: 25px; text-align: center;">진행예정</div>
 											<img src="resources/images/hansol_profile.jpg" style="width: 75px; height: auto">
-											<div style="display: inline-block; width: 200px; height: 100%; background:#F7D147; padding: 25px; text-align: center; ">2번 퀘스트</div>
+											<div style="display: inline-block; width: 400px; height: 100%; background:#F7D147; padding: 25px; text-align: center; ">2번 퀘스트</div>
 										</div>
 										<div style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
 											<div style="display: inline-block; width: 150px; height: 100%; background:#3A7D7C;  padding: 25px; text-align: center;">진행완료</div>
 											<img src="resources/images/hansol_profile.jpg" style="width: 75px; height: auto">
-											<div style="display: inline-block; width: 200px; height: 100%; background:#3A7D7C; padding: 25px; text-align: center; ">3번 퀘스트</div>
+											<div style="display: inline-block; width: 400px; height: 100%; background:#3A7D7C; padding: 25px; text-align: center; ">3번 퀘스트</div>
 										</div>
 									</div>
 								</div>
+								<!-- 진행중 챌린지 -->
 								<div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="tab-2">
 									<div class="main-down" style="width: 100%; height: 400px; border: 1px solid gray; padding:3%; margin:0px; overflow:auto;">
 										<div style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
 											<div style="display: inline-block; width: 150px; height: 100%; background:#FE736C;  padding: 25px; text-align: center;">진행중</div>
 											<img src="resources/images/hansol_profile.jpg" style="width: 75px; height: auto">
-											<div style="display: inline-block; width: 200px; height: 100%; background:#FE736C; padding: 25px; text-align: center; ">1번 퀘스트</div>
+											<div style="display: inline-block; width: 400px; height: 100%; background:#FE736C; padding: 25px; text-align: center; ">1번 퀘스트</div>
 										</div>
 									</div>
 								</div>
+								<!-- 진행예정 챌린지 -->
 								<div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="tab-3">
 									<div class="main-down" style="width: 100%; height: 400px; border: 1px solid gray; padding:3%; margin:0px; overflow:auto;">
 										<div style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
 											<div style="display: inline-block; width: 150px; height: 100%; background:#F7D147;  padding: 25px; text-align: center;">진행예정</div>
 											<img src="resources/images/hansol_profile.jpg" style="width: 75px; height: auto">
-											<div style="display: inline-block; width: 200px; height: 100%; background:#F7D147; padding: 25px; text-align: center; ">2번 퀘스트</div>
+											<div style="display: inline-block; width: 400px; height: 100%; background:#F7D147; padding: 25px; text-align: center; ">2번 퀘스트</div>
 										</div>
 									</div>
 								</div>
+								<!-- 진행완료 챌린지 -->
 								<div class="tab-pane fade" id="tab-4" role="tabpanel" aria-labelledby="tab-4">
 									<div class="main-down" style="width: 100%; height: 400px; border: 1px solid gray; padding:3%; margin:0px; overflow:auto;">
 										<div style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
 											<div style="display: inline-block; width: 150px; height: 100%; background:#3A7D7C;  padding: 25px; text-align: center;">진행완료</div>
 											<img src="resources/images/hansol_profile.jpg" style="width: 75px; height: auto">
-											<div style="display: inline-block; width: 200px; height: 100%; background:#3A7D7C; padding: 25px; text-align: center; ">3번 퀘스트</div>
+											<div style="display: inline-block; width: 400px; height: 100%; background:#3A7D7C; padding: 25px; text-align: center; ">3번 퀘스트</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<!-- 붙여넣기 끝 -->
-					
 				</div>
 			</div>
 			<!-- Page end -->

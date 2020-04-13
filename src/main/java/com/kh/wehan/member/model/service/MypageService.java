@@ -1,6 +1,8 @@
 package com.kh.wehan.member.model.service;
 
-import com.kh.wehan.member.model.vo.Member;
+import java.util.ArrayList;
+
+import com.kh.wehan.challenge.model.vo.Challenge;
 import com.kh.wehan.member.model.vo.Mypage;
 
 public interface MypageService {
@@ -30,6 +32,13 @@ public interface MypageService {
 	 * @return
 	 */
 	public int updateProfile(Mypage mp);
+
+	/**
+	 * 1-1. 마이페이지 마이챌린지 조회
+	 * @param userId
+	 * @return
+	 */
+	public ArrayList<Challenge> selectListCh(String userId);
 
 
 }
