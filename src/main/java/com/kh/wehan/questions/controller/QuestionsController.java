@@ -27,7 +27,7 @@ public class QuestionsController {
 	 * @param currentPage
 	 * @return
 	 */
-	@RequestMapping("qnaList.do")
+	@RequestMapping("qnaListView.do")
 	public ModelAndView list(ModelAndView mv, @RequestParam(value="currentPage", required=true, defaultValue="1") int currentPage){
 		
 		// 문의사항 글 수 확인
@@ -39,7 +39,7 @@ public class QuestionsController {
 		
 		// 문의사항 글 목록 불러오기
 		ArrayList<Questions> list = qService.selectList(pi);
-		
+		System.out.println(list);
 		mv.addObject("list", list);
 		mv.addObject("pi", pi);
 		mv.setViewName("user/questions/questions");
