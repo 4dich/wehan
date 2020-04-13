@@ -25,6 +25,7 @@
 		<typeAlias type="com.kh.wehan.pay.model.vo.Pay" alias="Pay"/>
 		<typeAlias type="com.kh.wehan.challenge.model.vo.Challenge" alias="Challenge"/>
 		<typeAlias type="com.kh.wehan.questions.model.vo.Questions" alias="Questions"/>
+		<typeAlias type="com.kh.wehan.member.model.vo.FindKey" alias="FindKey"/>
 	</typeAliases>
 	
 	<mappers>

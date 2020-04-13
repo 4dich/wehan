@@ -1,8 +1,11 @@
 package com.kh.wehan.member.model.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.wehan.challenge.model.vo.Challenge;
 import com.kh.wehan.member.model.dao.MypageDao;
 import com.kh.wehan.member.model.vo.Mypage;
 
@@ -30,6 +33,11 @@ public class MypageServiceImpl implements MypageService {
 	@Override
 	public int updateProfile(Mypage mp) {
 		return myDao.updateProfile(mp);
+	}
+
+	@Override
+	public ArrayList<Challenge> selectListCh(String userId) {
+		return myDao.selectListCh(userId);
 	}
 
 }

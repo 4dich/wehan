@@ -12,6 +12,23 @@
 		<result property="myLevel" column="MYLEVEL"/>
 	</resultMap>
 	
+	<resultMap id="challengeResultSet" type="Challenge">
+		<id property="chId" column="CHID"/>
+		<result property="userId" column="USERID"/>
+		<result property="chName" column="CHNAME"/>
+		<result property="chPicture" column="CHPICTURE"/>
+		<result property="chContent" column="CHCONTENT"/>
+		<result property="startDate" column="STARTDATE"/>
+		<result property="endDate" column="ENDDATE"/>
+		<result property="category" column="CATEGORY"/>
+		<result property="ceMethod" column="CEMETHOD"/>
+		<result property="price" column="PRICE"/>
+		<result property="totalPrice" column="TOTALPRICE"/>
+		<result property="minPerson" column="MINPERSON"/>
+		<result property="maxPerson" column="MAXPERSON"/>
+		<result property="chPeople" column="CHPEOPLE"/>
+	</resultMap>
+	
 	<select id="my_profileView" resultMap="mypageResultSet">
 		SELECT *
 		FROM MYPAGE
@@ -35,4 +52,9 @@
 		SET INTRO=#{intro},GOAL=#{goal},INTEREST=#{interest}
 		WHERE USERID=#{userId}
 	</update>
+	
+	<select id="selectListCh" resultMap="challengeResultSet">
+		SELECT * FROM CHALLENGE
+		WHERE CHPEOPLE LIKE '%'||#{userId}||'%'
+	</select>
 </mapper>

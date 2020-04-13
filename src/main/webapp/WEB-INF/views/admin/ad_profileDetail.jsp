@@ -33,15 +33,43 @@
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 	<style>
+		.black{
+			display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+		}
+		.blackinsert{
+			margin-left:25%;
+			margin-top:15%;
+			width:50%;
+			height:40%;
+			background: white;
+			vertical-align: middle;
+		}
+		.blackcancle{
+			margin-left:25%;
+			margin-top:15%;
+			width:50%;
+			height:40%;
+			background: white;
+			vertical-align: middle;
+		}
 		.infoMenu{font-size: 16px;}
 		tbody  td {padding:20px; padding-bottom: 0;}
 		tbody  th {padding:10px;}
 		#prof{margin-left: 105px; text-align: center; margin-top: 20px; font-size: 18px;}
 		p{margin :0}
-		
 	</style>
 </head>
 <body>
+	
 	<!-- Page Preloder -->
 	<div id="preloder">
 		<div class="loader"></div>
@@ -51,16 +79,64 @@
 	<div class="main-site-warp">
 		
 	<%@ include file="/WEB-INF/views/common/ad_menuBar.jsp" %>
-
+			<div class="black">
+			<div class="blackinsert">
+				<table>
+					<tr>
+						<th>아이디</th>
+						<td><input type="text" value="${m.userId}"></td>
+					</tr>
+					<tr>
+						<th>차단 사유</th>
+						<td><input type="text"></td>
+					</tr>
+					<tr>
+						<th>차단 기간</th>
+						<td><input type="text" placeholder="차단 기간"></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><button>등록</button><button>취소</button></td>
+					</tr>
+				</table>
+			</div>
+			<div class="blackcancle">
+				<c:if test="${!empty b}">
+				<table>
+					<tr>
+						<th>아이디</th>
+						<td>${b.userId}</td>
+					</tr>
+					<tr>
+						<th>차단 사유</th>
+						<td>${b.banReason}</td>
+					</tr>
+					<tr>
+						<th>차단 날짜</th>
+						<td>${b.banDate}</td>
+					</tr>
+					<tr>
+						<th>차단 기간</th>
+						<td>${b.banTerm}</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><button>차단해제</button><button>취소</button></td>
+					</tr>
+				</table>
+				</c:if>
+			</div>
+		</div>
 
 		<header class="header-section">
 			<div class="nav-switch">
 				<i class="fa fa-bars"></i>
 			</div>
-		
 		</header>
+		
 		<div class="site-content-warp">
 			<!-- Left Side section -->
+			
 			<div class="main-sidebar">
 			
 				<div class="mb-warp">
@@ -77,15 +153,16 @@
 						<a href="admin_notice.html" id="ad_notice" class="infoMenu">공지사항</a><br><br>
 						<a href="admin_qna.html" id="ad_questions" class="infoMenu">문의사항</a><br><br>
 					</div>
-					
-					
 				</div>
 			</div>
 			<!-- Left Side section end -->
 			<!-- Page start -->
 			<!-- Page start -->
+			
+			
 			<div class="page-section blog-page" style="margin-top: 40px; height: 800px;">
 				<div class="contact-section">
+				
 					<h3>회원정보 상세보기</h3>
 					<div class="row" style="margin-left: 30px;">
 						<!-- <div class="col-xl-6">
@@ -107,25 +184,25 @@
 								<form class="contact-form" style="margin-top: 60px;">
 									<div class="row">	
                                         <div class="col-lg-12">
-                                            <input value="${m.userId}" type="text" style="border-top: none; border-left: none; border-right: none;" disabled>
+                                            <input id="userId" value="${m.userId}" type="text" style="border-top: none; border-left: none; border-right: none;" disabled>
                                         </div>
 										<div class="col-lg-12">
-                                            <input value="${m.nickName}" type="text" style="border-top: none; border-left: none; border-right: none;" disabled>
+                                            <input id="nickName" value="${m.nickName}" type="text" style="border-top: none; border-left: none; border-right: none;" disabled>
                                         </div>
                                         <div class="col-lg-12">
-                                            <input value="${m.userName}" type="text" style="border-top: none; border-left: none; border-right: none;" disabled>
+                                            <input id="userName" value="${m.userName}" type="text" style="border-top: none; border-left: none; border-right: none;" disabled>
                                         </div>
                                         <div class="col-lg-12">
-                                            <input value="${m.birthDay}" type="text" style="border-top: none; border-left: none; border-right: none;" disabled>
+                                            <input id="birthDay" value="${m.birthDay}" type="text" style="border-top: none; border-left: none; border-right: none;" disabled>
                                         </div>
 										<div class="col-lg-12">
-                                            <input value="${m.phone}" type="text" style="border-top: none; border-left: none; border-right: none;" disabled>
+                                            <input id="phone" value="${m.phone}" type="text" style="border-top: none; border-left: none; border-right: none;" disabled>
                                         </div>
 										<div class="col-lg-12">
-                                            <input value="${m.account}" type="text" style="border-top: none; border-left: none; border-right: none;" disabled>
+                                            <input id="account" value="${m.account}" type="text" style="border-top: none; border-left: none; border-right: none;" disabled>
                                         </div>
 										<div class="col-lg-12">
-                                            <input value="${m.blacklistYN}" type="text" style="border-top: none; border-left: none; border-right: none;" disabled>
+                                            <input id="blackList" value="${m.blacklistYN}" type="text" style="border-top: none; border-left: none; border-right: none;">
                                         </div>
 									</div>
 								</form>
@@ -148,7 +225,20 @@
 		$(function(){
 			$('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247"); //even 짝수
 		});
-
+		
+		$('#blackList').click(function(){
+			var blackList = $('#blackList').val();
+			console.log(blackList);
+			if(blackList == "N"){
+				$('.black').show();
+				$('.blackinsert').show();
+				$('.blackcancle').hide();
+			}else{
+				$('.black').show();
+				$('.blackinsert').hide();
+				$('.blackcancle').show();
+			}
+		});
 	</script>
 	
 	<!--====== Javascripts & Jquery ======-->

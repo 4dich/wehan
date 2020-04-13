@@ -52,7 +52,14 @@ public class PayServiceImpl implements PayService {
 		return pDao.chSearch(ch);
 	}
 
+	@Override
+	public int getSearchListCount(Challenge ch) {
+		return pDao.searchCount(ch);
+	}
 
-	
+	@Override
+	public int getSearchListCount(Pay p) {
+		return pDao.searchCount(p);
+	}
 
 }

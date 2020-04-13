@@ -13,16 +13,21 @@ public class Certify {
 	private Date ceDate;
 	private String ceDel;
 	
+//	챌린지
 	private String chName;
 	private String startDate;
 	private String endDate;
+	private String category;
+	
+//	멤버
+	private String nickName;
 	
 	public Certify() {
 		super();
 	}
 
 	public Certify(String ceId, String chId, String userId, String ceContent, String cePicture, Date ceDate,
-			String ceDel, String chName, String startDate, String endDate) {
+			String ceDel, String chName, String startDate, String endDate, String category, String nickName) {
 		super();
 		this.ceId = ceId;
 		this.chId = chId;
@@ -34,6 +39,8 @@ public class Certify {
 		this.chName = chName;
 		this.startDate = startDate;
 		this.endDate = endDate;
+		this.category = category;
+		this.nickName = nickName;
 	}
 
 	public String getCeId() {
@@ -116,12 +123,30 @@ public class Certify {
 		this.endDate = endDate;
 	}
 
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+
 	@Override
 	public String toString() {
 		return "Certify [ceId=" + ceId + ", chId=" + chId + ", userId=" + userId + ", ceContent=" + ceContent
 				+ ", cePicture=" + cePicture + ", ceDate=" + ceDate + ", ceDel=" + ceDel + ", chName=" + chName
-				+ ", startDate=" + startDate + ", endDate=" + endDate + "]";
+				+ ", startDate=" + startDate + ", endDate=" + endDate + ", category=" + category + ", nickName="
+				+ nickName + "]";
 	}
 
+	
 	
 }

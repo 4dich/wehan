@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import com.kh.wehan.challenge.model.service.ChallengeService;
 import com.kh.wehan.challenge.model.vo.Challenge;
 import com.kh.wehan.common.Pagination;
 import com.kh.wehan.common.model.vo.PageInfo;
+import com.kh.wehan.member.model.vo.Member;
 
 @Controller
 public class ChallengeController {
@@ -34,13 +36,11 @@ public class ChallengeController {
 	public ModelAndView adChalList(ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
 		
 		int listCount = cService.getListCount();
-//		System.out.println("listCount : " + listCount);
 		
 		int pageLimit = 5;
 		int boardLimit = 10;
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, pageLimit, boardLimit);
-//		System.out.println("pi : " + pi);
 		
 		ArrayList<Challenge> list = cService.selectList(pi);
 		
@@ -130,8 +130,9 @@ public class ChallengeController {
 	 * @return
 	 */
 	public String saveFile(MultipartFile file,HttpServletRequest request) {
+		
 		String root = request.getSession().getServletContext().getRealPath("resources");
-		String savePath = root + "\\images\\user";
+		String savePath = root + "\\images\\challenge";
 		File folder = new File(savePath);
 		
 		if(!folder.exists()) {
@@ -163,29 +164,65 @@ public class ChallengeController {
 	 * @return
 	 */
 	@RequestMapping("registerChallenge.do")
-	public String registerChallenge(Challenge chal, ModelAndView mv, HttpServletRequest request,
-										  @RequestParam(name="uploadFile", required=false) MultipartFile file) {
+	public ModelAndView registerChallenge(Challenge chal, ModelAndView mv, HttpServletRequest request,
+									@RequestParam(name="registerPic", required=false) MultipartFile file) {
+	
+		HttpSession session = request.getSession();
 		
-		if(!file.getOriginalFilename().equals("")) {
-			String picture = saveFile(file,request);
-			
-			if(picture != null) {
-				chal.setChPicture(picture);
-			}
-		}
+		Member mem = (Member)session.getAttribute("loginUser");
+		String userId = mem.getUserId();
 		
-		System.out.println(chal);
+		String picture = null;
+		
+		chal.setUserId(userId);
+		
+		 if(!file.getOriginalFilename().equals(" ")) { 
+			 picture = saveFile(file, request);
+		 
+			 if(picture != null) { 
+				 chal.setChPicture(picture); 
+			 	}
+		 }
+		 
+		chal.setChPicture(picture);
 		
 		int result = cService.insertChallenge(chal);
 		
 		if(result > 0) {
-			return "user/challenge/ch_detail";
-		}else {
-			return "common/errorPage";
-		}
-			
+			mv.addObject("chal", chal).setViewName("user/challenge/ch_detail");
+		} else {
+			mv.addObject("msg", "오류입니다").setViewName("common/errorPage");
+		}	
+		
+		return mv;
 	}
 	
-
+	
+	@RequestMapping("challengeList.do")
+	public ModelAndView ChallengeList(ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
 		
+		int listCount = cService.getListCount();
+		
+		int pageLimit = 5;
+		int boardLimit = 10;
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, pageLimit, boardLimit);
+		
+		ArrayList<Challenge> list = cService.selectChallengeList(pi);
+		
+		for(int i=0; i<list.size(); i++) {
+			String[] str = list.get(i).getChPeople().split(",");
+			list.get(i).setChPeople(String.valueOf(str.length));
+			
+			list.get(i).setTotalPrice(str.length * list.get(i).getPrice());
+		}
+		
+		mv.addObject("list", list);
+		mv.addObject("pi", pi);
+		mv.addObject("listCount", listCount);
+		mv.setViewName("user/challenge/ad_challengeList");
+		
+		return mv;
+	}
+
 }

@@ -106,26 +106,50 @@
   		VALUES(SEQ_PID.NEXTVAL,#{chId},#{userId},#{price},DEFAULT,#{pmethod},SYSDATE,DEFAULT,DEFAULT)
   	</insert>
   	
-  	<select id="searchplist" resultMap="payListResultSet">
+  	<select id="paySearchResultCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM PAY P
+		JOIN CHALLENGE C
+		ON C.CHID = P.CHID
+	<if test="userId != null">
+		WHERE P.USERID LIKE '%' || #{userId} || '%'
+  	</if>
+  	<if test="pId != null">
+		WHERE P.PID LIKE '%' || #{pId} || '%'
+  	</if>
+	</select>
+  	
+  	<select id="chSearchResultCount" resultType="_int">
+  		SELECT COUNT(*)
+  		FROM PAY P
+		JOIN CHALLENGE C
+  		ON C.CHID = P.CHID
+  	<if test="chName != null">
+  		WHERE C.CHNAME LIKE '%' || #{chName} || '%'
+  	</if>
+  	</select>
+  	
+  	
+  	<select id="searchplist"  resultMap="payListResultSet">
   		SELECT *
-		FROM CHALLENGE C
-		JOIN PAY P
+		FROM PAY P
+		JOIN CHALLENGE C
 		ON C.CHID = P.CHID
   		<if test="userId != null">
-		WHERE P.USERID=#{userId}
+		WHERE P.USERID LIKE '%' || #{userId} || '%'
   		</if>
   		<if test="pId != null">
-		WHERE P.PID=#{pId}
+		WHERE P.PID LIKE '%' || #{pId} || '%'
   		</if>
   	</select>
 	
-	<select id="searchchlist" resultMap="payListResultSet">
+	<select id="searchchlist"  resultMap="payListResultSet">
 		SELECT *
-		FROM CHALLENGE C
-		JOIN PAY P
+		FROM PAY P
+		JOIN CHALLENGE C
 		ON C.CHID = P.CHID
 		<if test="chName != null">
-		WHERE C.CHNAME=#{chName}
+		WHERE C.CHNAME LIKE '%' || #{chName} || '%'
 		</if>
 	</select>
 

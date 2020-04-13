@@ -163,7 +163,7 @@
 								<a href="${ before }"></a>
 							</c:if>
 							
-							<!-- 페이지 -->
+							<!-- 페이지 -->  
 							<c:forEach var="p" begin="${pi.startPage}" end="${pi.endPage }">
 								<c:if test="${ p eq pi.currentPage }">
 									<font color="red" size = "4"><b>[${ p }]</b></font>
@@ -204,6 +204,13 @@
 	<script>
 		$(document).ready(function(){
 		  $('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247)");   // even 짝수
+		});
+		
+		$('.qnaTable td').click(function(){
+			var qId = $(this).parent().children().find("input[type=hidden]").val();
+			var currentPage = ${pi.currentPage};
+			
+			location.href="questionsDetail.do?qId="+qId+"&currentPage=" + currentPage;
 		});
 	</script>
 	

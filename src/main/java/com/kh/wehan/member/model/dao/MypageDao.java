@@ -1,9 +1,12 @@
 package com.kh.wehan.member.model.dao;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.kh.wehan.challenge.model.vo.Challenge;
 import com.kh.wehan.member.model.vo.Member;
 import com.kh.wehan.member.model.vo.Mypage;
 
@@ -27,6 +30,10 @@ public class MypageDao {
 
 	public int updateProfile(Mypage mp) {
 		return sqlSession.update("mypageMapper.updateProfile",mp);
+	}
+
+	public ArrayList<Challenge> selectListCh(String userId) {
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectListCh",userId);
 	}
 
 }

@@ -165,7 +165,7 @@
 				    
 				    <!-- nickname 영역 -->
 				    <div id="divAll2" style="margin-top:30px; text-align:left">
-				        <div style="font-weight:bold;font-size:24px"><i>${ loginUser.nickName }</i></div>
+				        <div style="font-weight:bold;font-size:24px">${ loginUser.nickName }</div>
 					
 					<!-- intro 영역 -->
 				    <div id="divAll3" style="margin-top:30px; text-align:left">    

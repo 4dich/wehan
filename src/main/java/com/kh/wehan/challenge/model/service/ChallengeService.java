@@ -50,6 +50,13 @@ public interface ChallengeService {
 	 */
 	int insertChallenge(Challenge chal);
 
+	/**
+	 * 사용자 챌린지 리스트
+	 * @param pi
+	 * @return
+	 */
+	ArrayList<Challenge> selectChallengeList(PageInfo pi);
+
 	
 	
 	
