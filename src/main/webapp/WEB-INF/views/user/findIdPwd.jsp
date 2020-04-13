@@ -296,20 +296,20 @@
 			var pwd2 = $('#pwd2').val();
 			
 			if(!check(/^[a-zA-Z0-9]{4,12}$/,pwd1)){
-				$('#pwd2').css({'width':'60%'});
+				$('#pwd2').css({'width':'62%'});
 				$('.c1').hide();
 				$('.c2').show();
 				$('.c3').hide();
 				$('#checkPwd').val(2);
 			}else{
 				if(pwd1 != pwd2){
-					$('#pwd2').css({'width':'60%'});
+					$('#pwd2').css({'width':'64%'});
 					$('.c1').hide();
 					$('.c2').hide();
 					$('.c3').show();
 					$('#checkPwd').val(3);
 				}else{
-					$('#pwd2').css({'width':'60%'});
+					$('#pwd2').css({'width':'61%'});
 					$('.c1').show();
 					$('.c2').hide();
 					$('.c3').hide();

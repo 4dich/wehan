@@ -3,6 +3,7 @@ package com.kh.wehan.member.model.service;
 import java.util.ArrayList;
 
 import com.kh.wehan.member.model.vo.Admin;
+import com.kh.wehan.member.model.vo.BlackList;
 import com.kh.wehan.member.model.vo.FindKey;
 import com.kh.wehan.member.model.vo.Member;
 
@@ -70,6 +71,12 @@ public interface MemberService {
 	Member memberDetail(String userId);
 	
 	/**
+	 * 블랙리스트 정보 가져오기
+	 * @return
+	 */
+	BlackList BlackListInfo(String userId);
+	
+	/**
 	 * 아이디 찾기
 	 * @param eamil
 	 * @return
@@ -110,5 +117,6 @@ public interface MemberService {
 	 * @return
 	 */
 	int updatePwd(Member m);
+	
 
 }

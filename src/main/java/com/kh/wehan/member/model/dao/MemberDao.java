@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.wehan.member.model.vo.Admin;
+import com.kh.wehan.member.model.vo.BlackList;
 import com.kh.wehan.member.model.vo.FindKey;
 import com.kh.wehan.member.model.vo.Member;
 
@@ -46,19 +47,18 @@ public class MemberDao {
 	public int memberCount() {
 		return sqlSession.selectOne("memberMapper.memberCount");
 	}
-
 	public ArrayList<Member> memberList() {
 		return (ArrayList)sqlSession.selectList("memberMapper.memberList");
 	}
-
 	public int updateMember(Member m) {
 		return sqlSession.update("memberMapper.updateMember", m);
 	}
-
 	public ArrayList<Member> mlistSearch(Member mem) {
 		return (ArrayList)sqlSession.selectList("memberMapper.mlistSearch",mem);
 	}
-
+	public BlackList BlackListInfo(String userId) {
+		return sqlSession.selectOne("BlackListInfo",userId);
+	}
 
 	//아이디 찾기
 	public Member memberSearch(String userId) {
@@ -84,6 +84,7 @@ public class MemberDao {
 	public int updatePwd(Member m) {
 		return sqlSession.update("memberMapper.updatePwd",m);
 	}
+	
 
 
 
