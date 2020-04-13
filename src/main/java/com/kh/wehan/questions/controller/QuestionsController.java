@@ -77,6 +77,7 @@ public class QuestionsController {
 	 * @param searchWord
 	 * @return
 	 */
+	@RequestMapping("searchQuestions.do")
 	public ModelAndView searchQuestions(ModelAndView mv, String searchQuestions, String searchWord) {
 		
 		SearchCondition sc = new SearchCondition();
