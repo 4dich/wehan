@@ -76,7 +76,12 @@
 	
 	<insert id="insertChallenge">
 		INSERT INTO CHALLENGE
-		(CHID, USERID, CHNAME, STARTDATE, ENDDATE, CATEGORY, CEMETHOD, MAXPERSON, PRICE, CHCONTENT, CHPICTURE)
-		VALUES(#{chId},#{userId},#{chName},#{startDate},#{endDate},#{category},)
+		VALUES(SEQ_chId.NEXTVAL,#{userId},#{chName},#{chPicture},#{chContent},#{startDate},#{endDate},
+				#{category},#{ceMethod},#{price},0,0,#{maxPerson},#{chPeople})
 	</insert>
+	
+	<select id="selectChallengeList" resultMap="challengeResultSet">
+		SELECT * FROM
+		CHALLGENGE
+	</select>
 </mapper>
