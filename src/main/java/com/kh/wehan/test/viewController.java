@@ -120,10 +120,10 @@ public class viewController {
 		return "common/errorPage";
 	}
 	
-	@RequestMapping("fid_detailView.do")
-	public String fid_detailView() {
-		return "user/fid/fid_detail";
-	}
+//	@RequestMapping("fid_detailView.do")
+//	public String fid_detailView() {
+//		return "user/fid/fid_detail";
+//	}
 	
 	@RequestMapping("ch_certifyDetailView.do")
 	public String ch_certifyDetailView() {

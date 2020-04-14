@@ -16,6 +16,7 @@
 		<result property="chName" column="CHNAME"/>
 		<result property="category" column="CATEGORY"/>
 		<result property="nickName" column="NICKNAME"/>
+		<result property="picture" column="PICTURE"/>
 	</resultMap>
 	
 	<!-- certifyReply resultMap  -->
@@ -149,6 +150,14 @@
 	SELECT * FROM MEMBER M
 	JOIN FOLLOW F ON (M.USERID = F.FOLLOWER)
 	WHERE F.HOST = #{mName}
+	</select>
+	
+	<select id="selectDetailCertify" resultMap="certifyResultSet">
+		SELECT M.NICKNAME,M.PICTURE,H.CATEGORY,C.*
+		FROM CERTIFY C
+		JOIN MEMBER M ON(C.USERID = M.USERID)
+		JOIN CHALLENGE H ON(C.CHID = H.CHID)
+		WHERE CEID =  #{ceId}
 	</select>
 
 </mapper>

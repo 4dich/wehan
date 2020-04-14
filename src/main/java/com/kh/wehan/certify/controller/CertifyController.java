@@ -55,6 +55,13 @@ public class CertifyController {
 	
 	}
 	
+	/**
+	 * 친구인증글 피드 출력
+	 * @param mv
+	 * @param request
+	 * @param currentPage
+	 * @return
+	 */
 	@RequestMapping("fid_friendListView.do")
 	public ModelAndView friendListFid(ModelAndView mv,HttpServletRequest request, 
 			@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage) {
@@ -87,6 +94,13 @@ public class CertifyController {
 		return mv;
 	}
 
+	/**
+	 * 팔로우 리스트 출력
+	 * @param mv
+	 * @param request
+	 * @param currentPage
+	 * @return
+	 */
 	@RequestMapping("fid_followView.do")
 	public ModelAndView followList(ModelAndView mv,HttpServletRequest request, 
 			@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage) {
@@ -123,4 +137,25 @@ public class CertifyController {
 	
 	
 	}
+
+
+	@RequestMapping("fid_detailView.do")
+	public ModelAndView fidDetail(ModelAndView mv, int ceId,
+			@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage) {
+		
+		Certify c = ceService.selectCertify(ceId);
+		
+		if(c != null) {
+			mv.addObject("c",c)
+			.addObject("currentPage",currentPage)
+			.setViewName("user/fid/fid_detail");
+		}else {
+			mv.addObject("msg","Error")
+			.addObject("msg2","인증글 상세조회 실패")
+			.setViewName("commom/errorPage");
+		}
+		
+		return mv;
+	}
+
 }

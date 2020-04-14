@@ -158,8 +158,9 @@
 								<!-- 피드 디테일로 연결 -->
 								<c:forEach var ="f" items="${ list }">
 								
-									<div class="photoBox" onclick="location.href='fid_detailView.do';">
+									<div class="photoBox">
 										<!-- 인증사진 -->
+										<input type="hidden" value="${ f.ceId }">
 										<img src="resources/images/certify/${ f.cePicture }" alt="">
 										<!-- 인증날짜 -->
 										<p class="fidUploadDate">${ f.ceDate }</p>
@@ -171,7 +172,7 @@
 								</c:forEach>
 								
 							</div>
-
+							
 							
 							<div class="qnaPaging">
 								<c:if test="${pi.currentPage eq 1 }">
@@ -248,7 +249,12 @@
 
 
 	<script>
-
+		$('.photoBox').click(function(){
+			var ceId = $(this).find("input[type=hidden]").val();
+			var currentPage = ${ pi.currentPage };
+			console.log(ceId);
+			location.href = "fid_detailView.do?ceId="+ceId+"&currentPage=" + currentPage;
+		});
 
 		var health = document.getElementsByClassName('health');
 		var hobby = document.getElementsByClassName('hobby');

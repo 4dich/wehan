@@ -51,4 +51,9 @@ public class CertifyDao {
 	
 	}
 
+	public Certify selectCertify(int ceId) {
+		
+		return sqlSession.selectOne("certifyMapper.selectDetailCertify",ceId);
+	}
+
 }

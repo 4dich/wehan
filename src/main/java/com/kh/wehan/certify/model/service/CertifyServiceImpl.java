@@ -49,4 +49,13 @@ public class CertifyServiceImpl implements CertifyService{
 		
 		return ceDao.selectFollowList(pi,mName);
 	}
+
+	/**
+	 * 인증글 상세보기
+	 */
+	@Override
+	public Certify selectCertify(int ceId) {
+		
+		return ceDao.selectCertify(ceId);
+	}
 }

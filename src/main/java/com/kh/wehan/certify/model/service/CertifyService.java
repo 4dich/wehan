@@ -35,4 +35,11 @@ public interface CertifyService {
 	 */
 	ArrayList<Member> getFollowList(PageInfo pi,String mName);
 
+	/**
+	 * 인증글 상세 조회
+	 * @param ceId
+	 * @return
+	 */
+	Certify selectCertify(int ceId);
+
 }
