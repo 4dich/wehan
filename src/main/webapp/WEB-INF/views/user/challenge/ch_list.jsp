@@ -29,6 +29,9 @@
     <!-- <link rel="stylesheet" href="resources/css/left_section.css"/> -->
     <link rel="stylesheet" href="resources/css/style.css"/>	
     
+    <!-- JQuery -->
+   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    
 	<link rel="stylesheet" href="resources/css/category.css"/>
 
     <style>
@@ -60,7 +63,7 @@
 				<i class="fa fa-bars"></i>
             </div>            
             <div class="header-social">
-                <a href="ch-list.html" style="color: red;">전체 챌린지</a>
+                <a href="chalList.do" style="color: red;">전체 챌린지</a>
                 <a href="ch-listPremium.html">프리미엄 챌린지</a>
                 <a href="ch-listTop10.html">TOP 10 챌린지</a>
             </div>		
@@ -74,12 +77,14 @@
                         <h2 style="margin-left: 6px;">위대한 한걸음</h2>
                         <p style="padding-top: 15px;">THE GREAT ONE STEP</p>
                     </a>
-                    <div class="challenges-search">
-						<input type="textarea" style="padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 3px solid black;" placeholder="챌린지 검색">
-                        <a href="" class="site-btn2">
-                            <img src="resources/img/main/search.png" style="padding-left: 10px;" alt="">
-                        </a>
-                    </div>
+                    <form class="searchChallenge">
+	                    <div class="challenges-search">
+							<input type="textarea" style="padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 3px solid black;" placeholder="챌린지 검색">
+	                        <a href="" class="site-btn2">
+	                            <img src="resources/images/main/search.png" style="padding-left: 10px;" alt="">
+	                        </a>
+	                    </div>
+                    </form>
 
                     <br><br>
                     <!-- 서브메뉴 -->
@@ -92,7 +97,7 @@
                         </p>
                         
                     </div>
-                    <button class="site-btn sb-dark" style="margin-left: 40px; width: 280px; font-size: 15px;" type="button" onclick="location.href='ch-register.html'">
+                    <button class="site-btn sb-dark" style="margin-left: 40px; width: 280px; font-size: 15px;" type="button" onclick="location.href='ch_registerView.do'">
                         	챌린지 등록하기
                         <img src="resources/img/arrow-righ-3.png" alt="">
                     </button>
@@ -113,119 +118,57 @@
 				<div class="contact-section">
                     <!-- 카테고리 -->
 						<div id="category">
-							<div class="ca health" onclick="health();">건강</div>
-							<div class="ca hobby">취미</div>
-							<div class="ca selfImprovement">자기계발</div>
-							<div class="ca economy">경제</div>
-							<div class="ca life">생활</div>
-							<div class="ca except">그외</div>
+							<div class="ca health" value="health" onclick="selector">건강</div>
+							<div class="ca hobby" value="hobby">취미</div>
+							<div class="ca selfImprovement" value="improve">자기계발</div>
+							<div class="ca economy" value="economy">경제</div>
+							<div class="ca life" value="life">생활</div>
+							<div class="ca etc" value="etc">그외</div>
 						</div>
 					<div class="row">
-						<!-- <div class="col-xl-6">
-							<div class="map"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14376.077865872314!2d-73.879277264103!3d40.757667781624285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1546528920522" style="border:0" allowfullscreen></iframe></div>
-                        </div> -->
-
-                        <div class="sampleArea">
-
-                            <div id="ch_confirmPhotoListArea">
-                                <div id="photoList">
-                                    <a href="ch-detail.html">
-                                        <div class="photoBox">                                        
-                                            <img src="resources/img/blog/1.jpg" alt=""/>
-                                            <div class="textBox">
-                                                <h5>참가 전 챌린지 상세보기 가기</h5>
-                                                <br>
-                                                <h5>W10,000</h5>
-                                                <h5 style="float: right;">2020-03-24</h5>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="ch-end.html">
-                                        <div class="photoBox">
-                                            <img src="resources/img/blog/1.jpg" alt="">
-                                            <div class="textBox">
-                                                <h5>마감된 챌린지 상세보기</h5>
-                                                <br>
-                                                <h5>W10,000</h5>
-                                                <h5 style="float: right;">2020-03-24</h5>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="ch-detailIng.html">
-                                        <div class="photoBox">
-                                            <img src="resources/img/blog/1.jpg" alt="">
-                                            <div class="textBox">
-                                                <h5>진행중인 챌린지 상세보기</h5>
-                                                <br>
-                                                <h5>W10,000</h5>
-                                                <h5 style="float: right;">2020-03-24</h5>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    
-                                    <div class="photoBox">
-                                        <img src="resources/img/blog/1.jpg" alt="">
-                                        <div class="textBox">
-                                            <h5>누가 집에 먼저 들어가나</h5>
-                                            <br>
-                                            <h5>W10,000</h5>
-                                            <h5 style="float: right;">2020-03-24</h5>
-                                        </div>
-                                    </div>
-                                    <div class="photoBox">
-                                        <img src="resources/img/blog/1.jpg" alt="">
-                                        <div class="textBox">
-                                            <h5>누가 집에 먼저 들어가나</h5>
-                                            <br>
-                                            <h5>W10,000</h5>
-                                            <h5 style="float: right;">2020-03-24</h5>
-                                        </div>
-                                    </div>
-                                    <div class="photoBox">
-                                        <img src="resources/img/blog/1.jpg" alt="">
-                                        <div class="textBox">
-                                            <h5>누가 집에 먼저 들어가나</h5>
-                                            <br>
-                                            <h5>W10,000</h5>
-                                            <h5 style="float: right;">2020-03-24</h5>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="photoBox">
-                                        <img src="resources/img/blog/1.jpg" alt="">
-                                        <div class="textBox">
-                                            <h5>누가 집에 먼저 들어가나</h5>
-                                            <br>
-                                            <h5>W10,000</h5>
-                                            <h5 style="float: right;">2020-03-24</h5>
-                                        </div>
-                                    </div>
-                                    <div class="photoBox">
-                                        <img src="resources/img/blog/1.jpg" alt="">
-                                        <div class="textBox">
-                                            <h5>누가 집에 먼저 들어가나</h5>
-                                            <br>
-                                            <h5>W10,000</h5>
-                                            <h5 style="float: right;">2020-03-24</h5>
-                                        </div>
-                                    </div>
-                                    <div class="photoBox">
-                                        <img src="resources/img/blog/1.jpg" alt="">
-                                        <div class="textBox">
-                                            <h5>누가 집에 먼저 들어가나</h5>
-                                            <br>
-                                            <h5>W10,000</h5>
-                                            <h5 style="float: right;">2020-03-24</h5>
-                                        </div>
-                                    </div>
+					<script>
+						function selecter() {
+							var health = $(".health").val();
+							var hobby = $(".hobby").val();
+							var improve = $(".improve").val();
+							var economy = $(".economy").val();
+							var life = $(".life").val();
+							var except = $(".except").val();
+							
+								$.ajax({
+									url: "categoryInList.do",
+									type: "get",
+									data: {"health":health, "hobby":hobby, "improve":improve,
+										   "economy":economy, "life":life, "etc":etc},
+									success: function(data) {
+										$('#photoList').remove();
+										$div = $('<div id="photoList">');
+										for(var i=0; i<data.length; i++) {
+											$a = $('<a class="detailInList" style="cursor:pointer">');
+											$chId = $('<input type="hidden" id="hiddenDetailInList" name="hiddenDetailInList"').text(data[i].chId);
+											$divPhoto = $('<div class="photoBox">');
+											$picture = $('<img src="resources/images/challenge/'+data[i].chPicture);
+											$divText = $('<div class="textBox">');
+											$chName = $('<h5>').text(data[i].chName);
+											$br = $('<br>');
+											$price = $('<h5>').text(data[i].price);
+											$startDate = $('<h5 style="float: right;">').text(data[i].startDate);
+										}
+											$('#photoList').append($a).append($chId),append($divPhoto),append($picture)
+														.append($divText).append($chName).append($br).append($price).append($startDate);
+									},
+									error: function() {
+										console.log("오류입니다");
+									}
+					</script>
                                 </div>  
-                                    <div class="qnaPaging" style="float: right; margin-right: 7px; margin-top: 20px;">
+                                    <div class="qnaPaging" style="float: right; margin-right: 29px; margin-top: 20px;">
 										<!-- [이전] -->
 										<c:if test="${ pi.currentPage eq 1 }">
 											&lt; &nbsp;
 										</c:if>
 										<c:if test="${ pi.currentPage ne 1 }">
-											<c:url var="before" value="clist.do">
+											<c:url var="before" value="chalList.do">
 												<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
 											</c:url>
 											<a href="${ before }">&lt;</a> &nbsp;
@@ -238,7 +181,7 @@
 											</c:if>
 											
 											<c:if test="${ p ne pi.currentPage }">
-												<c:url var="pagination" value="clist.do">
+												<c:url var="pagination" value="chalList.do">
 													<c:param name="currentPage" value="${ p }"/>
 												</c:url>
 												<a href="${ pagination }">${ p }</a> &nbsp;
@@ -250,7 +193,7 @@
 											>
 										</c:if>
 										<c:if test="${ pi.currentPage ne pi.maxPage }">
-											<c:url var="after" value="clist.do">
+											<c:url var="after" value="chalList.do">
 												<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
 											</c:url> 
 											<a href="${ after }">></a>
@@ -280,8 +223,6 @@
     
 
 	<script>
-
-
 		var health = document.getElementsByClassName('health');
 		var hobby = document.getElementsByClassName('hobby');
 		var selfImprovement = document.getElementsByClassName('selfImprovement');

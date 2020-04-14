@@ -147,7 +147,9 @@
 														<div class="message-body-heading">
 															<input type="hidden" value="${ m.fId }"/>
 															<h5>${ m.fName }
-																<span class="important">NEW</span>
+																<c:if test= "${ m.mRead == 1 }">
+																<span class="economy">NEW</span>
+																</c:if>
 															</h5>															
 															<span>${ m.mDate }</span>
 														</div>

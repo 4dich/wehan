@@ -128,7 +128,7 @@
 						<div class="sampleArea" style="display: inline-flex;">
 							<div class="col-xl-6">
 								<div class="portfolio-item" style="margin-top: 60px;">
-									<img src="../resources/img/portfolio/1.jpg" alt="#">
+									<img src="resources/img/portfolio/1.jpg" alt="#">
 									<div class="pi-info">
 										<h3 style="padding-left: 60px; padding-bottom: 20px;">D-31일</h3>
 									</div>
@@ -146,53 +146,53 @@
 										</div>
 											<div class="col-lg-12">
 												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chChName" value="${ chal.chName }" disabled>
+													<input type="text" class="challengeDetail" name="chName" value="${ chal.chName }" disabled>
 												</div>
 											</div>
 											<div class="col-lg-12">
 												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chCategory" value="${ chal.category }" disabled>
+													<input type="text" class="challengeDetail" name="category" value="${ chal.category }" disabled>
 												</div>
 											</div>
 											<div class="col-lg-6">
 												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chChId" value="${ chal.chId }" disabled>
+													<input type="text" class="challengeDetail" name="chId" value="${ chal.chId }" disabled>
 												</div>
 											</div>
 											<div class="col-lg-6">
 												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chChPeople" value="${ chal.chPeople }" disabled>
+													<input type="text" class="challengeDetail" name="chPeople" value="${ chal.chPeople }" disabled>
 												</div>
 											</div>
 											<div class="col-lg-6">
 												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chDeadLine" value="${ chal.startDate }" disabled>
+													<input type="text" class="challengeDetail" name="startDate" value="${ chal.startDate }" disabled>
 												</div>
 											</div>
 											<div class="col-lg-6">
 												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chEndDate" value="${ chal.endDate }" disabled>
+													<input type="text" class="challengeDetail" name="endDate" value="${ chal.endDate }" disabled>
 												</div>
 											</div>
 											<div class="col-lg-12">
 												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chCeMethod" value="${ chal.ceMethod }" disabled>
+													<input type="text" class="challengeDetail" name="ceMethod" value="${ chal.ceMethod }" disabled>
 												</div>
 											</div>
 											<div class="col-lg-6">
 												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chPrice" value="${ chal.price }" disabled>
+													<input type="text" class="challengeDetail" name="price" value="${ chal.price }" disabled>
 												</div>
 											</div>
 											<div class="col-lg-6">
 												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chTotalPrice" value="${ chal.totalPrice }" disabled>
+													<input type="text" class="challengeDetail" name="totalPrice" value="${ chal.totalPrice }" disabled>
 												</div>
 											</div>
 											<br><br><br><br>
 											<div class="col-lg-12">
 												<div class="contents-detail2">
-													<input type="text" class="challengeDetail" name="chChContent" value="${ chal.chContent }" disabled>
+													<input type="text" class="challengeDetail" name="chContent" value="${ chal.chContent }" disabled>
 												</div>
 											</div>
 										</div>

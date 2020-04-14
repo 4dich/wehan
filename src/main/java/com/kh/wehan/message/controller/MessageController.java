@@ -238,9 +238,10 @@ public class MessageController {
 		HttpSession session = request.getSession();
 		Member mem = (Member)session.getAttribute("loginUser");
 		String userId = mem.getUserId();
-		
+				
 		
 		ArrayList<MessageList> msgList = msgService.getMsgList(userId);
+		
 		
 		if(msgList != null) {
 			mv.addObject("msgList", msgList).setViewName("user/message/msg_msgList");
@@ -271,8 +272,6 @@ public class MessageController {
 		
 		// 리스트 불러오기
 		ArrayList<MessageList> msgList = msgService.msgSearchFriendMsg(sc);
-		
-		System.out.println(msgList.toString());
 				
 		
 		if(msgList != null) {
@@ -283,5 +282,28 @@ public class MessageController {
 		
 		return mv;
 	}
-
+	
+	/**
+	 * 안읽은 메시지 갯수 가져오기
+	 * @param request
+	 * @throws IOException 
+	 * @throws JsonIOException 
+	 */
+	@RequestMapping("getMsgCount.do")
+	public void getMsgCount(HttpServletRequest request, HttpServletResponse response) throws JsonIOException, IOException {
+		
+		HttpSession session = request.getSession();
+		Member m = (Member)session.getAttribute("loginUser");
+		String userId = m.getUserId();
+		
+		int msgCount = msgService.getMsgCount(userId);
+		
+		response.setContentType("application/json; charset=UTF-8");
+		
+		Gson gson = new Gson();
+		
+		gson.toJson(msgCount, response.getWriter());
+		
+		
+	}
 }

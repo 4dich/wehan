@@ -42,6 +42,7 @@
 		<result property="mId" column="MID"/>
 		<result property="mContent" column="MCONTENT"/>
 		<result property="mDate" column="MDATE"/>
+		<result property="mRead" column="MREAD"/>
 		<result property="rowNum" column="MROWNUM"/>
 	</resultMap>
   	
@@ -84,6 +85,15 @@
 		WHERE F.HOST = #{userId}
 		AND M.NICKNAME LIKE '%' || #{searchWord} || '%'
   	</select>
+  	
+  	<!-- 메시지 읽음 처리 -->
+  	<update id="msgUpdateRead">
+  		UPDATE MESSAGE 
+  		SET MREAD = 0 
+  		WHERE SENDER = #{userId} 
+  		AND RECEIVER = #{fId} OR SENDER = #{fId} 
+  		AND RECEIVER = #{userId}
+  	</update>
   	
   	<!-- 메시지 상세보기 - 친구 정보 불러오기 -->
   	<select id="getFriendInfo" resultMap="friendInfoResultSet">
@@ -152,6 +162,7 @@
 		       MSG.MID AS MID,
 		       MSG.MCONTENT AS MCONTENT,
 		       MSG.MDATE AS MDATE,
+		       MSG.MREAD AS MREAD,
 		       ROW_NUMBER() OVER(PARTITION BY (SELECT USERID FROM MEMBER WHERE USERID = MSG.SENDER) ORDER BY MDATE DESC) AS MROWNUM
 		    FROM MEMBER MEM
 		    JOIN MESSAGE MSG ON (MEM.USERID = MSG.RECEIVER)
@@ -162,18 +173,31 @@
   	
   	<!-- 메시지 리스트 친구 서치 -->
   	<select id="msgSearchFriendMsg"  resultMap="messageListResultSet">
-  		SELECT F.HOST AS MSGMYID, 
-  			   F.FOLLOWER AS MSGFRIENDID,
-		       M.PICTURE AS MSGFRIENDIMG,
-		       NICKNAME AS MSGFRIENDNAME,
-		       (SELECT COUNT(*)FROM FOLLOW WHERE HOST = F.FOLLOWER) AS MSGFOLLOWINGNUM,
-		       (SELECT COUNT(*) FROM FOLLOW WHERE FOLLOWER = F.FOLLOWER) AS MSGFOLLOWERNUM,
-		       P.INTEREST MSGFRIENDCATEGORY
-		FROM MEMBER M
-		JOIN FOLLOW F ON (M.USERID = F.FOLLOWER)
-		JOIN MYPAGE P ON (F.FOLLOWER = P.USERID)
-		WHERE F.HOST = #{userId}
-		AND M.NICKNAME LIKE '%' || #{searchWord} || '%'
+  		SELECT *
+		FROM 
+		    (SELECT 
+		       (SELECT USERID FROM MEMBER WHERE USERID = MSG.SENDER) AS FID,
+		       (SELECT NICKNAME FROM MEMBER WHERE USERID = MSG.SENDER) AS FNAME,  
+		       (SELECT PICTURE FROM MEMBER WHERE USERID = MSG.SENDER) AS FIMG,
+		       MSG.MID AS MID,
+		       MSG.MCONTENT AS MCONTENT,
+		       MSG.MDATE AS MDATE,
+		       ROW_NUMBER() OVER(PARTITION BY (SELECT USERID FROM MEMBER WHERE USERID = MSG.SENDER) ORDER BY MDATE DESC) AS MROWNUM
+		    FROM MEMBER MEM
+		    JOIN MESSAGE MSG ON (MEM.USERID = MSG.RECEIVER)
+		    WHERE MSG.RECEIVER = #{userId} OR MSG.SENDER = #{userId})
+		WHERE MROWNUM = 1
+		AND FID != #{userId}
+		AND FNAME LIKE '%' || #{searchWord} || '%'
+  	</select>
+  	
+  	<!-- 안읽은 메시지 갯수 가져오기 -->
+  	<select id="getMsgCount" resultType="_int">
+  		SELECT COUNT(*) 
+  		FROM MESSAGE 
+  		WHERE MREAD = 1
+  		AND RECEIVER = #{userId}
+  		AND MDEL_YN = 'N'
   	</select>
   	
   </mapper>

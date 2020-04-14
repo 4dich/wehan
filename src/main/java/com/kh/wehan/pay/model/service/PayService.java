@@ -20,15 +20,17 @@ public interface PayService {
 	
 	int insertPay(Pay pay);
 
-	ArrayList<Pay> pSearch(Pay p);
-
-	ArrayList<Challenge> chSearch(Challenge ch);
-
 	int getSearchListCount(Challenge ch);
 
 	int getSearchListCount(Pay p);
 
 	int refundAll(int[] result);
+
+	int refundOne(int pId);
+
+	ArrayList<Challenge> chSearch(Challenge ch, PageInfo pi);
+
+	ArrayList<Pay> pSearch(Pay p, PageInfo pi);
 
 	
 }
