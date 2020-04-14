@@ -90,7 +90,6 @@
 			<!-- Page start -->
 			<div class="page-section blog-page" style="margin-top: 40px; height: 800px;">
 				<div class="contact-section">
-					<form action="dk.do">
 					<h3>관리자 - 결제정보상세</h3>
 					<div class="row" style="margin-left: 30px; height: 400px;">
 						<!-- <div class="col-xl-6">
@@ -109,31 +108,41 @@
                         <div class="col-xl-6" style="margin-left: 20px;">
 							<div class="contact-text-warp">
 								<div class="contact-form" style="margin-top: 60px;">
+									
 									<div class="row">	
                                         <div class="col-lg-12">
                                             <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="${p.userId}" disabled>
+                                            <input type="hidden" name="userId" value="${p.userId}">
+                                            <input type="hidden" id="pId" name="pId" value="${p.pId}">
                                         </div>
 										<div class="col-lg-12">
-                                            <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="${ p.mList[0].userName}" disabled>
+                                            <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="${p.mList[0].userName}" disabled>
+                                             <input type="hidden" name="userName"  value="${p.mList[0].userName}" >
                                         </div>
                                         <div class="col-lg-6">
                                             <input type="select" style="border-top: none; border-left: none; border-right: none;" placeholder="${p.pmethod}" disabled>
+                                             <input type="hidden" name="pmethod"  value="${p.pmethod}" >
                                         </div>  
                                         <div class="col-lg-6">
                                             <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="${p.price} (원 )" disabled>
+                                             <input type="hidden" name="price"  value="${p.price}" >
                                         </div>                                
 										<div class="col-lg-6">
                                             <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="${bank}" disabled>
+                                             <input type="hidden" name="bank"  value="${bank}" >
                                         </div>
                                         <div class="col-lg-6">
                                             <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="${number}" disabled>
+                                             <input type="hidden" name="number"  value="${number}" >
                                         </div>
                                         <div class="col-lg-12">
-                                        	<c:if test="${p.pdel_yn eq 'N'}">
+                                        	<c:if test="${p.refund_yn eq 'N'}">
                                             <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="결제완료" disabled>
+                                             <input type="hidden" name="refund_yn"  value="${p.refund_yn}" >
                                             </c:if>
-                                            <c:if test="${p.pdel_yn eq 'Y'}">
+                                            <c:if test="${p.refund_yn eq 'Y'}">
                                             <input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="환불완료" disabled>
+                                             <input type="hidden" name="refund_yn"  value="${p.refund_yn}" >
                                             </c:if>
                                         </div>
                                      
@@ -145,14 +154,14 @@
 						</div>
 						<div>
 						<br><br><br><br><br><br>
-							<button type="submit" class="site-btn" style="width:20%; height: 80px; margin: 20px; margin-left: 300px;">
+							<button type="button" id="refund" class="site-btn" style="width:20%; height: 80px; margin: 20px; margin-left: 300px;">
 								환불하기
-							<button class="site-btn" style="width:20%; height: 80px;" onclick="location.href='serviceInfo.html'">
+							</button>
+							<button class="site-btn" style="width:20%; height: 80px;" onclick="location.href='ad_payList.jsp'">
 								취소하기
 							</button>
 					</div>
 					</div>
-				</form>
 				</div>
 			</div>
 			<!-- Page end -->
@@ -162,6 +171,30 @@
   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
 	</div>
 	<!-- Main section end -->
+	
+	<script>
+		var pId = $('#pId').val();
+		
+	
+		 $('#refund').click(function(){
+			$.ajax({
+				url:"refundOne.do",
+				type:"post",
+				data:{
+					pId:pId
+				},success:function(result){
+					if(result == "success"){
+					alert('환불성공');
+					location.reload();
+	        		}
+				},error:function(request,errorcode,error){
+					alert('환불실패');
+				}
+			});
+			
+		}); 
+	
+	</script>
 	
 	
 	<!--====== Javascripts & Jquery ======-->

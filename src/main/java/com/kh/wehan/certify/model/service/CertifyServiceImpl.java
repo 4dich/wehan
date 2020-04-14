@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.kh.wehan.certify.model.dao.CertifyDao;
 import com.kh.wehan.certify.model.vo.Certify;
 import com.kh.wehan.common.model.vo.PageInfo;
+import com.kh.wehan.member.model.vo.Member;
 
 @Service("ceService")
 public class CertifyServiceImpl implements CertifyService{
@@ -38,5 +39,23 @@ public class CertifyServiceImpl implements CertifyService{
 	public ArrayList<Certify> getFriendList(PageInfo pi) {
 		
 		return ceDao.selectFriendList(pi);
+	}
+
+	/**
+	 * 팔로우 리스트 출력
+	 */
+	@Override
+	public ArrayList<Member> getFollowList(PageInfo pi, String mName) {
+		
+		return ceDao.selectFollowList(pi,mName);
+	}
+
+	/**
+	 * 인증글 상세보기
+	 */
+	@Override
+	public Certify selectCertify(int ceId) {
+		
+		return ceDao.selectCertify(ceId);
 	}
 }

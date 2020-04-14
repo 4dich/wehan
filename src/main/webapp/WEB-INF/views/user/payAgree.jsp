@@ -449,9 +449,9 @@
 	<div id='div1' style="display:none;">${loginUser.userName}</div>
 	<div id='div2' style="display:none;">${loginUser.phone}</div>
 	<div id='div3' style="display:none;">${loginUser.email}</div>
-	<div id='div4' style="display:none;">${ch.price}</div>
-	<div id='div5' style="display:none;">${ch.chId}</div>
-	<div id='div6' style="display:none;">${ch.chName}</div>
+	<div id='div4' style="display:none;"><%-- ${ch.price}더미 --%>1</div>
+	<div id='div5' style="display:none;"><%-- ${ch.chId} --%>1</div>
+	<div id='div6' style="display:none;"><%-- ${ch.chName} --%>힝</div>
 
 	
 	<script>
@@ -484,6 +484,8 @@
 				buyer_tel : phone,
 				
 			}, function (rsp) { // callback
+				console.log(rsp);
+				console.log(rsp.success);
 				if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
 			        // jQuery로 HTTP 요청
 			        alert('결제성공');
