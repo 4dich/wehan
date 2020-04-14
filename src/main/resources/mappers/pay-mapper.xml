@@ -153,5 +153,14 @@
 		</if>
 	</select>
 
+	<update id="refundAll">
+		UPDATE PAY
+		SET REFUND_YN = 'Y'
+		WHERE PID IN (
+		<foreach collection="array" item="item" index="index" separator=",">
+            ${item}
+        </foreach>
+		)
+	</update>
   	
   </mapper>

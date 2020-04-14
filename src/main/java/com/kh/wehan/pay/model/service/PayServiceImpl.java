@@ -62,4 +62,9 @@ public class PayServiceImpl implements PayService {
 		return pDao.searchCount(p);
 	}
 
+	@Override
+	public int refundAll(int[] result) {
+		return pDao.refundAll(result);
+	}
+
 }

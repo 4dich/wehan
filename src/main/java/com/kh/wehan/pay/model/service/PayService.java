@@ -28,5 +28,7 @@ public interface PayService {
 
 	int getSearchListCount(Pay p);
 
+	int refundAll(int[] result);
+
 	
 }

@@ -63,4 +63,9 @@ public class PayDao {
 	public int searchCount(Pay p) {
 		return sqlSession.selectOne("payMapper.paySearchResultCount",p);
 	}
+
+
+	public int refundAll(int[] result) {
+		return sqlSession.update("payMapper.refundAll",result);
+	}
 }
