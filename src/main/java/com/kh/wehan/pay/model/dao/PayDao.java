@@ -47,12 +47,18 @@ public class PayDao {
 	}
 
 
-	public ArrayList<Pay> pSearch(Pay p) {
-		return (ArrayList)sqlSession.selectList("payMapper.searchplist",p);
+	public ArrayList<Pay> pSearch(Pay p,PageInfo pi) {
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("payMapper.searchplist",p,rowBounds);
 	}
 	
-	public ArrayList<Challenge> chSearch(Challenge ch){
-		return (ArrayList)sqlSession.selectList("payMapper.searchchlist",ch);
+	public ArrayList<Challenge> chSearch(Challenge ch,PageInfo pi){
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("payMapper.searchchlist",ch,rowBounds);
 	}
 
 
@@ -68,4 +74,13 @@ public class PayDao {
 	public int refundAll(int[] result) {
 		return sqlSession.update("payMapper.refundAll",result);
 	}
+
+
+	public int refundOen(int pId) {
+		return sqlSession.update("payMapper.refundOne",pId);
+	}
+
+
+	
+
 }
