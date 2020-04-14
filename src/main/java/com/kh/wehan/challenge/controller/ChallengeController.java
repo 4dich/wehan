@@ -248,6 +248,10 @@ public class ChallengeController {
 		
 		return mv;
 	}
-	
+	/*
+	 * 
+	 * @RequestMapping("categoryInList.do") public ModelAndView
+	 * categoryInList(ModelAndView mv, category)
+	 */
 	
 }
