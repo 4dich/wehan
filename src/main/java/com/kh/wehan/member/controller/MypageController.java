@@ -1,7 +1,10 @@
 package com.kh.wehan.member.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,7 +13,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
@@ -23,6 +25,8 @@ import com.kh.wehan.member.model.vo.Mypage;
 @Controller
 public class MypageController {
 	
+	String userId = "user01";
+	
 	@Autowired
 	private MypageService myService;
 	
@@ -33,8 +37,7 @@ public class MypageController {
 		HttpSession session = request.getSession();
 		
 		Member mem = (Member)session.getAttribute("loginUser");
-		String userId = mem.getUserId();
-		System.out.println(mem);
+		/* String userId = mem.getUserId(); */
 		
 		Mypage mypage = myService.my_profileView(userId);
 		
@@ -91,11 +94,36 @@ public class MypageController {
 	public ModelAndView my_challengeView(ModelAndView mv, HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
-		String userId = ((Member)session.getAttribute("loginUser")).getUserId();
+		/* String userId = ((Member)session.getAttribute("loginUser")).getUserId(); */
 		
 		ArrayList<Challenge> clist = myService.selectListCh(userId);
+		ArrayList cStatus = new ArrayList();
+		
+		Date today = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		for(Challenge c: clist) {
+			String s2 = c.getStartDate().replace("/", "-");
+			String e2 = c.getEndDate().replace("/", "-");
+			
+			try {
+				Date sDate = sdf.parse(s2);
+				Date eDate = sdf.parse(e2);
+				
+				if(sDate.getTime()>today.getTime()) {
+					cStatus.add(0);
+				}else if(sDate.getTime()<today.getTime() && eDate.getTime()>today.getTime()) {
+					cStatus.add(1);
+				}else {
+					cStatus.add(2);
+				}
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
 		
 		mv.addObject("clist", clist)
+		  .addObject("cStatus", cStatus)
 		  .setViewName("user/mypage/my_challenge");
 		
 		return mv;

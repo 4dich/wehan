@@ -432,110 +432,165 @@
 								<!-- 전체 챌린지 -->
 								<div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="tab-1">
 									<div class="main-down" style="width: 100%; height: 350px; border: 1px solid gray; padding:3%; margin-top:19px; overflow-y:scroll;">
-									
 										<c:forEach var="c" items="${ clist }">
-											<div class="startDate" style="display:none">${ c.startDate }</div>
-											<div class="endDate" style="display:none">${ c.endDate }</div>
-											
 											<div style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
-												<div class="chStat" style="display: inline-block; width: 150px; height: 100%; background:#FE736C;  padding: 25px; text-align: center;"></div>
-												<img src="resources/images/hansol_profile.jpg" style="width: 75px; height: auto">
-												<div style="display: inline-block; width: 400px; height: 100%; background:#FE736C; padding: 25px; text-align: center;">${ c.chName }</div>
-												<script>
-													$(function(){
-													
-													var sDate = new Array();
-													var eDate = new Array();
-													var today = new Date().getTime();
-													for(var i=0; i<4; i++){
-														var startDate = $('.startDate')[i].innerText;
-														var endDate = $('.endDate')[i].innerText;
-														
-														var splitSDate = startDate.split("/");
-														var splitEDate = endDate.split("/");
-														sDate[i] = new Date(splitSDate[0],splitSDate[1]-1,splitSDate[2]).getTime();
-														eDate[i] = new Date(splitEDate[0],splitEDate[1]-1,splitEDate[2]).getTime();
-															if(today-sDate[i]<0){
-																console.log("진행예정");
-																$('.chStat')[i].innerText = '진행예정';
-																$('.chStat').css("background-color","blue");
-															}else if(today-sDate[i]>0 && eDate[i]-today>0){
-																console.log("진행중");
-																$('.chStat')[i].innerText = '진행중';
-																$('.chStat').css("background-color","red");
-															}else if(today>eDate[i]){
-																console.log("진행완료");
-																$('.chStat')[i].innerText = '진행완료';
-																$('.chStat').css("background-color","yellow");
-															}
-														}
-													});
-												</script>
-											<%-- <c:set var="chDate" />
-											<c:choose>
-												<c:when >
-													<div style="display: inline-block; width: 150px; height: 100%; background:#FE736C;  padding: 25px; text-align: center;">진행중</div>
-												</c:when>
-												
-												<c:when>
-													<div style="display: inline-block; width: 150px; height: 100%; background:#FE736C;  padding: 25px; text-align: center;">진행중</div>
-												</c:when>
-												
-												<c:otherwise>
-													<div style="display: inline-block; width: 150px; height: 100%; background:#FE736C;  padding: 25px; text-align: center;">진행중</div>
-												</c:otherwise>
-													<img src="resources/images/hansol_profile.jpg" style="width: 75px; height: auto">
-													<div style="display: inline-block; width: 400px; height: 100%; background:#FE736C; padding: 25px; text-align: center;">${ c.chName }</div>
-											</c:choose> --%>
+												<div class="result" style="display: inline-block; width: 150px; height: 100%; background:white; padding: 25px; text-align: center;">1</div>
+												<div class="sArr" style="display: inline-block; width: 100px; padding: 25px 0 25px 10px;">${ c.startDate }</div>
+												<div style="display: inline-block; width: 20px; padding: 25px 0 25px 0;">~</div>
+												<div class="eArr" style="display: inline-block; width: 100px; padding: 25px 0 25px 10px;">${ c.endDate }</div>
+												<img src="resources/images/user/${c.chPicture }" style="width: 75px; height: auto">
+												<div style="display: inline-block; width: 400px; height: 100%; padding: 25px; text-align: center;">${ c.chName }</div>
 											</div>
 										</c:forEach>
+										<!-- <script>
+										
+											$(function(){
+											
+												var $sArr = $('.sArr');
+												var $eArr = $('.eArr');
+												var today = new Date();
+												var $result = $('.result');
+												for(var i=0; i<$sArr.length; i++){
+													console.log('시작일: ' + $sArr[i].innerText);
+													console.log('종료일: ' + $eArr[i].innerText);
+													
+													var sYear = $sArr[i].innerText.split('/')[0] + 20;
+													var sMonth = $sArr[i].innerText.split('/')[1];
+													var sDay = $sArr[i].innerText.split('/')[2];
+													var sDate = new Date(sYear,sMonth-1,sDay);
+													
+													var eYear = $eArr[i].innerText.split('/')[0] + 20;
+													var eMonth = $eArr[i].innerText.split('/')[1];
+													var eDay = $eArr[i].innerText.split('/')[2];
+													var eDate = new Date(eYear,eMonth-1,eDay);
+													
+													console.log(sDate.getTime());
+													console.log(eDate.getTime());
+													console.log(today.getTime());
+													
+													if(sDate.getTime()>today.getTime()){
+														$result[i].innerText = '진행예정';
+														$result.parent().eq(i).children().eq(0).css('background-color','#F7D147');
+													}else if(sDate.getTime()<today.getTime() && eDate.getTime()>today.getTime()){
+														$result[i].innerText = '진행중';
+														$result.parent().eq(i).children().eq(0).css('background-color','#FE736C');
+													}else{
+														$result[i].innerText = '진행완료';
+														$result.parent().eq(i).children().eq(0).css('background-color','#3A7D7C');
+													}
+												}
+											});
+										</script> -->
 									</div>
 								</div>
 								<!-- 진행중 챌린지 -->
 								<div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="tab-2">
 									<div class="main-down" style="width: 100%; height: 350px; border: 1px solid gray; padding:3%; margin-top:19px; overflow-y:scroll;">
-										<div style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
-											<div style="display: inline-block; width: 150px; height: 100%; background:#FE736C;  padding: 25px; text-align: center;">진행중</div>
-											<img src="resources/images/hansol_profile.jpg" style="width: 75px; height: auto">
-											<div style="display: inline-block; width: 400px; height: 100%; background:#FE736C; padding: 25px; text-align: center; ">1번 퀘스트</div>
-										</div>
-										<div style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
-											<div style="display: inline-block; width: 150px; height: 100%; background:#F7D147;  padding: 25px; text-align: center;">진행예정</div>
-											<img src="resources/images/hansol_profile.jpg" style="width: 75px; height: auto">
-											<div style="display: inline-block; width: 400px; height: 100%; background:#F7D147; padding: 25px; text-align: center; ">2번 퀘스트</div>
-										</div>
-										<div style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
-											<div style="display: inline-block; width: 150px; height: 100%; background:#3A7D7C;  padding: 25px; text-align: center;">진행완료</div>
-											<img src="resources/images/hansol_profile.jpg" style="width: 75px; height: auto">
-											<div style="display: inline-block; width: 400px; height: 100%; background:#3A7D7C; padding: 25px; text-align: center; ">3번 퀘스트</div>
-										</div>
-										<div style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
-											<div style="display: inline-block; width: 150px; height: 100%; background:#FE736C;  padding: 25px; text-align: center;">진행중</div>
-											<img src="resources/images/hansol_profile.jpg" style="width: 75px; height: auto">
-											<div style="display: inline-block; width: 400px; height: 100%; background:#FE736C; padding: 25px; text-align: center; ">1번 퀘스트</div>
-										</div>
+										<c:forEach var="c" items="${ clist }">
+											<div style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
+												<div class="result2" style="display: inline-block; width: 150px; height: 100%; background:white; padding: 25px; text-align: center;">1</div>
+												<div class="sArr2" style="display: inline-block; width: 100px; padding: 25px 0 25px 10px;">${ c.startDate }</div>
+												<div style="display: inline-block; width: 20px; padding: 25px 0 25px 0;">~</div>
+												<div class="eArr2" style="display: inline-block; width: 100px; padding: 25px 0 25px 10px;">${ c.endDate }</div>
+												<img src="resources/images/user/${c.chPicture }" style="width: 75px; height: auto">
+												<div style="display: inline-block; width: 400px; height: 100%; padding: 25px; text-align: center;">${ c.chName }</div>
+											</div>
+										</c:forEach>
 									</div>
 								</div>
 								<!-- 진행예정 챌린지 -->
 								<div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="tab-3">
 									<div class="main-down" style="width: 100%; height: 350px; border: 1px solid gray; padding:3%; margin-top:19px; overflow-y:scroll;">
-										<div style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
-											<div style="display: inline-block; width: 150px; height: 100%; background:#F7D147;  padding: 25px; text-align: center;">진행예정</div>
-											<img src="resources/images/hansol_profile.jpg" style="width: 75px; height: auto">
-											<div style="display: inline-block; width: 400px; height: 100%; background:#F7D147; padding: 25px; text-align: center; ">2번 퀘스트</div>
-										</div>
+										<c:forEach var="c" items="${ clist }">
+											<div style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
+												<div class="result3" style="display: inline-block; width: 150px; height: 100%; background:white; padding: 25px; text-align: center;">1</div>
+												<div class="sArr" style="display: inline-block; width: 100px; padding: 25px 0 25px 10px;">${ c.startDate }</div>
+												<div style="display: inline-block; width: 20px; padding: 25px 0 25px 0;">~</div>
+												<div class="eArr" style="display: inline-block; width: 100px; padding: 25px 0 25px 10px;">${ c.endDate }</div>
+												<img src="resources/images/user/${c.chPicture }" style="width: 75px; height: auto">
+												<div style="display: inline-block; width: 400px; height: 100%; padding: 25px; text-align: center;">${ c.chName }</div>
+											</div>
+										</c:forEach>
 									</div>
 								</div>
 								<!-- 진행완료 챌린지 -->
 								<div class="tab-pane fade" id="tab-4" role="tabpanel" aria-labelledby="tab-4">
 									<div class="main-down" style="width: 100%; height: 350px; border: 1px solid gray; padding:3%; margin-top:19px; overflow-y:scroll;">
-										<div style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
-											<div style="display: inline-block; width: 150px; height: 100%; background:#3A7D7C;  padding: 25px; text-align: center;">진행완료</div>
-											<img src="resources/images/hansol_profile.jpg" style="width: 75px; height: auto">
-											<div style="display: inline-block; width: 400px; height: 100%; background:#3A7D7C; padding: 25px; text-align: center; ">3번 퀘스트</div>
-										</div>
+										<c:forEach var="c" items="${ clist }">
+											<div style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
+												<div class="result4" style="display: inline-block; width: 150px; height: 100%; background:white; padding: 25px; text-align: center;">1</div>
+												<div class="sArr" style="display: inline-block; width: 100px; padding: 25px 0 25px 10px;">${ c.startDate }</div>
+												<div style="display: inline-block; width: 20px; padding: 25px 0 25px 0;">~</div>
+												<div class="eArr" style="display: inline-block; width: 100px; padding: 25px 0 25px 10px;">${ c.endDate }</div>
+												<img src="resources/images/user/${c.chPicture }" style="width: 75px; height: auto">
+												<div style="display: inline-block; width: 400px; height: 100%; padding: 25px; text-align: center;">${ c.chName }</div>
+											</div>
+										</c:forEach>
 									</div>
 								</div>
+								<script>
+									$(function(){
+									
+										var $sArr = $('.sArr');
+										var $eArr = $('.eArr');
+										var today = new Date();
+										var $result = $('.result');
+										var $result2 = $('.result2');
+										var $result3 = $('.result3');
+										var $result4 = $('.result4');
+										
+										for(var i=0; i<$sArr.length; i++){
+											console.log('시작일: ' + $sArr[i].innerText);
+											console.log('종료일: ' + $eArr[i].innerText);
+											
+											var sYear = $sArr[i].innerText.split('/')[0] + 20;
+											var sMonth = $sArr[i].innerText.split('/')[1];
+											var sDay = $sArr[i].innerText.split('/')[2];
+											var sDate = new Date(sYear,sMonth-1,sDay);
+											
+											var eYear = $eArr[i].innerText.split('/')[0] + 20;
+											var eMonth = $eArr[i].innerText.split('/')[1];
+											var eDay = $eArr[i].innerText.split('/')[2];
+											var eDate = new Date(eYear,eMonth-1,eDay);
+											
+											console.log(sDate.getTime());
+											console.log(eDate.getTime());
+											console.log(today.getTime());
+											
+											if(sDate.getTime()>today.getTime()){
+												$result[i].innerText = '진행예정';
+												$result.parent().eq(i).children().eq(0).css('background-color','#F7D147');
+												
+												$result2.parent().eq(i).css('display','none');
+												
+												$result3[i].innerText = '진행예정';
+												$result3.parent().eq(i).children().eq(0).css('background-color','#F7D147');
+												
+												$result4.parent().eq(i).css('display','none');
+											}else if(sDate.getTime()<today.getTime() && eDate.getTime()>today.getTime()){
+												$result[i].innerText = '진행중';
+												$result.parent().eq(i).children().eq(0).css('background-color','#FE736C');
+												
+												$result2[i].innerText = '진행중';
+												$result2.parent().eq(i).children().eq(0).css('background-color','#FE736C');
+												
+												$result3.parent().eq(i).css('display','none');
+												
+												$result4.parent().eq(i).css('display','none');
+											}else{
+												$result[i].innerText = '진행완료';
+												$result.parent().eq(i).children().eq(0).css('background-color','#3A7D7C');
+												
+												$result2.parent().eq(i).css('display','none');
+												
+												$result3.parent().eq(i).css('display','none');
+												
+												$result4[i].innerText = '진행완료';
+												$result4.parent().eq(i).children().eq(0).css('background-color','#3A7D7C');
+											}
+										}
+									});
+								</script>
 							</div>
 						</div>
 					</div>

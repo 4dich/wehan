@@ -169,7 +169,7 @@
 					
 					<!-- intro 영역 -->
 				    <div id="divAll3" style="margin-top:30px; text-align:left">    
-				       	<div style="margin-bottom:5px; font-weight: 700;"><i>OWNER MESSAGE&nbsp;</i>
+				       	<div style="margin-bottom:5px; font-weight: 700; display:inline-block"><i>OWNER MESSAGE&nbsp;</i>
 				       	<input id="toggle3" style="margin-left:60px;" type="checkbox" checked data-toggle="toggle" data-on="<i class='fa fa-lock' aria-hidden='true'></i> 수정하기" data-off="<i class='fa fa-unlock' aria-hidden='true'></i> 수정중" data-onstyle="dark" data-offstyle="outline-dark" onchange="toggleBtn3();"></div>
 				       	<div style="border:1px solid gray; height:180px;"><textarea id="intro" cols="41" rows="6" style="resize: none; border:0px; background:white; margin:12px;" disabled>${ mypage.intro }</textarea></div> 
 				    </div>
