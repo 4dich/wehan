@@ -100,4 +100,22 @@ public class MemberServiceImpl implements MemberService{
 		return mDao.updatePwd(m);
 	}
 	
+	@Override
+	public int blackInsert(BlackList b) {
+		return mDao.blackInsert(b);
+	}
+	@Override
+	public int blackCancle(int bId) {
+		return mDao.blackCancle(bId);
+	}
+	
+	@Override
+	public int blackListCount() {
+		return mDao.blackListCount();
+	}
+	@Override
+	public ArrayList<BlackList> blackList() {
+		return mDao.blackList();
+	}
+	
 }

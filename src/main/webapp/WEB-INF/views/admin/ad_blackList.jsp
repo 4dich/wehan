@@ -72,7 +72,6 @@
 
 					<div class="about-info">
 						<h2>회원정보</h2>
-						<a href="blackList.do" id="ad_blackList" class="infoMenu">블랙리스트</a><br><br>
 						<a href="pay.html" id="ad_profile" class="infoMenu">결제정보</a><br><br>
 						<a href="ad-chal.html" id="ad_challenge" class="infoMenu">챌린지 정보</a><br><br>
 						<a href="ad-cert.html" id="ad_certify" class="infoMenu">인증글 정보</a><br><br>
@@ -90,52 +89,31 @@
 				<div class="blog-posts">
 					
 					<div class="blog-post-item">
-						<form action="mlistSearch.do">
-							<div id="searchArea"  style="margin-top:0 ;">
-								<div id="searchSelect"> 
-									<select name="selecter" id="selecter">
-										<option value="userId">아이디</option>
-										<option value="nickName">닉네임</option>
-										<option value="userName">이름</option>
-									</select>					
-								</div>
-								<!-- 검색 -->
-								<input id="searchValue" name="searchValue" class="searchBox" type="search">
-								<button id="search"><img src="resources/images/main/search.png" alt=""></button>
-							</div>
-						</form>
 						<!-- 문의사항 테이블 -->
 						<table id="memberList" class="qnaTable">
 							<tr class="thArea">
-								<th>아이디</th>
-								<th>닉네임</th>
-								<th>이름</th>
-								<th>생년월일</th>
-								<th>휴대폰번호</th>
-								<th>계좌번호</th>
-								<th>블랙리스트</th>
+								<th>유저 아이디</th>
+								<th>차단 이유</th>
+								<th>차단 기간</th>
+								<th>차단 날짜</th>
 							</tr>
 							<!-- 반복문 예정 -->
-							<c:forEach var="m" items="${list}">
+							<c:forEach var="b" items="${list}">
 							<tr class="noticeList">
-								<td>${m.userId}</td>
-								<td>${m.nickName}</td>
-								<td>${m.userName}</td>
-								<td>${m.birthDay}</td>
-								<td>${m.phone}</td>
-								<td>${m.account}</td>
-								<td>${m.blacklistYN}</td>
+								<td>${b.userId}</td>
+								<td>${b.banReason}</td>
+								<td>${b.banTerm}</td>
+								<td>${b.banDate}</td>
 							</tr>
 							</c:forEach>
 						</table>
 						
-						<c:if test="${!empty searchValue}">
 						<div class="qnaPaging">
 							<c:if test="${ pi.currentPage eq 1 }">
 								< &nbsp;
 							</c:if>
 							<c:if test="${ pi.currentPage ne 1 }">
-								<c:url var="before" value="mlistSearch.do">
+								<c:url var="before" value="blackList.do">
 									<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
 								</c:url>
 								<a href="${ before }"><</a> &nbsp;
@@ -148,7 +126,7 @@
 								</c:if>
 								
 								<c:if test="${ p ne pi.currentPage }">
-									<c:url var="pagination" value="mlistSearch.do">
+									<c:url var="pagination" value="blackList.do">
 										<c:param name="currentPage" value="${ p }"/>
 									</c:url>
 									<a href="${ pagination }">${ p }</a> &nbsp;
@@ -160,52 +138,12 @@
 								>
 							</c:if>
 							<c:if test="${ pi.currentPage ne pi.maxPage }">
-								<c:url var="after" value="mlistSearch.do">
+								<c:url var="after" value="blackList.do">
 									<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
 								</c:url> 
 								<a href="${ after }">></a>
 							</c:if>
 						</div>
-						</c:if>
-						
-						<c:if test="${empty searchValue}">
-						<div class="qnaPaging">
-							<c:if test="${ pi.currentPage eq 1 }">
-								< &nbsp;
-							</c:if>
-							<c:if test="${ pi.currentPage ne 1 }">
-								<c:url var="before" value="mlist.do">
-									<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
-								</c:url>
-								<a href="${ before }"><</a> &nbsp;
-							</c:if>
-							
-							<!-- 페이지 -->
-							<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-								<c:if test="${ p eq pi.currentPage }">
-									<font color="red" size="4"><b>[${ p }]</b></font>
-								</c:if>
-								
-								<c:if test="${ p ne pi.currentPage }">
-									<c:url var="pagination" value="mlist.do">
-										<c:param name="currentPage" value="${ p }"/>
-									</c:url>
-									<a href="${ pagination }">${ p }</a> &nbsp;
-								</c:if>
-							</c:forEach>
-							
-							<!-- [다음] -->
-							<c:if test="${ pi.currentPage eq pi.maxPage }">
-								>
-							</c:if>
-							<c:if test="${ pi.currentPage ne pi.maxPage }">
-								<c:url var="after" value="mlist.do">
-									<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
-								</c:url> 
-								<a href="${ after }">></a>
-							</c:if>
-						</div>
-						</c:if>
 					</div>
 				</div>
 			</div>
@@ -228,13 +166,6 @@
 			
 			$('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247)");   // even 짝수
 			
-		});
-		
-		$(".noticeList").click(function(){
-			var index = $('.noticeList').index(this) + 1;
-			var userId = $('.qnaTable tr:eq('+index+')').children().eq(0).text();
-			console.log(userId);
-			location.href='mlistDetail.do?userId='+ userId;
 		});
 		
 	</script>

@@ -107,4 +107,16 @@ public class MemberInfoListController {
 		mv.setViewName("admin/ad_profileDetail");
 		return mv;
 	}
+	
+	@RequestMapping("blackList.do")
+	public ModelAndView blackList(ModelAndView mv, @RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage) {
+		
+		int bCount = mService.blackListCount();
+		PageInfo pi = Pagination.getPageInfo(currentPage, bCount, 10, 10);
+		ArrayList<BlackList> list = mService.blackList();
+		mv.addObject("pi",pi);
+		mv.addObject("list",list);
+		mv.setViewName("admin/ad_blackList");
+		return mv;
+	}
 }

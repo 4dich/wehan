@@ -81,28 +81,34 @@
 	<%@ include file="/WEB-INF/views/common/ad_menuBar.jsp" %>
 			<div class="black">
 			<div class="blackinsert">
-				<table>
+			<br><br><br>
+				<table align="center">
 					<tr>
 						<th>아이디</th>
-						<td><input type="text" value="${m.userId}"></td>
+						<td>
+							<input type="text" value="${m.userId}" style="border-top: none; border-left: none; border-right: none;" disabled>
+							<input id="bUserId" type="hidden" value="${m.userId}" style="border-top: none; border-left: none; border-right: none;">
+						</td>
 					</tr>
 					<tr>
 						<th>차단 사유</th>
-						<td><input type="text"></td>
+						<td><input id="BanReason" type="text" style="border-top: none; border-left: none; border-right: none;"></td>
 					</tr>
 					<tr>
 						<th>차단 기간</th>
-						<td><input type="text" placeholder="차단 기간"></td>
+						<td><input id="BanTerm" type="text" placeholder="차단 기간" style="border-top: none; border-left: none; border-right: none;"></td>
 					</tr>
 					<tr>
 						<td></td>
-						<td><button>등록</button><button>취소</button></td>
+						<td><button onclick="insertCheck();">등록</button><button onclick="cancle();">취소</button></td>
 					</tr>
 				</table>
 			</div>
 			<div class="blackcancle">
 				<c:if test="${!empty b}">
-				<table>
+					<input id="bId" type="hidden" value="${b.bId}">
+					<br><br><br>
+				<table align="center">
 					<tr>
 						<th>아이디</th>
 						<td>${b.userId}</td>
@@ -121,7 +127,7 @@
 					</tr>
 					<tr>
 						<td></td>
-						<td><button>차단해제</button><button>취소</button></td>
+						<td><button onclick="cancleCheck();">차단해제</button><button onclick="cancle();">취소</button></td>
 					</tr>
 				</table>
 				</c:if>
@@ -195,6 +201,12 @@
                                         <div class="col-lg-12">
                                             <input id="birthDay" value="${m.birthDay}" type="text" style="border-top: none; border-left: none; border-right: none;" disabled>
                                         </div>
+                                        <div class="col-lg-12">
+                                            <input id="address" value="${m.address}" type="text" style="border-top: none; border-left: none; border-right: none;" disabled>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <input id="email" value="${m.email}" type="text" style="border-top: none; border-left: none; border-right: none;" disabled>
+                                        </div>
 										<div class="col-lg-12">
                                             <input id="phone" value="${m.phone}" type="text" style="border-top: none; border-left: none; border-right: none;" disabled>
                                         </div>
@@ -233,12 +245,60 @@
 				$('.black').show();
 				$('.blackinsert').show();
 				$('.blackcancle').hide();
+				
 			}else{
 				$('.black').show();
 				$('.blackinsert').hide();
 				$('.blackcancle').show();
 			}
 		});
+		
+		function insertCheck() {
+			 if (confirm("블랙리스트 등록 하시겠습니까?")){    //확인
+				var bUserId = $('#bUserId').val();
+				var BanReason = $('#BanReason').val();
+				var BanTerm = $('#BanTerm').val();
+				console.log("bUserId : "+ bUserId + " BanReason : " +BanReason + " BanTerm : " + BanTerm );
+				$.ajax({
+					url:"blackInsert.do",
+					type:"post",
+					data:{"userId":bUserId,"banReason":BanReason,"banTerm":BanTerm},
+					success:function(data){
+						if(data=="ok"){
+							alert("블랙리스트 등록 됬습니다.");
+							location.reload();
+							$('.black').hide();
+						}
+					},error:function(){
+						console.log("에러");		
+					}
+				});
+			 }
+		}
+		
+		function cancleCheck(){
+			 if (confirm("블랙리스트 차단 해제 하시겠습니까?")){    //확인
+				 	var bId = $('#bId').val();
+					$.ajax({
+						url:"blackCancle.do",
+						type:"post",
+						data:{"bId":bId},
+						success:function(data){
+							if(data=="ok"){
+								alert("블랙리스트 취소 됐습니다.");
+								location.reload();
+								$('.black').hide();
+							}
+						},error:function(){
+							console.log("에러");
+						}
+					});
+				 }
+		}
+		
+		function cancle(){
+			$('.black').hide();
+		}
 	</script>
 	
 	<!--====== Javascripts & Jquery ======-->
