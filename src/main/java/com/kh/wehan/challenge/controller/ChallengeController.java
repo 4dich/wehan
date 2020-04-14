@@ -70,13 +70,14 @@ public class ChallengeController {
 	 */
 	@RequestMapping("selectOneDetail.do")
 	public ModelAndView selectOneDetail(ModelAndView mv, String chId) {
+		System.out.println(chId);
 		
 		Challenge chal = cService.selectOneDetail(chId);
 		
 		mv.addObject("chal", chal);
-		mv.setViewName("admin/ad_challengeDetail");
-		
 		System.out.println(chal);
+		mv.setViewName("admin/ad_challengeDetail");
+
 		return mv;
 	}
 	

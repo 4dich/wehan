@@ -30,7 +30,7 @@ public class ChallengeDao {
 	}
 
 	public Challenge getSelectOneDetail(String chId) {
-		return sqlSession.selectOne("challengeMapper.selectOneDetail");
+		return sqlSession.selectOne("challengeMapper.selectOneDetail",chId);
 	}
 
 	public int getSearchListCount(Challenge chal) {
