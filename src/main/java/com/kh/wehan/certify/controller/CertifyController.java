@@ -39,7 +39,7 @@ public class CertifyController {
 		int listCount = ceService.getListCount();
 		
 		int pageLimit = 5;
-		int boardLimit = 10;
+		int boardLimit = 9;
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, pageLimit, boardLimit);
 		
@@ -55,6 +55,13 @@ public class CertifyController {
 	
 	}
 	
+	/**
+	 * 친구인증글 피드 출력
+	 * @param mv
+	 * @param request
+	 * @param currentPage
+	 * @return
+	 */
 	@RequestMapping("fid_friendListView.do")
 	public ModelAndView friendListFid(ModelAndView mv,HttpServletRequest request, 
 			@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage) {
@@ -67,7 +74,7 @@ public class CertifyController {
 			int listCount = ceService.getListCount();
 			
 			int pageLimit = 5;
-			int boardLimit = 10;
+			int boardLimit = 9;
 			
 			PageInfo pi = Pagination.getPageInfo(currentPage, listCount, pageLimit, boardLimit);
 			
@@ -86,5 +93,69 @@ public class CertifyController {
 		
 		return mv;
 	}
+
+	/**
+	 * 팔로우 리스트 출력
+	 * @param mv
+	 * @param request
+	 * @param currentPage
+	 * @return
+	 */
+	@RequestMapping("fid_followView.do")
+	public ModelAndView followList(ModelAndView mv,HttpServletRequest request, 
+			@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage) {
+		
+		HttpSession session = request.getSession();
+		Member m = (Member)session.getAttribute("loginUser");
+				
+		if(m != null) {
+			
+			int listCount = ceService.getListCount();
+			
+			int pageLimit = 5;
+			int boardLimit = 10;
+			
+			PageInfo pi = Pagination.getPageInfo(currentPage, listCount, pageLimit, boardLimit);
+			
+			String mName = m.getUserId();
+			
+			ArrayList<Member> list = ceService.getFollowList(pi,mName);
+			
+			mv.addObject("list",list).addObject("pi",pi).setViewName("user/fid/fid_follow");
+			
+			
+			
+			
+		}else {
+			mv.addObject("msg","엥").addObject("msg2", "로그인 먼저해주세요");
+			mv.setViewName("common/errorPage");
+		}
+		
+		
+		
+		return mv;
 	
+	
+	}
+
+
+	@RequestMapping("fid_detailView.do")
+	public ModelAndView fidDetail(ModelAndView mv, int ceId,
+			@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage) {
+		
+		Certify c = ceService.selectCertify(ceId);
+		
+		if(c != null) {
+			mv.addObject("c",c)
+			.addObject("currentPage",currentPage)
+			.setViewName("user/fid/fid_detail");
+		}else {
+			mv.addObject("msg","Error")
+			.addObject("msg2","인증글 상세조회 실패")
+			.setViewName("commom/errorPage");
+		}
+		
+		return mv;
+	}
+
 }

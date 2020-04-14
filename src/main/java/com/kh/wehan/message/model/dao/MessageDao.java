@@ -99,6 +99,24 @@ public class MessageDao {
 		return (ArrayList)sqlSession.selectList("messageMapper.msgSearchFriendMsg", sc);
 	}
 
+	/**
+	 * 메시지 읽음 처리
+	 * @param m
+	 * @return
+	 */
+	public int msgUpdateRead(Map m) {
+		return sqlSession.update("messageMapper.msgUpdateRead", m);
+	}
+
+	/**
+	 * 안읽은 메시지 갯수 가져오기
+	 * @param userId
+	 * @return
+	 */
+	public int getMsgCount(String userId) {
+		return sqlSession.selectOne("messageMapper.getMsgCount", userId);
+	}
+
 
 	
 }

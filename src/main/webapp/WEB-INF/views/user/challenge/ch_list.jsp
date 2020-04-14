@@ -131,9 +131,9 @@
                                 <div id="photoList">
                                     <a href="ch-detail.html">
                                         <div class="photoBox">                                        
-                                            <img src="resources/img/blog/1.jpg" alt=""/>
+                                            <img src="resources/images/blog/1.jpg" alt=""/>
                                             <div class="textBox">
-                                                <h5>참가 전 챌린지 상세보기 가기</h5>
+                                                <h5>참가 전 챌린지 상세보기</h5>
                                                 <br>
                                                 <h5>W10,000</h5>
                                                 <h5 style="float: right;">2020-03-24</h5>
@@ -142,7 +142,7 @@
                                     </a>
                                     <a href="ch-end.html">
                                         <div class="photoBox">
-                                            <img src="resources/img/blog/1.jpg" alt="">
+                                            <img src="resources/images/blog/1.jpg" alt="">
                                             <div class="textBox">
                                                 <h5>마감된 챌린지 상세보기</h5>
                                                 <br>
@@ -153,7 +153,7 @@
                                     </a>
                                     <a href="ch-detailIng.html">
                                         <div class="photoBox">
-                                            <img src="resources/img/blog/1.jpg" alt="">
+                                            <img src="resources/images/blog/1.jpg" alt="">
                                             <div class="textBox">
                                                 <h5>진행중인 챌린지 상세보기</h5>
                                                 <br>
