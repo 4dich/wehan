@@ -40,6 +40,7 @@
 	<div class="main-site-warp">
 
 		<%@ include file="/WEB-INF/views/common/menuBar.jsp" %>
+
 		<header class="header-section">
 			<div class="nav-switch">
 				<i class="fa fa-bars"></i>

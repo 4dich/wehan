@@ -252,9 +252,10 @@
 				 traditional : true,
 				 data:{"result" : result },
 				 success:function(result){
-						alert('성공');
+						alert('환불완료');
+						location.reload();
 		        	},error : function(request,errorcode,error){
-						console.log("결제 실패입니다!");
+		        		alert('환불실패');
 					}
 		        	
 		        });

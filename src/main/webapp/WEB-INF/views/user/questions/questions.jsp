@@ -104,16 +104,21 @@
 						</button>
 
 						<div id="searchArea">
-							<div id="searchSelect"> 
-								<select name="" id="">
-									<option>작성자</option>
-									<option>제목</option>
-								</select>					
-							</div>
-							<!-- 검색 -->
-							<input class="searchBox" type="search">
-							<button><images src="resources/images/main/search.png" alt=""></button>
+							<form action="searchQuestions.do">
+								<div id="searchSelect"> 
+									<select name="searchQuestions" id="searchQuestions">
+										<option value="title">제목</option>
+										<option value="content">내용</option>
+									</select>					
+								</div>
+								<!-- 검색 -->
+								<input class="searchBox" name="searchWord" type="search" style="height:31px; width:55%">
+								<button>
+									<img src="resources/images/main/search.png" alt="">
+								</button>
+							</form>
 						</div>
+
 
 
 						<!-- 문의사항 테이블 -->
