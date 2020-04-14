@@ -228,7 +228,6 @@ public class ChallengeController {
 		
 		return mv;
 	}
-
 	
 	/**
 	 * 3_2. 사용자 챌린지 리스트 > 상세 정보 보기
@@ -239,12 +238,16 @@ public class ChallengeController {
 	@RequestMapping("hiddenDetailInList.do")
 	public ModelAndView selectOneDetailInList(ModelAndView mv, String chId) {
 		
+		System.out.println("ch" + chId);
+		
 		Challenge chal = cService.selectOneDetail(chId);
 		
+		System.out.println("chal" + chal);
 		mv.addObject("chal", chal);
 		mv.setViewName("user/challenge/ch_detail");
 		
-		System.out.println(chal);
 		return mv;
 	}
+	
+	
 }
