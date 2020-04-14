@@ -40,4 +40,14 @@ public class MypageServiceImpl implements MypageService {
 		return myDao.selectListCh(userId);
 	}
 
+	@Override
+	public int getListCountFinCh(String userId) {
+		return myDao.getListCountFinCh(userId);
+	}
+
+	@Override
+	public int getListCountSucCh(String userId) {
+		return myDao.getListCountSucCh(userId);
+	}
+
 }

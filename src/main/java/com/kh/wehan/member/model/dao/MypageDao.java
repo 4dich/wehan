@@ -36,4 +36,12 @@ public class MypageDao {
 		return (ArrayList)sqlSession.selectList("mypageMapper.selectListCh",userId);
 	}
 
+	public int getListCountFinCh(String userId) {
+		return sqlSession.selectOne("mypageMapper.listCountFinCh",userId);
+	}
+
+	public int getListCountSucCh(String userId) {
+		return sqlSession.selectOne("mypageMapper.listCountSucCh",userId);
+	}
+
 }

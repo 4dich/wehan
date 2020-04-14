@@ -57,4 +57,16 @@
 		SELECT * FROM CHALLENGE
 		WHERE CHPEOPLE LIKE '%'||#{userId}||'%'
 	</select>
+	
+	<select id="listCountFinCh" resultType="_int">
+	<![CDATA[
+		SELECT COUNT(*) FROM CHALLENGE
+		WHERE CHPEOPLE LIKE '%'||#{userId}||'%'
+		AND SYSDATE-TO_DATE(ENDDATE)>0
+	]]>
+	</select>
+	
+	<select id="listCountSucCh" resultType="_int">
+	
+	</select>
 </mapper>

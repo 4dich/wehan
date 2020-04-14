@@ -40,5 +40,19 @@ public interface MypageService {
 	 */
 	public ArrayList<Challenge> selectListCh(String userId);
 
+	/**
+	 * 1-2. 마이페이지 마이챌린지 완료된챌린지 개수 조회
+	 * @param userId
+	 * @return
+	 */
+	public int getListCountFinCh(String userId);
+
+	/**
+	 * 1-3. 마이페이지 마이챌린지 성공한 챌린지 개수 조회
+	 * @param userId
+	 * @return
+	 */
+	public int getListCountSucCh(String userId);
+
 
 }
