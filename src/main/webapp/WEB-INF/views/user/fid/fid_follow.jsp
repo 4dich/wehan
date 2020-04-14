@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -61,9 +62,9 @@
 				<a href=""><i class="fa fa-twitter"></i></a>
 				<a href=""><i class="fa fa-dribbble"></i></a>
                 <a href=""><i class="fa fa-behance"></i></a> -->
-                <a href="fidRecommend.html" >추천피드</a>
-                <a href="fidFriend.html">친구피드</a>
-                <a href="follow.html" style="color: red;">팔로우</a>
+                <a href="fid_ch_recommendView.do" >추천피드</a>
+                <a href="fid_friendListView.do">친구피드</a>
+                <a href="fid_followView.do" style="color: red;">팔로우</a>
 			</div>
 		</header>
 		<div class="site-content-warp">
@@ -174,12 +175,14 @@
                         </div>	 -->
                         
                         <!-- 팔로우 영역 -->
-
+					<c:forEach var="f" items="${ list }">
+					
                         <div class="follow">
                             <div class="followArea">
+                            
                                 <div class="followUserInfo">
-                                    <img src="resources/images/fid/2.png" alt="">
-                                    &nbsp;&nbsp; 현스델리
+                                    <img src="resources/images/user/${ f.picture }" alt="">
+                                    &nbsp;&nbsp;${ f.nickName }
                                 </div>
                                 <a href="mypageProfile.html">
                                     <div class="followButton">
@@ -189,252 +192,13 @@
                                 <div class="followButton">
                                     팔로잉
                                 </div>
+                                
                             </div>
 
                         </div>
+					</c:forEach>
 
-                        <!-- 나중에 지울거 -->
-                        <div class="follow">
-                            <div class="followArea">
-                                <div class="followUserInfo">
-                                    <img src="resources/images/fid/2.png" alt="">
-                                    &nbsp;&nbsp; 현스델리
-                                </div>
-                                <div class="followButton">
-                                    팔로잉
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="follow">
-                            <div class="followArea">
-                                <div class="followUserInfo">
-                                    <img src="resources/images/fid/2.png" alt="">
-                                    &nbsp;&nbsp; 현스델리
-                                </div>
-                                <div class="followButton">
-                                    팔로잉
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="follow">
-                            <div class="followArea">
-                                <div class="followUserInfo">
-                                    <img src="resources/images/fid/2.png" alt="">
-                                    &nbsp;&nbsp; 현스델리
-                                </div>
-                                <div class="followButton">
-                                    팔로잉
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="follow">
-                            <div class="followArea">
-                                <div class="followUserInfo">
-                                    <img src="resources/images/fid/2.png" alt="">
-                                    &nbsp;&nbsp; 현스델리
-                                </div>
-                                <div class="followButton">
-                                    팔로잉
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="follow">
-                            <div class="followArea">
-                                <div class="followUserInfo">
-                                    <img src="resources/images/fid/2.png" alt="">
-                                    &nbsp;&nbsp; 현스델리
-                                </div>
-                                <div class="followButton">
-                                    팔로잉
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="follow">
-                            <div class="followArea">
-                                <div class="followUserInfo">
-                                    <img src="resources/images/fid/2.png" alt="">
-                                    &nbsp;&nbsp; 현스델리
-                                </div>
-                                <div class="followButton">
-                                    팔로잉
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="follow">
-                            <div class="followArea">
-                                <div class="followUserInfo">
-                                    <img src="resources/images/fid/2.png" alt="">
-                                    &nbsp;&nbsp; 현스델리
-                                </div>
-                                <div class="followButton">
-                                    팔로잉
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="follow">
-                            <div class="followArea">
-                                <div class="followUserInfo">
-                                    <img src="resources/images/fid/2.png" alt="">
-                                    &nbsp;&nbsp; 현스델리
-                                </div>
-                                <div class="followButton">
-                                    팔로잉
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="follow">
-                            <div class="followArea">
-                                <div class="followUserInfo">
-                                    <img src="resources/images/fid/2.png" alt="">
-                                    &nbsp;&nbsp; 현스델리
-                                </div>
-                                <div class="followButton">
-                                    팔로잉
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="follow">
-                            <div class="followArea">
-                                <div class="followUserInfo">
-                                    <img src="resources/images/fid/2.png" alt="">
-                                    &nbsp;&nbsp; 현스델리
-                                </div>
-                                <div class="followButton">
-                                    팔로잉
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="follow">
-                            <div class="followArea">
-                                <div class="followUserInfo">
-                                    <img src="resources/images/fid/2.png" alt="">
-                                    &nbsp;&nbsp; 현스델리
-                                </div>
-                                <div class="followButton">
-                                    팔로잉
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="follow">
-                            <div class="followArea">
-                                <div class="followUserInfo">
-                                    <img src="resources/images/fid/2.png" alt="">
-                                    &nbsp;&nbsp; 현스델리
-                                </div>
-                                <div class="followButton">
-                                    팔로잉
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="follow">
-                            <div class="followArea">
-                                <div class="followUserInfo">
-                                    <img src="resources/images/fid/2.png" alt="">
-                                    &nbsp;&nbsp; 현스델리
-                                </div>
-                                <div class="followButton">
-                                    팔로잉
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="follow">
-                            <div class="followArea">
-                                <div class="followUserInfo">
-                                    <img src="resources/images/fid/2.png" alt="">
-                                    &nbsp;&nbsp; 현스델리
-                                </div>
-                                <div class="followButton">
-                                    팔로잉
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="follow">
-                            <div class="followArea">
-                                <div class="followUserInfo">
-                                    <img src="resources/images/fid/2.png" alt="">
-                                    &nbsp;&nbsp; 현스델리
-                                </div>
-                                <div class="followButton">
-                                    팔로잉
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="follow">
-                            <div class="followArea">
-                                <div class="followUserInfo">
-                                    <img src="resources/images/fid/2.png" alt="">
-                                    &nbsp;&nbsp; 현스델리
-                                </div>
-                                <div class="followButton">
-                                    팔로잉
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="follow">
-                            <div class="followArea">
-                                <div class="followUserInfo">
-                                    <img src="resources/images/fid/2.png" alt="">
-                                    &nbsp;&nbsp; 현스델리
-                                </div>
-                                <div class="followButton">
-                                    팔로잉
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="follow">
-                            <div class="followArea">
-                                <div class="followUserInfo">
-                                    <img src="resources/images/fid/2.png" alt="">
-                                    &nbsp;&nbsp; 현스델리
-                                </div>
-                                <div class="followButton">
-                                    팔로잉
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="follow">
-                            <div class="followArea">
-                                <div class="followUserInfo">
-                                    <img src="resources/images/fid/2.png" alt="">
-                                    &nbsp;&nbsp; 현스델리
-                                </div>
-                                <div class="followButton">
-                                    팔로잉
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="follow">
-                            <div class="followArea">
-                                <div class="followUserInfo">
-                                    <img src="resources/images/fid/2.png" alt="">
-                                    &nbsp;&nbsp; 현스델리
-                                </div>
-                                <div class="followButton">
-                                    팔로잉
-                                </div>
-                            </div>
-
-                        </div>
-
+                
                         <!-- 지울거 끝 -->
 
                        

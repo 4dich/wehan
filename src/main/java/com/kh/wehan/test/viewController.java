@@ -191,10 +191,10 @@ public class viewController {
 //		return "user/fid/fid_ch_recommend";
 //	}
 	
-	@RequestMapping("fid_followView.do")
-	public String fid_followView() {
-		return "user/fid/fid_follow";
-	}
+//	@RequestMapping("fid_followView.do")
+//	public String fid_followView() {
+//		return "user/fid/fid_follow";
+//	}
 	
 	/*
 	 * @RequestMapping("qnaListView.do") public String qnaListView() { return

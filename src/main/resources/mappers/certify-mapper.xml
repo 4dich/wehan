@@ -30,6 +30,22 @@
 	
 	</resultMap>
 	
+	<!-- Member -->
+	<resultMap type="Member" id="cMemberResultSet">
+		<id property="userId" column="USERID"/>
+		<result property="password" column="PASSWORD"/>
+		<result property="nickName" column="NICKNAME"/>
+		<result property="userName" column="USERNAME"/>
+		<result property="birthDay" column="BIRTHDAY"/>
+		<result property="email" column="EMAIL"/>
+		<result property="address" column="ADDRESS"/>
+		<result property="phone" column="PHONE"/>
+		<result property="account" column="ACCOUNT"/>
+		<result property="picture" column="PICTURE"/>
+		<result property="joinDate" column="JOINDATE"/>
+		<result property="outYN" column="OUT_YN"/>
+	</resultMap>
+	
 	<!-- 관리자 -->
 	
 	<!-- 인증글 갯수 -->
@@ -127,6 +143,12 @@
 	JOIN MEMBER M
 	ON R.USERID = M.USERID
 	WHERE CEDEL_YN = 'N'
+	</select>
+	
+	<select id="followList" resultMap="cMemberResultSet">
+	SELECT * FROM MEMBER M
+	JOIN FOLLOW F ON (M.USERID = F.FOLLOWER)
+	WHERE F.HOST = #{mName}
 	</select>
 
 </mapper>

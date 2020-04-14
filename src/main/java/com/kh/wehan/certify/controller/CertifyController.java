@@ -39,7 +39,7 @@ public class CertifyController {
 		int listCount = ceService.getListCount();
 		
 		int pageLimit = 5;
-		int boardLimit = 10;
+		int boardLimit = 9;
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, pageLimit, boardLimit);
 		
@@ -67,7 +67,7 @@ public class CertifyController {
 			int listCount = ceService.getListCount();
 			
 			int pageLimit = 5;
-			int boardLimit = 10;
+			int boardLimit = 9;
 			
 			PageInfo pi = Pagination.getPageInfo(currentPage, listCount, pageLimit, boardLimit);
 			
@@ -86,5 +86,41 @@ public class CertifyController {
 		
 		return mv;
 	}
+
+	@RequestMapping("fid_followView.do")
+	public ModelAndView followList(ModelAndView mv,HttpServletRequest request, 
+			@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage) {
+		
+		HttpSession session = request.getSession();
+		Member m = (Member)session.getAttribute("loginUser");
+				
+		if(m != null) {
+			
+			int listCount = ceService.getListCount();
+			
+			int pageLimit = 5;
+			int boardLimit = 10;
+			
+			PageInfo pi = Pagination.getPageInfo(currentPage, listCount, pageLimit, boardLimit);
+			
+			String mName = m.getUserId();
+			
+			ArrayList<Member> list = ceService.getFollowList(pi,mName);
+			
+			mv.addObject("list",list).addObject("pi",pi).setViewName("user/fid/fid_follow");
+			
+			
+			
+			
+		}else {
+			mv.addObject("msg","엥").addObject("msg2", "로그인 먼저해주세요");
+			mv.setViewName("common/errorPage");
+		}
+		
+		
+		
+		return mv;
 	
+	
+	}
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.kh.wehan.certify.model.vo.Certify;
 import com.kh.wehan.common.model.vo.PageInfo;
+import com.kh.wehan.member.model.vo.Member;
 
 public interface CertifyService {
 
@@ -26,5 +27,12 @@ public interface CertifyService {
 	 * @return
 	 */
 	ArrayList<Certify> getFriendList(PageInfo pi);
+
+	/**
+	 * 팔로우 리스트 출력
+	 * @param pi
+	 * @return
+	 */
+	ArrayList<Member> getFollowList(PageInfo pi,String mName);
 
 }
