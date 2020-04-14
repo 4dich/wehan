@@ -63,7 +63,7 @@
 				<i class="fa fa-bars"></i>
             </div>            
             <div class="header-social">
-                <a href="ch-list.html" style="color: red;">전체 챌린지</a>
+                <a href="chalList.do" style="color: red;">전체 챌린지</a>
                 <a href="ch-listPremium.html">프리미엄 챌린지</a>
                 <a href="ch-listTop10.html">TOP 10 챌린지</a>
             </div>		
@@ -118,14 +118,130 @@
 				<div class="contact-section">
                     <!-- 카테고리 -->
 						<div id="category">
-							<div class="ca health" onclick="health();">건강</div>
-							<div class="ca hobby">취미</div>
-							<div class="ca selfImprovement">자기계발</div>
-							<div class="ca economy">경제</div>
-							<div class="ca life">생활</div>
-							<div class="ca except">그외</div>
+							<div class="ca health" value="health" onclick="selector">건강</div>
+							<div class="ca hobby" value="hobby">취미</div>
+							<div class="ca selfImprovement" value="improve">자기계발</div>
+							<div class="ca economy" value="economy">경제</div>
+							<div class="ca life" value="life">생활</div>
+							<div class="ca etc" value="etc">그외</div>
 						</div>
 					<div class="row">
+					<!-- <script>
+					function selecter() {
+						var health = $(".health").val();
+						var hobby = $(".hobby").val();
+						var improve = $(".improve").val();
+						var economy = $(".economy").val();
+						var life = $(".life").val();
+						var except = $(".except").val();
+						
+							$.ajax({
+								url: "categoryInList.do",
+								type: "get",
+								data: {"health":health, "hobby":hobby, "improve":improve,
+									   "economy":economy, "life":life, "etc":etc},
+								success:function(data){
+									$div = $('<div id="photoList">');
+									for(var i=0; i<data.length; i++) {
+										$
+										$a = $('<a class="detailInList" style="cursor:pointer">');
+										$hidden = $('<input type="hidden" id="hiddenDetailInList" name="hiddenDetailInList"').text(data[i].chId);
+										
+										
+									}
+									
+									
+									
+									
+									
+								
+	                                	<c:forEach var="chal" items="${ list }">
+		                                    
+		                                    	<input type="hidden" id="hiddenDetailInList" name="hiddenDetailInList" value="${ chal.chId }"/>
+		                                        <div class="photoBox">                                        
+		                                            <img src="resources/images/challenge/${ chal.chPicture }" alt=""/>
+		                                            <div class="textBox">
+		                                                <h5>${ chal.chName }</h5>
+		                                                <br>
+		                                                <h5>${ chal.price }</h5>
+		                                                <h5 style="float: right;">${ chal.startDate }</h5>
+		                                            </div>
+		                                        </div>
+		                                    </a>
+	                                    </c:forEach>
+	                                    <script>
+	                                		$(".detailInList").click(function() {
+	                                			var chId = $("#hiddenDetailInList").val();
+	                                			location.href="hiddenDetailInList.do?chId=" + chId;
+	                                		});
+	                                    </script>
+	                                </div>  
+									
+									$input =$('<input>');
+									
+									$div.append($input);
+									
+								},
+							});
+						
+					} 
+							
+					
+					
+					
+					
+					
+					
+					$.ajax({
+			            url:"/siktam/SearchCondition.sc",
+			            type:"get",   
+			            traditional : true, 
+			              data:{
+			                 "tlist" : tlist,
+			                  "clist" : clist,
+			                  "plist" : plist,
+			                 "line" : line,
+			                 "key" : key
+			              },success:function(data){
+			                     console.log(data);
+			                     $('#tbl').find('tr').remove();
+			                     for(var i=0; i<data.length; i++){
+			                        var $tr = $('<tr>');
+			                        var $shopPid = $('<td style="display:none">').text(data[i].shopPid);
+			                        var $tdI = $('<td id="img">');
+			                        var $shopImg = $('<img src="/siktam/resources/images/'+data[i].shopImg+'"  style="width:100%" alt="Image" class="img-thumbnail">');
+			                        var $tdT = $('<td id="txt"  style="word-break:break-all">');
+			                        var $h4 = $('<h4>');
+			                        var $shopName = $('<b>').text(data[i].shopName);
+			                        var $ul = $('<ul>');
+			                        var $li = $('<li>');
+			                        var $li2 = $('<li>');
+			                        var $star = $('<span class="star">').text("★" +data[i].star);
+			                        var $reviewCount = $('<span class="review_num">').text("리뷰 " +data[i].reviewCount);
+			                        var $reservationCount = $('<span class="reserve_num">').text("예약 " + data[i].reservationCount);
+			                        var $shopAddr = $('<span class="area">').text(data[i].shopAddr);
+			                        var $tableType = $('<span class="tableInfo">').text(data[i].tableType);
+			                        var $MenuCategory = $('<span class="sectors">').text(data[i].MenuCategory);
+			                        /* var $li3 = $('<li>');
+			                        var $mainMenu = $('<span class="mainMenu">'); */
+			                        $tdI.append($shopImg);
+			                        
+			                        $h4.append($shopName);
+			                        
+			                        $li.append($star).append($reviewCount).append($reservationCount);
+			                        $li2.append($shopAddr).append($shopAddr).append($tableType).append($MenuCategory);
+			                        $ul.append($li);
+			                        $ul.append($li2);
+			                        
+			                        $tdT.append($h4);
+			                        $tdT.append($ul);
+			                        
+			                        $tr.append($shopPid);
+			                        $tr.append($tdI);
+			                        $tr.append($tdT);
+			                        
+			                        $('#tbl').append($tr);
+					</script> -->
 						<!-- <div class="col-xl-6">
 							<div class="map"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14376.077865872314!2d-73.879277264103!3d40.757667781624285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1546528920522" style="border:0" allowfullscreen></iframe></div>
                         </div> -->
@@ -134,24 +250,24 @@
 
                             <div id="ch_confirmPhotoListArea">
                                 <div id="photoList">
-                                	<c:forEach var="ch" items="${ list }">
-                                    <a class="detailInList" style="cursor:pointer">
-                                    	<input type="hidden" id="hiddenDetailInList" name="hiddenDetailInList" value="${ ch.chId }"/>
-                                        <div class="photoBox">                                        
-                                            <img src="resources/images/challenge/${ ch.chPicture }" alt=""/>
-                                            <div class="textBox">
-                                                <h5>${ ch.chName }</h5>
-                                                <br>
-                                                <h5>${ ch.price }</h5>
-                                                <h5 style="float: right;">${ ch.startDate }</h5>
-                                            </div>
-                                        </div>
-                                    </a>
+                                	<c:forEach var="chal" items="${ list }">
+	                                    <a class="detailInList" style="cursor:pointer">
+	                                    	<input type="hidden" id="hiddenDetailInList" name="hiddenDetailInList" value="${ chal.chId }"/>
+	                                        <div class="photoBox">                                        
+	                                            <img src="resources/images/challenge/${ chal.chPicture }" alt=""/>
+	                                            <div class="textBox">
+	                                                <h5>${ chal.chName }</h5>
+	                                                <br>
+	                                                <h5>${ chal.price }</h5>
+	                                                <h5 style="float: right;">${ chal.startDate }</h5>
+	                                            </div>
+	                                        </div>
+	                                    </a>
                                     </c:forEach>
                                     <script>
                                 		$(".detailInList").click(function() {
                                 			var chId = $("#hiddenDetailInList").val();
-                                			location.href="hiddenDetailInList.do?chid=" + chId;
+                                			location.href="hiddenDetailInList.do?chId=" + chId;
                                 		});
                                     </script>
                                 </div>  
