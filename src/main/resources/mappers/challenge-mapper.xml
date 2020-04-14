@@ -82,6 +82,6 @@
 	
 	<select id="selectChallengeList" resultMap="challengeResultSet">
 		SELECT * FROM
-		CHALLGENGE
+		CHALLENGE
 	</select>
 </mapper>

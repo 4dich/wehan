@@ -34,7 +34,7 @@
    <button onclick="location.href='ch_detailView.do';"> 챌린지 참여 상세보기 </button>
    <button onclick="location.href='ch_detailEndView.do';"> 챌린지 마감 상세보기 </button>
    <button onclick="location.href='ch_detailDoingView.do';"> 챌린지 진행 상세보기 </button>
-   <button onclick="location.href='ch_listView.do';"> 챌린지 전체리스트 </button>
+   <button onclick="location.href='chalList.do';"> 챌린지 전체리스트 </button>
    <button onclick="location.href='ch_premiumListView.do';"> 챌린지 프리미엄리스트 </button>
    <button onclick="location.href='ch_top10ListView.do';"> 챌린지 TOP 10 리스트 </button>
    <button onclick="location.href='ch_registerView.do';"> 챌린지 등록 </button>

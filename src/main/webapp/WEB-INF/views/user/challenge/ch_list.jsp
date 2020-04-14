@@ -29,6 +29,9 @@
     <!-- <link rel="stylesheet" href="resources/css/left_section.css"/> -->
     <link rel="stylesheet" href="resources/css/style.css"/>	
     
+    <!-- JQuery -->
+   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    
 	<link rel="stylesheet" href="resources/css/category.css"/>
 
     <style>
@@ -74,12 +77,14 @@
                         <h2 style="margin-left: 6px;">위대한 한걸음</h2>
                         <p style="padding-top: 15px;">THE GREAT ONE STEP</p>
                     </a>
-                    <div class="challenges-search">
-						<input type="textarea" style="padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 3px solid black;" placeholder="챌린지 검색">
-                        <a href="" class="site-btn2">
-                            <img src="resources/img/main/search.png" style="padding-left: 10px;" alt="">
-                        </a>
-                    </div>
+                    <form class="searchChallenge">
+	                    <div class="challenges-search">
+							<input type="textarea" style="padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 3px solid black;" placeholder="챌린지 검색">
+	                        <a href="" class="site-btn2">
+	                            <img src="resources/images/main/search.png" style="padding-left: 10px;" alt="">
+	                        </a>
+	                    </div>
+                    </form>
 
                     <br><br>
                     <!-- 서브메뉴 -->
@@ -92,7 +97,7 @@
                         </p>
                         
                     </div>
-                    <button class="site-btn sb-dark" style="margin-left: 40px; width: 280px; font-size: 15px;" type="button" onclick="location.href='ch-register.html'">
+                    <button class="site-btn sb-dark" style="margin-left: 40px; width: 280px; font-size: 15px;" type="button" onclick="location.href='ch_registerView.do'">
                         	챌린지 등록하기
                         <img src="resources/img/arrow-righ-3.png" alt="">
                     </button>
@@ -129,103 +134,34 @@
 
                             <div id="ch_confirmPhotoListArea">
                                 <div id="photoList">
-                                    <a href="ch-detail.html">
+                                	<c:forEach var="ch" items="${ list }">
+                                    <a class="detailInList" style="cursor:pointer">
+                                    	<input type="hidden" id="hiddenDetailInList" name="hiddenDetailInList" value="${ ch.chId }"/>
                                         <div class="photoBox">                                        
-                                            <img src="resources/images/blog/1.jpg" alt=""/>
+                                            <img src="resources/images/challenge/${ ch.chPicture }" alt=""/>
                                             <div class="textBox">
-                                                <h5>참가 전 챌린지 상세보기</h5>
+                                                <h5>${ ch.chName }</h5>
                                                 <br>
-                                                <h5>W10,000</h5>
-                                                <h5 style="float: right;">2020-03-24</h5>
+                                                <h5>${ ch.price }</h5>
+                                                <h5 style="float: right;">${ ch.startDate }</h5>
                                             </div>
                                         </div>
                                     </a>
-                                    <a href="ch-end.html">
-                                        <div class="photoBox">
-                                            <img src="resources/images/blog/1.jpg" alt="">
-                                            <div class="textBox">
-                                                <h5>마감된 챌린지 상세보기</h5>
-                                                <br>
-                                                <h5>W10,000</h5>
-                                                <h5 style="float: right;">2020-03-24</h5>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a href="ch-detailIng.html">
-                                        <div class="photoBox">
-                                            <img src="resources/images/blog/1.jpg" alt="">
-                                            <div class="textBox">
-                                                <h5>진행중인 챌린지 상세보기</h5>
-                                                <br>
-                                                <h5>W10,000</h5>
-                                                <h5 style="float: right;">2020-03-24</h5>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    
-                                    <div class="photoBox">
-                                        <img src="resources/img/blog/1.jpg" alt="">
-                                        <div class="textBox">
-                                            <h5>누가 집에 먼저 들어가나</h5>
-                                            <br>
-                                            <h5>W10,000</h5>
-                                            <h5 style="float: right;">2020-03-24</h5>
-                                        </div>
-                                    </div>
-                                    <div class="photoBox">
-                                        <img src="resources/img/blog/1.jpg" alt="">
-                                        <div class="textBox">
-                                            <h5>누가 집에 먼저 들어가나</h5>
-                                            <br>
-                                            <h5>W10,000</h5>
-                                            <h5 style="float: right;">2020-03-24</h5>
-                                        </div>
-                                    </div>
-                                    <div class="photoBox">
-                                        <img src="resources/img/blog/1.jpg" alt="">
-                                        <div class="textBox">
-                                            <h5>누가 집에 먼저 들어가나</h5>
-                                            <br>
-                                            <h5>W10,000</h5>
-                                            <h5 style="float: right;">2020-03-24</h5>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="photoBox">
-                                        <img src="resources/img/blog/1.jpg" alt="">
-                                        <div class="textBox">
-                                            <h5>누가 집에 먼저 들어가나</h5>
-                                            <br>
-                                            <h5>W10,000</h5>
-                                            <h5 style="float: right;">2020-03-24</h5>
-                                        </div>
-                                    </div>
-                                    <div class="photoBox">
-                                        <img src="resources/img/blog/1.jpg" alt="">
-                                        <div class="textBox">
-                                            <h5>누가 집에 먼저 들어가나</h5>
-                                            <br>
-                                            <h5>W10,000</h5>
-                                            <h5 style="float: right;">2020-03-24</h5>
-                                        </div>
-                                    </div>
-                                    <div class="photoBox">
-                                        <img src="resources/img/blog/1.jpg" alt="">
-                                        <div class="textBox">
-                                            <h5>누가 집에 먼저 들어가나</h5>
-                                            <br>
-                                            <h5>W10,000</h5>
-                                            <h5 style="float: right;">2020-03-24</h5>
-                                        </div>
-                                    </div>
+                                    </c:forEach>
+                                    <script>
+                                		$(".detailInList").click(function() {
+                                			var chId = $("#hiddenDetailInList").val();
+                                			location.href="hiddenDetailInList.do?chid=" + chId;
+                                		});
+                                    </script>
                                 </div>  
-                                    <div class="qnaPaging" style="float: right; margin-right: 7px; margin-top: 20px;">
+                                    <div class="qnaPaging" style="float: right; margin-right: 29px; margin-top: 20px;">
 										<!-- [이전] -->
 										<c:if test="${ pi.currentPage eq 1 }">
 											&lt; &nbsp;
 										</c:if>
 										<c:if test="${ pi.currentPage ne 1 }">
-											<c:url var="before" value="clist.do">
+											<c:url var="before" value="chalList.do">
 												<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
 											</c:url>
 											<a href="${ before }">&lt;</a> &nbsp;
@@ -238,7 +174,7 @@
 											</c:if>
 											
 											<c:if test="${ p ne pi.currentPage }">
-												<c:url var="pagination" value="clist.do">
+												<c:url var="pagination" value="chalList.do">
 													<c:param name="currentPage" value="${ p }"/>
 												</c:url>
 												<a href="${ pagination }">${ p }</a> &nbsp;
@@ -250,7 +186,7 @@
 											>
 										</c:if>
 										<c:if test="${ pi.currentPage ne pi.maxPage }">
-											<c:url var="after" value="clist.do">
+											<c:url var="after" value="chalList.do">
 												<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
 											</c:url> 
 											<a href="${ after }">></a>
@@ -280,8 +216,6 @@
     
 
 	<script>
-
-
 		var health = document.getElementsByClassName('health');
 		var hobby = document.getElementsByClassName('hobby');
 		var selfImprovement = document.getElementsByClassName('selfImprovement');
