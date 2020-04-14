@@ -44,11 +44,23 @@ public class MessageServiceImpl implements MessageService{
 	}
 
 	/**
-	 * 메시지 내용 불러오기
+	 * 메시지 내용 불러오기 + 메시지 읽음 처리
 	 */
 	@Override
 	public ArrayList<Message> getMsgContent(Map m) {
-		return msgDao.getMsgContent(m);
+		
+
+		// 메시지 읽음 처리
+		int result = msgDao.msgUpdateRead(m);
+			
+		if(result > 0) {
+			return msgDao.getMsgContent(m);
+		} else {
+			return null;
+		}
+		
+		
+		
 	}
 
 	/**
@@ -68,7 +80,7 @@ public class MessageServiceImpl implements MessageService{
 	}
 
 	/**
-	 * 메시지 리스트 가져오기
+	 * 메시지 리스트 가져오기 
 	 */
 	@Override
 	public ArrayList<MessageList> getMsgList(String userId) {
@@ -76,10 +88,18 @@ public class MessageServiceImpl implements MessageService{
 	}
 
 	/**
-	 * 메시지 리스트 
+	 * 메시지 리스트 서치
 	 */
 	@Override
 	public ArrayList<MessageList> msgSearchFriendMsg(MsgSearchCondition sc) {
 		return msgDao.msgSearchFriendMsg(sc);
+	}
+
+	/**
+	 * 안읽은 메시지 갯수 가져오기
+	 */
+	@Override
+	public int getMsgCount(String userId) {
+		return msgDao.getMsgCount(userId);
 	}
 }
