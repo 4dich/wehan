@@ -6,6 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- JQuery -->
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <body>
 	<div class="site-menu-warp">
@@ -27,8 +29,6 @@
    
             <a href="indexView.do" class="menuIcon">
                <img src="resources/images/main/home.png" alt=""></a>
-            <a href="msg_msgListView.do" class="menuIcon">
-               <img src="resources/images/main/message.png" alt=""><div>1</div></a>
             <a href="loginView.do" class="menuIcon">
                <img src="resources/images/main/login.png" alt=""></a>
           </div>
@@ -47,8 +47,11 @@
    
             <a href="indexView.do" class="menuIcon">
                <img src="resources/images/main/home.png" alt=""></a>
-            <a href="msg_msgListView.do" class="menuIcon">
-               <img src="resources/images/main/message.png" alt=""><div>1</div></a>
+            
+            <!-- 안읽은 메시지 카운트 -->
+            <a href="getMsgList.do" class="menuIcon" id="msgCount">
+               <img src="resources/images/main/message.png" alt="">
+            </a>
             <a onclick='location.href="logout.do"' class="menuIcon">
                <img src="resources/images/main/login.png" alt=""></a>
             
@@ -69,9 +72,7 @@
           <div class="menu-social">
    
             <a href="indexView.do" class="menuIcon">
-               <img src="resources/images/main/home.png" alt=""></a>
-            <a href="msg_msgListView.do" class="menuIcon">
-               <img src="resources/images/main/message.png" alt=""><div>1</div></a>
+               <img src="resources/images/main/home.png" alt=""></a>            
             <a onclick='location.href="logout.do"' class="menuIcon">
                <img src="resources/images/main/login.png" alt=""></a>
             
@@ -80,4 +81,35 @@
       </div>
 	
 </body>
+
+<script>
+	// 메시지 알림 갯수 가져오기 
+	$(function(){
+		
+		$.ajax({
+			url:'getMsgCount.do',
+			dataType:'json',
+			success:function(date){
+				
+				if(date != 0) {
+				
+					$div = $('<div>').text(date);
+					
+					$('#msgCount').append($div);
+					
+				}
+			}, error:function(){
+			}
+		});
+				
+		
+		
+		
+		
+	});
+
+</script>
+
+
+
 </html>

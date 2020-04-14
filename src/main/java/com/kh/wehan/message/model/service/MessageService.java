@@ -68,4 +68,11 @@ public interface MessageService {
 	 */
 	ArrayList<MessageList> msgSearchFriendMsg(MsgSearchCondition sc);
 
+	/**
+	 * 안읽은 메시지 갯수 가져오기
+	 * @param userId
+	 * @return
+	 */
+	int getMsgCount(String userId);
+
 }
