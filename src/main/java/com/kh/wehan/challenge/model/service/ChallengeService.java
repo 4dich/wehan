@@ -22,7 +22,7 @@ public interface ChallengeService {
 	ArrayList<Challenge> selectList(PageInfo pi);
 
 	/**
-	 * 리스트 상세보기(관리자용)
+	 * 리스트 상세보기(관리자용, 사용자용)
 	 * @param chId
 	 * @return
 	 */

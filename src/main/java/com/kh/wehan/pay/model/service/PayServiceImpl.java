@@ -42,29 +42,36 @@ public class PayServiceImpl implements PayService {
 		return pDao.insertPay(pay);
 	}
 
+	
 	@Override
-	public ArrayList<Pay> pSearch(Pay p) {
-		return pDao.pSearch(p);
+	public int refundAll(int[] result) {
+		return pDao.refundAll(result);
 	}
 
 	@Override
-	public ArrayList<Challenge> chSearch(Challenge ch) {
-		return pDao.chSearch(ch);
+	public int refundOne(int pId) {
+		return pDao.refundOen(pId);
 	}
-
+	
 	@Override
 	public int getSearchListCount(Challenge ch) {
 		return pDao.searchCount(ch);
 	}
-
+	
 	@Override
 	public int getSearchListCount(Pay p) {
 		return pDao.searchCount(p);
 	}
 
 	@Override
-	public int refundAll(int[] result) {
-		return pDao.refundAll(result);
+	public ArrayList<Challenge> chSearch(Challenge ch, PageInfo pi) {
+		return pDao.chSearch(ch,pi);
 	}
+
+	@Override
+	public ArrayList<Pay> pSearch(Pay p, PageInfo pi) {
+		return pDao.pSearch(p,pi);
+	}
+
 
 }

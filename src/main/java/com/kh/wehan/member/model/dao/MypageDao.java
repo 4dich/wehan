@@ -39,6 +39,7 @@ public class MypageDao {
 	public int certifyCount(Certify ce) {
 		/* return sqlSession.selectOne("mypageMapper.certifyCount",chId); */
 		return sqlSession.selectOne("mypageMapper.certifyCount",ce);
+
 	}
 
 }

@@ -71,7 +71,7 @@
                </p>
             </div>
 
-            <button class="site-btn sb-dark" style="margin-left: 35px; width: 280px; font-size: 15px;" type="button" onclick="location.href='ch-list.html'">
+            <button class="site-btn sb-dark" style="margin-left: 35px; width: 280px; font-size: 15px;" type="button" onclick="location.href='ch_listView.do'">
                  리스트 페이지로 가기
                <img src="img/arrow-righ-3.png" alt="">
             </button>
@@ -98,8 +98,20 @@
                            <form class="contact-form" action="registerChallenge.do" method="post" enctype="multipart/form-data" style="margin-top: 90px;"> 
                               <div class="row">
                                  <div class="col-lg-12">
-                                    <input type="text" id="chName" name="chName" style="border-top: none; border-left: none; border-right: none;" placeholder="챌린지명">
+                                    <input type="text" id="chName" name="chName" maxlength="54" style="border-top: none; border-left: none; border-right: none;" placeholder="챌린지명">
                                  </div>
+                             
+                                 <script> 
+                                 	$(document).ready(function(){ 
+                                 		$('#chName').keyup(function() { 
+                                 			if($(this).val().length > $(this).attr('maxlength')) { 
+                                 				alert('도전명은 최대 18글자까지만 만들 수 있습니다.'); 
+                                 				$(this).val($(this).val().substr(0, $(this).attr('maxlength'))); 
+                                 			} 
+                                 		}); 
+                                 	}); 
+                                 </script> 
+                                 
                                  <div class="col-lg-6">
                                     <input type="text" id="startDatepicker" name="startDate" class="datepicker" onChange="inputDateComparison(this);" style="border-top: none; border-left: none; border-right: none;" placeholder="기간 설정(시작)">
                                  </div>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -92,20 +93,20 @@
 									<ul class="chat-list">
 										<li class="in">
 											<div class="chat-img" style="width: 70px;">
-												<img alt="Avtar" src="https://bootdey.com/images/Content/avatar/avatar1.png">
+												<img alt="Avtar" src="resources/images/user/${ c.picture }">
 											</div>
 											<div class="chat-body">
 												<div style="margin-top: 15px;">
 													<h4 style="color: white;">
-														넹넨네 &nbsp;
-														<a href="mypageProfile.html" style="color:white" class="fa fa-home"></a>
+														${ c.nickName } &nbsp;
+														<a href="#" style="color:white" class="fa fa-home"></a>
 													</h4>
 													<br>
 													<h6 style="color: white;">
-														주 3회 팩하기
-														<span class="unread">자기개발</span>
+														${ c.chName }
+														<span class="unread">${ c.category }</span>
 													</h6>
-													<p style="color: white;">2020-03-25</p>
+													<p style="color: white;">${ c.ceDate }</p>
 												</div>
 											</div>
 										</li>
@@ -114,14 +115,13 @@
 								
 								<!-- 사진 나오는 곳 -->
 								<div class="card-body profile-userpic" style="text-align: center;">
-									<img src="resources/images/image.png" class="img-responsive" alt=""> 
+									<img src="resources/images/certify/${ c.cePicture }" class="img-responsive" alt=""> 
 								</div>
 
 								<!-- 본문 나오는 곳 -->
 								<div class="card-body">
 									<span>
-										안녕하세요.<br> 
-										오늘의 팩하기 사진입니당!
+										${ c.ceContent }
 									</span>
 								</div>																	
 							</div>
@@ -153,29 +153,24 @@
 										<!-- 댓글 읽기 -->
 										<div class="card" style="margin-bottom: 20px;">
 											<div class="card-body">
+											
 												<div class="row">		
 													<div class="be-comment-block">
-														<h1 class="comments-title">Comments (1)</h1>
+														<h1 class="comments-title"></h1>
 														
-													</div>									
-													<div class="media g-mb-30 media-comment">
-														<img class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15" src="https://bootdey.com/images/Content/avatar/avatar7.png" alt="Image Description">
-														<div class="media-body u-shadow-v18 g-bg-secondary g-pa-30">
-															<div class="g-mb-15">
-																<h5 class="h5 g-color-gray-dark-v1 mb-0">
-																	하핳하
-																	<a href="mypageProfile.html" style="color:black" class="fa fa-home"></a>
-																</h5>
-																<span class="g-color-gray-dark-v4 g-font-size-12">2020-03-26</span>
-															</div>													
-															<p>
-																안녕하세요!
-															</p>	
-														</div>
+													</div>	
+													
+																					
+													<div id="commentbody" class="media g-mb-30 media-comment" style="display: inline-block;">
+														
 													</div>
+													
+													
 												</div>
+												
 											</div>
 										</div>
+										
 									</div>
 								</div>
 							</div>
@@ -201,6 +196,66 @@
 	<script src="resources/js/circle-progress.min.js"></script>
 	<script src="resources/js/jquery.magnific-popup.min.js"></script>
 	<script src="resources/js/main.js"></script>
-
+	<script>
+	$(function(){
+		
+		
+		var ceId = ${c.ceId};
+		console.log("anj");
+		
+		$.ajax({
+			url : "replyList.do",
+			data : {ceId:ceId},
+			//  	속성명 : 위에 선언된 변수명
+			dataType: "json",
+			success : function(data){
+				$divBody = $("#commentbody");
+				$divBody.html("");
+				
+				var $img;
+				var $mediaBody;
+				var $gmb;
+				var $h5;
+				var $span;
+				var $p;
+				var $rdiv;
+				
+				$(".comments-title").text("댓글("+ data.length +")");
+				console.log(data);
+				if(data.length > 0){
+					for(var i in data){
+						console.log(data[i]);
+  						$img = $("<img class='d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15' alt='Image Description'>");
+ 						$img.attr('src','resources/images/user/01.jpg');
+ 						$mediaBody = $("<div class='media-body u-shadow-v18 g-bg-secondary g-pa-30'>");
+						$gmb = $("<div class='g-mb-15'>");
+						$h5 = $("<h5 class='h5 g-color-gray-dark-v1 mb-0'>").text(data[i].userId);
+						$span = $("<span class='g-color-gray-dark-v4 g-font-size-12'>").text(data[i].ccDate);
+						$p = $("<p>").text(data[i].ccContent);
+						$rdiv = $("<div style='width: 100%; display: inline-flex;margin-bottom: 10px;'>");
+						
+						$gmb.append($h5);
+						$gmb.append($span);
+						$mediaBody.append($gmb);
+						$mediaBody.append($p);
+						
+						$rdiv.append($img);
+						$rdiv.append($mediaBody);	
+						$divBody.append($rdiv);
+					}
+				}else{
+					$div = $("<div>");
+					$content = $("<p>").text("등록된 댓글이 없습니다.")
+					
+					$div.append($content);
+					$divBody.append($div);
+				}
+				
+			},error:function(){
+				console.log("전송실패");
+			}
+		});
+	});
+	</script>
 	</body>
 </html>

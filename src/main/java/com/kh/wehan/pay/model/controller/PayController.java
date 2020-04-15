@@ -52,11 +52,9 @@ public class PayController {
 		Pay p = pService.slectPayDetail(pId);
 		Challenge ch = pService.slectchDetail(pId);
 		
-		
 		String str = p.getmList().get(0).getAccount();
 		String[] starr = str.split(",");
 	
-		
 		Object bank = starr[0];
 		Object number = starr[2];
 		
@@ -70,12 +68,13 @@ public class PayController {
 	}
 	
 	@RequestMapping("payinfo.do")
-	public ModelAndView payinfo(Challenge ch,ModelAndView mv,HttpServletRequest request) {
+	public ModelAndView payinfo(String chId,ModelAndView mv,HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
 		Member m = (Member)session.getAttribute("loginUser");
+		System.out.println(chId);
+		System.out.println(m);
 		
-		mv.addObject("ch",ch);
 		mv.addObject("m",m);
 		mv.setViewName("user/payAgree");
 		
@@ -104,7 +103,7 @@ public class PayController {
 		int payResult = pService.insertPay(pay);
 		
 		if(payResult>0) {
-		
+		System.out.println("결제성공");
 		String result = "index.jsp";
 		response.getWriter().print(result);
 		}else{
@@ -137,16 +136,16 @@ public class PayController {
 		
 		if(ch.getChName() != null) {
 			listCount = pService.getSearchListCount(ch); //1
-			chsearch = pService.chSearch(ch);
 			pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
+			chsearch = pService.chSearch(ch,pi);
 			mv.addObject("chsearch",chsearch);
 			mv.addObject("pi",pi);
 		}
 		
 		if(p.getUserId() != null || p.getpId() !=null) {
 			listCount = pService.getSearchListCount(p);
-		    psearch = pService.pSearch(p);
 		    pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
+		    psearch = pService.pSearch(p,pi);
 		    mv.addObject("psearch",psearch);
 		    mv.addObject("pi",pi);
 		}
@@ -162,10 +161,24 @@ public class PayController {
 	public String refund(int[] result) {
 		
 		int refundAll = pService.refundAll(result);
-		
-		System.out.println(refundAll);
-		
-		return "";
+		if(refundAll > 0) {
+			return "success";
+		}else{
+			return "error";
+		}
+	
 	}
+	@ResponseBody
+	@RequestMapping("refundOne.do")
+	public String refundOne(int pId) {
+		
+		int refund = pService.refundOne(pId);
+		if(refund > 0) {
+			return "success";
+		}else{
+			return "error";
+		}
+	}
+	
 	
 }

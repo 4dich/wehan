@@ -21,13 +21,15 @@ public class Certify {
 	
 //	멤버
 	private String nickName;
+	private String picture;
 	
 	public Certify() {
 		super();
 	}
 
 	public Certify(String ceId, String chId, String userId, String ceContent, String cePicture, Date ceDate,
-			String ceDel, String chName, String startDate, String endDate, String category, String nickName) {
+			String ceDel, String chName, String startDate, String endDate, String category, String nickName,
+			String picture) {
 		super();
 		this.ceId = ceId;
 		this.chId = chId;
@@ -41,6 +43,7 @@ public class Certify {
 		this.endDate = endDate;
 		this.category = category;
 		this.nickName = nickName;
+		this.picture = picture;
 	}
 	
 	public Certify(String chId, String userId) {
@@ -145,14 +148,21 @@ public class Certify {
 		this.nickName = nickName;
 	}
 
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+
 	@Override
 	public String toString() {
 		return "Certify [ceId=" + ceId + ", chId=" + chId + ", userId=" + userId + ", ceContent=" + ceContent
 				+ ", cePicture=" + cePicture + ", ceDate=" + ceDate + ", ceDel=" + ceDel + ", chName=" + chName
 				+ ", startDate=" + startDate + ", endDate=" + endDate + ", category=" + category + ", nickName="
-				+ nickName + "]";
+				+ nickName + ", picture=" + picture + "]";
 	}
 
-	
 	
 }

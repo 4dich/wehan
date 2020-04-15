@@ -27,7 +27,7 @@ public class ChallengeController {
 	private ChallengeService cService;
 	
 	/**
-	 * 1. 관리자 챌린지 게시판 리스트 및 페이징 처리
+	 * 1_1. 관리자 챌린지 게시판 리스트 및 페이징 처리
 	 * @param mv
 	 * @param currentPage
 	 * @return
@@ -44,6 +44,9 @@ public class ChallengeController {
 		
 		ArrayList<Challenge> list = cService.selectList(pi);
 		
+		// 1. 게시판에 있는 값인 참여 인원의 아이디를 ,로 나눠서 인원 수를 파악한다
+		// 2. 게시판에 있는 값인 가격을 파악한다
+		// 3. 인원 수와 가격을 곱하여 모인 금액이 얼마인지를 한 컬럼에 표현하는 코드
 		for(int i=0; i<list.size(); i++) {
 			String[] str = list.get(i).getChPeople().split(",");
 			list.get(i).setChPeople(String.valueOf(str.length));
@@ -60,25 +63,26 @@ public class ChallengeController {
 	}
 	
 	/**
-	 * 2. 관리자 챌린지 게시판 > 정보 상세 보기
+	 * 1_2. 관리자 챌린지 게시판 > 정보 상세 보기
 	 * @param mv
 	 * @param chId
 	 * @return
 	 */
 	@RequestMapping("selectOneDetail.do")
 	public ModelAndView selectOneDetail(ModelAndView mv, String chId) {
+		System.out.println(chId);
 		
 		Challenge chal = cService.selectOneDetail(chId);
 		
 		mv.addObject("chal", chal);
-		mv.setViewName("admin/ad_challengeDetail");
-		
 		System.out.println(chal);
+		mv.setViewName("admin/ad_challengeDetail");
+
 		return mv;
 	}
 	
 	/**
-	 * 3. 관리자 챌린지 게시판 > 조건 검색
+	 * 1_3. 관리자 챌린지 게시판 > 조건 검색
 	 * @param mv
 	 * @param searchChallengeAdmin
 	 * @param search
@@ -124,7 +128,7 @@ public class ChallengeController {
 	}
 	
 	/**
-	 * 4. 이미지 파일 저장(챌린지 등록)
+	 * 2_1. 이미지 파일 저장(챌린지 등록)
 	 * @param file
 	 * @param request
 	 * @return
@@ -156,7 +160,7 @@ public class ChallengeController {
 	}
 		
 	/**
-	 * 5. 사용자 챌린지 등록
+	 * 2_2. 사용자 챌린지 등록
 	 * @param chal
 	 * @param mv
 	 * @param request
@@ -197,9 +201,15 @@ public class ChallengeController {
 		return mv;
 	}
 	
-	
-	@RequestMapping("challengeList.do")
-	public ModelAndView ChallengeList(ModelAndView mv, @RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
+	/**
+	 * 3_1. 사용자 챌린지 리스트
+	 * @param mv
+	 * @param currentPage
+	 * @return
+	 */
+	@RequestMapping(value="chalList.do")
+	public ModelAndView ChallengeList(ModelAndView mv, 
+						@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
 		
 		int listCount = cService.getListCount();
 		
@@ -209,20 +219,39 @@ public class ChallengeController {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, pageLimit, boardLimit);
 		
 		ArrayList<Challenge> list = cService.selectChallengeList(pi);
-		
-		for(int i=0; i<list.size(); i++) {
-			String[] str = list.get(i).getChPeople().split(",");
-			list.get(i).setChPeople(String.valueOf(str.length));
-			
-			list.get(i).setTotalPrice(str.length * list.get(i).getPrice());
-		}
+		System.out.println(list);
 		
 		mv.addObject("list", list);
 		mv.addObject("pi", pi);
 		mv.addObject("listCount", listCount);
-		mv.setViewName("user/challenge/ad_challengeList");
+		mv.setViewName("user/challenge/ch_list");
 		
 		return mv;
 	}
-
+	
+	/**
+	 * 3_2. 사용자 챌린지 리스트 > 상세 정보 보기
+	 * @param mv
+	 * @param chId
+	 * @return
+	 */
+	@RequestMapping("hiddenDetailInList.do")
+	public ModelAndView selectOneDetailInList(ModelAndView mv, String chId) {
+		
+		System.out.println("ch" + chId);
+		
+		Challenge chal = cService.selectOneDetail(chId);
+		
+		System.out.println("chal" + chal);
+		mv.addObject("chal", chal);
+		mv.setViewName("user/challenge/ch_detail");
+		
+		return mv;
+	}
+	/*
+	 * 
+	 * @RequestMapping("categoryInList.do") public ModelAndView
+	 * categoryInList(ModelAndView mv, category)
+	 */
+	
 }

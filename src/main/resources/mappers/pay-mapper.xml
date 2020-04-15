@@ -163,4 +163,10 @@
 		)
 	</update>
   	
+  	<update id="refundOne">
+  		UPDATE PAY
+  		SET REFUND_YN = 'Y'
+  		WHERE PID = #{pId}
+  	</update>
+  	
   </mapper>

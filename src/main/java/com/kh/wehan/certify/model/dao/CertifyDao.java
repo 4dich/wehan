@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.wehan.certify.model.vo.Certify;
 import com.kh.wehan.common.model.vo.PageInfo;
+import com.kh.wehan.member.model.vo.Member;
 
 @Repository("ceDao")
 public class CertifyDao {
@@ -41,6 +42,18 @@ public class CertifyDao {
 		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
 		return (ArrayList)sqlSession.selectList("certifyMapper.friendFidSelectList",null,rowBounds);
+	}
+
+	public ArrayList<Member> selectFollowList(PageInfo pi, String mName) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("certifyMapper.followList",mName,rowBounds);
+	
+	}
+
+	public Certify selectCertify(int ceId) {
+		
+		return sqlSession.selectOne("certifyMapper.selectDetailCertify",ceId);
 	}
 
 }

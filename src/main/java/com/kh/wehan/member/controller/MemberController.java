@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.wehan.member.model.service.MemberService;
+import com.kh.wehan.member.model.vo.BlackList;
 import com.kh.wehan.member.model.vo.Member;
 
 @Controller	
@@ -157,5 +158,30 @@ public class MemberController {
 			return mv;
 	}
 	
+	@RequestMapping("blackInsert.do")
+	@ResponseBody
+	public String blackInsert(BlackList b) {
+		System.out.println(b);
+		int result = mService.blackInsert(b);
+		
+		if(result > 0) {
+			return "ok";
+		}else {
+			return "fail";
+		}
+	}
+	
+	@RequestMapping("blackCancle.do")
+	@ResponseBody
+	public String blackCancle(int bId) {
+		System.out.println(bId);
+		int result = mService.blackCancle(bId);
+		if(result > 0) {
+			return "ok";
+		}else {
+			return "fail";
+		}
+			
+	}
 }
 

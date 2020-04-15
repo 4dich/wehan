@@ -90,16 +90,30 @@
 	<select id="pwdFind" parameterType="Member" resultType="_int">
 		SELECT COUNT(*) FROM MEMBER WHERE EMAIL=#{email} AND USERID=#{userId}
 	</select>
-	<select id="insertKey" parameterType="FindKey" resultType="_int">
+	<insert id="insertKey" parameterType="FindKey">
 		 INSERT INTO FINDKEY VALUES(#{userId},#{key}) 
-	</select>
+	</insert>
 	<select id="matchKey" parameterType="FindKey" resultType="_int">
 		SELECT COUNT(*) FROM FINDKEY WHERE USERID=#{userId} AND KEY=#{key}
 	</select>
-	<select id="DeleteFindKey" parameterType="string" resultType="_int"> 
+	<delete id="DeleteFindKey" parameterType="string"> 
 		DELETE FROM FINDKEY WHERE USERID = #{userId}
-	</select>
+	</delete>
 	<update id="updatePwd" parameterType="Member">
 		UPDATE MEMBER SET PASSWORD = #{password} WHERE USERID = #{userId}
 	</update>
+	
+	<insert id="blackInsert" parameterType="Black">
+		INSERT INTO BLACKLIST VALUES(SEQ_BID.NEXTVAL,#{userId},#{banReason},#{banTerm},SYSDATE)
+	</insert>
+	<delete id="blackCancle" parameterType="_int">
+		DELETE FROM BLACKLIST WHERE BID = #{bId}
+	</delete>
+	<select id="blackListCount" resultType="_int">
+		SELECT COUNT(*) FROM BLACKLIST
+	</select>
+	<select id="blackList" resultMap="blackResultSet">
+		SELECT * FROM BLACKLIST
+	</select>
+	
 </mapper>

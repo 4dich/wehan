@@ -126,68 +126,68 @@
 										<div class="row">
 											<div class="col-lg-12">
 												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chChName" value="${ ch.chName }" disabled>
+													<input type="text" class="challengeDetail" name="chChName" value="${ chal.chName }" disabled>
 													${ ch.chName }
 												</div>
 											</div>
 											<div class="col-lg-12">
 												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chCategory" value="${ ch.category }" disabled>
+													<input type="text" class="challengeDetail" name="chCategory" value="${ chal.category }" disabled>
 													${ ch.category }
 												</div>
 											</div>
 											<div class="col-lg-6">
 												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chChId" value="${ ch.chId }" disabled>
+													<input type="text" class="challengeDetail" name="chChId" value="${ chal.chId }" disabled>
 													${ ch.chId }
 												</div>
 											</div>
 											<div class="col-lg-6">
 												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chChPeople" value="${ ch.chPeople }" disabled>
+													<input type="text" class="challengeDetail" name="chChPeople" value="${ chal.chPeople }" disabled>
 													${ ch.chPeople }
 												</div>
 											</div>
 											<div class="col-lg-6">
 												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chDeadLine" value="${ ch.startDate }" disabled>
+													<input type="text" class="challengeDetail" name="chDeadLine" value="${ chal.startDate }" disabled>
 													${ ch.startDate }
 												</div>
 											</div>
 											<div class="col-lg-6">
 												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chEndDate" value="${ ch.endDate }" disabled>
+													<input type="text" class="challengeDetail" name="chEndDate" value="${ chal.endDate }" disabled>
 													${ ch.endDate }
 												</div>
 											</div>
 											<div class="col-lg-12">
 												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chCeMethod" value="${ ch.ceMethod }" disabled>
+													<input type="text" class="challengeDetail" name="chCeMethod" value="${ chal.ceMethod }" disabled>
 													${ ch.ceMethod }
 												</div>
 											</div>
 											<div class="col-lg-6">
 												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chPrice" value="${ ch.price }" disabled>
+													<input type="text" class="challengeDetail" name="chPrice" value="${ chal.price }" disabled>
 													${ ch.price }
 												</div>
 											</div>
 											<div class="col-lg-6">
 												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chTotalPrice" value="${ ch.totalPrice }" disabled>
+													<input type="text" class="challengeDetail" name="chTotalPrice" value="${ chal.totalPrice }" disabled>
 													${ ch.totalPrice }
 												</div>
 											</div>
 											<br><br><br><br>
 											<div class="col-lg-12">
 												<div class="contents-detail2">
-													<input type="text" class="challengeDetail" name="chChContent" value="${ ch.chContent }" disabled>
+													<input type="text" class="challengeDetail" name="chChContent" value="${ chal.chContent }" disabled>
 													${ ch.chContent }
 												</div>
 											</div>
 										</div>
 										<button class="site-btn sb-solid mr-3 mb-3" style="color: white; float: right; width: 280px; font-size: 16px;" type="submit">
-											챌린지 결제하기
+											챌린지 수정하기
 											<img src="img/arrow-righ-2.png" alt="">
 										</button>	
 									</form>

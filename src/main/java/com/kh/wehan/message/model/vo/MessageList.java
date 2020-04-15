@@ -8,6 +8,7 @@ public class MessageList {
 	private int mId;			// 메시지 ID
 	private String mContent;	// 메시지 내용
 	private String mDate;		// 메시지 날짜
+	private int mRead;			// 안읽은 메시지 
 	private int rowNum;			// 로우넘 (안씀)
 	
 	
@@ -17,7 +18,8 @@ public class MessageList {
 	}
 
 
-	public MessageList(String fId, String fName, String fImg, int mId, String mContent, String mDate, int rowNum) {
+	public MessageList(String fId, String fName, String fImg, int mId, String mContent, String mDate, int mRead,
+			int rowNum) {
 		super();
 		this.fId = fId;
 		this.fName = fName;
@@ -25,6 +27,7 @@ public class MessageList {
 		this.mId = mId;
 		this.mContent = mContent;
 		this.mDate = mDate;
+		this.mRead = mRead;
 		this.rowNum = rowNum;
 	}
 
@@ -89,6 +92,16 @@ public class MessageList {
 	}
 
 
+	public int getmRead() {
+		return mRead;
+	}
+
+
+	public void setmRead(int mRead) {
+		this.mRead = mRead;
+	}
+
+
 	public int getRowNum() {
 		return rowNum;
 	}
@@ -102,10 +115,10 @@ public class MessageList {
 	@Override
 	public String toString() {
 		return "MessageList [fId=" + fId + ", fName=" + fName + ", fImg=" + fImg + ", mId=" + mId + ", mContent="
-				+ mContent + ", mDate=" + mDate + ", rowNum=" + rowNum + "]";
+				+ mContent + ", mDate=" + mDate + ", mRead=" + mRead + ", rowNum=" + rowNum + "]";
 	}
-	
-	
+
+
 	
 	
 	

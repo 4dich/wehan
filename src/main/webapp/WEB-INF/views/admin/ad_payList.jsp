@@ -95,7 +95,7 @@
 					
 				<div class="blog-post-item">
 						<button style="margin-top: 12px;" onclick="refundSelect();">환불하기</button>
-					<form action="plistSearch.do">
+					<form action="plistSearch.do" method="post">
 						<div id="searchArea">
 							<div id="searchSelect"> 
 								<select name="selecter" id="selecter">

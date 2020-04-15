@@ -391,7 +391,7 @@
 									<div class="circle-progress" data-cptitle="Passion" data-cpid="id-1" data-cpvalue="80" data-cpcolor="#242424" style="margin-left: 20px; margin-top: 20px"></div>
 									<div style="display:inline-block; font-size:50px; font-family: 'Playfair Display', serif; font-weight:700; margin-left: -50px; margin-top: 20px">%</div>
 									<div class="circle-progress-text">
-										<p>50, Total challenges</p>
+										<p>${ totalCount }, Total challenges</p>
 									</div>
 								</div>
 								<div class="circle-item-warp" style="display: inline-block; width:320px; height:165px; margin: 0 15px 0 15px; border:1px solid gray; border-radius:15px; padding: 25px 10px 0 40px;" >
@@ -564,7 +564,7 @@
 											
 											var eYear = $eArr[i].innerText.split('/')[0] + 20;
 											var eMonth = $eArr[i].innerText.split('/')[1];
-											var eDay = $eArr[i].innerText.split('/')[2];
+											var eDay = $eArr[i].innerText.split('/')[2] + 1;
 											var eDate = new Date(eYear,eMonth-1,eDay);
 											
 											var diff = eDate.getTime()-sDate.getTime();
@@ -659,6 +659,29 @@
 	<script src="resources/js/circle-progress.min.js"></script>
 	<script src="resources/js/jquery.magnific-popup.min.js"></script>
 	<script src="resources/js/main.js"></script>
-
+	
+	<div id="photoList">
+       <c:forEach var="ch" items="${ list }">
+        <div class="detailInList" style="cursor:pointer">
+           <input type="hidden" id="hiddenDetailInList" name="hiddenDetailInList" value="${ ch.chId }"/>
+            <div class="photoBox">                                        
+                <img src="resources/images/user/${ ch.chPicture }" alt=""/>
+                <div class="textBox">
+                    <h5>${ ch.chName }</h5>
+                    <br>
+                    <h5>${ ch.price }</h5>
+                    <h5 style="float: right;">${ ch.startDate }</h5>
+                </div>
+            </div>
+        </div>
+        </c:forEach>
+        <script>
+          $(".detailInList")[0].click(function() {
+             var chId = $("#hiddenDetailInList").val();
+             location.href="hiddenDetailInList.do?chid=" + chId;      
+          });
+        </script>
+    </div>  
+	
 	</body>
 </html>

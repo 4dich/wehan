@@ -118,5 +118,33 @@ public interface MemberService {
 	 */
 	int updatePwd(Member m);
 	
+	/**
+	 * 블랙리스트 등록
+	 * @param b
+	 * @return
+	 */
+	int blackInsert(BlackList b);
+	
+	/**
+	 * 블랙리스트 취소
+	 * @param bId
+	 * @return
+	 */
+	int blackCancle(int bId);
+	
+	
+	/**
+	 * 블랙리스트 개수
+	 * @return
+	 */
+	int blackListCount();
+	
+	
+	/**
+	 * 블랙리스트
+	 * @return
+	 */
+	ArrayList<BlackList> blackList();
+	
 
 }
