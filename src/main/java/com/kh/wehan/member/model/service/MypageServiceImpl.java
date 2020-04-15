@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.wehan.certify.model.vo.Certify;
 import com.kh.wehan.challenge.model.vo.Challenge;
 import com.kh.wehan.member.model.dao.MypageDao;
 import com.kh.wehan.member.model.vo.Mypage;
@@ -38,6 +39,11 @@ public class MypageServiceImpl implements MypageService {
 	@Override
 	public ArrayList<Challenge> selectListCh(String userId) {
 		return myDao.selectListCh(userId);
+	}
+
+	@Override
+	public int certifyCount(Certify ce) {
+		return myDao.certifyCount(ce);
 	}
 
 }

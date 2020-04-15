@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="ko">
 <head>
 	<title>위대한 한걸음</title>
 	<meta charset="UTF-8">
@@ -281,6 +281,34 @@
 	.main-down::-webkit-scrollbar-track{
 		background-color: grey;
 	}
+	
+	.chList > * {
+		margin: 0 auto;
+		padding-top: 25px;
+		display: inline-block; 
+		width: 20px; 
+		height: 100%; 
+		text-align: center;
+		overflow: hidden;
+		
+		/*드래그불가*/
+		-ms-user-select: none; 
+		-moz-user-select: -moz-none; 
+		-webkit-user-select: none; 
+		-khtml-user-select: none; 
+		user-select:none; 
+		
+		/* border : 1px solid red; */
+	}
+	
+	.statistics-text > * {
+		display: inline-block; 
+		width:300px; 
+		height:40px; 
+		margin: 0 15px 0 15px; 
+		padding: 5px;
+	}
+	
     </style>
 </head>
 <body>
@@ -341,6 +369,7 @@
 			</div>
 			<!-- Left Side section end -->
 			<!-- Page start -->
+			
 			<div class="page-section portfolio-page">
 				<div class="portfolio-section">
 					<!-- Statistics 영역 -->				
@@ -352,10 +381,10 @@
 							</div>
 						</div>
 						<div class="main-down-content" style="height: 75%; width: 100%; margin-top: 5px; text-align:center; border:1px solid gray;">
-							<div style="display: inline-block; width:100%; margin-top:15px;">
-								<div style="display: inline-block; width:300px; height:40px; margin: 0 15px 0 15px; padding: 5px">챌린지 달성률</div>
-								<div style="display: inline-block; width:300px; height:40px; margin: 0 15px 0 15px; padding: 5px">챌린지 달성수</div>
-								<div style="display: inline-block; width:300px; height:40px; margin: 0 15px 0 15px; padding: 5px">사이트 가입일</div>
+							<div class='statistics-text' style="display: inline-block; width:100%; margin-top:15px;">
+								<div>챌린지 달성률</div>
+								<div>챌린지 달성수</div>
+								<div>사이트 가입일</div>
 							</div>
 							<div style="display: inline-block; width:100%; margin-top:8px;">
 								<div class="circle-item-warp" style="display: inline-block; width:320px; height:165px; margin: 0 15px 0 15px; border:1px solid gray; border-radius:15px; padding: 10px" >
@@ -367,7 +396,7 @@
 								</div>
 								<div class="circle-item-warp" style="display: inline-block; width:320px; height:165px; margin: 0 15px 0 15px; border:1px solid gray; border-radius:15px; padding: 25px 10px 0 40px;" >
 									<div class="milestone">
-										<h2>40</h2>
+										<h2 id="cnt-complete">-1</h2>
 										<div class="milestone-info" style="text-align:left;">
 											<h5>Challenges<br>completed</h5>
 											<p id="exp" style="color:gray">Lv 4, Exp 10</p>
@@ -394,9 +423,6 @@
 										
 										$("#gapDate")[0].innerText = result;
 										
-										/* $(function(){
-											$("#t1").data("cpvalue",90);
-										}); */
 									</script>
 								</div>
 								<!-- <div style="display: inline-block; width:300px; height:165px; margin: 0 15px 0 15px; border:1px solid gray">3</div> -->
@@ -432,68 +458,42 @@
 								<!-- 전체 챌린지 -->
 								<div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="tab-1">
 									<div class="main-down" style="width: 100%; height: 350px; border: 1px solid gray; padding:3%; margin-top:19px; overflow-y:scroll;">
-										<c:forEach var="c" items="${ clist }">
-											<div style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
-												<div class="result" style="display: inline-block; width: 150px; height: 100%; background:white; padding: 25px; text-align: center;">1</div>
-												<div class="sArr" style="display: inline-block; width: 100px; padding: 25px 0 25px 10px;">${ c.startDate }</div>
-												<div style="display: inline-block; width: 20px; padding: 25px 0 25px 0;">~</div>
-												<div class="eArr" style="display: inline-block; width: 100px; padding: 25px 0 25px 10px;">${ c.endDate }</div>
-												<img src="resources/images/user/${c.chPicture }" style="width: 75px; height: auto">
-												<div style="display: inline-block; width: 400px; height: 100%; padding: 25px; text-align: center;">${ c.chName }</div>
+										<c:forEach var="c" items="${ chList }" varStatus="status">
+											<div class="chList" style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
+												<div class="result" style="width: 100px">상태미표시</div>
+												<div class="sArr" style="width: 80px">${ c.startDate }</div>
+												<div>~</div>
+												<div class="eArr" style="width: 80px;">${ c.endDate }</div>
+												<div style="width: 80px; padding: 5px 0 0 0; border-left:1px solid gray; border-right:1px solid gray;"  >
+													<img src="resources/images/user/${c.chPicture }" style="width: 70px; height: auto;" >
+												</div>
+												<div style="width: 250px; text-align:left;">${ c.chName }</div>
+												<div class="ceCount" style="border-left:1px solid gray;">${ceCount[status.index]}</div>
+												<div>/</div>
+												<div class="gapDate" style="border-right:1px solid gray;">-1</div>
+												
+												<div class="chId" style="display:none">${ c.chId }</div>
 											</div>
 										</c:forEach>
-										<!-- <script>
-										
-											$(function(){
-											
-												var $sArr = $('.sArr');
-												var $eArr = $('.eArr');
-												var today = new Date();
-												var $result = $('.result');
-												for(var i=0; i<$sArr.length; i++){
-													console.log('시작일: ' + $sArr[i].innerText);
-													console.log('종료일: ' + $eArr[i].innerText);
-													
-													var sYear = $sArr[i].innerText.split('/')[0] + 20;
-													var sMonth = $sArr[i].innerText.split('/')[1];
-													var sDay = $sArr[i].innerText.split('/')[2];
-													var sDate = new Date(sYear,sMonth-1,sDay);
-													
-													var eYear = $eArr[i].innerText.split('/')[0] + 20;
-													var eMonth = $eArr[i].innerText.split('/')[1];
-													var eDay = $eArr[i].innerText.split('/')[2];
-													var eDate = new Date(eYear,eMonth-1,eDay);
-													
-													console.log(sDate.getTime());
-													console.log(eDate.getTime());
-													console.log(today.getTime());
-													
-													if(sDate.getTime()>today.getTime()){
-														$result[i].innerText = '진행예정';
-														$result.parent().eq(i).children().eq(0).css('background-color','#F7D147');
-													}else if(sDate.getTime()<today.getTime() && eDate.getTime()>today.getTime()){
-														$result[i].innerText = '진행중';
-														$result.parent().eq(i).children().eq(0).css('background-color','#FE736C');
-													}else{
-														$result[i].innerText = '진행완료';
-														$result.parent().eq(i).children().eq(0).css('background-color','#3A7D7C');
-													}
-												}
-											});
-										</script> -->
 									</div>
 								</div>
 								<!-- 진행중 챌린지 -->
 								<div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="tab-2">
 									<div class="main-down" style="width: 100%; height: 350px; border: 1px solid gray; padding:3%; margin-top:19px; overflow-y:scroll;">
-										<c:forEach var="c" items="${ clist }">
-											<div style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
-												<div class="result2" style="display: inline-block; width: 150px; height: 100%; background:white; padding: 25px; text-align: center;">1</div>
-												<div class="sArr2" style="display: inline-block; width: 100px; padding: 25px 0 25px 10px;">${ c.startDate }</div>
-												<div style="display: inline-block; width: 20px; padding: 25px 0 25px 0;">~</div>
-												<div class="eArr2" style="display: inline-block; width: 100px; padding: 25px 0 25px 10px;">${ c.endDate }</div>
-												<img src="resources/images/user/${c.chPicture }" style="width: 75px; height: auto">
-												<div style="display: inline-block; width: 400px; height: 100%; padding: 25px; text-align: center;">${ c.chName }</div>
+										<c:forEach var="c" items="${ chList }">
+											<div class="chList" style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
+												<div class="result2" style="width: 100px">상태미표시</div>
+												<div class="sArr2" style="width: 80px">${ c.startDate }</div>
+												<div>~</div>
+												<div class="eArr2" style="width: 80px;">${ c.endDate }</div>
+												<div style="width: 80px; padding: 5px 0 0 0; border-left:1px solid gray; border-right:1px solid gray;"  >
+													<img src="resources/images/user/${c.chPicture }" style="width: 70px; height: auto;" >
+												</div>
+												<div style="width: 250px; text-align:left;">${ c.chName }</div>
+												<div class="ceCount" style="border-left:1px solid gray;">${ceCount[status.index]}</div>
+												<div>/</div>
+												<div class="gapDate" style="border-right:1px solid gray;">-1</div>
+												
 											</div>
 										</c:forEach>
 									</div>
@@ -501,14 +501,20 @@
 								<!-- 진행예정 챌린지 -->
 								<div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="tab-3">
 									<div class="main-down" style="width: 100%; height: 350px; border: 1px solid gray; padding:3%; margin-top:19px; overflow-y:scroll;">
-										<c:forEach var="c" items="${ clist }">
-											<div style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
-												<div class="result3" style="display: inline-block; width: 150px; height: 100%; background:white; padding: 25px; text-align: center;">1</div>
-												<div class="sArr" style="display: inline-block; width: 100px; padding: 25px 0 25px 10px;">${ c.startDate }</div>
-												<div style="display: inline-block; width: 20px; padding: 25px 0 25px 0;">~</div>
-												<div class="eArr" style="display: inline-block; width: 100px; padding: 25px 0 25px 10px;">${ c.endDate }</div>
-												<img src="resources/images/user/${c.chPicture }" style="width: 75px; height: auto">
-												<div style="display: inline-block; width: 400px; height: 100%; padding: 25px; text-align: center;">${ c.chName }</div>
+										<c:forEach var="c" items="${ chList }">
+											<div class="chList" style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
+												<div class="result3" style="width: 100px">상태미표시</div>
+												<div class="sArr3" style="width: 80px">${ c.startDate }</div>
+												<div>~</div>
+												<div class="eArr3" style="width: 80px;">${ c.endDate }</div>
+												<div style="width: 80px; padding: 5px 0 0 0; border-left:1px solid gray; border-right:1px solid gray;"  >
+													<img src="resources/images/user/${c.chPicture }" style="width: 70px; height: auto;" >
+												</div>
+												<div style="width: 250px; text-align:left;">${ c.chName }</div>
+												<div class="ceCount" style="border-left:1px solid gray;">${ceCount[status.index]}</div>
+												<div>/</div>
+												<div class="gapDate" style="border-right:1px solid gray;">-1</div>
+												
 											</div>
 										</c:forEach>
 									</div>
@@ -516,18 +522,27 @@
 								<!-- 진행완료 챌린지 -->
 								<div class="tab-pane fade" id="tab-4" role="tabpanel" aria-labelledby="tab-4">
 									<div class="main-down" style="width: 100%; height: 350px; border: 1px solid gray; padding:3%; margin-top:19px; overflow-y:scroll;">
-										<c:forEach var="c" items="${ clist }">
-											<div style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
-												<div class="result4" style="display: inline-block; width: 150px; height: 100%; background:white; padding: 25px; text-align: center;">1</div>
-												<div class="sArr" style="display: inline-block; width: 100px; padding: 25px 0 25px 10px;">${ c.startDate }</div>
-												<div style="display: inline-block; width: 20px; padding: 25px 0 25px 0;">~</div>
-												<div class="eArr" style="display: inline-block; width: 100px; padding: 25px 0 25px 10px;">${ c.endDate }</div>
-												<img src="resources/images/user/${c.chPicture }" style="width: 75px; height: auto">
-												<div style="display: inline-block; width: 400px; height: 100%; padding: 25px; text-align: center;">${ c.chName }</div>
+										<c:forEach var="c" items="${ chList }">
+											<div class="chList" style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
+												<div class="result4" style="width: 100px">상태미표시</div>
+												<div class="sArr4" style="width: 80px">${ c.startDate }</div>
+												<div>~</div>
+												<div class="eArr4" style="width: 80px;">${ c.endDate }</div>
+												<div style="width: 80px; padding: 5px 0 0 0; border-left:1px solid gray; border-right:1px solid gray;"  >
+													<img src="resources/images/user/${c.chPicture }" style="width: 70px; height: auto;" >
+												</div>
+												<div style="width: 250px; text-align:left;">${ c.chName }</div>
+												<div class="ceCount" style="border-left:1px solid gray;">${ceCount[status.index]}</div>
+												<div>/</div>
+												<div class="gapDate" style="border-right:1px solid gray;">-1</div>
+												
 											</div>
 										</c:forEach>
 									</div>
 								</div>
+								<br>
+								<div id="userId" style="display:none">${ loginUser.userId }</div>
+								
 								<script>
 									$(function(){
 									
@@ -539,10 +554,9 @@
 										var $result3 = $('.result3');
 										var $result4 = $('.result4');
 										
+										var countComplete = 0;
+										
 										for(var i=0; i<$sArr.length; i++){
-											console.log('시작일: ' + $sArr[i].innerText);
-											console.log('종료일: ' + $eArr[i].innerText);
-											
 											var sYear = $sArr[i].innerText.split('/')[0] + 20;
 											var sMonth = $sArr[i].innerText.split('/')[1];
 											var sDay = $sArr[i].innerText.split('/')[2];
@@ -553,9 +567,23 @@
 											var eDay = $eArr[i].innerText.split('/')[2];
 											var eDate = new Date(eYear,eMonth-1,eDay);
 											
-											console.log(sDate.getTime());
-											console.log(eDate.getTime());
-											console.log(today.getTime());
+											var diff = eDate.getTime()-sDate.getTime();
+											var gapDate = Math.ceil(diff / (1000 * 3600 * 24)) + 1;
+											var ceCount = $('.ceCount')[i].innerText;
+											console.log(ceCount);
+											console.log(gapDate);
+											
+											if(ceCount/gapDate>=0.8){
+												countComplete++;
+											}
+											console.log("countComplete:" + countComplete);
+											
+											$('#cnt-complete')[0].innerText = countComplete;
+											
+											var userId = $('#userId')[0].innerText;
+											var chId = $('.chId')[i].innerText;
+											var $ceCount = $('.ceCount');
+											var $gapDate = $('.gapDate');
 											
 											if(sDate.getTime()>today.getTime()){
 												$result[i].innerText = '진행예정';
@@ -567,6 +595,8 @@
 												$result3.parent().eq(i).children().eq(0).css('background-color','#F7D147');
 												
 												$result4.parent().eq(i).css('display','none');
+												
+												$gapDate[i].innerText = gapDate;
 											}else if(sDate.getTime()<today.getTime() && eDate.getTime()>today.getTime()){
 												$result[i].innerText = '진행중';
 												$result.parent().eq(i).children().eq(0).css('background-color','#FE736C');
@@ -577,6 +607,8 @@
 												$result3.parent().eq(i).css('display','none');
 												
 												$result4.parent().eq(i).css('display','none');
+												
+												$gapDate[i].innerText = gapDate;
 											}else{
 												$result[i].innerText = '진행완료';
 												$result.parent().eq(i).children().eq(0).css('background-color','#3A7D7C');
@@ -587,9 +619,25 @@
 												
 												$result4[i].innerText = '진행완료';
 												$result4.parent().eq(i).children().eq(0).css('background-color','#3A7D7C');
+												
+												$gapDate[i].innerText = gapDate;
 											}
 										}
 									});
+									
+									$(function(){
+										$(".chList div").mouseenter(function(){
+											$(this).parent().css({"background":"darkgray", "cursor":"pointer"/* , "border":"1px solid black" */});
+											/* $(this).parent().next().css({"border-top":"1px solid black"}); */
+										}).mouseout(function(){
+											$(this).parent().css({"background":"white", "border":"1px solid gray"});
+											$(this).parent().next().css({"border-top":"1px solid gray"});
+										}).click(function(){
+											//console.log($(this).parent().children().eq(0).text());
+											//var nno = $(this).parent().children().eq(0).text();
+										});
+									});
+
 								</script>
 							</div>
 						</div>
