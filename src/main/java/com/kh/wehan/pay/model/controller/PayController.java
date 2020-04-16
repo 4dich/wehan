@@ -9,12 +9,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
 import com.kh.wehan.challenge.model.vo.Challenge;
 import com.kh.wehan.common.Pagination;
 import com.kh.wehan.common.model.vo.PageInfo;
@@ -68,16 +70,14 @@ public class PayController {
 	}
 	
 	@RequestMapping("payinfo.do")
-	public ModelAndView payinfo(String chId,ModelAndView mv,HttpServletRequest request) {
+	public ModelAndView payinfo(Challenge ch,String chName,int price,String chId,ModelAndView mv,HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
 		Member m = (Member)session.getAttribute("loginUser");
-		System.out.println(chId);
-		System.out.println(m);
 		
+		mv.addObject("ch",ch);
 		mv.addObject("m",m);
 		mv.setViewName("user/payAgree");
-		
 		
 		return mv;
 	}
@@ -178,6 +178,21 @@ public class PayController {
 		}else{
 			return "error";
 		}
+	}
+	
+	@RequestMapping("refundYn.do")
+	public void refundYn(HttpServletResponse response ,@RequestParam(value="currentPage",required=false,defaultValue="1") int currentPage) throws JsonIOException, IOException {
+		int listCount = pService.getListCount();
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
+		
+		ArrayList<Pay> list = pService.refundYn(pi);
+		System.out.println(list);
+		
+		response.setContentType("applecation/json charset=utf-8"); 
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		gson.toJson(list,response.getWriter());
 	}
 	
 	

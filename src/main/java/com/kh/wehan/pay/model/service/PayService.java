@@ -32,5 +32,7 @@ public interface PayService {
 
 	ArrayList<Pay> pSearch(Pay p, PageInfo pi);
 
+	ArrayList<Pay> refundYn(PageInfo pi);
+
 	
 }

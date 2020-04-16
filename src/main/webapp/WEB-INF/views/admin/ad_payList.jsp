@@ -40,7 +40,7 @@
 		button{font-size:14px;}
 		#searchArea{width: 316px; margin-top: 0px; }
 		tr{height: 58px;}
-		.blog-posts{height: 800px;}
+		.blog-posts{height: 840px;}
 		a{text-decoration: none; color: black;}
 	</style>
 </head>
@@ -120,7 +120,7 @@
 								<th>유저ID</th>
 								<th>마감기한</th>
 								<th>결제정보</th>
-								<th>환급여부</th>
+								<th onclick="refundYn()" style="cursor:pointer;">환급여부</th>
 							</tr>
 						
 							<c:if test="${!empty psearch}">
@@ -228,6 +228,47 @@
 		</div>
 	<!-- Main section end -->
 	<script>
+	
+		function refundYn(){
+				
+			$.ajax({
+				url:"refundYn.do",
+				type:"POST",
+				success:function(result){
+					$('.noticeList').remove();
+					 console.log(result);
+					 /* <td><input type="checkbox" name="refund"></td>
+						<td>${ l.pId }</td>
+						<td>${ p.chName }</td>
+						<td>${ l.userId }</td>
+						<td>${ l.pDate }</td>
+						<td><button onclick="location.href='paydetail.do?pId=${ l.pId }'">정보</button></td>
+						<td>${ l.refund_yn }</td>	 */
+					for(var i = 0;  i <result.length; i++){
+						var $td1 = $('<td>');
+						var $input = $('<input type="checkbox" name="refund">');
+						var $td2 = $('<td>').text(result[i].pId);
+						var $td3 = $('<td>').text("주3회 팩하기");
+						var $td4 = $('<td>').text(result[i].userId);
+						var $td5 = $('<td>').text(result[i].pDate);
+						var $td6 = $('<td>');
+						var $button = $('<button>').text("정보"); 
+						var $td7 = $('<td>').text(result[i].refund_yn);
+						
+						$td1.append($input);
+						$td6.append($button);
+						
+						var $noticeList = $('<tr class="noticeList">');			
+						$noticeList.append($td1).append($td2).append($td3).append($td4).append($td5).append($td6).append($td7);
+						
+						$('.qnaTable').append($noticeList);
+						$('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247");
+					} 
+					 
+					 
+				}
+			});
+		};
 		$(function(){
 			$('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247"); //even 짝수
 		});

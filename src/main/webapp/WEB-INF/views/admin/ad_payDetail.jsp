@@ -157,7 +157,7 @@
 							<button type="button" id="refund" class="site-btn" style="width:20%; height: 80px; margin: 20px; margin-left: 300px;">
 								환불하기
 							</button>
-							<button class="site-btn" style="width:20%; height: 80px;" onclick="location.href='ad_payList.jsp'">
+							<button class="site-btn" style="width:20%; height: 80px;" onclick="location.href='paylist.do'">
 								취소하기
 							</button>
 					</div>

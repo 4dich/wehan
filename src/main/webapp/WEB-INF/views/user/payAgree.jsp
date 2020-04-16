@@ -431,8 +431,8 @@
 									<label><input type="radio" id="agreeall"></label>&nbsp;&nbsp;<label for="agreeall">모두 동의합니다.</label><br><br>
 									<button class="site-btn" style="width:20%; height: 80px;" onclick="paynow()">
 										결제하기
-									<button class="site-btn" style="width:20%; height: 80px;" onclick="location.href='serviceInfo.html'">
-										취소하기
+									<button class="site-btn" style="width:20%; height: 80px;" onclick="location.href='chalList.do'">
+										취소하기														
 									</button>
 								</div>
                     </div>
@@ -449,18 +449,16 @@
 	<div id='div1' style="display:none;">${loginUser.userName}</div>
 	<div id='div2' style="display:none;">${loginUser.phone}</div>
 	<div id='div3' style="display:none;">${loginUser.email}</div>
-	<div id='div4' style="display:none;"><%-- ${ch.price}더미 --%>1</div>
-	<div id='div5' style="display:none;"><%-- ${ch.chId} --%>1</div>
-	<div id='div6' style="display:none;"><%-- ${ch.chName} --%>힝</div>
-
-	
+	<div id='div4' style="display:none;">${ch.price}</div>
+	<div id='div5' style="display:none;">${ch.chId}</div>
+	<div id='div6' style="display:none;">${ch.chName}</div>
+	 
 	<script>
 		$( document ).ready(function(){
 			$('#agreeall').click(function(){
 				$('.ay').prop('checked',this.checked);
 			});
 		});
-		
 		
 		var userId = $('#div0')[0].innerText;
 		var price = $('#div4')[0].innerText;
@@ -470,7 +468,10 @@
 		var chId = $('#div5')[0].innerText;
 		var chName = $('#div6')[0].innerText;
 		
-		console.log(chName);
+		function paycancel(){
+			location.href="chalList.do"
+		}
+		
 		function paynow(){
 			var msg
 		if( $("input:radio[class='ay']:checked").length == 4){
@@ -488,13 +489,6 @@
 				console.log(rsp.success);
 				if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
 			        // jQuery로 HTTP 요청
-			        alert('결제성공');
-					alert(rsp.imp_uid);
-					alert(rsp.name);
-			        alert(rsp.pg_provider);
-			        alert(rsp.pay_method);
-			        alert(rsp.status);
-			      	
 			        $.ajax({
 			        	url:"payments.do",
 			        	type:"post",
@@ -505,7 +499,7 @@
 			        		pmethod:rsp.pay_method,
 			        		chName:chName
 			        	},success:function(result){
-			        		alert('성공');
+			        		alert('결제성공');
 			        		location.href=result;
 			        	},error : function(request,errorcode,error){
 							console.log("결제 실패입니다!");
@@ -521,8 +515,6 @@
 			alert('모두 동의하세요!');
 		}
 			  }
-		
-		
 	</script>
 	
 	<!--====== Javascripts & Jquery ======-->
