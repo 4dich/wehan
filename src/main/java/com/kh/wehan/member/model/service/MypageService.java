@@ -2,6 +2,7 @@ package com.kh.wehan.member.model.service;
 
 import java.util.ArrayList;
 
+import com.kh.wehan.certify.model.vo.Certify;
 import com.kh.wehan.challenge.model.vo.Challenge;
 import com.kh.wehan.member.model.vo.Mypage;
 
@@ -34,11 +35,18 @@ public interface MypageService {
 	public int updateProfile(Mypage mp);
 
 	/**
-	 * 1-1. 마이페이지 마이챌린지 조회
+	 * 1-1. 마이페이지 마이챌린지 리스트 조회
 	 * @param userId
 	 * @return
 	 */
 	public ArrayList<Challenge> selectListCh(String userId);
+
+	/**
+	 * 1-2. 마이페이지 마이챌린지, 챌린지당 인증글 개수 조회
+	 * @param chId
+	 * @return
+	 */
+	public int certifyCount(Certify ce);
 
 
 }

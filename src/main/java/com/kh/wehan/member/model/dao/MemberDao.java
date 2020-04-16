@@ -84,6 +84,18 @@ public class MemberDao {
 	public int updatePwd(Member m) {
 		return sqlSession.update("memberMapper.updatePwd",m);
 	}
+	public int blackInsert(BlackList b) {
+		return sqlSession.insert("memberMapper.blackInsert",b);
+	}
+	public int blackCancle(int bId) {
+		return sqlSession.delete("memberMapper.blackCancle",bId);
+	}
+	public int blackListCount() {
+		return sqlSession.selectOne("memberMapper.blackListCount");
+	}
+	public ArrayList<BlackList> blackList() {
+		return (ArrayList)sqlSession.selectList("memberMapper.blackList");
+	}
 	
 
 

@@ -113,6 +113,7 @@
 										<!-- 채팅창 친구/챌린지 정보 -->
 										<ul class="chat-list">
 											<li class="in">
+													<input type="hidden" value="${list[0].mrId}">
 												<div class="chat-img" style="width: 70px;">
 													<img alt="Avtar" src="resources/images/user/${fi.fImg}">
 												</div>
@@ -347,8 +348,9 @@
 		// 메시지 삭제
 		function msgDelete(){
 			var fId = '${fi.fId}';
+			var mrId = '${ list[0].mrId }';
 			
-			location.href="msgDelete.do?fId=" + fId;
+			location.href="msgDelete.do?fId=" + fId + "&mrId=" + mrId;
 		}
 		
 		

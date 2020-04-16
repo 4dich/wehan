@@ -7,6 +7,7 @@
   
   	<resultMap type="Message" id="messageResultSet">
   		<id property="mId" column="MID"/>
+  		<result property="mrId" column="MRID"/>
   		<result property="mImg" column="IMG"/>
   		<result property="mSender" column="SENDER"/>
   		<result property="mSenderId" column="SENDERID"/>  		
@@ -14,8 +15,10 @@
   		<result property="mReceiverId" column="RECEIVERID"/>  		
   		<result property="mContent" column="MCONTENT"/>
   		<result property="mDate" column="MDATE"/>
-  		<result property="mRead" column="MREAD"/>
-  		<result property="mStatus" column="MSTATUS"/>
+  		<result property="mSenderRead" column="MSENDER_READ"/>
+  		<result property="mReceiverRead" column="MRECEIVER_READ"/>
+  		<result property="mSenderDel" column="MSENDER_YN"/>
+  		<result property="mReceiverDel" column="MRECEIVER_YN"/>
   	</resultMap>
   	
   	<resultMap id="friendResultSet" type="FriendList">
@@ -36,21 +39,24 @@
 	</resultMap>
 	
 	<resultMap id="messageListResultSet" type="MessageList">
-		<id property="fId" column="FID"/>
-		<result property="fName" column="FNAME"/>
-		<result property="fImg" column="FIMG"/>
+		<id property="mrId" column="MRID"/>
 		<result property="mId" column="MID"/>
+		<result property="SenderId" column="SENDERID"/>
+		<result property="ReceiverId" column="RECEIVERID"/>
+		<result property="SenderName" column="SENDERNAME"/>
+		<result property="ReceiverName" column="RECEIVERNAME"/>
+		<result property="SenderImg" column="SENDERIMG"/>
+		<result property="ReceiverImg" column="RECEIVERIMG"/>
 		<result property="mContent" column="MCONTENT"/>
 		<result property="mDate" column="MDATE"/>
 		<result property="mRead" column="MREAD"/>
-		<result property="rowNum" column="MROWNUM"/>
+		<result property="rowNum" column="ROWNUM"/>
 	</resultMap>
   	
   	<!-- 메시지 리스트 가져오기 -->
   	<select id="msgList" resultMap="messageResultSet">
   		SELECT *
   		FROM MESSAGE
-  		WHERE MDEL_YN = 'N'
   		OREDER BY MID DESC
   	</select>
   	
@@ -90,8 +96,7 @@
   	<update id="msgUpdateRead">
   		UPDATE MESSAGE 
   		SET MREAD = 0 
-  		WHERE SENDER = #{userId} 
-  		AND RECEIVER = #{fId} OR SENDER = #{fId} 
+  		WHERE SENDER = #{fId} 
   		AND RECEIVER = #{userId}
   	</update>
   	
@@ -109,6 +114,7 @@
   	<!-- 메시지 상세보기 - 메시지 내용 불러오기 -->
   	<select id="getMsgContent" parameterType="java.util.Map" resultMap="messageResultSet">
   		SELECT M.MID AS MID,
+  			   M.MRID AS MRID,
 		       MM.PICTURE AS IMG,
 		       MM.NICKNAME AS SENDER,
 		       M.SENDER AS SENDERID,  
@@ -117,13 +123,15 @@
 		       M.MCONTENT AS MCONTENT,
 		       M.MDATE AS MDATE,
 		       M.MREAD AS MREAD,
-		       M.MDEL_YN AS MSTATUS
+		       M.MSENDER_YN AS MSENDER_YN,
+		       M.MRECEIVER_YN AS MRECEIVER_YN
 		FROM MESSAGE M
 		JOIN MEMBER MM ON (MM.USERID = M.SENDER)
 		WHERE SENDER = #{userId} AND RECEIVER = #{fId}
-		AND MDEL_YN = 'N'
+		AND MSENDER_YN = 'N'
 		UNION
 		SELECT M.MID AS MID,
+  			   M.MRID AS MRID,
 		       MM.PICTURE AS IMG,
 		       MM.NICKNAME AS SENDER,
 		       M.SENDER AS SENDERID,  
@@ -132,63 +140,59 @@
 		       M.MCONTENT AS MCONTENT,
 		       M.MDATE AS MDATE,
 		       M.MREAD AS MREAD,
-		       M.MDEL_YN AS MSTATUS
+		       M.MSENDER_YN AS MSENDER_YN,
+		       M.MRECEIVER_YN AS MRECEIVER_YN
 		FROM MESSAGE M
 		JOIN MEMBER MM ON (MM.USERID = M.SENDER)
 		WHERE SENDER = #{fId} AND RECEIVER = #{userId}
-		AND MDEL_YN = 'N'
+		AND MRECEIVER_YN = 'N'
 		ORDER BY MDATE ASC
   	</select>
-  	
-  	<!-- 메시지 저장하기 -->
-  	<insert id="saveMsgContent" parameterType="java.util.Map">
-  		INSERT INTO MESSAGE 
-  		VALUES(SEQ_MID.NEXTVAL, #{userId}, #{fId}, #{mContent}, (TO_CHAR(SYSDATE,'yyyy-mm-dd hh24:mi:ss')), DEFAULT, DEFAULT)
-  	</insert>
-  	
-  	<!-- 메시지 삭제하기 -->
-  	<update id="msgDelete">
-  		
-  	</update>
   	
   	<!-- 메시지 리스트 가져오기 -->
   	<select id="getMsgList" resultMap="messageListResultSet">
   		SELECT *
-		FROM 
-		    (SELECT 
-		       (SELECT USERID FROM MEMBER WHERE USERID = MSG.SENDER) AS FID,
-		       (SELECT NICKNAME FROM MEMBER WHERE USERID = MSG.SENDER) AS FNAME,  
-		       (SELECT PICTURE FROM MEMBER WHERE USERID = MSG.SENDER) AS FIMG,
-		       MSG.MID AS MID,
-		       MSG.MCONTENT AS MCONTENT,
-		       MSG.MDATE AS MDATE,
-		       MSG.MREAD AS MREAD,
-		       ROW_NUMBER() OVER(PARTITION BY (SELECT USERID FROM MEMBER WHERE USERID = MSG.SENDER) ORDER BY MDATE DESC) AS MROWNUM
-		    FROM MEMBER MEM
-		    JOIN MESSAGE MSG ON (MEM.USERID = MSG.RECEIVER)
-		    WHERE MSG.RECEIVER = #{userId} OR MSG.SENDER = #{userId})
+		FROM (SELECT MSG.MRID AS MRID,
+		            MSG.MID AS MID,
+		           (SELECT USERID FROM MEMBER WHERE USERID = MSG.SENDER ) AS SENDERID,
+		           (SELECT USERID FROM MEMBER WHERE USERID = MSG.RECEIVER ) AS RECEIVERID,
+		           (SELECT NICKNAME FROM MEMBER WHERE USERID = MSG.SENDER ) AS SENDERNAME,
+		           (SELECT NICKNAME FROM MEMBER WHERE USERID = MSG.RECEIVER ) AS RECEIVERNAME,
+		           (SELECT PICTURE FROM MEMBER WHERE USERID = MSG.SENDER) AS SENDERIMG,
+		           (SELECT PICTURE FROM MEMBER WHERE USERID = MSG.RECEIVER) AS RECEIVERIMG,           
+		           MSG.MCONTENT AS MCONTENT,
+		           MSG.MDATE AS MDATE,
+		           MSG.MREAD AS MREAD,      
+		           ROW_NUMBER() OVER(PARTITION BY (SELECT USERID FROM MEMBER WHERE USERID = MSG.SENDER) ORDER BY MDATE DESC) AS MROWNUM 
+		     FROM MESSAGE MSG
+		     JOIN MESSAGEROOM MSGR ON (MSG.MRID = MSGR.MRID)
+		     WHERE MSGR.USER1 = #{userId} AND MSGR.USER1_DEL = 1
+		     OR MSGR.USER2 = #{userId} AND MSGR.USER2_DEL = 1)
 		WHERE MROWNUM = 1
-		AND FID != #{userId}
+		ORDER BY MDATE DESC	
   	</select>
   	
   	<!-- 메시지 리스트 친구 서치 -->
   	<select id="msgSearchFriendMsg"  resultMap="messageListResultSet">
   		SELECT *
-		FROM 
-		    (SELECT 
-		       (SELECT USERID FROM MEMBER WHERE USERID = MSG.SENDER) AS FID,
-		       (SELECT NICKNAME FROM MEMBER WHERE USERID = MSG.SENDER) AS FNAME,  
-		       (SELECT PICTURE FROM MEMBER WHERE USERID = MSG.SENDER) AS FIMG,
-		       MSG.MID AS MID,
-		       MSG.MCONTENT AS MCONTENT,
-		       MSG.MDATE AS MDATE,
-		       ROW_NUMBER() OVER(PARTITION BY (SELECT USERID FROM MEMBER WHERE USERID = MSG.SENDER) ORDER BY MDATE DESC) AS MROWNUM
-		    FROM MEMBER MEM
-		    JOIN MESSAGE MSG ON (MEM.USERID = MSG.RECEIVER)
-		    WHERE MSG.RECEIVER = #{userId} OR MSG.SENDER = #{userId})
-		WHERE MROWNUM = 1
-		AND FID != #{userId}
-		AND FNAME LIKE '%' || #{searchWord} || '%'
+		FROM (SELECT MSG.MRID AS MRID,
+		            MSG.MID AS MID,
+		           (SELECT USERID FROM MEMBER WHERE USERID = MSG.SENDER ) AS SENDERID,
+		           (SELECT USERID FROM MEMBER WHERE USERID = MSG.RECEIVER ) AS RECEIVERID,
+		           (SELECT NICKNAME FROM MEMBER WHERE USERID = MSG.SENDER ) AS SENDERNAME,
+		           (SELECT NICKNAME FROM MEMBER WHERE USERID = MSG.RECEIVER ) AS RECEIVERNAME,
+		           (SELECT PICTURE FROM MEMBER WHERE USERID = MSG.SENDER) AS SENDERIMG,
+		           (SELECT PICTURE FROM MEMBER WHERE USERID = MSG.RECEIVER) AS RECEIVERIMG,           
+		           MSG.MCONTENT AS MCONTENT,
+		           MSG.MDATE AS MDATE,
+		           MSG.MREAD AS MREAD,      
+		           ROW_NUMBER() OVER(PARTITION BY (SELECT USERID FROM MEMBER WHERE USERID = MSG.SENDER) ORDER BY MDATE DESC) AS MROWNUM 
+		     FROM MESSAGE MSG
+		     JOIN MESSAGEROOM MSGR ON (MSG.MRID = MSGR.MRID)
+		     WHERE MSGR.USER1 = #{userId} AND MSGR.USER1_DEL = 1
+		     OR MSGR.USER2 = #{userId} AND MSGR.USER2_DEL = 1)
+		WHERE MROWNUM = 1  AND RECEIVERNAME LIKE '%' || #{searchWord} ||'%' OR SENDERNAME LIKE #{searchWord}
+		ORDER BY MDATE DESC
   	</select>
   	
   	<!-- 안읽은 메시지 갯수 가져오기 -->
@@ -197,7 +201,66 @@
   		FROM MESSAGE 
   		WHERE MREAD = 1
   		AND RECEIVER = #{userId}
-  		AND MDEL_YN = 'N'
   	</select>
+  	
+  	
+  	<!-- 메시지 저장하기 -->
+  	<!-- 1) 메시지룸 번호(MRID) 있는지 확인용 -->
+  	<select id="checkMessageRoom" parameterType="java.util.Map" resultType="_int">
+  		SELECT COUNT(*)
+		FROM MESSAGEROOM
+		WHERE USER1 = #{userId} AND USER2 = #{fId}
+		OR USER1 = #{fId} AND USER2 = #{userId}
+  	</select>
+  	
+  	<!-- 2) 메시지룸 번호(MRID) 만들기 -->
+  	<insert id="insertMrid" parameterType="java.util.Map">
+  		INSERT INTO MESSAGEROOM 
+  		VALUES(SEQ_MRID.NEXTVAL, #{userId}, #{fId}, DEFAULT, DEFAULT)
+  	</insert>
+  	
+  	<!-- 3) 메시지룸 번호(MRID) 가져오기 -->
+  	<select id="getMrid" parameterType="java.util.Map" resultType="_int">
+  		SELECT MRID
+		FROM MESSAGEROOM
+		WHERE USER1 = #{userId} AND USER2 = #{fId}
+		OR USER1 = #{fId} AND USER2 = #{userId}
+  	</select>
+  	
+  	<!-- 4) 메시지룸 Del 리셋  -->
+  	<update id="updateMrid" parameterType="java.util.Map">
+  		UPDATE MESSAGEROOM SET USER1_DEL = DEFAULT, USER2_DEL = DEFAULT 
+  		WHERE USER1 = #{userId} AND USER2 = #{fId}
+  		OR USER1 = #{fId} AND USER2 = #{userId}
+  	</update>
+  	
+  	<!-- 5) MESSAGE 테이블에 메시지 저장하기 -->
+  	<insert id="saveMsgContent" parameterType="java.util.Map">
+  		INSERT INTO MESSAGE 
+  		VALUES(SEQ_MID.NEXTVAL,#{mrId}, #{userId}, #{fId}, #{mContent}, (TO_CHAR(SYSDATE,'yyyy-mm-dd hh24:mi:ss')), DEFAULT, DEFAULT, DEFAULT)
+  	</insert>
+  	  	
+  	  	
+  	  	
+  	<!-- 메시지 삭제하기 -->
+  	<!-- 1) SenderDel_YN 삭제 -->
+  	<update id="deleteSenderMsg" parameterType="java.util.Map">
+  		UPDATE MESSAGE SET MSENDER_YN = 'Y' WHERE SENDER = #{userId} AND MRID = #{mrId}
+  	</update>
+  	
+  	<!-- 2) ReceiverDel_YN 삭제 -->
+  	<update id="deletReceiverMsg" parameterType="java.util.Map">
+  		UPDATE MESSAGE SET MRECEIVER_YN = 'Y' WHERE RECEIVER = #{userId} AND MRID = #{mrId}
+  	</update>
+  	
+  	<!-- 3) User1Del_YN 삭제 -->
+  	<update id="deletUser1Msg" parameterType="java.util.Map">
+  		UPDATE MESSAGEROOM SET USER1_DEL = 0 WHERE MRID = #{mrId} AND USER1 = #{userId}
+  	</update>
+  	
+  	<!-- 4) User2Del_YN 삭제 -->
+  	<update id="deletUser2Msg" parameterType="java.util.Map">
+  		UPDATE MESSAGEROOM SET USER2_DEL = 0 WHERE MRID = #{mrId} AND USER1 = #{userId}
+  	</update>
   	
   </mapper>

@@ -4,6 +4,7 @@ package com.kh.wehan.message.model.vo;
 public class Message {
 	
 	private int mId;			// 메시지 ID
+	private String mrId;		// 메시지룸 ID
 	private String mImg;		// Sender 이미지
 	private String mSender;		// 보내는 유저 닉네임
 	private String mSenderId;	// 보내는 유저 id
@@ -12,7 +13,8 @@ public class Message {
 	private String mContent;	// 내용
 	private String mDate;		// 날짜
 	private int mRead;			// 읽음 여부
-	private String mStatus;		// 삭제여부
+	private String mSenderDel;		// 보낸사람 삭제여부
+	private String mReceiverDel;	// 받는사람 삭제여부
 	
 	
 	public Message() {
@@ -21,10 +23,11 @@ public class Message {
 	}
 
 
-	public Message(int mId, String mImg, String mSender, String mSenderId, String mReceiver, String mReceiverId,
-			String mContent, String mDate, int mRead, String mStatus) {
+	public Message(int mId, String mrId, String mImg, String mSender, String mSenderId, String mReceiver,
+			String mReceiverId, String mContent, String mDate, int mRead, String mSenderDel, String mReceiverDel) {
 		super();
 		this.mId = mId;
+		this.mrId = mrId;
 		this.mImg = mImg;
 		this.mSender = mSender;
 		this.mSenderId = mSenderId;
@@ -33,7 +36,8 @@ public class Message {
 		this.mContent = mContent;
 		this.mDate = mDate;
 		this.mRead = mRead;
-		this.mStatus = mStatus;
+		this.mSenderDel = mSenderDel;
+		this.mReceiverDel = mReceiverDel;
 	}
 
 
@@ -44,6 +48,16 @@ public class Message {
 
 	public void setmId(int mId) {
 		this.mId = mId;
+	}
+
+
+	public String getMrId() {
+		return mrId;
+	}
+
+
+	public void setMrId(String mrId) {
+		this.mrId = mrId;
 	}
 
 
@@ -127,26 +141,35 @@ public class Message {
 	}
 
 
-	public String getmStatus() {
-		return mStatus;
+	public String getmSenderDel() {
+		return mSenderDel;
 	}
 
 
-	public void setmStatus(String mStatus) {
-		this.mStatus = mStatus;
+	public void setmSenderDel(String mSenderDel) {
+		this.mSenderDel = mSenderDel;
+	}
+
+
+	public String getmReceiverDel() {
+		return mReceiverDel;
+	}
+
+
+	public void setmReceiverDel(String mReceiverDel) {
+		this.mReceiverDel = mReceiverDel;
 	}
 
 
 	@Override
 	public String toString() {
-		return "Message [mId=" + mId + ", mImg=" + mImg + ", mSender=" + mSender + ", mSenderId=" + mSenderId
-				+ ", mReceiver=" + mReceiver + ", mReceiverId=" + mReceiverId + ", mContent=" + mContent + ", mDate="
-				+ mDate + ", mRead=" + mRead + ", mStatus=" + mStatus + "]";
+		return "Message [mId=" + mId + ", mrId=" + mrId + ", mImg=" + mImg + ", mSender=" + mSender + ", mSenderId="
+				+ mSenderId + ", mReceiver=" + mReceiver + ", mReceiverId=" + mReceiverId + ", mContent=" + mContent
+				+ ", mDate=" + mDate + ", mRead=" + mRead + ", mSenderDel=" + mSenderDel + ", mReceiverDel="
+				+ mReceiverDel + "]";
 	}
 
 
-	
-	
 	
 	
 }

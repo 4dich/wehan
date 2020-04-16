@@ -2,7 +2,8 @@ package com.kh.wehan.notice.controller;
 
 import java.util.ArrayList;
 
-import javax.xml.ws.Response;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.wehan.common.Pagination;
 import com.kh.wehan.common.model.vo.PageInfo;
+import com.kh.wehan.member.model.vo.Admin;
 import com.kh.wehan.notice.model.service.NoticeService;
 import com.kh.wehan.notice.model.vo.Notice;
 import com.kh.wehan.notice.model.vo.SearchCondition;
@@ -200,7 +202,11 @@ public class NoticeController {
 	 * @return
 	 */
 	@RequestMapping("ad_noticeInsert.do")
-	public String adNoticeInsert(Notice n) {
+	public String adNoticeInsert(Notice n, HttpServletRequest request) {
+		
+//		HttpSession session = request.getSession();
+//		Admin admin = (Admin)session.getAttribute("loginAdmin");
+//		String adminId = admin.getUserId();
 		
 		n.setnWriter("admin");
 		
