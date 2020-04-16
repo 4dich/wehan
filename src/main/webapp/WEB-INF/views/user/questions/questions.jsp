@@ -58,7 +58,7 @@
 				<a href=""><i class="fa fa-twitter"></i></a>
 				<a href=""><i class="fa fa-dribbble"></i></a>
                 <a href=""><i class="fa fa-behance"></i></a> -->
-                <a href="notice.html">공지사항</a>
+                <a href="noticeList.do">공지사항</a>
                 <a href="qnaList.do" style="color: red;">문의사항</a>
 			</div>
 		
