@@ -281,8 +281,42 @@ public class ChallengeController {
 		
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		gson.toJson(list, response.getWriter());
-	
 	}
-	 
 	
+	/**
+	 * 3_4. 챌린지 리스트 내 검색 기능
+	 * 3_5. 챌린지 디테일 내 검색 기능
+	 * @param mv
+	 * @param search
+	 * @return
+	 */
+	@RequestMapping("searchChallenge.do")
+	public ModelAndView searchChallenge(ModelAndView mv, String search) {
+		
+		Challenge chal = new Challenge();
+
+		System.out.println(chal);
+		
+		int currentPage = 1;
+		
+		int listCount = cService.getSearchListCount(chal);
+		
+		System.out.println(listCount);
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
+		
+		ArrayList<Challenge> list = cService.selectSearchList(chal, pi);
+		
+		for(int i=0; i<list.size(); i++) {
+			String[] str = list.get(i).getChPeople().split(",");
+			list.get(i).setChPeople(String.valueOf(str.length));
+			
+			list.get(i).setTotalPrice(str.length * list.get(i).getPrice());
+		}
+		System.out.println(list);
+		
+		mv.addObject("list", list).addObject("pi", pi).setViewName("user/challenge/ch_list");
+		
+		return mv;
+	}
 }

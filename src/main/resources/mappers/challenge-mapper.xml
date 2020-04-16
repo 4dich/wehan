@@ -19,6 +19,8 @@
 		<result property="minPerson" column="MINPERSON"/>
 		<result property="maxPerson" column="MAXPERSON"/>
 		<result property="chPeople" column="CHPEOPLE"/>
+		<result property="chPeopleCount" column="CHPEOPLECOUNT"/>
+		
 	</resultMap>
 	
 	<select id="getListCount" resultType="_int">
@@ -77,7 +79,7 @@
 	<insert id="insertChallenge">
 		INSERT INTO CHALLENGE
 		VALUES(SEQ_chId.NEXTVAL,#{userId},#{chName},#{chPicture},#{chContent},#{startDate},#{endDate},
-				#{category},#{ceMethod},#{price},0,0,#{maxPerson},#{chPeople})
+				#{category},#{ceMethod},#{price},0,0,#{maxPerson},#{chPeople},0)
 	</insert>
 	
 	<select id="selectChallengeList" resultMap="challengeResultSet">

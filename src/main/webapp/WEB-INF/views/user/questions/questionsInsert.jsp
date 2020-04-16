@@ -122,7 +122,7 @@
 										<tr class="replybuttonArea">
 											<td class="buttonArea"  colspan="2">												
 												<input type="submit" class="site-btn" style="background-color: white; padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; width:120px;border: 2px solid #e1e1e1;" value="등록하기">	
-												<button class="site-btn" type="button" onclick="location.href='user_questionsList.do'" style="background-color: white; padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px;">
+												<button class="site-btn" type="button" onclick="location.href='qnaListView.do'" style="background-color: white; padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px;">
 													목록가기
 												</button>
 											</td>

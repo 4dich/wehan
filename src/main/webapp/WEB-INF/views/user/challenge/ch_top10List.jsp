@@ -11,24 +11,230 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
 	<!-- Favicon -->
-	<link href="../resources/img/favicon.ico" rel="shortcut icon"/>
+	<link href="resources/img/favicon.ico" rel="shortcut icon"/>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,900&display=swap" rel="stylesheet">
 
 	<!-- Stylesheets -->
-	<link rel="stylesheet" href="../resources/css/bootstrap.min.css"/>
-	<link rel="stylesheet" href="../resources/css/font-awesome.min.css"/>
-	<link rel="stylesheet" href="../resources/css/magnific-popup.css"/>
-	<link rel="stylesheet" href="../resources/css/owl.carousel.min.css"/>
+	<link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="resources/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="resources/css/magnific-popup.css"/>
+	<link rel="stylesheet" href="resources/css/owl.carousel.min.css"/>
 
 	<!-- Main Stylesheets -->
-	<link rel="stylesheet" href="../resources/css/jh-css.css"/>
-	<!-- <link rel="stylesheet" href="../resources/css/left_section.css"/> -->
+	<link rel="stylesheet" href="resources/css/jh-css.css"/>
+	<!-- <link rel="stylesheet" h="../resources/css/left_section.css"/> -->
 	<!-- <link rel="stylesheet" href="../resources/css/main.css"/> -->
-	<link rel="stylesheet" href="../resources/css/style.css"/>
+	<link rel="stylesheet" href="resources/css/style.css"/>
 
+	<!-- 스타일 -->
+	<style>
+        .textBox {
+            width: 60%;
+            height: 50%;
+            background-color: white;
+            opacity: 80%;
+            position: absolute;
+            bottom: 0;
+            padding: 4% 11px 2% 15px;
+        }
+
+        .topAllImages {
+            width: 99.5%;
+            height: 240px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .topImgWrap {
+            position: absolute;
+            top: 0;
+        }
+
+        .topAllCovers {
+            margin-top: 1px;
+            width: 99.9%;
+            height: 235px;
+            background-color: white;
+            opacity: 50%;
+            position: absolute;
+            top: 0;
+        }
+
+        .top1Package {
+            width: 347.3px;
+            height: 300px;
+            border: 2.5px solid black;
+            margin-left: 50px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            display: inline-flex;
+        }
+
+        .top1Line {
+            width: 343px;
+            height: 60px;
+            border: 2px solid black;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            font-size: 38px;
+            color: black;
+            padding-left: 20px;
+        }
+
+        .top1ChalName {
+            margin-top: 10px;
+            width: 345px;
+            height: 60px;
+            font-size: 23px;
+            color: black;
+            text-align: center;
+            z-index: 1000px;
+        }
+
+        .top1UserId {
+            margin-top: 10px;
+            width: 345px;
+            height: 50px;
+            font-size: 20px;
+            color: black;
+            text-align: center;
+        }
+
+        .top1Deadline {
+            margin-top: 20px;
+            width: 345px;
+            height: 40px;
+            font-size: 18px;
+            padding-right: 15px;
+            color: black;
+            text-align: right;
+        }
+
+        .top1People {
+            width: 345px;
+            height: 40px;
+            font-size: 18px;
+            padding-right: 15px;
+            color: black;
+            text-align: right;
+        }
+
+        .top3Package {
+            width: 347.3px;
+            height: 300px;
+            border: 2px solid gray;
+            margin-left: 50px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            display: inline-flex;
+        }
+
+        .top3Line {
+            width: 345px;
+            height: 60px;
+            border: 1px solid gray;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            font-size: 40px;
+            color: gray;
+            padding-left: 20px;
+        }
+
+        .top3ChalName {
+            margin-top: 10px;
+            width: 345px;
+            height: 60px;
+            font-size: 23px;
+            color: gray;
+            text-align: center;
+        }
+
+        .top3UserId {
+            margin-top: 10px;
+            width: 345px;
+            height: 50px;
+            font-size: 20px;
+            color: gray;
+            text-align: center;
+        }
+
+        .top3Deadline {
+            margin-top: 20px;
+            width: 345px;
+            height: 40px;
+            font-size: 18px;
+            padding-right: 15px;
+            color: gray;
+            text-align: right;
+        }
+
+        .top3People {
+            width: 345px;
+            height: 40px;
+            font-size: 18px;
+            padding-right: 15px;
+            color: gray;
+            text-align: right;
+        }
+
+        .top10Line {
+            width: 1150px;
+            height: 60px;
+            border: 1px solid lightgray;
+            margin-left: 50px;
+            margin-bottom: 10px;
+        }
+
+        .top10Wrap {
+            display: inline-flex;
+        }
+
+        .top10Number {
+            width: 90px;
+            height: 60px;
+            padding: 16px 0 16px 18px;
+            text-align: center;
+        }
+
+        .top10ChalName {
+            width: 380px;
+            height: 60px;
+            padding: 16px 18px 16px 0;
+            text-align: center;
+        }
+
+        .top10Divide {
+            font-size: 40px;
+            font-weight: lighter;
+            color: #d3d3d3;
+        }
+
+        .top10UserId {
+            width: 150px;
+            height: 60px;
+            padding: 16px 0 16px 0;
+            text-align: center;
+        }
+
+        .top10Deadline {
+            width: 150px;
+            height: 60px;
+            padding: 16px 0 16px 0;
+            text-align: center;
+        }
+
+        .top10People {
+            width: 180px;
+            height: 60px;
+            padding: 16px 0 16px 18px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 	 <!-- Page Preloder -->
@@ -44,7 +250,12 @@
 		<header class="header-section">
 			<div class="nav-switch">
 				<i class="fa fa-bars"></i>
-			</div>		
+			</div>
+			<div class="header-social">
+                <a href="chalList.do" >전체 챌린지</a>
+                <a href="ch-listPremium.html">프리미엄 챌린지</a>
+                <a href="chalTop10List.do" style="color: red;">TOP 10 챌린지</a>
+            </div>	
 		</header>
 		<div class="site-content-warp">
 			<!-- Left Side section -->
@@ -55,6 +266,16 @@
 						<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
+					<!-- 챌린지 검색 -->
+					<form class="searchChallenge">
+	                    <div class="challenges-search">
+							<input type="textarea" style="padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 3px solid black;" placeholder="챌린지 검색">
+	                        <a href="" class="site-btn2">
+	                            <img src="resources/images/main/search.png" style="padding-left: 10px;" alt="">
+	                        </a>
+	                    </div>
+                    </form>
+                    <br><br>
 				<!-- 서브메뉴 -->
                 <div class="about-info" style="margin-left: 50px;">
 					<p style="font-size: 15px;">
@@ -64,11 +285,10 @@
 						<b>함께하는 도전</b>, 여기서 가능합니다.  
 					</p>
 				</div>
-
-				<button class="site-btn sb-dark" style="margin-left: 35px; width: 280px; font-size: 15px;" type="button" onclick="location.href='ch-list.html'">
-					리스트 페이지로 가기
-					<img src="img/arrow-righ-3.png" alt="">
-				</button>
+				<button class="site-btn sb-dark" style="margin-left: 40px; width: 280px; font-size: 15px;" type="button" onclick="location.href='ch_registerView.do'">
+                     	챌린지 등록하기
+                     <img src="resources/img/arrow-righ-3.png" alt="">
+                 </button>
 				<br><br>
 				<!-- <ul class="contact-info">
 					<li>서울특별시 강남구 테해란로14길 6</li>
@@ -86,51 +306,151 @@
 						<!-- <div class="col-xl-6">
 							<div class="map"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14376.077865872314!2d-73.879277264103!3d40.757667781624285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1546528920522" style="border:0" allowfullscreen></iframe></div>
 						</div> -->
-						<div class="sampleArea" style="display: inline-flex;">
-							<div class="col-xl-6">
-								<div class="contact-text-warp">
-									<form class="contact-form" style="margin-top: 90px;">
-										<div class="row">
-											<div class="col-lg-12">
-												<input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="챌린지명">
-											</div>
-											<div class="col-lg-6">
-												<input type="select" style="border-top: none; border-left: none; border-right: none;" placeholder="기간 설정(시작)">
-											</div>
-											<div class="col-lg-6">
-												<input type="select" style="border-top: none; border-left: none; border-right: none;" placeholder="기간 설정(종료)">
-											</div>
-											<div class="col-lg-12">
-												<input type="select" style="border-top: none; border-left: none; border-right: none;" placeholder="카테고리">
-											</div>
-											<div class="col-lg-12">
-												<input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="인증 방법">
-											</div>
-											<div class="col-lg-6">
-												<input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="참여 인원">
-											</div>
-											<div class="col-lg-6">
-												<input type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="배팅 금액">
-											</div>
-											<br><br><br><br>
-											<div class="col-lg-12">
-												<textarea placeholder="상세 정보"></textarea>
-											</div>
-										</div>
-									</form>
-								</div>
-							</div>
-							<div class="col-xl-6">
-								<form class="contact-form" style="margin-top: 90px;">
-									<div style="margin-top: 50px; margin-right: 20px;">
-										<div class="ch-register-pic"></div>
-										<button class="site-btn" style="margin-top: 30px; margin-left: 100px; width: 280px; font-size: 15px;"> 이미지 등록하기 (280x300)</button>				
-										<br><br><br><br><br><br><br><br>
-		
-										<button class="site-btn sb-solid mr-3 mb-3" style="color: white; margin-top: 30px; margin-left: 100px; width: 280px; font-size: 16px;">챌린지 등록하기<img src="img/arrow-righ-2.png" alt=""></button>
-									</div>
-								</form>
-							</div>
+						<div class="sampleArea">
+
+                            <div class="top1Package">
+                                <div class="top1Wrap">
+                                    <div class="top1Line">#TOP 1</div>
+                                        <div class="topAllImages">
+                                            <img src="../resources/img/about-bg.jpg" style="width: 100%; height: 98%;" alt="">
+                                                <div>
+                                                    <div class="topAllCovers"></div>
+                                                </div>
+                                                <div class="topImgWrap">
+                                                    <div class="top1ChalName">파이널 프로젝트 잘 끝내기</div>
+                                                    <div class="top1UserId">janghansolkill</div>
+                                                    <div class="top1Deadline">2020-03-31 까지</div>
+                                                    <div class="top1People">1,450 명</div>
+                                                </div>
+                                            </div> 
+                                        </div>    
+                                </div>
+                            <div class="top3Package">
+                                <div class="top3Wrap">
+                                    <div class="top3Line">#TOP 2</div>
+                                    <div class="topAllImages">
+                                        <img src="../resources/img/about-bg.jpg" style="width: 100%; height: 98.4%;" alt="">
+                                            <div>
+                                                <div class="topAllCovers"></div>
+                                            </div>
+                                            <div class="topImgWrap">
+                                                <div class="top3ChalName">파이널 프로젝트 잘 끝내기</div>
+                                                <div class="top3UserId">janghansolkill</div>
+                                                <div class="top3Deadline">2020-03-31 까지</div>
+                                                <div class="top3People">1,450 명</div>
+                                            </div>
+                                        </div> 
+                                </div>    
+                            </div>
+                            <div class="top3Package">
+                                <div class="top3Wrap">
+                                    <div class="top3Line">#TOP 3</div>
+                                    <div class="topAllImages">
+                                        <img src="../resources/img/about-bg.jpg" style="width: 100%; height: 98.4%;" alt="">
+                                            <div>
+                                                <div class="topAllCovers"></div>
+                                            </div>
+                                            <div class="topImgWrap">
+                                                <div class="top3ChalName">파이널 프로젝트 잘 끝내기</div>
+                                                <div class="top3UserId">janghansolkill</div>
+                                                <div class="top3Deadline">2020-03-31 까지</div>
+                                                <div class="top3People">1,450 명</div>
+                                            </div>
+                                        </div> 
+                                </div>    
+                            </div>
+
+                            <div class="top10Line">
+                                <div class="top10Wrap">
+                                    <div class="top10Number">Top 4</div>
+                                    <span class="top10Divide">ㅣ</span>
+                                    <div class="top10ChalName">하루에 물을 50번 마시기</div>
+                                    <span class="top10Divide">ㅣ</span>
+                                    <div class="top10UserId">janghansolkill</div>
+                                    <span class="top10Divide">ㅣ</span>
+                                    <div class="top10Deadline">2020-03-31 까지</div>
+                                    <span class="top10Divide">ㅣ</span>
+                                    <div class="top10People">참여 인원 : 1,450 명</div>
+                                </div>
+                            </div>
+                            <div class="top10Line">
+                                <div class="top10Wrap">
+                                    <div class="top10Number">Top 5</div>
+                                    <span class="top10Divide">ㅣ</span>
+                                    <div class="top10ChalName">하루에 물을 50번 마시기</div>
+                                    <span class="top10Divide">ㅣ</span>
+                                    <div class="top10UserId">janghansolkill</div>
+                                    <span class="top10Divide">ㅣ</span>
+                                    <div class="top10Deadline">2020-03-31 까지</div>
+                                    <span class="top10Divide">ㅣ</span>
+                                    <div class="top10People">참여 인원 : 1,450 명</div>
+                                </div>
+                            </div>
+                            <div class="top10Line">
+                                <div class="top10Wrap">
+                                    <div class="top10Number">Top 6</div>
+                                    <span class="top10Divide">ㅣ</span>
+                                    <div class="top10ChalName">하루에 물을 50번 마시기</div>
+                                    <span class="top10Divide">ㅣ</span>
+                                    <div class="top10UserId">janghansolkill</div>
+                                    <span class="top10Divide">ㅣ</span>
+                                    <div class="top10Deadline">2020-03-31 까지</div>
+                                    <span class="top10Divide">ㅣ</span>
+                                    <div class="top10People">참여 인원 : 1,450 명</div>
+                                </div>
+                            </div>
+                            <div class="top10Line">
+                                <div class="top10Wrap">
+                                    <div class="top10Number">Top 7</div>
+                                    <span class="top10Divide">ㅣ</span>
+                                    <div class="top10ChalName">하루에 물을 50번 마시기</div>
+                                    <span class="top10Divide">ㅣ</span>
+                                    <div class="top10UserId">janghansolkill</div>
+                                    <span class="top10Divide">ㅣ</span>
+                                    <div class="top10Deadline">2020-03-31 까지</div>
+                                    <span class="top10Divide">ㅣ</span>
+                                    <div class="top10People">참여 인원 : 1,450 명</div>
+                                </div>
+                            </div>
+                            <div class="top10Line">
+                                <div class="top10Wrap">
+                                    <div class="top10Number">Top 8</div>
+                                    <span class="top10Divide">ㅣ</span>
+                                    <div class="top10ChalName">하루에 물을 50번 마시기</div>
+                                    <span class="top10Divide">ㅣ</span>
+                                    <div class="top10UserId">janghansolkill</div>
+                                    <span class="top10Divide">ㅣ</span>
+                                    <div class="top10Deadline">2020-03-31 까지</div>
+                                    <span class="top10Divide">ㅣ</span>
+                                    <div class="top10People">참여 인원 : 1,450 명</div>
+                                </div>
+                            </div>
+                            <div class="top10Line">
+                                <div class="top10Wrap">
+                                    <div class="top10Number">Top 9</div>
+                                    <span class="top10Divide">ㅣ</span>
+                                    <div class="top10ChalName">하루에 물을 50번 마시기</div>
+                                    <span class="top10Divide">ㅣ</span>
+                                    <div class="top10UserId">janghansolkill</div>
+                                    <span class="top10Divide">ㅣ</span>
+                                    <div class="top10Deadline">2020-03-31 까지</div>
+                                    <span class="top10Divide">ㅣ</span>
+                                    <div class="top10People">참여 인원 : 1,450 명</div>
+                                </div>
+                            </div>
+                            <div class="top10Line">
+                                <div class="top10Wrap">
+                                    <div class="top10Number">Top 10</div>
+                                    <span class="top10Divide">ㅣ</span>
+                                    <div class="top10ChalName">하루에 물을 50번 마시기</div>
+                                    <span class="top10Divide">ㅣ</span>
+                                    <div class="top10UserId">janghansolkill</div>
+                                    <span class="top10Divide">ㅣ</span>
+                                    <div class="top10Deadline">2020-03-31 까지</div>
+                                    <span class="top10Divide">ㅣ</span>
+                                    <div class="top10People">참여 인원 : 1,450 명</div>
+                                </div>
+                            </div>
 						</div>	
                     </div>
 				</div>
@@ -143,13 +463,13 @@
 	<!-- Main section end -->
 	
 	<!--====== Javascripts & Jquery ======-->
-	<script src="../resources/js/jquery-3.2.1.min.js"></script>
-	<script src="../resources/js/bootstrap.min.js"></script>
-	<script src="../resources/js/owl.carousel.min.js"></script>
-	<script src="../resources/js/jquery.nicescroll.min.js"></script>
-	<script src="../resources/js/circle-progress.min.js"></script>
-	<script src="../resources/js/jquery.magnific-popup.min.js"></script>
-	<script src="../resources/js/main.js"></script>
+	<script src="resources/js/jquery-3.2.1.min.js"></script>
+	<script src="resources/js/bootstrap.min.js"></script>
+	<script src="resources/js/owl.carousel.min.js"></script>
+	<script src="resources/js/jquery.nicescroll.min.js"></script>
+	<script src="resources/js/circle-progress.min.js"></script>
+	<script src="resources/js/jquery.magnific-popup.min.js"></script>
+	<script src="resources/js/main.js"></script>
 
 	</body>
 </html>
