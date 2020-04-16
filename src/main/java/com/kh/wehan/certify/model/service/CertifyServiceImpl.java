@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.wehan.certify.model.dao.CertifyDao;
 import com.kh.wehan.certify.model.vo.Certify;
+import com.kh.wehan.certify.model.vo.CertifyReply;
 import com.kh.wehan.common.model.vo.PageInfo;
 import com.kh.wehan.member.model.vo.Member;
 
@@ -58,4 +59,6 @@ public class CertifyServiceImpl implements CertifyService{
 		
 		return ceDao.selectCertify(ceId);
 	}
+
+
 }

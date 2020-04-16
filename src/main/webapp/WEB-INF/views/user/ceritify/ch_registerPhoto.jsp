@@ -107,18 +107,39 @@
 						<div class="col-md-10">      
 							<div class="portlet light profile-sidebar-portlet bordered">
 								<div class="profile-userpic" style="text-align: center;">
-									<img src="resources/images/image.png" class="img-responsive" alt=""> 
+									<img src="resources/images/image.png" id="certifyPhotoArea" alt=""> 
 								</div>
 								<div class="profile-userbuttons"><br>
 									<span>
-										<button class="site-btn sb-dark" style="padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; ">
+										<button class="site-btn sb-dark" id="btnPic" style="padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; ">
 											이미지 올리기
 										</button>
+										<input type="file" id="certifyPicFile" name="registerPic" hidden/>
 										<button class="site-btn sb-solid mr-3 mb-3" style="padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; ">
 											이미지 삭제하기
 										</button>
 									</span>
 									<br><br>
+									<script>
+      								$('#btnPic').click(function(){
+	      								$('#certifyPicFile').click();
+      								});	
+      							  // ====== 첨부 이미지 스크립트  =============================================	
+      								function readURL(input) {
+      										if(input.files && input.files[0]) {
+      											var reader = new FileReader();
+      											reader.onload = function(e) {
+      												$('#certifyPhotoArea').attr('src',e.target.result);
+      											}
+      											reader.readAsDataURL(input.files[0]);
+      										}   
+      								   }
+      								   
+      								   $("#certifyPicFile").change(function(){
+      									   readURL(this);
+      								   });
+      							  // ====== 첨부 이미지 스크립트 끝 ============================================	
+      							</script>
 								</div>	
 							</div>
 						</div>
