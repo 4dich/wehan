@@ -2,6 +2,7 @@ package com.kh.wehan.member.controller;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -133,6 +134,11 @@ public class MemberController {
 			@RequestParam(name="uploadFile",required=false)MultipartFile file) {
 			
 			HttpSession session = request.getSession();
+			
+			/* 회원정보수정시 입력받지 않아 값이 없어서 넣어줌*/
+			Member before = (Member)session.getAttribute("loginUser");
+			m.setJoinDate(before.getJoinDate());
+			m.setOutYN(before.getOutYN());
 			
 			if(!file.getOriginalFilename().equals("")) {
 				String picture = saveFile(file,request);
