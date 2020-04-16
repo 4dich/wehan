@@ -139,10 +139,10 @@
 												<form>
 													<div class="form-group" style="text-align: right;">														
 														<textarea class="form-control" id="inputChallenge" style="height:100px; resize:none;" placeholder="친구의 피드에 댓글을 남겨보세요!"></textarea>
-														<button class="site-btn sb-dark" style="padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; margin-top:10px;">
+														<button id="rSubmit" class="site-btn sb-dark" style="padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; margin-top:10px;">
 															댓글 등록
 														</button>
-														<button class="site-btn sb-dark" type="button" onclick="location.href='fidFriend.html'" style="padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; margin-top:10px;">
+														<button id="listBack" class="site-btn sb-dark" type="button" style="padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; margin-top:10px;">
 															목록가기
 														</button>
 													</div>
@@ -165,7 +165,8 @@
 														
 													</div>
 													
-													
+													<input type="hidden" value="${ c.ceId }" id="ceid">
+													<input type="hidden" value="${ loginUser.userId }" id="loginId">
 												</div>
 												
 											</div>
@@ -198,8 +199,7 @@
 	<script src="resources/js/main.js"></script>
 	<script>
 	$(function(){
-		
-		
+
 		var ceId = ${c.ceId};
 		console.log("anj");
 		
@@ -226,7 +226,7 @@
 					for(var i in data){
 						console.log(data[i]);
   						$img = $("<img class='d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15' alt='Image Description'>");
- 						$img.attr('src','resources/images/user/01.jpg');
+ 						$img.attr('src','resources/images/user/'+ data[i].picture);
  						$mediaBody = $("<div class='media-body u-shadow-v18 g-bg-secondary g-pa-30'>");
 						$gmb = $("<div class='g-mb-15'>");
 						$h5 = $("<h5 class='h5 g-color-gray-dark-v1 mb-0'>").text(data[i].userId);
@@ -256,6 +256,7 @@
 			}
 		});
 	});
+	
 	</script>
 	</body>
 </html>

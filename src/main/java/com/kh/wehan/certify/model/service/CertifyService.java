@@ -3,6 +3,7 @@ package com.kh.wehan.certify.model.service;
 import java.util.ArrayList;
 
 import com.kh.wehan.certify.model.vo.Certify;
+import com.kh.wehan.certify.model.vo.CertifyReply;
 import com.kh.wehan.common.model.vo.PageInfo;
 import com.kh.wehan.member.model.vo.Member;
 
@@ -41,5 +42,7 @@ public interface CertifyService {
 	 * @return
 	 */
 	Certify selectCertify(int ceId);
+
+
 
 }

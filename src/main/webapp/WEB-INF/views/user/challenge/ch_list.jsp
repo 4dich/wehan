@@ -118,28 +118,23 @@
 				<div class="contact-section">
                     <!-- 카테고리 -->
 						<div id="category">
-							<div class="ca health" value="health" onclick="selector">건강</div>
-							<div class="ca hobby" value="hobby">취미</div>
-							<div class="ca selfImprovement" value="improve">자기계발</div>
-							<div class="ca economy" value="economy">경제</div>
-							<div class="ca life" value="life">생활</div>
-							<div class="ca etc" value="etc">그외</div>
+							<div class="ca health">건강</div>
+							<div class="ca hobby">취미</div>
+							<div class="ca selfImprovement">자기계발</div>
+							<div class="ca economy" >경제</div>
+							<div class="ca life">생활</div>
+							<div class="ca etc">그외</div>
 						</div>
 					<div class="row">
 					<script>
-						function selecter() {
-							var health = $(".health").val();
-							var hobby = $(".hobby").val();
-							var improve = $(".improve").val();
-							var economy = $(".economy").val();
-							var life = $(".life").val();
-							var except = $(".except").val();
+						$('.ca').click(function(){
+							var index = $('.ca').index(this);
+							var category = $('#category').children().eq(index);
 							
 								$.ajax({
 									url: "categoryInList.do",
 									type: "get",
-									data: {"health":health, "hobby":hobby, "improve":improve,
-										   "economy":economy, "life":life, "etc":etc},
+ 									data: {"category":category.text()},
 									success: function(data) {
 										$('#photoList').remove();
 										$div = $('<div id="photoList">');
@@ -160,6 +155,8 @@
 									error: function() {
 										console.log("오류입니다");
 									}
+								});	
+						});						
 					</script>
                                 </div>  
                                     <div class="qnaPaging" style="float: right; margin-right: 29px; margin-top: 20px;">

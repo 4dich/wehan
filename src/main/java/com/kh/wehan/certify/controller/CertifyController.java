@@ -9,11 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.wehan.certify.model.service.CertifyService;
 import com.kh.wehan.certify.model.vo.Certify;
+import com.kh.wehan.certify.model.vo.CertifyReply;
 import com.kh.wehan.common.Pagination;
 import com.kh.wehan.common.model.vo.PageInfo;
 import com.kh.wehan.member.model.vo.Member;
@@ -139,6 +140,13 @@ public class CertifyController {
 	}
 
 
+	/**
+	 * 피드 상세보기
+	 * @param mv
+	 * @param ceId
+	 * @param currentPage
+	 * @return
+	 */
 	@RequestMapping("fid_detailView.do")
 	public ModelAndView fidDetail(ModelAndView mv, int ceId,
 			@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage) {
@@ -157,5 +165,20 @@ public class CertifyController {
 		
 		return mv;
 	}
+	
+//	@RequestMapping("ch_registerPhotoView.do")
+//	public ModelAndView insertCertify(ModelAndView mv,HttpServletRequest request) {
+//		
+//		
+//		HttpSession session = request.getSession();
+//		Member m = (Member)session.getAttribute("loginUser");
+//		
+//		
+//		
+//		return mv;
+//	}
+	
+	
+	
 
 }
