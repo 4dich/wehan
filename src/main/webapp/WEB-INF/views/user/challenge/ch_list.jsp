@@ -145,6 +145,11 @@
 								</div>
 							</div>	
 							<script>
+								$(".detailInList").click(function() {
+									var chId = $("#hiddenDetailInList").val();
+	                    			location.href="hiddenDetailInList.do?chId=" + chId;
+	                    		});
+								
 								$('.ca').click(function(){
 									var index = $('.ca').index(this);
 									var category = $('#category').children().eq(index).text();

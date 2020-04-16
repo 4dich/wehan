@@ -17,6 +17,7 @@ import com.kh.wehan.certify.model.vo.Certify;
 import com.kh.wehan.certify.model.vo.CertifyReply;
 import com.kh.wehan.common.Pagination;
 import com.kh.wehan.common.model.vo.PageInfo;
+import com.kh.wehan.member.model.vo.Follow;
 import com.kh.wehan.member.model.vo.Member;
 
 
@@ -131,6 +132,45 @@ public class CertifyController {
 			mv.addObject("msg","엥").addObject("msg2", "로그인 먼저해주세요");
 			mv.setViewName("common/errorPage");
 		}
+		return mv;
+	}
+	
+	
+		@RequestMapping("fid_followDelete.do")
+		public ModelAndView followDelete(ModelAndView mv,HttpServletRequest request, String host, String follower,
+				@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage) {
+			
+			Follow f = new Follow(host,follower);
+			
+			System.out.println(f);
+			
+			if(f != null) {
+				
+				int listCount = ceService.getListCount();
+				
+				int pageLimit = 5;
+				int boardLimit = 10;
+				
+				PageInfo pi = Pagination.getPageInfo(currentPage, listCount, pageLimit, boardLimit);
+				
+				
+				
+				ArrayList<Follow> list = ceService.getFollowDelete(pi,f);
+				
+				mv.addObject("list",list)
+				.addObject("pi",pi)
+				.setViewName("redirect:fid_followView.do");
+				
+				
+				
+				
+				
+				
+			}else {
+				mv.addObject("msg","엥")
+				.addObject("msg2", "로그인 먼저해주세요")
+				.setViewName("common/errorPage");
+			}
 		
 		
 		
@@ -138,6 +178,7 @@ public class CertifyController {
 	
 	
 	}
+	
 
 
 	/**

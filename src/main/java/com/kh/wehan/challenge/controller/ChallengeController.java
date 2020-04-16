@@ -243,8 +243,10 @@ public class ChallengeController {
 	@RequestMapping("hiddenDetailInList.do")
 	public ModelAndView selectOneDetailInList(ModelAndView mv, String chId) {
 		
+		System.out.println(chId);
 		Challenge chal = cService.selectOneDetail(chId);
 		
+		System.out.println(chal);
 		mv.addObject("chal", chal);
 		mv.setViewName("user/challenge/ch_detail");
 		
