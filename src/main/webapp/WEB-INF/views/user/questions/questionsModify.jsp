@@ -18,6 +18,9 @@
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,900&display=swap" rel="stylesheet">
 
+	<!-- JQuery -->
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	
 	<!-- Stylesheets -->
 	<link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
 	<link rel="stylesheet" href="resources/css/font-awesome.min.css"/>
@@ -99,7 +102,7 @@
 						<div class="questionsInfo">
 							<div class="questionsInfoArea">
 								
-								<form action="user_questionsModify.do" method="post">
+								<form action="questionsModify.do" method="post">
 									<table class="detailArea">
 										<tr class="questionsTitleArea">
 											<td class="questionsTitle1">제목</td>
@@ -111,7 +114,7 @@
 										<tr class="questionsUserNameArea">
 											<td class="questionsUserName1">작성자</td>
 											<td class="questionsUserName2">
-												<input type="text" name="qId" value="${q.qWriter}" disabled>
+												<input type="text" name="qUserid" value="${q.qUserid}" disabled>
 											</td>
 										</tr>
 										<tr class="questionsTextBox">
@@ -123,7 +126,7 @@
 										<tr class="replybuttonArea">
 											<td class="buttonArea"  colspan="2">												
 												<input type="submit" class="site-btn" style="background-color: white; padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; width:120px;border: 2px solid #e1e1e1;" value="수정하기">
-												<button class="site-btn" type="button" onclick="location.href='user_questionsList.do'" style="background-color: white; padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px;">
+												<button class="site-btn" type="button" onclick="location.href='qnaListView.do'" style="background-color: white; padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px;">
 													목록가기
 												</button>
 											</td>

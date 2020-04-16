@@ -77,9 +77,9 @@
                         <h2 style="margin-left: 6px;">위대한 한걸음</h2>
                         <p style="padding-top: 15px;">THE GREAT ONE STEP</p>
                     </a>
-                    <form class="searchChallenge">
+                    <form class="searchChallenge" action="searchChallenge.do">
 	                    <div class="challenges-search">
-							<input type="textarea" style="padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 3px solid black;" placeholder="챌린지 검색">
+							<input type="textarea" style="padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 3px solid black;" placeholder="챌린지 이름 검색">
 	                        <a href="" class="site-btn2">
 	                            <img src="resources/images/main/search.png" style="padding-left: 10px;" alt="">
 	                        </a>
@@ -97,10 +97,21 @@
                         </p>
                         
                     </div>
-                    <button class="site-btn sb-dark" style="margin-left: 40px; width: 280px; font-size: 15px;" type="button" onclick="location.href='ch_registerView.do'">
+                    <button class="site-btn sb-dark" style="margin-left: 40px; width: 280px; font-size: 15px;" type="button" onclick="join();">
                         	챌린지 등록하기
                         <img src="resources/img/arrow-righ-3.png" alt="">
                     </button>
+                    <script>
+                    	function join() {
+	                        var msg1 = "<%= request.getAttribute("msg1")%>";
+	                        if(msg1 != "null"){
+	                           alert(msg1);
+	                           location.href="loginView.do";
+	                        } else {
+	                           location.href='ch_registerView.do';
+	                        }
+                    	}
+                    </script>
                     <br><br>
                 
                     <!-- <ul class="contact-info">
@@ -108,7 +119,6 @@
 						<li>남도빌딩 3F H반 T:1544-9970</li><br>
 						<li><a href="mailto:contactme@myemail.com">contactme@myemail.com</a></li>
 					</ul> -->
-                
             </div>
         </div>
         <!-- Left Side section end -->
@@ -129,8 +139,8 @@
 						  <div id="ch_confirmPhotoListArea">
                                	<div id="photoList">
                                 	<c:forEach var="ch" items="${ list }">
-                                    <a class="detailInList" style="cursor:pointer">
-                                    	<input type="hidden" id="hiddenDetailInList" name="hiddenDetailInList" value="${ ch.chId }"/>
+                                    <a class="detailInList" id="test" style="cursor:pointer" onclick="getdetailInList(this);" name="${ ch.chId }">
+                                    	<input type="hidden" id="hiddenDetailInList" name="hiddenDetailInList"/>
                                         <div class="photoBox">
 											<img src="resources/images/challenge/${ ch.chPicture }" alt=""/>
                                             <div class="textBox">
@@ -145,46 +155,53 @@
 								</div>
 							</div>	
 							<script>
-								$(".detailInList").click(function() {
-									var chId = $("#hiddenDetailInList").val();
-	                    			location.href="hiddenDetailInList.do?chId=" + chId;
-	                    		});
-								
-								$('.ca').click(function(){
-									var index = $('.ca').index(this);
-									var category = $('#category').children().eq(index).text();
-									console.log(category);
-									
-										$.ajax({
-											url: "categoryInList.do",
-											type: "get",
-		 									data: {"category":category},
-											success: function(data) {
-		 									console.log(data);
-												$('.photoBox').remove();
-												for(var i=0; i<data.length; i++) {
-													$a = $('<a class="detailInList" style="cursor:pointer">');
-													$chId = $('<input type="hidden" id="hiddenDetailInList" name="hiddenDetailInList>"').text(data[i].chId);
-													$divPhoto = $('<div class="photoBox">');
-													$picture = $('<img src="resources/images/challenge/'+data[i].chPicture+'>');
-													$divText = $('<div class="textBox">');
-													$chName = $('<h5>').text(data[i].chName);
-													$br = $('<br>');
-													$price = $('<h5>').text(data[i].price);
-													$startDate = $('<h5 style="float: right;">').text(data[i].startDate);
+								function getdetailInList(chId){
+									var msg1 = "<%= request.getAttribute("msg1")%>";
+						             if(msg1 != "null"){
+						                alert(msg1);
+						                location.href="loginView.do";
+						             } else {
+										location.href="hiddenDetailInList.do?chId=" + chId.name;    	 
+						             }
+						        }
+	
+								$(function(){
+
+									$('.ca').on("click",function(){
+										var index = $('.ca').index(this);
+										var category = $('#category').children().eq(index).text();
+										console.log(category);
+										
+											$.ajax({
+												url: "categoryInList.do",
+												type: "get",
+			 									data: {"category":category},
+												success: function(data) {
+			 									console.log(data);
+													$('.photoBox').remove();
 													
-													$divText.append($chName).append($br).append($price).append($startDate);
-													
-													$divPhoto.append($picture).append($divText);
-													
-													$('#photoList').append($a).append($chId).append($divPhoto);
+													var listText = "";
+													for(var i=0; i<data.length; i++) {
+														
+														listText += '<a class="detailInList" href="hiddenDetailInList.do?chId='+data[i].chId + '" style="cursor:pointer;">';
+														listText += '<div class="photoBox">';
+														listText += '<img src="resources/images/challenge/'+data[i].chPicture+'">';
+														listText += '<div class="textBox">';
+														listText += '<h5>'+ data[i].chName + '</h5><br>';
+														listText += '<h5>'+data[i].price + '</h5>';
+														listText += '<h5 style="float: right;">';
+														listText += data[i].startDate;
+														listText += '</h5></div></div></a>';
+														
+														$('#photoList').html(listText);
+													}
+												},
+												error: function() {
+													console.log("오류입니다");
 												}
-											},
-											error: function() {
-												console.log("오류입니다");
-											}
-										});	
-								});						
+											});		
+									});
+								});
 							</script>
                        </div>  
                                     <div class="qnaPaging" style="float: right; margin-right: 29px; margin-top: 20px;">
@@ -226,10 +243,6 @@
 									</div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>    
             <!-- Page end -->
             </div>
             <div class="copyright"><p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
@@ -244,8 +257,6 @@
 	<script src="resources/js/circle-progress.min.js"></script>
 	<script src="resources/js/jquery.magnific-popup.min.js"></script>
 	<script src="resources/js/main.js"></script>
-
-    
 
 	<script>
 		var health = document.getElementsByClassName('health');

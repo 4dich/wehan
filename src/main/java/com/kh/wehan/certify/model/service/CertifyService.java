@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.kh.wehan.certify.model.vo.Certify;
 import com.kh.wehan.certify.model.vo.CertifyReply;
 import com.kh.wehan.common.model.vo.PageInfo;
+import com.kh.wehan.member.model.vo.Follow;
 import com.kh.wehan.member.model.vo.Member;
 
 public interface CertifyService {
@@ -42,6 +43,22 @@ public interface CertifyService {
 	 * @return
 	 */
 	Certify selectCertify(int ceId);
+
+
+	/**
+	 * 팔로우 삭제
+	 * @param pi
+	 * @param f
+	 * @return
+	 */
+	ArrayList<Follow> getFollowDelete(PageInfo pi, Follow f);
+
+	/**
+	 * 댓글 등록
+	 * @param r
+	 * @return
+	 */
+	int insertReply(CertifyReply r);
 
 
 
