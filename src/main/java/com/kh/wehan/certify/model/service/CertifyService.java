@@ -53,6 +53,13 @@ public interface CertifyService {
 	 */
 	ArrayList<Follow> getFollowDelete(PageInfo pi, Follow f);
 
+	/**
+	 * 댓글 등록
+	 * @param r
+	 * @return
+	 */
+	int insertReply(CertifyReply r);
+
 
 
 }

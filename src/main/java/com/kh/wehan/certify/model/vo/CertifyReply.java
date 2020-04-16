@@ -16,6 +16,7 @@ public class CertifyReply {
 		super();
 	}
 
+	
 	public CertifyReply(String crId, String ceId, String userId, String ccContent, Date ccDate, String ccDel,
 			String picture) {
 		super();

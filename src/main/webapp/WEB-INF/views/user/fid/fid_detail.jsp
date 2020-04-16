@@ -107,6 +107,8 @@
 														<span class="unread">${ c.category }</span>
 													</h6>
 													<p style="color: white;">${ c.ceDate }</p>
+													<input type="hidden" id="certifyId" value="${ c.ceId }">
+													<input type="hidden" id="loginId" value="${ loginUser.userId }">
 												</div>
 											</div>
 										</li>
@@ -136,17 +138,16 @@
 										<!-- 댓글 쓰기 -->
 										<div class="tab-content">
 											<div role="tabpanel" class="tab-pane active" id="home" align="center">
-												<form>
+												
 													<div class="form-group" style="text-align: right;">														
-														<textarea class="form-control" id="inputChallenge" style="height:100px; resize:none;" placeholder="친구의 피드에 댓글을 남겨보세요!"></textarea>
-														<button id="rSubmit" class="site-btn sb-dark" style="padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; margin-top:10px;">
+														<textarea class="form-control" id="addReflyText" style="height:100px; resize:none;" placeholder="친구의 피드에 댓글을 남겨보세요!"></textarea>
+														<button id="submitR" class="site-btn sb-dark" style="padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; margin-top:10px;">
 															댓글 등록
 														</button>
 														<button id="listBack" class="site-btn sb-dark" type="button" style="padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; margin-top:10px;">
 															목록가기
 														</button>
 													</div>
-												</form>
 											</div>
 										</div>
 
@@ -198,11 +199,47 @@
 	<script src="resources/js/jquery.magnific-popup.min.js"></script>
 	<script src="resources/js/main.js"></script>
 	<script>
-	$(function(){
+	
 
-		var ceId = ${c.ceId};
-		console.log("anj");
+	var ceId = ${c.ceId};
+	
+	$(function(){
 		
+		replyList();
+		
+		setInterval(function(){
+			replyList();
+		},3000);
+		
+		/* 등록버튼 */
+		$('#submitR').click(function(){
+			var ccContent = $('#addReflyText').val();
+			var userId = $('#loginId').val();
+			console.log(ccContent);
+			console.log(ceId);
+			console.log(userId);
+			
+			$.ajax({
+				url:"addReply.do",
+				data : {ccContent:ccContent,ceId:ceId,userId:userId},
+				type : "post",
+				success : function(data){
+					//console.log(data);
+					
+					if(data == "success"){
+						replyList();
+						$('#addReflyText').val("");
+						
+					}
+				},error:function(){
+					console.log("전송 실패");
+				}
+			});
+		});
+		/* 등록 끝 */
+
+		function replyList(){
+		/* ajax */
 		$.ajax({
 			url : "replyList.do",
 			data : {ceId:ceId},
@@ -255,7 +292,10 @@
 				console.log("전송실패");
 			}
 		});
+		}
 	});
+	
+
 	
 	</script>
 	</body>
