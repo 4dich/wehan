@@ -159,6 +159,7 @@
 		JOIN CHALLENGE H ON(C.CHID = H.CHID)
 		WHERE CEID =  #{ceId}
 	</select>
+	
 
 </mapper>
 

@@ -139,23 +139,46 @@
 											<%-- 검색 결과가 있으면 --%>
 											<c:if test="${ !empty msgList }">
 											<c:forEach var="m" items="${ msgList }">
-												<li class="messageList">
-													<div class="message-avatar">
-														<img src="resources/images/user/${m.fImg}" alt="">
-													</div>
-													<div class="message-body">
-														<div class="message-body-heading">
-															<input type="hidden" value="${ m.fId }"/>
-															<h5>${ m.fName }
-																<c:if test= "${ m.mRead == 1 }">
-																<span class="economy">NEW</span>
-																</c:if>
-															</h5>															
-															<span>${ m.mDate }</span>
+												<%-- 내가 보낸 사람이면 받은 사람 정보 나타내기 --%>
+												<c:if test = "${ loginUser.userId == m.senderId }">
+													<li class="messageList">
+														<input type="hidden" value="${ m.mrId }"/>
+														<div class="message-avatar">
+															<img src="resources/images/user/${m.receiverImg}" alt="">
 														</div>
-														<p>${ m.mContent }</p>
-													</div>
-												</li>	
+														<div class="message-body">
+															<div class="message-body-heading">
+																<input type="hidden" value="${ m.receiverId }"/>
+																<h5>${ m.receiverName }																		
+																</h5>															
+																<span>${ m.mDate }</span>
+															</div>
+															<p>${ m.mContent }</p>
+														</div>
+													</li>
+												</c:if>
+												
+												<%-- 내가 받는 사람이면 보낸 사람 정보 나타내기 --%>
+												<c:if test = "${ loginUser.userId == m.receiverId }">
+													<li class="messageList">
+														<input type="hidden" value="${ m.mrId }"/>
+														<div class="message-avatar">
+															<img src="resources/images/user/${m.senderImg}" alt="">
+														</div>
+														<div class="message-body">
+															<div class="message-body-heading">
+																<input type="hidden" value="${ m.senderId }"/>
+																<h5>${ m.senderName }
+																	<c:if test= "${ m.mRead == 1 }">
+																	<span class="economy">NEW</span>
+																	</c:if>
+																</h5>															
+																<span>${ m.mDate }</span>
+															</div>
+															<p>${ m.mContent }</p>
+														</div>
+													</li>	
+												</c:if>											
 											</c:forEach>
 											</c:if>
 																					
@@ -181,6 +204,7 @@
 		$('.messageList').click(function(){
 			/* var fId = $(this).parent().parent().children().find("input[type=hidden]").val(); */
 			var fId = $(this).children().children().find("input[type=hidden]").val();
+			
 			location.href="msgDetail.do?fId=" + fId;
 		});
 	

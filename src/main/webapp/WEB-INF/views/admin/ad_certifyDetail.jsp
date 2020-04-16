@@ -234,7 +234,7 @@
 					for(var i in data){
 						console.log(data[i]);
   						$img = $("<img class='d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15' alt='Image Description'>");
- 						$img.attr('src','resources/images/user/01.jpg');
+ 						$img.attr('src','resources/images/user/'+ data[i].picture);
  						$mediaBody = $("<div class='media-body u-shadow-v18 g-bg-secondary g-pa-30'>");
 						$gmb = $("<div class='g-mb-15'>");
 						$h5 = $("<h5 class='h5 g-color-gray-dark-v1 mb-0'>").text(data[i].userId);

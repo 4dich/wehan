@@ -57,6 +57,18 @@ public class ChallengeDao {
 		return (ArrayList)sqlSession.selectList("challengeMapper.selectChallengeList", null, rowBounds);
 	}
 
+	public int getListCount(String category) {
+		return sqlSession.selectOne("challengeMapper.getListCategoryCount", category);
+	}
+
+	public ArrayList<Challenge> getSelectList(String category, PageInfo pi) {
+
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("challengeMapper.selectChallengeCategoryList", category, rowBounds);
+	}
+
 
 	
 	

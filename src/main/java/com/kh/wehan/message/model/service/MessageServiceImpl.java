@@ -53,13 +53,8 @@ public class MessageServiceImpl implements MessageService{
 		// 메시지 읽음 처리
 		int result = msgDao.msgUpdateRead(m);
 			
-		if(result > 0) {
-			return msgDao.getMsgContent(m);
-		} else {
-			return null;
-		}
 		
-		
+		return msgDao.getMsgContent(m);
 		
 	}
 
@@ -68,6 +63,25 @@ public class MessageServiceImpl implements MessageService{
 	 */
 	@Override
 	public int saveMsgContent(Map msg) {
+		
+		int insertMrid = 0;
+		int updateDel = 0;
+				
+		// 메시지룸 번호(MRID) 있는지 확인
+		int checkMessageRoom = msgDao.checkMessageRoom(msg);
+		
+		// 메시지룸 번호가 없으면 만들어주기
+		if(checkMessageRoom == 0) { 
+			insertMrid = msgDao.insertMrid(msg);
+		} else { // 메시지룸 번호가 있으면 DEL을 1로 만들어주기
+			updateDel = msgDao.updateMrid(msg);
+		}
+		
+		// 메시지룸 번호 가져오기
+		int getMrid = msgDao.getMrid(msg);
+		
+		msg.put("mrId", getMrid);
+		
 		return msgDao.saveMsgContent(msg);
 	}
 
@@ -76,7 +90,26 @@ public class MessageServiceImpl implements MessageService{
 	 */
 	@Override
 	public int msgDelete(Map m) {
-		return msgDao.msgDelete(m);
+		
+		// 보낸 사람 메시지 삭제
+		int delSender = msgDao.deleteSenderMsg(m);
+		// 받은 사람 메시지 삭제
+		int delReceiver = msgDao.deleteReceiverMsg(m);
+		
+					
+		// messageRoom USER1 삭제
+		int delUser1 = msgDao.deleteUser1Msg(m);
+		
+		// USER1삭제가 안되면 USER2 삭제
+		int delUser2 = 0;
+		
+		if(delUser1 == 0) {
+			delUser2 = msgDao.deleteUser2Msg(m);
+		}
+		
+		int result = delUser1 + delUser2;
+		
+		return result;
 	}
 
 	/**
@@ -102,4 +135,6 @@ public class MessageServiceImpl implements MessageService{
 	public int getMsgCount(String userId) {
 		return msgDao.getMsgCount(userId);
 	}
+
+	
 }
