@@ -183,10 +183,15 @@ public class QuestionsController {
 	@RequestMapping("questionsModifyView.do")
 	public ModelAndView questionsModifyView(ModelAndView mv, int qId, int currentPage) {
 		
+		System.out.println("int qId :" + qId + "int currentPage : " + currentPage );
+		
+		
 		Questions n = qService.questionsSelect(qId);
 		
+		System.out.println(n.toString());
+		
 		if(n != null) {
-			mv.addObject("n", n).addObject("currentPage", currentPage).setViewName("user/quetionsModify");
+			mv.addObject("q", n).addObject("currentPage", currentPage).setViewName("user/questions/questionsModify");
 		}
 		
 		return mv;		
@@ -201,12 +206,14 @@ public class QuestionsController {
 	@RequestMapping("questionsModify.do")
 	public ModelAndView questionsModify(ModelAndView mv, Questions n) {		
 		
+		System.out.println(n);
 		int result = qService.questionsModify(n);
 		
+		System.out.println(result);
 		
 		if(result > 0 ) {
 			
-			mv.addObject("qId", n.getqId()).setViewName("redirect:questionsList.do");
+			mv.addObject("qId", n.getqId()).setViewName("redirect:qnaListView.do");
 			
 		} else {
 			
@@ -224,7 +231,7 @@ public class QuestionsController {
 		int result = qService.questionsDelete(qId);
 		
 		if(result > 0) {
-			mv.setViewName("redirect:questionsList.do");
+			mv.setViewName("redirect:qnaListView.do");
 		} else {
 			mv.addObject("msg", "Error").addObject("msg2", "문의사항 삭제 에러").setViewName("common/errorPage");
 		}

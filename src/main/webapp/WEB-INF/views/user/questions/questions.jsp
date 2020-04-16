@@ -136,10 +136,9 @@
                       <c:forEach var="q" items="${list}">
                         <tr class="questionsList">
 								<td>
-								    <input type="hidden" value="${q.qId }"/>							    
-																
-								</td>			
-								<td>${q.qId }		</td>
+								 	<input type="hidden" value="${q.qId }"/>
+									${q.qId }		
+								</td>
 											
 								<td style="text-align:left">${q.qTitle}</td>
 								<td>${q.qUserid }</td>
@@ -150,6 +149,9 @@
 								
 							</tr>
                       
+								<%-- <td>
+								    <input type="hidden" value="${q.qId }"/>							    
+								</td> --%>			
                       </c:forEach> 			
 							
 						</table>
@@ -212,11 +214,12 @@
 		});
 		
 		$('.qnaTable td').click(function(){
+			
 			var qId = $(this).parent().children().find("input[type=hidden]").val();
 			var currentPage = ${pi.currentPage};
 			
 			location.href="questionsDetail.do?qId="+qId+"&currentPage=" + currentPage;
-		});
+		}); 
 	</script>
 	
 	<!--====== Javascripts & Jquery ======-->
