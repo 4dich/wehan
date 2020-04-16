@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.wehan.certify.model.vo.Certify;
+import com.kh.wehan.certify.model.vo.CertifyReply;
 import com.kh.wehan.common.model.vo.PageInfo;
 import com.kh.wehan.member.model.vo.Member;
 
@@ -56,4 +57,5 @@ public class CertifyDao {
 		return sqlSession.selectOne("certifyMapper.selectDetailCertify",ceId);
 	}
 
+	
 }
