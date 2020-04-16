@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+   <mapper namespace="replyMapper">  
+     <resultMap type = "Reply" id="replyResultSet">
+     <!-- <resultMap> 은 자신의 id 를 가지며, class 에서 반환할 클래스의 형을 명시한다. 
+     이 클래스는 아래 <result>의 속성들으 포함하여, result 반환 객체를 매핑하고 생성한다. -->
+
+
+          <id property="qId" column="QID"/>
+          <result property = "qId" column="QID"/>
+          <result property = "qUserid" column="QCWRITER"/>         
+          <result property = "qContent" column="QCCONTENT"/>
+          <result property = "qDate" column="QCDATE"/>  
+          <result property = "qDel"  column="QCDEL_YN"/>
+                               
+     
+     </resultMap>     
+        
+  
+    </mapper>
