@@ -293,17 +293,6 @@ public class MessageController {
 	@RequestMapping("getMsgCount.do")
 	public void getMsgCount(String userId, HttpServletResponse response) throws JsonIOException, IOException {
 		
-		
-		System.out.println("시작");
-		
-		
-//		HttpSession session = request.getSession();
-//		Member m = (Member)session.getAttribute("loginUser");
-//		
-//		System.out.println(m.toString());
-		
-//		String userId = m.getUserId();
-		
 		int msgCount = msgService.getMsgCount(userId);
 		
 		response.setContentType("application/json; charset=UTF-8");

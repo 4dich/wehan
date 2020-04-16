@@ -24,6 +24,8 @@
 		<typeAlias type="com.kh.wehan.member.model.vo.Admin" alias="Admin"/>
 		<typeAlias type="com.kh.wehan.pay.model.vo.Pay" alias="Pay"/>
 		<typeAlias type="com.kh.wehan.challenge.model.vo.Challenge" alias="Challenge"/>
+		<typeAlias type="com.kh.wehan.challenge_SR.model.vo.Challenge_SR" alias="ChallengeSr"/>
+		<typeAlias type="com.kh.wehan.challenge_SR.model.vo.ChallengeTop10" alias="ChallengeTop10"/>
 		<typeAlias type="com.kh.wehan.questions.model.vo.Questions" alias="Questions"/>
 		<typeAlias type="com.kh.wehan.member.model.vo.FindKey" alias="FindKey"/>
 	</typeAliases>
@@ -37,5 +39,6 @@
 		<mapper resource="mappers/pay-mapper.xml"/>
 		<mapper resource="mappers/challenge-mapper.xml"/>
 		<mapper resource="mappers/questions-mapper.xml"/>
+		<mapper resource="mappers/challenge_SR-mapper.xml"/>
 	</mappers>
 </configuration>

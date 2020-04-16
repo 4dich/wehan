@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.wehan.certify.model.vo.Certify;
 import com.kh.wehan.certify.model.vo.CertifyReply;
 import com.kh.wehan.common.model.vo.PageInfo;
+import com.kh.wehan.member.model.vo.Follow;
 import com.kh.wehan.member.model.vo.Member;
 
 @Repository("ceDao")
@@ -55,6 +56,20 @@ public class CertifyDao {
 	public Certify selectCertify(int ceId) {
 		
 		return sqlSession.selectOne("certifyMapper.selectDetailCertify",ceId);
+	}
+
+	
+
+	public ArrayList<Follow> deleteFollow(PageInfo pi, Follow f) {
+		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("certifyMapper.deleteFollow",f,rowBounds);
+	
+	}
+
+	public int insertReply(CertifyReply r) {
+		
+		return sqlSession.insert("certifyMapper.insertReply",r);
 	}
 
 	

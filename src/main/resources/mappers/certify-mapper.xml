@@ -47,6 +47,8 @@
 		<result property="outYN" column="OUT_YN"/>
 	</resultMap>
 	
+	
+	
 	<!-- 관리자 -->
 	
 	<!-- 인증글 갯수 -->
@@ -159,6 +161,14 @@
 		JOIN CHALLENGE H ON(C.CHID = H.CHID)
 		WHERE CEID =  #{ceId}
 	</select>
+	<delete id="deleteFollow">
+		DELETE FROM FOLLOW 
+		WHERE HOST =#{host} AND FOLLOWER = #{follower}
+	</delete>
+	<insert id="insertReply" parameterType="CertifyReply">
+	INSERT INTO CERTIFYREPLY VALUES
+	(SEQ_CRID.NEXTVAL,#{ceId},#{userId},#{ccContent},SYSDATE,DEFAULT)
+	</insert>
 	
 
 </mapper>

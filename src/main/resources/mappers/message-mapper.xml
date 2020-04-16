@@ -169,6 +169,7 @@
 		     WHERE MSGR.USER1 = #{userId} AND MSGR.USER1_DEL = 1
 		     OR MSGR.USER2 = #{userId} AND MSGR.USER2_DEL = 1)
 		WHERE MROWNUM = 1
+		AND SENDERID != #{userId}
 		ORDER BY MDATE DESC	
   	</select>
   	
@@ -191,7 +192,9 @@
 		     JOIN MESSAGEROOM MSGR ON (MSG.MRID = MSGR.MRID)
 		     WHERE MSGR.USER1 = #{userId} AND MSGR.USER1_DEL = 1
 		     OR MSGR.USER2 = #{userId} AND MSGR.USER2_DEL = 1)
-		WHERE MROWNUM = 1  AND RECEIVERNAME LIKE '%' || #{searchWord} ||'%' OR SENDERNAME LIKE #{searchWord}
+		WHERE MROWNUM = 1  
+		AND SENDERID != #{userId}
+		AND RECEIVERNAME LIKE '%' || #{searchWord} ||'%' OR SENDERNAME LIKE #{searchWord}
 		ORDER BY MDATE DESC
   	</select>
   	

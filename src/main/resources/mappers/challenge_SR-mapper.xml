@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace = "challengeMapperSR">
+  	
+  	
+  	<resultMap type="ChallengeTop10" id="challengeTop10ResultSet">
+  		<id property="chId" column="CHID"/>
+  		<result property="userId" column="USERID"/>
+  		<result property="userName" column="USERNAME"/>
+  		<result property="chTitle" column="CHTitle"/>
+  		<result property="chPicture" column="CHPICTURE"/>
+  		<result property="endDate" column="ENDDATE"/>
+  		<result property="chPeopleCount" column="CHPEOPLECOUNT"/>
+  	</resultMap>
+  	
+  	<resultMap type="HashMap" id="challengerResultSet">
+  		<id property="chId" column="CHID"/>
+  		<result property="chPeople" column="CHPEOPLE"/>
+  	</resultMap>
+  	
+  	
+  	<!-- 챌린지 탑10 리스트 가져오기 -->
+  	<!-- 1) 챌린지 참가자 목록 가져오기 -->
+  	<select id="getChallengerList" parameterType="java.util.Map" resultMap="challengerResultSet">
+  		SELECT CHID, CHPEOPLE
+		FROM CHALLENGE
+  	</select>
+  	
+  	
+  	<select id="getChallengeTop10List" resultMap="challengeTop10ResultSet">
+
+  		
+  	</select>
+  	
+  	
+  </mapper>

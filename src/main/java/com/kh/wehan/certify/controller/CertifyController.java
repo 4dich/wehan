@@ -17,6 +17,7 @@ import com.kh.wehan.certify.model.vo.Certify;
 import com.kh.wehan.certify.model.vo.CertifyReply;
 import com.kh.wehan.common.Pagination;
 import com.kh.wehan.common.model.vo.PageInfo;
+import com.kh.wehan.member.model.vo.Follow;
 import com.kh.wehan.member.model.vo.Member;
 
 
@@ -131,6 +132,39 @@ public class CertifyController {
 			mv.addObject("msg","엥").addObject("msg2", "로그인 먼저해주세요");
 			mv.setViewName("common/errorPage");
 		}
+		return mv;
+	}
+	
+	
+		@RequestMapping("fid_followDelete.do")
+		public ModelAndView followDelete(ModelAndView mv,HttpServletRequest request, String host, String follower,
+				@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage) {
+			
+			Follow f = new Follow(host,follower);
+			
+			System.out.println(f);
+			
+			if(f != null) {
+				
+				int listCount = ceService.getListCount();
+				
+				int pageLimit = 5;
+				int boardLimit = 10;
+				
+				PageInfo pi = Pagination.getPageInfo(currentPage, listCount, pageLimit, boardLimit);
+				
+				
+				
+				ArrayList<Follow> list = ceService.getFollowDelete(pi,f);
+				
+				mv.addObject("list",list)
+				.addObject("pi",pi)
+				.setViewName("redirect:fid_followView.do");
+				
+			}else{
+				mv.addObject("msg","엥").addObject("msg2", "로그인 먼저해주세요");
+				mv.setViewName("common/errorPage");
+			}
 		
 		
 		
@@ -138,6 +172,7 @@ public class CertifyController {
 	
 	
 	}
+	
 
 
 	/**
@@ -148,35 +183,43 @@ public class CertifyController {
 	 * @return
 	 */
 	@RequestMapping("fid_detailView.do")
-	public ModelAndView fidDetail(ModelAndView mv, int ceId,
+	public ModelAndView fidDetail(ModelAndView mv, int ceId,HttpServletRequest request,
 			@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage) {
 		
-		Certify c = ceService.selectCertify(ceId);
 		
-		if(c != null) {
+		HttpSession session = request.getSession();
+		Member m = (Member)session.getAttribute("loginUser");
+				
+		if(m != null) {
+			
+			Certify c = ceService.selectCertify(ceId);
+	
 			mv.addObject("c",c)
 			.addObject("currentPage",currentPage)
 			.setViewName("user/fid/fid_detail");
 		}else {
-			mv.addObject("msg","Error")
-			.addObject("msg2","인증글 상세조회 실패")
-			.setViewName("commom/errorPage");
+			mv.addObject("msg","엥").addObject("msg2", "로그인 먼저해주세요");
+			mv.setViewName("common/errorPage");
 		}
 		
 		return mv;
 	}
 	
-//	@RequestMapping("ch_registerPhotoView.do")
-//	public ModelAndView insertCertify(ModelAndView mv,HttpServletRequest request) {
-//		
-//		
-//		HttpSession session = request.getSession();
-//		Member m = (Member)session.getAttribute("loginUser");
-//		
-//		
-//		
-//		return mv;
-//	}
+
+	@RequestMapping("addReply.do")
+	@ResponseBody
+	public String addReply(CertifyReply r) {
+		String picture = "1";
+		r.setPicture(picture);
+		System.out.println(r);
+		int result = ceService.insertReply(r);
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+		
+	}
 	
 	
 	

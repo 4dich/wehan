@@ -1,7 +1,6 @@
-package com.kh.wehan.challenge.model.vo;
+package com.kh.wehan.challenge_SR.model.vo;
 
-public class Challenge {
-
+public class Challenge_SR {
 	private String chId;
 	private String userId;
 	private String chName;
@@ -16,17 +15,17 @@ public class Challenge {
 	private int minPerson;
 	private int maxPerson;
 	private String chPeople;
-	private int chPeopleCount;
 	
 	
-	public Challenge() {
+	public Challenge_SR() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
 
-	public Challenge(String chId, String userId, String chName, String chPicture, String chContent, String startDate,
+	public Challenge_SR(String chId, String userId, String chName, String chPicture, String chContent, String startDate,
 			String endDate, String category, String ceMethod, int price, int totalPrice, int minPerson, int maxPerson,
-			String chPeople, int chPeopleCount) {
+			String chPeople) {
 		super();
 		this.chId = chId;
 		this.userId = userId;
@@ -42,7 +41,6 @@ public class Challenge {
 		this.minPerson = minPerson;
 		this.maxPerson = maxPerson;
 		this.chPeople = chPeople;
-		this.chPeopleCount = chPeopleCount;
 	}
 
 
@@ -186,22 +184,13 @@ public class Challenge {
 	}
 
 
-	public int getChPeopleCount() {
-		return chPeopleCount;
-	}
-
-
-	public void setChPeopleCount(int chPeopleCount) {
-		this.chPeopleCount = chPeopleCount;
-	}
-
-
 	@Override
 	public String toString() {
-		return "Challenge [chId=" + chId + ", userId=" + userId + ", chName=" + chName + ", chPicture=" + chPicture
+		return "Challenge_SR [chId=" + chId + ", userId=" + userId + ", chName=" + chName + ", chPicture=" + chPicture
 				+ ", chContent=" + chContent + ", startDate=" + startDate + ", endDate=" + endDate + ", category="
 				+ category + ", ceMethod=" + ceMethod + ", price=" + price + ", totalPrice=" + totalPrice
-				+ ", minPerson=" + minPerson + ", maxPerson=" + maxPerson + ", chPeople=" + chPeople
-				+ ", chPeopleCount=" + chPeopleCount + "]";
+				+ ", minPerson=" + minPerson + ", maxPerson=" + maxPerson + ", chPeople=" + chPeople + "]";
 	}
+	
+	
 }
