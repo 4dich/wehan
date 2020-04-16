@@ -85,7 +85,7 @@
 		CHALLENGE
 	</select>
 	
-	<select id="getListCategoryCount" resultMap="challengeResultSet">
+	<select id="getListCategoryCount" resultType="_int">
 		SELECT COUNT(*) 
 		FROM CHALLENGE
 		WHERE CATEGORY=#{category}

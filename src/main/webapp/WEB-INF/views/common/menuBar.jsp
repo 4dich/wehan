@@ -85,10 +85,11 @@
 <script>
 	// 메시지 알림 갯수 가져오기 
 	$(function(){
-		
+		var userId = '${loginUser.userId}';
 		$.ajax({
 			url:'getMsgCount.do',
 			dataType:'json',
+			data:{'userId' : userId},
 			success:function(date){
 				
 				if(date != 0) {
