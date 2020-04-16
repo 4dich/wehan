@@ -126,39 +126,62 @@
 							<div class="ca etc">그외</div>
 						</div>
 					<div class="row">
-					<script>
-						$('.ca').click(function(){
-							var index = $('.ca').index(this);
-							var category = $('#category').children().eq(index);
-							
-								$.ajax({
-									url: "categoryInList.do",
-									type: "get",
- 									data: {"category":category.text()},
-									success: function(data) {
-										$('#photoList').remove();
-										$div = $('<div id="photoList">');
-										for(var i=0; i<data.length; i++) {
-											$a = $('<a class="detailInList" style="cursor:pointer">');
-											$chId = $('<input type="hidden" id="hiddenDetailInList" name="hiddenDetailInList"').text(data[i].chId);
-											$divPhoto = $('<div class="photoBox">');
-											$picture = $('<img src="resources/images/challenge/'+data[i].chPicture);
-											$divText = $('<div class="textBox">');
-											$chName = $('<h5>').text(data[i].chName);
-											$br = $('<br>');
-											$price = $('<h5>').text(data[i].price);
-											$startDate = $('<h5 style="float: right;">').text(data[i].startDate);
-										}
-											$('#photoList').append($a).append($chId),append($divPhoto),append($picture)
-														.append($divText).append($chName).append($br).append($price).append($startDate);
-									},
-									error: function() {
-										console.log("오류입니다");
-									}
-								});	
-						});						
-					</script>
-                                </div>  
+						  <div id="ch_confirmPhotoListArea">
+                               	<div id="photoList">
+                                	<c:forEach var="ch" items="${ list }">
+                                    <a class="detailInList" style="cursor:pointer">
+                                    	<input type="hidden" id="hiddenDetailInList" name="hiddenDetailInList" value="${ ch.chId }"/>
+                                        <div class="photoBox">
+											<img src="resources/images/challenge/${ ch.chPicture }" alt=""/>
+                                            <div class="textBox">
+                                             <h5>${ ch.chName }</h5>
+                                                <br>
+                                                <h5>${ ch.price }</h5>
+                                                <h5 style="float: right;">${ ch.startDate }</h5>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    </c:forEach>		
+								</div>
+							</div>	
+							<script>
+								$('.ca').click(function(){
+									var index = $('.ca').index(this);
+									var category = $('#category').children().eq(index).text();
+									console.log(category);
+									
+										$.ajax({
+											url: "categoryInList.do",
+											type: "get",
+		 									data: {"category":category},
+											success: function(data) {
+		 									console.log(data);
+												$('.photoBox').remove();
+												for(var i=0; i<data.length; i++) {
+													$a = $('<a class="detailInList" style="cursor:pointer">');
+													$chId = $('<input type="hidden" id="hiddenDetailInList" name="hiddenDetailInList>"').text(data[i].chId);
+													$divPhoto = $('<div class="photoBox">');
+													$picture = $('<img src="resources/images/challenge/'+data[i].chPicture+'>');
+													$divText = $('<div class="textBox">');
+													$chName = $('<h5>').text(data[i].chName);
+													$br = $('<br>');
+													$price = $('<h5>').text(data[i].price);
+													$startDate = $('<h5 style="float: right;">').text(data[i].startDate);
+													
+													$divText.append($chName).append($br).append($price).append($startDate);
+													
+													$divPhoto.append($picture).append($divText);
+													
+													$('#photoList').append($a).append($chId).append($divPhoto);
+												}
+											},
+											error: function() {
+												console.log("오류입니다");
+											}
+										});	
+								});						
+							</script>
+                       </div>  
                                     <div class="qnaPaging" style="float: right; margin-right: 29px; margin-top: 20px;">
 										<!-- [이전] -->
 										<c:if test="${ pi.currentPage eq 1 }">
