@@ -314,7 +314,6 @@
 		margin: 0 15px 0 15px; 
 		padding: 5px;
 	}
-	
     </style>
 </head>
 <body>
@@ -348,24 +347,26 @@
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
 					<div id="lv" style="width: 350px; height: 470px; border: 1px solid gray; padding:20px; margin:auto; margin-top: -30px">
-						<div id="lv-img" style="width: 300px; height:320px; margin:auto; background-image: url('resources/images/level/astro2.gif'); background-size: cover; border-radius: 15px;">
-							<img src="resources/images/level/lv4.png">
+						<div style="width: 300px; height:320px; margin:auto; background-image: url('resources/images/level/astro2.gif'); background-size: cover; border-radius: 15px;">
+							<img id="lv-img" src="">
 						</div>
-						<div id="lv-progress" style="width: 300px; margin:auto; margin-top: 10px;">
-							<div>
+						<div style="width: 300px; margin:auto; margin-top: 10px;">
+							<div style="text-align:left">
 								<div id="nickName" style="font-size:24px; margin-bottom: 10px; text-align:left"><b>${loginUser.nickName}</b></div>
-								<div id="lv-text" style="font-size:16px; margin-bottom: 5px; text-align:left" >Lv 4</div>
+								<span style="font-size:16px;">Lv</span>
+								<span class="lv-txt2" style="font-size:16px; margin-bottom: 5px; text-align:left">-1</span>
+								<!-- <div id="lv-txt2" style="font-size:16px; margin-bottom: 5px; text-align:left" >Lv 4</div> -->
 							</div>
 							<div class="progress" style="border:1px solid gray; margin-bottom:-3px; ">
-								<div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar"
-									aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:66%"> Exp 10
+								<div id="progress-bar" class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar"
+									aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:0%">-1
 								</div>
 						    </div>
-							<div id="lv-progress1" style="width: 140px; text-align:left; display:inline-block; font-size: 12px">
+							<div class="exp-min" style="width: 140px; text-align:left; display:inline-block; font-size: 12px">
 								0
 							</div>
-							<div id="lv-progress2" style="width: 140px; text-align:right; display:inline-block; font-size: 12px">
-								15
+							<div class="exp-max" style="width: 140px; text-align:right; display:inline-block; font-size: 12px">
+								-1
 							</div>
 						</div>
 					</div>
@@ -407,7 +408,11 @@
 										<h2 id="cnt-complete">-1</h2>
 										<div class="milestone-info" style="text-align:left;">
 											<h5>Challenges<br>completed</h5><br>
-											<p id="exp" style="color:gray">Lv 4, Exp 10</p>
+											<span class="lv" style="color:gray; font-size:13px;">Lv</span>
+											<span class="lv-txt" style="color:gray; font-size:13px;">-1</span>
+											<span class="comma" style="color:gray; font-size:13px;">, Exp</span>
+											<span class="exp-txt" style="color:gray; font-size:13px;">-1</span>
+											<!-- <p id="exp" style="color:gray">Lv 4, Exp 10</p> -->
 										</div>
 									</div>
 								</div>
@@ -636,29 +641,97 @@
 										
 										$totalCh[0].innerText = countTotalCh;
 										
-										rateComplete = countComplete/countTotalCh*100;
+										rateComplete = Math.ceil(countComplete/countTotalCh*100);
 										console.log("rateComplete:"+rateComplete);
 										
 										$(".gg")[0].innerText = rateComplete;
+										
+										
+										console.log("성공한챌린지:" + countComplete);
+										
+										/* lv-txt
+										exp-txt
+										 */
+										var $lv = $('.lv-txt');
+										var $lv2 = $('.lv-txt2');
+										var $exp = $('.exp-txt');
+										var $expMax = $('.exp-max');
+										var $progress = $("#progress-bar");
+										var percent = 0;
+										
+										/* lv1 */
+										if(countComplete>=0 && countComplete<5){
+											$lv[0].innerText = 1;
+											$lv2[0].innerText = 1;
+											$exp[0].innerText = countComplete;
+											$expMax[0].innerText = 5;
+											percent = ($exp[0].innerText / 5) * 100;
+											percent += '%';
+											$progress.css('width',percent);
+											$progress[0].innerText = 'Exp ' + $exp[0].innerText;
+											$("#lv-img").attr("src", "resources/images/level/lv1.png");
+										/* lv2 */
+										}else if(countComplete>=5 && countComplete<15){
+											$lv[0].innerText = 2;
+											$lv2[0].innerText = 2;
+											$exp[0].innerText = countComplete-5;
+											$expMax[0].innerText = 10;
+											percent = ($exp[0].innerText / 10) * 100;
+											percent += '%';
+											$progress.css('width',percent);
+											$progress[0].innerText = 'Exp ' + $exp[0].innerText;
+											$("#lv-img").attr("src", "resources/images/level/lv2.png");
+										/* lv3 */
+										}else if(countComplete>=15 && countComplete<30){
+											$lv[0].innerText = 3;
+											$lv2[0].innerText = 3;
+											$exp[0].innerText = countComplete-15;
+											$expMax[0].innerText = 15;
+											percent = ($exp[0].innerText / 15) * 100;
+											percent += '%';
+											$progress.css('width',percent);
+											$progress[0].innerText = 'Exp ' + $exp[0].innerText;
+											$("#lv-img").attr("src", "resources/images/level/lv3.png");
+										/* lv4 */
+										}else if(countComplete>=30 && countComplete<50){
+											$lv[0].innerText = 4;
+											$lv2[0].innerText = 4;
+											$exp[0].innerText = countComplete-30;
+											$expMax[0].innerText = 20;
+											percent = ($exp[0].innerText / 20) * 100;
+											percent += '%';
+											$progress.css('width',percent);
+											$progress[0].innerText = 'Exp ' + $exp[0].innerText;
+											$("#lv-img").attr("src", "resources/images/level/lv4.png");
+										/* lv5 */ 
+										}else if(countComplete>=50 && countComplete<75){
+											$lv[0].innerText = 5;
+											$lv2[0].innerText = 5;
+											$exp[0].innerText = countComplete-50;
+											$expMax[0].innerText = 25;
+											percent = ($exp[0].innerText / 25) * 100;
+											percent += '%';
+											$progress.css('width',percent);
+											$progress[0].innerText = 'Exp ' + $exp[0].innerText;
+											$("#lv-img").attr("src", "resources/images/level/lv5.png");
+										/* lv6 */
+										}else{
+											$lv[0].innerText = 75;
+											$lv2[0].innerText = 75;
+											$exp[0].innerText = countComplete-75;
+											$expMax[0].innerText = 999;
+											percent = ($exp[0].innerText / 999) * 100;
+											percent += '%';
+											$progress.css('width',percent);
+											$progress[0].innerText = 'Exp ' + $exp[0].innerText;
+											$("#lv-img").attr("src", "resources/images/level/lv6.png");
+										}
 									});
 									
-
+									/* circle-wrap, window.onload뒤에 값변경 적용 안되서 포기*/
 									/* window.addEventListener('DOMContentLoaded', function(){ 
 										$('.circle-progress')[0].setAttribute("data-cpvalue",rateComplete);
 									}) */
-
-									window.onload = function(){
-										$('.circle-progress')[0].setAttribute("data-cpvalue",99);
-									}; 
-
-
-
-
-									
-									
-
-									
-									/* 값이 변경 안되서 잠시 보류 */
 /* 									if(countTotalCh!=0){
 										$('.circle-progress')[0].setAttribute("data-cpvalue",rateComplete);
 									}else{
