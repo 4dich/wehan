@@ -91,10 +91,13 @@
 								<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 							</a>
 						<!-- 서브메뉴 -->
-						<div class="challenges-search" style="margin-left: 10px;">
-							<input type="textarea" style="padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 3px solid black;" placeholder="챌린지 검색">
-							<a href=""><img src="resources/img/arrow-righ-3.png" style="padding-left: 10px;" alt=""></a>
-						</div>
+						<form class="searchChallenge" action="searchChallenge.do">
+							<div class="challenges-search" style="margin-left: 10px;">
+								<input type="textarea" style="padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 3px solid black;" placeholder="챌린지 검색">
+								<a href="" class="site-btn2">
+									<img src="resources/images/main/search.png" style="padding-left: 10px;" alt=""></a>
+							</div>
+						</form>
 
 						<br><br>
 	

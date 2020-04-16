@@ -77,7 +77,7 @@
                         <h2 style="margin-left: 6px;">위대한 한걸음</h2>
                         <p style="padding-top: 15px;">THE GREAT ONE STEP</p>
                     </a>
-                    <form class="searchChallenge">
+                    <form class="searchChallenge" action="searchChallenge.do">
 	                    <div class="challenges-search">
 							<input type="textarea" style="padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 3px solid black;" placeholder="챌린지 검색">
 	                        <a href="" class="site-btn2">
@@ -97,10 +97,21 @@
                         </p>
                         
                     </div>
-                    <button class="site-btn sb-dark" style="margin-left: 40px; width: 280px; font-size: 15px;" type="button" onclick="location.href='registerChallenge.do'">
+                    <button class="site-btn sb-dark" style="margin-left: 40px; width: 280px; font-size: 15px;" type="button" onclick="join();">
                         	챌린지 등록하기
                         <img src="resources/img/arrow-righ-3.png" alt="">
                     </button>
+                    <script>
+                    	function join() {
+	                        var msg1 = "<%= request.getAttribute("msg1")%>";
+	                        if(msg1 != "null"){
+	                           alert(msg1);
+	                           location.href="loginView.do";
+	                        } else {
+	                           location.href='ch_registerView.do';
+	                        }
+                    	}
+                    </script>
                     <br><br>
                 
                     <!-- <ul class="contact-info">
@@ -108,7 +119,6 @@
 						<li>남도빌딩 3F H반 T:1544-9970</li><br>
 						<li><a href="mailto:contactme@myemail.com">contactme@myemail.com</a></li>
 					</ul> -->
-                
             </div>
         </div>
         <!-- Left Side section end -->
@@ -130,7 +140,7 @@
                                	<div id="photoList">
                                 	<c:forEach var="ch" items="${ list }">
                                     <a class="detailInList" id="test" style="cursor:pointer" onclick="getdetailInList(this);" name="${ ch.chId }">
-                                    	<input type="hidden" id="hiddenDetailInList" name="hiddenDetailInList" "/>
+                                    	<input type="hidden" id="hiddenDetailInList" name="hiddenDetailInList"/>
                                         <div class="photoBox">
 											<img src="resources/images/challenge/${ ch.chPicture }" alt=""/>
                                             <div class="textBox">
@@ -141,17 +151,16 @@
                                             </div>
                                         </div>
                                     </a>
-                                    
-                                   
                                     </c:forEach>		
 								</div>
 							</div>	
 							<script>
+								function getdetailInList(chId){
+									location.href="hiddenDetailInList.do?chId=" + chId.name;
+								}
+								
 								$(function(){
-									function getdetailInList(chId){
-										location.href="hiddenDetailInList.do?chId=" + chId.name;
-									}
-									
+
 									$('.ca').on("click",function(){
 										var index = $('.ca').index(this);
 										var category = $('#category').children().eq(index).text();
@@ -168,7 +177,7 @@
 													var listText = "";
 													for(var i=0; i<data.length; i++) {
 														
-														listText += ' <a class="detailInList" href="hiddenDetailInList.do?chId='+data[i].chId + '" style="cursor:pointer;">';
+														listText += '<a class="detailInList" href="hiddenDetailInList.do?chId='+data[i].chId + '" style="cursor:pointer;">';
 														listText += '<div class="photoBox">';
 														listText += '<img src="resources/images/challenge/'+data[i].chPicture+'">';
 														listText += '<div class="textBox">';
@@ -184,12 +193,9 @@
 												error: function() {
 													console.log("오류입니다");
 												}
-											});	
-											
+											});		
 									});
 								});
-								
-								
 							</script>
                        </div>  
                                     <div class="qnaPaging" style="float: right; margin-right: 29px; margin-top: 20px;">
@@ -231,10 +237,6 @@
 									</div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>    
             <!-- Page end -->
             </div>
             <div class="copyright"><p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
@@ -249,8 +251,6 @@
 	<script src="resources/js/circle-progress.min.js"></script>
 	<script src="resources/js/jquery.magnific-popup.min.js"></script>
 	<script src="resources/js/main.js"></script>
-
-    
 
 	<script>
 		var health = document.getElementsByClassName('health');
