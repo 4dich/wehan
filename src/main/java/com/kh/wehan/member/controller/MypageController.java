@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
+import com.kh.wehan.certify.model.vo.Certify;
 import com.kh.wehan.challenge.model.vo.Challenge;
 import com.kh.wehan.member.model.service.MypageService;
 import com.kh.wehan.member.model.vo.Member;
@@ -22,7 +23,7 @@ import com.kh.wehan.member.model.vo.Mypage;
 @Controller
 public class MypageController {
 	
-	String userId = "user01";
+	/* String userId = "user01"; */
 	
 	@Autowired
 	private MypageService myService;
@@ -34,7 +35,7 @@ public class MypageController {
 		HttpSession session = request.getSession();
 		
 		Member mem = (Member)session.getAttribute("loginUser");
-		/* String userId = mem.getUserId(); */
+		String userId = mem.getUserId();
 		
 		Mypage mypage = myService.my_profileView(userId);
 		
@@ -91,43 +92,47 @@ public class MypageController {
 	public ModelAndView my_challengeView(ModelAndView mv, HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
-		/* String userId = ((Member)session.getAttribute("loginUser")).getUserId(); */
+		String userId = ((Member)session.getAttribute("loginUser")).getUserId();
 		
-		ArrayList<Challenge> clist = myService.selectListCh(userId);
+		ArrayList<Challenge> chList = myService.selectListCh(userId);
 		
-		int totalCount = myService.getListCountFinCh(userId);
+		ArrayList<String> ceId = new ArrayList<>();
+		ArrayList<Integer> ceCount = new ArrayList<>();
 		
-		int successCount = myService.getListCountSucCh(userId);
+		for(Challenge ch: chList) {
+			ceId.add(ch.getChId());
+		}
 		
-
-//		ArrayList cStatus = new ArrayList();
-//		
-//		Date today = new Date();
-//		
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//		
-//		for(Challenge c: clist) {
-//			String s2 = c.getStartDate().replace("/", "-");
-//			String e2 = c.getEndDate().replace("/", "-");
-//			
-//			try {
-//				Date sDate = sdf.parse(s2);
-//				Date eDate = sdf.parse(e2);
-//				
-//				if(sDate.getTime()>today.getTime()) {
-//					cStatus.add(0);
-//				}else if(sDate.getTime()<today.getTime() && eDate.getTime()>today.getTime()) {
-//					cStatus.add(1);
-//				}else {
-//					cStatus.add(2);
-//				}
-//			} catch (ParseException e) {
-//				e.printStackTrace();
-//			}
-//		}
+		int ceListCount = 0;
 		
-		mv.addObject("clist", clist)
-		  .addObject("totalCount", totalCount)
+		for(int i=0; i<chList.size(); i++) {
+			Certify ce = new Certify(ceId.get(i), userId);
+			ceListCount = myService.certifyCount(ce);
+			ceCount.add(ceListCount);
+		}
+			
+		
+		System.out.println("챌린지아이디:" + ceId);
+		System.out.println("인증글 개수:" + ceCount);
+		/*
+		 * ArrayList cStatus = new ArrayList();
+		 * 
+		 * Date today = new Date(); SimpleDateFormat sdf = new
+		 * SimpleDateFormat("yyyy-MM-dd");
+		 * 
+		 * for(Challenge c: clist) { String s2 = c.getStartDate().replace("/", "-");
+		 * String e2 = c.getEndDate().replace("/", "-");
+		 * 
+		 * try { Date sDate = sdf.parse(s2); Date eDate = sdf.parse(e2);
+		 * 
+		 * if(sDate.getTime()>today.getTime()) { cStatus.add(0); }else
+		 * if(sDate.getTime()<today.getTime() && eDate.getTime()>today.getTime()) {
+		 * cStatus.add(1); }else { cStatus.add(2); } } catch (ParseException e) {
+		 * e.printStackTrace(); } }
+		 */
+		
+		mv.addObject("chList", chList)
+		  .addObject("ceCount", ceCount)
 		  .setViewName("user/mypage/my_challenge");
 		
 		return mv;

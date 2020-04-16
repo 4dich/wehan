@@ -45,6 +45,12 @@ public class Certify {
 		this.nickName = nickName;
 		this.picture = picture;
 	}
+	
+	public Certify(String chId, String userId) {
+		super();
+		this.chId = chId;
+		this.userId = userId;
+	}
 
 	public String getCeId() {
 		return ceId;

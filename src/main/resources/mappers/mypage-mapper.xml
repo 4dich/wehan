@@ -29,6 +29,19 @@
 		<result property="chPeople" column="CHPEOPLE"/>
 	</resultMap>
 	
+	<resultMap  id="certifyResultSet" type="Certify">
+		<id property="ceId" column="CEID"/>
+		<result property="chId" column="CHID"/>
+		<result property="userId" column="USERID"/>
+		<result property="ceContent" column="CECONTENT"/>
+		<result property="cePicture" column="CEPICTURE"/>
+		<result property="ceDel" column="CEDEL_YN"/>
+		<result property="ceDate" column="CEDATE"/>
+		<result property="chName" column="CHNAME"/>
+		<result property="category" column="CATEGORY"/>
+		<result property="nickName" column="NICKNAME"/>
+	</resultMap>
+	
 	<select id="my_profileView" resultMap="mypageResultSet">
 		SELECT *
 		FROM MYPAGE
@@ -58,15 +71,9 @@
 		WHERE CHPEOPLE LIKE '%'||#{userId}||'%'
 	</select>
 	
-	<select id="listCountFinCh" resultType="_int">
-	<![CDATA[
-		SELECT COUNT(*) FROM CHALLENGE
-		WHERE CHPEOPLE LIKE '%'||#{userId}||'%'
-		AND SYSDATE-TO_DATE(ENDDATE)>0
-	]]>
-	</select>
-	
-	<select id="listCountSucCh" resultType="_int">
-	
+	<select id="certifyCount" resultType="_int">
+		SELECT COUNT(*) FROM CERTIFY
+		WHERE USERID=#{userId}
+		AND CHID=#{chId}
 	</select>
 </mapper>
