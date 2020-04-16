@@ -79,7 +79,7 @@
                     </a>
                     <form class="searchChallenge" action="searchChallenge.do">
 	                    <div class="challenges-search">
-							<input type="textarea" style="padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 3px solid black;" placeholder="챌린지 검색">
+							<input type="textarea" style="padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 3px solid black;" placeholder="챌린지 이름 검색">
 	                        <a href="" class="site-btn2">
 	                            <img src="resources/images/main/search.png" style="padding-left: 10px;" alt="">
 	                        </a>
@@ -156,9 +156,15 @@
 							</div>	
 							<script>
 								function getdetailInList(chId){
-									location.href="hiddenDetailInList.do?chId=" + chId.name;
-								}
-								
+									var msg1 = "<%= request.getAttribute("msg1")%>";
+						             if(msg1 != "null"){
+						                alert(msg1);
+						                location.href="loginView.do";
+						             } else {
+										location.href="hiddenDetailInList.do?chId=" + chId.name;    	 
+						             }
+						        }
+	
 								$(function(){
 
 									$('.ca').on("click",function(){

@@ -291,10 +291,14 @@ public class ChallengeController {
 	 * @return
 	 */
 	@RequestMapping("searchChallenge.do")
-	public ModelAndView searchChallenge(ModelAndView mv, String search) {
+	public ModelAndView searchChallenge(ModelAndView mv, String searchChallenge, String search) {
 		
 		Challenge chal = new Challenge();
 
+		if(searchChallenge.equals("chName")) {
+			chal.setChName(search);
+		}	
+		
 		System.out.println(chal);
 		
 		int currentPage = 1;
@@ -305,7 +309,7 @@ public class ChallengeController {
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
 		
-		ArrayList<Challenge> list = cService.selectSearchList(chal, pi);
+		ArrayList<Challenge> list = cService.selectSearchChNameList(chal, pi);
 		
 		for(int i=0; i<list.size(); i++) {
 			String[] str = list.get(i).getChPeople().split(",");

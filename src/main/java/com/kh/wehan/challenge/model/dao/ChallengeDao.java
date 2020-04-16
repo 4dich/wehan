@@ -69,6 +69,13 @@ public class ChallengeDao {
 		return (ArrayList)sqlSession.selectList("challengeMapper.selectChallengeCategoryList", category, rowBounds);
 	}
 
+	public ArrayList<Challenge> getSelectSearchChNameList(Challenge chal, PageInfo pi) {
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("challengeMapper.selectSearchChNameList", chal, rowBounds);
+	}
+
 
 	
 	

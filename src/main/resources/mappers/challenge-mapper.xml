@@ -98,4 +98,13 @@
 		CHALLENGE
 		WHERE CATEGORY=#{category}
 	</select>
+	
+	<select id="selectSearchChNameList" resultMap="challengeResultSet">
+		SELECT *
+		FROM CHALLENGE
+			<if test="chName != null">
+				WHERE CHNAME LIKE '%' || #{chName} || '%'
+			</if>
+		ORDER BY CHID DESC
+	</select>
 </mapper>
