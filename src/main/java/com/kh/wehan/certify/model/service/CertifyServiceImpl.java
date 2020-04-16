@@ -9,6 +9,7 @@ import com.kh.wehan.certify.model.dao.CertifyDao;
 import com.kh.wehan.certify.model.vo.Certify;
 import com.kh.wehan.certify.model.vo.CertifyReply;
 import com.kh.wehan.common.model.vo.PageInfo;
+import com.kh.wehan.member.model.vo.Follow;
 import com.kh.wehan.member.model.vo.Member;
 
 @Service("ceService")
@@ -59,6 +60,13 @@ public class CertifyServiceImpl implements CertifyService{
 		
 		return ceDao.selectCertify(ceId);
 	}
+
+	@Override
+	public ArrayList<Follow> getFollowDelete(PageInfo pi, Follow f) {
+	
+		return ceDao.deleteFollow(pi,f);
+	}
+
 
 
 }

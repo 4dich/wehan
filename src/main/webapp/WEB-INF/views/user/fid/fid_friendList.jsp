@@ -146,6 +146,7 @@
 								
 									<div class="photoBox" onclick="location.href='fid_detailView.do';">
 										<!-- 인증사진 -->
+										<input type="hidden" value="${ f.ceId }">
 										<img src="resources/images/certify/${ f.cePicture }" alt="">
 										<!-- 인증날짜 -->
 										<p class="fidUploadDate">${ f.ceDate }</p>
@@ -229,6 +230,13 @@
 	<script src="resources/js/circle-progress.min.js"></script>
 	<script src="resources/js/jquery.magnific-popup.min.js"></script>
 	<script src="resources/js/main.js"></script>
-
+	<script>
+		$('.photoBox').click(function(){
+		var ceId = $(this).find("input[type=hidden]").val();
+		var currentPage = ${ pi.currentPage };
+		console.log(ceId);
+		location.href = "fid_detailView.do?ceId="+ceId+"&currentPage=" + currentPage;
+		});
+	</script>
 	</body>
 </html>
