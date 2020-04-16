@@ -85,7 +85,7 @@ public class viewController {
 	
 	@RequestMapping("ch_top10ListView.do")
 	public String ch_top10ListView() {
-		return "user/challenge/ch_top10List";
+		return "redirect:getChallengeTop10List.do";
 	}
 	
 	@RequestMapping("ch_registerView.do")
