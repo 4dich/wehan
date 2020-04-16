@@ -161,15 +161,9 @@ public class CertifyController {
 				.addObject("pi",pi)
 				.setViewName("redirect:fid_followView.do");
 				
-				
-				
-				
-				
-				
-			}else {
-				mv.addObject("msg","엥")
-				.addObject("msg2", "로그인 먼저해주세요")
-				.setViewName("common/errorPage");
+			}else{
+				mv.addObject("msg","엥").addObject("msg2", "로그인 먼저해주세요");
+				mv.setViewName("common/errorPage");
 			}
 		
 		
@@ -189,35 +183,43 @@ public class CertifyController {
 	 * @return
 	 */
 	@RequestMapping("fid_detailView.do")
-	public ModelAndView fidDetail(ModelAndView mv, int ceId,
+	public ModelAndView fidDetail(ModelAndView mv, int ceId,HttpServletRequest request,
 			@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage) {
 		
-		Certify c = ceService.selectCertify(ceId);
 		
-		if(c != null) {
+		HttpSession session = request.getSession();
+		Member m = (Member)session.getAttribute("loginUser");
+				
+		if(m != null) {
+			
+			Certify c = ceService.selectCertify(ceId);
+	
 			mv.addObject("c",c)
 			.addObject("currentPage",currentPage)
 			.setViewName("user/fid/fid_detail");
 		}else {
-			mv.addObject("msg","Error")
-			.addObject("msg2","인증글 상세조회 실패")
-			.setViewName("commom/errorPage");
+			mv.addObject("msg","엥").addObject("msg2", "로그인 먼저해주세요");
+			mv.setViewName("common/errorPage");
 		}
 		
 		return mv;
 	}
 	
-//	@RequestMapping("ch_registerPhotoView.do")
-//	public ModelAndView insertCertify(ModelAndView mv,HttpServletRequest request) {
-//		
-//		
-//		HttpSession session = request.getSession();
-//		Member m = (Member)session.getAttribute("loginUser");
-//		
-//		
-//		
-//		return mv;
-//	}
+
+	@RequestMapping("addReply.do")
+	@ResponseBody
+	public String addReply(CertifyReply r) {
+		String picture = "1";
+		r.setPicture(picture);
+		System.out.println(r);
+		int result = ceService.insertReply(r);
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+		
+	}
 	
 	
 	
