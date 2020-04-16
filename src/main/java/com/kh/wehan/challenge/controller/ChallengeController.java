@@ -238,20 +238,42 @@ public class ChallengeController {
 	@RequestMapping("hiddenDetailInList.do")
 	public ModelAndView selectOneDetailInList(ModelAndView mv, String chId) {
 		
-		System.out.println("ch" + chId);
-		
 		Challenge chal = cService.selectOneDetail(chId);
 		
-		System.out.println("chal" + chal);
 		mv.addObject("chal", chal);
 		mv.setViewName("user/challenge/ch_detail");
 		
 		return mv;
 	}
-	/*
-	 * 
-	 * @RequestMapping("categoryInList.do") public ModelAndView
-	 * categoryInList(ModelAndView mv, category)
+	
+	  
+	/**
+	 * 3_3. 사용자 챌린지 리스트 > 카테고리 별 페이지 보기
+	 * @param mv
+	 * @param category
+	 * @param currentPage
+	 * @return
 	 */
+	@RequestMapping("categoryInList.do") 
+	public ModelAndView categoryInList(ModelAndView mv, String category,
+						@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
+		
+		int listCount = cService.getListCount(category);
+		
+		int pageLimit = 5;
+		int boardLimit = 10;
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, pageLimit, boardLimit);
+		
+		ArrayList<Challenge> list = cService.selectList(category, pi);
+		
+		mv.addObject("list", list);
+		mv.addObject("pi", pi);
+		mv.addObject("listCount", listCount);
+		mv.setViewName("user/challenge/ch_chList");
+		
+		return mv;
+	}
+	 
 	
 }

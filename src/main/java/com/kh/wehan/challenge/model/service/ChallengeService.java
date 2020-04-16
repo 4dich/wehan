@@ -57,7 +57,22 @@ public interface ChallengeService {
 	 */
 	ArrayList<Challenge> selectChallengeList(PageInfo pi);
 
-	
+	/**
+	 * 사용자 챌린지 리스트 카테고리 별 분류 리스트 카운트
+	 * @param category
+	 * @return
+	 */
+	int getListCount(String category);
+
+	/**
+	 * 사용자 챌린지 리스트 카테고리 별 분류
+	 * @param category
+	 * @param pi
+	 * @return
+	 */
+	ArrayList<Challenge> selectList(String category, PageInfo pi);
+
+
 	
 	
 

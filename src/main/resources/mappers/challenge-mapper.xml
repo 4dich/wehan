@@ -84,4 +84,16 @@
 		SELECT * FROM
 		CHALLENGE
 	</select>
+	
+	<select id="getListCategoryCount" resultMap="challengeResultSet">
+		SELECT COUNT(*) 
+		FROM CHALLENGE
+		WHERE CATEGORY=#{category}
+	</select>
+	
+	<select id="selectChallengeCategoryList" resultMap="challengeResultSet">
+		SELECT * FROM
+		CHALLENGE
+		WHERE CATEGORY=#{category}
+	</select>
 </mapper>
