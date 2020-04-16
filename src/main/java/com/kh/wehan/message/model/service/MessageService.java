@@ -75,4 +75,5 @@ public interface MessageService {
 	 */
 	int getMsgCount(String userId);
 
+	
 }

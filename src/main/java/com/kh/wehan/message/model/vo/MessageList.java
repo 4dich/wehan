@@ -2,10 +2,14 @@ package com.kh.wehan.message.model.vo;
 
 public class MessageList {
 	
-	private String fId;			// 친구 ID
-	private String fName;		// 친구 닉넴
-	private String fImg;		// 친구 이미지
+	private int mrId;		// 메시지 리스트 ID
 	private int mId;			// 메시지 ID
+	private String SenderId;	// 보낸사람ID
+	private String ReceiverId;	// 받는사람ID
+	private String SenderName;	// 보낸사람 닉넴
+	private String ReceiverName;	// 받는사람 닉넴
+	private String SenderImg;	// 보낸사람 이미지	
+	private String ReceiverImg;	// 받는사람 이미지	
 	private String mContent;	// 메시지 내용
 	private String mDate;		// 메시지 날짜
 	private int mRead;			// 안읽은 메시지 
@@ -18,13 +22,17 @@ public class MessageList {
 	}
 
 
-	public MessageList(String fId, String fName, String fImg, int mId, String mContent, String mDate, int mRead,
-			int rowNum) {
+	public MessageList(int mrId, int mId, String senderId, String receiverId, String senderName, String receiverName,
+			String senderImg, String receiverImg, String mContent, String mDate, int mRead, int rowNum) {
 		super();
-		this.fId = fId;
-		this.fName = fName;
-		this.fImg = fImg;
+		this.mrId = mrId;
 		this.mId = mId;
+		SenderId = senderId;
+		ReceiverId = receiverId;
+		SenderName = senderName;
+		ReceiverName = receiverName;
+		SenderImg = senderImg;
+		ReceiverImg = receiverImg;
 		this.mContent = mContent;
 		this.mDate = mDate;
 		this.mRead = mRead;
@@ -32,33 +40,13 @@ public class MessageList {
 	}
 
 
-	public String getfId() {
-		return fId;
+	public int getMrId() {
+		return mrId;
 	}
 
 
-	public void setfId(String fId) {
-		this.fId = fId;
-	}
-
-
-	public String getfName() {
-		return fName;
-	}
-
-
-	public void setfName(String fName) {
-		this.fName = fName;
-	}
-
-
-	public String getfImg() {
-		return fImg;
-	}
-
-
-	public void setfImg(String fImg) {
-		this.fImg = fImg;
+	public void setMrId(int mrId) {
+		this.mrId = mrId;
 	}
 
 
@@ -69,6 +57,66 @@ public class MessageList {
 
 	public void setmId(int mId) {
 		this.mId = mId;
+	}
+
+
+	public String getSenderId() {
+		return SenderId;
+	}
+
+
+	public void setSenderId(String senderId) {
+		SenderId = senderId;
+	}
+
+
+	public String getReceiverId() {
+		return ReceiverId;
+	}
+
+
+	public void setReceiverId(String receiverId) {
+		ReceiverId = receiverId;
+	}
+
+
+	public String getSenderName() {
+		return SenderName;
+	}
+
+
+	public void setSenderName(String senderName) {
+		SenderName = senderName;
+	}
+
+
+	public String getReceiverName() {
+		return ReceiverName;
+	}
+
+
+	public void setReceiverName(String receiverName) {
+		ReceiverName = receiverName;
+	}
+
+
+	public String getSenderImg() {
+		return SenderImg;
+	}
+
+
+	public void setSenderImg(String senderImg) {
+		SenderImg = senderImg;
+	}
+
+
+	public String getReceiverImg() {
+		return ReceiverImg;
+	}
+
+
+	public void setReceiverImg(String receiverImg) {
+		ReceiverImg = receiverImg;
 	}
 
 
@@ -114,9 +162,14 @@ public class MessageList {
 
 	@Override
 	public String toString() {
-		return "MessageList [fId=" + fId + ", fName=" + fName + ", fImg=" + fImg + ", mId=" + mId + ", mContent="
-				+ mContent + ", mDate=" + mDate + ", mRead=" + mRead + ", rowNum=" + rowNum + "]";
+		return "MessageList [mrId=" + mrId + ", mId=" + mId + ", SenderId=" + SenderId + ", ReceiverId=" + ReceiverId
+				+ ", SenderName=" + SenderName + ", ReceiverName=" + ReceiverName + ", SenderImg=" + SenderImg
+				+ ", ReceiverImg=" + ReceiverImg + ", mContent=" + mContent + ", mDate=" + mDate + ", mRead=" + mRead
+				+ ", rowNum=" + rowNum + "]";
 	}
+
+
+	
 
 
 	

@@ -111,7 +111,6 @@ public class MessageController {
 		
 		// 메시지 내용 가져오기
 		ArrayList<Message> list = msgService.getMsgContent(m);
-			
 		
 		if(fi != null) {
 			mv.addObject("fi", fi).addObject("list", list).setViewName("user/message/msg_msgDetail");
@@ -133,9 +132,7 @@ public class MessageController {
 	@RequestMapping("saveMsgContent.do")
 	@ResponseBody
 	public String saveMsgContent(String fId, String content, HttpServletRequest request) {
-		
-		
-		
+				
 		// userId 가져오기 
 		HttpSession session = request.getSession(); 
 		Member mem =(Member)session.getAttribute("loginUser"); 
@@ -147,6 +144,7 @@ public class MessageController {
 		msg.put("userId", userId);
 		msg.put("fId", fId);
 		msg.put("mContent", content);
+		
 		
 		// DB에 저장하기
 		int result = msgService.saveMsgContent(msg);
@@ -201,27 +199,30 @@ public class MessageController {
 	 * @return
 	 */
 	@RequestMapping("msgDelete.do")
-	public int msgDelete(String fId, HttpServletRequest request) {
+	public ModelAndView msgDelete(ModelAndView mv, String fId, String mrId, HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
 		Member mem = (Member)session.getAttribute("loginUser");
 		String userId = mem.getUserId();
 		
+		
 		Map m = new HashMap();
 		
 		m.put("userId", userId);
+		m.put("mrId",mrId);
 		m.put("fId", fId);
 		
 		
 		int result = msgService.msgDelete(m);
 		
 		if(result > 0) {
-			
+			mv.setViewName("redirect:getMsgList.do");
 		} else {
-			
+			mv.addObject("msg", "Error").addObject("msg2","메시지를 삭제할 수 없습니다.").setViewName("common/errorPage");
 		}
 		
-		return result;
+		return mv;
+		
 	}
 	
 
