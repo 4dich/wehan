@@ -115,7 +115,7 @@
 											이미지 올리기
 										</button>
 										<input type="file" id="certifyPicFile" name="registerPic" hidden/>
-										<button class="site-btn sb-solid mr-3 mb-3" style="padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; ">
+										<button id="deleteBtn" class="site-btn sb-solid mr-3 mb-3" style="padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; ">
 											이미지 삭제하기
 										</button>
 									</span>
@@ -124,6 +124,10 @@
       								$('#btnPic').click(function(){
 	      								$('#certifyPicFile').click();
       								});	
+      								$('#deleteBtn').click(function () {
+										$('#certifyPhotoArea').attr("src","resources/images/image.png");
+									});
+      								
       							  // ====== 첨부 이미지 스크립트  =============================================	
       								function readURL(input) {
       										if(input.files && input.files[0]) {

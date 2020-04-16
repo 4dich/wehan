@@ -126,7 +126,7 @@
 										</td>
 									</tr>						
 										
-										<c:if test="${'user' eq q.qUserid }">
+										<c:if test="${loginUser.userId eq q.qUserid }">
 										<tr class="replybuttonArea">
 											<c:url var="qModifyView" value="questionsModifyView.do">
 												<c:param name="qId" value="${ q.qId }" />

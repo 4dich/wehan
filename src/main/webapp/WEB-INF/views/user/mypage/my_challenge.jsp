@@ -170,6 +170,15 @@
 		color: #828282;
 	}
 	
+	.gg, .gg2{
+		padding-bottom: 18px;
+		overflow: hidden;
+		font-size: 72px;
+		font-family: "Playfair Display", serif;
+		line-height: 1;
+		font-weight: 900;
+		position: relative;
+	}
 	/* progress-bar */
 	@-webkit-keyframes progress-bar-stripes {
 	  from {
@@ -316,9 +325,7 @@
 
 	<!-- Main section start -->
 	<div class="main-site-warp">
-		
 		<%@ include file="/WEB-INF/views/common/menuBar.jsp" %>
-
 		
         <!-- 메뉴 끝 -->
 		<header class="header-section">
@@ -336,7 +343,7 @@
 			<div class="main-sidebar">
 				<div class="mb-warp" style="text-align: center;">
 
-                    <a href="index.html" class="site-logo">
+                    <a href="indexView.do" class="site-logo">
 						<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
@@ -384,10 +391,14 @@
 								<div>사이트 가입일</div>
 							</div>
 							<div style="display: inline-block; width:100%; margin-top:8px;">
-								<div class="circle-item-warp" style="display: inline-block; width:320px; height:165px; margin: 0 15px 0 15px; border:1px solid gray; border-radius:15px; padding: 10px" >
-									<div class="circle-progress" data-cptitle="Passion" data-cpid="id-1" data-cpvalue="80" data-cpcolor="#242424" style="margin-left: 20px; margin-top: 20px"></div>
-									<div style="display:inline-block; font-size:50px; font-family: 'Playfair Display', serif; font-weight:700; margin-left: -50px; margin-top: 20px">%</div>
-									<div class="circle-progress-text">
+								<div class="circle-item-warp" style="display: inline-block; width:320px; height:165px; margin: 0 15px 0 15px; border:1px solid gray; border-radius:15px; padding: 30px" >
+									<!-- <div class="circle-progress" data-cptitle="Passion" data-cpid="id-1" data-cpvalue="-1" data-cpcolor="#242424" style="margin-left: 20px; margin-top: 20px"></div>
+									<div style="display:inline-block; font-size:50px; font-family: 'Playfair Display', serif; font-weight:700; margin-left: -50px; margin-top: 20px">%</div> -->
+									<div>
+										<span class="gg"></span>
+										<span class="gg">%</span>
+									</div>
+									<div class="circle-progress-text" style="color:gray; font-size:13px">
 										<span id="totalCh">-1</span><span>, Total challenges</span>
 									</div>
 								</div>
@@ -395,17 +406,17 @@
 									<div class="milestone">
 										<h2 id="cnt-complete">-1</h2>
 										<div class="milestone-info" style="text-align:left;">
-											<h5>Challenges<br>completed</h5>
+											<h5>Challenges<br>completed</h5><br>
 											<p id="exp" style="color:gray">Lv 4, Exp 10</p>
 										</div>
 									</div>
 								</div>
 								<div class="circle-item-warp" style="display: inline-block; width:320px; height:165px; margin: 0 15px 0 5px; border:1px solid gray; border-radius:15px; padding: 25px 10px 0 40px;" >
 									<div class="milestone">
-										<h2 id="gapDate"></h2>
+										<h2 id="joinedDate"></h2>
 										<div class="milestone-info" style="text-align:left;">
-											<h5>Days<br>have passed</h5>
-											<p id="joinDate" style="color:gray">${ loginUser.joinDate }</p>
+											<h5>Days<br>have passed</h5><br>
+											<p id="joinDate" style="color:gray" >${ loginUser.joinDate }</p>
 										</div>
 									</div>
 									
@@ -418,7 +429,7 @@
 										var gap = nDate.getTime() - jDate.getTime();
 										var result = Math.floor(gap / (1000 * 60 * 60 * 24)) + 1;
 										
-										$("#gapDate")[0].innerText = result;
+										$("#joinedDate")[0].innerText = result;
 										
 									</script>
 								</div>
@@ -439,16 +450,16 @@
 						<div class="tab-element">
 							<ul class="nav nav-tabs" id="myTab" role="tablist" style="margin: 0px 0px -30px 80px;">
 								<li class="nav-item">
-									<a class="nav-link active" style="width:259px; text-align:center" id="1-tab" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">전체</a>
+									<a class="nav-link active" style="width:250px; text-align:center" id="1-tab" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">전체</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" style="width:259px; text-align:center" id="2-tab" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">진행중</a>
+									<a class="nav-link" style="width:250px; text-align:center" id="2-tab" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">진행중</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" style="width:259px; text-align:center" id="3-tab" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">진행예정</a>
+									<a class="nav-link" style="width:250px; text-align:center" id="3-tab" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">진행예정</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" style="width:259px; text-align:center" id="4-tab" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false">진행완료</a>
+									<a class="nav-link" style="width:250px; text-align:center" id="4-tab" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false">진행완료</a>
 								</li>
 							</ul>
 							<div class="tab-content" id="myTabContent" >
@@ -541,8 +552,11 @@
 								<div id="userId" style="display:none">${ loginUser.userId }</div>
 								
 								<script>
-									$(function(){
+									var countComplete = 0;
+									var countTotalCh = 0;
+									var rateComplete = -1;
 									
+									$(function(){
 										var $sArr = $('.sArr');
 										var $eArr = $('.eArr');
 										var today = new Date();
@@ -552,8 +566,6 @@
 										var $result4 = $('.result4');
 										var $totalCh = $('#totalCh');
 										
-										var countComplete = 0;
-										var countTotalCh = 0;
 										for(var i=0; i<$sArr.length; i++){
 											var sYear = $sArr[i].innerText.split('/')[0] + 20;
 											var sMonth = $sArr[i].innerText.split('/')[1];
@@ -568,13 +580,12 @@
 											var diff = eDate.getTime()-sDate.getTime();
 											var gapDate = Math.ceil(diff / (1000 * 3600 * 24)) + 1;
 											var ceCount = $('.ceCount')[i].innerText;
-											console.log(ceCount);
-											console.log(gapDate);
+											console.log('ceCount:'+ceCount);
+											console.log('gapDate:'+gapDate);
 											
 											if(ceCount/gapDate>=0.8){
 												countComplete++;
 											}
-											console.log("countComplete:" + countComplete);
 											
 											$('#cnt-complete')[0].innerText = countComplete;
 											
@@ -624,7 +635,36 @@
 										}
 										
 										$totalCh[0].innerText = countTotalCh;
+										
+										rateComplete = countComplete/countTotalCh*100;
+										console.log("rateComplete:"+rateComplete);
+										
+										$(".gg")[0].innerText = rateComplete;
 									});
+									
+
+									/* window.addEventListener('DOMContentLoaded', function(){ 
+										$('.circle-progress')[0].setAttribute("data-cpvalue",rateComplete);
+									}) */
+
+									window.onload = function(){
+										$('.circle-progress')[0].setAttribute("data-cpvalue",99);
+									}; 
+
+
+
+
+									
+									
+
+									
+									/* 값이 변경 안되서 잠시 보류 */
+/* 									if(countTotalCh!=0){
+										$('.circle-progress')[0].setAttribute("data-cpvalue",rateComplete);
+									}else{
+										$('.circle-progress')[0].setAttribute("data-cpvalue","0");
+									} */
+									
 									
 									$(function(){
 										$(".chList div").mouseenter(function(){

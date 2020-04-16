@@ -1,10 +1,12 @@
 package com.kh.wehan.challenge.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
 import com.kh.wehan.challenge.model.service.ChallengeService;
 import com.kh.wehan.challenge.model.vo.Challenge;
 import com.kh.wehan.common.Pagination;
@@ -238,8 +243,10 @@ public class ChallengeController {
 	@RequestMapping("hiddenDetailInList.do")
 	public ModelAndView selectOneDetailInList(ModelAndView mv, String chId) {
 		
+		System.out.println(chId);
 		Challenge chal = cService.selectOneDetail(chId);
 		
+		System.out.println(chal);
 		mv.addObject("chal", chal);
 		mv.setViewName("user/challenge/ch_detail");
 		
@@ -253,11 +260,14 @@ public class ChallengeController {
 	 * @param category
 	 * @param currentPage
 	 * @return
+	 * @throws IOException 
+	 * @throws JsonIOException 
 	 */
 	@RequestMapping("categoryInList.do") 
-	public ModelAndView categoryInList(ModelAndView mv, String category,
-						@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
+	public void categoryInList(HttpServletResponse response, String category,
+						@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) throws JsonIOException, IOException {
 		
+		System.out.println(category);
 		int listCount = cService.getListCount(category);
 		
 		int pageLimit = 5;
@@ -267,12 +277,11 @@ public class ChallengeController {
 		
 		ArrayList<Challenge> list = cService.selectList(category, pi);
 		
-		mv.addObject("list", list);
-		mv.addObject("pi", pi);
-		mv.addObject("listCount", listCount);
-		mv.setViewName("user/challenge/ch_chList");
+		response.setContentType("application/json; charset=UTF-8");
 		
-		return mv;
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		gson.toJson(list, response.getWriter());
+	
 	}
 	 
 	
