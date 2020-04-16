@@ -38,7 +38,6 @@
     .site-logo {
         margin-bottom: 40px;
     }
-
     .main-sidebar .mb-warp {
         padding: 90px 95px 100px 145px;
     }
@@ -55,7 +54,6 @@
     .following{
         float:none;
     }
-
     .menuIcon{
     background: white;
     border-radius: 20%;
@@ -68,7 +66,6 @@
         width: 30px;
         height: 30px;
     }
-
     .menuIcon div{
         position: absolute;
         background: red;
@@ -391,7 +388,7 @@
 									<div class="circle-progress" data-cptitle="Passion" data-cpid="id-1" data-cpvalue="80" data-cpcolor="#242424" style="margin-left: 20px; margin-top: 20px"></div>
 									<div style="display:inline-block; font-size:50px; font-family: 'Playfair Display', serif; font-weight:700; margin-left: -50px; margin-top: 20px">%</div>
 									<div class="circle-progress-text">
-										<p>${ totalCount }, Total challenges</p>
+										<span id="totalCh">-1</span><span>, Total challenges</span>
 									</div>
 								</div>
 								<div class="circle-item-warp" style="display: inline-block; width:320px; height:165px; margin: 0 15px 0 15px; border:1px solid gray; border-radius:15px; padding: 25px 10px 0 40px;" >
@@ -471,7 +468,7 @@
 												<div class="ceCount" style="border-left:1px solid gray;">${ceCount[status.index]}</div>
 												<div>/</div>
 												<div class="gapDate" style="border-right:1px solid gray;">-1</div>
-												
+
 												<div class="chId" style="display:none">${ c.chId }</div>
 											</div>
 										</c:forEach>
@@ -553,9 +550,10 @@
 										var $result2 = $('.result2');
 										var $result3 = $('.result3');
 										var $result4 = $('.result4');
+										var $totalCh = $('#totalCh');
 										
 										var countComplete = 0;
-										
+										var countTotalCh = 0;
 										for(var i=0; i<$sArr.length; i++){
 											var sYear = $sArr[i].innerText.split('/')[0] + 20;
 											var sMonth = $sArr[i].innerText.split('/')[1];
@@ -564,7 +562,7 @@
 											
 											var eYear = $eArr[i].innerText.split('/')[0] + 20;
 											var eMonth = $eArr[i].innerText.split('/')[1];
-											var eDay = $eArr[i].innerText.split('/')[2] + 1;
+											var eDay = $eArr[i].innerText.split('/')[2];
 											var eDate = new Date(eYear,eMonth-1,eDay);
 											
 											var diff = eDate.getTime()-sDate.getTime();
@@ -610,6 +608,7 @@
 												
 												$gapDate[i].innerText = gapDate;
 											}else{
+												countTotalCh++;
 												$result[i].innerText = '진행완료';
 												$result.parent().eq(i).children().eq(0).css('background-color','#3A7D7C');
 												
@@ -623,6 +622,8 @@
 												$gapDate[i].innerText = gapDate;
 											}
 										}
+										
+										$totalCh[0].innerText = countTotalCh;
 									});
 									
 									$(function(){
@@ -637,7 +638,6 @@
 											//var nno = $(this).parent().children().eq(0).text();
 										});
 									});
-
 								</script>
 							</div>
 						</div>
@@ -659,29 +659,6 @@
 	<script src="resources/js/circle-progress.min.js"></script>
 	<script src="resources/js/jquery.magnific-popup.min.js"></script>
 	<script src="resources/js/main.js"></script>
-	
-	<div id="photoList">
-       <c:forEach var="ch" items="${ list }">
-        <div class="detailInList" style="cursor:pointer">
-           <input type="hidden" id="hiddenDetailInList" name="hiddenDetailInList" value="${ ch.chId }"/>
-            <div class="photoBox">                                        
-                <img src="resources/images/user/${ ch.chPicture }" alt=""/>
-                <div class="textBox">
-                    <h5>${ ch.chName }</h5>
-                    <br>
-                    <h5>${ ch.price }</h5>
-                    <h5 style="float: right;">${ ch.startDate }</h5>
-                </div>
-            </div>
-        </div>
-        </c:forEach>
-        <script>
-          $(".detailInList")[0].click(function() {
-             var chId = $("#hiddenDetailInList").val();
-             location.href="hiddenDetailInList.do?chid=" + chId;      
-          });
-        </script>
-    </div>  
 	
 	</body>
 </html>
