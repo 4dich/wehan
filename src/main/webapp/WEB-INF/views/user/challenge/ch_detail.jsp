@@ -93,7 +93,7 @@
 						<!-- 서브메뉴 -->
 						<div class="challenges-search" style="margin-left: 10px;">
 							<input type="textarea" style="padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 3px solid black;" placeholder="챌린지 검색">
-							<a href=""><img src="../resources/img/arrow-righ-3.png" style="padding-left: 10px;" alt=""></a>
+							<a href=""><img src="resources/img/arrow-righ-3.png" style="padding-left: 10px;" alt=""></a>
 						</div>
 
 						<br><br>
@@ -107,7 +107,7 @@
 							</p>
 						</div>
 						
-						<button class="site-btn sb-dark" style="margin-left: 35px; width: 280px; font-size: 15px;" type="button" onclick="location.href='ch-list.html'">
+						<button class="site-btn sb-dark" style="margin-left: 35px; width: 280px; font-size: 15px;" type="button" onclick="location.href='chalList.do'">
 							리스트 페이지로 가기
 							<img src="img/arrow-righ-3.png" alt="">
 						</button>
@@ -128,7 +128,7 @@
 						<div class="sampleArea" style="display: inline-flex;">
 							<div class="col-xl-6">
 								<div class="portfolio-item" style="margin-top: 60px;">
-									<img src="resources/img/portfolio/1.jpg" alt="#">
+									<img src="resources/images/challenge/${ chal.chPicture }" style="height: 626px;" alt="">
 									<div class="pi-info">
 										<h3 style="padding-left: 60px; padding-bottom: 20px;">D-31일</h3>
 									</div>

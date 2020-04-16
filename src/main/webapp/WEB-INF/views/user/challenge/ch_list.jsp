@@ -97,7 +97,7 @@
                         </p>
                         
                     </div>
-                    <button class="site-btn sb-dark" style="margin-left: 40px; width: 280px; font-size: 15px;" type="button" onclick="location.href='ch_registerView.do'">
+                    <button class="site-btn sb-dark" style="margin-left: 40px; width: 280px; font-size: 15px;" type="button" onclick="location.href='registerChallenge.do'">
                         	챌린지 등록하기
                         <img src="resources/img/arrow-righ-3.png" alt="">
                     </button>
@@ -129,8 +129,8 @@
 						  <div id="ch_confirmPhotoListArea">
                                	<div id="photoList">
                                 	<c:forEach var="ch" items="${ list }">
-                                    <a class="detailInList" style="cursor:pointer">
-                                    	<input type="hidden" id="hiddenDetailInList" name="hiddenDetailInList" value="${ ch.chId }"/>
+                                    <a class="detailInList" id="test" style="cursor:pointer" onclick="getdetailInList(this);" name="${ ch.chId }">
+                                    	<input type="hidden" id="hiddenDetailInList" name="hiddenDetailInList" "/>
                                         <div class="photoBox">
 											<img src="resources/images/challenge/${ ch.chPicture }" alt=""/>
                                             <div class="textBox">
@@ -141,50 +141,55 @@
                                             </div>
                                         </div>
                                     </a>
+                                    
+                                   
                                     </c:forEach>		
 								</div>
 							</div>	
 							<script>
-								$(".detailInList").click(function() {
-									var chId = $("#hiddenDetailInList").val();
-	                    			location.href="hiddenDetailInList.do?chId=" + chId;
-	                    		});
-								
-								$('.ca').click(function(){
-									var index = $('.ca').index(this);
-									var category = $('#category').children().eq(index).text();
-									console.log(category);
+								$(function(){
+									function getdetailInList(chId){
+										location.href="hiddenDetailInList.do?chId=" + chId.name;
+									}
 									
-										$.ajax({
-											url: "categoryInList.do",
-											type: "get",
-		 									data: {"category":category},
-											success: function(data) {
-		 									console.log(data);
-												$('.photoBox').remove();
-												for(var i=0; i<data.length; i++) {
-													$a = $('<a class="detailInList" style="cursor:pointer">');
-													$chId = $('<input type="hidden" id="hiddenDetailInList" name="hiddenDetailInList>"').text(data[i].chId);
-													$divPhoto = $('<div class="photoBox">');
-													$picture = $('<img src="resources/images/challenge/'+data[i].chPicture+'>');
-													$divText = $('<div class="textBox">');
-													$chName = $('<h5>').text(data[i].chName);
-													$br = $('<br>');
-													$price = $('<h5>').text(data[i].price);
-													$startDate = $('<h5 style="float: right;">').text(data[i].startDate);
+									$('.ca').on("click",function(){
+										var index = $('.ca').index(this);
+										var category = $('#category').children().eq(index).text();
+										console.log(category);
+										
+											$.ajax({
+												url: "categoryInList.do",
+												type: "get",
+			 									data: {"category":category},
+												success: function(data) {
+			 									console.log(data);
+													$('.photoBox').remove();
 													
-													$divText.append($chName).append($br).append($price).append($startDate);
-													
-													$divPhoto.append($picture).append($divText);
-													
-													$('#photoList').append($a).append($chId).append($divPhoto);
+													var listText = "";
+													for(var i=0; i<data.length; i++) {
+														
+														listText += ' <a class="detailInList" href="hiddenDetailInList.do?chId='+data[i].chId + '" style="cursor:pointer;">';
+														listText += '<div class="photoBox">';
+														listText += '<img src="resources/images/challenge/'+data[i].chPicture+'">';
+														listText += '<div class="textBox">';
+														listText += '<h5>'+ data[i].chName + '</h5><br>';
+														listText += '<h5>'+data[i].price + '</h5>';
+														listText += '<h5 style="float: right;">';
+														listText += data[i].startDate;
+														listText += '</h5></div></div></a>';
+														
+														$('#photoList').html(listText);
+													}
+												},
+												error: function() {
+													console.log("오류입니다");
 												}
-											},
-											error: function() {
-												console.log("오류입니다");
-											}
-										});	
-								});						
+											});	
+											
+									});
+								});
+								
+								
 							</script>
                        </div>  
                                     <div class="qnaPaging" style="float: right; margin-right: 29px; margin-top: 20px;">
