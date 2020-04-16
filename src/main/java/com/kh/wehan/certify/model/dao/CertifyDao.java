@@ -67,5 +67,10 @@ public class CertifyDao {
 	
 	}
 
+	public int insertReply(CertifyReply r) {
+		
+		return sqlSession.insert("certifyMapper.insertReply",r);
+	}
+
 	
 }

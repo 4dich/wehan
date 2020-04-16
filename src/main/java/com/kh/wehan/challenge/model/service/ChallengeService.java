@@ -72,6 +72,15 @@ public interface ChallengeService {
 	 */
 	ArrayList<Challenge> selectList(String category, PageInfo pi);
 
+	/**
+	 * 사용자 챌린지 리스트 검색
+	 * 사용자 챌린지 디테일 리스트 검색
+	 * @param chal
+	 * @param pi
+	 * @return
+	 */
+	ArrayList<Challenge> selectSearchChNameList(Challenge chal, PageInfo pi);
+
 
 	
 	

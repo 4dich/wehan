@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="ko">
 <head>
    <title>CH_REGISTER</title>
    <meta charset="UTF-8">
@@ -71,7 +71,7 @@
                </p>
             </div>
 
-            <button class="site-btn sb-dark" style="margin-left: 35px; width: 280px; font-size: 15px;" type="button" onclick="location.href='ch_listView.do'">
+            <button class="site-btn sb-dark" style="margin-left: 35px; width: 280px; font-size: 15px;" type="button" onclick="location.href='chalList.do'">
                  리스트 페이지로 가기
                <img src="img/arrow-righ-3.png" alt="">
             </button>

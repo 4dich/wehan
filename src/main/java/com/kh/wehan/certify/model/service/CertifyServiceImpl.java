@@ -67,6 +67,14 @@ public class CertifyServiceImpl implements CertifyService{
 		return ceDao.deleteFollow(pi,f);
 	}
 
+	/**
+	 * 댓글 달기
+	 */
+	@Override
+	public int insertReply(CertifyReply r) {
+		return ceDao.insertReply(r);
+	}
+
 
 
 }
