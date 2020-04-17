@@ -96,11 +96,26 @@ public class QuestionsDao {
 
 		/**
 		 * 문의사항 삭제하기
-		 * @param nId
+		 * @param qId
 		 * @return
 		 */
 		public int questionsDelete(int qId) {
 			return sqlSession.update("questionsMapper.questionsDelete", qId);
+		}
+		/**
+		 * 문의사항 댓글 등록하기
+		 * @param q
+		 * @return
+		 */
+		public int questionsReplyInsert(Questions q) {
+			
+			return sqlSession.insert("questionsMapper.questionsReplyInsert",q);
+			
+		}
+		
+		
+			
+			
 		}
 
 
@@ -109,7 +124,7 @@ public class QuestionsDao {
 		
 
 
-}
+
 
 
 

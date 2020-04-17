@@ -88,7 +88,11 @@ public class QuestionsServiceImpl implements QuestionsService{
 	}
 
 	
-
+    @Override
+	public int questionsReplyInsert(Questions q) {
+    	return qDao.questionsReplyInsert(q);
+    }
+	
 }
 
 

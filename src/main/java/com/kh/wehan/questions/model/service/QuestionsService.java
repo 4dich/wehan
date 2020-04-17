@@ -63,11 +63,20 @@ public interface QuestionsService {
 	int questionsModify(Questions n);
 
 	/**
-	 * 공지사항 삭제
+	 * 문의사항 삭제
 	 * @param qId
 	 * @return
 	 */
 	int questionsDelete(int qId);
+
+	
+	/**
+	 * 문의사항 댓글 등록하기
+	 * @param q
+	 * @return
+	 */
+	int questionsReplyInsert(Questions q);
+	
 
 	
 }

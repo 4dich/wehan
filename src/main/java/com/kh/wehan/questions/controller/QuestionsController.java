@@ -176,7 +176,7 @@ public class QuestionsController {
 	/**
 	 * 유저 문의사항 수정 불러오기
 	 * @param mv
-	 * @param nId
+	 * @param qId
 	 * @param currentPage
 	 * @return
 	 */
@@ -244,8 +244,26 @@ public class QuestionsController {
 		
 		return "user/questions/questionsInsert";
 	}
+	
+	@RequestMapping("questionsReplyInsert.do")
+	public String questionsReply(Questions q) {
+		System.out.println("test");
+		  System.out.println(q.getqUserid());
+		  System.out.println(q);		 	  
+		 		
+		int result = qService.questionsReplyInsert(q);
+		System.out.println(result);
+		
+		if(result>0) {
+			return"redirect:qnaListView.do";
+		}else {
+			return"common/errorPage";
+		}
+	}
+	
 }
 	
+
 
 
 

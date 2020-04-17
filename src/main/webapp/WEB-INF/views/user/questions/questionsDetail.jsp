@@ -147,7 +147,43 @@
 										</tr>
 									</c:if>	
 									
-								</table>								
+								</table>			
+								
+								<!-- 댓글 등록 부분 -->
+								<table align="center">
+								  <tr>
+								    <td>
+								       <textarea rows="2" cols="80"></textarea>
+								    </td>
+								    <td>
+								      <button>등록</button>
+								      <!--  1.스크립트 2. opput 태그 onclick 이벤트  -->
+								      
+								    </td>
+								  </tr>
+								  
+								  <tr>
+								    <td colspan="2" ><b>댓글(${qCount })</b></td>
+								  </tr>
+								</table>					
+								
+								<c:if test="${qCount >0 }">
+								<table align="center">
+								   <c:forEach var="r" items="${q.questionsReplyList }">
+								     <tr>
+								        <td width="100px">${q.qrUserid }</td>
+								        <td width="400px">${q.qrContent }</td>
+								        <td witth="150px">${q.qrDate }</td>
+								        
+								          
+								        </td>
+								     </tr>
+								   
+								   </c:forEach>
+								
+								</table>
+								</c:if>
+								
 							</div>							
 						</div>
 					</div>
