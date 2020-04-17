@@ -29,7 +29,7 @@
 		<result property="chPeople" column="CHPEOPLE"/>
 	</resultMap>
 	
-	<resultMap  id="certifyResultSet" type="Certify">
+	<resultMap id="certifyResultSet" type="Certify">
 		<id property="ceId" column="CEID"/>
 		<result property="chId" column="CHID"/>
 		<result property="userId" column="USERID"/>
@@ -76,4 +76,15 @@
 		WHERE USERID=#{userId}
 		AND CHID=#{chId}
 	</select>
+	
+	<select id="selectMember" resultType="Member">
+		SELECT * FROM MEMBER
+		WHERE USERID=#{otherId}
+	</select>
+	
+	<delete id="my_unfollow">
+		DELETE FROM FOLLOW
+		WHERE HOST=#{host}
+		AND FOLLOWER=#{follower}
+	</delete>
 </mapper>
