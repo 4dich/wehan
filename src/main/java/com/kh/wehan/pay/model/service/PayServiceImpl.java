@@ -73,5 +73,11 @@ public class PayServiceImpl implements PayService {
 		return pDao.pSearch(p,pi);
 	}
 
+	@Override
+	public ArrayList<Pay> refundYn(PageInfo pi) {
+		// TODO Auto-generated method stub
+		return pDao.refundYn(pi);
+	}
+
 
 }

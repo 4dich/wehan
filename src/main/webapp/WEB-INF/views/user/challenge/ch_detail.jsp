@@ -141,12 +141,10 @@
 								<div class="contact-text-warp">
 									<form class="contact-form" method="post" action="payinfo.do" style="margin-top: 65px;">
 										<div class="row">
-										<div style="display:none;">
-										<input type="text" name="chId">
-										<input type="text" name="price">
-										<input type="text" name="startDate">
-										<input type="text" name="chName">
-										</div>
+										<input type="hidden" name="price" value="${chal.price}">
+										<input type="hidden" name="chId" value="${chal.chId}">
+										<input type="hidden" name="chName" value="${chal.chName}">
+										
 											<div class="col-lg-12">
 												<div class="contents-detail">
 													<input type="text" class="challengeDetail" name="chName" value="${ chal.chName }" disabled>

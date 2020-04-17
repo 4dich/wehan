@@ -69,11 +69,13 @@
 					<!-- 관리자 사이드 메뉴 -->
 					<div class="about-info">
 						<h2>챌린지 정보</h2>
-						<a href="pay.html" id="ad_profile" class="infoMenu">결제정보</a><br><br>
-						<a href="adminProfile.html" id="ad_profile" class="infoMenu">회원정보</a><br><br> <!-- 사이드 메뉴들 -->
-						<a href="ad-cert.html" id="ad_certify" class="infoMenu">인증글 정보</a><br><br>
-						<a href="admin_notice.html" id="ad_notice" class="infoMenu">공지사항</a><br><br>
-						<a href="admin_qna.html" id="ad_questions" class="infoMenu">문의사항</a><br><br>
+						<a href="paylist.do" id="ad_pay" class="infoMenu">결제정보</a><br><br>
+						<!-- <a href="blackList.do" id="ad_blackList" class="infoMenu">블랙리스트</a><br><br> -->
+						<a href="mlist.do" id="mlist" class="infoMenu">회원정보</a><br><br>
+						<!-- <a href="ad_challengeListView.do" id="ad_challenge" class="infoMenu">챌린지 정보</a><br><br> -->
+						<a href="ad_certifyView.do" id="ad_certify" class="infoMenu">인증글 정보</a><br><br>
+						<a href="ad_noticeList.do" id="ad_notice" class="infoMenu">공지사항</a><br><br>
+						<a href="ad_questionsList.do" id="ad_questions" class="infoMenu">문의사항</a><br><br>
 					</div>
 				</div>
 			</div>

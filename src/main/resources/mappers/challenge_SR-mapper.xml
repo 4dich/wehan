@@ -10,30 +10,36 @@
   		<id property="chId" column="CHID"/>
   		<result property="userId" column="USERID"/>
   		<result property="userName" column="USERNAME"/>
-  		<result property="chTitle" column="CHTitle"/>
+  		<result property="chTitle" column="CHTITLE"/>
   		<result property="chPicture" column="CHPICTURE"/>
   		<result property="endDate" column="ENDDATE"/>
+  		<result property="chPeopleList" column="CHPEOPLELIST"/>
   		<result property="chPeopleCount" column="CHPEOPLECOUNT"/>
-  	</resultMap>
-  	
-  	<resultMap type="HashMap" id="challengerResultSet">
-  		<id property="chId" column="CHID"/>
-  		<result property="chPeople" column="CHPEOPLE"/>
+  		<result property="ranking" column="RK"/>
   	</resultMap>
   	
   	
   	<!-- 챌린지 탑10 리스트 가져오기 -->
-  	<!-- 1) 챌린지 참가자 목록 가져오기 -->
-  	<select id="getChallengerList" parameterType="java.util.Map" resultMap="challengerResultSet">
-  		SELECT CHID, CHPEOPLE
-		FROM CHALLENGE
-  	</select>
-  	
-  	
+  	<!-- 1) 진행중 챌린지 목록 가져오기 -->
   	<select id="getChallengeTop10List" resultMap="challengeTop10ResultSet">
-
-  		
+  		<![CDATA[
+  		SELECT * FROM(
+		SELECT CHID AS CHID, 
+		       USERID AS USERID, 
+		       (SELECT NICKNAME FROM MEMBER WHERE USERID = CH.USERID) AS USERNAME, 
+		        CHNAME AS CHTITLE, 
+		        CHPICTURE AS CHPICTURE, 
+		        ENDDATE AS ENDDATE, 
+		        CHPEOPLE AS CHPEOPLELIST, 
+		        CHPEOPLECOUNT AS CHPEOPLECOUNT,
+		        RANK() OVER(ORDER BY CHPEOPLECOUNT DESC, STARTDATE) AS RK
+		FROM CHALLENGE CH
+		WHERE ENDDATE > SYSDATE AND STARTDATE < SYSDATE)
+		WHERE RK <= 10
+		]]>
   	</select>
+  	
+
   	
   	
   </mapper>

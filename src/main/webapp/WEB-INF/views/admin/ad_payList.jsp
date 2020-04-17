@@ -40,7 +40,7 @@
 		button{font-size:14px;}
 		#searchArea{width: 316px; margin-top: 0px; }
 		tr{height: 58px;}
-		.blog-posts{height: 800px;}
+		.blog-posts{height: 840px;}
 		a{text-decoration: none; color: black;}
 	</style>
 </head>
@@ -56,7 +56,7 @@
 
 
 		
-	<%-- <%@ include file="/WEB-INF/views/common/ad_menuBar.jsp" %> --%>
+	<c:import url="/WEB-INF/views/common/ad_menuBar.jsp" />
 
 
 		<header class="header-section">
@@ -70,18 +70,20 @@
 			<div class="main-sidebar">
 			
 				<div class="mb-warp">
-					<a href="../homepage/index.html" class="site-logo">
+					<a href="indexView.do" class="site-logo">
 						<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
 
 					<div class="about-info">
 						<h2>결제정보</h2>
-						<a href="adminProfile.html" id="ad_profile" class="infoMenu">회원정보</a><br><br>
-						<a href="ad-chal.html" id="ad_challenge" class="infoMenu">챌린지 정보</a><br><br>
-						<a href="ad-cert.html" id="ad_certify" class="infoMenu">인증글 정보</a><br><br>
-						<a href="admin_notice.html" id="ad_notice" class="infoMenu">공지사항</a><br><br>
-						<a href="admin_qna.html" id="ad_questions" class="infoMenu">문의사항</a><br><br>
+						<!-- <a href="paylist.do" id="ad_pay" class="infoMenu">결제정보</a><br><br> -->
+						<!-- <a href="blackList.do" id="ad_blackList" class="infoMenu">블랙리스트</a><br><br> -->
+						<a href="mlist.do" id="mlist" class="infoMenu">회원정보</a><br><br>
+						<a href="ad_challengeListView.do" id="ad_challenge" class="infoMenu">챌린지 정보</a><br><br>
+						<a href="ad_certifyView.do" id="ad_certify" class="infoMenu">인증글 정보</a><br><br>
+						<a href="ad_noticeList.do" id="ad_notice" class="infoMenu">공지사항</a><br><br>
+						<a href="ad_questionsList.do" id="ad_questions" class="infoMenu">문의사항</a><br><br>
 					</div>
 					
 					
@@ -120,7 +122,7 @@
 								<th>유저ID</th>
 								<th>마감기한</th>
 								<th>결제정보</th>
-								<th>환급여부</th>
+								<th onclick="refundYn()" style="cursor:pointer;">환급여부</th>
 							</tr>
 						
 							<c:if test="${!empty psearch}">
@@ -228,6 +230,47 @@
 		</div>
 	<!-- Main section end -->
 	<script>
+	
+		function refundYn(){
+				
+			$.ajax({
+				url:"refundYn.do",
+				type:"POST",
+				success:function(result){
+					$('.noticeList').remove();
+					 console.log(result);
+					 /* <td><input type="checkbox" name="refund"></td>
+						<td>${ l.pId }</td>
+						<td>${ p.chName }</td>
+						<td>${ l.userId }</td>
+						<td>${ l.pDate }</td>
+						<td><button onclick="location.href='paydetail.do?pId=${ l.pId }'">정보</button></td>
+						<td>${ l.refund_yn }</td>	 */
+					for(var i = 0;  i <result.length; i++){
+						var $td1 = $('<td>');
+						var $input = $('<input type="checkbox" name="refund">');
+						var $td2 = $('<td>').text(result[i].pId);
+						var $td3 = $('<td>').text("주3회 팩하기");
+						var $td4 = $('<td>').text(result[i].userId);
+						var $td5 = $('<td>').text(result[i].pDate);
+						var $td6 = $('<td>');
+						var $button = $('<button>').text("정보"); 
+						var $td7 = $('<td>').text(result[i].refund_yn);
+						
+						$td1.append($input);
+						$td6.append($button);
+						
+						var $noticeList = $('<tr class="noticeList">');			
+						$noticeList.append($td1).append($td2).append($td3).append($td4).append($td5).append($td6).append($td7);
+						
+						$('.qnaTable').append($noticeList);
+						$('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247");
+					} 
+					 
+					 
+				}
+			});
+		};
 		$(function(){
 			$('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247"); //even 짝수
 		});

@@ -262,7 +262,7 @@
 			<div class="main-sidebar">
 				<!-- 로고 구역 -->
 				<div class="mb-warp">
-					<a href="index.html" class="site-logo">
+					<a href="indexView.do" class="site-logo">
 						<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
@@ -307,150 +307,63 @@
 							<div class="map"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14376.077865872314!2d-73.879277264103!3d40.757667781624285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1546528920522" style="border:0" allowfullscreen></iframe></div>
 						</div> -->
 						<div class="sampleArea">
-
-                            <div class="top1Package">
-                                <div class="top1Wrap">
-                                    <div class="top1Line">#TOP 1</div>
-                                        <div class="topAllImages">
-                                            <img src="../resources/img/about-bg.jpg" style="width: 100%; height: 98%;" alt="">
-                                                <div>
-                                                    <div class="topAllCovers"></div>
-                                                </div>
-                                                <div class="topImgWrap">
-                                                    <div class="top1ChalName">파이널 프로젝트 잘 끝내기</div>
-                                                    <div class="top1UserId">janghansolkill</div>
-                                                    <div class="top1Deadline">2020-03-31 까지</div>
-                                                    <div class="top1People">1,450 명</div>
-                                                </div>
-                                            </div> 
-                                        </div>    
-                                </div>
-                            <div class="top3Package">
-                                <div class="top3Wrap">
-                                    <div class="top3Line">#TOP 2</div>
-                                    <div class="topAllImages">
-                                        <img src="../resources/img/about-bg.jpg" style="width: 100%; height: 98.4%;" alt="">
-                                            <div>
-                                                <div class="topAllCovers"></div>
-                                            </div>
-                                            <div class="topImgWrap">
-                                                <div class="top3ChalName">파이널 프로젝트 잘 끝내기</div>
-                                                <div class="top3UserId">janghansolkill</div>
-                                                <div class="top3Deadline">2020-03-31 까지</div>
-                                                <div class="top3People">1,450 명</div>
-                                            </div>
-                                        </div> 
-                                </div>    
-                            </div>
-                            <div class="top3Package">
-                                <div class="top3Wrap">
-                                    <div class="top3Line">#TOP 3</div>
-                                    <div class="topAllImages">
-                                        <img src="../resources/img/about-bg.jpg" style="width: 100%; height: 98.4%;" alt="">
-                                            <div>
-                                                <div class="topAllCovers"></div>
-                                            </div>
-                                            <div class="topImgWrap">
-                                                <div class="top3ChalName">파이널 프로젝트 잘 끝내기</div>
-                                                <div class="top3UserId">janghansolkill</div>
-                                                <div class="top3Deadline">2020-03-31 까지</div>
-                                                <div class="top3People">1,450 명</div>
-                                            </div>
-                                        </div> 
-                                </div>    
-                            </div>
-
-                            <div class="top10Line">
-                                <div class="top10Wrap">
-                                    <div class="top10Number">Top 4</div>
-                                    <span class="top10Divide">ㅣ</span>
-                                    <div class="top10ChalName">하루에 물을 50번 마시기</div>
-                                    <span class="top10Divide">ㅣ</span>
-                                    <div class="top10UserId">janghansolkill</div>
-                                    <span class="top10Divide">ㅣ</span>
-                                    <div class="top10Deadline">2020-03-31 까지</div>
-                                    <span class="top10Divide">ㅣ</span>
-                                    <div class="top10People">참여 인원 : 1,450 명</div>
-                                </div>
-                            </div>
-                            <div class="top10Line">
-                                <div class="top10Wrap">
-                                    <div class="top10Number">Top 5</div>
-                                    <span class="top10Divide">ㅣ</span>
-                                    <div class="top10ChalName">하루에 물을 50번 마시기</div>
-                                    <span class="top10Divide">ㅣ</span>
-                                    <div class="top10UserId">janghansolkill</div>
-                                    <span class="top10Divide">ㅣ</span>
-                                    <div class="top10Deadline">2020-03-31 까지</div>
-                                    <span class="top10Divide">ㅣ</span>
-                                    <div class="top10People">참여 인원 : 1,450 명</div>
-                                </div>
-                            </div>
-                            <div class="top10Line">
-                                <div class="top10Wrap">
-                                    <div class="top10Number">Top 6</div>
-                                    <span class="top10Divide">ㅣ</span>
-                                    <div class="top10ChalName">하루에 물을 50번 마시기</div>
-                                    <span class="top10Divide">ㅣ</span>
-                                    <div class="top10UserId">janghansolkill</div>
-                                    <span class="top10Divide">ㅣ</span>
-                                    <div class="top10Deadline">2020-03-31 까지</div>
-                                    <span class="top10Divide">ㅣ</span>
-                                    <div class="top10People">참여 인원 : 1,450 명</div>
-                                </div>
-                            </div>
-                            <div class="top10Line">
-                                <div class="top10Wrap">
-                                    <div class="top10Number">Top 7</div>
-                                    <span class="top10Divide">ㅣ</span>
-                                    <div class="top10ChalName">하루에 물을 50번 마시기</div>
-                                    <span class="top10Divide">ㅣ</span>
-                                    <div class="top10UserId">janghansolkill</div>
-                                    <span class="top10Divide">ㅣ</span>
-                                    <div class="top10Deadline">2020-03-31 까지</div>
-                                    <span class="top10Divide">ㅣ</span>
-                                    <div class="top10People">참여 인원 : 1,450 명</div>
-                                </div>
-                            </div>
-                            <div class="top10Line">
-                                <div class="top10Wrap">
-                                    <div class="top10Number">Top 8</div>
-                                    <span class="top10Divide">ㅣ</span>
-                                    <div class="top10ChalName">하루에 물을 50번 마시기</div>
-                                    <span class="top10Divide">ㅣ</span>
-                                    <div class="top10UserId">janghansolkill</div>
-                                    <span class="top10Divide">ㅣ</span>
-                                    <div class="top10Deadline">2020-03-31 까지</div>
-                                    <span class="top10Divide">ㅣ</span>
-                                    <div class="top10People">참여 인원 : 1,450 명</div>
-                                </div>
-                            </div>
-                            <div class="top10Line">
-                                <div class="top10Wrap">
-                                    <div class="top10Number">Top 9</div>
-                                    <span class="top10Divide">ㅣ</span>
-                                    <div class="top10ChalName">하루에 물을 50번 마시기</div>
-                                    <span class="top10Divide">ㅣ</span>
-                                    <div class="top10UserId">janghansolkill</div>
-                                    <span class="top10Divide">ㅣ</span>
-                                    <div class="top10Deadline">2020-03-31 까지</div>
-                                    <span class="top10Divide">ㅣ</span>
-                                    <div class="top10People">참여 인원 : 1,450 명</div>
-                                </div>
-                            </div>
-                            <div class="top10Line">
-                                <div class="top10Wrap">
-                                    <div class="top10Number">Top 10</div>
-                                    <span class="top10Divide">ㅣ</span>
-                                    <div class="top10ChalName">하루에 물을 50번 마시기</div>
-                                    <span class="top10Divide">ㅣ</span>
-                                    <div class="top10UserId">janghansolkill</div>
-                                    <span class="top10Divide">ㅣ</span>
-                                    <div class="top10Deadline">2020-03-31 까지</div>
-                                    <span class="top10Divide">ㅣ</span>
-                                    <div class="top10People">참여 인원 : 1,450 명</div>
-                                </div>
-                            </div>
+							
+							<c:forEach var="list" items="${ list }">
+							
+								<!-- TOP3 -->
+								<c:if test= "${ list.ranking lt 4 }">
+									<a href='selectOneDetail.do?chId=${list.chId}'>
+									 <div class="top1Package">
+		                                <div class="top1Wrap">
+		                                    <div class="top1Line">#TOP ${ list.ranking }</div>
+		                                    <div class="topAllImages">
+		                                        <img src="resources/images/challenge/${ list.chPicture }" style="width: 100%; height: 98%;" alt="">
+		                                        <div>
+		                                            <div class="topAllCovers"></div>
+		                                        </div>
+		                                        <div class="topImgWrap">
+		                                            <div class="top1ChalName" style="color:#2c0083">
+		                                            	<input type="hidden" value="${list.chId}"/>
+		                                            	<br><strong>${ list.chTitle }</strong>
+		                                            </div>
+		                                            <div class="top1UserId">
+		                                            	<input type="hidden" value="${list.userId}"/>
+		                                            	${list.userName }
+		                                            </div>
+		                                            <div class="top1Deadline">${list.endDate} 까지</div>
+		                                            <div class="top1People">${list.chPeopleCount} 명</div>
+		                                        </div>
+		                                    </div> 
+		                                </div>    
+		                            </div>
+		                            </a>
+								</c:if>
+								
+								<!-- 4위 이하 -->
+								<c:if test= "${ list.ranking gt 3 }">
+									<a href='selectOneDetail.do?chId=${list.chId}' style="color:black">
+									<div class="top10Line">
+		                                <div class="top10Wrap">
+		                                    <div class="top10Number">Top ${list.ranking}</div>
+		                                    <span class="top10Divide">ㅣ</span>
+		                                    <div class="top10ChalName">
+		                                    	<input type="hidden" value="${list.chId}"/>
+		                                    	<strong>${ list.chTitle }</strong>
+		                                    </div>
+		                                    <span class="top10Divide">ㅣ</span>
+		                                    <div class="top10UserId">
+		                                   		<input type="hidden" value="${list.userId}"/>
+		                                        ${list.userName }
+		                                    </div>
+		                                    <span class="top10Divide">ㅣ</span>
+		                                    <div class="top10Deadline">${list.endDate} 까지</div>
+		                                    <span class="top10Divide">ㅣ</span>
+		                                    <div class="top10People">참여 인원 : ${list.chPeopleCount} 명</div>
+		                                </div>
+		                            </div>
+		                            </a>								
+								</c:if>
+							</c:forEach>
 						</div>	
                     </div>
 				</div>
@@ -461,6 +374,7 @@
 		All rights reserved </p></div>
 		</div>
 	<!-- Main section end -->
+
 	
 	<!--====== Javascripts & Jquery ======-->
 	<script src="resources/js/jquery-3.2.1.min.js"></script>

@@ -7,19 +7,20 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- JQuery -->
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
+	<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script> 
 </head>
 <body>
 	<div class="site-menu-warp">
 		 <!-- 임시 index 버튼 -->
-         <button onclick="location.href='index.jsp'">index</button>
+         <!-- <button onclick="location.href='index.jsp'">index</button> -->
            
          <c:if test="${empty sessionScope.loginUser && empty sessionScope.adminUser}">
          <div class="close-menu">x</div>
          <!-- Main menu -->
          
          <ul class="site-menu">
-            <li><a href="ch_listView.do">Challenge</a></li>
+            <li><a href="chalList.do">Challenge</a></li>
             <li><a href="fid_ch_recommendView.do">Fid</a></li>
             <li><a href="my_profileView.do">My Page</a></li>
             <li><a href="noticeView.do">고객센터</a></li>
@@ -37,7 +38,7 @@
          <c:if test="${!empty sessionScope.loginUser}">
          <div class="close-menu">x</div>
          <ul class="site-menu">
-            <li><a href="ch_listView.do">Challenge</a></li>
+            <li><a href="chalList.do">Challenge</a></li>
             <li><a href="fid_ch_recommendView.do">Fid</a></li>
             <li><a href="my_profileView.do">My Page</a></li>
             <li><a href="noticeView.do">고객센터</a></li>
@@ -62,7 +63,7 @@
          <c:if test="${!empty sessionScope.adminUser}">
          <div class="close-menu">x</div>
          <ul class="site-menu">
-            <li><a href="ch_listView.do">Challenge</a></li>
+            <li><a href="chalList.do">Challenge</a></li>
             <li><a href="fid_ch_recommendView.do">Fid</a></li>
             <li><a href="my_profileView.do">My Page</a></li>
             <li><a href="noticeView.do">고객센터</a></li>

@@ -58,17 +58,15 @@
 			<div class="main-sidebar">
                     <!-- 로고 구역 -->
 					<div class="mb-warp">
-						<a href="index.html" class="site-logo">
+						<a href="indexView.do" class="site-logo">
 							<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 							<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 						</a>
                     <!-- 서브메뉴 -->
 					<div class="about-info">
-						<h2>사용법 안내</h2>
-						<p>혼자선 힘들었던 계획을 같은 목표의 사람들과 함께 해보세요. <br>
-							계획을 세우고, 결심에 대한 돈을 걸면 끝까지 해낼 수 있습니다.<br>
-							<br>
-							지금 바로 계획을 세워보세요!
+						<h2>나무 키우기</h2>
+						<p>당신만의 나무를 만들어보세요. <br>
+							나무가 커질수록 당신도 커지고 있을 거에요.<br>
 						</p>
 					</div>
 					<ul class="contact-info">
@@ -89,7 +87,7 @@
 								회사소개								
 							</button>
 							<button class="site-btn sb-solid mr-3 mb-3" type="button" onclick="location.href='serviceInfoView.do'">
-								서비스 소개
+								한걸음 가이드
 							</button>
 						</div>					
 					</div>

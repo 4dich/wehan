@@ -84,7 +84,7 @@
 		SELECT *
 		FROM PAY
 		JOIN CHALLENGE USING(CHID)
-		ORDER BY PID DESC
+		ORDER BY PID+1 DESC
 	</select>
   
  	<select id="slectPayDetail" resultMap="payMemberListResultSet">
@@ -103,7 +103,7 @@
   
   	<insert id="insertPay" parameterType="Pay">
   		INSERT INTO PAY
-  		VALUES(SEQ_PID.NEXTVAL,#{chId},#{userId},#{price},DEFAULT,#{pmethod},SYSDATE,DEFAULT,DEFAULT)
+  		VALUES(SEQ_PID.NEXTVAL,#{chId},#{userId},#{price},#{pmethod},SYSDATE,DEFAULT,DEFAULT)
   	</insert>
   	
   	<select id="paySearchResultCount" resultType="_int">
@@ -168,5 +168,12 @@
   		SET REFUND_YN = 'Y'
   		WHERE PID = #{pId}
   	</update>
+  	
+  	<select id="ynlist" resultMap="payListResultSet">
+  		SELECT *
+		FROM PAY P
+		JOIN CHALLENGE C USING(CHID)
+		ORDER BY REFUND_YN,PID+1 DESC
+  	</select>
   	
   </mapper>

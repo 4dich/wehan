@@ -81,6 +81,14 @@ public class PayDao {
 	}
 
 
+	public ArrayList<Pay> refundYn(PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("payMapper.ynlist",null,rowBounds);
+	}
+
+
 	
 
 }
