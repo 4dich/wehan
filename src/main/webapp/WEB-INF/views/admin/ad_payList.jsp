@@ -56,7 +56,7 @@
 
 
 		
-	<%-- <%@ include file="/WEB-INF/views/common/ad_menuBar.jsp" %> --%>
+	<c:import url="/WEB-INF/views/common/ad_menuBar.jsp" />
 
 
 		<header class="header-section">
