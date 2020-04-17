@@ -20,7 +20,15 @@
 		<result property="maxPerson" column="MAXPERSON"/>
 		<result property="chPeople" column="CHPEOPLE"/>
 		<result property="chPeopleCount" column="CHPEOPLECOUNT"/>
-		
+	</resultMap>
+	
+	<resultMap id="myPageResultSet" type="myPage">
+		<id property="userId" column="USERID"/>
+		<result property="intro" column="INTRO"/>
+		<result property="goal" column="GOAL"/>
+		<result property="interest" column="INTEREST"/>
+		<result property="myExp" column="MYEXP"/>
+		<result property="myLevel" column="MYLEVEL"/>
 	</resultMap>
 	
 	<select id="getListCount" resultType="_int">
@@ -106,5 +114,11 @@
 				WHERE CHNAME LIKE '%' || #{chName} || '%'
 			</if>
 		ORDER BY CHID DESC
+	</select>
+	
+	<select id="checkPremiumCondition" resultMap="myPageResultSet">
+		SELECT MYLEVEL
+		FROM MYPAGE
+		WHERE USERID=#{userId}
 	</select>
 </mapper>

@@ -7,9 +7,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.kh.wehan.certify.model.vo.Certify;
 import com.kh.wehan.challenge.model.vo.Challenge;
 import com.kh.wehan.common.model.vo.PageInfo;
+import com.kh.wehan.member.model.vo.Mypage;
 
 @Repository("cDao")
 public class ChallengeDao {
@@ -74,6 +74,10 @@ public class ChallengeDao {
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		
 		return (ArrayList)sqlSession.selectList("challengeMapper.selectSearchChNameList", chal, rowBounds);
+	}
+
+	public Mypage checkPremiumCondition(String userId) {
+		return sqlSession.selectOne("challengeMapper.checkPremiumCondition", userId);
 	}
 
 
