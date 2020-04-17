@@ -75,6 +75,23 @@ public class CertifyServiceImpl implements CertifyService{
 		return ceDao.insertReply(r);
 	}
 
+	
+	/**
+	 * 카테고리 리스트 출력
+	 */
+	@Override
+	public int fidCategoryCount(String category) {
+		return ceDao.fidCategoryCount(category);
+	}
+	
+	/**
+	 * 카테고리 검색
+	 */
+	@Override
+	public ArrayList<Certify> fidCategory(String category,PageInfo pi) {
+		return ceDao.fidCategory(category,pi);
+	}
+
 
 
 }
