@@ -29,7 +29,7 @@ public interface CertifyService {
 	 * @param pi
 	 * @return
 	 */
-	ArrayList<Certify> getFriendList(PageInfo pi);
+	ArrayList<Certify> getFriendList(PageInfo pi,String mName);
 
 	/**
 	 * 팔로우 리스트 출력

@@ -41,10 +41,10 @@ public class CertifyDao {
 		return (ArrayList)sqlSession.selectList("certifyMapper.fidSelectList",null,rowBounds);
 	}
 
-	public ArrayList<Certify> selectFriendList(PageInfo pi) {
+	public ArrayList<Certify> selectFriendList(PageInfo pi,String mName) {
 		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
-		return (ArrayList)sqlSession.selectList("certifyMapper.friendFidSelectList",null,rowBounds);
+		return (ArrayList)sqlSession.selectList("certifyMapper.friendFidSelectList",mName,rowBounds);
 	}
 
 	public ArrayList<Member> selectFollowList(PageInfo pi, String mName) {

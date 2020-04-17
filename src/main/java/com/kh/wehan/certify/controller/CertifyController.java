@@ -87,11 +87,11 @@ public class CertifyController {
 			int boardLimit = 9;
 			
 			PageInfo pi = Pagination.getPageInfo(currentPage, listCount, pageLimit, boardLimit);
-			
-			ArrayList<Certify> list = ceService.getFriendList(pi);
+			String mName = m.getUserId();
+			ArrayList<Certify> list = ceService.getFriendList(pi,mName);
 			
 			mv.addObject("list",list).addObject("pi",pi).setViewName("user/fid/fid_friendList");
-			m.getUserId();
+			
 			
 			
 			

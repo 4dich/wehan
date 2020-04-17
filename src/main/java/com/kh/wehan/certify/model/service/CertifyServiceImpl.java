@@ -39,9 +39,9 @@ public class CertifyServiceImpl implements CertifyService{
 	 * 친구 피드 리스트 출력
 	 */
 	@Override
-	public ArrayList<Certify> getFriendList(PageInfo pi) {
+	public ArrayList<Certify> getFriendList(PageInfo pi,String mName) {
 		
-		return ceDao.selectFriendList(pi);
+		return ceDao.selectFriendList(pi,mName);
 	}
 
 	/**
