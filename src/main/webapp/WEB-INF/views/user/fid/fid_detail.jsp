@@ -211,6 +211,10 @@
 			replyList();
 		},3000);
 		
+		$('#listBack').click(function(){
+			location.href="fid_ch_recommendView.do?"
+		});
+		
 		/* 등록버튼 */
 		$('#submitR').click(function(){
 			var ccContent = $('#addReflyText').val();

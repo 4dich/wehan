@@ -50,7 +50,7 @@
 			<div class="main-sidebar">
 			
 					<div class="mb-warp">
-						<a href="index.html" class="site-logo">
+						<a href="indexView.do" class="site-logo">
 							<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 							<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 						</a>
@@ -110,13 +110,13 @@
 							<div class="tab-element" style="text-align-last: center;">
 								<ul class="nav nav-tabs" id="myTab" role="tablist" style="place-content: center;">
 									<li class="nav-item">
-										<a class="nav-link active" id="3-tab" href="guideInfo.html" role="tab" aria-controls="tab-3" aria-selected="true" style="width: 200px; height: 80px; padding-top: 28px; font-size: 15px;">
-											사용법 안내
+										<a class="nav-link active" id="3-tab" href="serviceInfoView.do" role="tab" aria-controls="tab-3" aria-selected="true" style="width: 200px; height: 80px; padding-top: 28px; font-size: 15px;">
+											한걸음 가이드
 										</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link active" id="3-tab" href="serviceInfo.html" role="tab" aria-controls="tab-3" aria-selected="true" style="width: 200px; height: 80px; margin-left: 120px; padding-top: 28px; font-size: 15px;">
-											서비스 소개 
+										<a class="nav-link active" id="3-tab" href="guideInfoView.do" role="tab" aria-controls="tab-3" aria-selected="true" style="width: 200px; height: 80px; margin-left: 120px; padding-top: 28px; font-size: 15px;">
+											나무 알아보기
 										</a>
 									</li>
 								</ul>

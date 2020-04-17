@@ -100,27 +100,33 @@
 			<div class="page-section">
 				<div class="hero-section">
 					<div class="hero-track">
-						<div class="hs-item set-bg" data-setbg="resources/images/hero/1.jpg" style="height: 400px; width: 400px">
-							<div class="hs-info">
-								<h5>위대한 한걸음</h5>
-								<p>알아보기</p>
-								<a href="blog.html" style="margin-right: 0;"><img src="resources/images/arrow-righ-3.png" alt=""></a>
+						<a href="companyInfoView.do" style="margin-right: 0;">
+							<div class="hs-item set-bg" data-setbg="resources/images/hero/1.jpg" style="height: 400px; width: 400px">
+								<div class="hs-info">
+									<h5>위대한 한걸음</h5>
+									<p>알아보기</p>
+									<img src="resources/images/arrow-righ-3.png" alt="">
+								</div>
 							</div>
-						</div>
-						<div class="hs-item set-bg" data-setbg="resources/images/hero/2.jpg">
-							<div class="hs-info">
-								<h5>당신의 나무를 키워보세요</h5>
-								<p>알아보기</p>
-								<a href="guideInfo.html"><img src="resources/images/arrow-righ-3.png" alt=""></a>
+						</a>						
+						<a href="serviceInfoView.do">
+							<div class="hs-item set-bg" data-setbg="resources/images/hero/3.jpg">
+								<div class="hs-info">
+									<h5>한걸음 가이드</h5>
+									<p>알아보기</p>
+									<img src="resources/images/arrow-righ-3.png" alt="">
+								</div>
 							</div>
-						</div>
-						<div class="hs-item set-bg" data-setbg="resources/images/hero/3.jpg">
-							<div class="hs-info">
-								<h5>한걸음 가이드</h5>
-								<p>알아보기</p>
-								<a href="serviceInfo.html"><img src="resources/images/arrow-righ-3.png" alt=""></a>
+						</a>
+						<a href="guideInfoView.do">
+							<div class="hs-item set-bg" data-setbg="resources/images/hero/2.jpg">
+								<div class="hs-info">
+									<h5>당신의 나무를 키워보세요</h5>
+									<p>알아보기</p>
+									<img src="resources/images/arrow-righ-3.png" alt="">
+								</div>
 							</div>
-						</div>
+						</a>
 					</div>
 				</div>
 			</div>

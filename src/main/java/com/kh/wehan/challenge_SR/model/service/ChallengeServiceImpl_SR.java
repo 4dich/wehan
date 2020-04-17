@@ -20,22 +20,6 @@ public class ChallengeServiceImpl_SR implements ChallengeService_SR{
 	 */
 	@Override
 	public ArrayList<ChallengeTop10> getChallengeTop10List() {
-		
-		// 1) 챌린지 참가자 수 확인하기
-		// 1-1) 챌린지 참가자 목록 가져오기
-		
-		// 챌린지 리스트 담을 map 만들기
-		Map challengerList = new HashMap();
-		challengerList.put("chId", null);		// 챌린지 id
-		challengerList.put("chPeople", null);	// 챌린져 목록
-		
-		challengerList = chalDaoSr.getChallengerList();
-		
-		for(int i = 0; i < challengerList.size(); i++) {
-			System.out.println("Map가져오기" + challengerList.get("chId"));
-		}
-		
-		return null;
-//		return chalDaoSr.getChallengeTop10List();
+		return chalDaoSr.getChallengeTop10List();
 	}
 }
