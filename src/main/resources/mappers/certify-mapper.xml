@@ -104,8 +104,12 @@
 	
 	<!-- 비공개처리 -->
 	<update id="updateCertify" parameterType="_int">
-	UPDATE CERTIFY SET 
-	CEDEL_YN = 'Y' 
+	UPDATE CERTIFY
+	SET CEDEL_YN =
+	CASE 
+    WHEN CEDEL_YN = 'N' THEN 'Y'
+    WHEN CEDEL_YN = 'Y' THEN 'N'
+	END
 	WHERE CEID = #{ceId}
 	</update>
 	
