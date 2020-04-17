@@ -26,7 +26,9 @@ public class ChallengeController_SR {
 		
 		ArrayList<ChallengeTop10> list = chalServiceSr.getChallengeTop10List();
 		
-		
+		if(list != null) {
+			mv.addObject("list", list).setViewName("user/challenge/ch_top10List");
+		}
 		
 		return mv;
 	}
