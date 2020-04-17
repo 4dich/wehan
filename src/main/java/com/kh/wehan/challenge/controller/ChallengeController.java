@@ -196,7 +196,7 @@ public class ChallengeController {
 		chal.setChPicture(picture);
 		
 		int result = cService.insertChallenge(chal);
-		
+		System.out.println(chal);
 		if(result > 0) {
 			mv.addObject("chal", chal).setViewName("user/challenge/ch_detail");
 		} else {

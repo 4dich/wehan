@@ -34,5 +34,12 @@ public interface PayService {
 
 	ArrayList<Pay> refundYn(PageInfo pi);
 
+	int updatepeoplePlus(Challenge ch);
+
+	int updateCountPlus(Challenge ch);
+
+	ArrayList<Pay> refundNy(PageInfo pi);
+
+
 	
 }

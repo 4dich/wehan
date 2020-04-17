@@ -89,6 +89,23 @@ public class PayDao {
 	}
 
 
+	public int updatepeoplePlus(Challenge ch) {
+		return sqlSession.update("payMapper.updatepeoplePlus",ch);
+	}
+
+
+	public int updateCountPlus(Challenge ch) {
+		return sqlSession.update("payMapper.updateCountPlus",ch);
+	}
+
+
+	public ArrayList<Pay> refundNy(PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("payMapper.nylist",null,rowBounds);
+	}
+
 	
 
 }

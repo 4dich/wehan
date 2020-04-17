@@ -144,6 +144,9 @@
 										<input type="hidden" name="price" value="${chal.price}">
 										<input type="hidden" name="chId" value="${chal.chId}">
 										<input type="hidden" name="chName" value="${chal.chName}">
+										<input type="hidden" name="chPeople" value="${chal.chPeople}">
+										<input type="hidden" name="chPeopleCount" value="${chal.chPeopleCount}">
+										
 										
 											<div class="col-lg-12">
 												<div class="contents-detail">
