@@ -90,7 +90,7 @@ public class ChallengeTop10 {
 
 
 	public void setEndDate(String endDate) {
-		endDate = endDate;
+		this.endDate = endDate;
 	}
 
 
@@ -130,6 +130,10 @@ public class ChallengeTop10 {
 				+ ", chPicture=" + chPicture + ", endDate=" + endDate + ", chPeopleList=" + chPeopleList
 				+ ", chPeopleCount=" + chPeopleCount + ", ranking=" + ranking + "]";
 	}
+	
+	
+	
+	
 
 
 	

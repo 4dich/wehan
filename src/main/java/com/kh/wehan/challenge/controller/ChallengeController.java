@@ -2,8 +2,11 @@ package com.kh.wehan.challenge.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -233,15 +236,36 @@ public class ChallengeController {
 	 * @param mv
 	 * @param chId
 	 * @return
+	 * @throws ParseException 
 	 */
 	@RequestMapping("hiddenDetailInList.do")
-	public ModelAndView selectOneDetailInList(ModelAndView mv, String chId) {
+	public ModelAndView selectOneDetailInList(ModelAndView mv, String chId) throws ParseException {
 		
 		Challenge chal = cService.selectOneDetail(chId);
-		;
-		mv.addObject("chal", chal);
-		mv.setViewName("user/challenge/ch_detail");
 		
+		// 오늘 날짜 가져오기
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd",Locale.KOREA);
+		Date today = new Date();
+		
+		// 시작날짜
+		Date startTime = sdf.parse(chal.getStartDate());
+		// 마감날짜
+		Date endTime = sdf.parse(chal.getEndDate());
+		
+		// 진행 예정
+		if( today.getTime() < startTime.getTime() ) { 
+			mv.addObject("chal", chal).setViewName("user/challenge/ch_detail");
+		} 
+		// 진행 중
+		else if(today.getTime() >= startTime.getTime() && today.getTime() < endTime.getTime()) {
+			mv.addObject("chal", chal).setViewName("user/challenge/ch_detailDoing");
+		}
+		// 진행 마감
+		else {
+			mv.addObject("chal", chal);
+			mv.setViewName("user/challenge/ch_detailEnd");
+		}
+			
 		return mv;
 	}
 	
