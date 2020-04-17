@@ -2,9 +2,9 @@ package com.kh.wehan.challenge.model.service;
 
 import java.util.ArrayList;
 
-import com.kh.wehan.certify.model.vo.Certify;
 import com.kh.wehan.challenge.model.vo.Challenge;
 import com.kh.wehan.common.model.vo.PageInfo;
+import com.kh.wehan.member.model.vo.Mypage;
 
 public interface ChallengeService {
 
@@ -80,6 +80,13 @@ public interface ChallengeService {
 	 * @return
 	 */
 	ArrayList<Challenge> selectSearchChNameList(Challenge chal, PageInfo pi);
+
+	/**
+	 * 프리미엄 챌린지 조회 시 사용자 레벨 조회
+	 * @param userId
+	 * @return
+	 */
+	Mypage checkPremiumCondition(String userId);
 
 
 	

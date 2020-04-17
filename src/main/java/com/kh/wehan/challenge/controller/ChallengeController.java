@@ -24,6 +24,7 @@ import com.kh.wehan.challenge.model.vo.Challenge;
 import com.kh.wehan.common.Pagination;
 import com.kh.wehan.common.model.vo.PageInfo;
 import com.kh.wehan.member.model.vo.Member;
+import com.kh.wehan.member.model.vo.Mypage;
 
 @Controller
 public class ChallengeController {
@@ -75,12 +76,10 @@ public class ChallengeController {
 	 */
 	@RequestMapping("selectOneDetail.do")
 	public ModelAndView selectOneDetail(ModelAndView mv, String chId) {
-		System.out.println(chId);
 		
 		Challenge chal = cService.selectOneDetail(chId);
 		
 		mv.addObject("chal", chal);
-		System.out.println(chal);
 		mv.setViewName("admin/ad_challengeDetail");
 
 		return mv;
@@ -97,7 +96,6 @@ public class ChallengeController {
 	public ModelAndView searchChallengeAdmin(ModelAndView mv, String searchChallengeAdmin, String search) {
 		
 		Challenge chal = new Challenge();
-		System.out.println(searchChallengeAdmin);
 		if(searchChallengeAdmin.equals("chName")) {
 			chal.setChName(search);
 		} else if(searchChallengeAdmin.equals("userId")) {
@@ -108,12 +106,9 @@ public class ChallengeController {
 			chal.setEndDate(search);
 		}	
 		
-		System.out.println(chal);
 		int currentPage = 1;
 		
 		int listCount = cService.getSearchListCount(chal);
-		
-		System.out.println(listCount);
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
 		
@@ -125,7 +120,6 @@ public class ChallengeController {
 			
 			list.get(i).setTotalPrice(str.length * list.get(i).getPrice());
 		}
-		System.out.println(list);
 		
 		mv.addObject("list", list).addObject("pi", pi).setViewName("admin/ad_challengeList");
 		
@@ -224,7 +218,6 @@ public class ChallengeController {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, pageLimit, boardLimit);
 		
 		ArrayList<Challenge> list = cService.selectChallengeList(pi);
-		System.out.println(list);
 		
 		mv.addObject("list", list);
 		mv.addObject("pi", pi);
@@ -236,6 +229,7 @@ public class ChallengeController {
 	
 	/**
 	 * 3_2. 사용자 챌린지 리스트 > 상세 정보 보기
+	 * 4_3. 프리미엄 챌린지 리스트 > 상세 정보 보기
 	 * @param mv
 	 * @param chId
 	 * @return
@@ -243,10 +237,8 @@ public class ChallengeController {
 	@RequestMapping("hiddenDetailInList.do")
 	public ModelAndView selectOneDetailInList(ModelAndView mv, String chId) {
 		
-		System.out.println(chId);
 		Challenge chal = cService.selectOneDetail(chId);
-		
-		System.out.println(chal);
+		;
 		mv.addObject("chal", chal);
 		mv.setViewName("user/challenge/ch_detail");
 		
@@ -256,6 +248,7 @@ public class ChallengeController {
 	  
 	/**
 	 * 3_3. 사용자 챌린지 리스트 > 카테고리 별 페이지 보기
+	 * 4_4. 프리미엄 챌린지 리스트 > 카테고리 별 페이지 보기
 	 * @param mv
 	 * @param category
 	 * @param currentPage
@@ -267,7 +260,6 @@ public class ChallengeController {
 	public void categoryInList(HttpServletResponse response, String category,
 						@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) throws JsonIOException, IOException {
 		
-		System.out.println(category);
 		int listCount = cService.getListCount(category);
 		
 		int pageLimit = 5;
@@ -291,21 +283,13 @@ public class ChallengeController {
 	 * @return
 	 */
 	@RequestMapping("searchChallenge.do")
-	public ModelAndView searchChallenge(ModelAndView mv, String searchChallenge, String search) {
-		
-		Challenge chal = new Challenge();
+	public ModelAndView searchChallenge(ModelAndView mv, String searchChallenge) {
 
-		if(searchChallenge.equals("chName")) {
-			chal.setChName(search);
-		}	
-		
-		System.out.println(chal);
+		Challenge chal = new Challenge();
 		
 		int currentPage = 1;
 		
 		int listCount = cService.getSearchListCount(chal);
-		
-		System.out.println(listCount);
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
 		
@@ -317,10 +301,139 @@ public class ChallengeController {
 			
 			list.get(i).setTotalPrice(str.length * list.get(i).getPrice());
 		}
-		System.out.println(list);
 		
 		mv.addObject("list", list).addObject("pi", pi).setViewName("user/challenge/ch_list");
 		
 		return mv;
 	}
+	
+	/**
+	 * 4_1. 프리미엄 챌린지 조회 시 사용자 레벨 조회 기능
+	 * @param mv
+	 * @param userId
+	 * @return
+	 */
+	@RequestMapping("premiumCondition.do")
+	public ModelAndView checkPremiumCondition(ModelAndView mv, HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		
+		Member mem = (Member)session.getAttribute("loginUser");
+		String userId = mem.getUserId();
+		
+		Mypage myLvl = cService.checkPremiumCondition(userId);
+		
+		int level = myLvl.getMyLevel();
+		
+		if(level == 6) {
+			mv.setViewName("user/challenge/ch_premiumList");
+		} else {
+			mv.setViewName("redirect:chalList.do");
+			mv.addObject("ck", "ck");
+		}
+		
+		return mv;
+	}
+	
+	/**
+	 * 4_2. 프리미엄 챌린지 리스트
+	 * @param mv
+	 * @param currentPage
+	 * @return
+	 */
+	@RequestMapping(value="premiumList.do")
+	public ModelAndView premiumChalList(ModelAndView mv, 
+						@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
+		
+		int listCount = cService.getListCount();
+		
+		int pageLimit = 5;
+		int boardLimit = 10;
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, pageLimit, boardLimit);
+		
+		ArrayList<Challenge> list = cService.selectChallengeList(pi);
+		
+		mv.addObject("list", list);
+		mv.addObject("pi", pi);
+		mv.addObject("listCount", listCount);
+		mv.setViewName("user/challenge/ch_premiumList");
+		
+		return mv;
+	}
+	
+	
+	/**
+	 * 4_5. 프리미엄 챌린지 리스트 내 검색 기능
+	 * @param mv
+	 * @param searchChallenge
+	 * @return
+	 */
+	@RequestMapping("searchPremiumChallenge.do")
+	public ModelAndView searchPremiumChallenge(ModelAndView mv, String searchChallenge) {
+
+		Challenge chal = new Challenge();
+		
+		int currentPage = 1;
+		
+		int listCount = cService.getSearchListCount(chal);
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
+		
+		ArrayList<Challenge> list = cService.selectSearchChNameList(chal, pi);
+		
+		for(int i=0; i<list.size(); i++) {
+			String[] str = list.get(i).getChPeople().split(",");
+			list.get(i).setChPeople(String.valueOf(str.length));
+			
+			list.get(i).setTotalPrice(str.length * list.get(i).getPrice());
+		}
+		
+		mv.addObject("list", list).addObject("pi", pi).setViewName("user/challenge/ch_premiumlist");
+		
+		return mv;
+	}
+	
+	/**
+	 * 4_6. 프리미엄 챌린지 등록
+	 * @param chal
+	 * @param mv
+	 * @param request
+	 * @param file
+	 * @return
+	 */
+	@RequestMapping("registerPremiumChal.do")
+	public ModelAndView registerPremiumChal(Challenge chal, ModelAndView mv, HttpServletRequest request,
+									@RequestParam(name="registerPic", required=false) MultipartFile file) {
+	
+		HttpSession session = request.getSession();
+		
+		Member mem = (Member)session.getAttribute("loginUser");
+		String userId = mem.getUserId();
+		
+		String picture = null;
+		
+		chal.setUserId(userId);
+		
+		 if(!file.getOriginalFilename().equals(" ")) { 
+			 picture = saveFile(file, request);
+		 
+			 if(picture != null) { 
+				 chal.setChPicture(picture); 
+			 	}
+		 }
+		 
+		chal.setChPicture(picture);
+		
+		int result = cService.insertChallenge(chal);
+		
+		if(result > 0) {
+			mv.addObject("chal", chal).setViewName("user/challenge/ch_detail");
+		} else {
+			mv.addObject("msg", "오류입니다").setViewName("common/errorPage");
+		}	
+		
+		return mv;
+	}
+	
 }
