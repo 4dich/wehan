@@ -60,6 +60,18 @@ public interface CertifyService {
 	 */
 	int insertReply(CertifyReply r);
 
+	/**
+	 * 피드 카테고리 리스트 검색
+	 * @param category
+	 * @return
+	 */
+	int fidCategoryCount(String category);
+
+	/**
+	 * 피드 카테고리 검색
+	 * @return
+	 */
+	ArrayList<Certify> fidCategory(String category,PageInfo pi);
 
 
 }

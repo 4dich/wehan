@@ -15,6 +15,7 @@
   		<result property="endDate" column="ENDDATE"/>
   		<result property="chPeopleList" column="CHPEOPLELIST"/>
   		<result property="chPeopleCount" column="CHPEOPLECOUNT"/>
+  		<result property="ranking" column="RK"/>
   	</resultMap>
   	
   	

@@ -72,5 +72,21 @@ public class CertifyDao {
 		return sqlSession.insert("certifyMapper.insertReply",r);
 	}
 
-	
+	public int fidCategoryCount(String category) {
+		return sqlSession.selectOne("certifyMapper.fidCategoryCount",category);
+	}
+
+	/**
+	 * 카테고리 출력
+	 * @param category
+	 * @param pi
+	 * @return
+	 */
+	public ArrayList<Certify> fidCategory(String category, PageInfo pi) {
+
+		int offset =(pi.getCurrentPage() -1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("certifyMapper.fidCategory",category,rowBounds);
+	}
 }
