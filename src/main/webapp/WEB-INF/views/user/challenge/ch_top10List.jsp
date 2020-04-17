@@ -248,12 +248,12 @@
 		<%@ include file="/WEB-INF/views/common/menuBar.jsp" %>
 
 		<header class="header-section">
-			<div class="nav-switch">
+			<div class="nav-switch menuIcon msgCount">
 				<i class="fa fa-bars"></i>
 			</div>
 			<div class="header-social">
                 <a href="chalList.do" >전체 챌린지</a>
-                <a href="ch-listPremium.html">프리미엄 챌린지</a>
+                <a href="premiumcondition.do">프리미엄 챌린지</a>
                 <a href="chalTop10List.do" style="color: red;">TOP 10 챌린지</a>
             </div>	
 		</header>
@@ -269,7 +269,7 @@
 					<!-- 챌린지 검색 -->
 					<form class="searchChallenge">
 	                    <div class="challenges-search">
-							<input type="textarea" style="padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 3px solid black;" placeholder="챌린지 검색">
+							<input type="text" style="padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 3px solid black;" placeholder="챌린지 이름 검색">
 	                        <a href="" class="site-btn2">
 	                            <img src="resources/images/main/search.png" style="padding-left: 10px;" alt="">
 	                        </a>
@@ -312,55 +312,55 @@
 							
 								<!-- TOP3 -->
 								<c:if test= "${ list.ranking lt 4 }">
-									<a href='selectOneDetail.do?chId=${list.chId}'>
-									 <div class="top1Package">
-		                                <div class="top1Wrap">
-		                                    <div class="top1Line">#TOP ${ list.ranking }</div>
-		                                    <div class="topAllImages">
-		                                        <img src="resources/images/challenge/${ list.chPicture }" style="width: 100%; height: 98%;" alt="">
-		                                        <div>
-		                                            <div class="topAllCovers"></div>
-		                                        </div>
-		                                        <div class="topImgWrap">
-		                                            <div class="top1ChalName" style="color:#2c0083">
-		                                            	<input type="hidden" value="${list.chId}"/>
-		                                            	<br><strong>${ list.chTitle }</strong>
-		                                            </div>
-		                                            <div class="top1UserId">
-		                                            	<input type="hidden" value="${list.userId}"/>
-		                                            	${list.userName }
-		                                            </div>
-		                                            <div class="top1Deadline">${list.endDate} 까지</div>
-		                                            <div class="top1People">${list.chPeopleCount} 명</div>
-		                                        </div>
-		                                    </div> 
-		                                </div>    
-		                            </div>
+									<a href='hiddenDetailInList.do?chId=${list.chId}'>
+										 <div class="top1Package">
+			                                <div class="top1Wrap">
+			                                    <div class="top1Line">#TOP ${ list.ranking }</div>
+			                                    <div class="topAllImages">
+			                                        <img src="resources/images/challenge/${ list.chPicture }" style="width: 100%; height: 98%;" alt="">
+			                                        <div>
+			                                            <div class="topAllCovers"></div>
+			                                        </div>
+			                                        <div class="topImgWrap">
+			                                            <div class="top1ChalName" style="color:#2c0083">
+			                                            	<input type="hidden" value="${list.chId}"/>
+			                                            	<br><strong>${ list.chTitle }</strong>
+			                                            </div>
+			                                            <div class="top1UserId">
+			                                            	<input type="hidden" value="${list.userId}"/>
+			                                            	${list.userName }
+			                                            </div>
+			                                            <div class="top1Deadline"> ${list.endDate} 까지</div>
+			                                            <div class="top1People">${list.chPeopleCount} 명</div>
+			                                        </div>
+			                                    </div> 
+			                                </div>    
+			                            </div>
 		                            </a>
 								</c:if>
 								
 								<!-- 4위 이하 -->
 								<c:if test= "${ list.ranking gt 3 }">
-									<a href='selectOneDetail.do?chId=${list.chId}' style="color:black">
-									<div class="top10Line">
-		                                <div class="top10Wrap">
-		                                    <div class="top10Number">Top ${list.ranking}</div>
-		                                    <span class="top10Divide">ㅣ</span>
-		                                    <div class="top10ChalName">
-		                                    	<input type="hidden" value="${list.chId}"/>
-		                                    	<strong>${ list.chTitle }</strong>
-		                                    </div>
-		                                    <span class="top10Divide">ㅣ</span>
-		                                    <div class="top10UserId">
-		                                   		<input type="hidden" value="${list.userId}"/>
-		                                        ${list.userName }
-		                                    </div>
-		                                    <span class="top10Divide">ㅣ</span>
-		                                    <div class="top10Deadline">${list.endDate} 까지</div>
-		                                    <span class="top10Divide">ㅣ</span>
-		                                    <div class="top10People">참여 인원 : ${list.chPeopleCount} 명</div>
-		                                </div>
-		                            </div>
+									<a href='hiddenDetailInList.do?chId=${list.chId}' style="color:black">
+										<div class="top10Line">
+			                                <div class="top10Wrap">
+			                                    <div class="top10Number">Top ${list.ranking}</div>
+			                                    <span class="top10Divide">ㅣ</span>
+			                                    <div class="top10ChalName">
+			                                    	<input type="hidden" value="${list.chId}"/>
+			                                    	<strong>${ list.chTitle }</strong>
+			                                    </div>
+			                                    <span class="top10Divide">ㅣ</span>
+			                                    <div class="top10UserId">
+			                                   		<input type="hidden" value="${list.userId}"/>
+			                                        ${list.userName }
+			                                    </div>
+			                                    <span class="top10Divide">ㅣ</span>
+			                                    <div class="top10Deadline"> ${list.endDate} 까지</div>
+			                                    <span class="top10Divide">ㅣ</span>
+			                                    <div class="top10People">참여 인원 : ${list.chPeopleCount} 명</div>
+			                                </div>
+			                            </div>
 		                            </a>								
 								</c:if>
 							</c:forEach>
