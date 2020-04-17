@@ -28,6 +28,9 @@
     <!-- <link rel="stylesheet" href="resources/css/main.css"/> -->
     <!-- <link rel="stylesheet" href="resources/css/left_section.css"/> -->
     <link rel="stylesheet" href="resources/css/style.css"/>	
+    
+    <!-- JQuery -->
+   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
     <style>
         .textBox {
