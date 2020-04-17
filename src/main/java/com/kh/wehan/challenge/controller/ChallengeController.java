@@ -307,13 +307,14 @@ public class ChallengeController {
 	 * @return
 	 */
 	@RequestMapping("searchChallenge.do")
-	public ModelAndView searchChallenge(ModelAndView mv, String searchChallenge) {
+	public ModelAndView searchChallenge(ModelAndView mv, String searchChallenge
+			,@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
 
-		Challenge chal = new Challenge();
+		Challenge chal = new Challenge(); // 비어있는 객체를 생성
+		// 예를 들어서 이름 chName 
+		chal.setChName("홍길동");
 		
-		int currentPage = 1;
-		
-		int listCount = cService.getSearchListCount(chal);
+		int listCount = cService.getSearchListCount(chal); // 전체카운트
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
 		
@@ -386,6 +387,8 @@ public class ChallengeController {
 		return mv;
 	}
 	
+	
+	// 4-3
 	
 	/**
 	 * 4_5. 프리미엄 챌린지 리스트 내 검색 기능

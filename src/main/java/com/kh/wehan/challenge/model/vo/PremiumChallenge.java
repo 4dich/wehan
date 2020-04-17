@@ -1,6 +1,6 @@
 package com.kh.wehan.challenge.model.vo;
 
-public class PremiunChallenge {
+public class PremiumChallenge {
 
 	private String chPId;
 	private String userId;
@@ -18,11 +18,11 @@ public class PremiunChallenge {
 	private String chPeople;
 	private int chPeopleCount;
 	
-	public PremiunChallenge() {
+	public PremiumChallenge() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public PremiunChallenge(String chPId, String userId, String chName, String chPicture, String chContent,
+	public PremiumChallenge(String chPId, String userId, String chName, String chPicture, String chContent,
 			String startDate, String endDate, String category, String ceMethod, int price, int totalPrice,
 			int minPerson, int maxPerson, String chPeople, int chPeopleCount) {
 		super();
@@ -165,7 +165,7 @@ public class PremiunChallenge {
 
 	@Override
 	public String toString() {
-		return "PremiunChallenge [chPId=" + chPId + ", userId=" + userId + ", chName=" + chName + ", chPicture="
+		return "PremiumChallenge [chPId=" + chPId + ", userId=" + userId + ", chName=" + chName + ", chPicture="
 				+ chPicture + ", chContent=" + chContent + ", startDate=" + startDate + ", endDate=" + endDate
 				+ ", category=" + category + ", ceMethod=" + ceMethod + ", price=" + price + ", totalPrice="
 				+ totalPrice + ", minPerson=" + minPerson + ", maxPerson=" + maxPerson + ", chPeople=" + chPeople
