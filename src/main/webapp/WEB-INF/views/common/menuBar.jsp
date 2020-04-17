@@ -7,7 +7,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- JQuery -->
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
+	<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script> 
 </head>
 <body>
 	<div class="site-menu-warp">
