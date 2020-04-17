@@ -78,9 +78,8 @@
                     </a>
 
 					<div>
-						<input type="textarea" style="width: 300px; height: 50px; border-radius: 3px; border:3px solid #242424" placeholder="유저를 검색해주세요">
-						<a href="#" class="site-btn2">
-						<img src="resources/images/main/search.png" alt=""></a>
+						<input id="searchBox" class="searchBox" type="textarea" style="width: 300px; height: 50px; border-radius: 3px; border:3px solid #242424" placeholder="유저를 검색해주세요">
+						<img src="resources/images/main/search.png" id="site-btn2" class="site-btn2">
 					</div>
 					<br><br>
 
@@ -189,8 +188,8 @@
                                         프로필 가기
                                     </div>
                                 </a>
-                                <div class="followButton" id="deleteFollow" onclick="deleteFollow(this)" title="${ f.userId }"> 
-                                팔로우
+                                <div class="followButton" id="deleteFollow" onclick="deleteFollow(this)" title="${ f.userId }" style="cursor: pointer;"> 
+                                팔로잉
                                <%--  <input type="button" class="followButton" id="deleteFollow" onclick="deleteFollow(this)" name="${ f.userId }" value="팔로우"> --%>
                           
                                 <input id="loginId" type="hidden" value="${ loginUser.userId }">
@@ -279,6 +278,12 @@
 			console.log(follower)
 			
 		}
+		
+		
+		$('#site-btn2').click(function(){
+			var searchText = document.getElementById("searchBox").value;
+			location.href="fid_followerSearch.do?searchText="+searchText;
+		});
 	
 		
 		
