@@ -71,7 +71,7 @@
 						<a href="ad_challengeListView.do" id="ad_challenge" class="infoMenu">챌린지 정보</a><br><br>
 						<!-- <a href="ad_certifyView.do" id="ad_certify" class="infoMenu">인증글 정보</a><br><br> -->
 						<a href="ad_noticeList.do" id="ad_notice" class="infoMenu">공지사항</a><br><br>
-						<a href="ad_questionsList.do" id="ad_questions" class="infoMenu">문의사항</a><br><br>
+						<!-- <a href="ad_questionsList.do" id="ad_questions" class="infoMenu">문의사항</a><br><br> -->
 					</div>
 				</div>
 			</div>
@@ -132,7 +132,7 @@
 								</c:if>
 								
 								<c:if test="${ pi.currentPage ne 1 }">
-									<c:url var="before" value="aclist.bo">
+									<c:url var="before" value="ad_certifyView.do">
 										<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
 									</c:url>
 									<a href="${ before }">&lt;</a> &nbsp;
@@ -145,7 +145,7 @@
 									</c:if>
 									
 									<c:if test="${ p ne pi.currentPage }">
-										<c:url var="pagenation" value="aclist.do">
+										<c:url var="pagenation" value="ad_certifyView.do">
 											<c:param name="currentPage" value="${ p }"/>
 										</c:url>
 										<a href="${ pagination }">${p}</a>
@@ -157,7 +157,7 @@
 									>
 								</c:if>
 								<c:if test="${pi.currentPage ne pi.maxPage }">
-									<c:url var="after" value="aclist.do">
+									<c:url var="after" value="ad_certifyView.do">
 										<c:param name="currentPage" value="${pi.currentPage + 1 }"/>
 									</c:url>
 									<a href="${after}">&gt;</a>

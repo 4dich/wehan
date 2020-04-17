@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="zxx">
 <head>
    <title>CH_REGISTER</title>
    <meta charset="UTF-8">
@@ -30,11 +30,10 @@
    <link rel="stylesheet" href="resources/css/style.css"/>
 
    <!-- 달력 라이브러리 수정  -->
-   <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
+   <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css"/>  
    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
    <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>  
-   <!-- <script src="resources/js/jquery-3.2.1.min.js"></script> -->
-   
+    
 </head>
 <body>
     <!-- Page Preloder -->
@@ -48,7 +47,7 @@
       <%@ include file="/WEB-INF/views/common/menuBar.jsp" %>
 
       <header class="header-section">
-         <div class="nav-switch">
+         <div class="nav-switch menuIcon msgCount">
             <i class="fa fa-bars"></i>
          </div>      
       </header>
@@ -148,7 +147,7 @@
                      <div class="col-xl-6">
                            <div style="margin-top: 50px; margin-right: 20px;">
                               <div class="ch-register-pic" id="registerPic">
-                              	<img id="registerPicShow" name="chPicture" src="#"/>
+                              	<img id="registerPicShow" name="chPicture" src="#" style="height: 296px;"/>
                               </div>
                               <input type="button" class="site-btn" id="btnPic" onclick="registerPic();" style="margin-top: 30px; margin-left: 100px; width: 280px; font-size: 15px;" value="이미지 등록하기 (280X300)">        
                               <input type="file" id="registerPicFile" name="registerPic" hidden/>
@@ -190,8 +189,8 @@
    <!-- Main section end -->
    
    <script type="text/javascript">
-    // ====== 달력 스크립트  ===============================================================================
-	   jQuery(document).ready(function() {
+    // ====== 달력 스크립트  ===============================================================================    	
+    	jQuery(document).ready(function() {
 
 	       jQuery("#startDatepicker, #endDatepicker").datepicker();
 	       
@@ -227,6 +226,7 @@
 	           }
 	       };
 	       jQuery.datepicker.setDefaults(jQuery.datepicker.regional['ko']);
+           $('#startDatepicker, #endDatepicker').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)         */
 	   });
 	
 	   function inputDateComparison(obj) {
@@ -260,9 +260,8 @@
 	   
    // ====== 달력 스크립트  끝===============================================================================
  </script>
-		
    
-   <!--====== Javascripts & Jquery ======-->
+	<!--====== Javascripts & Jquery ======-->
    
    <script src="resources/js/bootstrap.min.js"></script>
    <script src="resources/js/owl.carousel.min.js"></script>

@@ -81,7 +81,7 @@
 						<a href="ad_challengeListView.do" id="ad_challenge" class="infoMenu">챌린지 정보</a><br><br>
 						<a href="ad_certifyView.do" id="ad_certify" class="infoMenu">인증글 정보</a><br><br>
 						<!-- <a href="ad_noticeList.do" id="ad_notice" class="infoMenu">공지사항</a><br><br> -->
-						<a href="ad_questionsList.do" id="ad_questions" class="infoMenu">문의사항</a><br><br>
+						<!-- <a href="ad_questionsList.do" id="ad_questions" class="infoMenu">문의사항</a><br><br> -->
 					</div>
 					
 				</div>

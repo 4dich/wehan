@@ -47,7 +47,7 @@
 
 		
 		<header class="header-section">
-			<div class="nav-switch">
+			<div class="nav-switch menuIcon msgCount">
 				<i class="fa fa-bars"></i>
 			</div>
 			<div class="header-social">

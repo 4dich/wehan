@@ -104,8 +104,12 @@
 	
 	<!-- 비공개처리 -->
 	<update id="updateCertify" parameterType="_int">
-	UPDATE CERTIFY SET 
-	CEDEL_YN = 'Y' 
+	UPDATE CERTIFY
+	SET CEDEL_YN =
+	CASE 
+    WHEN CEDEL_YN = 'N' THEN 'Y'
+    WHEN CEDEL_YN = 'Y' THEN 'N'
+	END
 	WHERE CEID = #{ceId}
 	</update>
 	
@@ -145,7 +149,10 @@
 	ON C.CHID = R.CHID
 	JOIN MEMBER M
 	ON R.USERID = M.USERID
-	WHERE CEDEL_YN = 'N'
+    JOIN FOLLOW F
+    ON F.FOLLOWER = M.USERID
+    WHERE F.HOST = #{mName}
+    AND CEDEL_YN = 'N'
 	</select>
 	
 	<select id="followList" resultMap="cMemberResultSet">
@@ -170,6 +177,33 @@
 	(SEQ_CRID.NEXTVAL,#{ceId},#{userId},#{ccContent},SYSDATE,DEFAULT)
 	</insert>
 	
+	<!-- 카테고리 리스트 출력 -->
+	<select id="fidCategoryCount" resultType="_int">
+		SELECT COUNT(*) 
+		FROM CHALLENGE C 
+		JOIN CERTIFY R 
+		ON C.CHID = R.CHID 
+		JOIN MEMBER M 
+		ON R.USERID = M.USERID 
+		WHERE CEDEL_YN = 'N' 
+		AND CATEGORY = #{category}
+	</select>
+	<!-- 카테고리 검색 -->
+	<select id="fidCategory" resultMap="certifyResultSet">
+		SELECT C.CHNAME,C.CATEGORY,M.NICKNAME,R.* 
+		FROM CHALLENGE C 
+		JOIN CERTIFY R ON C.CHID = R.CHID 
+		JOIN MEMBER M ON R.USERID = M.USERID 
+		WHERE CEDEL_YN = 'N' 
+		AND CATEGORY = #{category}
+	</select>
+	<select id="searchUser" resultMap="cMemberResultSet">
+	SELECT * FROM MEMBER M
+	JOIN FOLLOW F
+	ON F.FOLLOWER = M.USERID
+	WHERE HOST =#{writer} AND M.NICKNAME LIKE '%' || #{title} || '%'
+	
+	</select>
 
 </mapper>
 

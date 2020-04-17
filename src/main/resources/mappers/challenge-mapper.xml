@@ -20,7 +20,32 @@
 		<result property="maxPerson" column="MAXPERSON"/>
 		<result property="chPeople" column="CHPEOPLE"/>
 		<result property="chPeopleCount" column="CHPEOPLECOUNT"/>
-		
+	</resultMap>
+	
+	<resultMap id="premiumChallengeResultSet" type="PremiumChallenge">
+		<id property="chPId" column="CHPID"/>
+		<result property="userId" column="USERID"/>
+		<result property="chName" column="CHNAME"/>
+		<result property="chPicture" column="CHPICTURE"/>
+		<result property="chContent" column="CHCONTENT"/>
+		<result property="startDate" column="STARTDATE"/>
+		<result property="endDate" column="ENDDATE"/>
+		<result property="ceMethod" column="CEMETHOD"/>
+		<result property="price" column="PRICE"/>
+		<result property="totalPrice" column="TOTALPRICE"/>
+		<result property="minPerson" column="MINPERSON"/>
+		<result property="maxPerson" column="MAXPERSON"/>
+		<result property="chPeople" column="CHPEOPLE"/>
+		<result property="chPeopleCount" column="CHPEOPLECOUNT"/>
+	</resultMap>
+	
+	<resultMap id="myPageResultSet" type="Mypage">
+		<id property="userId" column="USERID"/>
+		<result property="intro" column="INTRO"/>
+		<result property="goal" column="GOAL"/>
+		<result property="interest" column="INTEREST"/>
+		<result property="myExp" column="MYEXP"/>
+		<result property="myLevel" column="MYLEVEL"/>
 	</resultMap>
 	
 	<select id="getListCount" resultType="_int">
@@ -106,5 +131,11 @@
 				WHERE CHNAME LIKE '%' || #{chName} || '%'
 			</if>
 		ORDER BY CHID DESC
+	</select>
+	
+	<select id="checkPremiumCondition" resultMap="myPageResultSet">
+		SELECT MYLEVEL
+		FROM MYPAGE
+		WHERE USERID=#{userId}
 	</select>
 </mapper>
