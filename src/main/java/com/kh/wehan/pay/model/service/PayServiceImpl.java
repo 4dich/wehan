@@ -79,5 +79,24 @@ public class PayServiceImpl implements PayService {
 		return pDao.refundYn(pi);
 	}
 
+	@Override
+	public int updatepeoplePlus(Challenge ch) {
+		return pDao.updatepeoplePlus(ch);
+	}
+
+	@Override
+	public int updateCountPlus(Challenge ch) {
+		return pDao.updateCountPlus(ch);
+	}
+
+	@Override
+	public ArrayList<Pay> refundNy(PageInfo pi) {
+		return pDao.refundNy(pi);
+	}
+
+	
+
+
+	
 
 }

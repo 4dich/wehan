@@ -25,9 +25,11 @@ public class ChallengeController_SR {
 	public ModelAndView getChallengeTop10List(ModelAndView mv) {
 		
 		ArrayList<ChallengeTop10> list = chalServiceSr.getChallengeTop10List();
-		
+				
 		if(list != null) {
 			mv.addObject("list", list).setViewName("user/challenge/ch_top10List");
+		} else {
+			mv.addObject("msg","ERROR").addObject("msg2","오류가 있습니다.").setViewName("common/errorPage");
 		}
 		
 		return mv;

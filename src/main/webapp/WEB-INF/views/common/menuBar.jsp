@@ -7,7 +7,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- JQuery -->
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
+	<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script> 
 </head>
 <body>
 	<div class="site-menu-warp">
@@ -49,7 +50,7 @@
                <img src="resources/images/main/home.png" alt=""></a>
             
             <!-- 안읽은 메시지 카운트 -->
-            <a href="getMsgList.do" class="menuIcon" id="msgCount">
+            <a href="getMsgList.do" class="menuIcon msgCount">
                <img src="resources/images/main/message.png" alt="">
             </a>
             <a onclick='location.href="logout.do"' class="menuIcon">
@@ -79,7 +80,7 @@
           </div>
           </c:if>
       </div>
-	
+
 </body>
 
 <script>
@@ -94,21 +95,15 @@
 				
 				if(date != 0) {
 				
-					$div = $('<div>').text(date);
+					$div = $('<div>').css('color','white').text(date);
 					
-					$('#msgCount').append($div);
+					$('.msgCount').append($div);
 					
 				}
 			}, error:function(){
 			}
-		});
-				
-		
-		
-		
-		
+		});		
 	});
-
 </script>
 
 

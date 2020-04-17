@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.wehan.certify.model.vo.Certify;
 import com.kh.wehan.certify.model.vo.CertifyReply;
+import com.kh.wehan.certify.model.vo.SearchCondition;
 import com.kh.wehan.common.model.vo.PageInfo;
 import com.kh.wehan.member.model.vo.Follow;
 import com.kh.wehan.member.model.vo.Member;
@@ -40,10 +41,10 @@ public class CertifyDao {
 		return (ArrayList)sqlSession.selectList("certifyMapper.fidSelectList",null,rowBounds);
 	}
 
-	public ArrayList<Certify> selectFriendList(PageInfo pi) {
+	public ArrayList<Certify> selectFriendList(PageInfo pi,String mName) {
 		int offset = (pi.getCurrentPage()-1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
-		return (ArrayList)sqlSession.selectList("certifyMapper.friendFidSelectList",null,rowBounds);
+		return (ArrayList)sqlSession.selectList("certifyMapper.friendFidSelectList",mName,rowBounds);
 	}
 
 	public ArrayList<Member> selectFollowList(PageInfo pi, String mName) {
@@ -72,5 +73,35 @@ public class CertifyDao {
 		return sqlSession.insert("certifyMapper.insertReply",r);
 	}
 
-	
+	public int fidCategoryCount(String category) {
+		return sqlSession.selectOne("certifyMapper.fidCategoryCount",category);
+	}
+
+	/**
+	 * 카테고리 출력
+	 * @param category
+	 * @param pi
+	 * @return
+	 */
+	public ArrayList<Certify> fidCategory(String category, PageInfo pi) {
+
+		int offset =(pi.getCurrentPage() -1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("certifyMapper.fidCategory",category,rowBounds);
+	}
+
+	/**
+	 * 유저 검색
+	 * @param pi
+	 * @param sc
+	 * @return
+	 */
+	public ArrayList<Member> followSearch(PageInfo pi, SearchCondition sc) {
+		
+		int offset =(pi.getCurrentPage() -1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("certifyMapper.searchUser",sc,rowBounds);
+	}
 }
