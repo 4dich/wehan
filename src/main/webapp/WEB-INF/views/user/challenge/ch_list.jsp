@@ -64,7 +64,19 @@
             </div>            
             <div class="header-social">
                 <a href="chalList.do" style="color: red;">전체 챌린지</a>
-                <a href="ch_premiumListView.do">프리미엄 챌린지</a>
+                <a href="premiumCondition.do" id="premium">프리미엄 챌린지</a>
+
+				<script>
+	                $(function(){
+	                	var ck = ${ck};
+	                	
+	                	if(ck == 'ck') {
+	                		alert('불가능합니다');
+	                	}
+	                });
+						
+	            </script>
+
                 <a href="getChallengeTop10List.do">TOP 10 챌린지</a>
             </div>		
 		</header>
@@ -79,7 +91,7 @@
                     </a>
                     <form class="searchChallenge" action="searchChallenge.do">
 	                    <div class="challenges-search">
-							<input type="textarea" style="padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 3px solid black;" placeholder="챌린지 이름 검색">
+							<input type="text" name="searchChallenge" style="padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 3px solid black;" placeholder="챌린지 이름 검색">
 	                        <a href="" class="site-btn2">
 	                            <img src="resources/images/main/search.png" style="padding-left: 10px;" alt="">
 	                        </a>
@@ -104,6 +116,7 @@
                     <script>
                     	function join() {
 	                        var msg1 = "<%= request.getAttribute("msg1")%>";
+	                        
 	                        if(msg1 != "null"){
 	                           alert(msg1);
 	                           location.href="loginView.do";

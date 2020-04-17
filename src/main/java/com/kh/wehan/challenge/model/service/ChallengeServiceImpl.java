@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kh.wehan.certify.model.vo.Certify;
 import com.kh.wehan.challenge.model.dao.ChallengeDao;
 import com.kh.wehan.challenge.model.vo.Challenge;
 import com.kh.wehan.common.model.vo.PageInfo;
+import com.kh.wehan.member.model.vo.Mypage;
 
 @Service("cService")
 public class ChallengeServiceImpl implements ChallengeService {
@@ -64,6 +64,11 @@ public class ChallengeServiceImpl implements ChallengeService {
 	@Override
 	public ArrayList<Challenge> selectSearchChNameList(Challenge chal, PageInfo pi) {
 		return cDao.getSelectSearchChNameList(chal, pi);
+	}
+
+	@Override
+	public Mypage checkPremiumCondition(String userId) {
+		return cDao.checkPremiumCondition(userId);
 	}
 
 
