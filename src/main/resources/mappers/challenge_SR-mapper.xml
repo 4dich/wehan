@@ -11,6 +11,7 @@
   		<result property="userId" column="USERID"/>
   		<result property="userName" column="USERNAME"/>
   		<result property="chTitle" column="CHTITLE"/>
+  		<result property="chCategory" column="CHCATEGORY"/>
   		<result property="chPicture" column="CHPICTURE"/>
   		<result property="endDate" column="ENDDATE"/>
   		<result property="chPeopleList" column="CHPEOPLELIST"/>
@@ -27,7 +28,8 @@
 		SELECT CHID AS CHID, 
 		       USERID AS USERID, 
 		       (SELECT NICKNAME FROM MEMBER WHERE USERID = CH.USERID) AS USERNAME, 
-		        CHNAME AS CHTITLE, 
+		        CHNAME AS CHTITLE,
+		        CATEGORY AS CHCATEGORY,
 		        CHPICTURE AS CHPICTURE, 
 		        ENDDATE AS ENDDATE, 
 		        CHPEOPLE AS CHPEOPLELIST, 

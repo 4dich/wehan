@@ -11,24 +11,27 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
 	<!-- Favicon -->
-	<link href="../resources/img/favicon.ico" rel="shortcut icon"/>
+	<link href="resources/img/favicon.ico" rel="shortcut icon"/>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,900&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
 
+	<!-- jquery -->
+	<script src="resources/js/jquery-3.2.1.min.js"></script>
+	
 	<!-- Stylesheets -->
-	<link rel="stylesheet" href="../resources/css/bootstrap.min.css"/>
-	<link rel="stylesheet" href="../resources/css/font-awesome.min.css"/>
-	<link rel="stylesheet" href="../resources/css/magnific-popup.css"/>
-	<link rel="stylesheet" href="../resources/css/owl.carousel.min.css"/>
+	<link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="resources/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="resources/css/magnific-popup.css"/>
+	<link rel="stylesheet" href="resources/css/owl.carousel.min.css"/>
 
 	<!-- Main Stylesheets -->
-	<link rel="stylesheet" href="../resources/css/jh-css.css"/>
+	<link rel="stylesheet" href="resources/css/jh-css.css"/>
 	<!-- <link rel="stylesheet" href="../resources/css/left_section.css"/>
 	<link rel="stylesheet" href="../resources/css/main.css"/> -->
-	<link rel="stylesheet" href="../resources/css/style.css"/>	
+	<link rel="stylesheet" href="resources/css/style.css"/>	
 
 	<style>
 		.contents-detail {
@@ -67,7 +70,7 @@
 			<%@ include file="/WEB-INF/views/common/menuBar.jsp"%>
 			
 			<header class="header-section">
-				<div class="nav-switch">
+				<div class="nav-switch menuIcon msgCount">
 					<i class="fa fa-bars"></i>
 				</div>
 				<!-- <div class="header-social">
@@ -87,8 +90,8 @@
 							</a>
 						<!-- 서브메뉴 -->
 						<div class="challenges-search" style="margin-left: 10px;">
-							<input type="textarea" style="padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 3px solid black;" placeholder="챌린지 검색">
-							<a href=""><img src="../resources/img/arrow-righ-3.png" style="padding-left: 10px;" alt=""></a>
+							<input type="text" style="padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 3px solid black;" placeholder="챌린지 검색">
+							<a href="" class="site-btn2"><img src="resources/images/main/search.png" style="padding-left: 10px;" alt=""></a>
 						</div>
 
 						<br><br>
@@ -102,7 +105,7 @@
 							</p>
 						</div>
 						
-						<button class="site-btn sb-dark" style="margin-left: 35px; width: 280px; font-size: 15px;" type="button" onclick="location.href='ch-list.html'">
+						<button class="site-btn sb-dark" style="margin-left: 35px; width: 280px; font-size: 15px;" type="button" onclick="location.href='chalList.do'">
 							리스트 페이지로 가기
 							<img src="img/arrow-righ-3.png" alt="">
 						</button>
@@ -123,9 +126,11 @@
 						<div class="sampleArea" style="display: inline-flex;">
 							<div class="col-xl-6">
 								<div class="portfolio-item" style="margin-top: 60px;">
-									<img src="../resources/img/portfolio/1.jpg" alt="#">
+									<img src="resources/images/challenge/${ chal.chPicture }" style="height: 626px;" alt="">
 									<div class="pi-info">
-										<h3 style="padding-left: 60px; padding-bottom: 20px;">D-31일</h3>
+										<h3 style="font-size:65px; color:#ffa722; text-align:center">
+											D-<span id='count'></span>
+										</h3>
 									</div>
 								</div>				
 							</div>
@@ -133,36 +138,62 @@
 								<div class="contact-text-warp">
 									<form class="contact-form" style="margin-top: 65px;">
 										<div class="row">
+											<input type="hidden" name="price" value="${chal.price}">
+											<input type="hidden" name="chId" value="${chal.chId}">
+											<input type="hidden" name="chName" value="${chal.chName}">
+											
+											<div class="col-lg-12 message-body">
+												<div style="font-size:30px; display:inline-flex;">
+													<strong>${ chal.chName }</strong>
+													<h5 style="margin-top:13px">
+													<c:if test='${ chal.category eq "건강" or chal.category eq "health"}'>
+														<span class="health">건강</span>
+													</c:if>
+													<c:if test='${ chal.category eq "자기개발" or chal.category eq "motivated"}'>
+														<span class="motivated">자기개발</span>
+													</c:if>
+													<c:if test='${ chal.category eq "경제" or chal.category eq "economy"}'>
+														<span class="economy">경제</span>
+													</c:if>
+													<c:if test='${ chal.category eq "취미" or chal.category eq "hobby"}'>
+														<span class="hobby">취미</span>
+													</c:if>
+													<c:if test='${ chal.category eq "생활" or chal.category eq "life"}'>
+														<span class="life">생활</span>
+													</c:if>
+													<c:if test='${ chal.category eq "그외" or chal.category eq "etc"}'>													
+														<span class="etc">그외</span>
+													</c:if>	
+													</h5>		
+												</div>
+												<br><br>
+											</div>
+											
 											<div class="col-lg-12">
-												<div class="contents-detail">챌린지명</div>
+												<div class="contents-detail">
+													기간 : <strong>${ chal.startDate } ~ ${ chal.endDate }</strong>
+												</div>
+											</div>																					
+											<div class="col-lg-12">
+												<div class="contents-detail">
+													참가자 수 : <strong>${ chal.chPeopleCount } 명</strong>
+												</div>
 											</div>
 											<div class="col-lg-12">
-												<div class="contents-detail">카테고리</div>
+												<div class="contents-detail" style="height:auto;">
+													인증 방법 : <br>
+													<strong>${ chal.ceMethod }</strong>
+												</div>
 											</div>
-											<div class="col-lg-6">
-												<div class="contents-detail">기간 설정(시작)</div>
-											</div>
-											<div class="col-lg-6">
-												<div class="contents-detail">기간 설정(종료)</div>
-											</div>
-											<div class="col-lg-6">
-												<div class="contents-detail">신청 마감일</div>
-											</div>
-											<div class="col-lg-6">
-												<div class="contents-detail">참여 인원</div>
-											</div>
+											
 											<div class="col-lg-12">
-												<div class="contents-detail">인증 방법</div>
-											</div>
-											<div class="col-lg-6">
-												<div class="contents-detail">배팅 금액</div>
-											</div>
-											<div class="col-lg-6">
-												<div class="contents-detail">총 모집 금액</div>
+												<div class="contents-detail">
+													모인 금액 : <strong>${ chal.totalPrice } 원</strong>
+												</div>
 											</div>
 											<br><br><br><br>
 											<div class="col-lg-12">
-												<div class="contents-detail2">상세 정보</div>
+												<div class="contents-detail2">${ chal.chContent }</div>
 											</div>
 										</div>
 									</form>
@@ -184,15 +215,34 @@
 		</div>
 	</div>
 		<!-- Main section end -->
+		
+		<script>
+			$(function(){
+				var today = new Date();
+				var a = '${chal.endDate}';
+				var b = a.replace(/-/g,",");
+				
+				var endDate = new Date(b);
+				
+				var count = endDate.getTime() - today.getTime();
+			 	
+				count = Math.ceil(count / (1000*60*60*24));
+				
+				$('#count').text(count);
+					
+			});
+		
+		
+		</script>
 	
 	<!--====== Javascripts & Jquery ======-->
-	<script src="../resources/js/jquery-3.2.1.min.js"></script>
-	<script src="../resources/js/bootstrap.min.js"></script>
-	<script src="../resources/js/owl.carousel.min.js"></script>
-	<script src="../resources/js/jquery.nicescroll.min.js"></script>
-	<script src="../resources/js/circle-progress.min.js"></script>
-	<script src="../resources/js/jquery.magnific-popup.min.js"></script>
-	<script src="../resources/js/main.js"></script>
+	<script src="resources/js/jquery-3.2.1.min.js"></script>
+	<script src="resources/js/bootstrap.min.js"></script>
+	<script src="resources/js/owl.carousel.min.js"></script>
+	<script src="resources/js/jquery.nicescroll.min.js"></script>
+	<script src="resources/js/circle-progress.min.js"></script>
+	<script src="resources/js/jquery.magnific-popup.min.js"></script>
+	<script src="resources/js/main.js"></script>
 
 	</body>
 </html>

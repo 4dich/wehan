@@ -315,16 +315,51 @@
 									<a href='hiddenDetailInList.do?chId=${list.chId}'>
 										 <div class="top1Package">
 			                                <div class="top1Wrap">
-			                                    <div class="top1Line">#TOP ${ list.ranking }</div>
+			                                    <div class="top1Line">
+			                                    	#TOP ${ list.ranking }			                                    	
+			                                    </div>
 			                                    <div class="topAllImages">
 			                                        <img src="resources/images/challenge/${ list.chPicture }" style="width: 100%; height: 98%;" alt="">
 			                                        <div>
 			                                            <div class="topAllCovers"></div>
 			                                        </div>
 			                                        <div class="topImgWrap">
-			                                            <div class="top1ChalName" style="color:#2c0083">
+			                                            <div class="top1ChalName  message-body" style="color:#2c0083">
 			                                            	<input type="hidden" value="${list.chId}"/>
-			                                            	<br><strong>${ list.chTitle }</strong>
+			                                            	
+			                                            	<!-- 카테고리 -->
+			                                            	<c:if test='${ list.chCategory eq "건강" or list.chCategory eq "health"}'>													
+																<h5 style="margin-bottom:10px">
+																	<span class="health" style="font-size:13px;">건강</span>
+																</h5>
+															</c:if>
+															<c:if test='${ list.chCategory eq "자기개발" or list.chCategory eq "motivated"}'>													
+																<h5 style="margin-bottom:10px">
+																	<span class="motivated" style="font-size:13px;">자기개발</span>
+																</h5>
+															</c:if>
+															<c:if test='${ list.chCategory eq "경제" or list.chCategory eq "economy"}'>													
+																<h5 style="margin-bottom:10px">
+																	<span class="economy" style="font-size:13px;">경제</span>
+																</h5>
+															</c:if>
+															<c:if test='${ list.chCategory eq "취미" or list.chCategory eq "hobby"}'>													
+																<h5 style="margin-bottom:10px">
+																	<span class="hobby" style="font-size:13px;">취미</span>
+																</h5>
+															</c:if>
+															<c:if test='${ list.chCategory eq "생활" or list.chCategory eq "life"}'>													
+																<h5 style="margin-bottom:10px">
+																	<span class="life" style="font-size:13px;">생활</span>
+																</h5>
+															</c:if>
+															<c:if test='${ list.chCategory eq "그외" or list.chCategory eq "etc"}'>													
+																<h5 style="margin-bottom:10px">
+																	<span class="etc" style="font-size:13px;">그외</span>
+																</h5>
+															</c:if>	
+															
+			                                            	<strong>${ list.chTitle }</strong>
 			                                            </div>
 			                                            <div class="top1UserId">
 			                                            	<input type="hidden" value="${list.userId}"/>
@@ -346,9 +381,28 @@
 			                                <div class="top10Wrap">
 			                                    <div class="top10Number">Top ${list.ranking}</div>
 			                                    <span class="top10Divide">ㅣ</span>
-			                                    <div class="top10ChalName">
+			                                    <div class="top10ChalName message-body" style="display:flex;">
 			                                    	<input type="hidden" value="${list.chId}"/>
-			                                    	<strong>${ list.chTitle }</strong>
+			                                    	
+			                                    	<c:if test='${ list.chCategory eq "건강" or list.chCategory eq "health"}'>													
+														<h5><span class="health" style="font-size:13px; margin-right:10px;">건강</span></h5>
+													</c:if>
+													<c:if test='${ list.chCategory eq "자기개발" or list.chCategory eq "motivated"}'>													
+														<h5><span class="motivated" style="font-size:13px; margin-right:10px;">자기개발</span></h5>
+													</c:if>
+													<c:if test='${ list.chCategory eq "경제" or list.chCategory eq "economy"}'>													
+														<h5><span class="economy" style="font-size:13px; margin-right:10px;">경제</span></h5>
+													</c:if>
+													<c:if test='${ list.chCategory eq "취미" or list.chCategory eq "hobby"}'>													
+														<h5><span class="hobby" style="font-size:13px; margin-right:10px;">취미</span></h5>
+													</c:if>
+													<c:if test='${ list.chCategory eq "생활" or list.chCategory eq "life"}'>													
+														<h5><span class="life" style="font-size:13px; margin-right:10px;">생활</span></h5>
+													</c:if>
+													<c:if test='${ list.chCategory eq "그외" or list.chCategory eq "etc"}'>													
+														<h5><span class="etc" style="font-size:13px; margin-right:10px;">그외</span></h5>
+													</c:if>		
+													<strong>${ list.chTitle }</strong>	
 			                                    </div>
 			                                    <span class="top10Divide">ㅣ</span>
 			                                    <div class="top10UserId">

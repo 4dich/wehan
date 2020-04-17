@@ -212,14 +212,13 @@
 				$fName[i].append($interest);
 			}
 			if(/자기개발/.test(fCate[i].textContent)) {
-				$interest = $('<span>').attr('class','development').text("자기개발");
+				$interest = $('<span>').attr('class','motivated').text("자기개발");
 				$fName[i].append($interest);
 			}
 			if(/생활/.test(fCate[i].textContent)) {
 				$interest = $('<span>').attr('class','life').text("생활");
 				$fName[i].append($interest);
 			}
-			
 			
 		}
 		

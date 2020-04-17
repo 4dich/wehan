@@ -1374,3 +1374,52 @@ ch-register page
 		height: 300px; 
 		border: 2px solid lightgrey;
 	}
+	
+	
+/* 카테고리 색깔 바꾸기 */
+.message-body h5 span {
+    border-radius: 50px;
+    line-height: 14px;
+    font-size: 15px;
+    color: #fff;
+    font-style: normal;
+    padding: 4px 20px;
+    margin-left: 5px;
+    margin-top: -5px;
+}
+
+/* 건강  */
+.message-body h5 span.health{ 
+	background:#b1b1b1;	
+}
+
+/* 자기개발 */
+.message-body h5 span.motivated{
+	background:#07b107;	
+}
+
+/* 경제 */
+.message-body h5 span.economy{
+	background:#be1d23;	
+}
+
+/* 취미 */
+.message-body h5 span.hobby{
+	background:#2196f3;	
+}
+
+/* 생활 */
+.message-body h5 span.life{
+	background:#ffca00e0;	
+}
+
+/* 그외 */
+.message-body h5 span.etc{
+	background:#b81add;	
+}
+
+.message-body-heading span {
+    float: right;
+    color:#62748F;
+    font-size: 14px;
+}

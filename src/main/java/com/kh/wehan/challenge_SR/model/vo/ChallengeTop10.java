@@ -6,6 +6,7 @@ public class ChallengeTop10 {
 	private String userId;		// 챌린지 만든사람 ID
 	private String userName;	// 챌린지 만든사람 닉네임
 	private String chTitle;		// 챌린지 타이틀
+	private String chCategory;	// 챌린지 카테고리
 	private String chPicture;	// 챌린지 이미지
 	private String endDate;		// 마감 날짜
 	private String chPeopleList;	// 참여인원리스트
@@ -19,13 +20,14 @@ public class ChallengeTop10 {
 	}
 
 
-	public ChallengeTop10(String chId, String userId, String userName, String chTitle, String chPicture, String endDate,
-			String chPeopleList, int chPeopleCount, int ranking) {
+	public ChallengeTop10(String chId, String userId, String userName, String chTitle, String chCategory,
+			String chPicture, String endDate, String chPeopleList, int chPeopleCount, int ranking) {
 		super();
 		this.chId = chId;
 		this.userId = userId;
 		this.userName = userName;
 		this.chTitle = chTitle;
+		this.chCategory = chCategory;
 		this.chPicture = chPicture;
 		this.endDate = endDate;
 		this.chPeopleList = chPeopleList;
@@ -71,6 +73,16 @@ public class ChallengeTop10 {
 
 	public void setChTitle(String chTitle) {
 		this.chTitle = chTitle;
+	}
+
+
+	public String getChCategory() {
+		return chCategory;
+	}
+
+
+	public void setChCategory(String chCategory) {
+		this.chCategory = chCategory;
 	}
 
 
@@ -127,16 +139,10 @@ public class ChallengeTop10 {
 	@Override
 	public String toString() {
 		return "ChallengeTop10 [chId=" + chId + ", userId=" + userId + ", userName=" + userName + ", chTitle=" + chTitle
-				+ ", chPicture=" + chPicture + ", endDate=" + endDate + ", chPeopleList=" + chPeopleList
-				+ ", chPeopleCount=" + chPeopleCount + ", ranking=" + ranking + "]";
+				+ ", chCategory=" + chCategory + ", chPicture=" + chPicture + ", endDate=" + endDate + ", chPeopleList="
+				+ chPeopleList + ", chPeopleCount=" + chPeopleCount + ", ranking=" + ranking + "]";
 	}
-	
-	
-	
-	
 
-
-	
 	
 	
 	
