@@ -126,8 +126,8 @@ public class AdminCertifyController {
 		int result = acService.updateCertify(ceId);
 		
 		if(result > 0) {
-			mv.addObject("currentPage",currentPage)
-			.setViewName("admin/ad_certifyDetail");
+			mv.addObject("ceId",ceId).addObject("currentPage",currentPage)
+			.setViewName("redirect:ad_certifyDetail.do?ceId" + ceId +"&currentPage=" + currentPage);
 		}else {
 			mv.addObject("msg","Error")
 			.addObject("msg2","비공개처리실패")
