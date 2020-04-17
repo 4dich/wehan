@@ -57,8 +57,8 @@
 				<a href=""><i class="fa fa-twitter"></i></a>
 				<a href=""><i class="fa fa-dribbble"></i></a>
                 <a href=""><i class="fa fa-behance"></i></a> -->
-                <a href="notice.html">공지사항</a>
-                <a href="qna.html" style="color: red;">문의사항</a>
+                <a href="noticeList.do">공지사항</a>
+                <a href="qnaListView.do" style="color: red;">문의사항</a>
 			</div>
 		
 		</header>
@@ -91,7 +91,7 @@
 			<div class="page-section blog-page">
 				<div class="blog-posts">
 					<div class="arrowBack">
-						<a href="questionsList.do">
+						<a href="qnaListView.do">
 							<img src="resources/images/arrow-righ-3.png" alt="">
 						</a>
 					</div>

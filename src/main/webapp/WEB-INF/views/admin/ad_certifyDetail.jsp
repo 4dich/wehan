@@ -64,18 +64,21 @@
 			<div class="main-sidebar">
                     <!-- 로고 구역 -->
 				<div class="mb-warp">
-					<a href="index.html" class="site-logo">
+					<a href="indexView.do" class="site-logo">
 						<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
                     <!-- 서브메뉴 -->
 					<div class="about-info">
 						<h2>인증글 정보</h2>
-						<a href="pay.html" id="ad_profile" class="infoMenu">결제정보</a><br><br>
-						<a href="adminProfile.html" id="ad_profile" class="infoMenu">회원정보</a><br><br> <!-- 사이드 메뉴들 -->
-						<a href="ad-chal.html" id="ad_challenge" class="infoMenu">챌린지 정보</a><br><br>
-						<a href="admin_notice.html" id="ad_notice" class="infoMenu">공지사항</a><br><br>
-						<a href="admin_qna.html" id="ad_questions" class="infoMenu">문의사항</a><br><br>
+						<a href="paylist.do" id="ad_pay" class="infoMenu">결제정보</a><br><br>
+						<!-- <a href="blackList.do" id="ad_blackList" class="infoMenu">블랙리스트</a><br><br> -->
+						<a href="mlist.do" id="mlist" class="infoMenu">회원정보</a><br><br>
+						<a href="ad_challengeListView.do" id="ad_challenge" class="infoMenu">챌린지 정보</a><br><br>
+						<!-- <a href="ad_certifyView.do" id="ad_certify" class="infoMenu">인증글 정보</a><br><br> -->
+						<a href="ad_noticeList.do" id="ad_notice" class="infoMenu">공지사항</a><br><br>
+						<a href="ad_questionsList.do" id="ad_questions" class="infoMenu">문의사항</a><br><br>
+					
 					</div>
 				</div>
 			</div>
@@ -141,7 +144,7 @@
 														<button id="btnNotOpen" class="site-btn sb-dark" style="padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; margin-top:10px;">
 															비공개 처리
 														</button>
-														<button id="btnList" class="site-btn sb-dark" type="button" onclick="location.href='ch_confirmPhotoList.html'" style="padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; margin-top:10px;">
+														<button id="btnList" class="site-btn sb-dark" type="button" onclick="location.href='ad_certifyView.do'" style="padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; margin-top:10px;">
 															목록가기
 														</button>
 													</div>

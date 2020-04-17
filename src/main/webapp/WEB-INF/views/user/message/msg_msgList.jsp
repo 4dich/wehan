@@ -62,7 +62,7 @@
 				<a href="my_profileView.do" >Profile</a>
                 <a href="my_challengeView.do">My Challenge</a>
 				<a href="my_diaryView.do">My Diary</a>
-				<a href="msg_msgListView.do" style="color: red;">Message</a>
+				<a href="getMsgList.do" style="color: red;">Message</a>
 			</div>
 		</header>
 

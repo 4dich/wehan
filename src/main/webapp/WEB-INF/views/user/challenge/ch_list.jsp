@@ -64,8 +64,8 @@
             </div>            
             <div class="header-social">
                 <a href="chalList.do" style="color: red;">전체 챌린지</a>
-                <a href="ch-listPremium.html">프리미엄 챌린지</a>
-                <a href="ch-listTop10.html">TOP 10 챌린지</a>
+                <a href="ch_premiumListView.do">프리미엄 챌린지</a>
+                <a href="getChallengeTop10List.do">TOP 10 챌린지</a>
             </div>		
 		</header>
 		<div class="site-content-warp">
@@ -73,7 +73,7 @@
 			<div class="main-sidebar">
                 <!-- 로고 구역 -->
                 <div class="mb-warp">
-                    <a href="index.html" class="site-logo">
+                    <a href="indexView.do" class="site-logo">
                         <h2 style="margin-left: 6px;">위대한 한걸음</h2>
                         <p style="padding-top: 15px;">THE GREAT ONE STEP</p>
                     </a>

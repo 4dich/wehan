@@ -122,7 +122,7 @@ public class QuestionsController {
 		
 		mv.addObject("list", list);
 		mv.addObject("pi", pi);
-		mv.setViewName("admin/ad_questionsList");
+		mv.setViewName("admin/ad_qnaList");
 				
 		return mv;
 	}

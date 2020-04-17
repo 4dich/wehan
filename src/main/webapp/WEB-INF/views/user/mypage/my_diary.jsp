@@ -388,6 +388,7 @@
                 <a href="my_profileView.do">Profile</a>
                 <a href="my_challengeView.do">My Challenge</a>
                 <a href="my_diaryView.do" style="color: red;">My Diary</a>
+				<a href="getMsgList.do">Message</a>
 			</div>
 		</header>
 		<div class="site-content-warp">

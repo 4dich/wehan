@@ -65,10 +65,12 @@
 						</a>
                     <!-- 서브메뉴 -->
 					<div class="about-info">
-						<h2>서비스 소개</h2>
+						<h2>한걸음 가이드</h2>
 						<p>
-							위대한 한걸음과 함께 쉽고 즐겁게 시작해보세요. <br>
-							쉽고 간단하지만 한걸음이 모이면 당신의 목표가 이뤄질거에요. <br>							
+							혼자선 힘들었던 계획을 같은 목표의 사람들과 함께 해보세요. <br>
+							계획을 세우고, 결심에 대한 돈을 걸면 끝까지 해낼 수 있습니다.<br>
+							<br>
+							지금 바로 계획을 세워보세요!						
 						</p>
 					</div>
 					<ul class="contact-info">
@@ -89,7 +91,7 @@
 								회사소개
 							</button>
 							<button class="site-btn sb-solid mr-3 mb-3" type="button" onclick="location.href='guideInfoView.do'">
-								사용법 안내
+								나무 알아보기
 							</button>
 						</div>					
 					</div>

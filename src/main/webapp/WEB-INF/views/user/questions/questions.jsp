@@ -59,7 +59,7 @@
 				<a href=""><i class="fa fa-dribbble"></i></a>
                 <a href=""><i class="fa fa-behance"></i></a> -->
                 <a href="noticeList.do">공지사항</a>
-                <a href="qnaList.do" style="color: red;">문의사항</a>
+                <a href="qnaListView.do" style="color: red;">문의사항</a>
 			</div>
 		
 		</header>
@@ -68,7 +68,7 @@
 			<div class="main-sidebar">
 			<!-- 로고 구역 -->
 			<div class="mb-warp">
-				<a href="index.html" class="site-logo">
+				<a href="indexView.do" class="site-logo">
 					<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 					<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 				</a>
