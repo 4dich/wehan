@@ -2,6 +2,8 @@ package com.kh.wehan.pay.model.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,7 +39,6 @@ public class PayController {
 		int listCount = pService.getListCount();
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
-		
 		ArrayList<Pay> list = pService.selectList(pi);
 		
 		mv.addObject("list",list);
@@ -74,14 +75,12 @@ public class PayController {
 		
 		HttpSession session = request.getSession();
 		Member m = (Member)session.getAttribute("loginUser");
-		
 		mv.addObject("ch",ch);
 		mv.addObject("m",m);
 		mv.setViewName("user/payAgree");
 		
 		return mv;
 	}
-	
 	
 	@RequestMapping("payments.do")
 	public void pay(HttpServletRequest request,HttpServletResponse response) throws IOException {
@@ -92,6 +91,10 @@ public class PayController {
 		int price = Integer.parseInt(request.getParameter("price"));
 		String pmethod = request.getParameter("pmethod");
 		String chName = request.getParameter("chName");
+		String chPeople = request.getParameter("chPeople");
+		String peoplePlus = chPeople.concat(","+userId);
+		String[] peopleArr =  peoplePlus.split(",");
+		int count = peopleArr.length;
 		
 		Pay pay = new Pay();
 		pay.setChId(chId);
@@ -99,11 +102,18 @@ public class PayController {
 		pay.setPrice(price);
 		pay.setPmethod(pmethod);
 		pay.setChName(chName);
-		
 		int payResult = pService.insertPay(pay);
 		
+		Challenge ch = new Challenge();
+		ch.setChPeople(peoplePlus);
+		ch.setChId(chId);
+		ch.setChPeopleCount(count);
+		
+		
 		if(payResult>0) {
-		System.out.println("결제성공");
+	    int Plus = pService.updatepeoplePlus(ch); 
+	    int CountPlus = pService.updateCountPlus(ch);
+	    System.out.println("결제성공");
 		String result = "index.jsp";
 		response.getWriter().print(result);
 		}else{
@@ -156,8 +166,11 @@ public class PayController {
 		return mv;
 		
 	}
+	
 	@ResponseBody
 	@RequestMapping("refund.do")
+	
+	
 	public String refund(int[] result) {
 		
 		int refundAll = pService.refundAll(result);
@@ -168,8 +181,10 @@ public class PayController {
 		}
 	
 	}
+	
 	@ResponseBody
 	@RequestMapping("refundOne.do")
+	
 	public String refundOne(int pId) {
 		
 		int refund = pService.refundOne(pId);
@@ -181,18 +196,27 @@ public class PayController {
 	}
 	
 	@RequestMapping("refundYn.do")
-	public void refundYn(HttpServletResponse response ,@RequestParam(value="currentPage",required=false,defaultValue="1") int currentPage) throws JsonIOException, IOException {
+	public void refundYn(HttpServletResponse response ,@RequestParam(value="currentPage",required=false,defaultValue="1") int currentPage
+			,int reIdx) throws JsonIOException, IOException {
+		response.setCharacterEncoding("UTF-8");
 		int listCount = pService.getListCount();
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
 		
-		ArrayList<Pay> list = pService.refundYn(pi);
-		System.out.println(list);
-		
 		response.setContentType("applecation/json charset=utf-8"); 
-		
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-		gson.toJson(list,response.getWriter());
+		Map ad = new HashMap();
+		ArrayList<Pay> list;
+		ad.put("pi",pi);
+		if(reIdx != 0) {
+			 list= pService.refundYn(pi);
+			
+		}else {
+			list = pService.refundNy(pi);
+
+		}
+		ad.put("list",list);
+		gson.toJson(ad,response.getWriter());
 	}
 	
 	

@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.kh.wehan.certify.model.vo.Certify;
 import com.kh.wehan.challenge.model.vo.Challenge;
 import com.kh.wehan.member.model.dao.MypageDao;
+import com.kh.wehan.member.model.vo.Follow;
+import com.kh.wehan.member.model.vo.Member;
 import com.kh.wehan.member.model.vo.Mypage;
 
 @Service("myService")
@@ -44,6 +46,16 @@ public class MypageServiceImpl implements MypageService {
 	@Override
 	public int certifyCount(Certify ce) {
 		return myDao.certifyCount(ce);
+	}
+
+	@Override
+	public Member selectMember(String otherId) {
+		return myDao.selectMember(otherId);
+	}
+
+	@Override
+	public int my_unfollow(Follow f) {
+		return myDao.my_unfollow(f);
 	}
 
 }

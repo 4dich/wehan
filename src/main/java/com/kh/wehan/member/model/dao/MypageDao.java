@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.wehan.certify.model.vo.Certify;
 import com.kh.wehan.challenge.model.vo.Challenge;
+import com.kh.wehan.member.model.vo.Follow;
+import com.kh.wehan.member.model.vo.Member;
 import com.kh.wehan.member.model.vo.Mypage;
 
 @Repository("myDao")
@@ -40,6 +42,14 @@ public class MypageDao {
 		/* return sqlSession.selectOne("mypageMapper.certifyCount",chId); */
 		return sqlSession.selectOne("mypageMapper.certifyCount",ce);
 
+	}
+
+	public Member selectMember(String otherId) {
+		return sqlSession.selectOne("mypageMapper.selectMember",otherId);
+	}
+
+	public int my_unfollow(Follow f) {
+		return sqlSession.delete("mypageMapper.my_unfollow",f);
 	}
 
 }

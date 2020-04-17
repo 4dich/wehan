@@ -30,11 +30,6 @@
 	<!-- JQuery -->
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	
-	<!-- bootstrap4 toggle -->
-	<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
-	<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
-	
-	
     <style>
 /*     .profile-images {
         width: 150px;
@@ -147,32 +142,33 @@
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
 					
+					
 					<!-- follow 영역 -->
 					<div id="divAll">
 				        <div id="pic" style="display:inline-block">
-				            <img src="resources/images/user/${ loginUser.picture }" style="width: 100px; height:100px; margin-top: -70px">
+				            <img src="resources/images/user/${ otherMember.picture }" style="width: 100px; height:100px; margin-top: -70px">
 				        </div>
 				        <div id="foAll" style="display:inline-block; margin-left: 20px">
 				            <div id="fo1" style="display:inline-block; text-align:center; width:60px;">
-				            	<div style="font-weight:bold;font-size:30px">1</div><div style="font-size:12px; color:gray">grade</div></div>
+				            	<div style="font-weight:bold;font-size:30px">2</div><div style="font-size:12px; color:gray">grade</div></div>
 				            <div id="fo2" style="display:inline-block; text-align:center; width:60px;">
 				            	<div style="font-weight:bold;font-size:30px">${ follow }</div><div style="font-size:12px; color:gray">followers</div></div>
 				            <div id="fo3" style="display:inline-block; text-align:center; width:60px;">
 				            	<div style="font-weight:bold;font-size:30px">${ following }</div><div style="font-size:12px; color:gray">following</div></div>
 				            <br>
-				            <button style="display: block; width:100%; margin-top: 20px" onclick="location.href='my_updateInfoView.do'">Settings</button>
+				            <button style="display: block; width:100%; margin-top: 20px" onclick="location.href='my_unfollow.do?host=${otherMember.userId}&follower=${loginUser.userId}'">unfollow</button>
 				        </div>
 				    </div>
 				    
 				    <!-- nickname 영역 -->
 				    <div id="divAll2" style="margin-top:30px; text-align:left">
-				        <div style="font-weight:bold;font-size:24px">${ loginUser.nickName }</div>
+				        <div style="font-weight:bold;font-size:24px">${ otherMember.nickName }</div>
 					
 					<!-- intro 영역 -->
 				    <div id="divAll3" style="margin-top:30px; text-align:left">    
 				       	<div style="margin-bottom:5px; font-weight: 700; display:inline-block"><i>OWNER MESSAGE&nbsp;</i>
-				       	<input id="toggle3" style="margin-left:60px;" type="checkbox" checked data-toggle="toggle" data-on="<i class='fa fa-lock' aria-hidden='true'></i> 수정하기" data-off="<i class='fa fa-unlock' aria-hidden='true'></i> 수정중" data-onstyle="dark" data-offstyle="outline-dark" onchange="toggleBtn3();"></div>
-				       	<div style="border:1px solid gray; height:180px;"><textarea id="intro" cols="41" rows="6" style="resize: none; border:0px; background:white; margin:12px;" disabled>${ mypage.intro }</textarea></div> 
+				       	<input style="margin-left:60px; display:none"></div>
+				       	<div style="border:1px solid gray; height:180px;"><textarea id="intro" cols="41" rows="6" style="resize: none; border:0px; background:white; margin:12px;" disabled>${ otherPage.intro }</textarea></div> 
 				    </div>
 				        
 				    </div>
@@ -197,7 +193,7 @@
 								<div style="display: inline;"><img class='category' src="resources/images/mypage/buy.png" style="width:150px; height:150px; margin: 15px;"></div>
 								<div style="display: inline;"><img class='category' src="resources/images/mypage/support.png" style="width:150px; height:150px; margin: 15px;"></div>
 								
-								<div class="myCate" style="display:none">${ mypage.interest }</div>
+								<div class="myCate" style="display:none">${ otherPage.interest }</div>
 								
 							</div>
 							<div style="display: inline-block; width:100%;">
@@ -218,11 +214,11 @@
 							<div style="margin:-100px 24px 0 60px;"><i>Goal</i></div>
 							
 							
-							<div id="userId" style="display:none">${loginUser.userId}</div>
+							<div id="userId" style="display:none">${ otherMember.userId }</div>
 							
 						</div>
 						<div class="main-up-content" style="font-size:20px; height: 306px; width: 100%; margin-top: 5px; text-align:right; border:1px solid gray;">
-							<textarea id="goal" cols="104" rows="9" style="resize: none; border:0px; background:white; margin-top: 12px; margin-right:12px"  disabled>${ mypage.goal }</textarea>
+							<textarea id="goal" cols="104" rows="9" style="resize: none; border:0px; background:white; margin-top: 12px; margin-right:12px"  disabled>${ otherPage.goal }</textarea>
 						</div>
 
 						<script>
@@ -251,78 +247,15 @@
 								cate[5].textContent = 1;
 							}
 						
-							function toggleBtn3(){
-						    	if(document.getElementById('toggle3').checked==false){
-						    		$('#intro').attr('disabled',false);
-						    		$('#goal').attr('disabled',false);
-						    		
-						    		cate.on("click",function(){
-						    			$(this)[0].textContent = 1 - $(this)[0].textContent;
-						            });
-									$('body').css({'background-color':'black',
-												   '-webkit-filter':'invert(100%)',
-												   'filter':'invert(100%)'});
-
-								}else{
-									$('body').css({'background-color':'white',
-												   '-webkit-filter':'invert(0%)',
-												   'filter':'invert(0%)'});
-									
-									$('#intro').attr('disabled',true);
-									$('#goal').attr('disabled',true);
-									var userId = $('#userId')[0].innerText;
-						   			var intro = $('#intro')[0].value;
-						   			var goal = $('#goal')[0].value;
-									
-						   			myCate=""
-						   			if(cate[0].textContent==1){
-						   				myCate+="건강,"
-						   			}
-						   			if(cate[1].textContent==1){
-						   				myCate+="취미,"
-						   			}
-						   			if(cate[2].textContent==1){
-						   				myCate+="자기개발,"
-						   			}
-						   			if(cate[3].textContent==1){
-						   				myCate+="경제,"
-						   			}
-						   			if(cate[4].textContent==1){
-						   				myCate+="생활,"
-						   			}
-						   			if(cate[5].textContent==1){
-						   				myCate+="기타,"
-						   			}
-						   			
-						   			var interest = myCate;
-						   			
-						   			cate.off("click");
-						    		
-						    		$.ajax({
-										url:"updateProfile.do",
-										data:{userId:userId,goal:goal,intro:intro,interest:interest},
-										type:"post",
-										success:function(data){
-											$('#intro').val(data.intro);
-											$('#goal').val(data.goal);
-											$('.myCate').val(data.interest);
-										},error:function(){
-											console.log("error");
-										}
-									});
-								}
-						    }
 							
 							$(function(){
-								setInterval(function(){
-									for(var i=0; i<6; i++){
-										if(cate[i].textContent==0){
-											$(cate[i]).css('opacity','0.2');
-										}else{
-											$(cate[i]).css('opacity','1');
-										}
+								for(var i=0; i<6; i++){
+									if(cate[i].textContent==0){
+										$(cate[i]).css('opacity','0.2');
+									}else{
+										$(cate[i]).css('opacity','1');
 									}
-								},100);
+								}
 							});
 
 						</script>

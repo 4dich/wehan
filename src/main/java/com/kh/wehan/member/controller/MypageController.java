@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
@@ -17,6 +18,7 @@ import com.google.gson.JsonIOException;
 import com.kh.wehan.certify.model.vo.Certify;
 import com.kh.wehan.challenge.model.vo.Challenge;
 import com.kh.wehan.member.model.service.MypageService;
+import com.kh.wehan.member.model.vo.Follow;
 import com.kh.wehan.member.model.vo.Member;
 import com.kh.wehan.member.model.vo.Mypage;
 
@@ -30,7 +32,6 @@ public class MypageController {
 	
 	@RequestMapping("my_profileView.do")
 	public ModelAndView my_profileView(ModelAndView mv, HttpServletRequest request) {
-		
 		
 		HttpSession session = request.getSession();
 		
@@ -46,6 +47,30 @@ public class MypageController {
 		  .addObject("follow", follow)
 		  .addObject("following", following)
 		  .setViewName("user/mypage/my_profile");
+		
+		return mv;
+	}
+	
+	@RequestMapping("other_profileView.do")
+	public ModelAndView other_profileView(ModelAndView mv, HttpServletRequest request,
+			@RequestParam(name="otherId") String otherId) {
+		
+		HttpSession session = request.getSession();
+		Member mem = (Member)session.getAttribute("loginUser");
+		String userId = mem.getUserId();
+		
+		System.out.println(otherId);
+		Mypage otherPage = myService.my_profileView(otherId);
+		Member otherMember = myService.selectMember(otherId);
+		
+		int follow = myService.followCount(otherId);
+		int following = myService.followingCount(otherId);
+		
+		mv.addObject("otherPage", otherPage)
+		  .addObject("otherMember", otherMember)
+		  .addObject("follow", follow)
+		  .addObject("following", following)
+		  .setViewName("user/mypage/other_profile");
 		
 		return mv;
 	}
@@ -134,6 +159,29 @@ public class MypageController {
 		mv.addObject("chList", chList)
 		  .addObject("ceCount", ceCount)
 		  .setViewName("user/mypage/my_challenge");
+		
+		return mv;
+	}
+	
+	@RequestMapping("my_unfollow.do")
+	public ModelAndView my_unfollow(ModelAndView mv, Follow f) {
+		
+		int result = myService.my_unfollow(f);
+		
+		String otherId = f.getHost();
+		
+		System.out.println("otherId:" + otherId);
+		Member otherMember = myService.selectMember(otherId);
+		
+		int follow = myService.followCount(otherId);
+		int following = myService.followingCount(otherId);
+		
+		if(result>0) {
+			mv.addObject("otherMember", otherMember)
+			  .addObject("follow", follow)
+			  .addObject("following", following)
+			  .setViewName("user/mypage/other_profile");
+		}
 		
 		return mv;
 	}

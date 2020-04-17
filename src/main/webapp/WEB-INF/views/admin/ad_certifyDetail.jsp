@@ -215,7 +215,7 @@
 			location.href="ad_certifyDetailUpdate.do?ceId="+ ${c.ceId};
 		});
 		$("#btnList").on("click",function(){
-			location.href="ad_certifyView.do";
+			location.href="ad_certifyView.do?currentPage="+${currentPage};
 		});
 		
 		var ceId = ${c.ceId};

@@ -57,7 +57,7 @@
 		
 		
 		<header class="header-section">
-			<div class="nav-switch">
+			<div class="nav-switch menuIcon msgCount">
 				<i class="fa fa-bars"></i>
 			</div>
 			<div class="header-social">
@@ -122,10 +122,11 @@
 														<h5 style="color: white;">
 															<input type="hidden" value="${fi.fId}">
 															${fi.fName}
-															<a href="mypageProfile.html" class="fa fa-home" style="color:white"></a>
+															<a href="other_profileView.do?otherId=${fi.fId}" class="fa fa-home" style="color:white"></a>
 															<span class="delete" style="cursor:pointer;" onclick="msgDelete();">
 																메시지 삭제
-															</sapn>
+															</span>
+															
 														</h5>
 														<h6 style="color: white;"></h6><br>
 														<p style="color: white;">

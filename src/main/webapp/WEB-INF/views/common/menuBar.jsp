@@ -50,7 +50,7 @@
                <img src="resources/images/main/home.png" alt=""></a>
             
             <!-- 안읽은 메시지 카운트 -->
-            <a href="getMsgList.do" class="menuIcon" id="msgCount">
+            <a href="getMsgList.do" class="menuIcon msgCount">
                <img src="resources/images/main/message.png" alt="">
             </a>
             <a onclick='location.href="logout.do"' class="menuIcon">
@@ -80,7 +80,7 @@
           </div>
           </c:if>
       </div>
-	
+
 </body>
 
 <script>
@@ -95,21 +95,15 @@
 				
 				if(date != 0) {
 				
-					$div = $('<div>').text(date);
+					$div = $('<div>').css('color','white').text(date);
 					
-					$('#msgCount').append($div);
+					$('.msgCount').append($div);
 					
 				}
 			}, error:function(){
 			}
-		});
-				
-		
-		
-		
-		
+		});		
 	});
-
 </script>
 
 

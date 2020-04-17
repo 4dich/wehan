@@ -92,11 +92,15 @@
 			<!-- Left Side section end -->
 			<!-- Page start -->
 			<!-- Page start -->
+			
+			<input type="hidden" id="test" value="1">
+			
 			<div class="page-section blog-page">
 				<div class="blog-posts">
 					
 				<div class="blog-post-item">
 						<button style="margin-top: 12px;" onclick="refundSelect();">환불하기</button>
+						<button id="test2">테스트</button>
 					<form action="plistSearch.do" method="post">
 						<div id="searchArea">
 							<div id="searchSelect"> 
@@ -141,6 +145,7 @@
 							</c:forEach>
 							</c:forEach>
 							</c:if>
+						
 							
 							<c:if test="${chsearch != null}">
 							<c:forEach var="l" items="${ chsearch }">
@@ -229,34 +234,46 @@
   			<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
 		</div>
 	<!-- Main section end -->
+	
+	
 	<script>
 	
-		function refundYn(){
-				
+		 $(function(){
+			 var reIdx = $('#test').val();
+			refundYn(reIdx);
+		}); 
+	
+		$('#test2').click(function(){
+			console.log(pId);
+		});	
+	
+		function refundYn(reIdx,currentPage){
+			
+			var reIdx = $('#test').val();
+			$('#test').val(1 - $('#test').val());
 			$.ajax({
 				url:"refundYn.do",
 				type:"POST",
+				data:{"reIdx":reIdx,
+					currentPage:currentPage
+					  },
 				success:function(result){
+					console.log(result);
 					$('.noticeList').remove();
-					 console.log(result);
-					 /* <td><input type="checkbox" name="refund"></td>
-						<td>${ l.pId }</td>
-						<td>${ p.chName }</td>
-						<td>${ l.userId }</td>
-						<td>${ l.pDate }</td>
-						<td><button onclick="location.href='paydetail.do?pId=${ l.pId }'">정보</button></td>
-						<td>${ l.refund_yn }</td>	 */
-					for(var i = 0;  i <result.length; i++){
+					var list = result["list"];
+					for(var i = 0;  i <list.length; i++){
 						var $td1 = $('<td>');
 						var $input = $('<input type="checkbox" name="refund">');
-						var $td2 = $('<td>').text(result[i].pId);
-						var $td3 = $('<td>').text("주3회 팩하기");
-						var $td4 = $('<td>').text(result[i].userId);
-						var $td5 = $('<td>').text(result[i].pDate);
+						var $td2 = $('<td>').text(list[i].pId);
+						var $td3 = $('<td>').text(list[i].chList[0].chName);
+						var $td4 = $('<td>').text(list[i].userId);
+						var $td5 = $('<td>').text(list[i].pDate);
 						var $td6 = $('<td>');
-						var $button = $('<button>').text("정보"); 
-						var $td7 = $('<td>').text(result[i].refund_yn);
+						var $button = $('<button>'); 
+						var $td7 = $('<td>').text(list[i].refund_yn);
 						
+						$button.attr("onclick","location.href='paydetail.do?pId="+list[i].pId+"'").text("정보");
+						 
 						$td1.append($input);
 						$td6.append($button);
 						
@@ -266,11 +283,39 @@
 						$('.qnaTable').append($noticeList);
 						$('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247");
 					} 
-					 
-					 
-				}
+					 var listText = "";
+					// 페이징 처리
+					   listText += "<tr align='center' height='20'>";
+					   listText += "<td colspan='6'>";
+					   // [이전]
+					   if(currentPage == 1){    
+						   listText +=	"[이전] &nbsp;";
+					   }else{
+						   listText += "<a href='javascript:void(0);' onclick='refundYn("+reIdx+","+ (currentPage - 1) +")'>[이전]</a> &nbsp;";
+					   }
+						// 페이지 
+						for(var p= result.pi.startPage; p<= result.pi.endPage; p++){
+							if(p == result.pi.currentPage){
+								listText += "<font color='red' size='4'><b>"+ [ p ] + "</b></font>";
+							}else{
+								listText +=  "<a href='javascript:void(0);' onclick='refundYn("+reIdx+","+ p + ")'>" + p + "</a> &nbsp;";
+							}						
+						}
+						// [다음]
+						if(currentPage == result.pi.maxPage){
+							listText += "[다음]";
+						}else{
+							listText += "<a href='javascript:void(0);' onclick='refundYn("+reIdx+","+ (currentPage+1) +")'>[다음]</a>";
+						}
+						listText +="</td>";
+						listText +="</tr>";
+					   
+					   $("#tb tbody").html(listText); 
+				},error:function(){
+					console.log("전송실패");
+			}
 			});
-		};
+		}
 		$(function(){
 			$('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247"); //even 짝수
 		});

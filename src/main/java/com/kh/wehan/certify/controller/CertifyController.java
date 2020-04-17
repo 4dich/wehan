@@ -22,6 +22,7 @@ import com.google.gson.JsonIOException;
 import com.kh.wehan.certify.model.service.CertifyService;
 import com.kh.wehan.certify.model.vo.Certify;
 import com.kh.wehan.certify.model.vo.CertifyReply;
+import com.kh.wehan.certify.model.vo.SearchCondition;
 import com.kh.wehan.common.Pagination;
 import com.kh.wehan.common.model.vo.PageInfo;
 import com.kh.wehan.member.model.vo.Follow;
@@ -86,11 +87,11 @@ public class CertifyController {
 			int boardLimit = 9;
 			
 			PageInfo pi = Pagination.getPageInfo(currentPage, listCount, pageLimit, boardLimit);
-			
-			ArrayList<Certify> list = ceService.getFriendList(pi);
+			String mName = m.getUserId();
+			ArrayList<Certify> list = ceService.getFriendList(pi,mName);
 			
 			mv.addObject("list",list).addObject("pi",pi).setViewName("user/fid/fid_friendList");
-			m.getUserId();
+			
 			
 			
 			
@@ -142,16 +143,66 @@ public class CertifyController {
 		return mv;
 	}
 	
+	/**
+	 * 팔로우 유저 검색
+	 * @param mv
+	 * @param request
+	 * @param searchText
+	 * @param currentPage
+	 * @return
+	 */
+	@RequestMapping("fid_followerSearch.do")
+	public ModelAndView followSearch(ModelAndView mv,HttpServletRequest request, String searchText,
+			@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage) {
+		
+		HttpSession session = request.getSession();
+		Member m = (Member)session.getAttribute("loginUser");
+		
+		
+		if(m != null) {
+			
+			int listCount = ceService.getListCount();
+			
+			int pageLimit = 5;
+			int boardLimit = 10;
+			
+			PageInfo pi = Pagination.getPageInfo(currentPage, listCount, pageLimit, boardLimit);
+			
+			String mName = m.getUserId();
+			
+			SearchCondition sc = new SearchCondition();
+			
+			sc.setTitle(searchText);
+			sc.setWriter(mName);
+			System.out.println(sc);
+			ArrayList<Member> list = ceService.getSearchFollowList(pi,sc);
+			
+			mv.addObject("list",list).addObject("pi",pi).setViewName("user/fid/fid_follow");
+			
+			
+			
+			
+		}else {
+			mv.addObject("msg","엥").addObject("msg2", "로그인 먼저해주세요");
+			mv.setViewName("common/errorPage");
+		}
+		return mv;
+	}
 	
-		@RequestMapping("fid_followDelete.do")
+
+	
+	
+	@RequestMapping("fid_followDelete.do")
 		public ModelAndView followDelete(ModelAndView mv,HttpServletRequest request, String host, String follower,
 				@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage) {
-			
+
+			HttpSession session = request.getSession();
+			Member m = (Member)session.getAttribute("loginUser");
 			Follow f = new Follow(host,follower);
 			
 			System.out.println(f);
 			
-			if(f != null) {
+			if(m != null) {
 				
 				int listCount = ceService.getListCount();
 				
@@ -166,19 +217,14 @@ public class CertifyController {
 				
 				mv.addObject("list",list)
 				.addObject("pi",pi)
-				.setViewName("redirect:fid_followView.do");
-				
-			}else{
+				.setViewName("redirect:fid_followView.do");	
+			}else {
 				mv.addObject("msg","엥").addObject("msg2", "로그인 먼저해주세요");
 				mv.setViewName("common/errorPage");
 			}
-		
-		
-		
 		return mv;
-	
-	
 	}
+	
 	
 
 

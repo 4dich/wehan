@@ -406,7 +406,7 @@
 								</div>
 								<div class="circle-item-warp" style="display: inline-block; width:320px; height:165px; margin: 0 15px 0 15px; border:1px solid gray; border-radius:15px; padding: 25px 10px 0 40px;" >
 									<div class="milestone">
-										<h2 id="cnt-complete">-1</h2>
+										<h2 id="cnt-complete">0</h2>
 										<div class="milestone-info" style="text-align:left;">
 											<h5>Challenges<br>completed</h5><br>
 											<span class="lv" style="color:gray; font-size:13px;">Lv</span>
@@ -560,7 +560,7 @@
 								<script>
 									var countComplete = 0;
 									var countTotalCh = 0;
-									var rateComplete = -1;
+									var rateComplete = 0;
 									
 									$(function(){
 										var $sArr = $('.sArr');
@@ -642,7 +642,11 @@
 										
 										$totalCh[0].innerText = countTotalCh;
 										
-										rateComplete = Math.ceil(countComplete/countTotalCh*100);
+										if(countTotalCh==0){
+											rateComplete=0;
+										}else{
+											rateComplete = Math.ceil(countComplete/countTotalCh*100);
+										}
 										console.log("rateComplete:"+rateComplete);
 										
 										$(".gg")[0].innerText = rateComplete;

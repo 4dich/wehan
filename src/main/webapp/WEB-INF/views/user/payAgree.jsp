@@ -452,6 +452,9 @@
 	<div id='div4' style="display:none;">${ch.price}</div>
 	<div id='div5' style="display:none;">${ch.chId}</div>
 	<div id='div6' style="display:none;">${ch.chName}</div>
+	<div id='div7' style="display:none;">${ch.chPeople}</div>
+	<div id='div8' style="display:none;">${ch.chPeopleCount}</div>
+	
 	 
 	<script>
 		$( document ).ready(function(){
@@ -467,6 +470,9 @@
 		var email = $('#div3')[0].innerText;
 		var chId = $('#div5')[0].innerText;
 		var chName = $('#div6')[0].innerText;
+		var chPeople = $('#div7')[0].innerText;
+		var chPeopleCount = $('#div8')[0].innerText;
+		
 		
 		function paycancel(){
 			location.href="chalList.do"
@@ -497,7 +503,9 @@
 			        		userId:userId,
 			        		price:price,
 			        		pmethod:rsp.pay_method,
-			        		chName:chName
+			        		chName:chName,
+			        		chPeople:chPeople,
+			        		chPeopleCount:chPeopleCount
 			        	},success:function(result){
 			        		alert('결제성공');
 			        		location.href=result;
@@ -526,8 +534,6 @@
 	<script src="resources/js/jquery.magnific-popup.min.js"></script>
 	<script src="resources/js/main.js"></script>
 	
-	</body>
-</html>
 
 </body>
 </html>

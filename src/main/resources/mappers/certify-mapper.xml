@@ -149,7 +149,10 @@
 	ON C.CHID = R.CHID
 	JOIN MEMBER M
 	ON R.USERID = M.USERID
-	WHERE CEDEL_YN = 'N'
+    JOIN FOLLOW F
+    ON F.FOLLOWER = M.USERID
+    WHERE F.HOST = #{mName}
+    AND CEDEL_YN = 'N'
 	</select>
 	
 	<select id="followList" resultMap="cMemberResultSet">
@@ -194,7 +197,13 @@
 		WHERE CEDEL_YN = 'N' 
 		AND CATEGORY = #{category}
 	</select>
+	<select id="searchUser" resultMap="cMemberResultSet">
+	SELECT * FROM MEMBER M
+	JOIN FOLLOW F
+	ON F.FOLLOWER = M.USERID
+	WHERE HOST =#{writer} AND M.NICKNAME LIKE '%' || #{title} || '%'
 	
+	</select>
 
 </mapper>
 

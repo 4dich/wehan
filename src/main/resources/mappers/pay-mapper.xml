@@ -10,7 +10,6 @@
   		<result property="chId" column="CHID"/>
   		<result property="userId" column="USERID"/>
   		<result property="price" column="PRICE"/>
-  		<result property="sc_price" column="SC_PRICE"/>
   		<result property="pmethod" column="PMETHOD"/>
   		<result property="pDate" column="PDATE"/>
   		<result property="refund_yn" column="REFUND_YN"/>
@@ -28,9 +27,11 @@
   		<result property="category" column="CATEGORY"/>
   		<result property="ceMethod" column="CEMETHOD"/>
   		<result property="price" column="PRICE"/>
+  		<result property="totalPrice" column="TOTALPRICE"/>
   		<result property="minPerson" column="MINPERSON"/>
   		<result property="maxPerson" column="MAXPERSON"/>
   		<result property="chPeople" column="CHPEOPLE"/>
+  		<result property="chPeopleCount" column="CHPEOPLECOUNT"/>
   	</resultMap>
   	
   	<resultMap id="payListResultSet" type="Pay">
@@ -173,7 +174,26 @@
   		SELECT *
 		FROM PAY P
 		JOIN CHALLENGE C USING(CHID)
-		ORDER BY REFUND_YN,PID+1 DESC
+		ORDER BY REFUND_YN DESC, PID+1 ASC
   	</select>
+  	
+  	<select id="nylist" resultMap="payListResultSet">
+		SELECT *
+		FROM PAY P
+		JOIN CHALLENGE C USING(CHID)
+		ORDER BY REFUND_YN ASC, PID+1 ASC 	
+  	</select>
+  	
+  	<update id="updatepeoplePlus">
+  		UPDATE CHALLENGE
+  		SET CHPEOPLE = #{chPeople}
+  		WHERE CHID = #{chId}
+  	</update>
+  	
+  	<update id="updateCountPlus">
+  		UPDATE CHALLENGE
+  		SET CHPEOPLECOUNT = #{chPeopleCount}
+  		WHERE CHID = #{chId}
+  	</update>
   	
   </mapper>
