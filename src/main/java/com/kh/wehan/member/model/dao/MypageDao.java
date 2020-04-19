@@ -52,4 +52,12 @@ public class MypageDao {
 		return sqlSession.delete("mypageMapper.my_unfollow",f);
 	}
 
+	public int isFollow(Follow f) {
+		return sqlSession.selectOne("mypageMapper.isFollow",f);
+	}
+
+	public int my_follow(Follow f) {
+		return sqlSession.insert("mypageMapper.my_follow",f);
+	}
+
 }

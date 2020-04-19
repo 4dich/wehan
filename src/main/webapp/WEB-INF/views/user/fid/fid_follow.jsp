@@ -183,13 +183,13 @@
                                     <img src="resources/images/user/${ f.picture }" alt="">
                                     &nbsp;&nbsp;${ f.nickName }
                                 </div>
-                                <a href="mypageProfile.html">
+                                <a href="other_profileView.do?otherId=${ f.userId }">
                                     <div class="followButton">
-                                        프로필 가기
+										프로필 가기
                                     </div>
                                 </a>
                                 <div class="followButton" id="deleteFollow" onclick="deleteFollow(this)" title="${ f.userId }" style="cursor: pointer;"> 
-                                팔로잉
+									팔로잉
                                <%--  <input type="button" class="followButton" id="deleteFollow" onclick="deleteFollow(this)" name="${ f.userId }" value="팔로우"> --%>
                           
                                 <input id="loginId" type="hidden" value="${ loginUser.userId }">

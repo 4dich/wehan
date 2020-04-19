@@ -22,14 +22,22 @@ import com.kh.wehan.member.model.vo.Follow;
 import com.kh.wehan.member.model.vo.Member;
 import com.kh.wehan.member.model.vo.Mypage;
 
+/**
+ * @author deard
+ *
+ */
 @Controller
 public class MypageController {
-	
-	/* String userId = "user01"; */
 	
 	@Autowired
 	private MypageService myService;
 	
+	/**
+	 * 나의 마이페이지 프로필 화면
+	 * @param mv
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("my_profileView.do")
 	public ModelAndView my_profileView(ModelAndView mv, HttpServletRequest request) {
 		
@@ -51,35 +59,26 @@ public class MypageController {
 		return mv;
 	}
 	
-	@RequestMapping("other_profileView.do")
-	public ModelAndView other_profileView(ModelAndView mv, HttpServletRequest request,
-			@RequestParam(name="otherId") String otherId) {
-		
-		HttpSession session = request.getSession();
-		Member mem = (Member)session.getAttribute("loginUser");
-		String userId = mem.getUserId();
-		
-		System.out.println(otherId);
-		Mypage otherPage = myService.my_profileView(otherId);
-		Member otherMember = myService.selectMember(otherId);
-		
-		int follow = myService.followCount(otherId);
-		int following = myService.followingCount(otherId);
-		
-		mv.addObject("otherPage", otherPage)
-		  .addObject("otherMember", otherMember)
-		  .addObject("follow", follow)
-		  .addObject("following", following)
-		  .setViewName("user/mypage/other_profile");
-		
-		return mv;
-	}
-	
+	/**
+	 * 나의 개인정보 업데이트 화면
+	 * @return
+	 */
 	@RequestMapping("my_updateInfoView.do")
 	public String my_updateInfoView() {
 		return "user/mypage/my_updateInfo";
 	}
 	
+	
+	/**
+	 * 나의 개인정보 업데이트
+	 * @param response
+	 * @param userId
+	 * @param intro
+	 * @param goal
+	 * @param interest
+	 * @throws JsonIOException
+	 * @throws IOException
+	 */
 	@RequestMapping("updateProfile.do")
 	public void updateGoal(HttpServletResponse response,String userId,String intro,String goal,String interest) throws JsonIOException, IOException {
 		Mypage mp = new Mypage(userId,intro,goal,interest);
@@ -92,27 +91,12 @@ public class MypageController {
 		gson.toJson(mp,response.getWriter());
 	}
 	
-//	/**
-//	 * 목표 업데이트, ajax/jackson사용, 근데 영어만 됨
-//	 * @param userId
-//	 * @param goal
-//	 * @return
-//	 * @throws UnsupportedEncodingException 
-//	 */
-//	@RequestMapping("updateGoal.do")
-//	@ResponseBody
-//	public String updateGoal(String userId, String goal){
-//		Mypage mp = new Mypage(userId, goal);
-//		
-//		int result = myService.updateGoal(mp);
-//		
-//		if(result>0) {
-//			return mp.getGoal();
-//		}else {
-//			return "error";
-//		}
-//	}
-	
+	/**
+	 * 나의 마이페이지 챌린지 화면
+	 * @param mv
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("my_challengeView.do")
 	public ModelAndView my_challengeView(ModelAndView mv, HttpServletRequest request) {
 		
@@ -139,22 +123,6 @@ public class MypageController {
 		
 		System.out.println("챌린지아이디:" + ceId);
 		System.out.println("인증글 개수:" + ceCount);
-		/*
-		 * ArrayList cStatus = new ArrayList();
-		 * 
-		 * Date today = new Date(); SimpleDateFormat sdf = new
-		 * SimpleDateFormat("yyyy-MM-dd");
-		 * 
-		 * for(Challenge c: clist) { String s2 = c.getStartDate().replace("/", "-");
-		 * String e2 = c.getEndDate().replace("/", "-");
-		 * 
-		 * try { Date sDate = sdf.parse(s2); Date eDate = sdf.parse(e2);
-		 * 
-		 * if(sDate.getTime()>today.getTime()) { cStatus.add(0); }else
-		 * if(sDate.getTime()<today.getTime() && eDate.getTime()>today.getTime()) {
-		 * cStatus.add(1); }else { cStatus.add(2); } } catch (ParseException e) {
-		 * e.printStackTrace(); } }
-		 */
 		
 		mv.addObject("chList", chList)
 		  .addObject("ceCount", ceCount)
@@ -163,25 +131,116 @@ public class MypageController {
 		return mv;
 	}
 	
-	@RequestMapping("my_unfollow.do")
-	public ModelAndView my_unfollow(ModelAndView mv, Follow f) {
+	
+	/**
+	 * 타인의 마이페이지 프로필 화면
+	 * @param mv
+	 * @param request
+	 * @param otherId
+	 * @return
+	 */
+	@RequestMapping("other_profileView.do")
+	public ModelAndView other_profileView(ModelAndView mv, HttpServletRequest request, String otherId) {
 		
-		int result = myService.my_unfollow(f);
+		HttpSession session = request.getSession();
+		Member mem = (Member)session.getAttribute("loginUser");
+		String userId = mem.getUserId();
 		
-		String otherId = f.getHost();
+		Follow f = new Follow(otherId, userId);
+		int isFollow = myService.isFollow(f);
 		
-		System.out.println("otherId:" + otherId);
+		Mypage otherPage = myService.my_profileView(otherId);
 		Member otherMember = myService.selectMember(otherId);
 		
 		int follow = myService.followCount(otherId);
 		int following = myService.followingCount(otherId);
 		
-		if(result>0) {
-			mv.addObject("otherMember", otherMember)
-			  .addObject("follow", follow)
-			  .addObject("following", following)
-			  .setViewName("user/mypage/other_profile");
+		mv.addObject("otherPage", otherPage)
+		  .addObject("otherMember", otherMember)
+		  .addObject("myMember", mem)
+		  .addObject("follow", follow)
+		  .addObject("following", following)
+		  .addObject("isFollow", isFollow)
+		  .setViewName("user/mypage/other_profile");
+		
+		return mv;
+	}
+
+	
+	/**
+	 * 타인의 마이페이지에서 언팔로우
+	 * @param response
+	 * @param host
+	 * @param follower
+	 * @throws JsonIOException
+	 * @throws IOException
+	 */
+	@RequestMapping("my_unfollow.do")
+	public void my_unfollow(HttpServletResponse response, String host, String follower) throws JsonIOException, IOException {
+		
+		Follow f = new Follow(host, follower);
+		
+		int result = myService.my_unfollow(f);
+		
+		response.setContentType("application/json; charset=utf-8");
+		
+		Gson gson = new Gson();
+		gson.toJson(result, response.getWriter());
+	}
+	
+	/**
+	 * 타인의 마이페이지에서 팔로우
+	 * @param response
+	 * @param host
+	 * @param follower
+	 * @throws JsonIOException
+	 * @throws IOException
+	 */
+	@RequestMapping("my_follow.do")
+	public void my_follow(HttpServletResponse response, String host, String follower) throws JsonIOException, IOException {
+		
+		Follow f = new Follow(host, follower);
+		
+		int result = myService.my_follow(f);
+		
+		response.setContentType("application/json; charset=utf-8");
+		
+		Gson gson = new Gson();
+		gson.toJson(result, response.getWriter());
+	}
+	
+		
+	/**
+	 * 타인의 마이페이지 챌린지 화면
+	 * @param mv
+	 * @param otherId
+	 * @return
+	 */
+	@RequestMapping("other_challengeView.do")
+	public ModelAndView other_challengeView(ModelAndView mv, String otherId) {
+		
+		ArrayList<Challenge> chList = myService.selectListCh(otherId);
+		ArrayList<String> ceId = new ArrayList<>();
+		ArrayList<Integer> ceCount = new ArrayList<>();
+		
+		Member otherMember = myService.selectMember(otherId);
+		
+		for(Challenge ch: chList) {
+			ceId.add(ch.getChId());
 		}
+		
+		int ceListCount = 0;
+		
+		for(int i=0; i<chList.size(); i++) {
+			Certify ce = new Certify(ceId.get(i), otherId);
+			ceListCount = myService.certifyCount(ce);
+			ceCount.add(ceListCount);
+		}
+		
+		mv.addObject("chList", chList)
+		  .addObject("ceCount", ceCount)
+		  .addObject("otherMember", otherMember)
+		  .setViewName("user/mypage/other_challenge");
 		
 		return mv;
 	}

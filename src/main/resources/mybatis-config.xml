@@ -30,6 +30,7 @@
 		<typeAlias type="com.kh.wehan.questions.model.vo.Questions" alias="Questions"/>
 		<typeAlias type="com.kh.wehan.member.model.vo.FindKey" alias="FindKey"/>
 		<typeAlias type="com.kh.wehan.challenge.model.vo.PremiumChallenge" alias="PremiumChallenge"/>
+		<typeAlias type="com.kh.wehan.member.model.vo.Follow" alias="Follow"/>
 	</typeAliases>
 	
 	<mappers>

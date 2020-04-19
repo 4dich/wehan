@@ -105,7 +105,7 @@ right:0;
 												<div style="margin-top: 15px;">
 													<h4 style="color: white;">
 														${ c.nickName } &nbsp;
-														<a href="#" style="color:white" class="fa fa-home"></a>
+														<a href="other_profileView.do?otherId=${ c.userId }" style="color:white" class="fa fa-home"></a>
 													</h4>
 													<br>
 													<h6 style="color: white;">
