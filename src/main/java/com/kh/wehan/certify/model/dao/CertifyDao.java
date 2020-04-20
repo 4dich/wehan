@@ -114,4 +114,15 @@ public class CertifyDao {
 	public int deleteReply(CertifyReply r) {
 		return sqlSession.update("certifyMapper.deleteReply",r);
 	}
+	
+
+	public int fidTitleCount(String title) {
+		return sqlSession.selectOne("certifyMapper.fidTitleCount",title);
+	}
+
+	public ArrayList<Certify> fidTitle(String title, PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("certifyMapper.fidTitle",title,rowBounds);
+	}
 }
