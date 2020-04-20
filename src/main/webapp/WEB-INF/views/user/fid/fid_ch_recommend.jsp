@@ -36,11 +36,47 @@
     margin-top: 15px;
 	}
 	.qnaPaging{
-	height: 10%;
-    position: absolute;
+	height: 200px;
     bottom: 0;
     text-align: center;
-    width: 70%;
+    width: 100%;
+    color: black;
+	}
+	
+	#photoList{
+	width: 100%;
+    height: 900px;
+	margin-left: 2%;
+	}
+	a{
+	color : #717171;
+	}
+	.pagiDiv{
+	display: inline-block;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+	}
+	.pagiArrow1{
+	display: inline-block;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    border-radius: 50%;
+    color: #717171;
+    font-size: 20px;
+    border: 1px solid #e6e6e6;
+    line-height: 1.2;
+	}
+	.pagiArrow2{
+	display: inline-block;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    border-radius: 50%;
+    color: #717171;
+    font-size: 20px;
+    line-height: 1.2;
 	}
 	</style>
 	
@@ -176,39 +212,47 @@
 							
 							<div class="qnaPaging">
 								<c:if test="${pi.currentPage eq 1 }">
-								<
+									<div class="pagiArrow1">◀  </div>
 								</c:if>
 								
 								<c:if test="${ pi.currentPage ne 1 }">
+									<div class="pagiArrow1">
 									<c:url var="before" value="fid_ch_recommendView.do">
 										<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
 									</c:url>
-									<a href="${ before }">&lt;</a> &nbsp;
+									<a class="pagiArrow2" href="${ before }">◀ </a>
+									</div>							
 								</c:if>
 							
 								<!-- 페이지 -->
 								<c:forEach var="p" begin="${pi.startPage}" end="${pi.endPage }">
 									<c:if test="${ p eq pi.currentPage }">
-										<font color="red" size = "4"><b>[${ p }]</b></font>
+										<div class="pagiDiv">
+										<font color="#717171" size = "4"><b>[${ p }]</b></font>
+										</div>
 									</c:if>
 									
 									<c:if test="${ p ne pi.currentPage }">
+										<div class="pagiDiv">
 										<c:url var="pagenation" value="fid_ch_recommendView.do">
 											<c:param name="currentPage" value="${ p }"/>
 										</c:url>
 										<a href="${ pagination }">${p}</a>
+										</div>
 									</c:if>
 								</c:forEach>
 								
 								<!-- 다음 -->
 								<c:if test="${pi.currentPage eq pi.maxPage }">
-									>
+								<div class="pagiArrow1">▶ </div>
 								</c:if>
 								<c:if test="${pi.currentPage ne pi.maxPage }">
+									<div class="pagiArrow1">
 									<c:url var="after" value="fid_ch_recommendView.do">
 										<c:param name="currentPage" value="${pi.currentPage + 1 }"/>
 									</c:url>
-									<a href="${after}">&gt;</a>
+									<a class="pagiArrow2" href="${after}">▶ </a>
+									</div>
 								</c:if>
 								
 						

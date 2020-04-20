@@ -275,6 +275,22 @@ public class CertifyController {
 	}
 	
 	/**
+	 * 댓글 삭제
+	 * @param r
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("delReply.do")
+	public String delReply(CertifyReply r) {
+		int result = ceService.deleteReply(r);
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
+	
+	/**
 	 * 카테고리 ajax
 	 * @param response
 	 * @param category
