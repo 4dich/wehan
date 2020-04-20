@@ -148,7 +148,7 @@ public class PayController {
 			listCount = pService.getSearchListCount(ch); //1
 			pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
 			chsearch = pService.chSearch(ch,pi);
-			mv.addObject("chsearch",chsearch);
+			mv.addObject("list",chsearch);
 			mv.addObject("pi",pi);
 		}
 		
@@ -156,7 +156,7 @@ public class PayController {
 			listCount = pService.getSearchListCount(p);
 		    pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
 		    psearch = pService.pSearch(p,pi);
-		    mv.addObject("psearch",psearch);
+		    mv.addObject("list",psearch);
 		    mv.addObject("pi",pi);
 		}
 			
@@ -197,25 +197,73 @@ public class PayController {
 	
 	@RequestMapping("refundYn.do")
 	public void refundYn(HttpServletResponse response ,@RequestParam(value="currentPage",required=false,defaultValue="1") int currentPage
-			,int reIdx) throws JsonIOException, IOException {
+			,int reIdx,String selecter,String searchValue) throws JsonIOException, IOException {
 		response.setCharacterEncoding("UTF-8");
-		int listCount = pService.getListCount();
-		
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
-		
-		response.setContentType("applecation/json charset=utf-8"); 
+		int listCount = 0;
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		ArrayList<Pay> list = null;
 		Map ad = new HashMap();
-		ArrayList<Pay> list;
-		ad.put("pi",pi);
-		if(reIdx != 0) {
-			 list= pService.refundYn(pi);
+		System.out.println("selecter : "+selecter+" searchValue : " + searchValue);
+		
+		if(searchValue == null || searchValue == "") {
+			listCount = pService.getListCount();
+			PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
 			
+			
+			
+			ad.put("pi",pi);
+			
+			if(reIdx != 0) {
+				list = pService.refundYn(pi);
+			}else {
+				list = pService.refundNy(pi);
+			}
+			ad.put("list",list);
 		}else {
-			list = pService.refundNy(pi);
-
+			
+			PageInfo pi = null;
+			
+			Pay p = new Pay();
+			Challenge ch = new Challenge();
+			ArrayList<Challenge> chsearch = null;
+			ArrayList<Pay> psearch = null;
+			if(selecter.equals("userId")) {
+				p.setUserId(searchValue);
+			}
+			if(selecter.equals("chName")) {
+				ch.setChName(searchValue);
+			}
+			if(selecter.equals("pNo")) {
+				p.setpId(searchValue);
+			}
+			
+			if(ch.getChName() != null) {
+				listCount = pService.getSearchListCount(ch); //1
+				pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
+				if(reIdx != 0) {
+				chsearch = pService.chSearchY(ch,pi);
+				}else {
+				chsearch = pService.chSearchN(ch,pi);	
+				}
+				ad.put("list",chsearch);
+				ad.put("pi",pi);
+				
+			}
+			
+			if(p.getUserId() != null || p.getpId() !=null) {
+				listCount = pService.getSearchListCount(p);
+			    pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
+			    if(reIdx !=0) {
+			    psearch = pService.pSearchY(p,pi);
+			    }else {
+			    psearch = pService.pSearchN(p,pi);	
+			    }
+			    ad.put("list",psearch);
+			    ad.put("pi",pi);
+			}
 		}
-		ad.put("list",list);
+		response.setContentType("applecation/json charset=utf-8"); 
+		
 		gson.toJson(ad,response.getWriter());
 	}
 	

@@ -102,6 +102,14 @@ public class CertifyServiceImpl implements CertifyService{
 		return ceDao.followSearch(pi,sc);
 	}
 
+	/**
+	 * 댓글 삭제
+	 */
+	@Override
+	public int deleteReply(CertifyReply r) {
+		return ceDao.deleteReply(r);
+	}
+
 
 
 }

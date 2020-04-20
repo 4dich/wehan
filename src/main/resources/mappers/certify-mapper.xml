@@ -120,6 +120,8 @@
 	JOIN MEMBER M
 	ON C.USERID = M.USERID
 	WHERE CEID = #{ceId}
+	AND CCDEL_YN = 'N'
+	ORDER BY CCDATE DESC
 	</select>
 	
 	<!-- 피드 -->
@@ -204,6 +206,13 @@
 	WHERE HOST =#{writer} AND M.NICKNAME LIKE '%' || #{title} || '%'
 	
 	</select>
+	<update id="deleteReply" parameterType="CertifyReply">
+	UPDATE CERTIFYREPLY 
+	SET CCDEL_YN = 'Y'
+	WHERE USERID = #{userId}
+	AND CRID = #{crId}
+	AND CEID = #{ceId}
+	</update>
 
 </mapper>
 

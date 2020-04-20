@@ -81,5 +81,12 @@ public interface CertifyService {
 	 */
 	ArrayList<Member> getSearchFollowList(PageInfo pi, SearchCondition sc);
 
+	/**
+	 * 댓글 삭제
+	 * @param r
+	 * @return
+	 */
+	int deleteReply(CertifyReply r);
+
 
 }

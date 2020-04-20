@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.kh.wehan.member.model.vo.*"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
 <html lang="ko">
@@ -64,19 +64,34 @@
             </div>            
             <div class="header-social">
                 <a href="chalList.do" style="color: red;">전체 챌린지</a>
-                <a href="premiumCondition.do" id="premium">프리미엄 챌린지</a>
-
+                <a onclick="return checkPremium();" id="premium" style="cursor: pointer;">프리미엄 챌린지</a>
+              
+				<input type="hidden" id="chUser" value="${ sessionScope.loginUser.userId }">
+				
 				<script>
-	                $(function(){
-	                	var ck = ${ck};
-	                	
-	                	if(ck == 'ck') {
-	                		alert('불가능합니다');
-	                	}
-	                });
-						
+	                function checkPremium(){
+	            
+						if($('#chUser').val() == ""){
+							location.href="chalList.do";
+						}else{
+							$.ajax({
+		                		url: "checkPremium.do",
+		                		type: "post",
+		                		data: { userId : $('#chUser').val() },
+		                		success: function(data){		                			
+		                			if(data == 6){
+		                				location.href="premiumList.do";
+		                			}else{
+		                				alert('레벨 6만 가능한 공간입니다.');
+		                				return false;
+		                			}
+		                		},error:function(){
+		                			console.log("오류입니다.");
+		                		}
+		                	});
+						}
+	                }	
 	            </script>
-
                 <a href="getChallengeTop10List.do">TOP 10 챌린지</a>
             </div>		
 		</header>
@@ -111,7 +126,7 @@
                     </div>
                     <button class="site-btn sb-dark" style="margin-left: 40px; width: 280px; font-size: 15px;" type="button" onclick="join();">
                         	챌린지 등록하기
-                        <img src="resources/img/arrow-righ-3.png" alt="">
+                        <img src="resources/images/arrow-righ-3.png" alt="">
                     </button>
                     <script>
                     	function join() {

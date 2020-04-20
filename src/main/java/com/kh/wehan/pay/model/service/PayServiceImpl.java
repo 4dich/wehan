@@ -94,6 +94,26 @@ public class PayServiceImpl implements PayService {
 		return pDao.refundNy(pi);
 	}
 
+	@Override
+	public ArrayList<Challenge> chSearchY(Challenge ch, PageInfo pi) {
+		return pDao.chSearchY(ch,pi);
+	}
+
+	@Override
+	public ArrayList<Challenge> chSearchN(Challenge ch, PageInfo pi) {
+		return pDao.chSearchN(ch,pi);
+	}
+
+	@Override
+	public ArrayList<Pay> pSearchY(Pay p, PageInfo pi) {
+		return pDao.pSearchY(p,pi);
+	}
+
+	@Override
+	public ArrayList<Pay> pSearchN(Pay p, PageInfo pi) {
+		return pDao.pSearchN(p,pi);
+	}
+
 	
 
 
