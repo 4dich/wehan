@@ -408,13 +408,13 @@
 					type:"post",
 					success:function(data){
 						if(data=="1"){
-							$('#userId').css("width","71%");
+							$('#userId').css("width","88%");
 							$('.c1').show();
 							$('.c2').hide();
 							$('.c3').hide();
 							$('#checkID').val(1);
 						}else if(data == "2"){
-							$('#userId').css("width","71%");
+							$('#userId').css("width","82%");
 							$('.c1').hide();
 							$('.c2').show();
 							$('.c3').hide();
@@ -443,13 +443,13 @@
 					$('#chkPass').val(3);
 				}else{
 					if(password != password2){
-						$('#password2').css("width","71%");
+						$('#password2').css("width","80%");
 						$('.c7').hide();
 						$('.c8').show();
 						$('.c9').hide();
 						$('#chkPass').val(2);
 					}else{
-						$('#password2').css("width","71%");
+						$('#password2').css("width","86%");
 						$('.c7').show();
 						$('.c8').hide();
 						$('.c9').hide();
@@ -468,13 +468,13 @@
 					$('#chkPass').val(3);
 				}else{
 					if(password != password2){
-						$('#password2').css("width","71%");
+						$('#password2').css("width","80%");
 						$('.c7').hide();
 						$('.c8').show();
 						$('.c9').hide();
 						$('#chkPass').val(2);
 					}else{
-						$('#password2').css("width","71%");
+						$('#password2').css("width","86%");
 						$('.c7').show();
 						$('.c8').hide();
 						$('.c9').hide();
@@ -493,13 +493,13 @@
 					type:"post",
 					success:function(data){
 						if(data=="1"){
-							$('#nickName').css("width","71%");
+							$('#nickName').css("width","88%");
 							$('.c4').show();
 							$('.c5').hide();
 							$('.c6').hide();
 							$('#checkNick').val(1);
 						}else if(data == "2"){
-							$('#nickName').css("width","71%");
+							$('#nickName').css("width","82%");
 							$('.c4').hide();
 							$('.c5').show();
 							$('.c6').hide();

@@ -362,7 +362,7 @@ public class ChallengeController {
 	public ModelAndView premiumChalList(ModelAndView mv, 
 						@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
 		
-		int listCount = cService.getListCount();
+		int listCount = cService.getPremiumListCount();
 		
 		int pageLimit = 5;
 		int boardLimit = 9;

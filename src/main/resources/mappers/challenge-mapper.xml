@@ -182,4 +182,9 @@
 		VALUES(SEQ_chPId.NEXTVAL,#{userId},#{chName},#{chPicture},#{chContent},#{startDate},#{endDate},
 				#{category},#{ceMethod},#{price},0,0,#{maxPerson},#{chPeople},0)
 	</insert>
+	
+	<select id="premiumListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM PREMIUMCHALLENGE
+	</select>
 </mapper>

@@ -107,6 +107,10 @@ public class ChallengeDao {
 		return sqlSession.insert("challengeMapper.insertPremiumChallenge", chal);
 	}
 
+	public int getPremiumListCount() {
+		return sqlSession.selectOne("challengeMapper.premiumListCount");
+	}
+
 
 	
 	

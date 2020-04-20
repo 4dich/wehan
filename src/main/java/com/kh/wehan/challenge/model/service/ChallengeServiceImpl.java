@@ -97,4 +97,9 @@ public class ChallengeServiceImpl implements ChallengeService {
 		return cDao.getInsertPremiumChallenge(chal);
 	}
 
+	@Override
+	public int getPremiumListCount() {
+		return cDao.getPremiumListCount();
+	}
+
 }
