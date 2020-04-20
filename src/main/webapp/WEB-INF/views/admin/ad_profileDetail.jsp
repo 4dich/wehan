@@ -255,11 +255,24 @@
 			}
 		});
 		
+		function check(p,e){
+			if(!p.test(e)){
+				return false;
+			}
+			return true;
+		}
+		
 		function insertCheck() {
 			 if (confirm("블랙리스트 등록 하시겠습니까?")){    //확인
 				var bUserId = $('#bUserId').val();
 				var BanReason = $('#BanReason').val();
 				var BanDay = $('#BanDay').val();
+				
+				if(!check(/^[0-9]$/,BanDay)){
+					alert("차단 기간은 숫자만 입력");
+					continue;
+				}
+				
 				console.log("bUserId : "+ bUserId + " BanReason : " +BanReason + " BanTerm : " + BanDay );
 				$.ajax({
 					url:"blackInsert.do",
