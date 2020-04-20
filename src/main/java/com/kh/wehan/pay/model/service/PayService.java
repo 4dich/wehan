@@ -40,6 +40,11 @@ public interface PayService {
 
 	ArrayList<Pay> refundNy(PageInfo pi);
 
+	ArrayList<Challenge> chSearchY(Challenge ch, PageInfo pi);
 
-	
+	ArrayList<Challenge> chSearchN(Challenge ch, PageInfo pi);
+
+	ArrayList<Pay> pSearchY(Pay p, PageInfo pi);
+
+	ArrayList<Pay> pSearchN(Pay p, PageInfo pi);
 }

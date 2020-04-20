@@ -39,7 +39,7 @@
 		<result property="chPeopleCount" column="CHPEOPLECOUNT"/>
 	</resultMap>
 	
-	<resultMap id="myPageResultSet" type="Mypage">
+	<resultMap id="mypageResultSet" type="Mypage">
 		<id property="userId" column="USERID"/>
 		<result property="intro" column="INTRO"/>
 		<result property="goal" column="GOAL"/>
@@ -133,9 +133,53 @@
 		ORDER BY CHID DESC
 	</select>
 	
-	<select id="checkPremiumCondition" resultMap="myPageResultSet">
+	<select id="checkPremiumCondition" resultMap="mypageResultSet">
 		SELECT MYLEVEL
 		FROM MYPAGE
 		WHERE USERID=#{userId}
 	</select>
+	
+	<select id="selectOnePremiumDetail" resultMap="premiumChallengeResultSet">
+		SELECT *
+		FROM PREMIUMCHALLENGE
+		WHERE CHPID=#{chPId}
+	</select>
+	
+	<select id="getPremiumListCount" parameterType="PremiumChallenge" resultType="_int">
+		SELECT COUNT(*)
+		FROM PREMIUMCHALLENGE
+		
+			<if test="chName != null">
+			WHERE CHNAME LIKE '%' || #{chName} || '%'
+			</if>
+			<if test="userId != null">
+			WHERE USERID LIKE '%' || #{userId} || '%'
+			</if>
+			<if test="startDate != null">
+			WHERE STARTDATE LIKE '%' || #{startDate} || '%'
+			</if>
+			<if test="endDate != null">
+			WHERE ENDDATE LIKE '%' || #{endDate} || '%'
+			</if>
+	</select>
+	
+	<select id="searchChPremiumNameList" resultMap="premiumChallengeResultSet">
+		SELECT *
+		FROM PREMIUMCHALLENGE
+			<if test="chName != null">
+				WHERE CHNAME LIKE '%' || #{chName} || '%'
+			</if>
+		ORDER BY CHPID DESC
+	</select>
+	
+	<select id="selectPremiumList" resultMap="premiumChallengeResultSet">
+		SELECT *
+		FROM PREMIUMCHALLENGE
+	</select>
+	
+	<insert id="insertPremiumChallenge">
+		INSERT INTO PREMIUMCHALLENGE
+		VALUES(SEQ_chPId.NEXTVAL,#{userId},#{chName},#{chPicture},#{chContent},#{startDate},#{endDate},
+				#{category},#{ceMethod},#{price},0,0,#{maxPerson},#{chPeople},0)
+	</insert>
 </mapper>
