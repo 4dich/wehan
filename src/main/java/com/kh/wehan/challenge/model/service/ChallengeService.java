@@ -126,6 +126,12 @@ public interface ChallengeService {
 	 */
 	int insertPremiumChallenge(PremiumChallenge chal);
 
+	/**
+	 * 프리미엄 리스트 카운트
+	 * @return
+	 */
+	int getPremiumListCount();
+
 
 
 	
