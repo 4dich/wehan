@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.wehan.challenge.model.dao.ChallengeDao;
 import com.kh.wehan.challenge.model.vo.Challenge;
+import com.kh.wehan.challenge.model.vo.PremiumChallenge;
 import com.kh.wehan.common.model.vo.PageInfo;
 import com.kh.wehan.member.model.vo.Mypage;
 
@@ -71,6 +72,29 @@ public class ChallengeServiceImpl implements ChallengeService {
 		return cDao.checkPremiumCondition(userId);
 	}
 
+	@Override
+	public PremiumChallenge selectOnePremiumDetail(String chPId) {
+		return cDao.selectOnePremiumDetail(chPId);
+	}
 
+	@Override
+	public int getSearchListCount(PremiumChallenge chal) {
+		return cDao.getListCount(chal);
+	}
+
+	@Override
+	public ArrayList<PremiumChallenge> selectSearchChNameList(PremiumChallenge chal, PageInfo pi) {
+		return cDao.selectSearchChNameList(chal, pi);
+	}
+
+	@Override
+	public ArrayList<PremiumChallenge> selectPremiumList(PageInfo pi) {
+		return cDao.selectPremiumList(pi);
+	}
+
+	@Override
+	public int insertPremiumChallenge(PremiumChallenge chal) {
+		return cDao.getInsertPremiumChallenge(chal);
+	}
 
 }

@@ -119,8 +119,8 @@
                             <div id="ch_confirmPhotoListArea">
                                 <div id="photoList">
                                 	<c:forEach var="ch" items="${ list }">
-                                    <a class="detailInList" id="test" style="cursor:pointer" onclick="getdetailInList(this);" name="${ ch.chId }">
-                                    	<input type="hidden" id="hiddenDetailInList" name="hiddenDetailInList"/>
+                                    <a class="detailInList" id="test" style="cursor:pointer" onclick="getdetailInList(this);" name="${ ch.chPId }">
+                                    	<input type="hidden" id="hiddenDetailInPremiumList" name="hiddenDetailInPremiumList"/>
                                         <div class="photoBox">
 											<img src="resources/images/challenge/${ ch.chPicture }" alt=""/>
                                             <div class="textBox">
