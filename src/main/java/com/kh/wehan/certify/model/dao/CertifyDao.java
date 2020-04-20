@@ -2,6 +2,7 @@ package com.kh.wehan.certify.model.dao;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,5 +104,14 @@ public class CertifyDao {
 		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
 		
 		return (ArrayList)sqlSession.selectList("certifyMapper.searchUser",sc,rowBounds);
+	}
+
+	/**
+	 * 댓글 삭제
+	 * @param r
+	 * @return
+	 */
+	public int deleteReply(CertifyReply r) {
+		return sqlSession.update("certifyMapper.deleteReply",r);
 	}
 }

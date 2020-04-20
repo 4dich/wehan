@@ -96,7 +96,7 @@
 					</tr>
 					<tr>
 						<th>차단 기간</th>
-						<td><input id="BanTerm" type="text" placeholder="차단 기간" style="border-top: none; border-left: none; border-right: none;"></td>
+						<td><input id="BanDay" type="text" placeholder="차단 기간" style="border-top: none; border-left: none; border-right: none;"></td>
 					</tr>
 					<tr>
 						<td></td>
@@ -259,12 +259,12 @@
 			 if (confirm("블랙리스트 등록 하시겠습니까?")){    //확인
 				var bUserId = $('#bUserId').val();
 				var BanReason = $('#BanReason').val();
-				var BanTerm = $('#BanTerm').val();
-				console.log("bUserId : "+ bUserId + " BanReason : " +BanReason + " BanTerm : " + BanTerm );
+				var BanDay = $('#BanDay').val();
+				console.log("bUserId : "+ bUserId + " BanReason : " +BanReason + " BanTerm : " + BanDay );
 				$.ajax({
 					url:"blackInsert.do",
 					type:"post",
-					data:{"userId":bUserId,"banReason":BanReason,"banTerm":BanTerm},
+					data:{"userId":bUserId,"banReason":BanReason,"banDay":BanDay},
 					success:function(data){
 						if(data=="ok"){
 							alert("블랙리스트 등록 됬습니다.");

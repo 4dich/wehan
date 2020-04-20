@@ -87,4 +87,16 @@
 		WHERE HOST=#{host}
 		AND FOLLOWER=#{follower}
 	</delete>
+	
+	<select id="isFollow" resultType="_int">
+		SELECT COUNT(*) 
+		FROM FOLLOW
+		WHERE HOST=#{host}
+		AND FOLLOWER=#{follower} 
+	</select>
+	
+	<insert id="my_follow" parameterType="Follow">
+		INSERT INTO FOLLOW
+		VALUES(#{host},#{follower})
+	</insert>
 </mapper>

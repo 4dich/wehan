@@ -58,4 +58,14 @@ public class MypageServiceImpl implements MypageService {
 		return myDao.my_unfollow(f);
 	}
 
+	@Override
+	public int isFollow(Follow f) {
+		return myDao.isFollow(f);
+	}
+
+	@Override
+	public int my_follow(Follow f) {
+		return myDao.my_follow(f);
+	}
+
 }

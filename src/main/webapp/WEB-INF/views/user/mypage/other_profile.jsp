@@ -125,10 +125,9 @@
 				<i class="fa fa-bars"></i>
 			</div>
 			<div class="header-social">
-                <a href="my_profileView.do" style="color: red;">Profile</a>
-                <a href="my_challengeView.do">My Challenge</a>
-                <a href="my_diaryView.do">My Diary</a>
-                <a href="getMsgList.do">Message</a>
+                <a href="other_profileView.do?otherId=${otherMember.userId}" style="color: blue;">Profile</a>
+                <a href="other_challengeView.do?otherId=${otherMember.userId}">Challenge</a>
+                <a href="other_diaryView.do">Diary</a>
 			</div>
 		</header>
 		
@@ -150,13 +149,53 @@
 				        </div>
 				        <div id="foAll" style="display:inline-block; margin-left: 20px">
 				            <div id="fo1" style="display:inline-block; text-align:center; width:60px;">
-				            	<div style="font-weight:bold;font-size:30px">2</div><div style="font-size:12px; color:gray">grade</div></div>
+				            	<div style="font-weight:bold;font-size:30px">1</div><div style="font-size:12px; color:gray">grade</div></div>
 				            <div id="fo2" style="display:inline-block; text-align:center; width:60px;">
 				            	<div style="font-weight:bold;font-size:30px">${ follow }</div><div style="font-size:12px; color:gray">followers</div></div>
 				            <div id="fo3" style="display:inline-block; text-align:center; width:60px;">
 				            	<div style="font-weight:bold;font-size:30px">${ following }</div><div style="font-size:12px; color:gray">following</div></div>
 				            <br>
-				            <button style="display: block; width:100%; margin-top: 20px" onclick="location.href='my_unfollow.do?host=${otherMember.userId}&follower=${loginUser.userId}'">unfollow</button>
+				            <c:if test="${isFollow eq 1}">
+				           		<button id="unfoBtn" style="display: block; width:100%; margin-top: 20px">unfollow</button>
+				           		<%-- <button id="unfoBtn" style="display: block; width:100%; margin-top: 20px" onclick="location.href='my_unfollow.do?host=${otherMember.userId}&follower=${loginUser.userId}'">unfollow</button> --%>
+				           	</c:if>
+				           	<c:if test="${isFollow eq 0}">
+				            	<button id="foBtn" style="display: block; width:100%; margin-top: 20px">follow</button>
+				            </c:if>
+				            
+				            <input type="hidden" id="otherId" value="${otherMember.userId}">
+				            <input type="hidden" id="myId" value="${loginUser.userId}">
+				            
+				            <script>
+				            	var otherId = $('#otherId').val();
+				            	var myId = $('#myId').val();
+				            
+				            	$('#unfoBtn').click(function(){
+				            		$.ajax({
+				            			url:'my_unfollow.do',
+				            			type:'post',
+				            			data:{host:otherId, follower:myId},
+				            			success:function(data){
+				            				location.href="other_profileView.do?otherId="+otherId;
+				            			},error:function(){
+				            				console.log('문제발생');
+				            			}
+				            		});
+				            	});
+				            	
+				            	$('#foBtn').click(function(){
+				            		$.ajax({
+				            			url:'my_follow.do',
+				            			type:'post',
+				            			data:{host:otherId, follower:myId},
+				            			success:function(data){
+				            				location.href="other_profileView.do?otherId="+otherId;
+				            			},error:function(){
+				            				console.log('문제발생');
+				            			}
+				            		});
+				            	});
+				            </script>
 				        </div>
 				    </div>
 				    

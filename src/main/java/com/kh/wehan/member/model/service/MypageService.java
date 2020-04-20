@@ -64,5 +64,21 @@ public interface MypageService {
 	 */
 	public int my_unfollow(Follow f);
 
+	
+	/**
+	 * 4-3. 내가 해당유저를 팔로우하고 있는지 여부
+	 * @param f
+	 * @return
+	 */
+	public int isFollow(Follow f);
+
+	/**
+	 * 4-4. 다른 사람 마이페이지에서 팔로우
+	 * @param f
+	 * @return
+	 */
+	public int my_follow(Follow f);
+	
+
 
 }

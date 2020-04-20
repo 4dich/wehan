@@ -114,9 +114,9 @@
 </head>
 <body>
 	<!-- Page Preloder -->
-	<!-- <div id="preloder">
+	<div id="preloder">
 		<div class="loader"></div>
-	</div> -->
+	</div>
 
 	<!-- Main section start -->
 	<div class="main-site-warp">
@@ -130,7 +130,7 @@
 				<i class="fa fa-bars"></i>
 			</div>
 			<div class="header-social">
-                <a href="my_profileView.do" style="color: red;">Profile</a>
+                <a href="my_profileView.do" style="color: red;">My Profile</a>
                 <a href="my_challengeView.do">My Challenge</a>
                 <a href="my_diaryView.do">My Diary</a>
                 <a href="getMsgList.do">Message</a>
@@ -259,14 +259,15 @@
 						    		cate.on("click",function(){
 						    			$(this)[0].textContent = 1 - $(this)[0].textContent;
 						            });
-									$('body').css({'background-color':'black',
+						    		/* 색반전 */
+									/* $('body').css({'background-color':'black',
 												   '-webkit-filter':'invert(100%)',
-												   'filter':'invert(100%)'});
+												   'filter':'invert(100%)'}); */
 
 								}else{
-									$('body').css({'background-color':'white',
+									/* $('body').css({'background-color':'white',
 												   '-webkit-filter':'invert(0%)',
-												   'filter':'invert(0%)'});
+												   'filter':'invert(0%)'}); */
 									
 									$('#intro').attr('disabled',true);
 									$('#goal').attr('disabled',true);

@@ -40,9 +40,20 @@
 	<![endif]-->
 <style>
 .delBtn{
-position: absolute;
-top:0;
-right:0;
+	position : absolute;
+ 	width: 30px;
+ 	height: 30px;
+ 	top: 2px;
+ 	right: 4px;
+ 	border: none;
+ 	background: white;
+ 	font-size: 25px;
+}
+.rdiv{
+	position: relative;
+}
+.crId{
+	display: none;
 }
 </style>
 </head>
@@ -105,7 +116,7 @@ right:0;
 												<div style="margin-top: 15px;">
 													<h4 style="color: white;">
 														${ c.nickName } &nbsp;
-														<a href="#" style="color:white" class="fa fa-home"></a>
+														<a href="other_profileView.do?otherId=${ c.userId }" style="color:white" class="fa fa-home"></a>
 													</h4>
 													<br>
 													<h6 style="color: white;">
@@ -217,6 +228,7 @@ right:0;
 			replyList();
 		},3000);
 		
+				
 		$('#listBack').click(function(){
 			location.href="fid_ch_recommendView.do?"
 		});
@@ -249,6 +261,12 @@ right:0;
 		/* 등록 끝 */
 
 		function replyList(){
+			
+
+		
+			
+		var userId = $('#loginId').val();
+			
 		/* ajax */
 		$.ajax({
 			url : "replyList.do",
@@ -279,27 +297,57 @@ right:0;
 						$h5 = $("<h5 class='h5 g-color-gray-dark-v1 mb-0'>").text(data[i].userId);
 						$span = $("<span class='g-color-gray-dark-v4 g-font-size-12'>").text(data[i].ccDate);
 						$p = $("<p>").text(data[i].ccContent);
-						$rdiv = $("<div style='width: 100%; display: inline-flex;margin-bottom: 10px;'>");
-						$delBtn = $("<div class = 'delBtn'> Ⅹ");
+						$crId = $("<p class='crId'>").text(data[i].crId);
+						$rdiv = $("<div class='rdiv' style='width: 100%; display: inline-flex;margin-bottom: 10px;'>");
+						$delBtn = $("<input class='delBtn' type='button' value='×'>");
 						
 						$gmb.append($h5);
 						$gmb.append($span);
 						$mediaBody.append($gmb);
 						$mediaBody.append($p);
+						$rdiv.append($crId);
 						
+						if(data[i].userId == userId){
+							$rdiv.append($delBtn);
+						}
 						$rdiv.append($img);
 						$rdiv.append($mediaBody);	
-						$rdiv.append($delBtn);
 						$divBody.append($rdiv);
 					}
 				}else{
 					$div = $("<div>");
-					$content = $("<p>").text("등록된 댓글이 없습니다.")
-					
+					$content = $("<p>").text("등록된 댓글이 없습니다.");
 					$div.append($content);
 					$divBody.append($div);
 				}
 				
+				
+				$(".delBtn").click(function(){
+					
+					alert("댓글을 삭제하시겠습니까?");				
+					var userId = $('#loginId').val();
+					var crId = $(this).prev('.crId').text();
+					console.log(ceId);
+					console.log(crId);
+					console.log(userId);
+					
+					$.ajax({
+						url:"delReply.do",
+						data : {ceId:ceId,userId:userId,crId:crId},
+						type : "post",
+						success : function(data){
+							//console.log(data);
+							
+							if(data == "success"){
+								replyList();
+							}
+						},error:function(){
+							console.log("전송 실패");
+						}
+					});
+					
+					
+				});
 			},error:function(){
 				console.log("전송실패");
 			}

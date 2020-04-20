@@ -26,10 +26,12 @@
 		<typeAlias type="com.kh.wehan.challenge.model.vo.Challenge" alias="Challenge"/>
 		<typeAlias type="com.kh.wehan.challenge_SR.model.vo.Challenge_SR" alias="ChallengeSr"/>
 		<typeAlias type="com.kh.wehan.challenge_SR.model.vo.ChallengeTop10" alias="ChallengeTop10"/>
+		<typeAlias type="com.kh.wehan.challenge_SR.model.vo.ChallengerInfo" alias="ChallengerInfo"/>
 		<typeAlias type="com.kh.wehan.questions.model.vo.QuestionsReply" alias="QuestionsReply"/>
 		<typeAlias type="com.kh.wehan.questions.model.vo.Questions" alias="Questions"/>
 		<typeAlias type="com.kh.wehan.member.model.vo.FindKey" alias="FindKey"/>
 		<typeAlias type="com.kh.wehan.challenge.model.vo.PremiumChallenge" alias="PremiumChallenge"/>
+		<typeAlias type="com.kh.wehan.member.model.vo.Follow" alias="Follow"/>
 	</typeAliases>
 	
 	<mappers>

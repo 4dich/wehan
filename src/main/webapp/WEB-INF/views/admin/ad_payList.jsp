@@ -101,7 +101,7 @@
 				<div class="blog-post-item">
 						<button style="margin-top: 12px;" onclick="refundSelect();">환불하기</button>
 						<button id="test2">테스트</button>
-					<form action="plistSearch.do" method="post">
+					
 						<div id="searchArea">
 							<div id="searchSelect"> 
 								<select name="selecter" id="selecter">
@@ -112,10 +112,10 @@
 							</div>
 							<!-- 검색 -->
 							<input class="searchBox" type="search" name="searchValue">
-							<button><img src="resources/images/main/search.png" alt=""></button>
+							<button onclick='refundYn(0,1)'><img src="resources/images/main/search.png" alt=""></button>
 						</div>
-					</form>
-
+					
+					<div id="paylist">
 						<!-- 문의사항 테이블 -->
 						<table class="qnaTable">
 							
@@ -126,45 +126,10 @@
 								<th>유저ID</th>
 								<th>마감기한</th>
 								<th>결제정보</th>
-								<th onclick="refundYn()" style="cursor:pointer;">환급여부</th>
+								<th style="cursor:pointer;">환급여부</th>
 							</tr>
 						
-							<c:if test="${!empty psearch}">
-							<c:forEach var="l" items="${ psearch }">
-							 <c:forEach var="p" items="${ l.chList }">
-							<!-- 반복문 예정 -->
-							<tr class="noticeList">
-								<td><input type="checkbox" name="refund"></td>
-								<td>${ l.pId }</td>
-								<td>${ p.chName }</td>
-								<td>${ l.userId }</td>
-								<td>${ l.pDate }</td>
-								<td><button onclick="location.href='paydetail.do?pId=${ l.pId }'">정보</button></td>
-								<td>${ l.refund_yn }</td>
-							</tr>
-							</c:forEach>
-							</c:forEach>
-							</c:if>
-						
 							
-							<c:if test="${chsearch != null}">
-							<c:forEach var="l" items="${ chsearch }">
-							 <c:forEach var="p" items="${ l.chList }">
-							<!-- 반복문 예정 -->
-							<tr class="noticeList">
-								<td><input type="checkbox" name="refund"></td>
-								<td>${ l.pId }</td>
-								<td>${ p.chName }</td>
-								<td>${ l.userId }</td>
-								<td>${ l.pDate }</td>
-								<td><button onclick="location.href='paydetail.do?pId=${ l.pId }'">정보</button></td>
-								<td>${ l.refund_yn }</td>
-							</tr>
-							</c:forEach>
-							</c:forEach>
-							</c:if>
-							
-							<c:if test="${psearch == null && chsearch == null}">
 							<c:forEach var="l" items="${ list }">
 							 <c:forEach var="p" items="${ l.chList }">
 							<!-- 반복문 예정 -->
@@ -179,13 +144,16 @@
 							</tr>
 							</c:forEach>
 							</c:forEach>
-							</c:if>
+							
+						
+							
+							
 							
 							<!-- 삭제 끝 -->
 
 						</table>
 		
-						<div class="qnaPaging">
+				<div class="qnaPaging">
 						<!-- [이전] -->
 				<c:if test="${ pi.currentPage eq 1 }">
 					[이전] &nbsp;
@@ -194,7 +162,7 @@
 					<c:url var="before" value="paylist.do">
 						<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
 					</c:url>
-					<a href="${ before }">[이전]</a> &nbsp;
+					<a onclick="refundYn(0,${ pi.currentPage - 1 });">[이전]</a> &nbsp;
 				</c:if>
 				
 				<!-- 페이지 -->
@@ -204,10 +172,8 @@
 					</c:if>
 					
 					<c:if test="${ p ne pi.currentPage }">
-						<c:url var="pagination" value="paylist.do">
-							<c:param name="currentPage" value="${ p }"/>
-						</c:url>
-						<a href="${ pagination }">${ p }</a> &nbsp;
+						
+						<a onclick="refundYn(0,${p});">${ p }</a> &nbsp;
 					</c:if>
 				</c:forEach>
 				
@@ -219,11 +185,13 @@
 					<c:url var="after" value="paylist.do">
 						<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
 					</c:url> 
-					<a href="${ after }">[다음]</a>
+					<a onclick="refundYn(0,${ pi.currentPage + 1 });">[다음]</a>
 				</c:if>
 						</div>
 					</div>
 				</div>
+			</div>
+				
 			</div>
 			<!-- Page end -->
 		</div>
@@ -238,79 +206,111 @@
 	
 	<script>
 	
-		 $(function(){
-			 var reIdx = $('#test').val();
-			refundYn(reIdx);
-		}); 
-	
 		$('#test2').click(function(){
 			console.log(pId);
 		});	
 	
-		function refundYn(reIdx,currentPage){
-			
+		$('.thArea').children().eq(6).click(function(){
 			var reIdx = $('#test').val();
 			$('#test').val(1 - $('#test').val());
+			console.log(reIdx);
+			var currentPage = 1;
+			
+			refundYn(reIdx,currentPage);
+		});
+		
+		function refundYn(reIdx,currentPage){
+			var searchValue = $('.searchBox').val();
+			var selecter = $('#selecter').val();
+			console.log(reIdx);
+			console.log(currentPage);
+			console.log(searchValue);
+			console.log(selecter);
 			$.ajax({
 				url:"refundYn.do",
 				type:"POST",
-				data:{"reIdx":reIdx,
-					currentPage:currentPage
+				data:{reIdx:reIdx,
+					currentPage:currentPage,
+					searchValue:searchValue,
+					selecter:selecter
 					  },
+					  
+					 /*  <div id="searchArea">
+						<div id="searchSelect"> 
+							<select name="selecter" id="selecter">
+								<option value="userId">유저ID</option>
+								<option value="chName">챌린지명</option>
+								<option value="pNo">결제번호</option>
+							</select>					
+						</div>
+						<!-- 검색 -->
+						<input class="searchBox" type="search" name="searchValue">
+						<button><img src="resources/images/main/search.png" alt=""></button>
+					</div> */
 				success:function(result){
 					console.log(result);
 					$('.noticeList').remove();
+					$('.qnaPaging').remove();
+					$('.searchArea').remove();
+									
+					var listText = "";
+					listText += "<table class='qnaTable'>";
+					listText += "<tr class='thArea'>";
+					listText += "<th>"+"Check"+"</th>";
+					listText += "<th>"+"결제 번호"+"</th>";
+					listText +=	"<th>"+"챌린지명"+"</th>";
+					listText +=	"<th>"+"유저ID"+"</th>";
+					listText +=	"<th>"+"마감기한"+"</th>";
+					listText +=	"<th>"+"결제정보"+"</th>";
+					listText +=	"<th style='cursor:pointer;'>"+"환급여부"+"</th>";
+					listText += "</tr>"
 					var list = result["list"];
+					console.log(list);
 					for(var i = 0;  i <list.length; i++){
-						var $td1 = $('<td>');
-						var $input = $('<input type="checkbox" name="refund">');
-						var $td2 = $('<td>').text(list[i].pId);
-						var $td3 = $('<td>').text(list[i].chList[0].chName);
-						var $td4 = $('<td>').text(list[i].userId);
-						var $td5 = $('<td>').text(list[i].pDate);
-						var $td6 = $('<td>');
-						var $button = $('<button>'); 
-						var $td7 = $('<td>').text(list[i].refund_yn);
-						
-						$button.attr("onclick","location.href='paydetail.do?pId="+list[i].pId+"'").text("정보");
-						 
-						$td1.append($input);
-						$td6.append($button);
-						
-						var $noticeList = $('<tr class="noticeList">');			
-						$noticeList.append($td1).append($td2).append($td3).append($td4).append($td5).append($td6).append($td7);
-						
-						$('.qnaTable').append($noticeList);
-						$('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247");
+						listText += "<tr class='noticeList'>"
+						listText += "<td><input type='checkbox' name='refund'></td>";
+						listText += "<td>"+list[i].pId+"</td>";
+						listText += "<td>"+list[i].chList[0].chName+"</td>";
+						listText += "<td>"+list[i].userId+"</td>";
+						listText += "<td>"+list[i].pDate+"</td>";
+						listText += "<td><button onclick='location.href="+'"'+"paydetail.do?pId="+list[i].pId+'"'+"'>"+"정보"+"</button></td>";
+						listText += "<td>"+list[i].refund_yn+"</td>";
+						listText += "</tr>";
+						/* $button.attr("onclick","location.href='paydetail.do?pId="+list[i].pId+"'").text("정보") */
 					} 
-					 var listText = "";
+					listText += "</table>"
 					// 페이징 처리
-					   listText += "<tr align='center' height='20'>";
-					   listText += "<td colspan='6'>";
 					   // [이전]
+					 listText += "<div class='qnaPaging'>";
 					   if(currentPage == 1){    
 						   listText +=	"[이전] &nbsp;";
 					   }else{
-						   listText += "<a href='javascript:void(0);' onclick='refundYn("+reIdx+","+ (currentPage - 1) +")'>[이전]</a> &nbsp;";
+						   listText += "<a onclick='refundYn("+reIdx+","+ (currentPage - 1) +")'>[이전]</a> &nbsp;";
 					   }
 						// 페이지 
 						for(var p= result.pi.startPage; p<= result.pi.endPage; p++){
 							if(p == result.pi.currentPage){
-								listText += "<font color='red' size='4'><b>"+ [ p ] + "</b></font>";
+								listText += "<font color='red' size='4'><b>["+ p +"]  </b></font>" +"&nbsp;" ;
 							}else{
-								listText +=  "<a href='javascript:void(0);' onclick='refundYn("+reIdx+","+ p + ")'>" + p + "</a> &nbsp;";
+								listText +=  "<a  onclick='refundYn("+reIdx+","+ p +")'>" + p + "</a> &nbsp;";
 							}						
 						}
 						// [다음]
 						if(currentPage == result.pi.maxPage){
 							listText += "[다음]";
 						}else{
-							listText += "<a href='javascript:void(0);' onclick='refundYn("+reIdx+","+ (currentPage+1) +")'>[다음]</a>";
+							listText += "<a onclick='refundYn("+reIdx+","+ (currentPage + 1) +")'>[다음]</a>";
 						}
-						listText +="</td>";
-						listText +="</tr>";
-					   
-					   $("#tb tbody").html(listText); 
+						listText += "</div>";
+						$('#paylist').html(listText);
+						$('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247"); //even 짝수
+						$('.thArea').children().eq(6).click(function(){
+							var reIdx = $('#test').val();
+							$('#test').val(1 - $('#test').val());
+							console.log(reIdx);
+							var currentPage = 1;
+							refundYn(reIdx,currentPage);
+						});
 				},error:function(){
 					console.log("전송실패");
 			}

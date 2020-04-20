@@ -318,9 +318,9 @@
 </head>
 <body>
 	<!-- Page Preloder -->
-	<!-- <div id="preloder">
+	<div id="preloder">
 		<div class="loader"></div>
-	</div> -->
+	</div>
 
 	<!-- Main section start -->
 	<div class="main-site-warp">
@@ -332,7 +332,7 @@
 				<i class="fa fa-bars"></i>
 			</div>
 			<div class="header-social">
-                <a href="my_profileView.do">Profile</a>
+                <a href="my_profileView.do">My Profile</a>
                 <a href="my_challengeView.do" style="color: red;">My Challenge</a>
                 <a href="my_diaryView.do">My Diary</a>
                 <a href="getMsgList.do">Message</a>
