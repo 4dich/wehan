@@ -124,31 +124,31 @@
 								<div class="contact-form" style="margin-top: 60px;">
 									<div class="row">	
                                         <div class="col-lg-12">
-                                            <input id="userId" name="userId" type="text" style="border-top: none; border-left: none; border-right: none; width:72%" placeholder="아이디">
+                                            <input id="userId" name="userId" type="text" style="border-top: none; border-left: none; border-right: none;" placeholder="아이디">
                                             <span class="check c1">사용가능</span><span class="check c2">중복된 아이디</span><span class="check c3">사용불가능한 아이디</span>
                                             <input id="checkID" type="hidden" value="0">
                                         </div>
 										<div class="col-lg-12">
-                                            <input id="password" name="password" type="password" style="border-top: none; border-left: none; border-right: none; width:72%" placeholder="비밀번호">
+                                            <input id="password" name="password" type="password" style="border-top: none; border-left: none; border-right: none; " placeholder="비밀번호">
                                         </div>
                                         <div class="col-lg-12">
-                                            <input id="password2" name="password2" type="password" style="border-top: none; border-left: none; border-right: none; width:72%" placeholder="비밀번호확인">
+                                            <input id="password2" name="password2" type="password" style="border-top: none; border-left: none; border-right: none; " placeholder="비밀번호확인">
                                             <span class="check c7">사용가능</span><span class="check c8">비밀번호 불일치</span><span class="check c9">사용불가능한 비밀번호</span>
                                             <input id="chkPass" type="hidden" value="0">
                                         </div>
                                         <div class="col-lg-12">
-                                            <input id="userName" name="userName" type="text" style="border-top: none; border-left: none; border-right: none; width:72%" placeholder="이름">
+                                            <input id="userName" name="userName" type="text" style="border-top: none; border-left: none; border-right: none; " placeholder="이름">
                                         </div>
 										<div class="col-lg-12">
-                                            <input id="nickName" name="nickName"type="text" style="border-top: none; border-left: none; border-right: none; width:72%" placeholder="닉네임">
+                                            <input id="nickName" name="nickName"type="text" style="border-top: none; border-left: none; border-right: none; " placeholder="닉네임">
                                             <span class="check c4">사용가능</span><span class="check c5">중복된 닉네임</span><span class="check c6">사용불가능한 닉네임</span>
                                             <input id="checkNick" type="hidden" value="0">
                                         </div>
 										<div class="col-lg-12">
-                                            <input id="email" name="email" type="email" style="border-top: none; border-left: none; border-right: none; width:72%" placeholder="이메일">
+                                            <input id="email" name="email" type="email" style="border-top: none; border-left: none; border-right: none;" placeholder="이메일">
                                         </div>
 										<div class="col-lg-12">
-                                            <input id="birthDay" name="birthDay" type="text" style="border-top: none; border-left: none; border-right: none; width:72%" placeholder="생년월일">
+                                            <input id="birthDay" name="birthDay" type="text" style="border-top: none; border-left: none; border-right: none; " placeholder="생년월일">
                                         </div>
 									</div>
 								</div>
@@ -387,6 +387,7 @@
 				return false;
 			}
 			
+			alert("회원가입 되었습니다.");
 		}
 		
 		function check(p,e){
@@ -407,16 +408,19 @@
 					type:"post",
 					success:function(data){
 						if(data=="1"){
+							$('#userId').css("width","71%");
 							$('.c1').show();
 							$('.c2').hide();
 							$('.c3').hide();
 							$('#checkID').val(1);
 						}else if(data == "2"){
+							$('#userId').css("width","71%");
 							$('.c1').hide();
 							$('.c2').show();
 							$('.c3').hide();
 							$('#checkID').val(2);
 						}else{
+							$('#userId').css("width","71%");
 							$('.c1').hide();
 							$('.c2').hide();
 							$('.c3').show();
@@ -432,23 +436,24 @@
 				var password = $('#password').val();
 				var password2 = $('#password2').val();
 				if(!check(/^[a-zA-Z0-9]{4,12}$/,password)){
+					$('#password2').css("width","71%");
 					$('.c7').hide();
 					$('.c8').hide();
 					$('.c9').show();
 					$('#chkPass').val(3);
 				}else{
 					if(password != password2){
+						$('#password2').css("width","71%");
 						$('.c7').hide();
 						$('.c8').show();
 						$('.c9').hide();
 						$('#chkPass').val(2);
-						console.log($('#chkPass').val());
 					}else{
+						$('#password2').css("width","71%");
 						$('.c7').show();
 						$('.c8').hide();
 						$('.c9').hide();
 						$('#chkPass').val(1);
-						console.log($('#chkPass').val());
 					}
 				}	
 			});
@@ -456,23 +461,24 @@
 				var password = $('#password').val();
 				var password2 = $('#password2').val();
 				if(!check(/^[a-zA-Z0-9]{4,12}$/,password)){
+					$('#password2').css("width","71%");
 					$('.c7').hide();
 					$('.c8').hide();
 					$('.c9').show();
 					$('#chkPass').val(3);
 				}else{
 					if(password != password2){
+						$('#password2').css("width","71%");
 						$('.c7').hide();
 						$('.c8').show();
 						$('.c9').hide();
 						$('#chkPass').val(2);
-						console.log($('#chkPass').val());
 					}else{
+						$('#password2').css("width","71%");
 						$('.c7').show();
 						$('.c8').hide();
 						$('.c9').hide();
 						$('#chkPass').val(1);
-						console.log($('#chkPass').val());
 					}
 				}	
 				
@@ -487,16 +493,19 @@
 					type:"post",
 					success:function(data){
 						if(data=="1"){
+							$('#nickName').css("width","71%");
 							$('.c4').show();
 							$('.c5').hide();
 							$('.c6').hide();
 							$('#checkNick').val(1);
 						}else if(data == "2"){
+							$('#nickName').css("width","71%");
 							$('.c4').hide();
 							$('.c5').show();
 							$('.c6').hide();
 							$('#checkNick').val(2);
 						}else{
+							$('#nickName').css("width","71%");
 							$('.c4').hide();
 							$('.c5').hide();
 							$('.c6').show();
