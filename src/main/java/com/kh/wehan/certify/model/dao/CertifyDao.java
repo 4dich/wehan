@@ -66,7 +66,7 @@ public class CertifyDao {
 		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
 		return (ArrayList)sqlSession.selectList("certifyMapper.deleteFollow",f,rowBounds);
 	
-	}
+	} 
 
 	public int insertReply(CertifyReply r) {
 		
