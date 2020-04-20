@@ -328,7 +328,7 @@
 		
         <!-- 메뉴 끝 -->
 		<header class="header-section">
-			<div class="nav-switch">
+			<div class="nav-switch menuIcon msgCount">
 				<i class="fa fa-bars"></i>
 			</div>
 			<div class="header-social">
@@ -475,9 +475,9 @@
 										<c:forEach var="c" items="${ chList }" varStatus="status">
 											<div class="chList" style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
 												<div class="result" style="width: 100px">상태미표시</div>
-												<div class="sArr" style="width: 80px">${ c.startDate }</div>
+												<div class="sArr" style="width: 100px">${ c.startDate }</div>
 												<div>~</div>
-												<div class="eArr" style="width: 80px;">${ c.endDate }</div>
+												<div class="eArr" style="width: 100px;">${ c.endDate }</div>
 												<div style="width: 80px; padding: 5px 0 0 0; border-left:1px solid gray; border-right:1px solid gray;"  >
 													<img src="resources/images/user/${c.chPicture }" style="width: 70px; height: auto;" >
 												</div>
@@ -497,9 +497,9 @@
 										<c:forEach var="c" items="${ chList }">
 											<div class="chList" style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
 												<div class="result2" style="width: 100px">상태미표시</div>
-												<div class="sArr2" style="width: 80px">${ c.startDate }</div>
+												<div class="sArr2" style="width: 100px">${ c.startDate }</div>
 												<div>~</div>
-												<div class="eArr2" style="width: 80px;">${ c.endDate }</div>
+												<div class="eArr2" style="width: 100px;">${ c.endDate }</div>
 												<div style="width: 80px; padding: 5px 0 0 0; border-left:1px solid gray; border-right:1px solid gray;"  >
 													<img src="resources/images/user/${c.chPicture }" style="width: 70px; height: auto;" >
 												</div>
@@ -518,9 +518,9 @@
 										<c:forEach var="c" items="${ chList }">
 											<div class="chList" style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
 												<div class="result3" style="width: 100px">상태미표시</div>
-												<div class="sArr3" style="width: 80px">${ c.startDate }</div>
+												<div class="sArr3" style="width: 100px">${ c.startDate }</div>
 												<div>~</div>
-												<div class="eArr3" style="width: 80px;">${ c.endDate }</div>
+												<div class="eArr3" style="width: 100px;">${ c.endDate }</div>
 												<div style="width: 80px; padding: 5px 0 0 0; border-left:1px solid gray; border-right:1px solid gray;"  >
 													<img src="resources/images/user/${c.chPicture }" style="width: 70px; height: auto;" >
 												</div>
@@ -539,9 +539,9 @@
 										<c:forEach var="c" items="${ chList }">
 											<div class="chList" style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
 												<div class="result4" style="width: 100px">상태미표시</div>
-												<div class="sArr4" style="width: 80px">${ c.startDate }</div>
+												<div class="sArr4" style="width: 100px">${ c.startDate }</div>
 												<div>~</div>
-												<div class="eArr4" style="width: 80px;">${ c.endDate }</div>
+												<div class="eArr4" style="width: 100px;">${ c.endDate }</div>
 												<div style="width: 80px; padding: 5px 0 0 0; border-left:1px solid gray; border-right:1px solid gray;"  >
 													<img src="resources/images/user/${c.chPicture }" style="width: 70px; height: auto;" >
 												</div>
@@ -573,15 +573,18 @@
 										var $totalCh = $('#totalCh');
 										
 										for(var i=0; i<$sArr.length; i++){
-											var sYear = $sArr[i].innerText.split('/')[0] + 20;
-											var sMonth = $sArr[i].innerText.split('/')[1];
-											var sDay = $sArr[i].innerText.split('/')[2];
+											var sYear = $sArr[i].innerText.split('-')[0];
+											var sMonth = $sArr[i].innerText.split('-')[1];
+											var sDay = $sArr[i].innerText.split('-')[2];
 											var sDate = new Date(sYear,sMonth-1,sDay);
 											
-											var eYear = $eArr[i].innerText.split('/')[0] + 20;
-											var eMonth = $eArr[i].innerText.split('/')[1];
-											var eDay = $eArr[i].innerText.split('/')[2];
+											var eYear = $eArr[i].innerText.split('-')[0];
+											var eMonth = $eArr[i].innerText.split('-')[1];
+											var eDay = $eArr[i].innerText.split('-')[2];
 											var eDate = new Date(eYear,eMonth-1,eDay);
+											
+											console.log('sDate:'+sDate);
+											console.log('eDate:'+eDate);
 											
 											var diff = eDate.getTime()-sDate.getTime();
 											var gapDate = Math.ceil(diff / (1000 * 3600 * 24)) + 1;
