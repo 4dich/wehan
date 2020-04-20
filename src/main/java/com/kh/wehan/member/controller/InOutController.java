@@ -1,5 +1,11 @@
 package com.kh.wehan.member.controller;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,12 +13,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
 import com.kh.wehan.member.model.service.MemberService;
 import com.kh.wehan.member.model.vo.Admin;
+import com.kh.wehan.member.model.vo.BlackList;
 import com.kh.wehan.member.model.vo.Member;
 
 @SessionAttributes("loginUser")
@@ -23,30 +32,59 @@ public class InOutController {
 	private MemberService mService;
 	
 	@RequestMapping(value="login.do",method=RequestMethod.POST)
-	@ResponseBody
-	public String login(String userId,String password,Model model,HttpSession session,SessionStatus status) {
+	public void login(String userId,String password,Model model,HttpSession 
+			session,SessionStatus status,HttpServletResponse response) throws JsonIOException, IOException {
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		response.setContentType("application/json; charset=utf-8");
+		String result = null;
 		
 		if(userId.equals("admin")){
 			Admin adminUser = mService.adminlogin(userId);
 			if(adminUser != null && password.equals(adminUser.getPassword())) {
 				session.setAttribute("adminUser",adminUser);
-				return "ok1";
+				result = "ok1";
+				gson.toJson(result,response.getWriter());
 			}else {
-				return "fail";
+				result = "fail";
+				 gson.toJson(result,response.getWriter());
 			}
 		}else {
-			Member loginUser = mService.login(userId);
-			  if(loginUser != null && password.equals(loginUser.getPassword())) {
-				  int blackYN = mService.blackCheck(userId);
-				  if(blackYN > 0) {
-					  loginUser.setBlacklistYN("Y");
-				  }else {
-					  loginUser.setBlacklistYN("N");
-				  }
-				  model.addAttribute("loginUser",loginUser); 
-				  return "ok2";
+			 Member loginUser = mService.login(userId);
+			 
+			 if(loginUser != null && password.equals(loginUser.getPassword())) {
+				 
+				 BlackList b = mService.BlackListInfo(userId);
+				 System.out.println(b);
+				 
+				 if(b != null) {
+					  
+					  int result2 = b.getBanTerm().compareTo(b.getBanDate());
+					 
+					  if(result2 < 0){
+						  int delete = mService.blackCancle(b.getbId());
+						  
+						  if(delete > 0) {
+							  loginUser.setBlacklistYN("N");
+							  model.addAttribute("loginUser",loginUser); 
+							  result = "ok2";
+							  gson.toJson(result,response.getWriter());
+						  }else {
+							  result = "fail2";
+							  gson.toJson(result,response.getWriter());
+						  }
+					  }else {
+						  gson.toJson(b,response.getWriter());
+					  }
+				 }else {
+					 loginUser.setBlacklistYN("N");
+					 model.addAttribute("loginUser",loginUser);
+					 result = "ok2";
+					 gson.toJson(result,response.getWriter());
+				 }
 			  }else{
-				  return "fail"; 
+				  result = "fail";
+				  gson.toJson(result,response.getWriter());
 			  }
 		}
 	}
