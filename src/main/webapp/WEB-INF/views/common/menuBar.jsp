@@ -22,10 +22,21 @@
          <ul class="site-menu">
             <li><a href="chalList.do">Challenge</a></li>
             <li><a href="fid_ch_recommendView.do">Fid</a></li>
-            <li><a href="my_profileView.do">My Page</a></li>
+            <li><a onclick="needLogin()" style="color:white; cursor:pointer">My Page</a></li>
             <li><a href="noticeView.do">고객센터</a></li>
             <li><a href="">상태:로그아웃</a></li>
           </ul>
+          
+          <script>
+          function needLogin(){
+              var msg1 = "<%= request.getAttribute("msg1")%>";
+              if(msg1 != "null"){
+                 alert(msg1);
+                 location.href="loginView.do";
+              }
+           }          	
+          </script>
+          
           <div class="menu-social">
    
             <a href="indexView.do" class="menuIcon">

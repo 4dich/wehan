@@ -2,6 +2,8 @@ package com.kh.wehan.member.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,7 +12,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
@@ -19,6 +20,7 @@ import com.kh.wehan.certify.model.vo.Certify;
 import com.kh.wehan.challenge.model.vo.Challenge;
 import com.kh.wehan.member.model.service.MypageService;
 import com.kh.wehan.member.model.vo.Follow;
+import com.kh.wehan.member.model.vo.FullCalendar;
 import com.kh.wehan.member.model.vo.Member;
 import com.kh.wehan.member.model.vo.Mypage;
 
@@ -246,8 +248,30 @@ public class MypageController {
 	}
 	
 	@RequestMapping("my_diaryView.do")
-	public String my_diaryView() {
-		return "user/mypage/my_diary";
+	public ModelAndView my_diaryView(ModelAndView mv) {
+		
+		mv.setViewName("user/mypage/my_diary");
+		
+		return mv;
+	}
+	
+	
+	@RequestMapping("calendarView.do")
+	public void my_diaryView(HttpServletResponse response) throws JsonIOException, IOException {
+		
+//		Map<String, FullCalendar> myMap = new HashMap<String, FullCalendar>();
+//		myMap.put("evt1", new FullCalendar("DB이벤트1", "2020-04-20", "2020-04-27", "false") );
+//		myMap.put("evt2", new FullCalendar("DB이벤트2", "2020-04-01", "2020-04-07", "false") ); 
+		 
+		
+		ArrayList<FullCalendar> myList = new ArrayList<FullCalendar>();
+		myList.add(new FullCalendar("DB이벤트1", "2020-04-20", "2020-04-27", false));
+		myList.add(new FullCalendar("DB이벤트2", "2020-04-01", "2020-04-07", false));
+		
+		response.setContentType("application/json; charset=utf-8");
+		
+		Gson gson = new Gson();
+		gson.toJson(myList, response.getWriter());
 	}
 	
 }
