@@ -106,6 +106,29 @@ public class PayDao {
 		return (ArrayList)sqlSession.selectList("payMapper.nylist",null,rowBounds);
 	}
 
-	
 
+	public ArrayList<Challenge> chSearchY(Challenge ch, PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("payMapper.chSearchY",ch,rowBounds);
+	}
+
+	public ArrayList<Challenge> chSearchN(Challenge ch, PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("payMapper.chSearchN",ch,rowBounds);
+	}
+
+
+	public ArrayList<Pay> pSearchY(Pay p, PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("payMapper.pSearchY",p,rowBounds);
+	}
+	
+	public ArrayList<Pay> pSearchN(Pay p, PageInfo pi) {
+		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("payMapper.pSearchN",p,rowBounds);
+	}
 }

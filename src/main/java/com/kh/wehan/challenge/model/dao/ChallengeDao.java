@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.wehan.challenge.model.vo.Challenge;
+import com.kh.wehan.challenge.model.vo.PremiumChallenge;
 import com.kh.wehan.common.model.vo.PageInfo;
 import com.kh.wehan.member.model.vo.Mypage;
 
@@ -78,6 +79,32 @@ public class ChallengeDao {
 
 	public Mypage checkPremiumCondition(String userId) {
 		return sqlSession.selectOne("challengeMapper.checkPremiumCondition", userId);
+	}
+
+	public PremiumChallenge selectOnePremiumDetail(String chPId) {
+		return sqlSession.selectOne("challengeMapper.selectOnePremiumDetail", chPId);
+	}
+
+	public int getListCount(PremiumChallenge chal) {
+		return sqlSession.selectOne("challengeMapper.getPremiumListCount");
+	}
+
+	public ArrayList<PremiumChallenge> selectSearchChNameList(PremiumChallenge chal, PageInfo pi) {
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("challengeMapper.searchChPremiumNameList", chal, rowBounds);
+	}
+
+	public ArrayList<PremiumChallenge> selectPremiumList(PageInfo pi) {
+		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		
+		return (ArrayList)sqlSession.selectList("challengeMapper.selectPremiumList", null, rowBounds);
+	}
+
+	public int getInsertPremiumChallenge(PremiumChallenge chal) {
+		return sqlSession.insert("challengeMapper.insertPremiumChallenge", chal);
 	}
 
 

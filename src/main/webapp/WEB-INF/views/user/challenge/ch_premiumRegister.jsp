@@ -94,7 +94,7 @@
                   <div class="sampleArea" style="display: inline-flex;">
                      <div class="col-xl-6">
                         <div class="contact-text-warp">
-                           <form class="contact-form" action="registerChallenge.do" method="post" enctype="multipart/form-data" style="margin-top: 90px;"> 
+                           <form class="contact-form" action="registerPremiumChal.do" method="post" enctype="multipart/form-data" style="margin-top: 90px;"> 
                               <div class="row">
                                  <div class="col-lg-12">
                                     <input type="text" id="chName" name="chName" maxlength="54" style="border-top: none; border-left: none; border-right: none;" placeholder="챌린지명">

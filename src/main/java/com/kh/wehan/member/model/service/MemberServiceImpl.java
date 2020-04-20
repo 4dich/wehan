@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.wehan.common.model.vo.PageInfo;
 import com.kh.wehan.member.model.dao.MemberDao;
 import com.kh.wehan.member.model.vo.Admin;
 import com.kh.wehan.member.model.vo.BlackList;
@@ -53,8 +54,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public ArrayList<Member> memberList() {
-		return mDao.memberList();
+	public ArrayList<Member> memberList(PageInfo pi) {
+		return mDao.memberList(pi);
 	}
 	@Override
 	public int updateMember(Member m) {
@@ -62,8 +63,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
-	public ArrayList<Member> mlistSearch(Member mem) {
-		return mDao.mlistSearch(mem);
+	public ArrayList<Member> mlistSearch(Member mem,PageInfo pi) {
+		return mDao.mlistSearch(mem,pi);
 	}
 	
 	@Override
@@ -105,7 +106,7 @@ public class MemberServiceImpl implements MemberService{
 		return mDao.blackInsert(b);
 	}
 	@Override
-	public int blackCancle(int bId) {
+	public int blackCancle(String bId) {
 		return mDao.blackCancle(bId);
 	}
 	
@@ -114,8 +115,12 @@ public class MemberServiceImpl implements MemberService{
 		return mDao.blackListCount();
 	}
 	@Override
-	public ArrayList<BlackList> blackList() {
-		return mDao.blackList();
+	public ArrayList<BlackList> blackList(PageInfo pi) {
+		return mDao.blackList(pi);
+	}
+	@Override
+	public int mlistSearchCount(Member mem) {
+		return mDao.mlistSearchCount(mem);
 	}
 	
 }
