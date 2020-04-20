@@ -17,9 +17,11 @@
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,900&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
+	
 
 	<!-- jquery -->
 	<script src="resources/js/jquery-3.2.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 	
 	<!-- Stylesheets -->
 	<link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
@@ -149,7 +151,7 @@
 													<c:if test='${ chal.category eq "건강" or chal.category eq "health"}'>
 														<span class="health">건강</span>
 													</c:if>
-													<c:if test='${ chal.category eq "자기개발" or chal.category eq "motivated"}'>
+													<c:if test='${ chal.category eq "자기개발" or chal.category eq "motivated" or chal.category eq "자기계발"}'>
 														<span class="motivated">자기개발</span>
 													</c:if>
 													<c:if test='${ chal.category eq "경제" or chal.category eq "economy"}'>
@@ -176,7 +178,16 @@
 											</div>																					
 											<div class="col-lg-12">
 												<div class="contents-detail">
-													참가자 수 : <strong>${ chal.chPeopleCount } 명</strong>
+													참여인원 : <strong>${ chal.chPeopleCount } 명</strong>
+
+													<div class="btn-group dropright">
+													  <button class="btn btn-secondary dropdown-toggle" style="border:0px; background:#8d918d; bottom:6px;"  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+													   	참가자 목록
+													  </button>
+													  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+													  	
+													  </div>
+													</div>
 												</div>
 											</div>
 											<div class="col-lg-12">
@@ -194,7 +205,7 @@
 											<br><br><br><br>
 											<div class="col-lg-12">
 												<div class="contents-detail2">${ chal.chContent }</div>
-											</div>
+											</div>											
 										</div>
 									</form>
 									<br><br>
@@ -217,6 +228,7 @@
 		<!-- Main section end -->
 		
 		<script>
+			<!-- 남은 날짜 출력 -->
 			$(function(){
 				var today = new Date();
 				var a = '${chal.endDate}';
@@ -232,7 +244,49 @@
 					
 			});
 		
-		
+			<!-- 참여인원 목록 리스트 가져오기 ajax -->
+			$(function(){
+				var list = [];
+				list = '${chal.chPeople}'.split(',');							
+				
+				$.ajaxSettings.traditional=true;
+				$.ajax ({					
+					url:'getChallengerList.do',
+					data:{'list': list}, 
+					type : 'post',
+					success:function(data){
+						
+						for(var i = 0; i < data.length; i++) {
+							
+							// 내 아이디를 누르면 내 프로필로 이동
+							if( '${loginUser.userId}' == data[i].userId) {
+							
+								$a = $('<a>').attr({'class':'dropdown-item', 
+													'value':data[i].userId, 
+													'href' : 'my_profileView.do'});
+								$strong = $('<strong>').text(data[i].userNickname);
+								
+								
+								$('.dropdown-menu').append($a.append($strong).append('&nbsp;&nbsp;level.' + data[i].userLevel));
+							
+							} else { // 친구 아이디를 누르면 친구 프로필로 이동
+								$a = $('<a>').attr({'class':'dropdown-item', 
+									'value':data[i].userId, 
+									'href' : 'other_profileView.do?otherId=' + data[i].userId});
+								$strong = $('<strong>').text(data[i].userNickname);
+				
+				
+								$('.dropdown-menu').append($a.append($strong).append('&nbsp;&nbsp;level.' + data[i].userLevel));
+							}
+						}
+					}, error:function(){
+						console.log('에러');
+					}
+					
+				});
+			});
+			
+			
 		</script>
 	
 	<!--====== Javascripts & Jquery ======-->
@@ -243,6 +297,7 @@
 	<script src="resources/js/circle-progress.min.js"></script>
 	<script src="resources/js/jquery.magnific-popup.min.js"></script>
 	<script src="resources/js/main.js"></script>
+	
 
 	</body>
 </html>
