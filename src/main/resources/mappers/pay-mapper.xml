@@ -153,6 +153,59 @@
 		WHERE C.CHNAME LIKE '%' || #{chName} || '%'
 		</if>
 	</select>
+	
+	<select id="pSearchY"  resultMap="payListResultSet">
+  		SELECT *
+		FROM PAY P
+		JOIN CHALLENGE C
+		ON C.CHID = P.CHID
+  		<if test="userId != null">
+		WHERE P.USERID LIKE '%' || #{userId} || '%'
+  		</if>
+  		<if test="pId != null">
+		WHERE P.PID LIKE '%' || #{pId} || '%'
+  		</if>
+		ORDER BY REFUND_YN DESC
+  		
+  	</select>
+	
+	<select id="pSearchN"  resultMap="payListResultSet">
+  		SELECT *
+		FROM PAY P
+		JOIN CHALLENGE C
+		ON C.CHID = P.CHID
+  		<if test="userId != null">
+		WHERE P.USERID LIKE '%' || #{userId} || '%'
+  		</if>
+  		<if test="pId != null">
+		WHERE P.PID LIKE '%' || #{pId} || '%'
+  		</if>
+  		ORDER BY REFUND_YN ASC
+  	</select>
+	
+	<select id="chSearchY"  resultMap="payListResultSet">
+		SELECT *
+		FROM PAY P
+		JOIN CHALLENGE C
+		ON C.CHID = P.CHID
+		<if test="chName != null">
+		WHERE C.CHNAME LIKE '%' || #{chName} || '%'
+		</if>
+		ORDER BY REFUND_YN DESC
+	</select>
+	
+	<select id="chSearchN"  resultMap="payListResultSet">
+		SELECT *
+		FROM PAY P
+		JOIN CHALLENGE C
+		ON C.CHID = P.CHID
+		<if test="chName != null">
+		WHERE C.CHNAME LIKE '%' || #{chName} || '%'
+		</if>
+		ORDER BY REFUND_YN DESC
+		
+	</select>
+	
 
 	<update id="refundAll">
 		UPDATE PAY
