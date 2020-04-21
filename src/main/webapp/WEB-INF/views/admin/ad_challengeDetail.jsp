@@ -26,14 +26,37 @@
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="resources/css/style.css"/>
 	<link rel="stylesheet" href="resources/css/admin_qna.css"/>
+	<!-- JQuery -->
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
+	<!-- bootstrap4 toggle -->
+	<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 	<style>
 		.infoMenu{font-size: 16px;}
 		button{font-size:14px;}
 		#searchArea{width: 316px; margin-top: 0px; }
 		tr{height: 58px;}
 		.blog-posts{height: 800px;}
-		
+		input{
+		 background:white;
+		 border:none;
+		 -webkit-writing-mode: horizontal-tb !important;
+    	 text-rendering: auto;
+    	 letter-spacing: normal;
+   		 word-spacing: normal;
+   		 text-transform: none;
+   		 text-indent: 0px;
+   		 text-shadow: none;
+   		 display: inline-block;
+   		 text-align: start;
+   		 -webkit-appearance: textfield;
+   		 -webkit-rtl-ordering: logical;
+   		 font: 400 13.3333px Arial;
+		 font-style: italic;
+		 font-size:14px;
+		 width:300px;
+		 }
 		.contents-detail {
 			width: 100%; 
 			height: 40px; 
@@ -124,12 +147,10 @@
 							</div>
 							<div class="col-xl-6">
 								<div class="contact-text-warp">
-									<form class="contact-form" style="margin-top: 65px;">
-										<div class="row">
+										<div class="row" style="margin-top:80px;">
 											<div class="col-lg-12">
 												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chChName" value="${ chal.chName }" disabled>
-													${ ch.chName }
+													<textarea style="width:100%; height:100%; background-color:white; resize: none; border:0;" id="chChName" name="chChName" >${ chal.chName }</textarea>
 												</div>
 											</div>
 											<div class="col-lg-12">
@@ -182,17 +203,18 @@
 											</div>
 											<br><br><br><br>
 											<div class="col-lg-12">
-												<div class="contents-detail2">
-													<input type="text" class="challengeDetail" name="chChContent" value="${ chal.chContent }" disabled>
-													${ ch.chContent }
+												<div class="contents-detail2" style="padding:0;">
+													<textarea id="chChContent"  class="challengeDetail"  name="chChContent"  
+													disabled style="width:100%; height:100%; background-color:white; resize: none; border:0;
+													padding:10px;">${ chal.chContent }</textarea>
 												</div>
 											</div>
 										</div>
-										<button class="site-btn sb-solid mr-3 mb-3" style="color: white; float: right; width: 280px; font-size: 16px;" type="submit">
-											챌린지 수정하기
-											<img src="img/arrow-righ-2.png" alt="">
-										</button>	
-									</form>
+										<div style="margin-top:10px; font-weight: 700; display:inline-block"><i>챌린지 수정하기&nbsp;</i>
+				       					<input id="toggle3" style="margin-left:60px;" type="checkbox" checked data-toggle="toggle" 
+				       					data-on="<i class='fa fa-lock' aria-hidden='true'></i> 수정하기" 
+				       					data-off="<i class='fa fa-unlock' aria-hidden='true'></i> 수정중" 
+				       					data-onstyle="dark" data-offstyle="outline-dark" onchange="toggleBtn3();"></div>
 								</div>
 							</div>
 						</div>
@@ -212,6 +234,37 @@
 		$(document).ready(function(){
 		  $('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247)");   // even 짝수
 		});
+		
+		
+		function toggleBtn3(){
+	    	if(document.getElementById('toggle3').checked==false){
+	    		$('#chChName').attr('disabled',false);
+	    		$('#chChContent').attr('disabled',false);
+	    		
+	    		cate.on("click",function(){
+	    			$(this)[0].textContent = 1 - $(this)[0].textContent;
+	            });
+	    		
+			}else{
+				
+				
+				$('#intro').attr('disabled',true);
+				$('#goal').attr('disabled',true);
+				var userId = $('#userId')[0].innerText;
+	   			var intro = $('#intro')[0].value;
+	   			var goal = $('#goal')[0].value;
+				
+	   			myCate=""
+	   			
+	   			
+	   			var interest = myCate;
+	   			
+	   			cate.off("click");
+	    		
+	    		
+			}
+	    }
+		
 	</script>
 	
 	<!--====== Javascripts & Jquery ======-->

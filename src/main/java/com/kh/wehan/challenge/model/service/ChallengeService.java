@@ -132,6 +132,13 @@ public interface ChallengeService {
 	 */
 	int getPremiumListCount();
 
+	/**
+	 * 챌린지 등록 후 등록한 챌린지 정보 가져오기
+	 * @param chName
+	 * @return
+	 */
+	Challenge getChallenge(String chName);
+
 
 
 	
