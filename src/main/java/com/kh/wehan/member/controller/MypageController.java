@@ -3,7 +3,6 @@ package com.kh.wehan.member.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -121,10 +120,6 @@ public class MypageController {
 			ceListCount = myService.certifyCount(ce);
 			ceCount.add(ceListCount);
 		}
-			
-		
-		System.out.println("챌린지아이디:" + ceId);
-		System.out.println("인증글 개수:" + ceCount);
 		
 		mv.addObject("chList", chList)
 		  .addObject("ceCount", ceCount)
@@ -251,9 +246,6 @@ public class MypageController {
 	public void my_updateLvExp(HttpServletRequest request, HttpServletResponse response, int myLevel, int myExp) throws JsonIOException, IOException {
 		HttpSession session = request.getSession();
 		Member mem = (Member)session.getAttribute("loginUser");
-		
-		System.out.println(myExp);
-		System.out.println(myLevel);
 		
 		String myId = mem.getUserId();
 		Mypage mypage = new Mypage(myId, myExp, myLevel);

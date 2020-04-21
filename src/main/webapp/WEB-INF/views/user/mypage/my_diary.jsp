@@ -1,6 +1,7 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -43,129 +44,7 @@
 	
 <script>
 
-  document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
-
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      plugins: [ 'interaction', 'dayGrid', 'timeGrid' ],
-      header: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay'
-      },
-      defaultDate: new Date(),
-      navLinks: true, // can click day/week names to navigate views
-      selectable: true,
-      selectMirror: true,
-      select: function(arg) {
-        var title = prompt('Event Title:');
-        if (title) {
-          calendar.addEvent({
-            title: title,
-            start: arg.start,
-            end: arg.end,
-            allDay: arg.allDay
-
-            
-          })
-        }
-        calendar.unselect()
-      },
-      editable: true,
-      eventLimit: true, // allow "more" link when too many events
-      events: [
-        {
-          title: 'All Day Event',
-          start: '2020-02-01'
-        },
-        {
-          title: 'Long Event',
-          start: '2020-02-07',
-          end: '2020-02-10'
-        },
-        {
-          groupId: 999,
-          title: 'Repeating Event',
-          start: '2020-02-09T16:00:00'
-        },
-        {
-          groupId: 999,
-          title: 'Repeating Event',
-          start: '2020-02-16T16:00:00'
-        },
-        {
-          title: 'Conference',
-          start: '2020-02-11',
-          end: '2020-02-13'
-        },
-        {
-          title: 'Meeting',
-          start: '2020-02-12T10:30:00',
-          end: '2020-02-12T12:30:00'
-        },
-        {
-          title: 'Lunch',
-          start: '2020-02-12T12:00:00'
-        },
-        {
-          title: 'Meeting',
-          start: '2020-02-12T14:30:00'
-        },
-        {
-          title: 'Happy Hour',
-          start: '2020-02-12T17:30:00'
-        },
-        {
-          title: 'Dinner',
-          start: '2020-02-12T20:00:00'
-        },
-        {
-          id: 'a',
-          title: 'Birthday Party',
-          start: '2020-02-13T07:00:00',
-          color: '#3A7D7C'
-        },
-        {
-          title: 'Click for Google',
-          url: 'http://google.com/',
-          start: '2020-02-28'
-        }
-      ],
-
-      // eventSources: [
-      //   {
-      //     url: '/myfeed.php',
-      //     method: 'POST',
-      //     extraParams: {
-      //       custom_param1: 'something',
-      //       custom_param2: 'somethingelse'
-      //     },success:function(){
-      //       alert('success');
-      //     },failure: function() {
-      //       alert('failure');
-      //     },
-      //     color: 'yellow',   // a non-ajax option
-      //     textColor: 'black' // a non-ajax option
-      //   }
-      // ],
-      
-      eventColor: 'red',
-      eventClick: function(info) {
-        alert('Event: ' + info.event.title);  // 이벤트명
-        alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY); // 좌표
-        alert('View: ' + info.view.type); // 페이지 형식 : 
-
-        // change the border color just for fun
-        info.el.style.borderColor = 'red';
-      }
-    });
-
-    var event = calendar.getEventById('a') // an event object!
-    var start = event.start // a property (a Date object)
-    console.log(start.toISOString()) // "2018-09-01T00:00:00.000Z"
-
-    calendar.render();
-  });
+  
   
   $(function(){
     $.ajax({
@@ -174,18 +53,84 @@
         url:'calendarView.do',
         type:'post',
         success:function(data){
+        	
+        	console.log(data);
+        	alert('성공');
+        	
         	var events = [];
             $.each(data, function (index, value) {
 
                 events.push({
                     
-                    title: value.title,
-                    start: value.sDate
+                    title: value[index],
+                    start: '2020-04-20',
+                    end:'2020-04-27'
+                    
                     //all data
                 });
                 console.log(value)
             });
-            callback(events);
+            
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+              plugins: [ 'interaction', 'dayGrid', 'timeGrid' ],
+              header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+              },
+              defaultDate: new Date(),
+              navLinks: true, // can click day/week names to navigate views
+              selectable: true,
+              selectMirror: true,
+              select: function(arg) {
+                var title = prompt('Event Title:');
+                if (title) {
+                  calendar.addEvent({
+                    title: title,
+                    start: arg.start,
+                    end: arg.end,
+                    allDay: arg.allDay
+
+                    
+                  })
+                }
+                calendar.unselect()
+              },
+              editable: true,
+              eventLimit: true, // allow "more" link when too many events
+              events: events,
+
+              // eventSources: [
+              //   {
+              //     url: '/myfeed.php',
+              //     method: 'POST',
+              //     extraParams: {
+              //       custom_param1: 'something',
+              //       custom_param2: 'somethingelse'
+              //     },success:function(){
+              //       alert('success');
+              //     },failure: function() {
+              //       alert('failure');
+              //     },
+              //     color: 'yellow',   // a non-ajax option
+              //     textColor: 'black' // a non-ajax option
+              //   }
+              // ],
+              
+              eventColor: 'red',
+              eventClick: function(info) {
+                alert('Event: ' + info.event.title);  // 이벤트명
+                alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY); // 좌표
+                alert('View: ' + info.view.type); // 페이지 형식 : 
+
+                // change the border color just for fun
+                info.el.style.borderColor = 'red';
+              }
+            });
+            calendar.render();
+          
         },
         error:function(){
             alert('에러남, 아무튼 에러남');
@@ -332,88 +277,6 @@
 	.circle-progress-text p {
 		margin-bottom: 0;
 		color: #828282;
-	}
-	
-	/* calendar*/
-	#calendar {
-		width: 100%;
-	}
-	#calendar a {
-		color: #8e352e;
-		text-decoration: none;
-	}
-	#calendar ul {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		width: 100%;
-	}
-	#calendar li {
-		display: block;
-		float: left;
-		width: 14.342%;
-		padding: 5px;
-		box-sizing: border-box;
-		border: 1px solid #ccc;
-		margin-right: -1px;
-		margin-bottom: -1px;
-	}
-	#calendar ul.weekdays {
-		height: 40px;
-		background: #ccc;
-	}
-		
-	#calendar ul.weekdays li {
-		text-align: center;
-		text-transform: uppercase;
-		line-height: 20px;
-		padding: 10px 6px;
-		color: #fff;
-		font-size: 13px;
-		
-		color: white;
-		background-color: #323232;
-		border: 1px solid gray;
-	}
-	#calendar .days li {
-		height: 140px;
-	}
-	#calendar .days li:hover {
-		background: #d3d3d3;
-	}
-	#calendar .date {
-		text-align: center;
-		/* padding: 10px; */
-		background-color: gray;
-		color: #fff;
-		width: 28px;
-		border-radius: 60%;
-		float: left;
-		
-	}
-	#calendar .event {
-		clear: both;
-		display: block;
-		font-size: 13px;
-		border-radius: 4px;
-		padding: 5px;
-		margin-top: 40px;
-		margin-bottom: 5px;
-		line-height: 14px;
-		background: #e4f2f2;
-		border: 1px solid #b5dbdc;
-		color: #009aaf;
-		text-decoration: none;
-		overflow: hidden;
-	}
-	#calendar .event-desc {
-		color: #666;
-		margin: 3px 0 7px 0;
-	text-decoration: none;
-	}
-	#calendar .other-month {
-		background: #f5f5f5;
-		color: #666;
 	}
 
 	/* progress-bar */
