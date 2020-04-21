@@ -68,7 +68,7 @@
 		p{margin :0}
 		
 		button{
-			width:50%;
+			width:100%;
 		}
 	</style>
 </head>
@@ -130,8 +130,8 @@
 						<td>${b.banTerm}</td>
 					</tr>
 					<tr>
-						<td></td>
-						<td><button onclick="cancleCheck();">차단해제</button><button onclick="cancle();">취소</button></td>
+						<td><button onclick="cancleCheck();">차단해제</button></td>
+						<td><button onclick="cancle();">취소</button></td>
 					</tr>
 				</table>
 				</c:if>

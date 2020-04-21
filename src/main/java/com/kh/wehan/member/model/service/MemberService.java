@@ -166,4 +166,11 @@ public interface MemberService {
 	 */
 	ArrayList<BlackList> blackList(PageInfo pi);
 	
+	/**
+	 * 마이페이지 생성
+	 * @param userId
+	 * @return
+	 */
+	int insertMypage(String userId);
+	
 }

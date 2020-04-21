@@ -89,7 +89,10 @@ public class MemberController {
 		
 		int result = mService.insertMember(m);
 		
-		if(result>0) {
+		String userId = m.getUserId();
+		int result2 = mService.insertMypage(userId);
+		
+		if(result>0 && result2>0) {
 			return "user/login";
 		}else {
 			return "common/errorPage";
