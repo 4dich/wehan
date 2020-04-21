@@ -245,6 +245,25 @@ public class MypageController {
 		return mv;
 	}
 	
+	@RequestMapping("updateLvExp.do")
+	public void my_updateLvExp(HttpServletRequest request, HttpServletResponse response, int myLevel, int myExp) throws JsonIOException, IOException {
+		HttpSession session = request.getSession();
+		Member mem = (Member)session.getAttribute("loginUser");
+		
+		System.out.println(myExp);
+		System.out.println(myLevel);
+		
+		String myId = mem.getUserId();
+		Mypage mypage = new Mypage(myId, myExp, myLevel);
+		
+		int result = myService.my_updateLvExp(mypage);
+		
+		response.setContentType("application/json; charset=utf-8");
+		
+		Gson gson = new Gson();
+		gson.toJson(result, response.getWriter());
+	}
+	
 	@RequestMapping("my_diaryView.do")
 	public String my_diaryView() {
 		return "user/mypage/my_diary";

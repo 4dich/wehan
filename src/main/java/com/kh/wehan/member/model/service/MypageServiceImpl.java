@@ -68,4 +68,8 @@ public class MypageServiceImpl implements MypageService {
 		return myDao.my_follow(f);
 	}
 
+	@Override
+	public int my_updateLvExp(Mypage mypage) {
+		return myDao.my_updateLvEx(mypage);
+	}
 }

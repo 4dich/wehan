@@ -664,6 +664,8 @@
 										var $progress = $("#progress-bar");
 										var percent = 0;
 										
+										var currentLv = 0;
+										var currentExp = 0;
 										/* lv1 */
 										if(countComplete>=0 && countComplete<5){
 											$lv[0].innerText = 1;
@@ -675,6 +677,9 @@
 											$progress.css('width',percent);
 											$progress[0].innerText = 'Exp ' + $exp[0].innerText;
 											$("#lv-img").attr("src", "resources/images/level/lv1.png");
+											
+											currentLv = 1;
+											currentExp = countComplete;
 										/* lv2 */
 										}else if(countComplete>=5 && countComplete<15){
 											$lv[0].innerText = 2;
@@ -686,6 +691,9 @@
 											$progress.css('width',percent);
 											$progress[0].innerText = 'Exp ' + $exp[0].innerText;
 											$("#lv-img").attr("src", "resources/images/level/lv2.png");
+											
+											currentLv = 2;
+											currentExp = countComplete-5;
 										/* lv3 */
 										}else if(countComplete>=15 && countComplete<30){
 											$lv[0].innerText = 3;
@@ -697,6 +705,9 @@
 											$progress.css('width',percent);
 											$progress[0].innerText = 'Exp ' + $exp[0].innerText;
 											$("#lv-img").attr("src", "resources/images/level/lv3.png");
+											
+											currentLv = 3;
+											currentExp = countComplete-15;
 										/* lv4 */
 										}else if(countComplete>=30 && countComplete<50){
 											$lv[0].innerText = 4;
@@ -708,6 +719,9 @@
 											$progress.css('width',percent);
 											$progress[0].innerText = 'Exp ' + $exp[0].innerText;
 											$("#lv-img").attr("src", "resources/images/level/lv4.png");
+											
+											currentLv = 4;
+											currentExp = countComplete-30;
 										/* lv5 */ 
 										}else if(countComplete>=50 && countComplete<75){
 											$lv[0].innerText = 5;
@@ -719,6 +733,9 @@
 											$progress.css('width',percent);
 											$progress[0].innerText = 'Exp ' + $exp[0].innerText;
 											$("#lv-img").attr("src", "resources/images/level/lv5.png");
+											
+											currentLv = 5;
+											currentExp = countComplete-50;
 										/* lv6 */
 										}else{
 											$lv[0].innerText = 75;
@@ -730,7 +747,19 @@
 											$progress.css('width',percent);
 											$progress[0].innerText = 'Exp ' + $exp[0].innerText;
 											$("#lv-img").attr("src", "resources/images/level/lv6.png");
+											
+											currentLv = 6;
+											currentExp = countComplete-75;
 										}
+										
+										console.log(typeof(currentLv));
+										console.log(typeof(currentExp));
+										
+										$.ajax({
+											url: 'updateLvExp.do',
+											type: 'post',
+											data: {myLevel:currentLv,myExp:currentExp}
+										});
 									});
 									
 									/* circle-wrap, window.onload뒤에 값변경 적용 안되서 포기*/

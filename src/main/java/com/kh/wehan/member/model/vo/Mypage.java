@@ -1,5 +1,9 @@
 package com.kh.wehan.member.model.vo;
 
+/**
+ * @author deard
+ *
+ */
 public class Mypage {
    private String userId;
    private String intro;
@@ -26,6 +30,14 @@ public class Mypage {
 		this.intro = intro;
 		this.goal = goal;
 		this.interest = interest;
+	}
+   
+   
+	public Mypage(String userId, int myExp, int myLevel) {
+		super();
+		this.userId = userId;
+		this.myExp = myExp;
+		this.myLevel = myLevel;
 	}
 	public String getUserId() {
       return userId;

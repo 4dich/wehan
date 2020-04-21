@@ -49,7 +49,14 @@ public interface MypageService {
 	 * @return
 	 */
 	public int certifyCount(Certify ce);
-
+	
+	/**
+	 * 2-3. 마이페이지 마이챌린지입장시, 레벨과 경험치 업데이트
+	 * @param mypage
+	 * @return
+	 */
+	public int my_updateLvExp(Mypage mypage);
+	
 	/**
 	 * 4-1. 다른사람 마이페이지의 회원정보 가져오기
 	 * @param otherId
@@ -78,7 +85,6 @@ public interface MypageService {
 	 * @return
 	 */
 	public int my_follow(Follow f);
-	
 
 
 }
