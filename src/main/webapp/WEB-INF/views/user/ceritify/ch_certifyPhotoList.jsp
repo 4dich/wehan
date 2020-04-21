@@ -113,7 +113,7 @@
 						<div id="ch_confirmPhotoListArea">
 							<div id="buttonArea">
 								<div class="challengeName">【      ${  list[0].chName }  】</div>
-								<input type="button" value="인증등록" onclick="location.href='challengeRegister.html'">
+								<input type="button" value="인증등록" id="insertCertify">
 							</div>
 							<!-- 인증사진리스트영역 -->
 							<div id="photoList">
@@ -172,6 +172,7 @@
 
 	<script>
 	$(function(){
+		// 상세보기
 		var chId = $('#chId').val();
 		console.log(chId);
 		var check = 'chal';
@@ -182,10 +183,14 @@
 			console.log(ceId);
 			location.href = "fid_detailView.do?ceId="+ceId+"&currentPage=" + currentPage+"&check="+check;
 		});
-
+		// 목록으로
 		$('#challengeBack').click(function(){
 			 location.href = "hiddenDetailInList.do?chId="+chId;
 		 });
+		
+		$('#insertCertify').click(function(){
+			location.href = "insertCertify.do?chId"+chId;
+		});
 		
 	});
 	</script>
