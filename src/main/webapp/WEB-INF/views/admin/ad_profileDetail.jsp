@@ -66,6 +66,10 @@
 		tbody  th {padding:10px;}
 		#prof{margin-left: 105px; text-align: center; margin-top: 20px; font-size: 18px;}
 		p{margin :0}
+		
+		button{
+			width:50%;
+		}
 	</style>
 </head>
 <body>
@@ -92,7 +96,7 @@
 					</tr>
 					<tr>
 						<th>차단 사유</th>
-						<td><input id="BanReason" type="text" style="border-top: none; border-left: none; border-right: none;"></td>
+						<td><input id="BanReason" type="text" placeholder="차단 이유" style="border-top: none; border-left: none; border-right: none;"></td>
 					</tr>
 					<tr>
 						<th>차단 기간</th>
@@ -100,7 +104,7 @@
 					</tr>
 					<tr>
 						<td></td>
-						<td><button onclick="insertCheck();">등록</button><button onclick="cancle();">취소</button></td>
+						<td><button id="blackInsert">등록</button><button onclick="cancle();">취소</button></td>
 					</tr>
 				</table>
 			</div>
@@ -255,6 +259,18 @@
 			}
 		});
 		
+		$('#blackInsert').click(function(){
+			var BanDay = $('#BanDay').val();
+			var BanReason = $('#BanReason').val();
+			if(!check(/^[0-9]*$/,BanDay)){
+				alert("차단 기간은 숫자만 입력해주세요");
+			}else if(BanReason == null || BanReason == ""){
+				alert("차단 이유를 입력해 주세요.");
+			}else{
+				insertCheck();
+			}
+		});
+		
 		function check(p,e){
 			if(!p.test(e)){
 				return false;
@@ -267,11 +283,6 @@
 				var bUserId = $('#bUserId').val();
 				var BanReason = $('#BanReason').val();
 				var BanDay = $('#BanDay').val();
-				
-				if(!check(/^[0-9]$/,BanDay)){
-					alert("차단 기간은 숫자만 입력");
-					continue;
-				}
 				
 				console.log("bUserId : "+ bUserId + " BanReason : " +BanReason + " BanTerm : " + BanDay );
 				$.ajax({
@@ -293,22 +304,22 @@
 		
 		function cancleCheck(){
 			 if (confirm("블랙리스트 차단 해제 하시겠습니까?")){    //확인
-				 	var bId = $('#bId').val();
-					$.ajax({
-						url:"blackCancle.do",
-						type:"post",
-						data:{"bId":bId},
-						success:function(data){
-							if(data=="ok"){
-								alert("블랙리스트 취소 됐습니다.");
-								location.reload();
-								$('.black').hide();
-							}
-						},error:function(){
-							console.log("에러");
+				var bId = $('#bId').val();
+				$.ajax({
+					url:"blackCancle.do",
+					type:"post",
+					data:{"bId":bId},
+					success:function(data){
+						if(data=="ok"){
+							alert("블랙리스트 취소 됐습니다.");
+							location.reload();
+							$('.black').hide();
 						}
-					});
-				 }
+					},error:function(){
+						console.log("에러");
+					}
+				});
+			}
 		}
 		
 		function cancle(){
