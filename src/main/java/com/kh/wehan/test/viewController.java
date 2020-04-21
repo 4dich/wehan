@@ -78,11 +78,6 @@ public class viewController {
 		return "user/challenge/ch_list";
 	}
 	
-	@RequestMapping("ch_premiumListView.do")
-	public String ch_premiumListView() {
-		return "user/challenge/ch_premiumList";
-	}
-	
 	@RequestMapping("ch_top10ListView.do")
 	public String ch_top10ListView() {
 		return "redirect:getChallengeTop10List.do";
@@ -92,12 +87,6 @@ public class viewController {
 	public String ch_registerView() {
 		return "user/challenge/ch_register";
 	}
-	
-	@RequestMapping("ch_premiumRegisterView.do")
-	public String ch_premiumRegisterView() {
-		return "user/challenge/ch_premiumRegister";
-	}
-	
 	
 	@RequestMapping("findIdPwdView.do")
 	public String findIdPwdView() {
