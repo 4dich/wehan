@@ -30,6 +30,7 @@
 		<result property="chContent" column="CHCONTENT"/>
 		<result property="startDate" column="STARTDATE"/>
 		<result property="endDate" column="ENDDATE"/>
+		<result property="category" column="CATEGORY"/>
 		<result property="ceMethod" column="CEMETHOD"/>
 		<result property="price" column="PRICE"/>
 		<result property="totalPrice" column="TOTALPRICE"/>
@@ -110,6 +111,7 @@
 	<select id="selectChallengeList" resultMap="challengeResultSet">
 		SELECT * FROM
 		CHALLENGE
+		ORDER BY CHID DESC
 	</select>
 	
 	<select id="getListCategoryCount" resultType="_int">
@@ -122,6 +124,7 @@
 		SELECT * FROM
 		CHALLENGE
 		WHERE CATEGORY=#{category}
+		ORDER BY CHID DESC
 	</select>
 	
 	<select id="selectSearchChNameList" resultMap="challengeResultSet">
@@ -175,16 +178,23 @@
 	<select id="selectPremiumList" resultMap="premiumChallengeResultSet">
 		SELECT *
 		FROM PREMIUMCHALLENGE
+		ORDER BY CHPID DESC
 	</select>
 	
 	<insert id="insertPremiumChallenge">
 		INSERT INTO PREMIUMCHALLENGE
 		VALUES(SEQ_chPId.NEXTVAL,#{userId},#{chName},#{chPicture},#{chContent},#{startDate},#{endDate},
-				#{category},#{ceMethod},#{price},0,0,#{maxPerson},#{chPeople},0)
+				#{category},#{ceMethod},#{price},0,0,#{maxPerson},#{chPeople},0)	
 	</insert>
 	
 	<select id="premiumListCount" resultType="_int">
 		SELECT COUNT(*)
 		FROM PREMIUMCHALLENGE
+	</select>
+	
+	<select id="getChallenge" resultMap="challengeResultSet">
+		SELECT *
+		FROM CHALLENGE
+		WHERE CHNAME = #{chName}
 	</select>
 </mapper>

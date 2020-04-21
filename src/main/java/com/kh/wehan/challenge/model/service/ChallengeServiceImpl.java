@@ -102,4 +102,9 @@ public class ChallengeServiceImpl implements ChallengeService {
 		return cDao.getPremiumListCount();
 	}
 
+	@Override
+	public Challenge getChallenge(String chName) {
+		return cDao.getChallenge(chName);
+	}
+
 }

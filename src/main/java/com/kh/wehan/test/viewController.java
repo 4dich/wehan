@@ -93,6 +93,11 @@ public class viewController {
 		return "user/challenge/ch_register";
 	}
 	
+	@RequestMapping("ch_premiumRegisterView.do")
+	public String ch_premiumRegisterView() {
+		return "user/challenge/ch_premiumRegister";
+	}
+	
 	
 	@RequestMapping("findIdPwdView.do")
 	public String findIdPwdView() {

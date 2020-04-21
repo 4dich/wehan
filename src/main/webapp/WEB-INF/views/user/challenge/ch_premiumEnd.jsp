@@ -135,7 +135,7 @@
 									<form class="contact-form" style="margin-top: 65px;">
 										<div class="row">
 											<input type="hidden" name="price" value="${chal.price}">
-											<input type="hidden" name="chId" value="${chal.chId}">
+											<input type="hidden" name="chPId" value="${chal.chPId}">
 											<input type="hidden" name="chName" value="${chal.chName}">
 											
 											<div class="col-lg-12 message-body">
@@ -205,7 +205,7 @@
 		<div class="copyright"><p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
 		All rights reserved </p></div>
 		</div>
-	<!-- Main section end -->	
+	<!-- Main section end -->
 	
 	<!--====== Javascripts & Jquery ======-->
 	<script src="resources/js/jquery-3.2.1.min.js"></script>

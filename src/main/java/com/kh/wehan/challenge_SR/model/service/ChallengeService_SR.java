@@ -20,6 +20,12 @@ public interface ChallengeService_SR {
 	 */
 	ArrayList<ChallengerInfo> getChallengerList(String[] list);
 
+	/**
+	 * 결제 취소 시 챌린지 삭제
+	 * @param chId
+	 * @return
+	 */
+	int cancleRegister(String chId);
 	
 	
 }

@@ -130,7 +130,6 @@
 								<div class="portfolio-item" style="margin-top: 60px;">
 									<img src="resources/images/challenge/${ chal.chPicture }" style="height: 626px;" alt="">
 									<div class="pi-info">
-										<span style="margin-left:45px; font-size:20px; font-weight:bolder;">마감까지</span>
 										<h3 style="font-size:65px; color:#ffa722; text-align:center">
 											D-<span id='count'></span>
 										</h3>
@@ -142,7 +141,7 @@
 									<form class="contact-form" style="margin-top: 65px;">
 										<div class="row">
 											<input type="hidden" name="price" value="${chal.price}">
-											<input id="chIdArea" type="hidden" name="chId" value="${chal.chId}">
+											<input id="chPIdArea" type="hidden" name="chPId" value="${chal.chPId}">
 											<input id="chNameArea" type="hidden" name="chName" value="${chal.chName}">
 											
 											<div class="col-lg-12 message-body">
@@ -214,7 +213,6 @@
 										인증사진 목록가기
 										<img src="img/arrow-righ-2.png" alt="">
 									</button>
-									<input type="hidden" id="loginId" value="${ loginUser.userId }">
 								</div>
 							</div>
 						</div>
@@ -232,37 +230,19 @@
 		<script>
 		
 			function certifyInsert(){
-				var list = [];
-				list = '${chal.chPeople}'.split(',');	
+				alert("되나");
 				var chName = document.getElementById('chNameArea').value;
 				var chId = document.getElementById('chIdArea').value;
-				var userId = document.getElementById('loginId').value;
-				console.log(userId);
-				console.log(list);
 				console.log(chName);
 				console.log(chId);
-				//location.href ="ch_certifyPhotoListView.do";
 				
-				var result = 'ft';
 				
-				for(var i in list){
-					console.log(list[i]);
-					if(list[i] == userId){
-						result += 't';
-					}
-				}
-				if(result == 'ftt'){
-					location.href ="ch_certifyList.do?chId="+chId;
-				}else{
-					alert("챌린지 참여원이 아닙니다.");	
-				}
 				/* 챌린지 넘겨서 리스트 출력하기 */
 				
 				
 				
 			}
 			<!-- 남은 날짜 출력 -->
-			
 			$(function(){
 				var today = new Date();
 				var a = '${chal.endDate}';
@@ -279,13 +259,9 @@
 			});
 		
 			<!-- 참여인원 목록 리스트 가져오기 ajax -->
-			
 			$(function(){
 				var list = [];
-				list = '${chal.chPeople}'.split(',');	
-				
-
-				var hostId = '${chal.userId}';
+				list = '${chal.chPeople}'.split(',');							
 				
 				$.ajaxSettings.traditional=true;
 				$.ajax ({					
@@ -296,48 +272,25 @@
 						
 						for(var i = 0; i < data.length; i++) {
 							
-// 내 아이디를 누르면 내 프로필로 이동
+							// 내 아이디를 누르면 내 프로필로 이동
+							if( '${loginUser.userId}' == data[i].userId) {
 							
-							if(data[i].userId == hostId){
-								if( '${loginUser.userId}' == data[i].userId) {
+								$a = $('<a>').attr({'class':'dropdown-item', 
+													'value':data[i].userId, 
+													'href' : 'my_profileView.do'});
+								$strong = $('<strong>').text(data[i].userNickname);
 								
-									$a = $('<a>').attr({'class':'dropdown-item', 
-														'value':data[i].userId, 
-														'href' : 'my_profileView.do'});
-									$strong = $('<strong>').text(data[i].userNickname);
-									
-									
-									$('.dropdown-menu').append($a.append($strong).append('&nbsp;&nbsp;level.' + data[i].userLevel + '&nbsp;＜주최자＞'));
 								
-								} else { // 친구 아이디를 누르면 친구 프로필로 이동
-									$a = $('<a>').attr({'class':'dropdown-item', 
-										'value':data[i].userId, 
-										'href' : 'other_profileView.do?otherId=' + data[i].userId});
-									$strong = $('<strong>').text(data[i].userNickname);
-					
-					
-									$('.dropdown-menu').append($a.append($strong).append('&nbsp;&nbsp;level.' + data[i].userLevel + '&nbsp;＜주최자＞'));
-								}
-							} else {
-								if( '${loginUser.userId}' == data[i].userId) {
-									
-									$a = $('<a>').attr({'class':'dropdown-item', 
-														'value':data[i].userId, 
-														'href' : 'my_profileView.do'});
-									$strong = $('<strong>').text(data[i].userNickname);
-									
-									
-									$('.dropdown-menu').append($a.append($strong).append('&nbsp;&nbsp;level.' + data[i].userLevel));
-								
-								} else { // 친구 아이디를 누르면 친구 프로필로 이동
-									$a = $('<a>').attr({'class':'dropdown-item', 
-										'value':data[i].userId, 
-										'href' : 'other_profileView.do?otherId=' + data[i].userId});
-									$strong = $('<strong>').text(data[i].userNickname);
-					
-					
-									$('.dropdown-menu').append($a.append($strong).append('&nbsp;&nbsp;level.' + data[i].userLevel));
-								}
+								$('.dropdown-menu').append($a.append($strong).append('&nbsp;&nbsp;level.' + data[i].userLevel));
+							
+							} else { // 친구 아이디를 누르면 친구 프로필로 이동
+								$a = $('<a>').attr({'class':'dropdown-item', 
+									'value':data[i].userId, 
+									'href' : 'other_profileView.do?otherId=' + data[i].userId});
+								$strong = $('<strong>').text(data[i].userNickname);
+				
+				
+								$('.dropdown-menu').append($a.append($strong).append('&nbsp;&nbsp;level.' + data[i].userLevel));
 							}
 						}
 					}, error:function(){

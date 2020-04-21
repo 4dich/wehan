@@ -195,9 +195,19 @@ public class ChallengeController {
 		chal.setChPicture(picture);
 		
 		int result = cService.insertChallenge(chal);
-		System.out.println(chal);
+		
+		// 챌린지 등록 후 등록한 챌린지 정보 가져오기
+		Challenge ch = cService.getChallenge(chal.getChName());
+		
+		
+		int viewPage = 1; // 페이지 확인용
+		String chName = ch.getChName();
+		int price = ch.getPrice();
+		String chId = ch.getChId();
+		
 		if(result > 0) {
-			mv.addObject("chal", chal).setViewName("user/challenge/ch_detail");
+			mv.addObject("viewPage", viewPage).addObject("ch", ch).addObject("chName", chName).addObject("price", price).addObject("chId",chId)
+			.setViewName("redirect:payinfo.do");
 		} else {
 			mv.addObject("msg", "오류입니다").setViewName("common/errorPage");
 		}	
@@ -341,10 +351,8 @@ public class ChallengeController {
 	@RequestMapping("checkPremium.do")
 	public void checkPremium(HttpServletResponse response,String userId) throws IOException {
 		
-		System.out.println("userId : " + userId);
 		Mypage myLvl = cService.checkPremiumCondition(userId);
 		int level = myLvl.getMyLevel();
-		System.out.println("level : " + level);
 		
 		PrintWriter out = response.getWriter();
 		out.print(level);
@@ -406,16 +414,18 @@ public class ChallengeController {
 		} 
 		// 진행 중
 		else if(today.getTime() >= startTime.getTime() && today.getTime() < endTime.getTime()) {
-			mv.addObject("chal", chal).setViewName("user/challenge/ch_premiumDetailDoing");
+			mv.addObject("chal", chal).setViewName("user/challenge/ch_premiumDoing");
 		}
 		// 진행 마감
 		else {
 			mv.addObject("chal", chal);
-			mv.setViewName("user/challenge/ch_premiumDetailEnd");
+			mv.setViewName("user/challenge/ch_premiumEnd");
 		}
 			
 		return mv;
 	}
+	
+	
 	
 	/**
 	 * 4_4. 프리미엄 챌린지 리스트 내 검색 기능
@@ -473,7 +483,6 @@ public class ChallengeController {
 		
 		 if(!file.getOriginalFilename().equals(" ")) { 
 			 picture = saveFile(file, request);
-		 
 			 if(picture != null) { 
 				 chal.setChPicture(picture); 
 			 	}

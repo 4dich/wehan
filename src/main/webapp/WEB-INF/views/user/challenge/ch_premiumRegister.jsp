@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
-   <title>CH_REGISTER</title>
+   <title>CH_PREMIUMREGISTER</title>
    <meta charset="UTF-8">
    <meta name="description" content="Nissa Photography studio html template">
    <meta name="keywords" content="industry, html">
@@ -70,9 +70,9 @@
                </p>
             </div>
 
-            <button class="site-btn sb-dark" style="margin-left: 35px; width: 280px; font-size: 15px;" type="button" onclick="location.href='chalList.do'">
+            <button class="site-btn sb-dark" style="margin-left: 35px; width: 280px; font-size: 15px;" type="button" onclick="location.href='premiumList.do'">
                  리스트 페이지로 가기
-               <img src="img/arrow-righ-3.png" alt="">
+               <img src="resources/images/arrow-righ-3.png" alt="">
             </button>
             <br><br>
             <!-- <ul class="contact-info">
@@ -97,14 +97,14 @@
                            <form class="contact-form" action="registerPremiumChal.do" method="post" enctype="multipart/form-data" style="margin-top: 90px;"> 
                               <div class="row">
                                  <div class="col-lg-12">
-                                    <input type="text" id="chName" name="chName" maxlength="54" style="border-top: none; border-left: none; border-right: none;" placeholder="챌린지명">
+                                    <input type="text" id="chName" name="chName" maxlength="12" style="border-top: none; border-left: none; border-right: none;" placeholder="챌린지명">
                                  </div>
                              
                                  <script> 
                                  	$(document).ready(function(){ 
                                  		$('#chName').keyup(function() { 
-                                 			if($(this).val().length > $(this).attr('maxlength')) { 
-                                 				alert('도전명은 최대 18글자까지만 만들 수 있습니다.'); 
+                                 			if($("#chName")[0].value.length > $(this).attr('maxlength')) { 
+                                 				alert('도전명은 최대 12글자까지만 만들 수 있습니다.'); 
                                  				$(this).val($(this).val().substr(0, $(this).attr('maxlength'))); 
                                  			} 
                                  		}); 
@@ -226,7 +226,8 @@
 	           }
 	       };
 	       jQuery.datepicker.setDefaults(jQuery.datepicker.regional['ko']);
-           $('#startDatepicker, #endDatepicker').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)         */
+           $('#startDatepicker').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)         */
+           $('#endDatepicker').datepicker('setDate', '+7D'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)         */
 	   });
 	
 	   function inputDateComparison(obj) {

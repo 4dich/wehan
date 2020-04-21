@@ -3,18 +3,24 @@ package com.kh.wehan.challenge_SR.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
+import com.kh.wehan.challenge.model.vo.Challenge;
 import com.kh.wehan.challenge_SR.model.service.ChallengeService_SR;
 import com.kh.wehan.challenge_SR.model.vo.ChallengeTop10;
 import com.kh.wehan.challenge_SR.model.vo.ChallengerInfo;
+import com.kh.wehan.member.model.vo.Member;
 
 @Controller
 public class ChallengeController_SR {
@@ -52,6 +58,7 @@ public class ChallengeController_SR {
 	@RequestMapping("getChallengerList.do")
 	public void getChallengerList(String[] list, HttpServletResponse response) throws JsonIOException, IOException {
 
+		
 		ArrayList<ChallengerInfo> info = chalServiceSr.getChallengerList(list);
 		
 		response.setContentType("application/json; charset=UTF-8");
@@ -61,4 +68,26 @@ public class ChallengeController_SR {
 		gson.toJson(info, response.getWriter());
 		
 	}
+	
+	
+	/**
+	 * 결제 취소 시 챌린지 삭제
+	 * @param chId
+	 * @param mv
+	 * @return
+	 */
+	@RequestMapping("cancleRegister.do")
+	public ModelAndView cancleRegister(String chId, ModelAndView mv) {
+		
+		int result = chalServiceSr.cancleRegister(chId);
+		
+		if(result > 0) {
+			mv.setViewName("redirect:chalList.do");
+		} else {
+			mv.addObject("msg","ERROR").addObject("msg2","오류가 있습니다.").setViewName("common/errorPage");
+		}
+		
+		return mv;
+	}
+	
 }
