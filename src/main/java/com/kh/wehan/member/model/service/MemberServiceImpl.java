@@ -122,5 +122,9 @@ public class MemberServiceImpl implements MemberService{
 	public int mlistSearchCount(Member mem) {
 		return mDao.mlistSearchCount(mem);
 	}
+	@Override
+	public int insertMypage(String userId) {
+		return mDao.insertMypage(userId);
+	}
 	
 }

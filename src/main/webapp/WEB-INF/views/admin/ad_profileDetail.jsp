@@ -61,15 +61,16 @@
 			background: white;
 			vertical-align: middle;
 		}
+		
+		input{background:white;}
+		
 		.infoMenu{font-size: 16px;}
 		tbody  td {padding:20px; padding-bottom: 0;}
 		tbody  th {padding:10px;}
 		#prof{margin-left: 105px; text-align: center; margin-top: 20px; font-size: 18px;}
 		p{margin :0}
 		
-		button{
-			width:50%;
-		}
+		
 	</style>
 </head>
 <body>
@@ -130,8 +131,8 @@
 						<td>${b.banTerm}</td>
 					</tr>
 					<tr>
-						<td></td>
-						<td><button onclick="cancleCheck();">차단해제</button><button onclick="cancle();">취소</button></td>
+						<td><button onclick="cancleCheck();">차단해제</button></td>
+						<td><button onclick="cancle();">취소</button></td>
 					</tr>
 				</table>
 				</c:if>

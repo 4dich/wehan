@@ -202,7 +202,7 @@
 		<if test="chName != null">
 		WHERE C.CHNAME LIKE '%' || #{chName} || '%'
 		</if>
-		ORDER BY REFUND_YN DESC
+		ORDER BY REFUND_YN ASC
 		
 	</select>
 	

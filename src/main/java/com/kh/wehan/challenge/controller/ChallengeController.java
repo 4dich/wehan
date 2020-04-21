@@ -195,7 +195,6 @@ public class ChallengeController {
 		chal.setChPicture(picture);
 		
 		int result = cService.insertChallenge(chal);
-		System.out.println(chal);
 		if(result > 0) {
 			mv.addObject("chal", chal).setViewName("user/challenge/ch_detail");
 		} else {
@@ -341,10 +340,8 @@ public class ChallengeController {
 	@RequestMapping("checkPremium.do")
 	public void checkPremium(HttpServletResponse response,String userId) throws IOException {
 		
-		System.out.println("userId : " + userId);
 		Mypage myLvl = cService.checkPremiumCondition(userId);
 		int level = myLvl.getMyLevel();
-		System.out.println("level : " + level);
 		
 		PrintWriter out = response.getWriter();
 		out.print(level);
@@ -417,6 +414,8 @@ public class ChallengeController {
 		return mv;
 	}
 	
+	
+	
 	/**
 	 * 4_4. 프리미엄 챌린지 리스트 내 검색 기능
 	 * @param mv
@@ -473,7 +472,6 @@ public class ChallengeController {
 		
 		 if(!file.getOriginalFilename().equals(" ")) { 
 			 picture = saveFile(file, request);
-		 
 			 if(picture != null) { 
 				 chal.setChPicture(picture); 
 			 	}
