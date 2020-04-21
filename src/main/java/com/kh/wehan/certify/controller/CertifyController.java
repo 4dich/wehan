@@ -275,6 +275,22 @@ public class CertifyController {
 	}
 	
 	/**
+	 * 댓글 삭제
+	 * @param r
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("delReply.do")
+	public String delReply(CertifyReply r) {
+		int result = ceService.deleteReply(r);
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
+	
+	/**
 	 * 카테고리 ajax
 	 * @param response
 	 * @param category
@@ -303,6 +319,47 @@ public class CertifyController {
 	}
 	
 	
+	/**
+	 * 카테고리 ajax
+	 * @param response
+	 * @param category
+	 * @param currentPage
+	 * @throws JsonIOException
+	 * @throws IOException
+	 */
+	@RequestMapping("fid_Condition.do")
+	public void fidCategory(HttpServletResponse response,String title,String category,@RequestParam(value="currentPage",required=false,defaultValue="1") int currentPage) throws JsonIOException, IOException {
+		System.out.println(currentPage);
+		System.out.println(title);
+		System.out.println(category);
+		PageInfo pi = null;
+		ArrayList<Certify> list = null;
+		
+		if(category != null && category != "") {
+			int Count = ceService.fidCategoryCount(category);
+			pi = Pagination.getPageInfo(currentPage,Count,5,9);
+			list = ceService.fidCategory(category,pi);
+		}
+		
+		if(title != null && title!="") {
+			int Count = ceService.fidTitleCount(title);
+			pi = Pagination.getPageInfo(currentPage,Count,5,9);
+			list = ceService.fidTitle(title,pi);
+		}
+		
+		response.setContentType("application/json; charset=utf-8");
+		
+		Map map = new HashMap();
+		
+		map.put("list",list);
+		map.put("pi",pi);
+	
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		gson.toJson(map,response.getWriter());
+	}
+	
 	
 
 }
+
+

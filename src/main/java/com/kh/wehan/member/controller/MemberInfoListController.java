@@ -29,7 +29,7 @@ public class MemberInfoListController {
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage,mCount,10,10);
 		
-		ArrayList<Member> list = mService.memberList();
+		ArrayList<Member> list = mService.memberList(pi);
 		
 		for(Member m : list) {
 			int black = mService.blackCheck(m.getUserId());
@@ -50,10 +50,6 @@ public class MemberInfoListController {
 	public ModelAndView mlistSearch(ModelAndView mv, @RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage
 			,String selecter,String searchValue) throws JsonIOException, IOException {
 		
-		int mCount = mService.memberCount();
-		
-		PageInfo pi = Pagination.getPageInfo(currentPage,mCount,10,10);
-		
 		Member mem = new Member();
 		if(selecter.equals("userId")) {
 			mem.setUserId(searchValue);
@@ -65,7 +61,12 @@ public class MemberInfoListController {
 			mem.setUserName(searchValue);
 		}
 		
-		ArrayList<Member> list = mService.mlistSearch(mem);
+		int mCount = mService.mlistSearchCount(mem);
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage,mCount,10,10);
+		
+		
+		ArrayList<Member> list = mService.mlistSearch(mem,pi);
 		
 		for(Member m : list) {
 			int black = mService.blackCheck(m.getUserId());
@@ -76,7 +77,6 @@ public class MemberInfoListController {
 			}
 		}
 		
-		mv.addObject("searchValue",searchValue);
 		mv.addObject("list",list); 
 		mv.addObject("pi",pi);
 		mv.setViewName("admin/ad_profileList");
@@ -113,7 +113,7 @@ public class MemberInfoListController {
 		
 		int bCount = mService.blackListCount();
 		PageInfo pi = Pagination.getPageInfo(currentPage, bCount, 10, 10);
-		ArrayList<BlackList> list = mService.blackList();
+		ArrayList<BlackList> list = mService.blackList(pi);
 		mv.addObject("pi",pi);
 		mv.addObject("list",list);
 		mv.setViewName("admin/ad_blackList");

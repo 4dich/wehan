@@ -102,6 +102,23 @@ public class CertifyServiceImpl implements CertifyService{
 		return ceDao.followSearch(pi,sc);
 	}
 
+	/**
+	 * 댓글 삭제
+	 */
+	@Override
+	public int deleteReply(CertifyReply r) {
+		return ceDao.deleteReply(r);
+	}
+
+	@Override
+	public int fidTitleCount(String title) {
+		return ceDao.fidTitleCount(title);
+	}
+
+	@Override
+	public ArrayList<Certify> fidTitle(String title, PageInfo pi) {
+		return ceDao.fidTitle(title,pi);
+	}
 
 
 }

@@ -120,6 +120,8 @@
 	JOIN MEMBER M
 	ON C.USERID = M.USERID
 	WHERE CEID = #{ceId}
+	AND CCDEL_YN = 'N'
+	ORDER BY CCDATE DESC
 	</select>
 	
 	<!-- 피드 -->
@@ -204,7 +206,20 @@
 	WHERE HOST =#{writer} AND M.NICKNAME LIKE '%' || #{title} || '%'
 	
 	</select>
+	<update id="deleteReply" parameterType="CertifyReply">
+	UPDATE CERTIFYREPLY 
+	SET CCDEL_YN = 'Y'
+	WHERE USERID = #{userId}
+	AND CRID = #{crId}
+	AND CEID = #{ceId}
+	</update>
 
+	<select id="fidTitleCount" resultType="_int">
+	SELECT COUNT(*) FROM CHALLENGE C JOIN CERTIFY R ON C.CHID = R.CHID JOIN MEMBER M ON R.USERID = M.USERID WHERE CEDEL_YN = 'N' AND CHNAME LIKE '%' || #{title} || '%'
+	</select>
+	<select id="fidTitle" resultMap="certifyResultSet">
+	SELECT C.CHNAME,C.CATEGORY,M.NICKNAME,R.* FROM CHALLENGE C JOIN CERTIFY R ON C.CHID = R.CHID JOIN MEMBER M ON R.USERID = M.USERID WHERE CEDEL_YN = 'N' AND CHNAME LIKE '%' || #{title} || '%'
+	</select>
 </mapper>
 
 

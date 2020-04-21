@@ -2,6 +2,7 @@ package com.kh.wehan.challenge.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.kh.wehan.challenge.model.service.ChallengeService;
 import com.kh.wehan.challenge.model.vo.Challenge;
+import com.kh.wehan.challenge.model.vo.PremiumChallenge;
 import com.kh.wehan.common.Pagination;
 import com.kh.wehan.common.model.vo.PageInfo;
 import com.kh.wehan.member.model.vo.Member;
@@ -216,7 +218,7 @@ public class ChallengeController {
 		int listCount = cService.getListCount();
 		
 		int pageLimit = 5;
-		int boardLimit = 10;
+		int boardLimit = 9;
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, pageLimit, boardLimit);
 		
@@ -232,7 +234,6 @@ public class ChallengeController {
 	
 	/**
 	 * 3_2. 사용자 챌린지 리스트 > 상세 정보 보기
-	 * 4_3. 프리미엄 챌린지 리스트 > 상세 정보 보기
 	 * @param mv
 	 * @param chId
 	 * @return
@@ -272,7 +273,6 @@ public class ChallengeController {
 	  
 	/**
 	 * 3_3. 사용자 챌린지 리스트 > 카테고리 별 페이지 보기
-	 * 4_4. 프리미엄 챌린지 리스트 > 카테고리 별 페이지 보기
 	 * @param mv
 	 * @param category
 	 * @param currentPage
@@ -287,7 +287,7 @@ public class ChallengeController {
 		int listCount = cService.getListCount(category);
 		
 		int pageLimit = 5;
-		int boardLimit = 10;
+		int boardLimit = 9;
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, pageLimit, boardLimit);
 		
@@ -307,16 +307,16 @@ public class ChallengeController {
 	 * @return
 	 */
 	@RequestMapping("searchChallenge.do")
-	public ModelAndView searchChallenge(ModelAndView mv, String searchChallenge
-			,@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
+	public ModelAndView searchChallenge(ModelAndView mv, String searchChallenge, 
+						@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
 
 		Challenge chal = new Challenge(); // 비어있는 객체를 생성
 		// 예를 들어서 이름 chName 
-		chal.setChName("홍길동");
+		chal.setChName(searchChallenge);
 		
 		int listCount = cService.getSearchListCount(chal); // 전체카운트
 		
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 9);
 		
 		ArrayList<Challenge> list = cService.selectSearchChNameList(chal, pi);
 		
@@ -338,26 +338,18 @@ public class ChallengeController {
 	 * @param userId
 	 * @return
 	 */
-	@RequestMapping("premiumCondition.do")
-	public ModelAndView checkPremiumCondition(ModelAndView mv, HttpServletRequest request) {
+	@RequestMapping("checkPremium.do")
+	public void checkPremium(HttpServletResponse response,String userId) throws IOException {
 		
-		HttpSession session = request.getSession();
-		
-		Member mem = (Member)session.getAttribute("loginUser");
-		String userId = mem.getUserId();
-		
+		System.out.println("userId : " + userId);
 		Mypage myLvl = cService.checkPremiumCondition(userId);
-		
 		int level = myLvl.getMyLevel();
+		System.out.println("level : " + level);
 		
-		if(level == 6) {
-			mv.setViewName("user/challenge/ch_premiumList");
-		} else {
-			mv.setViewName("redirect:chalList.do");
-			mv.addObject("ck", "ck");
-		}
-		
-		return mv;
+		PrintWriter out = response.getWriter();
+		out.print(level);
+		out.flush();
+		out.close();
 	}
 	
 	/**
@@ -370,14 +362,14 @@ public class ChallengeController {
 	public ModelAndView premiumChalList(ModelAndView mv, 
 						@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
 		
-		int listCount = cService.getListCount();
+		int listCount = cService.getPremiumListCount();
 		
 		int pageLimit = 5;
-		int boardLimit = 10;
+		int boardLimit = 9;
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, pageLimit, boardLimit);
 		
-		ArrayList<Challenge> list = cService.selectChallengeList(pi);
+		ArrayList<PremiumChallenge> list = cService.selectPremiumList(pi);
 		
 		mv.addObject("list", list);
 		mv.addObject("pi", pi);
@@ -387,27 +379,64 @@ public class ChallengeController {
 		return mv;
 	}
 	
-	
-	// 4-3
+	/**
+	 * 4_3. 프리미엄 챌린지 리스트 > 상세 정보 보기
+	 * @param mv
+	 * @param chId
+	 * @return
+	 * @throws ParseException
+	 */
+	@RequestMapping("hiddenDetailInPremiumList.do")
+	public ModelAndView selectPremiumDetailInList(ModelAndView mv, String chPId) throws ParseException {
+		
+		PremiumChallenge chal = cService.selectOnePremiumDetail(chPId);
+		
+		// 오늘 날짜 가져오기
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd",Locale.KOREA);
+		Date today = new Date();
+		
+		// 시작날짜
+		Date startTime = sdf.parse(chal.getStartDate());
+		// 마감날짜
+		Date endTime = sdf.parse(chal.getEndDate());
+		
+		// 진행 예정
+		if( today.getTime() < startTime.getTime() ) { 
+			mv.addObject("chal", chal).setViewName("user/challenge/ch_premiumDetail");
+		} 
+		// 진행 중
+		else if(today.getTime() >= startTime.getTime() && today.getTime() < endTime.getTime()) {
+			mv.addObject("chal", chal).setViewName("user/challenge/ch_premiumDetailDoing");
+		}
+		// 진행 마감
+		else {
+			mv.addObject("chal", chal);
+			mv.setViewName("user/challenge/ch_premiumDetailEnd");
+		}
+			
+		return mv;
+	}
 	
 	/**
-	 * 4_5. 프리미엄 챌린지 리스트 내 검색 기능
+	 * 4_4. 프리미엄 챌린지 리스트 내 검색 기능
 	 * @param mv
 	 * @param searchChallenge
 	 * @return
 	 */
 	@RequestMapping("searchPremiumChallenge.do")
-	public ModelAndView searchPremiumChallenge(ModelAndView mv, String searchChallenge) {
+	public ModelAndView searchPremiumChallenge(ModelAndView mv, String searchPremiumChallenge) {
 
-		Challenge chal = new Challenge();
+		PremiumChallenge chal = new PremiumChallenge(); // 비어있는 객체를 생성
+		// 예를 들어서 이름 chName 
+		chal.setChName(searchPremiumChallenge);
 		
 		int currentPage = 1;
 		
 		int listCount = cService.getSearchListCount(chal);
 		
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 9);
 		
-		ArrayList<Challenge> list = cService.selectSearchChNameList(chal, pi);
+		ArrayList<PremiumChallenge> list = cService.selectSearchChNameList(chal, pi);
 		
 		for(int i=0; i<list.size(); i++) {
 			String[] str = list.get(i).getChPeople().split(",");
@@ -416,13 +445,13 @@ public class ChallengeController {
 			list.get(i).setTotalPrice(str.length * list.get(i).getPrice());
 		}
 		
-		mv.addObject("list", list).addObject("pi", pi).setViewName("user/challenge/ch_premiumlist");
+		mv.addObject("list", list).addObject("pi", pi).setViewName("user/challenge/ch_premiumList");
 		
 		return mv;
 	}
 	
 	/**
-	 * 4_6. 프리미엄 챌린지 등록
+	 * 4_5. 프리미엄 챌린지 등록
 	 * @param chal
 	 * @param mv
 	 * @param request
@@ -430,7 +459,7 @@ public class ChallengeController {
 	 * @return
 	 */
 	@RequestMapping("registerPremiumChal.do")
-	public ModelAndView registerPremiumChal(Challenge chal, ModelAndView mv, HttpServletRequest request,
+	public ModelAndView registerPremiumChal(PremiumChallenge chal, ModelAndView mv, HttpServletRequest request,
 									@RequestParam(name="registerPic", required=false) MultipartFile file) {
 	
 		HttpSession session = request.getSession();
@@ -452,10 +481,10 @@ public class ChallengeController {
 		 
 		chal.setChPicture(picture);
 		
-		int result = cService.insertChallenge(chal);
+		int result = cService.insertPremiumChallenge(chal);
 		
 		if(result > 0) {
-			mv.addObject("chal", chal).setViewName("user/challenge/ch_detail");
+			mv.addObject("chal", chal).setViewName("user/challenge/ch_premiumDetail");
 		} else {
 			mv.addObject("msg", "오류입니다").setViewName("common/errorPage");
 		}	

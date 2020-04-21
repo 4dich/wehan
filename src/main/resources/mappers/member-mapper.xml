@@ -18,30 +18,27 @@
 		<result property="joinDate" column="JOINDATE"/>
 		<result property="outYN" column="OUT_YN"/>
 	</resultMap>
-	
 	<resultMap id="adminResultSet" type="admin">
 		<id property="userId" column="USERID"/>
 		<result property="password" column="PASSWORD"/>
 	</resultMap>
-	
 	<resultMap type="Black" id="blackResultSet">
 		<id property="bId" column="BID"/>
 		<result property="userId" column="USERID"/>
 		<result property="banReason" column="BANREASON"/>
 		<result property="banTerm" column="BANTERM"/>
 		<result property="banDate" column="BANDATE"/>
+		<result property="status" column="STATUS"/>
 	</resultMap>
-	
 	<resultMap type="FindKey" id="FindKeyResultSet">
 		<id property="userId" column="USERID"/>
 		<result property="key" column="KEY"/>
 	</resultMap>
-	
 	<select id="userInfo" parameterType="string" resultMap="memberResultSet">
 		SELECT * FROM MEMBER WHERE USERID=#{userId} AND OUT_YN='N'
 	</select>
-	<select id="adminInfo" parameterType="string" resultMap="adminResultSet"> 
-		SELECT * FROM ADMIN WHERE USERID=#{userId} 
+	<select id="adminInfo" parameterType="string" resultMap="adminResultSet">
+		SELECT * FROM ADMIN WHERE USERID=#{userId}
 	</select>
 	<select id="idCheck" parameterType="string" resultType="_int">
 		SELECT COUNT(*) FROM MEMBER WHERE USERID=#{idCheck}
@@ -53,17 +50,27 @@
 		SELECT COUNT(*) FROM MEMBER WHERE NICKNAME=#{nickName}
 	</select>
 	<select id="blackCheck" parameterType="string" resultType="_int">
-		SELECT COUNT(*) FROM BLACKLIST WHERE USERID=#{userId}
+		SELECT COUNT(*) FROM BLACKLIST WHERE USERID=#{userId} AND STATUS = 'Y'
 	</select>
 	<insert id="insertMember" parameterType="Member">
 		INSERT INTO MEMBER VALUES(#{userId},#{password},#{nickName},#{userName},#{birthDay},#{address},#{email},#{phone},#{account},#{picture},SYSDATE,DEFAULT)
 	</insert>
-	
 	<select id="memberCount" resultType="_int"> 
 		SELECT COUNT(*) FROM MEMBER WHERE OUT_YN='N' 
 	</select>
 	<select id="memberList" resultType="Member" resultMap="memberResultSet"> 
 		SELECT * FROM MEMBER WHERE OUT_YN='N' 
+	</select>
+	<select id="mlistSearchCount" parameterType="Member" resultType="_int">
+		<if test="userId != null">
+			SELECT COUNT(*) FROM MEMBER WHERE OUT_YN='N' AND USERID=#{userId}
+		</if>
+		<if test="nickName != null">
+			SELECT COUNT(*) FROM MEMBER WHERE OUT_YN='N' AND NICKNAME=#{nickName}
+		</if>
+		<if test="userName != null">
+			SELECT COUNT(*) FROM MEMBER WHERE OUT_YN='N' AND USERNAME=#{userName}
+		</if>
 	</select>
 	<select id="mlistSearch" parameterType="Member" resultMap="memberResultSet">
 		<if test="userId != null">
@@ -77,43 +84,39 @@
 		</if>
 	</select>
 	<select id="BlackListInfo" parameterType="Black" resultMap="blackResultSet">
-		SELECT * FROM BLACKLIST WHERE USERID=#{userId}
+		SELECT * FROM BLACKLIST WHERE USERID=#{userId} AND STATUS='Y'
 	</select>
-	
 	<update id="updateMember" parameterType="Member">
 		UPDATE MEMBER SET PASSWORD=#{password},NICKNAME=#{nickName},USERNAME=#{userName},BIRTHDAY=#{birthDay}, ADDRESS=#{address},EMAIL=#{email},PHONE=#{phone},ACCOUNT=#{account},PICTURE=#{picture} WHERE USERID=#{userId}
 	</update>
-	
 	<select id="idFind" parameterType="string" resultType="string"> 
 		SELECT USERID FROM MEMBER WHERE EMAIL=#{email} 
 	</select>
 	<select id="pwdFind" parameterType="Member" resultType="_int">
 		SELECT COUNT(*) FROM MEMBER WHERE EMAIL=#{email} AND USERID=#{userId}
 	</select>
-	<insert id="insertKey" parameterType="FindKey">
-		 INSERT INTO FINDKEY VALUES(#{userId},#{key}) 
+	<insert id="insertKey" parameterType="FindKey"> 
+		INSERT INTO FINDKEY VALUES(#{userId},#{key}) 
 	</insert>
 	<select id="matchKey" parameterType="FindKey" resultType="_int">
 		SELECT COUNT(*) FROM FINDKEY WHERE USERID=#{userId} AND KEY=#{key}
 	</select>
 	<delete id="DeleteFindKey" parameterType="string"> 
-		DELETE FROM FINDKEY WHERE USERID = #{userId}
+		DELETE FROM FINDKEY WHERE USERID = #{userId} 
 	</delete>
 	<update id="updatePwd" parameterType="Member">
 		UPDATE MEMBER SET PASSWORD = #{password} WHERE USERID = #{userId}
 	</update>
-	
 	<insert id="blackInsert" parameterType="Black">
-		INSERT INTO BLACKLIST VALUES(SEQ_BID.NEXTVAL,#{userId},#{banReason},#{banTerm},SYSDATE)
+		INSERT INTO BLACKLIST VALUES(SEQ_BID.NEXTVAL,#{userId},#{banReason},#{banTerm},SYSDATE,'Y')
 	</insert>
-	<delete id="blackCancle" parameterType="_int">
-		DELETE FROM BLACKLIST WHERE BID = #{bId}
-	</delete>
-	<select id="blackListCount" resultType="_int">
-		SELECT COUNT(*) FROM BLACKLIST
+	<update id="blackCancle" parameterType="string"> 
+		UPDATE BLACKLIST SET STATUS='N' WHERE BID=#{bId} 
+	</update>
+	<select id="blackListCount" resultType="_int"> 
+		SELECT COUNT(*) FROM BLACKLIST WHERE STATUS='Y' 
 	</select>
 	<select id="blackList" resultMap="blackResultSet">
-		SELECT * FROM BLACKLIST
-	</select>
-	
+		 SELECT * FROM BLACKLIST 
+	 </select>
 </mapper>

@@ -153,17 +153,22 @@
 			$.ajax({
 				url:"login.do",
 				type:"post",
+				dataType:"json",
 				data:{"userId":userId,"password":password},
 				success:function(data){
 					console.log(data);
+					console.log(data == "ok1");
 					if(data == "ok1"){
 						alert("관리자 권한으로 로그인 되었습니다.");
 						location.href="ad_noticeListView.do";
 					}else if(data == "ok2"){
 						alert("로그인 되었습니다");
 						location.href="index.jsp";
+					}else if(data == "fail"){
+						alert("아이디와 비밀번호가 일치하지 않습니다.");
 					}else{
-						alert("로그인 실패");
+						alert("접속 제한 \n" + "차단 이유 : " + data.banReason + "\n" + "차단 날짜 : " + data.banDate +
+								"\n" + "차단기간 : " + data.banTerm);
 					}
 				},error:function(){
 					

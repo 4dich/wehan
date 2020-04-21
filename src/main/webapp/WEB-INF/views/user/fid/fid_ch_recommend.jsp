@@ -65,7 +65,7 @@
 
 		
 		<header class="header-section">
-			<div class="nav-switch menuIcon msgCount">
+			<div class="nav-switch">
 				<i class="fa fa-bars"></i>
 			</div>
 			<div class="header-social">
@@ -92,9 +92,9 @@
 					</a>
 
                     <div class="challenges-search">
-						<input type="textarea" style="padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 3px solid black;" placeholder="챌린지 검색">
-                        <a href="#" class="site-btn2">
-						<img src="resources/images/main/search.png" alt=""></a>
+						<input id="searchTitle" type="text" style="padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 3px solid black;" placeholder="챌린지 검색">
+                        <div id="search" class="site-btn2">
+						<img src="resources/images/main/search.png" alt=""></div>
                     </div>
                     <!-- <div class="challenges-search">
 						<input type="textarea" style="padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 3px solid black;" placeholder="챌린지 검색">
@@ -105,10 +105,10 @@
 					<div class="about-info">
 						<h2>피드</h2>
 						<p>
-                            친구들의 피드와 추천피드를 둘러보고
-                            나와 비슷한 유저를 찾아보고 팔로우 할 수 있습니다. 
-                            다른 유저들은 어떤챌린지를 어떻게 하고 있는지
-                            구경하러 갈까요?
+		                            친구들의 피드와 추천피드를 둘러보고
+		                            나와 비슷한 유저를 찾아보고 팔로우 할 수 있습니다. 
+		                            다른 유저들은 어떤챌린지를 어떻게 하고 있는지
+		                            구경하러 갈까요?
 
 						</p>
 					</div>
@@ -193,7 +193,7 @@
 									</c:if>
 									
 									<c:if test="${ p ne pi.currentPage }">
-										<c:url var="pagenation" value="fid_ch_recommendView.do">
+										<c:url var="pagination" value="fid_ch_recommendView.do">
 											<c:param name="currentPage" value="${ p }"/>
 										</c:url>
 										<a href="${ pagination }">${p}</a>
@@ -250,8 +250,6 @@
 
 	<script>
 		$(function(){
-			var currentPage = 1;
-			list(currentPage);
 			
 			$('.photoBox').click(function(){
 				var ceId = $(this).find("input[type=hidden]").val();
@@ -260,72 +258,104 @@
 				location.href = "fid_detailView.do?ceId="+ceId+"&currentPage=" + currentPage;
 			});
 			
-		});	
-		
-		function list(currentPage){
-			
 			$('.ca').click(function(){
 				var index = $('.ca').index(this);
 				var category = $('#category').children().eq(index);
-				console.log(index);
-				console.log(category.text());
 				
 				$('.ca').css({'background':'white','color':'black'});
 				category.css({'background':'black','color':'white'});
 				
-				$.ajax({
-					url:"fid_Category.do",
-					type:"post",
-					data:{'category':category.text(),'currentPage':currentPage},
-					success:function(data){
-						console.log(data);
-						$('#photoList').remove();
-						$('.qnaPaging').remove();
-						var listText = "";
-						listText +="<div id='photoList'>";
-						for(var i=0; i<data.list.length; i++){
-							listText += "<div class='photoBox'>";
-							listText += "<input type='hidden' value='"+data.list[i].ceId+"'>";
-							console.log(data.list[i].ceId);
-							listText += "<img src='resources/images/certify/"+data.list[i].cePicture+"' alt=''>";
-							listText += "<p class='fidUploadDate'>" + data.list[i].ceDate +"</p>";
-							listText += "<p class='nick'>" + data.list[i].nickName + "</p>";
-							listText += "<p class='fidName'>"+ data.list[i].chName+ "</p>";
-							listText += "</div>"
-						}						
-						listText += "</div>";
-						listText += "<div class='qnaPaging'>";
-						if(data.pi.currentPage == 1){
-							listText += "<";
-						}else if (data.pi.currentPage != 1){
-							listText += "<a href='javascript:void(0);' onclick='list("+ (currentPage - 1) +")'>" + "<" + "</a>";
-						}
-						
-						for(var p = data.pi.startPage; p<=data.pi.endPage; p++){
-							if(p == data.pi.currentPage){
-								listText += "<font color='red' size='4'><b>"+[p]+"</b></font>"
-							}else{
-								listText += "<<a href='javascript:void(0);' onclick='list("+ p +")'" + p + "</a>";
-							}
-							
-						}
-						if(data.pi.currentPage == data.pi.maxPage){
-							listText += ">";
-						}else{
-							listText += "<a href='javascript:void(0);' onclick='getList("+ (currentPage+1) +")'>></a>";
-						}
-						
+				var currentPage = 1;
+				list(currentPage,index);
+			});
+			
+			$('#search').click(function(){
+				var index = null;
+				$('.ca').css({'background':'white','color':'black'});
+				
+				var currentPage = 1;
+				list(currentPage,index);
+			});
+		});	
+		
+		function list(currentPage,index){
+			var category = $('#category').children().eq(index).text();
+			var serachTitle = $('#searchTitle').val();
+			
+			if(index != null){
+				serachTitle = null;
+			}else{
+				category = null;
+			}
+			
+			console.log(index);
+			console.log(category);
+			console.log(serachTitle);
+			$.ajax({
+				url:"fid_Condition.do",
+				type:"post",
+				data:{'title':serachTitle,'category':category,'currentPage':currentPage},
+				success:function(data){
+					console.log(data);
+					$('#photoList').remove();
+					$('.qnaPaging').remove();
+					
+					var listText = "";
+					listText +="<div id='photoList'>";
+					
+					for(var i=0; i<data.list.length; i++){
+						listText += "<div class='photoBox'>";
+						listText += "<input type='hidden' value='"+data.list[i].ceId+"'>";
+						listText += "<img src='resources/images/certify/"+data.list[i].cePicture+"' alt=''>";
+						listText += "<p class='fidUploadDate'>" + data.list[i].ceDate +"</p>";
+						listText += "<p class='nick'>" + data.list[i].nickName + "</p>";
+						listText += "<p class='fidName'>"+ data.list[i].chName+ "</p>";
 						listText += "</div>"
-						$('#fidListArea').html(listText);
-					},error:function(){
-						console.log("에러");
+					}						
+					listText += "</div>";
+					
+					//페이징 처리
+					listText += "<div class='qnaPaging'>";
+					if(data.pi.currentPage == 1){
+						listText += "<";
+					}else if (data.pi.currentPage != 1){
+						listText += "<a href='javascript:void(0);' onclick='list("+ (currentPage - 1) +"," + index  +" );'>"+"<"+"</a>";
 					}
 					
+					for(var p = data.pi.startPage; p<=data.pi.endPage; p++){
+						
+						if(p == currentPage){
+							listText += "<font color='red' size='4'><b>" +" ["+ p +"] "+ "</b></font>";
+						}else{
+							listText += "<a href='javascript:void(0);' onclick='list("+ p +","+index+")'>" + " " + p + " " + "</a>";
+						}
+						
+					}
 					
-				});
-			
+					if(data.pi.currentPage == data.pi.maxPage){
+						console.log(data.pi.currentPage == data.pi.maxPage);
+						listText += ">";
+					}else if(data.pi.currentPage != data.pi.maxPage){
+						listText += "<a href='javascript:void(0);' onclick='list("+ (currentPage + 1) +"," + index  +" );'>"+">"+"</a>";
+					}
+					
+					listText += "</div>"
+					$('#fidListArea').html(listText);
+					
+					$('.photoBox').click(function(){
+						var ceId = $(this).find("input[type=hidden]").val();
+						var currentPage = ${ pi.currentPage };
+						console.log(ceId);
+						location.href = "fid_detailView.do?ceId="+ceId+"&currentPage=" + currentPage;
+					});
+				},error:function(){
+					console.log("에러");
+				}
 			});
+			
 		}
+		
+		
 		/* var health = document.getElementsByClassName('health');
 		var hobby = document.getElementsByClassName('hobby');
 		var selfImprovement = document.getElementsByClassName('selfImprovement');

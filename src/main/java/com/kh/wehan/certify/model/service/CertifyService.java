@@ -81,5 +81,27 @@ public interface CertifyService {
 	 */
 	ArrayList<Member> getSearchFollowList(PageInfo pi, SearchCondition sc);
 
+	/**
+	 * 댓글 삭제
+	 * @param r
+	 * @return
+	 */
+	int deleteReply(CertifyReply r);
+
+	/**
+	 * 피드 타이틀 리스트 개수
+	 * @param title
+	 * @return
+	 */
+	int fidTitleCount(String title);
+
+	
+	/**
+	 * 피드 타이틀 리스트
+	 * @param title
+	 * @param pi
+	 * @return
+	 */
+	ArrayList<Certify> fidTitle(String title, PageInfo pi);
 
 }

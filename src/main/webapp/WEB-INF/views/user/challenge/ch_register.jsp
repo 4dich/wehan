@@ -132,7 +132,7 @@
                                     <input type="text" name="ceMethod" style="border-top: none; border-left: none; border-right: none;" placeholder="인증 방법">
                                  </div>
                                  <div class="col-lg-6">
-                                    <input type="text" name="chPeople" style="border-top: none; border-left: none; border-right: none;" placeholder="참여 인원 (숫자만 적어주세요)">
+                                    <input type="text" name="maxPerson" style="border-top: none; border-left: none; border-right: none;" placeholder="최대 참여 인원 (숫자만 적어주세요)">
                                  </div>
                                  <div class="col-lg-6">
                                     <input type="text" name="price" style="border-top: none; border-left: none; border-right: none;" placeholder="배팅 금액 (숫자만 적어주세요)">

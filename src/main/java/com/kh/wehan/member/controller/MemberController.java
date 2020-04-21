@@ -1,8 +1,10 @@
 package com.kh.wehan.member.controller;
 
 import java.io.File;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -38,7 +40,7 @@ public class MemberController {
 		if(b == true) {
 			int Mresult = mService.idCheck(idCheck);
 			int Aresult = mService.AidCheck(idCheck);
-			System.out.println(Mresult);
+			
 			if(Mresult > 0 || Aresult > 0) {
 				return "2";
 			}else {
@@ -84,7 +86,6 @@ public class MemberController {
 		
 		m.setAccount(bankName + "," + accountHolder + "," + accountNumber);
 		
-		System.out.println(m);
 		
 		int result = mService.insertMember(m);
 		
@@ -167,7 +168,13 @@ public class MemberController {
 	@RequestMapping("blackInsert.do")
 	@ResponseBody
 	public String blackInsert(BlackList b) {
-		System.out.println(b);
+		
+		Calendar cal = new GregorianCalendar();
+		cal.add(Calendar.DATE, b.getBanDay());
+		
+		Date banTerm = new Date(cal.getTimeInMillis());
+		
+		b.setBanTerm(banTerm);
 		int result = mService.blackInsert(b);
 		
 		if(result > 0) {
@@ -179,8 +186,7 @@ public class MemberController {
 	
 	@RequestMapping("blackCancle.do")
 	@ResponseBody
-	public String blackCancle(int bId) {
-		System.out.println(bId);
+	public String blackCancle(String bId) {
 		int result = mService.blackCancle(bId);
 		if(result > 0) {
 			return "ok";
@@ -190,4 +196,3 @@ public class MemberController {
 			
 	}
 }
-
