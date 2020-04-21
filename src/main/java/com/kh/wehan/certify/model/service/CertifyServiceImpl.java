@@ -120,5 +120,14 @@ public class CertifyServiceImpl implements CertifyService{
 		return ceDao.fidTitle(title,pi);
 	}
 
+	/**
+	 * 챌린지 _ 인증글 리스트
+	 */
+	@Override
+	public ArrayList<Certify> chCertifyList(String chId, PageInfo pi) {
+		
+		return ceDao.chCertifyList(chId,pi);
+	}
+
 
 }

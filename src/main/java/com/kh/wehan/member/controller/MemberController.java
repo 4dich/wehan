@@ -152,7 +152,6 @@ public class MemberController {
 				}
 			}
 			
-			System.out.println(m);
 			int result = mService.updateMember(m);
 			
 			session.setAttribute("loginUser", m);

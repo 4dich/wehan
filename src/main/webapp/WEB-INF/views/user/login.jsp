@@ -67,7 +67,7 @@
 	<div class="main-site-warp">
 		<%@ include file="/WEB-INF/views/common/menuBar.jsp" %>
 		<header class="header-section">
-			<div class="nav-switch">
+			<div class="nav-switch menuIcon msgCount">
 				<i class="fa fa-bars"></i>
 			</div>
 		
@@ -130,7 +130,7 @@
 								<div class="row">
 									<div>
 										<b><a href="signInAgreeView.do" style="color: #bd362f; font-size: 20px; margin-left: 65px;">회원가입</a></b>
-										<input id="submit" type="button" class="btn btn-danger" style=" margin-left:290px; width:150px" value="로그인">
+										<input id="submit" type="button"  class="btn btn-danger" style=" margin-left:290px; width:150px" value="로그인">
 									</div>
 								</div>
 								<br><br>
@@ -147,7 +147,29 @@
 	</div>
 	<!-- Main section end -->
 	<script>
-		$('#submit').click(function(){
+		$(function(){
+			$("#userId").focus();
+		});
+		
+	
+		 $('#submit').click(function(){
+			login();
+		}); 
+		
+		 
+		$("#userId").keydown(function(e){
+			if(e.keyCode == 13){
+				login();
+			}
+		});
+		
+		$("#password").keydown(function(e){
+			if(e.keyCode == 13){
+				login();
+			}
+		});
+		
+		function login(){
 			var userId = $('#userId').val();
 			var password = $('#password').val();
 			$.ajax({
@@ -174,7 +196,7 @@
 					
 				}
 			});
-		});	
+		}
 	</script>
 	<!--====== Javascripts & Jquery ======-->
 	

@@ -78,11 +78,6 @@ public class viewController {
 		return "user/challenge/ch_list";
 	}
 	
-	@RequestMapping("ch_premiumListView.do")
-	public String ch_premiumListView() {
-		return "user/challenge/ch_premiumList";
-	}
-	
 	@RequestMapping("ch_top10ListView.do")
 	public String ch_top10ListView() {
 		return "redirect:getChallengeTop10List.do";
@@ -92,7 +87,6 @@ public class viewController {
 	public String ch_registerView() {
 		return "user/challenge/ch_register";
 	}
-	
 	
 	@RequestMapping("findIdPwdView.do")
 	public String findIdPwdView() {
@@ -125,10 +119,10 @@ public class viewController {
 //		return "user/fid/fid_detail";
 //	}
 	
-	@RequestMapping("ch_certifyDetailView.do")
-	public String ch_certifyDetailView() {
-		return "user/ceritify/ch_certifyDetail";
-	}
+	/*
+	 * @RequestMapping("ch_certifyDetailView.do") public String
+	 * ch_certifyDetailView() { return "user/ceritify/ch_certifyDetail"; }
+	 */
 	
 	@RequestMapping("guideInfoView.do")
 	public String guideInfoView() {
@@ -155,10 +149,10 @@ public class viewController {
 		return "user/info/serviceInfo";
 	}
 	
-	@RequestMapping("ch_registerPhotoView.do")
-	public String ch_registerPhotoView() {
-		return "user/ceritify/ch_registerPhoto";
-	}
+	/*
+	 * @RequestMapping("ch_registerPhotoView.do") public String
+	 * ch_registerPhotoView() { return "user/ceritify/ch_registerPhoto"; }
+	 */
 	
 	
 	@RequestMapping("companyInfoView.do")
@@ -176,10 +170,10 @@ public class viewController {
 		return "user/main";
 	}
 	
-	@RequestMapping("ch_certifyPhotoListView.do")
-	public String ch_certifyPhotoListView() {
-		return "user/ceritify/ch_certifyPhotoList";
-	}
+	/*
+	 * @RequestMapping("ch_certifyPhotoListView.do") public String
+	 * ch_certifyPhotoListView() { return "user/ceritify/ch_certifyPhotoList"; }
+	 */
 	
 //	@RequestMapping("fid_friendListView.do")
 //	public String fid_friendListView() {
