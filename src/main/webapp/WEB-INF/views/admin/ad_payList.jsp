@@ -109,6 +109,7 @@
 									<option value="userId">유저ID</option>
 									<option value="chName">챌린지명</option>
 									<option value="pNo">결제번호</option>
+									<option value="chId">챌린지번호</option>
 								</select>					
 							</div>
 							<!-- 검색 -->
@@ -126,6 +127,7 @@
 								<th>챌린지명</th>
 								<th>유저ID</th>
 								<th>마감기한</th>
+								<th>챌린지번호</th>
 								<th>결제정보</th>
 								<th style="cursor:pointer;">환급여부</th>
 							</tr>
@@ -140,18 +142,13 @@
 								<td>${ p.chName }</td>
 								<td>${ l.userId }</td>
 								<td>${ l.pDate }</td>
+								<td>${ p.chId }</td>
 								<td><button onclick="location.href='paydetail.do?pId=${ l.pId }'">정보</button></td>
 								<td>${ l.refund_yn }</td>
 							</tr>
 							</c:forEach>
 							</c:forEach>
-							
-						
-							
-							
-							
 							<!-- 삭제 끝 -->
-
 						</table>
 		
 				<div class="qnaPaging">
@@ -207,7 +204,7 @@
 	
 	<script>
 	
-		$('.thArea').children().eq(6).click(function(){
+		$('.thArea').children().eq(7).click(function(){
 			var reIdx = $('#test').val();
 			$('#test').val(1 - $('#test').val());
 			console.log(reIdx);
@@ -250,6 +247,7 @@
 					listText +=	"<th>"+"챌린지명"+"</th>";
 					listText +=	"<th>"+"유저ID"+"</th>";
 					listText +=	"<th>"+"마감기한"+"</th>";
+					listText += "<th>"+"챌린지번호"+"</th>";
 					listText +=	"<th>"+"결제정보"+"</th>";
 					listText +=	"<th style='cursor:pointer;'>"+"환급여부"+"</th>";
 					listText += "</tr>"
@@ -262,6 +260,7 @@
 						listText += "<td>"+list[i].chList[0].chName+"</td>";
 						listText += "<td>"+list[i].userId+"</td>";
 						listText += "<td>"+list[i].pDate+"</td>";
+						listText += "<td>"+list[i].chList[0].chId+"</td>";
 						listText += "<td><button onclick='location.href="+'"'+"paydetail.do?pId="+list[i].pId+'"'+"'>"+"정보"+"</button></td>";
 						listText += "<td>"+list[i].refund_yn+"</td>";
 						listText += "</tr>";
@@ -292,7 +291,7 @@
 						listText += "</div>";
 						$('#paylist').html(listText);
 						$('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247"); //even 짝수
-						$('.thArea').children().eq(6).click(function(){
+						$('.thArea').children().eq(7).click(function(){
 							var reIdx = $('#test').val();
 							$('#test').val(1 - $('#test').val());
 							console.log(reIdx);
