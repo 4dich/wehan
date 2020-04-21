@@ -55,7 +55,9 @@
 		JOIN MYPAGE P ON (M.USERID = P.USERID)
   	</select>
   	
-
+	<delete id="cancleRegister">
+		DELETE FROM CHALLENGE WHERE CHID = #{chId}	
+	</delete>
   	
   	
   </mapper>

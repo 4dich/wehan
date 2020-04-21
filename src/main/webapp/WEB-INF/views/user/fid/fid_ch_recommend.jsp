@@ -250,12 +250,12 @@
 
 	<script>
 		$(function(){
-			
+			var check = 'fid';
 			$('.photoBox').click(function(){
 				var ceId = $(this).find("input[type=hidden]").val();
 				var currentPage = ${ pi.currentPage };
 				console.log(ceId);
-				location.href = "fid_detailView.do?ceId="+ceId+"&currentPage=" + currentPage;
+				location.href = "fid_detailView.do?ceId="+ceId+"&currentPage=" + currentPage +"&check="+check;
 			});
 			
 			$('.ca').click(function(){

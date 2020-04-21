@@ -1,6 +1,8 @@
 package com.kh.wehan.certify.controller;
 
+import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
@@ -23,6 +26,7 @@ import com.kh.wehan.certify.model.service.CertifyService;
 import com.kh.wehan.certify.model.vo.Certify;
 import com.kh.wehan.certify.model.vo.CertifyReply;
 import com.kh.wehan.certify.model.vo.SearchCondition;
+import com.kh.wehan.challenge.model.vo.Challenge;
 import com.kh.wehan.common.Pagination;
 import com.kh.wehan.common.model.vo.PageInfo;
 import com.kh.wehan.member.model.vo.Follow;
@@ -55,7 +59,6 @@ public class CertifyController {
 		
 		ArrayList<Certify> list = ceService.selectList(pi);
 		
-		System.out.println("list :" + list);
 		
 		mv.addObject("list",list);
 		mv.addObject("pi",pi);
@@ -174,7 +177,6 @@ public class CertifyController {
 			
 			sc.setTitle(searchText);
 			sc.setWriter(mName);
-			System.out.println(sc);
 			ArrayList<Member> list = ceService.getSearchFollowList(pi,sc);
 			
 			mv.addObject("list",list).addObject("pi",pi).setViewName("user/fid/fid_follow");
@@ -200,7 +202,6 @@ public class CertifyController {
 			Member m = (Member)session.getAttribute("loginUser");
 			Follow f = new Follow(host,follower);
 			
-			System.out.println(f);
 			
 			if(m != null) {
 				
@@ -264,7 +265,6 @@ public class CertifyController {
 	public String addReply(CertifyReply r) {
 		String picture = "1";
 		r.setPicture(picture);
-		System.out.println(r);
 		int result = ceService.insertReply(r);
 		if(result > 0) {
 			return "success";
@@ -300,13 +300,13 @@ public class CertifyController {
 	 */
 	@RequestMapping("fid_Category.do")
 	public void fidCategory(HttpServletResponse response,String category,@RequestParam(value="currentPage",required=false,defaultValue="1") int currentPage) throws JsonIOException, IOException {
-		System.out.println(currentPage);
+		
 		int Count = ceService.fidCategoryCount(category);
-		System.out.println(Count);
+		
 		PageInfo pi = Pagination.getPageInfo(currentPage,Count,5,9);
 		
 		ArrayList<Certify> list = ceService.fidCategory(category,pi);
-		System.out.println(list);
+		
 		response.setContentType("application/json; charset=utf-8");
 		
 		Map map = new HashMap();
@@ -329,9 +329,7 @@ public class CertifyController {
 	 */
 	@RequestMapping("fid_Condition.do")
 	public void fidCategory(HttpServletResponse response,String title,String category,@RequestParam(value="currentPage",required=false,defaultValue="1") int currentPage) throws JsonIOException, IOException {
-		System.out.println(currentPage);
-		System.out.println(title);
-		System.out.println(category);
+		
 		PageInfo pi = null;
 		ArrayList<Certify> list = null;
 		
@@ -380,15 +378,59 @@ public class CertifyController {
 		
 		ArrayList<Certify> list = ceService.chCertifyList(chId,pi);
 		
-		System.out.println("list :" + list);
 		
 		mv.addObject("list",list);
 		mv.addObject("pi",pi);
-		mv.setViewName("user/ceritify/ch_certifyDetail");
+		mv.setViewName("user/ceritify/ch_certifyPhotoList");
 		
 		return mv;
 		
 	}
+
+	/**
+	 * 이미지 파일 저장(인증글)
+	 * @param file
+	 * @param request
+	 * @return
+	 */
+	/*
+	 * public String saveFile(MultipartFile file,HttpServletRequest request) {
+	 * 
+	 * String root =
+	 * request.getSession().getServletContext().getRealPath("resources"); String
+	 * savePath = root + "\\images\\certify"; File folder = new File(savePath);
+	 * 
+	 * if(!folder.exists()) { folder.mkdir(); }
+	 * 
+	 * String originFileName = file.getOriginalFilename();
+	 * 
+	 * SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+	 * 
+	 * String picture = sdf.format(new java.sql.Date(System.currentTimeMillis()))+
+	 * "." + originFileName.substring(originFileName.lastIndexOf(".")+1); String
+	 * picturePath = folder + "\\" + picture;
+	 * 
+	 * try { file.transferTo(new File(picturePath)); }catch(Exception e) {
+	 * e.printStackTrace(); } return picture; }
+	 */
+	/**
+	 * 
+	 * 인증글 등록
+	 * @param c
+	 * @param request
+	 * @param file
+	 * @return
+	 */
+	/*
+	 * @RequestMapping("insertCertify.do") public ModelAndView insertCertify(Certify
+	 * c,ModelAndView mv, HttpServletRequest request,
+	 * 
+	 * @RequestParam(name="registerPic", required=false) MultipartFile file) {
+	 * 
+	 * mv.setViewName("");
+	 * 
+	 * return mv; }
+	 */
 
 }
 

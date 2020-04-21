@@ -28,7 +28,7 @@ public class ChallengeServiceImpl_SR implements ChallengeService_SR{
 	 */
 	@Override
 	public ArrayList<ChallengerInfo> getChallengerList(String[] list) {
-		
+				
 		// 멤버 정보가져오기
 		ArrayList<ChallengerInfo> info = chalDaoSr.getChallengerList();
 		ChallengerInfo a;
@@ -38,6 +38,7 @@ public class ChallengeServiceImpl_SR implements ChallengeService_SR{
 		for(int i = 0; i < list.length; i++) {
 			// 멤버
 			for(int k = 0; k < info.size(); k++) {
+				
 					// 참가자의 id와 멤버의 아이디가 같으면
 				if(list[i].equals(info.get(k).getUserId())) {
 					a = new ChallengerInfo();
@@ -56,4 +57,15 @@ public class ChallengeServiceImpl_SR implements ChallengeService_SR{
 		
 		return result;
 	}
+
+
+	/**
+	 * 결제 취소 시 챌린지 삭제
+	 */
+	@Override
+	public int cancleRegister(String chId) {
+		return chalDaoSr.cancleRegister(chId);
+	}
+
+
 }
