@@ -109,7 +109,7 @@
 						
 						<button class="site-btn sb-dark" style="margin-left: 35px; width: 280px; font-size: 15px;" type="button" onclick="location.href='chalList.do'">
 							리스트 페이지로 가기
-							<img src="img/arrow-righ-3.png" alt="">
+							<img src="resources/images/arrow-righ-3.png" alt="">
 						</button>
 						<br><br>
 						<!-- <ul class="contact-info">
@@ -212,7 +212,7 @@
 									<br><br>
 									<button class="site-btn sb-solid mr-3 mb-3" style="color: white; float: right; width: 280px; font-size: 16px;" type="button" onclick="certifyInsert();">
 										인증사진 목록가기
-										<img src="img/arrow-righ-2.png" alt="">
+										<img src="resources/images/arrow-righ-2.png" alt="">
 									</button>
 									<input type="hidden" id="loginId" value="${ loginUser.userId }">
 								</div>

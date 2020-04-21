@@ -107,7 +107,7 @@
 					
 					<button class="site-btn sb-dark" style="margin-left: 35px; width: 280px; font-size: 15px;" type="button" onclick="location.href='chalList.do'">
 						리스트 페이지로 가기
-						<img src="img/arrow-righ-3.png" alt="">
+						<img src="resources/images/arrow-righ-3.png" alt="">
 					</button>
 					<br><br>
 					<!-- <ul class="contact-info">
