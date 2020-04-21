@@ -19,7 +19,7 @@
         
      <resultMap type="QuestionsReply" id="replyResultSet">
         <id property="qrId" column="QRID"/>
-        <result property="qrId" column="QRID"/>
+        <result property="qId" column="QID"/>
         <result property="qrUserid" column="QRWRITER"/>
         <result property="qrContent" column="QRCONTENT"/>
         <result property="qrDate" column="QRDATE"/>
@@ -109,5 +109,19 @@
   		SET QDEL_YN = 'Y'
   		WHERE QID = #{qId}
   	</update>  	  	  	
+  	
+  	<!-- 댓글 -->
+	<select id= "selectReply" resultMap="replyResultSet">
+	SELECT Q.QID,QR.QRID,QR.QRWRITER,QR.QRCONTENT,QR.QRDATE,QR.QRDEL_YN
+    FROM questions Q
+    JOIN questionsreply QR
+    ON Q.QID = QR.QID
+    WHERE Q.QID = QID;
+	</select>
+	
+	<insert id="insertReply" parameterType="QuestionsReply">
+	INSERT INTO QUESTIONS
+	 VALUES(SEQ_QRID.NEXTVAL,#{qrId},#{qrUserid},#{qrContent},SYSDATE,DEFAULT)
+	</insert>
    
     </mapper>

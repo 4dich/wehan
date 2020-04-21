@@ -141,8 +141,8 @@
 									<form class="contact-form" style="margin-top: 65px;">
 										<div class="row">
 											<input type="hidden" name="price" value="${chal.price}">
-											<input type="hidden" name="chId" value="${chal.chId}">
-											<input type="hidden" name="chName" value="${chal.chName}">
+											<input id="chIdArea" type="hidden" name="chId" value="${chal.chId}">
+											<input id="chNameArea" type="hidden" name="chName" value="${chal.chName}">
 											
 											<div class="col-lg-12 message-body">
 												<div style="font-size:30px; display:inline-flex;">
@@ -209,7 +209,7 @@
 										</div>
 									</form>
 									<br><br>
-									<button class="site-btn sb-solid mr-3 mb-3" style="color: white; float: right; width: 280px; font-size: 16px;" type="button" onclick="location.href='ch_confirmPhotoList.html'">
+									<button class="site-btn sb-solid mr-3 mb-3" style="color: white; float: right; width: 280px; font-size: 16px;" type="button" onclick="certifyInsert();">
 										인증사진 목록가기
 										<img src="img/arrow-righ-2.png" alt="">
 									</button>
@@ -228,6 +228,20 @@
 		<!-- Main section end -->
 		
 		<script>
+		
+			function certifyInsert(){
+				alert("되나");
+				var chName = document.getElementById('chNameArea').value;
+				var chId = document.getElementById('chIdArea').value;
+				console.log(chName);
+				console.log(chId);
+				
+				
+				/* 챌린지 넘겨서 리스트 출력하기 */
+				
+				
+				
+			}
 			<!-- 남은 날짜 출력 -->
 			$(function(){
 				var today = new Date();

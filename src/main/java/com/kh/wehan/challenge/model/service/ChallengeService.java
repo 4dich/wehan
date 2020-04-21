@@ -3,6 +3,7 @@ package com.kh.wehan.challenge.model.service;
 import java.util.ArrayList;
 
 import com.kh.wehan.challenge.model.vo.Challenge;
+import com.kh.wehan.challenge.model.vo.PremiumChallenge;
 import com.kh.wehan.common.model.vo.PageInfo;
 import com.kh.wehan.member.model.vo.Mypage;
 
@@ -87,6 +88,50 @@ public interface ChallengeService {
 	 * @return
 	 */
 	Mypage checkPremiumCondition(String userId);
+
+	/**
+	 * 프리미엄 챌린지 상세 보기
+	 * @param chId
+	 * @return
+	 */
+	PremiumChallenge selectOnePremiumDetail(String chPId);
+
+	/**
+	 * 프리미엄 챌린지 리스트 카운트
+	 * @param chal
+	 * @return
+	 */
+	int getSearchListCount(PremiumChallenge chal);
+
+	/**
+	 * 사용자 프리미엄 챌린지 리스트 검색
+	 * 사용자 프리미엄 챌린지 디테일 리스트 검색
+	 * @param chal
+	 * @param pi
+	 * @return
+	 */
+	ArrayList<PremiumChallenge> selectSearchChNameList(PremiumChallenge chal, PageInfo pi);
+
+	/**
+	 * 프리미엄 챌린지 리스트
+	 * @param pi
+	 * @return
+	 */
+	ArrayList<PremiumChallenge> selectPremiumList(PageInfo pi);
+
+	/**
+	 * 프리미엄 챌린지 등록
+	 * @param chal
+	 * @return
+	 */
+	int insertPremiumChallenge(PremiumChallenge chal);
+
+	/**
+	 * 프리미엄 리스트 카운트
+	 * @return
+	 */
+	int getPremiumListCount();
+
 
 
 	

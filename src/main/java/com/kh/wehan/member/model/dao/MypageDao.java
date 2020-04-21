@@ -60,4 +60,8 @@ public class MypageDao {
 		return sqlSession.insert("mypageMapper.my_follow",f);
 	}
 
+	public int my_updateLvEx(Mypage mypage) {
+		return sqlSession.update("mypageMapper.my_updateLvEx",mypage);
+	}
+
 }

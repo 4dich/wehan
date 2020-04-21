@@ -110,9 +110,8 @@ public class MemberDao {
 		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
 		return (ArrayList)sqlSession.selectList("memberMapper.blackList",null,rowBounds);
 	}
-	
-	
-
-
+	public int insertMypage(String userId) {
+		return sqlSession.insert("memberMapper.insertMypage",userId);
+	}
 
 }

@@ -99,4 +99,11 @@
 		INSERT INTO FOLLOW
 		VALUES(#{host},#{follower})
 	</insert>
+	
+	<update id="my_updateLvEx" parameterType="Mypage">
+		UPDATE MYPAGE
+		SET MYEXP=#{myExp},MYLEVEL=#{myLevel}
+		WHERE USERID=#{userId}
+	</update>
+	
 </mapper>

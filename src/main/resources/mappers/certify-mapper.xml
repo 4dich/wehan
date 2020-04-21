@@ -214,6 +214,12 @@
 	AND CEID = #{ceId}
 	</update>
 
+	<select id="fidTitleCount" resultType="_int">
+	SELECT COUNT(*) FROM CHALLENGE C JOIN CERTIFY R ON C.CHID = R.CHID JOIN MEMBER M ON R.USERID = M.USERID WHERE CEDEL_YN = 'N' AND CHNAME LIKE '%' || #{title} || '%'
+	</select>
+	<select id="fidTitle" resultMap="certifyResultSet">
+	SELECT C.CHNAME,C.CATEGORY,M.NICKNAME,R.* FROM CHALLENGE C JOIN CERTIFY R ON C.CHID = R.CHID JOIN MEMBER M ON R.USERID = M.USERID WHERE CEDEL_YN = 'N' AND CHNAME LIKE '%' || #{title} || '%'
+	</select>
 </mapper>
 
 
