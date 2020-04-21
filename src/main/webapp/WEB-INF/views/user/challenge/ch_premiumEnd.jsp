@@ -135,7 +135,7 @@
 									<form class="contact-form" style="margin-top: 65px;">
 										<div class="row">
 											<input type="hidden" name="price" value="${chal.price}">
-											<input type="hidden" name="chId" value="${chal.chId}">
+											<input type="hidden" name="chPId" value="${chal.chPId}">
 											<input type="hidden" name="chName" value="${chal.chName}">
 											
 											<div class="col-lg-12 message-body">
