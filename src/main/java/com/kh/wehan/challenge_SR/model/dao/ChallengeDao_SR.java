@@ -34,6 +34,8 @@ public class ChallengeDao_SR {
 	public ArrayList<ChallengerInfo> getChallengerList() {
 		return (ArrayList)sqlSession.selectList("challengeMapperSR.getChallengerList");
 	}
+
+
 	
 	
 	

@@ -3,18 +3,24 @@ package com.kh.wehan.challenge_SR.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
+import com.kh.wehan.challenge.model.vo.Challenge;
 import com.kh.wehan.challenge_SR.model.service.ChallengeService_SR;
 import com.kh.wehan.challenge_SR.model.vo.ChallengeTop10;
 import com.kh.wehan.challenge_SR.model.vo.ChallengerInfo;
+import com.kh.wehan.member.model.vo.Member;
 
 @Controller
 public class ChallengeController_SR {
@@ -52,6 +58,7 @@ public class ChallengeController_SR {
 	@RequestMapping("getChallengerList.do")
 	public void getChallengerList(String[] list, HttpServletResponse response) throws JsonIOException, IOException {
 
+		
 		ArrayList<ChallengerInfo> info = chalServiceSr.getChallengerList(list);
 		
 		response.setContentType("application/json; charset=UTF-8");
@@ -61,4 +68,33 @@ public class ChallengeController_SR {
 		gson.toJson(info, response.getWriter());
 		
 	}
+	
+	/**
+	 * 챌린지 등록 시 결제 및 챌린지 등록 하는 컨트롤 (중간다리역할)
+	 * @param chal
+	 * @param mv
+	 * @param request
+	 * @param file
+	 * @return
+	 */
+	@RequestMapping("chRegister.do")
+	public ModelAndView chRegister(Challenge chal, ModelAndView mv, HttpServletRequest request, @RequestParam(name="registerPic", required=false) MultipartFile file) {
+		
+		// 1) 챌린지 등록을 누르면 chRegister.do 컨트롤러로 오기
+		// 2) 결제 약관으로 전달 (pageInfo.do)
+		int viewPage = 1; // 페이지 확인용
+		String chName = chal.getChName();
+		int price = chal.getPrice();
+		String chId = null;
+		
+		mv.addObject("viewPage", viewPage).addObject("ch", chal).addObject("chName", chName).addObject("price", price).addObject("chId",chId)
+		.setViewName("redirect:payinfo.do");
+		
+		
+		
+		
+		
+		return mv;
+	}
+	
 }

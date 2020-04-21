@@ -454,9 +454,28 @@
 	<div id='div6' style="display:none;">${ch.chName}</div>
 	<div id='div7' style="display:none;">${ch.chPeople}</div>
 	<div id='div8' style="display:none;">${ch.chPeopleCount}</div>
+	<div id='div9' style="display:none;">${viewPage}</div> <!-- 챌린지 등록시 결제확인용 -->
 	
-	 
+
+		
 	<script>
+		
+	// chId 넣기
+	$(function(){
+		if(${viewPage} == 1) {
+			
+			$.ajax
+			
+			
+			
+			
+		} else if(${viewPage} == 0) {
+			$('#div5')[0].innerText(${ch.chId});
+		}
+	});
+	
+	
+	
 		$( document ).ready(function(){
 			$('#agreeall').click(function(){
 				$('.ay').prop('checked',this.checked);
@@ -472,11 +491,14 @@
 		var chName = $('#div6')[0].innerText;
 		var chPeople = $('#div7')[0].innerText;
 		var chPeopleCount = $('#div8')[0].innerText;
+		var viewPage = $('#div9')[0].innerText;
 		
 		
 		function paycancel(){
 			location.href="chalList.do"
 		}
+		
+		
 		
 		function paynow(){
 			var msg
@@ -505,7 +527,8 @@
 			        		pmethod:rsp.pay_method,
 			        		chName:chName,
 			        		chPeople:chPeople,
-			        		chPeopleCount:chPeopleCount
+			        		chPeopleCount:chPeopleCount,
+			        		viewPage:viewPage
 			        	},success:function(result){
 			        		alert('결제성공');
 			        		location.href=result;

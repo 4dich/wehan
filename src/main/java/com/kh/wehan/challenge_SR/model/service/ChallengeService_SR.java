@@ -19,7 +19,6 @@ public interface ChallengeService_SR {
 	 * @return
 	 */
 	ArrayList<ChallengerInfo> getChallengerList(String[] list);
-
 	
 	
 }
