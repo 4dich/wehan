@@ -220,7 +220,7 @@
 										<div class="col-lg-12">
                                             <input id="account" value="${m.account}" type="text" style="border-top: none; border-left: none; border-right: none;" disabled>
                                         </div>
-										<div class="col-lg-12">
+										<div class="col-lg-12" id="blackdiv">
                                             <input id="blackList" value="${m.blacklistYN}" type="text" style="border-top: none; border-left: none; border-right: none;">
                                         </div>
 									</div>
@@ -243,9 +243,39 @@
 	<script>
 		$(function(){
 			$('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247"); //even 짝수
+			
+			
+			$("#blackList").on({
+				"mouseenter":function(){
+					$(this).css("background","lightgray");
+					if($(this).val()=="N"){
+					$(this).val($(this).val()+ "       차단하기");
+					}else{
+					$(this).val($(this).val()+ "       해제하기");
+					}
+				},
+				"mouseout":function(){
+					$(this).css("background","white");
+					$(this).val($(this).val().substring(0,1));
+				},
+				"click":function(){
+					var blackList = $('#blackList').val();
+					console.log(blackList);
+					if(blackList == "N       블럭하기"){
+						$('.black').show();
+						$('.blackinsert').show();
+						$('.blackcancle').hide();
+						
+					}else{
+						$('.black').show();
+						$('.blackinsert').hide();
+						$('.blackcancle').show();
+					}
+				}
+			})
 		});
 		
-		$('#blackList').click(function(){
+		/* $('#blackList').click(function(){
 			var blackList = $('#blackList').val();
 			console.log(blackList);
 			if(blackList == "N"){
@@ -258,7 +288,7 @@
 				$('.blackinsert').hide();
 				$('.blackcancle').show();
 			}
-		});
+		}); */
 		
 		$('#blackInsert').click(function(){
 			var BanDay = $('#BanDay').val();
