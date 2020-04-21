@@ -41,7 +41,10 @@
             position: absolute;
             bottom: 0;
             padding: 4% 11px 2% 15px;
+        }
         
+      	.contact-section .row {
+        	height: 92%;
         }
     </style>
 </head>
@@ -77,7 +80,7 @@
                     </a>
                     <form class="searchPremiumChallenge" action="searchPremiumChallenge.do">
 	                    <div class="challenges-search">
-							<input type="text" name="searchPremiumChallenge" style="padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 3px solid black;" placeholder="챌린지 이름 검색">
+							<input type="text" name="searchPremiumChallenge" style="padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 3px solid black;" placeholder="프리미엄 챌린지 이름 검색">
 	                        <a href="" class="site-btn2">
 	                            <img src="resources/images/main/search.png" style="padding-left: 10px;" alt="">
 	                        </a>
@@ -95,9 +98,9 @@
                         </p>
                         
                     </div>
-                    <button class="site-btn sb-dark" style="margin-left: 40px; width: 280px; font-size: 15px;" type="button" onclick="location.href='registerPremiumChal.do'">
+                    <button class="site-btn sb-dark" style="margin-left: 40px; width: 280px; font-size: 15px;" type="button" onclick="location.href='ch_premiumRegisterView.do'">
                         	챌린지 등록하기
-                        <img src="resources/img/arrow-righ-3.png" alt="">
+                        <img src="resources/images/arrow-righ-3.png" alt="">
                     </button>
                     <br><br>
                 
@@ -134,6 +137,20 @@
                                     </c:forEach>		
 								</div>
                              </div>  
+                             <script>
+	                             function getdetailInList(chPId){
+										var msg1 = "<%= request.getAttribute("msg1")%>";
+							             if(msg1 != "null"){
+							                alert(msg1);
+							                location.href="loginView.do";
+							             } else {
+											location.href="hiddenDetailInPremiumList.do?chPId=" + chPId.name;    	 
+							             }
+							        }
+                             </script>
+                             
+									</div>
+                                </div>
                                     <div class="qnaPaging" style="float: right; margin-right: 29px; margin-top: 20px;">
 										<!-- [이전] -->
 										<c:if test="${ pi.currentPage eq 1 }">
@@ -170,8 +187,6 @@
 											</c:url> 
 											<a href="${ after }">></a>
 										</c:if>				
-									</div>
-                                </div>
                             </div>
             <!-- Page end -->
             		</div>

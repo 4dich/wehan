@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<title>CH_DETAIL</title>
+	<title>CH_PREMIUMDETAIL</title>
 	<meta charset="UTF-8">
 	<meta name="description" content="Nissa Photography studio html template">
 	<meta name="keywords" content="industry, html">
@@ -142,7 +142,7 @@
 									<form class="contact-form" method="post" action="payinfo.do" style="margin-top: 65px;">
 										<div class="row">
 										<input type="hidden" name="price" value="${ chal.price }">
-										<input type="hidden" name="chId" value="${ chal.chPId }">
+										<input type="hidden" name="chPId" value="${ chal.chPId }">
 										<input type="hidden" name="chName" value="${ chal.chName }">
 										<input type="hidden" name="chPeople" value="${ chal.chPeople }">
 										<input type="hidden" name="chPeopleCount" value="${ chal.chPeopleCount }">
@@ -160,7 +160,7 @@
 											</div>
 											<div class="col-lg-6">
 												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chId" value="${ chal.chId }" disabled>
+													<input type="text" class="challengeDetail" name="chPId" value="${ chal.chPId }" disabled>
 												</div>
 											</div>
 											<div class="col-lg-6">

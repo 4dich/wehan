@@ -43,7 +43,10 @@
             position: absolute;
             bottom: 0;
             padding: 4% 11px 2% 15px;
+        }
         
+        .contact-section .row {
+        	height: 90%;
         }
     </style>
 </head>
