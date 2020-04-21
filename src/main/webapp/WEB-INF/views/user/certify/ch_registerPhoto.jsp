@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -120,29 +122,33 @@
 										</button>
 									</span>
 									<br><br>
+									
 									<script>
-      								$('#btnPic').click(function(){
-	      								$('#certifyPicFile').click();
-      								});	
-      								$('#deleteBtn').click(function () {
-										$('#certifyPhotoArea').attr("src","resources/images/image.png");
-									});
+	      								$('#btnPic').click(function(){
+		      								$('#certifyPicFile').click();
+		      								alert('눌리는겨?');
+	      								});	
+	      								$('#deleteBtn').click(function () {
+											$('#certifyPhotoArea').attr("src","resources/images/image.png");
+										});
+	      								
       								
-      							  // ====== 첨부 이미지 스크립트  =============================================	
-      								function readURL(input) {
-      										if(input.files && input.files[0]) {
-      											var reader = new FileReader();
-      											reader.onload = function(e) {
-      												$('#certifyPhotoArea').attr('src',e.target.result);
-      											}
-      											reader.readAsDataURL(input.files[0]);
-      										}   
-      								   }
-      								   
-      								   $("#certifyPicFile").change(function(){
-      									   readURL(this);
-      								   });
-      							  // ====== 첨부 이미지 스크립트 끝 ============================================	
+	      							  // ====== 첨부 이미지 스크립트  =============================================	
+	      								function readURL(input) {
+	      										if(input.files && input.files[0]) {
+	      											var reader = new FileReader();
+	      											reader.onload = function(e) {
+	      												$('#certifyPhotoArea').attr('src',e.target.result);
+	      											}
+	      											reader.readAsDataURL(input.files[0]);
+	      										}   
+	      								   }
+	      								   
+	      								   $("#certifyPicFile").change(function(){
+	      									   readURL(this);
+	      								   });
+	      							  // ====== 첨부 이미지 스크립트 끝 ============================================	
+							
       							</script>
 								</div>	
 							</div>

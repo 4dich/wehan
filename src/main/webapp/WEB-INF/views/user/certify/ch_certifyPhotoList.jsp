@@ -189,7 +189,7 @@
 		 });
 		
 		$('#insertCertify').click(function(){
-			location.href = "insertCertify.do?chId"+chId;
+			location.href = "insertCertify.do?chId="+chId;
 		});
 		
 	});

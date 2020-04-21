@@ -381,7 +381,7 @@ public class CertifyController {
 		
 		mv.addObject("list",list);
 		mv.addObject("pi",pi);
-		mv.setViewName("user/ceritify/ch_certifyPhotoList");
+		mv.setViewName("user/certify/ch_certifyPhotoList");
 		
 		return mv;
 		
@@ -394,24 +394,24 @@ public class CertifyController {
 	 * @return
 	 */
 	/*
-	 * public String saveFile(MultipartFile file,HttpServletRequest request) {
-	 * 
-	 * String root =
-	 * request.getSession().getServletContext().getRealPath("resources"); String
-	 * savePath = root + "\\images\\certify"; File folder = new File(savePath);
-	 * 
-	 * if(!folder.exists()) { folder.mkdir(); }
-	 * 
-	 * String originFileName = file.getOriginalFilename();
-	 * 
-	 * SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-	 * 
-	 * String picture = sdf.format(new java.sql.Date(System.currentTimeMillis()))+
-	 * "." + originFileName.substring(originFileName.lastIndexOf(".")+1); String
-	 * picturePath = folder + "\\" + picture;
-	 * 
-	 * try { file.transferTo(new File(picturePath)); }catch(Exception e) {
-	 * e.printStackTrace(); } return picture; }
+	  public String saveFile(MultipartFile file,HttpServletRequest request) {
+	  
+	  String root =
+	  request.getSession().getServletContext().getRealPath("resources"); String
+	  savePath = root + "\\images\\certify"; File folder = new File(savePath);
+	  
+	  if(!folder.exists()) { folder.mkdir(); }
+	  
+	  String originFileName = file.getOriginalFilename();
+	  
+	  SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+	  
+	  String picture = sdf.format(new java.sql.Date(System.currentTimeMillis()))+
+	  "." + originFileName.substring(originFileName.lastIndexOf(".")+1); String
+	  picturePath = folder + "\\" + picture;
+	  
+	  try { file.transferTo(new File(picturePath)); }catch(Exception e) {
+	  e.printStackTrace(); } return picture; }
 	 */
 	/**
 	 * 
@@ -421,16 +421,25 @@ public class CertifyController {
 	 * @param file
 	 * @return
 	 */
-	/*
-	 * @RequestMapping("insertCertify.do") public ModelAndView insertCertify(Certify
-	 * c,ModelAndView mv, HttpServletRequest request,
-	 * 
-	 * @RequestParam(name="registerPic", required=false) MultipartFile file) {
-	 * 
-	 * mv.setViewName("");
-	 * 
-	 * return mv; }
-	 */
+	
+		@RequestMapping("insertCertify.do") 
+		public String certifyForm(){
+			return "user/certify/ch_registerPhoto";
+		}
+		
+		/*
+		public ModelAndView insertCertify(Certify c,ModelAndView mv, HttpServletRequest request,
+		@RequestParam(name="registerPic", required=false) MultipartFile file) {
+		
+		mv.setViewName("user/certify/registerPhoto");
+		
+		return mv; 
+		
+		}
+		*/
+		
+	
+	
 
 }
 
