@@ -213,6 +213,7 @@
 										인증사진 목록가기
 										<img src="img/arrow-righ-2.png" alt="">
 									</button>
+									<input type="hidden" id="loginId" value="${ loginUser.userId }">
 								</div>
 							</div>
 						</div>
@@ -230,19 +231,37 @@
 		<script>
 		
 			function certifyInsert(){
-				alert("되나");
+				var list = [];
+				list = '${chal.chPeople}'.split(',');	
 				var chName = document.getElementById('chNameArea').value;
 				var chId = document.getElementById('chIdArea').value;
+				var userId = document.getElementById('loginId').value;
+				console.log(userId);
+				console.log(list);
 				console.log(chName);
 				console.log(chId);
+				//location.href ="ch_certifyPhotoListView.do";
 				
+				var result = 'ft';
 				
+				for(var i in list){
+					console.log(list[i]);
+					if(list[i] == userId){
+						result += 't';
+					}
+				}
+				if(result == 'ftt'){
+					location.href ="ch_certifyList.do?chId="+chId;
+				}else{
+					alert("챌린지 참여원이 아닙니다.");	
+				}
 				/* 챌린지 넘겨서 리스트 출력하기 */
 				
 				
 				
 			}
 			<!-- 남은 날짜 출력 -->
+			
 			$(function(){
 				var today = new Date();
 				var a = '${chal.endDate}';
@@ -259,9 +278,11 @@
 			});
 		
 			<!-- 참여인원 목록 리스트 가져오기 ajax -->
+			
 			$(function(){
 				var list = [];
-				list = '${chal.chPeople}'.split(',');							
+				list = '${chal.chPeople}'.split(',');	
+				
 				
 				$.ajaxSettings.traditional=true;
 				$.ajax ({					

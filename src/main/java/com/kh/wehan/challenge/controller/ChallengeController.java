@@ -403,12 +403,12 @@ public class ChallengeController {
 		} 
 		// 진행 중
 		else if(today.getTime() >= startTime.getTime() && today.getTime() < endTime.getTime()) {
-			mv.addObject("chal", chal).setViewName("user/challenge/ch_premiumDetailDoing");
+			mv.addObject("chal", chal).setViewName("user/challenge/ch_premiumDoing");
 		}
 		// 진행 마감
 		else {
 			mv.addObject("chal", chal);
-			mv.setViewName("user/challenge/ch_premiumDetailEnd");
+			mv.setViewName("user/challenge/ch_premiumEnd");
 		}
 			
 		return mv;

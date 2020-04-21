@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,11 +65,11 @@
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
 
-                    <div class="challenges-search">
+                   <!--  <div class="challenges-search">
 						<input type="textarea" style="padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 3px solid black;" placeholder="챌린지 검색">
                         <a href="#" class="site-btn2">
 						<img src="resources/images/main/search.png" alt=""></a>
-                    </div>
+                    </div> -->
                     <!-- <div class="challenges-search">
 						<input type="textarea" style="padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 3px solid black;" placeholder="챌린지 검색">
                         <a href=""><img src="img/arrow-righ-3.png" style="padding-left: 10px;" alt=""></a>
@@ -85,8 +85,8 @@
 						</p>
 					</div>
 					                    
-					<button class="site-btn sb-dark" style="margin-left: 15px; width: 280px; font-size: 15px;" type="button" onclick="location.href='ch-register.html'">
-						챌린지 등록하기
+					<button class="site-btn sb-dark" style="margin-left: 15px; width: 280px; font-size: 15px;" type="button" onclick="challengeBack();">
+						챌린지로 돌아가기
 						<img src="resources/images/arrow-righ-3.png" alt="">
 					</button>
 					<!-- <ul class="contact-info">
@@ -112,233 +112,26 @@
 
 						<div id="ch_confirmPhotoListArea">
 							<div id="buttonArea">
-								<div class="challengeName">【 하루 3번 물마시기 】</div>
+								<div class="challengeName">【      ${  list[0].chName }  】</div>
 								<input type="button" value="인증등록" onclick="location.href='challengeRegister.html'">
 							</div>
 							<!-- 인증사진리스트영역 -->
 							<div id="photoList">
-								<a href="confirmDetail.html">
+							
+								<c:forEach var ="c" items="${ list }">
+								
 									<div class="photoBox">
 										<!-- 인증사진 -->
-										<img src="resources/images/blog/1.jpg" alt="">
+										<img src="resources/images/certify/${ c.cePicture }" alt="">
 										<!-- 인증날짜 -->
-										<p class="confirmDate">2020-03-24</p>
+										<p class="confirmDate">${ c.ceDate }</p>
 										<!-- 인증유저 -->
-										<p class="nick">인증사진 상세보기</p>
+										<p class="nick">${ c.nickName }</p>
 									</div>
-								</a>
+								
+								
+								</c:forEach>
 
-							<!-- 삭제예정 -->
-							<div class="photoBox">
-								<!-- 인증사진 -->
-								<img src="resources/images/blog/1.jpg" alt="">
-								<!-- 인증날짜 -->
-								<p class="confirmDate">2020-03-24</p>
-								<!-- 인증유저 -->
-								<p class="nick">현스델리</p>
-							</div>
-							<div class="photoBox">
-								<!-- 인증사진 -->
-								<img src="resources/images/blog/1.jpg" alt="">
-								<!-- 인증날짜 -->
-								<p class="confirmDate">2020-03-24</p>
-								<!-- 인증유저 -->
-								<p class="nick">현스델리</p>
-							</div>
-							<div class="photoBox">
-								<!-- 인증사진 -->
-								<img src="resources/images/blog/1.jpg" alt="">
-								<!-- 인증날짜 -->
-								<p class="confirmDate">2020-03-24</p>
-								<!-- 인증유저 -->
-								<p class="nick">현스델리</p>
-							</div>
-							<div class="photoBox">
-								<!-- 인증사진 -->
-								<img src="resources/images/blog/1.jpg" alt="">
-								<!-- 인증날짜 -->
-								<p class="confirmDate">2020-03-24</p>
-								<!-- 인증유저 -->
-								<p class="nick">현스델리</p>
-							</div>
-							<div class="photoBox">
-								<!-- 인증사진 -->
-								<img src="resources/images/blog/1.jpg" alt="">
-								<!-- 인증날짜 -->
-								<p class="confirmDate">2020-03-24</p>
-								<!-- 인증유저 -->
-								<p class="nick">현스델리</p>
-							</div>
-							<div class="photoBox">
-								<!-- 인증사진 -->
-								<img src="resources/images/blog/1.jpg" alt="">
-								<!-- 인증날짜 -->
-								<p class="confirmDate">2020-03-24</p>
-								<!-- 인증유저 -->
-								<p class="nick">현스델리</p>
-							</div>
-							<div class="photoBox">
-								<!-- 인증사진 -->
-								<img src="resources/images/blog/1.jpg" alt="">
-								<!-- 인증날짜 -->
-								<p class="confirmDate">2020-03-24</p>
-								<!-- 인증유저 -->
-								<p class="nick">현스델리</p>
-							</div>
-							<div class="photoBox">
-								<!-- 인증사진 -->
-								<img src="resources/images/blog/1.jpg" alt="">
-								<!-- 인증날짜 -->
-								<p class="confirmDate">2020-03-24</p>
-								<!-- 인증유저 -->
-								<p class="nick">현스델리</p>
-							</div>
-							<div class="photoBox">
-								<!-- 인증사진 -->
-								<img src="resources/images/blog/1.jpg" alt="">
-								<!-- 인증날짜 -->
-								<p class="confirmDate">2020-03-24</p>
-								<!-- 인증유저 -->
-								<p class="nick">현스델리</p>
-							</div>
-							<div class="photoBox">
-								<!-- 인증사진 -->
-								<img src="resources/images/blog/1.jpg" alt="">
-								<!-- 인증날짜 -->
-								<p class="confirmDate">2020-03-24</p>
-								<!-- 인증유저 -->
-								<p class="nick">현스델리</p>
-							</div>
-							<div class="photoBox">
-								<!-- 인증사진 -->
-								<img src="resources/images/blog/1.jpg" alt="">
-								<!-- 인증날짜 -->
-								<p class="confirmDate">2020-03-24</p>
-								<!-- 인증유저 -->
-								<p class="nick">현스델리</p>
-							</div>
-							<div class="photoBox">
-								<!-- 인증사진 -->
-								<img src="resources/images/blog/1.jpg" alt="">
-								<!-- 인증날짜 -->
-								<p class="confirmDate">2020-03-24</p>
-								<!-- 인증유저 -->
-								<p class="nick">현스델리</p>
-							</div>
-							<div class="photoBox">
-								<!-- 인증사진 -->
-								<img src="resources/images/blog/1.jpg" alt="">
-								<!-- 인증날짜 -->
-								<p class="confirmDate">2020-03-24</p>
-								<!-- 인증유저 -->
-								<p class="nick">현스델리</p>
-							</div>
-
-							<div class="photoBox">
-								<!-- 인증사진 -->
-								<img src="resources/images/blog/1.jpg" alt="">
-								<!-- 인증날짜 -->
-								<p class="confirmDate">2020-03-24</p>
-								<!-- 인증유저 -->
-								<p class="nick">현스델리</p>
-							</div>
-							<div class="photoBox">
-								<!-- 인증사진 -->
-								<img src="resources/images/blog/1.jpg" alt="">
-								<!-- 인증날짜 -->
-								<p class="confirmDate">2020-03-24</p>
-								<!-- 인증유저 -->
-								<p class="nick">현스델리</p>
-							</div>
-							<div class="photoBox">
-								<!-- 인증사진 -->
-								<img src="resources/images/blog/1.jpg" alt="">
-								<!-- 인증날짜 -->
-								<p class="confirmDate">2020-03-24</p>
-								<!-- 인증유저 -->
-								<p class="nick">현스델리</p>
-							</div>
-							<div class="photoBox">
-								<!-- 인증사진 -->
-								<img src="resources/images/blog/1.jpg" alt="">
-								<!-- 인증날짜 -->
-								<p class="confirmDate">2020-03-24</p>
-								<!-- 인증유저 -->
-								<p class="nick">현스델리</p>
-							</div>
-							<div class="photoBox">
-								<!-- 인증사진 -->
-								<img src="resources/images/blog/1.jpg" alt="">
-								<!-- 인증날짜 -->
-								<p class="confirmDate">2020-03-24</p>
-								<!-- 인증유저 -->
-								<p class="nick">현스델리</p>
-							</div>
-							<div class="photoBox">
-								<!-- 인증사진 -->
-								<img src="resources/images/blog/1.jpg" alt="">
-								<!-- 인증날짜 -->
-								<p class="confirmDate">2020-03-24</p>
-								<!-- 인증유저 -->
-								<p class="nick">현스델리</p>
-							</div>
-							<div class="photoBox">
-								<!-- 인증사진 -->
-								<img src="resources/images/blog/1.jpg" alt="">
-								<!-- 인증날짜 -->
-								<p class="confirmDate">2020-03-24</p>
-								<!-- 인증유저 -->
-								<p class="nick">현스델리</p>
-							</div>
-							<div class="photoBox">
-								<!-- 인증사진 -->
-								<img src="resources/img/blog/1.jpg" alt="">
-								<!-- 인증날짜 -->
-								<p class="confirmDate">2020-03-24</p>
-								<!-- 인증유저 -->
-								<p class="nick">현스델리</p>
-							</div>
-							<div class="photoBox">
-								<!-- 인증사진 -->
-								<img src="resources/img/blog/1.jpg" alt="">
-								<!-- 인증날짜 -->
-								<p class="confirmDate">2020-03-24</p>
-								<!-- 인증유저 -->
-								<p class="nick">현스델리</p>
-							</div>
-							<div class="photoBox">
-								<!-- 인증사진 -->
-								<img src="resources/img/blog/1.jpg" alt="">
-								<!-- 인증날짜 -->
-								<p class="confirmDate">2020-03-24</p>
-								<!-- 인증유저 -->
-								<p class="nick">현스델리</p>
-							</div>
-							<div class="photoBox">
-								<!-- 인증사진 -->
-								<img src="resources/img/blog/1.jpg" alt="">
-								<!-- 인증날짜 -->
-								<p class="confirmDate">2020-03-24</p>
-								<!-- 인증유저 -->
-								<p class="nick">현스델리</p>
-							</div>
-							<div class="photoBox">
-								<!-- 인증사진 -->
-								<img src="resources/img/blog/1.jpg" alt="">
-								<!-- 인증날짜 -->
-								<p class="confirmDate">2020-03-24</p>
-								<!-- 인증유저 -->
-								<p class="nick">현스델리</p>
-							</div>
-							<div class="photoBox">
-								<!-- 인증사진 -->
-								<img src="resources/img/blog/1.jpg" alt="">
-								<!-- 인증날짜 -->
-								<p class="confirmDate">2020-03-24</p>
-								<!-- 인증유저 -->
-								<p class="nick">현스델리</p>
-							</div>
-							<!-- 삭제예정 끝 -->
 
 							</div>
 

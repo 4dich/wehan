@@ -152,15 +152,15 @@
 	JOIN MEMBER M
 	ON R.USERID = M.USERID
     JOIN FOLLOW F
-    ON F.FOLLOWER = M.USERID
-    WHERE F.HOST = #{mName}
+    ON F.HOST = M.USERID
+    WHERE F.FOLLOWER = #{mName}
     AND CEDEL_YN = 'N'
 	</select>
 	
 	<select id="followList" resultMap="cMemberResultSet">
 	SELECT * FROM MEMBER M
-	JOIN FOLLOW F ON (M.USERID = F.FOLLOWER)
-	WHERE F.HOST = #{mName}
+	JOIN FOLLOW F ON (M.USERID = F.HOST)
+	WHERE F.FOLLOWER = #{mName}
 	</select>
 	
 	<select id="selectDetailCertify" resultMap="certifyResultSet">
@@ -219,6 +219,16 @@
 	</select>
 	<select id="fidTitle" resultMap="certifyResultSet">
 	SELECT C.CHNAME,C.CATEGORY,M.NICKNAME,R.* FROM CHALLENGE C JOIN CERTIFY R ON C.CHID = R.CHID JOIN MEMBER M ON R.USERID = M.USERID WHERE CEDEL_YN = 'N' AND CHNAME LIKE '%' || #{title} || '%'
+	</select>
+	
+	<select id="chCertifyList" resultMap="certifyResultSet">
+	SELECT R.*,C.CHNAME,M.NICKNAME
+	FROM CERTIFY R
+	JOIN CHALLENGE C
+	ON(C.CHID = R.CHID)
+	JOIN MEMBER M
+	ON(R.USERID = M.USERID)
+	WHERE C.CHID = #{chId}
 	</select>
 </mapper>
 

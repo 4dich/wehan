@@ -97,14 +97,14 @@
                            <form class="contact-form" action="registerChallenge.do" method="post" enctype="multipart/form-data" style="margin-top: 90px;"> 
                               <div class="row">
                                  <div class="col-lg-12">
-                                    <input type="text" id="chName" name="chName" maxlength="54" style="border-top: none; border-left: none; border-right: none;" placeholder="챌린지명">
+                                    <input type="text" id="chName" name="chName" maxlength="12" style="border-top: none; border-left: none; border-right: none;" placeholder="챌린지명">
                                  </div>
                              
                                  <script> 
                                  	$(document).ready(function(){ 
                                  		$('#chName').keyup(function() { 
                                  			if($(this).val().length > $(this).attr('maxlength')) { 
-                                 				alert('도전명은 최대 18글자까지만 만들 수 있습니다.'); 
+                                 				alert('도전명은 최대 12글자까지만 만들 수 있습니다.'); 
                                  				$(this).val($(this).val().substr(0, $(this).attr('maxlength'))); 
                                  			} 
                                  		}); 
