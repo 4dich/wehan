@@ -72,7 +72,7 @@
 
             <button class="site-btn sb-dark" style="margin-left: 35px; width: 280px; font-size: 15px;" type="button" onclick="location.href='chalList.do'">
                  리스트 페이지로 가기
-               <img src="img/arrow-righ-3.png" alt="">
+               <img src="resouces/images/arrow-righ-3.png" alt="">
             </button>
             <br><br>
             <!-- <ul class="contact-info">
@@ -97,6 +97,7 @@
                            <form class="contact-form" action="registerChallenge.do" method="post" enctype="multipart/form-data" style="margin-top: 90px;"> 
                               <div class="row">
                                  <div class="col-lg-12">
+                                 	<input type='hidden' name="viewPage" value="1">
                                     <input type="text" id="chName" name="chName" maxlength="12" style="border-top: none; border-left: none; border-right: none;" placeholder="챌린지명">
                                  </div>
                              
@@ -122,7 +123,7 @@
                                     	<option value="category" hidden>카테고리</option>
 										<option value="health">건강</option>
 										<option value="hobby">취미</option>
-										<option value="motivated">자기 계발</option>
+										<option value="motivated">자기개발</option>
 										<option value="economy">경제</option>
 										<option value="life">생활</option>
 										<option value="etc">기타</option>

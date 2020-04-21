@@ -161,7 +161,7 @@
 						<div id="category">
 							<div class="ca health">건강</div>
 							<div class="ca hobby">취미</div>
-							<div class="ca selfImprovement">자기계발</div>
+							<div class="ca selfImprovement">자기개발</div>
 							<div class="ca economy" >경제</div>
 							<div class="ca life">생활</div>
 							<div class="ca etc">그외</div>

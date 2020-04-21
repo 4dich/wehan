@@ -69,12 +69,14 @@ public class PayController {
 	}
 	
 	@RequestMapping("payinfo.do")
-	public ModelAndView payinfo(Challenge ch,String chName,int price,String chId,ModelAndView mv,HttpServletRequest request) {
+	public ModelAndView payinfo(Challenge ch,String chName,int price,String chId, @RequestParam(value="viewPage",required=false,defaultValue="0")int viewPage
+			,ModelAndView mv,HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
 		Member m = (Member)session.getAttribute("loginUser");
 		mv.addObject("ch",ch);
 		mv.addObject("m",m);
+		mv.addObject("viewPage", viewPage); // 챌린지 등록시 결제확인용
 		mv.setViewName("user/payAgree");
 		
 		return mv;
@@ -83,6 +85,9 @@ public class PayController {
 	@RequestMapping("payments.do")
 	public void pay(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		
+
+		int viewPage = Integer.parseInt(request.getParameter("viewPage"));
+
 		String chId = request.getParameter("chId");
 		String userId = request.getParameter("userId");
 		int price = Integer.parseInt(request.getParameter("price"));
@@ -91,7 +96,8 @@ public class PayController {
 		String chPeople = request.getParameter("chPeople");
 		String peoplePlus = chPeople.concat(","+userId);
 		String[] peopleArr =  peoplePlus.split(",");
-		int count = peopleArr.length;
+		int count = peopleArr.length-1;
+		
 		
 		Pay pay = new Pay();
 		pay.setChId(chId);
@@ -194,7 +200,6 @@ public class PayController {
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		ArrayList<Pay> list = null;
 		Map ad = new HashMap();
-		
 		if(searchValue == null || searchValue == "") {
 			listCount = pService.getListCount();
 			PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
@@ -217,15 +222,14 @@ public class PayController {
 			ArrayList<Pay> psearch = null;
 			if(selecter.equals("userId")) {
 				p.setUserId(searchValue);
-			}
-			if(selecter.equals("chName")) {
+			}if(selecter.equals("chName")) {
 				ch.setChName(searchValue);
-			}
-			if(selecter.equals("pNo")) {
+			}if(selecter.equals("pNo")) {
 				p.setpId(searchValue);
+			}if(selecter.equals("chId")) {
+				ch.setChId(searchValue);
 			}
-			
-			if(ch.getChName() != null) {
+			if(ch.getChName() != null || ch.getChId() != null) {
 				listCount = pService.getSearchListCount(ch); //1
 				pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
 				if(reIdx == 1) {

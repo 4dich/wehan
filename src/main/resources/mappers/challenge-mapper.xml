@@ -191,4 +191,10 @@
 		SELECT COUNT(*)
 		FROM PREMIUMCHALLENGE
 	</select>
+	
+	<select id="getChallenge" resultMap="challengeResultSet">
+		SELECT *
+		FROM CHALLENGE
+		WHERE CHNAME = #{chName}
+	</select>
 </mapper>

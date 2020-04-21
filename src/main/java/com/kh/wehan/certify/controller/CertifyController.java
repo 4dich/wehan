@@ -384,7 +384,7 @@ public class CertifyController {
 		
 		mv.addObject("list",list);
 		mv.addObject("pi",pi);
-		mv.setViewName("user/ceritify/ch_certifyDetail");
+		mv.setViewName("user/ceritify/ch_certifyPhotoList");
 		
 		return mv;
 		
