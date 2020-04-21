@@ -18,11 +18,9 @@ public class PayDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	
 	public int getListCount() {
 		return sqlSession.selectOne("payMapper.getListCount");
 	}
-
 
 	public ArrayList<Pay> selectList(PageInfo pi) {
 		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
@@ -31,21 +29,17 @@ public class PayDao {
 		return (ArrayList)sqlSession.selectList("payMapper.selectList",null,rowBounds);
 	}
 
-
 	public Pay slectPayDetail(int pId) {
 		return sqlSession.selectOne("payMapper.slectPayDetail",pId);
 	}
-
 
 	public int insertPay(Pay pay) {
 		return sqlSession.insert("payMapper.insertPay",pay);
 	}
 
-
 	public Challenge slectChDetail(int pId) {
 		return sqlSession.selectOne("payMapper.slectChDetail",pId);
 	}
-
 
 	public ArrayList<Pay> pSearch(Pay p,PageInfo pi) {
 		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
@@ -61,7 +55,6 @@ public class PayDao {
 		return (ArrayList)sqlSession.selectList("payMapper.searchchlist",ch,rowBounds);
 	}
 
-
 	public int searchCount(Challenge ch) {
 		return sqlSession.selectOne("payMapper.chSearchResultCount",ch);
 	}
@@ -70,16 +63,13 @@ public class PayDao {
 		return sqlSession.selectOne("payMapper.paySearchResultCount",p);
 	}
 
-
 	public int refundAll(int[] result) {
 		return sqlSession.update("payMapper.refundAll",result);
 	}
 
-
 	public int refundOen(int pId) {
 		return sqlSession.update("payMapper.refundOne",pId);
 	}
-
 
 	public ArrayList<Pay> refundYn(PageInfo pi) {
 		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
@@ -88,21 +78,17 @@ public class PayDao {
 		return (ArrayList)sqlSession.selectList("payMapper.ynlist",null,rowBounds);
 	}
 
-
 	public int updatepeoplePlus(Challenge ch) {
 		return sqlSession.update("payMapper.updatepeoplePlus",ch);
 	}
-
 
 	public int updateCountPlus(Challenge ch) {
 		return sqlSession.update("payMapper.updateCountPlus",ch);
 	}
 
-
 	public ArrayList<Pay> refundNy(PageInfo pi) {
 		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
-		
 		return (ArrayList)sqlSession.selectList("payMapper.nylist",null,rowBounds);
 	}
 
@@ -118,7 +104,6 @@ public class PayDao {
 		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
 		return (ArrayList)sqlSession.selectList("payMapper.chSearchN",ch,rowBounds);
 	}
-
 
 	public ArrayList<Pay> pSearchY(Pay p, PageInfo pi) {
 		int offset = (pi.getCurrentPage()-1)*pi.getBoardLimit();

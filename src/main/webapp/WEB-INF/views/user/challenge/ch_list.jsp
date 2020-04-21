@@ -43,7 +43,10 @@
             position: absolute;
             bottom: 0;
             padding: 4% 11px 2% 15px;
+        }
         
+        .contact-section .row {
+        	height: 90%;
         }
     </style>
 </head>
@@ -66,41 +69,32 @@
                 <a href="chalList.do" style="color: red;">전체 챌린지</a>
                 <a onclick="return checkPremium();" id="premium" style="cursor: pointer;">프리미엄 챌린지</a>
               
-				<input type="hidden" id="ckUser" value="${ sessionScope.loginUser.userId }">
+				<input type="hidden" id="chUser" value="${ sessionScope.loginUser.userId }">
 				
 				<script>
-					
 	                function checkPremium(){
-	                	
-						if($('#ckUser').val() == ""){
+	            
+						if($('#chUser').val() == ""){
 							location.href="chalList.do";
 						}else{
 							$.ajax({
-		                		url:"checkPremium.do",
-		                		type:"post",
-		                		data:{userId : $('#ckUser').val()},
-		                		success:function(data){
-		                			console.log(data);
-		                			
+		                		url: "checkPremium.do",
+		                		type: "post",
+		                		data: { userId : $('#chUser').val() },
+		                		success: function(data){		                			
 		                			if(data == 6){
 		                				location.href="premiumList.do";
-		                				
 		                			}else{
 		                				alert('레벨 6만 가능한 공간입니다.');
 		                				return false;
 		                			}
-		                			
 		                		},error:function(){
-		                			console.log("전송실패");
+		                			console.log("오류입니다.");
 		                		}
 		                	});
 						}
-	                	
-	                	
-	                }
-						
+	                }	
 	            </script>
-
                 <a href="getChallengeTop10List.do">TOP 10 챌린지</a>
             </div>		
 		</header>

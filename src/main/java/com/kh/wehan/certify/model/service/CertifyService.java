@@ -88,5 +88,28 @@ public interface CertifyService {
 	 */
 	int deleteReply(CertifyReply r);
 
+	/**
+	 * 피드 타이틀 리스트 개수
+	 * @param title
+	 * @return
+	 */
+	int fidTitleCount(String title);
+
+	
+	/**
+	 * 피드 타이틀 리스트
+	 * @param title
+	 * @param pi
+	 * @return
+	 */
+	ArrayList<Certify> fidTitle(String title, PageInfo pi);
+
+	/**
+	 * 챌린지 _ 인증글 리스트 출력
+	 * @param chId
+	 * @param pi
+	 * @return
+	 */
+	ArrayList<Certify> chCertifyList(String chId, PageInfo pi);
 
 }

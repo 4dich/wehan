@@ -98,14 +98,14 @@
                               <div class="row">
                                  <div class="col-lg-12">
                                  	<input type='hidden' name="viewPage" value="1">
-                                    <input type="text" id="chName" name="chName" maxlength="54" style="border-top: none; border-left: none; border-right: none;" placeholder="챌린지명">
+                                    <input type="text" id="chName" name="chName" maxlength="12" style="border-top: none; border-left: none; border-right: none;" placeholder="챌린지명">
                                  </div>
                              
                                  <script> 
                                  	$(document).ready(function(){ 
                                  		$('#chName').keyup(function() { 
                                  			if($(this).val().length > $(this).attr('maxlength')) { 
-                                 				alert('도전명은 최대 18글자까지만 만들 수 있습니다.'); 
+                                 				alert('도전명은 최대 12글자까지만 만들 수 있습니다.'); 
                                  				$(this).val($(this).val().substr(0, $(this).attr('maxlength'))); 
                                  			} 
                                  		}); 
@@ -227,8 +227,9 @@
 	           }
 	       };
 	       jQuery.datepicker.setDefaults(jQuery.datepicker.regional['ko']);
-           $('#startDatepicker, #endDatepicker').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)         */
-	   });
+           $('#startDatepicker').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)         */
+           $('#endDatepicker').datepicker('setDate', '+7D'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)         */
+    	});
 	
 	   function inputDateComparison(obj) {
 	       // 날짜 입력 엘리먼트 ID는 startDate(시작일), endDate(종료일)로 동일해야 한다.

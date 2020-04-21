@@ -205,11 +205,7 @@
 		<div class="copyright"><p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
 		All rights reserved </p></div>
 		</div>
-	<!-- Main section end -->
-	
-	<script>
-		
-	</script>
+	<!-- Main section end -->	
 	
 	<!--====== Javascripts & Jquery ======-->
 	<script src="resources/js/jquery-3.2.1.min.js"></script>

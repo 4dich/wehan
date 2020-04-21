@@ -1,6 +1,7 @@
 package com.kh.wehan.member.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -33,7 +34,7 @@ public class InOutController {
 	
 	@RequestMapping(value="login.do",method=RequestMethod.POST)
 	public void login(String userId,String password,Model model,HttpSession 
-			session,SessionStatus status,HttpServletResponse response) throws JsonIOException, IOException {
+			session,SessionStatus status,HttpServletResponse response) throws JsonIOException, IOException, ParseException {
 		
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		response.setContentType("application/json; charset=utf-8");
@@ -58,24 +59,23 @@ public class InOutController {
 				 System.out.println(b);
 				 
 				 if(b != null) {
-					  
-					  int result2 = b.getBanTerm().compareTo(b.getBanDate());
-					 
-					  if(result2 < 0){
-						  int delete = mService.blackCancle(b.getbId());
+					 Date date = new Date();
+					 int result2 = b.getBanTerm().compareTo(date);
+					 if(result2 < 0){
+						 int delete = mService.blackCancle(b.getbId());
 						  
-						  if(delete > 0) {
-							  loginUser.setBlacklistYN("N");
-							  model.addAttribute("loginUser",loginUser); 
-							  result = "ok2";
-							  gson.toJson(result,response.getWriter());
-						  }else {
-							  result = "fail2";
-							  gson.toJson(result,response.getWriter());
-						  }
-					  }else {
-						  gson.toJson(b,response.getWriter());
-					  }
+						 if(delete > 0) {
+							 loginUser.setBlacklistYN("N");
+							 model.addAttribute("loginUser",loginUser); 
+							 result = "ok2";
+						  gson.toJson(result,response.getWriter());
+						 }else{
+							 result = "fail2";
+							 gson.toJson(result,response.getWriter());
+						 }
+					 }else {
+						 gson.toJson(b,response.getWriter());
+					 }
 				 }else {
 					 loginUser.setBlacklistYN("N");
 					 model.addAttribute("loginUser",loginUser);

@@ -149,44 +149,56 @@
 									
 								</table>			
 								
-								<!-- 댓글 등록 부분 -->
-								<table align="center">
-								  <tr>
-								    <td>
-								       <textarea rows="2" cols="80"></textarea>
-								    </td>
-								    <td>
-								      <button>등록</button>
-								      <!--  1.스크립트 2. opput 태그 onclick 이벤트  -->
-								      
-								    </td>
-								  </tr>
-								  
-								  <tr>
-								    <td colspan="2" ><b>댓글(${qCount })</b></td>
-								  </tr>
-								</table>					
-								
-								<c:if test="${qCount >0 }">
-								<table align="center">
-								   <c:forEach var="r" items="${q.questionsReplyList }">
-								     <tr>
-								        <td width="100px">${q.qrUserid }</td>
-								        <td width="400px">${q.qrContent }</td>
-								        <td witth="150px">${q.qrDate }</td>
-								        
-								          
-								        </td>
-								     </tr>
-								   
-								   </c:forEach>
-								
-								</table>
-								</c:if>
-								
-							</div>							
+								<!-- 댓글 -->
+						<div class="col-md-10"> 
+							<div class="portlet light bordered">
+								<div class="portlet-title tabbable-line"></div>
+								<div class="portlet-body">
+									<div>									
+										<!-- 댓글 쓰기 -->
+										<div class="tab-content">
+											<div role="tabpanel" class="tab-pane active" id="home" align="center">
+												
+													<div class="form-group" style="text-align: right;">														
+														<textarea class="form-control" id="addReflyText" style="height:100px; resize:none;" placeholder="친구의 피드에 댓글을 남겨보세요!"></textarea>
+														<button id="submitR" class="site-btn sb-dark" style="padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; margin-top:10px;">
+															댓글 등록
+														</button>
+														<button id="listBack" class="site-btn sb-dark" type="button" style="padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; margin-top:10px;">
+															목록가기
+														</button>
+													</div>
+											</div>
+										</div>
+
+										<!-- 댓글 읽기 -->
+										<div class="card" style="margin-bottom: 20px;">
+											<div class="card-body">
+											
+												<div class="row">		
+													<div class="be-comment-block">
+														<h1 class="comments-title"></h1>
+														
+													</div>	
+													
+																					
+													<div id="commentbody" class="media g-mb-30 media-comment" style="display: inline-block;">
+														×
+													</div>
+													
+													<input type="hidden" value="5" id="ceid">
+													<input type="hidden" value="user01" id="loginId">
+												</div>
+												
+											</div>
+										</div>
+										
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
+					
 				</div>
 			</div>
 			<!-- Page end -->
@@ -212,6 +224,112 @@
 	<script src="resources/js/circle-progress.min.js"></script>
 	<script src="resources/js/jquery.magnific-popup.min.js"></script>
 	<script src="resources/js/main.js"></script>
+	
+	<script>
+	
 
+	var ceId = 5;
+	
+	$(function(){
+		
+		replyList();
+		
+		setInterval(function(){
+			replyList();
+		},3000);
+		
+		$('#listBack').click(function(){
+			location.href="fid_ch_recommendView.do?"
+		});
+		
+		/* 등록버튼 */
+		$('#submitR').click(function(){
+			var ccContent = $('#addReflyText').val();
+			var userId = $('#loginId').val();
+			console.log(ccContent);
+			console.log(ceId);
+			console.log(userId);
+			
+			$.ajax({
+				url:"addReply.do",
+				data : {ccContent:ccContent,ceId:ceId,userId:userId},
+				type : "post",
+				success : function(data){
+					//console.log(data);
+					
+					if(data == "success"){
+						replyList();
+						$('#addReflyText').val("");
+						
+					}
+				},error:function(){
+					console.log("전송 실패");
+				}
+			});
+		});
+		/* 등록 끝 */
+
+		function replyList(){
+		/* ajax */
+		$.ajax({
+			url : "replyList.do",
+			data : {ceId:ceId},
+			//  	속성명 : 위에 선언된 변수명
+			dataType: "json",
+			success : function(data){
+				$divBody = $("#commentbody");
+				$divBody.html("");
+				
+				var $img;
+				var $mediaBody;
+				var $gmb;
+				var $h5;
+				var $span;
+				var $p;
+				var $rdiv;
+				
+				$(".comments-title").text("댓글("+ data.length +")");
+				console.log(data);
+				if(data.length > 0){
+					for(var i in data){
+						console.log(data[i]);
+  						$img = $("<img class='d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15' alt='Image Description'>");
+ 						$img.attr('src','resources/images/user/'+ data[i].picture);
+ 						$mediaBody = $("<div class='media-body u-shadow-v18 g-bg-secondary g-pa-30'>");
+						$gmb = $("<div class='g-mb-15'>");
+						$h5 = $("<h5 class='h5 g-color-gray-dark-v1 mb-0'>").text(data[i].userId);
+						$span = $("<span class='g-color-gray-dark-v4 g-font-size-12'>").text(data[i].ccDate);
+						$p = $("<p>").text(data[i].ccContent);
+						$rdiv = $("<div style='width: 100%; display: inline-flex;margin-bottom: 10px;'>");
+						$delBtn = $("<div class = 'delBtn'> Ⅹ");
+						
+						$gmb.append($h5);
+						$gmb.append($span);
+						$mediaBody.append($gmb);
+						$mediaBody.append($p);
+						
+						$rdiv.append($img);
+						$rdiv.append($mediaBody);	
+						$rdiv.append($delBtn);
+						$divBody.append($rdiv);
+					}
+				}else{
+					$div = $("<div>");
+					$content = $("<p>").text("등록된 댓글이 없습니다.")
+					
+					$div.append($content);
+					$divBody.append($div);
+				}
+				
+			},error:function(){
+				console.log("전송실패");
+			}
+		});
+		}
+	});
+	
+
+	
+	</script>
 	</body>
 </html>

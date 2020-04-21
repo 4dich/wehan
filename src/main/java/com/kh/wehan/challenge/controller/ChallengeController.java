@@ -195,7 +195,6 @@ public class ChallengeController {
 		chal.setChPicture(picture);
 		
 		int result = cService.insertChallenge(chal);
-		System.out.println(chal);
 		if(result > 0) {
 			mv.addObject("chal", chal).setViewName("user/challenge/ch_detail");
 		} else {
@@ -341,10 +340,8 @@ public class ChallengeController {
 	@RequestMapping("checkPremium.do")
 	public void checkPremium(HttpServletResponse response,String userId) throws IOException {
 		
-		System.out.println("userId : " + userId);
 		Mypage myLvl = cService.checkPremiumCondition(userId);
 		int level = myLvl.getMyLevel();
-		System.out.println("level : " + level);
 		
 		PrintWriter out = response.getWriter();
 		out.print(level);
@@ -362,7 +359,7 @@ public class ChallengeController {
 	public ModelAndView premiumChalList(ModelAndView mv, 
 						@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
 		
-		int listCount = cService.getListCount();
+		int listCount = cService.getPremiumListCount();
 		
 		int pageLimit = 5;
 		int boardLimit = 9;
@@ -406,16 +403,18 @@ public class ChallengeController {
 		} 
 		// 진행 중
 		else if(today.getTime() >= startTime.getTime() && today.getTime() < endTime.getTime()) {
-			mv.addObject("chal", chal).setViewName("user/challenge/ch_premiumDetailDoing");
+			mv.addObject("chal", chal).setViewName("user/challenge/ch_premiumDoing");
 		}
 		// 진행 마감
 		else {
 			mv.addObject("chal", chal);
-			mv.setViewName("user/challenge/ch_premiumDetailEnd");
+			mv.setViewName("user/challenge/ch_premiumEnd");
 		}
 			
 		return mv;
 	}
+	
+	
 	
 	/**
 	 * 4_4. 프리미엄 챌린지 리스트 내 검색 기능
@@ -473,7 +472,6 @@ public class ChallengeController {
 		
 		 if(!file.getOriginalFilename().equals(" ")) { 
 			 picture = saveFile(file, request);
-		 
 			 if(picture != null) { 
 				 chal.setChPicture(picture); 
 			 	}

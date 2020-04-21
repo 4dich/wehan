@@ -142,8 +142,8 @@
 									<form class="contact-form" style="margin-top: 65px;">
 										<div class="row">
 											<input type="hidden" name="price" value="${chal.price}">
-											<input type="hidden" name="chId" value="${chal.chId}">
-											<input type="hidden" name="chName" value="${chal.chName}">
+											<input id="chIdArea" type="hidden" name="chId" value="${chal.chId}">
+											<input id="chNameArea" type="hidden" name="chName" value="${chal.chName}">
 											
 											<div class="col-lg-12 message-body">
 												<div style="font-size:30px; display:inline-flex;">
@@ -210,10 +210,11 @@
 										</div>
 									</form>
 									<br><br>
-									<button class="site-btn sb-solid mr-3 mb-3" style="color: white; float: right; width: 280px; font-size: 16px;" type="button" onclick="location.href='ch_confirmPhotoList.html'">
+									<button class="site-btn sb-solid mr-3 mb-3" style="color: white; float: right; width: 280px; font-size: 16px;" type="button" onclick="certifyInsert();">
 										인증사진 목록가기
 										<img src="img/arrow-righ-2.png" alt="">
 									</button>
+									<input type="hidden" id="loginId" value="${ loginUser.userId }">
 								</div>
 							</div>
 						</div>
@@ -229,7 +230,39 @@
 		<!-- Main section end -->
 		
 		<script>
+		
+			function certifyInsert(){
+				var list = [];
+				list = '${chal.chPeople}'.split(',');	
+				var chName = document.getElementById('chNameArea').value;
+				var chId = document.getElementById('chIdArea').value;
+				var userId = document.getElementById('loginId').value;
+				console.log(userId);
+				console.log(list);
+				console.log(chName);
+				console.log(chId);
+				//location.href ="ch_certifyPhotoListView.do";
+				
+				var result = 'ft';
+				
+				for(var i in list){
+					console.log(list[i]);
+					if(list[i] == userId){
+						result += 't';
+					}
+				}
+				if(result == 'ftt'){
+					location.href ="ch_certifyList.do?chId="+chId;
+				}else{
+					alert("챌린지 참여원이 아닙니다.");	
+				}
+				/* 챌린지 넘겨서 리스트 출력하기 */
+				
+				
+				
+			}
 			<!-- 남은 날짜 출력 -->
+			
 			$(function(){
 				var today = new Date();
 				var a = '${chal.endDate}';
@@ -246,10 +279,12 @@
 			});
 		
 			<!-- 참여인원 목록 리스트 가져오기 ajax -->
+			
 			$(function(){
 				var list = [];
 				list = '${chal.chPeople}'.split(',');	
 				
+
 				var hostId = '${chal.userId}';
 				
 				$.ajaxSettings.traditional=true;

@@ -319,6 +319,77 @@ public class CertifyController {
 	}
 	
 	
+	/**
+	 * 카테고리 ajax
+	 * @param response
+	 * @param category
+	 * @param currentPage
+	 * @throws JsonIOException
+	 * @throws IOException
+	 */
+	@RequestMapping("fid_Condition.do")
+	public void fidCategory(HttpServletResponse response,String title,String category,@RequestParam(value="currentPage",required=false,defaultValue="1") int currentPage) throws JsonIOException, IOException {
+		System.out.println(currentPage);
+		System.out.println(title);
+		System.out.println(category);
+		PageInfo pi = null;
+		ArrayList<Certify> list = null;
+		
+		if(category != null && category != "") {
+			int Count = ceService.fidCategoryCount(category);
+			pi = Pagination.getPageInfo(currentPage,Count,5,9);
+			list = ceService.fidCategory(category,pi);
+		}
+		
+		if(title != null && title!="") {
+			int Count = ceService.fidTitleCount(title);
+			pi = Pagination.getPageInfo(currentPage,Count,5,9);
+			list = ceService.fidTitle(title,pi);
+		}
+		
+		response.setContentType("application/json; charset=utf-8");
+		
+		Map map = new HashMap();
+		
+		map.put("list",list);
+		map.put("pi",pi);
 	
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		gson.toJson(map,response.getWriter());
+	}
+	
+	
+	/**
+	 * 
+	 * 챌린지 _ 인증글 리스트
+	 * @param mv
+	 * @param chId
+	 * @param currentPage
+	 * @return
+	 */
+	@RequestMapping("ch_certifyList.do")
+	public ModelAndView chCertifyList(ModelAndView mv,String chId,
+			@RequestParam(value="currentPage",required=false,defaultValue="1") int currentPage) {
+		
+		int listCount = ceService.getListCount();
+		
+		int pageLimit = 5;
+		int boardLimit = 9;
+		
+		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, pageLimit, boardLimit);
+		
+		ArrayList<Certify> list = ceService.chCertifyList(chId,pi);
+		
+		System.out.println("list :" + list);
+		
+		mv.addObject("list",list);
+		mv.addObject("pi",pi);
+		mv.setViewName("user/ceritify/ch_certifyDetail");
+		
+		return mv;
+		
+	}
 
 }
+
+

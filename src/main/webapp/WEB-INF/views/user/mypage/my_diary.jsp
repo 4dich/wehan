@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -25,11 +26,174 @@
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="resources/css/style.css"/>
 
-
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	
 	<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
+	
+	<link href='resources/packages/core/main.css' rel='stylesheet' />
+	<link href='resources/packages/daygrid/main.css' rel='stylesheet' />
+	<link href='resources/packages/timegrid/main.css' rel='stylesheet' />
+	<script src='resources/packages/core/main.js'></script>
+	<script src='resources/packages/interaction/main.js'></script>
+	<script src='resources/packages/daygrid/main.js'></script>
+	<script src='resources/packages/timegrid/main.js'></script>
+	
+<script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      plugins: [ 'interaction', 'dayGrid', 'timeGrid' ],
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+      },
+      defaultDate: new Date(),
+      navLinks: true, // can click day/week names to navigate views
+      selectable: true,
+      selectMirror: true,
+      select: function(arg) {
+        var title = prompt('Event Title:');
+        if (title) {
+          calendar.addEvent({
+            title: title,
+            start: arg.start,
+            end: arg.end,
+            allDay: arg.allDay
+
+            
+          })
+        }
+        calendar.unselect()
+      },
+      editable: true,
+      eventLimit: true, // allow "more" link when too many events
+      events: [
+        {
+          title: 'All Day Event',
+          start: '2020-02-01'
+        },
+        {
+          title: 'Long Event',
+          start: '2020-02-07',
+          end: '2020-02-10'
+        },
+        {
+          groupId: 999,
+          title: 'Repeating Event',
+          start: '2020-02-09T16:00:00'
+        },
+        {
+          groupId: 999,
+          title: 'Repeating Event',
+          start: '2020-02-16T16:00:00'
+        },
+        {
+          title: 'Conference',
+          start: '2020-02-11',
+          end: '2020-02-13'
+        },
+        {
+          title: 'Meeting',
+          start: '2020-02-12T10:30:00',
+          end: '2020-02-12T12:30:00'
+        },
+        {
+          title: 'Lunch',
+          start: '2020-02-12T12:00:00'
+        },
+        {
+          title: 'Meeting',
+          start: '2020-02-12T14:30:00'
+        },
+        {
+          title: 'Happy Hour',
+          start: '2020-02-12T17:30:00'
+        },
+        {
+          title: 'Dinner',
+          start: '2020-02-12T20:00:00'
+        },
+        {
+          id: 'a',
+          title: 'Birthday Party',
+          start: '2020-02-13T07:00:00',
+          color: '#3A7D7C'
+        },
+        {
+          title: 'Click for Google',
+          url: 'http://google.com/',
+          start: '2020-02-28'
+        }
+      ],
+
+      // eventSources: [
+      //   {
+      //     url: '/myfeed.php',
+      //     method: 'POST',
+      //     extraParams: {
+      //       custom_param1: 'something',
+      //       custom_param2: 'somethingelse'
+      //     },success:function(){
+      //       alert('success');
+      //     },failure: function() {
+      //       alert('failure');
+      //     },
+      //     color: 'yellow',   // a non-ajax option
+      //     textColor: 'black' // a non-ajax option
+      //   }
+      // ],
+      
+      eventColor: 'red',
+      eventClick: function(info) {
+        alert('Event: ' + info.event.title);  // 이벤트명
+        alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY); // 좌표
+        alert('View: ' + info.view.type); // 페이지 형식 : 
+
+        // change the border color just for fun
+        info.el.style.borderColor = 'red';
+      }
+    });
+
+    var event = calendar.getEventById('a') // an event object!
+    var start = event.start // a property (a Date object)
+    console.log(start.toISOString()) // "2018-09-01T00:00:00.000Z"
+
+    calendar.render();
+  });
+  
+  $(function(){
+    $.ajax({
+        contentType:'application/json',
+        dataType:'json',
+        url:'calendarView.do',
+        type:'post',
+        success:function(data){
+        	var events = [];
+            $.each(data, function (index, value) {
+
+                events.push({
+                    
+                    title: value.title,
+                    start: value.sDate
+                    //all data
+                });
+                console.log(value)
+            });
+            callback(events);
+        },
+        error:function(){
+            alert('에러남, 아무튼 에러남');
+        }
+      });
+  });
+
+</script>
 <style>
 
 	.site-logo {
@@ -364,6 +528,19 @@
 		background-color: grey;
 	} */
 
+
+  body {
+    margin: 40px 10px;
+    padding: 0;
+    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+    font-size: 14px;
+  }
+
+  #calendar {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
 </style>
 </head>
 
@@ -381,7 +558,7 @@
 		
         <!-- 메뉴 끝 -->
 		<header class="header-section">
-			<div class="nav-switch">
+			<div class="nav-switch menuIcon msgCount">
 				<i class="fa fa-bars"></i>
 			</div>
 			<div class="header-social">
@@ -426,270 +603,8 @@
 			</div>
 			<!-- Left Side section end -->
 			<!-- Page start -->
-			<div class="page-section portfolio-page">
-				<div class="portfolio-section">
-					<div class="main-up" style="height: 20%; width: 100%; border: 1px solid gray; padding:1%; overflow-x:scroll; white-space:nowrap;">
-						<div style="height: 96%; width: 26%; border: 1px solid gray; display: inline-block; margin-right: 10px">
-							<div class="main-up-stamp" style="display: inline-block;">
-								<img src="resources/images/stamp_yes.jpg" style="width: 100px; height: 100px;">
-							</div>
-							<div class="main-up-content" style="display: inline-block; margin: 10px; overflow: hidden;">
-								1일 1커밋
-							</div>
-						</div>
-						<div style="height: 96%; width: 26%; border: 1px solid gray; display: inline-block; margin-right: 10px">
-							<div class="main-up-stamp" style="display: inline-block;">
-								<img src="resources/images/stamp_yes.jpg" style="width: 100px; height: 100px;">
-							</div>
-							<div class="main-up-content" style="display: inline-block; margin: 10px; overflow: hidden;">
-								30분 조깅
-							</div>
-						</div>
-						<div style="height: 96%; width: 26%; border: 1px solid gray; display: inline-block; margin-right: 10px">
-							<div class="main-up-stamp" style="display: inline-block;">
-								<img src="resources/images/stamp_yes.jpg" style="width: 100px; height: 100px;">
-							</div>
-							<div class="main-up-content" style="display: inline-block; margin: 10px; overflow: hidden;">
-								10시 이후에 안먹기
-							</div>
-						</div>
-						<div style="height: 96%; width: 26%; border: 1px solid gray; display: inline-block; margin-right: 10px">
-							<div class="main-up-stamp" style="display: inline-block;">
-								<img src="resources/images/stamp_yes.jpg" style="width: 100px; height: 100px;">
-							</div>
-							<div class="main-up-content" style="display: inline-block; margin: 10px; overflow: hidden;">
-								example
-							</div>
-						</div>
-						<div style="height: 96%; width: 26%; border: 1px solid gray; display: inline-block; margin-right: 10px">
-							<div class="main-up-stamp" style="display: inline-block;">
-								<img src="resources/images/stamp_yes.jpg" style="width: 100px; height: 100px;">
-							</div>
-							<div class="main-up-content" style="display: inline-block; margin: 10px; overflow: hidden;">
-								example
-							</div>
-						</div>
-						
-						
-						
-					</div>
-					<div class="main-down" style="height: 1200px; width: 100%; padding:3%; overflow:auto; margin-top: -1px;">
-						<div id="calendar-wrap">
-							<header>
-								<h2>&lt;<script>document.write(new Date().getMonth()+1);</script>월, <script>document.write(new Date().getFullYear());</script>년&gt;</h2>
-								<br>
-							</header>
-							<div id="calendar">
-								<ul class="weekdays">
-									<li>Sunday</li>
-									<li>Monday</li>
-									<li>Tuesday</li>
-									<li>Wednesday</li>
-									<li>Thursday</li>
-									<li>Friday</li>
-									<li>Saturday</li>
-								</ul>
-								<!-- Days from previous month -->
-								<ul class="days">
-									<li class="day other-month">
-										<div class="date">27</div>                     
-									</li>
-									<li class="day other-month">
-										<div class="date">28</div>
-										<div class="event">
-											<div class="event-desc">
-												HTML 5 lecture with Brad Traversy from Eduonix
-											</div>
-											<div class="event-time">
-												1:00pm to 3:00pm
-											</div>
-										</div>                     
-									</li>
-									<li class="day other-month">
-										<div class="date">29</div>                     
-									</li>
-									<li class="day other-month">
-										<div class="date">30</div>                     
-									</li>
-									<li class="day other-month">
-										<div class="date">31</div>                     
-									</li>
-									<!-- Days in current month -->
-									<li class="day">
-										<div class="date">1</div>                      
-									</li>
-									<li class="day">
-										<div class="date">2</div>
-										<div class="event">
-											<div class="event-desc">
-												Career development @ Community College room #402
-											</div>
-											<div class="event-time">
-												2:00pm to 5:00pm
-											</div>
-										</div>                     
-									</li>
-								</ul>
-									<!-- Row #2 -->
-								<ul class="days">
-									<li class="day">
-										<div class="date">3</div>                      
-									</li>
-									<li class="day">
-										<div class="date">4</div>                      
-									</li>
-									<li class="day">
-										<div class="date">5</div>                      
-									</li>
-									<li class="day">
-										<div class="date">6</div>                      
-									</li>
-									<li class="day">
-										<div class="date">7</div>
-										<div class="event">
-											<div class="event-desc">
-												Group Project meetup
-											</div>
-											<div class="event-time">
-												6:00pm to 8:30pm
-											</div>
-										</div>                     
-									</li>
-									<li class="day">
-										<div class="date">8</div>                      
-									</li>
-									<li class="day">
-										<div class="date">9</div>                      
-									</li>
-								</ul>
-									<!-- Row #3 -->
-								<ul class="days">
-									<li class="day">
-										<div class="date">10</div>                     
-									</li>
-									<li class="day">
-										<div class="date">11</div>                     
-									</li>
-									<li class="day">
-										<div class="date">12</div>                     
-									</li>
-									<li class="day">
-										<div class="date">13</div>                     
-									</li>
-									<li class="day">
-										<div class="date">14</div><div class="event">
-											<div class="event-desc">
-												Board Meeting
-											</div>
-											<div class="event-time">
-												1:00pm to 3:00pm
-											</div>
-										</div>                     
-									</li>
-									<li class="day">
-										<div class="date">15</div>                     
-									</li>
-									<li class="day">
-										<div class="date">16</div>                     
-									</li>
-								</ul>
-									<!-- Row #4 -->
-								<ul class="days">
-									<li class="day">
-										<div class="date">17</div>                     
-									</li>
-									<li class="day">
-										<div class="date">18</div>                     
-									</li>
-									<li class="day">
-										<div class="date">19</div>                     
-									</li>
-									<li class="day">
-										<div class="date">20</div>                     
-									</li>
-									<li class="day">
-										<div class="date">21</div>                     
-									</li>
-									<li class="day">
-										<div class="date">22</div>
-										<div class="event">
-											<div class="event-desc">
-												Conference call
-											</div>
-											<div class="event-time">
-												9:00am to 12:00pm
-											</div>
-										</div>                     
-									</li>
-									<li class="day">
-										<div class="date">23</div>                     
-									</li>
-								</ul>
-										<!-- Row #5 -->
-								<ul class="days">
-									<li class="day">
-										<div class="date">24</div>                     
-									</li>
-									<li class="day">
-										<div class="date">25</div>
-										<div class="event">
-											<div class="event-desc">
-												Conference Call
-											</div>
-											<div class="event-time">
-												1:00pm to 3:00pm
-											</div>
-										</div>                     
-									</li>
-									<li class="day">
-										<div class="date">26</div>                     
-									</li>
-									<li class="day">
-										<div class="date">27</div>                     
-									</li>
-									<li class="day">
-										<div class="date">28</div>                     
-									</li>
-									<li class="day">
-										<div class="date">29</div>                     
-									</li>
-									<li class="day">
-										<div class="date">30</div>                     
-									</li>
-								</ul>
-								<!-- Row #6 -->
-								<ul class="days">
-									<li class="day">
-										<div class="date">31</div>                     
-									</li>
-									<li class="day other-month">
-										<div class="date">1</div> <!-- Next Month -->                      
-									</li>
-									<li class="day other-month">
-										<div class="date">2</div>                      
-									</li>
-									<li class="day other-month">
-										<div class="date">3</div>                      
-									</li>
-									<li class="day other-month">
-										<div class="date">4</div>                      
-									</li>
-									<li class="day other-month">
-										<div class="date">5</div>                      
-									</li>
-									<li class="day other-month">
-										<div class="date">6</div>                      
-									</li>
-								</ul>
-							</div><!-- /. calendar -->
-							<div class="cal-detail" style="display: none; width:500px; height: 500px; border: 2px solid #242424; background:white; position:absolute; left: 1000px; top: 300px; padding:30px">
-								대충 달력 상세정보
-								<div class="close-cal">x</div>
-							</div>
-						</div><!-- /. wrap -->
-					</div>
-				</div>
-			</div>
+			
+			<div id='calendar'></div>
 			
 			<!-- Page end -->
 		</div>
@@ -707,17 +622,6 @@
 	<script src="resources/js/circle-progress.min.js"></script>
 	<script src="resources/js/jquery.magnific-popup.min.js"></script>
 	<script src="resources/js/main.js"></script>
-
-	<script>
-		$('#calendar .days li').click(function(){
-			$(".cal-detail").show();
-		});
-		
-		$(".close-cal").click(function(){
-			$(".cal-detail").css("display","none");
-		});
-		
-	</script>
 
 	</body>
 </html>

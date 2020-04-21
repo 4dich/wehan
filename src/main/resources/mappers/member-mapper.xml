@@ -50,7 +50,7 @@
 		SELECT COUNT(*) FROM MEMBER WHERE NICKNAME=#{nickName}
 	</select>
 	<select id="blackCheck" parameterType="string" resultType="_int">
-		SELECT COUNT(*) FROM BLACKLIST WHERE USERID=#{userId}
+		SELECT COUNT(*) FROM BLACKLIST WHERE USERID=#{userId} AND STATUS = 'Y'
 	</select>
 	<insert id="insertMember" parameterType="Member">
 		INSERT INTO MEMBER VALUES(#{userId},#{password},#{nickName},#{userName},#{birthDay},#{address},#{email},#{phone},#{account},#{picture},SYSDATE,DEFAULT)
@@ -117,6 +117,10 @@
 		SELECT COUNT(*) FROM BLACKLIST WHERE STATUS='Y' 
 	</select>
 	<select id="blackList" resultMap="blackResultSet">
-		 SELECT * FROM BLACKLIST 
+		SELECT * FROM BLACKLIST 
 	 </select>
+	 <insert id="insertMypage" parameterType="string">
+	 	INSERT INTO MYPAGE VALUES(#{userId},NULL,NULL,NULL,DEFAULT,DEFAULT)
+	 </insert>
+	 
 </mapper>
