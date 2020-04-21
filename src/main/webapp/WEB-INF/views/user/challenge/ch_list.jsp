@@ -158,12 +158,12 @@
 				<div class="contact-section">
                     <!-- 카테고리 -->
 						<div id="category">
-							<div class="ca health">건강</div>
-							<div class="ca hobby">취미</div>
-							<div class="ca motivated">자기개발</div>
-							<div class="ca economy" >경제</div>
-							<div class="ca life">생활</div>
-							<div class="ca etc">그외</div>
+							<div class="ca health" value="health">건강</div>
+							<div class="ca hobby" value="hobby">취미</div>
+							<div class="ca motivated" value="motivated">자기개발</div>
+							<div class="ca economy" value="economy">경제</div>
+							<div class="ca life" value="life">생활</div>
+							<div class="ca etc" value="etc">그외</div>
 						</div>
 					<div class="row">
 						  <div id="ch_confirmPhotoListArea">
@@ -174,7 +174,7 @@
                                         <div class="photoBox">
                                         	<img src="resources/images/challenge/${ ch.chPicture }" alt=""/>
                                         	<!-- 카테고리 -->
-                                        	<div class="message-body">
+                                        	<div class="message-body" style="position: absolute; margin-left: 310px; margin-top: 15px; top: 0;">
 	                                           	<c:if test='${ ch.category eq "건강" or ch.category eq "health"}'>													
 													<h5 style="margin-bottom:10px">
 														<span class="health" style="font-size:13px;">건강</span>
@@ -363,7 +363,7 @@
 				$(etc).css("color","black");
 			});
 
-			$('.moticated').click(function(){
+			$('.motivated').click(function(){
 				$(this).css("background","black");
 				$(this).css("color","white");
 				$(this).css("border","1px solid black");
@@ -401,8 +401,8 @@
 				$(this).css("border","1px solid black");
 				$(hobby).css("background","white");
 				$(hobby).css("color","black");
-				$(moticated).css("background","white");
-				$(moticated).css("color","black");
+				$(motivated).css("background","white");
+				$(motivatedmotivated).css("color","black");
 				$(economy).css("background","white");
 				$(economy).css("color","black");
 				$(health).css("background","white");
@@ -417,8 +417,8 @@
 				$(this).css("border","1px solid black");
 				$(hobby).css("background","white");
 				$(hobby).css("color","black");
-				$(selfImprovement).css("background","white");
-				$(selfImprovement).css("color","black");
+				$(motivated).css("background","white");
+				$(motivated).css("color","black");
 				$(economy).css("background","white");
 				$(economy).css("color","black");
 				$(life).css("background","white");
