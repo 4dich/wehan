@@ -24,6 +24,9 @@
 	<link rel="stylesheet" href="resources/css/magnific-popup.css"/>
 	<link rel="stylesheet" href="resources/css/owl.carousel.min.css"/>
 
+	<!-- jquery -->
+	<script src="resources/js/jquery-3.2.1.min.js"></script>
+
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="resources/css/jh-css.css"/>
 
@@ -177,7 +180,7 @@
 											</div>
 											<div class="col-lg-12">
 												<div class="contents-detail">
-													모인 금액 : <strong>${ chal.totalPrice } 원</strong>
+													모인 금액 : <strong><span id="tPrice"></span> 원</strong>
 												</div>
 											</div>
 											<div class="col-lg-12">
@@ -206,6 +209,11 @@
 		All rights reserved </p></div>
 		</div>
 	<!-- Main section end -->	
+	<script>
+	$(function(){
+		$('#tPrice').text(${ chal.chPeopleCount } * ${ chal.price } );
+	});
+	</script>
 	
 	<!--====== Javascripts & Jquery ======-->
 	<script src="resources/js/jquery-3.2.1.min.js"></script>

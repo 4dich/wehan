@@ -200,7 +200,7 @@
 											
 											<div class="col-lg-12">
 												<div class="contents-detail">
-													모인 금액 : <strong>${ chal.totalPrice } 원</strong>
+													모인 금액 : <strong><span id="tPrice"></span> 원</strong>
 												</div>
 											</div>
 											<br><br><br><br>
@@ -261,7 +261,7 @@
 				
 				
 			}
-			<!-- 남은 날짜 출력 -->
+			// 남은 날짜 출력
 			
 			$(function(){
 				var today = new Date();
@@ -294,9 +294,11 @@
 					type : 'post',
 					success:function(data){
 						
+						$('#tPrice').text((list.length-1) * price);
+						
 						for(var i = 0; i < data.length; i++) {
 							
-// 내 아이디를 누르면 내 프로필로 이동
+						// 내 아이디를 누르면 내 프로필로 이동
 							
 							if(data[i].userId == hostId){
 								if( '${loginUser.userId}' == data[i].userId) {
