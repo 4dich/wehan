@@ -147,6 +147,11 @@
 	</div>
 	<!-- Main section end -->
 	<script>
+		$(function(){
+			$("#userId").focus();
+		});
+		
+	
 		 $('#submit').click(function(){
 			login();
 		}); 
