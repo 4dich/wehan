@@ -261,7 +261,7 @@
 				"click":function(){
 					var blackList = $('#blackList').val();
 					console.log(blackList);
-					if(blackList == "N       블럭하기"){
+					if(blackList == "N       차단하기"){
 						$('.black').show();
 						$('.blackinsert').show();
 						$('.blackcancle').hide();

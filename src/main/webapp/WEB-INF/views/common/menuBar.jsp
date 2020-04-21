@@ -9,6 +9,26 @@
 <!-- JQuery -->
 	<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
 	<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script> 
+	
+	<style>
+		.userdiv{
+			margin-bottom: 60px;
+		}
+		.user{
+			display:inline-block;
+		}
+		.profile{
+			
+			width:50px; 
+			heigth:50px;
+		}
+		
+		#p1{
+			font-size:15px;
+			color:white;
+		}
+		
+	</style>
 </head>
 <body>
 	<div class="site-menu-warp">
@@ -20,6 +40,7 @@
          <!-- Main menu -->
          
          <ul class="site-menu">
+         	
             <li><a href="chalList.do">Challenge</a></li>
             <li><a href="fid_ch_recommendView.do">Fid</a></li>
             <li><a onclick="needLogin()" style="color:white; cursor:pointer">My Page</a></li>
@@ -47,16 +68,30 @@
           </c:if>
           
          <c:if test="${!empty sessionScope.loginUser}">
+         
          <div class="close-menu">x</div>
+       		
          <ul class="site-menu">
+	          <div class="userdiv">
+			  	 <div class="profile user">
+			  	 	<img alt="" src="resources/images/user/${loginUser.picture}"  style=" width:40px; heigth:40px; border-radius:50px;">
+			  	 </div>
+			  	 <div class ="userInfo user">
+			  	 	<p id="p1">
+			  	 		<b>${loginUser.nickName}</b>님 환영합니다
+			  	 	</p>
+			  	 </div>		         
+	         </div>
             <li><a href="chalList.do">Challenge</a></li>
             <li><a href="fid_ch_recommendView.do">Fid</a></li>
             <li><a href="my_profileView.do">My Page</a></li>
             <li><a href="noticeView.do">고객센터</a></li>
-            <li><a href="">상태:로그인</a></li>
           </ul>
+          
+          
+          
           <div class="menu-social">
-   
+   			
             <a href="indexView.do" class="menuIcon">
                <img src="resources/images/main/home.png" alt=""></a>
             
@@ -69,6 +104,7 @@
             
           </div>
           </c:if>
+          
       </div>
 
 </body>
