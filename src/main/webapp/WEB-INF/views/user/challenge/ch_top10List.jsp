@@ -253,7 +253,6 @@
 			</div>
 			<div class="header-social">
                 <a href="chalList.do" >전체 챌린지</a>
-                <a href="premiumcondition.do">프리미엄 챌린지</a>
                 <a href="chalTop10List.do" style="color: red;">TOP 10 챌린지</a>
             </div>	
 		</header>

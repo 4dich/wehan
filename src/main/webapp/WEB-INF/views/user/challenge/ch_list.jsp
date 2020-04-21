@@ -11,7 +11,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
 	<!-- Favicon -->
-	<link href="resources/img/favicon.ico" rel="shortcut icon"/>
+	<link href="resources/images/favicon.ico" rel="shortcut icon"/>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap" rel="stylesheet">
@@ -67,8 +67,7 @@
             </div>            
             <div class="header-social">
                 <a href="chalList.do" style="color: red;">전체 챌린지</a>
-                <a onclick="return checkPremium();" id="premium" style="cursor: pointer;">프리미엄 챌린지</a>
-              
+                
 				<input type="hidden" id="chUser" value="${ sessionScope.loginUser.userId }">
 				
 				<script>
@@ -161,7 +160,7 @@
 						<div id="category">
 							<div class="ca health">건강</div>
 							<div class="ca hobby">취미</div>
-							<div class="ca selfImprovement">자기개발</div>
+							<div class="ca motivated">자기개발</div>
 							<div class="ca economy" >경제</div>
 							<div class="ca life">생활</div>
 							<div class="ca etc">그외</div>
@@ -173,7 +172,40 @@
                                     <a class="detailInList" id="test" style="cursor:pointer" onclick="getdetailInList(this);" name="${ ch.chId }">
                                     	<input type="hidden" id="hiddenDetailInList" name="hiddenDetailInList"/>
                                         <div class="photoBox">
-											<img src="resources/images/challenge/${ ch.chPicture }" alt=""/>
+                                        	<img src="resources/images/challenge/${ ch.chPicture }" alt=""/>
+                                        	<!-- 카테고리 -->
+                                        	<div class="message-body" style="position: absolute; margin-left: 310px; margin-top: 15px; top: 0;">
+	                                           	<c:if test='${ ch.category eq "건강" or ch.category eq "health"}'>													
+													<h5 style="margin-bottom:10px">
+														<span class="health" style="font-size:13px;">건강</span>
+													</h5>
+												</c:if>
+												<c:if test='${ ch.category eq "자기개발" or ch.category eq "motivated"}'>													
+													<h5 style="margin-bottom:10px">
+														<span class="motivated" style="font-size:13px;">자기개발</span>
+													</h5>
+												</c:if>
+												<c:if test='${ ch.category eq "경제" or ch.category eq "economy"}'>													
+													<h5 style="margin-bottom:10px">
+														<span class="economy" style="font-size:13px;">경제</span>
+													</h5>
+												</c:if>
+												<c:if test='${ ch.category eq "취미" or ch.category eq "hobby"}'>													
+													<h5 style="margin-bottom:10px">
+														<span class="hobby" style="font-size:13px;">취미</span>
+													</h5>
+												</c:if>
+												<c:if test='${ ch.category eq "생활" or ch.category eq "life"}'>													
+													<h5 style="margin-bottom:10px">
+														<span class="life" style="font-size:13px;">생활</span>
+													</h5>
+												</c:if>
+												<c:if test='${ ch.category eq "그외" or ch.category eq "etc"}'>													
+													<h5 style="margin-bottom:10px">
+														<span class="etc" style="font-size:13px;">그외</span>
+													</h5>
+												</c:if>	
+												</div>
                                             <div class="textBox">
                                              <h5>${ ch.chName }</h5>
                                                 <br>
@@ -292,10 +324,10 @@
 	<script>
 		var health = document.getElementsByClassName('health');
 		var hobby = document.getElementsByClassName('hobby');
-		var selfImprovement = document.getElementsByClassName('selfImprovement');
+		var motivated = document.getElementsByClassName('motivated');
 		var economy = document.getElementsByClassName('economy');
 		var life = document.getElementsByClassName('life');
-		var except = document.getElementsByClassName('except');
+		var etc = document.getElementsByClassName('etc');
 
 		
 		$(document).ready(function(){
@@ -305,14 +337,14 @@
 				$(this).css("border","1px solid black");
 				$(hobby).css("background","white");
 				$(hobby).css("color","black");
-				$(selfImprovement).css("background","white");
-				$(selfImprovement).css("color","black");
+				$(motivated).css("background","white");
+				$(motivated).css("color","black");
 				$(economy).css("background","white");
 				$(economy).css("color","black");
 				$(life).css("background","white");
 				$(life).css("color","black");
-				$(except).css("background","white");
-				$(except).css("color","black");
+				$(etc).css("background","white");
+				$(etc).css("color","black");
 			});
 
 			$('.hobby').click(function(){
@@ -321,17 +353,17 @@
 				$(this).css("border","1px solid black");
 				$(health).css("background","white");
 				$(health).css("color","black");
-				$(selfImprovement).css("background","white");
-				$(selfImprovement).css("color","black");
+				$(motivated).css("background","white");
+				$(motivated).css("color","black");
 				$(economy).css("background","white");
 				$(economy).css("color","black");
 				$(life).css("background","white");
 				$(life).css("color","black");
-				$(except).css("background","white");
-				$(except).css("color","black");
+				$(etc).css("background","white");
+				$(etc).css("color","black");
 			});
 
-			$('.selfImprovement').click(function(){
+			$('.moticated').click(function(){
 				$(this).css("background","black");
 				$(this).css("color","white");
 				$(this).css("border","1px solid black");
@@ -343,8 +375,8 @@
 				$(economy).css("color","black");
 				$(life).css("background","white");
 				$(life).css("color","black");
-				$(except).css("background","white");
-				$(except).css("color","black");
+				$(etc).css("background","white");
+				$(etc).css("color","black");
 			});
 
 			$('.economy').click(function(){
@@ -353,14 +385,14 @@
 				$(this).css("border","1px solid black");
 				$(hobby).css("background","white");
 				$(hobby).css("color","black");
-				$(selfImprovement).css("background","white");
-				$(selfImprovement).css("color","black");
+				$(motivated).css("background","white");
+				$(motivated).css("color","black");
 				$(health).css("background","white");
 				$(health).css("color","black");
 				$(life).css("background","white");
 				$(life).css("color","black");
-				$(except).css("background","white");
-				$(except).css("color","black");
+				$(etc).css("background","white");
+				$(etc).css("color","black");
 			});
 
 			$('.life').click(function(){
@@ -369,17 +401,17 @@
 				$(this).css("border","1px solid black");
 				$(hobby).css("background","white");
 				$(hobby).css("color","black");
-				$(selfImprovement).css("background","white");
-				$(selfImprovement).css("color","black");
+				$(moticated).css("background","white");
+				$(moticated).css("color","black");
 				$(economy).css("background","white");
 				$(economy).css("color","black");
 				$(health).css("background","white");
 				$(health).css("color","black");
-				$(except).css("background","white");
-				$(except).css("color","black");
+				$(etc).css("background","white");
+				$(etc).css("color","black");
 			});
 
-			$('.except').click(function(){
+			$('.etc').click(function(){
 				$(this).css("background","black");
 				$(this).css("color","white");
 				$(this).css("border","1px solid black");
