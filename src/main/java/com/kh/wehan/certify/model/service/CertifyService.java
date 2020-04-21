@@ -104,4 +104,12 @@ public interface CertifyService {
 	 */
 	ArrayList<Certify> fidTitle(String title, PageInfo pi);
 
+	/**
+	 * 챌린지 _ 인증글 리스트 출력
+	 * @param chId
+	 * @param pi
+	 * @return
+	 */
+	ArrayList<Certify> chCertifyList(String chId, PageInfo pi);
+
 }
