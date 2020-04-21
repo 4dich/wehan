@@ -293,6 +293,8 @@ public class ChallengeController {
 	public void categoryInList(HttpServletResponse response, String category,
 						@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) throws JsonIOException, IOException {
 		
+		System.out.println(category);
+		
 		int listCount = cService.getListCount(category);
 		
 		int pageLimit = 5;

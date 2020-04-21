@@ -98,6 +98,7 @@
 								<th>차단 이유</th>
 								<th>차단 기간</th>
 								<th>차단 날짜</th>
+								<th>차단상태</th>
 							</tr>
 							<!-- 반복문 예정 -->
 							<c:forEach var="b" items="${list}">
@@ -106,6 +107,7 @@
 								<td>${b.banReason}</td>
 								<td>${b.banTerm}</td>
 								<td>${b.banDate}</td>
+								<td>${b.status}</td>
 							</tr>
 							</c:forEach>
 						</table>
@@ -118,7 +120,7 @@
 								<c:url var="before" value="blackList.do">
 									<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
 								</c:url>
-								<a href="${ before }"><</a> &nbsp;
+								<a href="${ before }"><</a>
 							</c:if>
 							
 							<!-- 페이지 -->
@@ -131,7 +133,7 @@
 									<c:url var="pagination" value="blackList.do">
 										<c:param name="currentPage" value="${ p }"/>
 									</c:url>
-									<a href="${ pagination }">${ p }</a> &nbsp;
+									<a href="${ pagination }">${ p }</a>
 								</c:if>
 							</c:forEach>
 							
