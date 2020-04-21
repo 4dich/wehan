@@ -194,7 +194,6 @@ public class PayController {
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		ArrayList<Pay> list = null;
 		Map ad = new HashMap();
-		
 		if(searchValue == null || searchValue == "") {
 			listCount = pService.getListCount();
 			PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
@@ -217,15 +216,14 @@ public class PayController {
 			ArrayList<Pay> psearch = null;
 			if(selecter.equals("userId")) {
 				p.setUserId(searchValue);
-			}
-			if(selecter.equals("chName")) {
+			}if(selecter.equals("chName")) {
 				ch.setChName(searchValue);
-			}
-			if(selecter.equals("pNo")) {
+			}if(selecter.equals("pNo")) {
 				p.setpId(searchValue);
+			}if(selecter.equals("chId")) {
+				ch.setChId(searchValue);
 			}
-			
-			if(ch.getChName() != null) {
+			if(ch.getChName() != null || ch.getChId() != null) {
 				listCount = pService.getSearchListCount(ch); //1
 				pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
 				if(reIdx == 1) {
