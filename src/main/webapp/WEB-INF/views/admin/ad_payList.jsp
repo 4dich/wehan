@@ -94,6 +94,7 @@
 			<!-- Page start -->
 			
 			<input type="hidden" id="test" value="1">
+			<input type="hidden" id="test3" value="2">
 			
 			<div class="page-section blog-page">
 				<div class="blog-posts">
@@ -112,7 +113,7 @@
 							</div>
 							<!-- 검색 -->
 							<input class="searchBox" type="search" name="searchValue">
-							<button onclick='refundYn(0,1)'><img src="resources/images/main/search.png" alt=""></button>
+							<button id="search"><img src="resources/images/main/search.png" alt=""></button>
 						</div>
 					
 					<div id="paylist">
@@ -206,16 +207,18 @@
 	
 	<script>
 	
-		$('#test2').click(function(){
-			console.log(pId);
-		});	
-	
 		$('.thArea').children().eq(6).click(function(){
 			var reIdx = $('#test').val();
 			$('#test').val(1 - $('#test').val());
 			console.log(reIdx);
 			var currentPage = 1;
 			
+			refundYn(reIdx,currentPage);
+		});
+		
+		$('#search').click(function(){
+			var reIdx = $('#test3').val();
+			var currentPage = 1;
 			refundYn(reIdx,currentPage);
 		});
 		
@@ -233,21 +236,7 @@
 					currentPage:currentPage,
 					searchValue:searchValue,
 					selecter:selecter
-					  },
-					  
-					 /*  <div id="searchArea">
-						<div id="searchSelect"> 
-							<select name="selecter" id="selecter">
-								<option value="userId">유저ID</option>
-								<option value="chName">챌린지명</option>
-								<option value="pNo">결제번호</option>
-							</select>					
-						</div>
-						<!-- 검색 -->
-						<input class="searchBox" type="search" name="searchValue">
-						<button><img src="resources/images/main/search.png" alt=""></button>
-					</div> */
-				success:function(result){
+					  },success:function(result){
 					console.log(result);
 					$('.noticeList').remove();
 					$('.qnaPaging').remove();
@@ -276,7 +265,6 @@
 						listText += "<td><button onclick='location.href="+'"'+"paydetail.do?pId="+list[i].pId+'"'+"'>"+"정보"+"</button></td>";
 						listText += "<td>"+list[i].refund_yn+"</td>";
 						listText += "</tr>";
-						/* $button.attr("onclick","location.href='paydetail.do?pId="+list[i].pId+"'").text("정보") */
 					} 
 					listText += "</table>"
 					// 페이징 처리
