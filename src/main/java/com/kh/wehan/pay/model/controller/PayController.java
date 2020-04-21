@@ -33,8 +33,7 @@ public class PayController {
 	private PayService pService;
 	
 	@RequestMapping("paylist.do")
-	public ModelAndView payList(ModelAndView mv,
-			@RequestParam(value="currentPage",required=false,defaultValue="1") int currentPage) {
+	public ModelAndView payList(ModelAndView mv,@RequestParam(value="currentPage",required=false,defaultValue="1") int currentPage) {
 		
 		int listCount = pService.getListCount();
 		
@@ -49,8 +48,7 @@ public class PayController {
 	}
 	
 	@RequestMapping("paydetail.do")
-	public ModelAndView payDetail(ModelAndView mv,
-			int pId) {
+	public ModelAndView payDetail(ModelAndView mv,int pId) {
 		 
 		Pay p = pService.slectPayDetail(pId);
 		Challenge ch = pService.slectchDetail(pId);
@@ -84,7 +82,6 @@ public class PayController {
 	
 	@RequestMapping("payments.do")
 	public void pay(HttpServletRequest request,HttpServletResponse response) throws IOException {
-		
 		
 		String chId = request.getParameter("chId");
 		String userId = request.getParameter("userId");
@@ -121,56 +118,51 @@ public class PayController {
 		}
 	}
 	
-	@RequestMapping("plistSearch.do")
-	public ModelAndView plistSearch(ModelAndView mv,@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage
-			,String selecter,String searchValue) {
-		
-		int listCount = 0;
-		
-		PageInfo pi = null;
-		
-		Pay p = new Pay();
-		Challenge ch = new Challenge();
-		ArrayList<Challenge> chsearch = null;
-		ArrayList<Pay> psearch = null;
-		if(selecter.equals("userId")) {
-			p.setUserId(searchValue);
-		}
-		if(selecter.equals("chName")) {
-			ch.setChName(searchValue);
-		}
-		if(selecter.equals("pNo")) {
-			p.setpId(searchValue);
-		}
-		
-		
-		if(ch.getChName() != null) {
-			listCount = pService.getSearchListCount(ch); //1
-			pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
-			chsearch = pService.chSearch(ch,pi);
-			mv.addObject("list",chsearch);
-			mv.addObject("pi",pi);
-		}
-		
-		if(p.getUserId() != null || p.getpId() !=null) {
-			listCount = pService.getSearchListCount(p);
-		    pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
-		    psearch = pService.pSearch(p,pi);
-		    mv.addObject("list",psearch);
-		    mv.addObject("pi",pi);
-		}
-			
-		mv.setViewName("admin/ad_payList");
-	
-		
-		return mv;
-		
-	}
+//	@RequestMapping("plistSearch.do")
+//	public ModelAndView plistSearch(ModelAndView mv,@RequestParam(value="currentPage",required=false,defaultValue="1")int currentPage
+//			,String selecter,String searchValue) {
+//		
+//		int listCount = 0;
+//		
+//		PageInfo pi = null;
+//		
+//		Pay p = new Pay();
+//		Challenge ch = new Challenge();
+//		ArrayList<Challenge> chsearch = null;
+//		ArrayList<Pay> psearch = null;
+//		if(selecter.equals("userId")) {
+//			p.setUserId(searchValue);
+//		}
+//		if(selecter.equals("chName")) {
+//			ch.setChName(searchValue);
+//		}
+//		if(selecter.equals("pNo")) {
+//			p.setpId(searchValue);
+//		}
+//		
+//		if(ch.getChName() != null) {
+//			listCount = pService.getSearchListCount(ch); //1
+//			pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
+//			chsearch = pService.chSearch(ch,pi);
+//			mv.addObject("list",chsearch);
+//			mv.addObject("pi",pi);
+//		}
+//		
+//		if(p.getUserId() != null || p.getpId() !=null) {
+//			listCount = pService.getSearchListCount(p);
+//		    pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
+//		    psearch = pService.pSearch(p,pi);
+//		    mv.addObject("list",psearch);
+//		    mv.addObject("pi",pi);
+//		}
+//			
+//		mv.setViewName("admin/ad_payList");
+//	
+//		return mv;
+//	}
 	
 	@ResponseBody
 	@RequestMapping("refund.do")
-	
-	
 	public String refund(int[] result) {
 		
 		int refundAll = pService.refundAll(result);
@@ -184,7 +176,6 @@ public class PayController {
 	
 	@ResponseBody
 	@RequestMapping("refundOne.do")
-	
 	public String refundOne(int pId) {
 		
 		int refund = pService.refundOne(pId);
@@ -203,13 +194,10 @@ public class PayController {
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		ArrayList<Pay> list = null;
 		Map ad = new HashMap();
-		System.out.println("selecter : "+selecter+" searchValue : " + searchValue);
 		
 		if(searchValue == null || searchValue == "") {
 			listCount = pService.getListCount();
 			PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
-			
-			
 			
 			ad.put("pi",pi);
 			
@@ -240,10 +228,14 @@ public class PayController {
 			if(ch.getChName() != null) {
 				listCount = pService.getSearchListCount(ch); //1
 				pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
-				if(reIdx != 0) {
+				if(reIdx == 1) {
 				chsearch = pService.chSearchY(ch,pi);
-				}else {
+				}else if(reIdx == 0){
 				chsearch = pService.chSearchN(ch,pi);	
+				}else {
+					listCount = pService.getSearchListCount(ch); //1
+					pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
+					chsearch = pService.chSearch(ch,pi);
 				}
 				ad.put("list",chsearch);
 				ad.put("pi",pi);
@@ -253,10 +245,14 @@ public class PayController {
 			if(p.getUserId() != null || p.getpId() !=null) {
 				listCount = pService.getSearchListCount(p);
 			    pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
-			    if(reIdx !=0) {
+			    if(reIdx == 1) {
 			    psearch = pService.pSearchY(p,pi);
-			    }else {
+			    }else if(reIdx == 0){
 			    psearch = pService.pSearchN(p,pi);	
+			    }else {
+			    	listCount = pService.getSearchListCount(p);
+				    pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
+				    psearch = pService.pSearch(p,pi);
 			    }
 			    ad.put("list",psearch);
 			    ad.put("pi",pi);

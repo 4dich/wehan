@@ -117,6 +117,10 @@
 		SELECT COUNT(*) FROM BLACKLIST WHERE STATUS='Y' 
 	</select>
 	<select id="blackList" resultMap="blackResultSet">
-		 SELECT * FROM BLACKLIST 
+		SELECT * FROM BLACKLIST 
 	 </select>
+	 <insert id="insertMypage" parameterType="string">
+	 	INSERT INTO MYPAGE VALUES(#{userId},NULL,NULL,NULL,DEFAULT,DEFAULT)
+	 </insert>
+	 
 </mapper>
