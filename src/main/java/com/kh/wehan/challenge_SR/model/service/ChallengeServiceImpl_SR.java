@@ -59,4 +59,13 @@ public class ChallengeServiceImpl_SR implements ChallengeService_SR{
 	}
 
 
+	/**
+	 * 결제 취소 시 챌린지 삭제
+	 */
+	@Override
+	public int cancleRegister(String chId) {
+		return chalDaoSr.cancleRegister(chId);
+	}
+
+
 }

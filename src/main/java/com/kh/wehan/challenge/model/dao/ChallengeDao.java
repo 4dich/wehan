@@ -111,6 +111,10 @@ public class ChallengeDao {
 		return sqlSession.selectOne("challengeMapper.premiumListCount");
 	}
 
+	public Challenge getChallenge(String chName) {
+		return sqlSession.selectOne("challengeMapper.getChallenge", chName);
+	}
+
 
 	
 	

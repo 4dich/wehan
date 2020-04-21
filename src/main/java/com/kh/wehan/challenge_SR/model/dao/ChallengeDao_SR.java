@@ -36,6 +36,16 @@ public class ChallengeDao_SR {
 	}
 
 
+	/**
+	 * 결제 취소 시 챌린지 삭제
+	 * @param chId
+	 * @return
+	 */
+	public int cancleRegister(String chId) {
+		return sqlSession.delete("challengeMapperSR.cancleRegister", chId);
+	}
+
+
 	
 	
 	

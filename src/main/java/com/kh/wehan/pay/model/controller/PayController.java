@@ -98,9 +98,6 @@ public class PayController {
 		String[] peopleArr =  peoplePlus.split(",");
 		int count = peopleArr.length-1;
 		
-		if(viewPage == 1) {
-			
-		}
 		
 		Pay pay = new Pay();
 		pay.setChId(chId);

@@ -431,7 +431,7 @@
 									<label><input type="radio" id="agreeall"></label>&nbsp;&nbsp;<label for="agreeall">모두 동의합니다.</label><br><br>
 									<button class="site-btn" style="width:20%; height: 80px;" onclick="paynow()">
 										결제하기
-									<button class="site-btn" style="width:20%; height: 80px;" onclick="location.href='chalList.do'">
+									<button class="site-btn" style="width:20%; height: 80px;" onclick="paycancel()">
 										취소하기														
 									</button>
 								</div>
@@ -459,22 +459,6 @@
 
 		
 	<script>
-		
-	// chId 넣기
-	$(function(){
-		if(${viewPage} == 1) {
-			
-			$.ajax
-			
-			
-			
-			
-		} else if(${viewPage} == 0) {
-			$('#div5')[0].innerText(${ch.chId});
-		}
-	});
-	
-	
 	
 		$( document ).ready(function(){
 			$('#agreeall').click(function(){
@@ -494,8 +478,12 @@
 		var viewPage = $('#div9')[0].innerText;
 		
 		
-		function paycancel(){
-			location.href="chalList.do"
+		function paycancel(){		
+			if( '${viewPage}' == 0) {
+				location.href="chalList.do";
+			} else if('${viewPage}' == 1){
+				location.href="cancleRegister.do?chId=" + chId;
+			}
 		}
 		
 		
@@ -531,7 +519,12 @@
 			        		viewPage:viewPage
 			        	},success:function(result){
 			        		alert('결제성공');
-			        		location.href=result;
+			        		if('${viewPage}' == 1){
+			        			location.href='hiddenDetailInList.do?chId=' + chId;
+			        		}else if ('${viewPage}' == 0){
+			        			location.href=result;
+			        		}
+			        		
 			        	},error : function(request,errorcode,error){
 							console.log("결제 실패입니다!");
 						}

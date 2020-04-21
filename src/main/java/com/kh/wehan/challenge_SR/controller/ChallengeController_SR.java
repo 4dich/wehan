@@ -69,30 +69,23 @@ public class ChallengeController_SR {
 		
 	}
 	
+	
 	/**
-	 * 챌린지 등록 시 결제 및 챌린지 등록 하는 컨트롤 (중간다리역할)
-	 * @param chal
+	 * 결제 취소 시 챌린지 삭제
+	 * @param chId
 	 * @param mv
-	 * @param request
-	 * @param file
 	 * @return
 	 */
-	@RequestMapping("chRegister.do")
-	public ModelAndView chRegister(Challenge chal, ModelAndView mv, HttpServletRequest request, @RequestParam(name="registerPic", required=false) MultipartFile file) {
+	@RequestMapping("cancleRegister.do")
+	public ModelAndView cancleRegister(String chId, ModelAndView mv) {
 		
-		// 1) 챌린지 등록을 누르면 chRegister.do 컨트롤러로 오기
-		// 2) 결제 약관으로 전달 (pageInfo.do)
-		int viewPage = 1; // 페이지 확인용
-		String chName = chal.getChName();
-		int price = chal.getPrice();
-		String chId = null;
+		int result = chalServiceSr.cancleRegister(chId);
 		
-		mv.addObject("viewPage", viewPage).addObject("ch", chal).addObject("chName", chName).addObject("price", price).addObject("chId",chId)
-		.setViewName("redirect:payinfo.do");
-		
-		
-		
-		
+		if(result > 0) {
+			mv.setViewName("redirect:chalList.do");
+		} else {
+			mv.addObject("msg","ERROR").addObject("msg2","오류가 있습니다.").setViewName("common/errorPage");
+		}
 		
 		return mv;
 	}
