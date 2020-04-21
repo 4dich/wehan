@@ -11,7 +11,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
 	<!-- Favicon -->
-	<link href="resources/img/favicon.ico" rel="shortcut icon"/>
+	<link href="resources/images/favicon.ico" rel="shortcut icon"/>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap" rel="stylesheet">
@@ -158,12 +158,12 @@
 				<div class="contact-section">
                     <!-- 카테고리 -->
 						<div id="category">
-							<div class="ca health" value="health">건강</div>
-							<div class="ca hobby" value="hobby">취미</div>
-							<div class="ca motivated" value="motivated">자기개발</div>
-							<div class="ca economy" value="economy">경제</div>
-							<div class="ca life" value="life">생활</div>
-							<div class="ca etc" value="etc">그외</div>
+							<div class="ca health">건강</div>
+							<div class="ca hobby">취미</div>
+							<div class="ca motivated">자기개발</div>
+							<div class="ca economy" >경제</div>
+							<div class="ca life">생활</div>
+							<div class="ca etc">그외</div>
 						</div>
 					<div class="row">
 						  <div id="ch_confirmPhotoListArea">
@@ -363,7 +363,7 @@
 				$(etc).css("color","black");
 			});
 
-			$('.motivated').click(function(){
+			$('.moticated').click(function(){
 				$(this).css("background","black");
 				$(this).css("color","white");
 				$(this).css("border","1px solid black");
@@ -401,8 +401,8 @@
 				$(this).css("border","1px solid black");
 				$(hobby).css("background","white");
 				$(hobby).css("color","black");
-				$(motivated).css("background","white");
-				$(motivatedmotivated).css("color","black");
+				$(moticated).css("background","white");
+				$(moticated).css("color","black");
 				$(economy).css("background","white");
 				$(economy).css("color","black");
 				$(health).css("background","white");
@@ -417,8 +417,8 @@
 				$(this).css("border","1px solid black");
 				$(hobby).css("background","white");
 				$(hobby).css("color","black");
-				$(motivated).css("background","white");
-				$(motivated).css("color","black");
+				$(selfImprovement).css("background","white");
+				$(selfImprovement).css("color","black");
 				$(economy).css("background","white");
 				$(economy).css("color","black");
 				$(life).css("background","white");
