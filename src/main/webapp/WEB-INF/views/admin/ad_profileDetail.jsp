@@ -61,15 +61,16 @@
 			background: white;
 			vertical-align: middle;
 		}
+		
+		input{background:white;}
+		
 		.infoMenu{font-size: 16px;}
 		tbody  td {padding:20px; padding-bottom: 0;}
 		tbody  th {padding:10px;}
 		#prof{margin-left: 105px; text-align: center; margin-top: 20px; font-size: 18px;}
 		p{margin :0}
 		
-		button{
-			width:100%;
-		}
+		
 	</style>
 </head>
 <body>

@@ -102,7 +102,6 @@ public class MemberInfoListController {
 			b = mService.BlackListInfo(userId);
 			mv.addObject("b",b);
 		}
-		System.out.println(b);
 		mv.addObject("m",m);
 		mv.setViewName("admin/ad_profileDetail");
 		return mv;

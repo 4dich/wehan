@@ -130,7 +130,7 @@
 								<div class="row">
 									<div>
 										<b><a href="signInAgreeView.do" style="color: #bd362f; font-size: 20px; margin-left: 65px;">회원가입</a></b>
-										<input id="submit" type="button" class="btn btn-danger" style=" margin-left:290px; width:150px" value="로그인">
+										<input id="submit" type="button"  class="btn btn-danger" style=" margin-left:290px; width:150px" value="로그인">
 									</div>
 								</div>
 								<br><br>
@@ -147,7 +147,17 @@
 	</div>
 	<!-- Main section end -->
 	<script>
-		$('#submit').click(function(){
+		 $('#submit').click(function(){
+			login();
+		}); 
+		
+		$("#password").keydown(function(e){
+			if(e.keyCode == 13){
+				login();
+			}
+		})
+		
+		function login(){
 			var userId = $('#userId').val();
 			var password = $('#password').val();
 			$.ajax({
@@ -174,7 +184,7 @@
 					
 				}
 			});
-		});	
+		}
 	</script>
 	<!--====== Javascripts & Jquery ======-->
 	
