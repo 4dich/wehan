@@ -11,7 +11,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
 	<!-- Favicon -->
-	<link href="resources/img/favicon.ico" rel="shortcut icon"/>
+	<link href="resources/images/favicon.ico" rel="shortcut icon"/>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap" rel="stylesheet">
@@ -174,7 +174,7 @@
                                         <div class="photoBox">
                                         	<img src="resources/images/challenge/${ ch.chPicture }" alt=""/>
                                         	<!-- 카테고리 -->
-                                        	<div class="message-body">
+                                        	<div class="message-body" style="position: absolute; margin-left: 310px; margin-top: 15px; top: 0;">
 	                                           	<c:if test='${ ch.category eq "건강" or ch.category eq "health"}'>													
 													<h5 style="margin-bottom:10px">
 														<span class="health" style="font-size:13px;">건강</span>
