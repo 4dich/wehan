@@ -9,6 +9,7 @@ import com.kh.wehan.certify.model.dao.CertifyDao;
 import com.kh.wehan.certify.model.vo.Certify;
 import com.kh.wehan.certify.model.vo.CertifyReply;
 import com.kh.wehan.certify.model.vo.SearchCondition;
+import com.kh.wehan.challenge.model.vo.Challenge;
 import com.kh.wehan.common.model.vo.PageInfo;
 import com.kh.wehan.member.model.vo.Follow;
 import com.kh.wehan.member.model.vo.Member;
@@ -128,6 +129,28 @@ public class CertifyServiceImpl implements CertifyService{
 		
 		return ceDao.chCertifyList(chId,pi);
 	}
+	
+	@Override
+	public String chName(String chId) {
+		return ceDao.chNameGet(chId);
+	}
+
+	/**
+	 * 인증글 등록 페이지
+	 */
+	@Override
+	public Challenge insertPage(String chId) {
+		return ceDao.insertPage(chId);
+	}
+
+	/**
+	 * 인증글 insert
+	 */
+	@Override
+	public int insertCertify(Certify cer) {
+		return ceDao.insertCertify(cer);
+	}
+
 
 
 }

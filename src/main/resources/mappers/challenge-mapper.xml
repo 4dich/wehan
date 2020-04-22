@@ -123,4 +123,10 @@
 		FROM CHALLENGE
 		WHERE CHNAME = #{chName}
 	</select>
+	
+	<!-- 인증글 등록 페이지 -->
+	<select id="insertPage" resultMap="challengeResultSet">
+	SELECT * FROM CHALLENGE
+	WHERE CHID = #{chId}
+	</select>
 </mapper>

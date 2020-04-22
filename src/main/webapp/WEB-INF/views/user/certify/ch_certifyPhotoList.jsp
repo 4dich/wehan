@@ -112,7 +112,7 @@
 
 						<div id="ch_confirmPhotoListArea">
 							<div id="buttonArea">
-								<div class="challengeName">【      ${  list[0].chName }  】</div>
+								<div class="challengeName">【      ${ chName }  】</div>
 								<input type="button" value="인증등록" id="insertCertify">
 							</div>
 							<!-- 인증사진리스트영역 -->
