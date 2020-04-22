@@ -2,12 +2,13 @@ package com.kh.wehan.challenge.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,7 +29,6 @@ import com.kh.wehan.challenge.model.vo.Challenge;
 import com.kh.wehan.common.Pagination;
 import com.kh.wehan.common.model.vo.PageInfo;
 import com.kh.wehan.member.model.vo.Member;
-import com.kh.wehan.member.model.vo.Mypage;
 
 @Controller
 public class ChallengeController {
@@ -219,10 +219,11 @@ public class ChallengeController {
 	 * @param mv
 	 * @param currentPage
 	 * @return
+	 * @throws ParseException 
 	 */
 	@RequestMapping(value="chalList.do")
 	public ModelAndView ChallengeList(ModelAndView mv, 
-						@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
+						@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) throws ParseException {
 		
 		int listCount = cService.getListCount();
 		
@@ -233,9 +234,38 @@ public class ChallengeController {
 		
 		ArrayList<Challenge> list = cService.selectChallengeList(pi);
 		
+		// 상태확인
+		// 오늘 날짜 가져오기
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd",Locale.KOREA);
+		Date today = new Date();
+		
+		Map condition = null;
+		ArrayList<Map> a = new ArrayList<Map>(); 
+		
+		for(int i = 0; i < list.size(); i++) {
+			// 시작날짜
+			Date startTime = sdf.parse(list.get(i).getStartDate());
+			// 마감날짜
+			Date endTime = sdf.parse(list.get(i).getEndDate());
+			
+			condition = new HashMap();
+			
+			if(today.getTime() < startTime.getTime()) {
+				condition.put("condition","모집중!");
+			} else if(today.getTime() >= startTime.getTime() && today.getTime() < endTime.getTime()) {
+				condition.put("condition","진행중!");
+			} else {
+				condition.put("condition","마감");
+			}
+			
+			a.add(condition);
+		};
+		
+		
 		mv.addObject("list", list);
 		mv.addObject("pi", pi);
 		mv.addObject("listCount", listCount);
+		mv.addObject("condition", a);
 		mv.setViewName("user/challenge/ch_list");
 		
 		return mv;
@@ -288,12 +318,12 @@ public class ChallengeController {
 	 * @return
 	 * @throws IOException 
 	 * @throws JsonIOException 
+	 * @throws ParseException 
 	 */
 	@RequestMapping("categoryInList.do") 
 	public void categoryInList(HttpServletResponse response, String category,
-						@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) throws JsonIOException, IOException {
+						@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) throws JsonIOException, IOException, ParseException {
 		
-		System.out.println(category);
 		
 		int listCount = cService.getListCount(category);
 		
@@ -304,12 +334,41 @@ public class ChallengeController {
 		
 		ArrayList<Challenge> list = cService.selectList(category, pi);
 		
+		// 상태확인
+		// 오늘 날짜 가져오기
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd",Locale.KOREA);
+		Date today = new Date();
+		
+		Map condition = null;
+		ArrayList<Object> a = new ArrayList<Object>(); 
+		
+		for(int i = 0; i < list.size(); i++) {
+			// 시작날짜
+			Date startTime = sdf.parse(list.get(i).getStartDate());
+			// 마감날짜
+			Date endTime = sdf.parse(list.get(i).getEndDate());
+			
+			condition = new HashMap();
+			
+			if(today.getTime() < startTime.getTime()) {
+				condition.put("condition","모집중!");
+			} else if(today.getTime() >= startTime.getTime() && today.getTime() < endTime.getTime()) {
+				condition.put("condition","진행중!");
+			} else {
+				condition.put("condition","마감");
+			}
+			
+			a.add(condition);
+		};
+		
+		a.add(list);
+		
 		response.setContentType("application/json; charset=UTF-8");
 		
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-		gson.toJson(list, response.getWriter());
+		gson.toJson(a, response.getWriter());
 	}
-	
+	 
 	/**
 	 * 3_4. 챌린지 리스트 내 검색 기능
 	 * 3_5. 챌린지 디테일 내 검색 기능

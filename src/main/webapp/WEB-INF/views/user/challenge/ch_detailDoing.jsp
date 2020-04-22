@@ -278,14 +278,14 @@
 					
 			});
 		
-			<!-- 참여인원 목록 리스트 가져오기 ajax -->
-			
+			// 참여인원 목록 리스트 가져오기 ajax			
 			$(function(){
 				var list = [];
 				list = '${chal.chPeople}'.split(',');	
 				
 
 				var hostId = '${chal.userId}';
+				var price = '${ chal.price }';
 				
 				$.ajaxSettings.traditional=true;
 				$.ajax ({					
@@ -294,7 +294,7 @@
 					type : 'post',
 					success:function(data){
 						
-						$('#tPrice').text((list.length-1) * price);
+						$('#tPrice').text((list.length) * price);
 						
 						for(var i = 0; i < data.length; i++) {
 							
@@ -329,7 +329,7 @@
 									$strong = $('<strong>').text(data[i].userNickname);
 									
 									
-									$('.dropdown-menu').append($a.append($strong).append('&nbsp;&nbsp;level.' + data[i].userLevel));
+									$('.dropdown-menu').append($a.append($strong).append('&nbsp;&nbsp;level.' + data[i].userLevel + '&nbsp;＜나＞'));
 								
 								} else { // 친구 아이디를 누르면 친구 프로필로 이동
 									$a = $('<a>').attr({'class':'dropdown-item', 

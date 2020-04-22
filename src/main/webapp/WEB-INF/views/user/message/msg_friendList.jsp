@@ -128,10 +128,10 @@
 											<c:if test="${ empty friendList }">
 												<div style="text-align:center;">
 													<br><br>
-													검색하신 친구가 없습니다<br>
+													친구가 없습니다<br>
 													친구를 추가해보세요!<br><br>
 													<a href="msgFriendList.do">돌아가기</a><br>
-													<a href="">추천피드 가기</a>
+													<a href="fid_ch_recommendView.do">추천피드 가기</a>
 												</div>
 											</c:if>
 											<%-- 검색 결과가 있으면 --%>
@@ -154,7 +154,7 @@
 															<button class="site-btn msgSend" style="background-color: white; padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; ">
 																메시지 보내기
 															</button>
-															<button class="site-btn" onclick="location.href='mypageProfile.html'" style="background-color: white; padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; ">
+															<button class="site-btn" onclick="location.href='other_profileView.do?otherId=${f.msgFriendId}'" style="background-color: white; padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; ">
 																피드 가기
 															</button>
 														</span>
