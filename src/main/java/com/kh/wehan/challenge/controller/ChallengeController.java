@@ -97,7 +97,11 @@ public class ChallengeController {
 	 * @return
 	 */
 	@RequestMapping("searchChallengeAdmin.do")
-	public ModelAndView searchChallengeAdmin(ModelAndView mv, String searchChallengeAdmin, String search) {
+	public ModelAndView searchChallengeAdmin(ModelAndView mv, @RequestParam(value="searchChallengeAdmin", required=false)String searchChallengeAdmin,  
+															@RequestParam(value="search", required=false)String search, 
+			@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
+		
+		System.out.println("searchChallengeAdmin : " + searchChallengeAdmin + " search : " + search + " currentPage : " + currentPage);
 		
 		Challenge chal = new Challenge();
 		if(searchChallengeAdmin.equals("chName")) {
@@ -109,8 +113,6 @@ public class ChallengeController {
 		} else if(searchChallengeAdmin.equals("endDate")) {
 			chal.setEndDate(search);
 		}	
-		
-		int currentPage = 1;
 		
 		int listCount = cService.getSearchListCount(chal);
 		
@@ -124,7 +126,8 @@ public class ChallengeController {
 			
 			list.get(i).setTotalPrice(str.length * list.get(i).getPrice());
 		}
-		
+		mv.addObject("sh",search);
+		mv.addObject("search",searchChallengeAdmin);
 		mv.addObject("list", list).addObject("pi", pi).setViewName("admin/ad_challengeList");
 		
 		return mv;
