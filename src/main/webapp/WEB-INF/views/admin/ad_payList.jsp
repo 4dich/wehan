@@ -94,6 +94,7 @@
 			<!-- Page start -->
 			
 			<input type="hidden" id="test" value="1">
+			<input type="hidden" id="test3" value="2">
 			
 			<div class="page-section blog-page">
 				<div class="blog-posts">
@@ -108,11 +109,12 @@
 									<option value="userId">유저ID</option>
 									<option value="chName">챌린지명</option>
 									<option value="pNo">결제번호</option>
+									<option value="chId">챌린지번호</option>
 								</select>					
 							</div>
 							<!-- 검색 -->
 							<input class="searchBox" type="search" name="searchValue">
-							<button onclick='refundYn(0,1)'><img src="resources/images/main/search.png" alt=""></button>
+							<button id="search"><img src="resources/images/main/search.png" alt=""></button>
 						</div>
 					
 					<div id="paylist">
@@ -125,6 +127,7 @@
 								<th>챌린지명</th>
 								<th>유저ID</th>
 								<th>마감기한</th>
+								<th>챌린지번호</th>
 								<th>결제정보</th>
 								<th style="cursor:pointer;">환급여부</th>
 							</tr>
@@ -139,18 +142,13 @@
 								<td>${ p.chName }</td>
 								<td>${ l.userId }</td>
 								<td>${ l.pDate }</td>
+								<td>${ p.chId }</td>
 								<td><button onclick="location.href='paydetail.do?pId=${ l.pId }'">정보</button></td>
 								<td>${ l.refund_yn }</td>
 							</tr>
 							</c:forEach>
 							</c:forEach>
-							
-						
-							
-							
-							
 							<!-- 삭제 끝 -->
-
 						</table>
 		
 				<div class="qnaPaging">
@@ -206,16 +204,18 @@
 	
 	<script>
 	
-		$('#test2').click(function(){
-			console.log(pId);
-		});	
-	
-		$('.thArea').children().eq(6).click(function(){
+		$('.thArea').children().eq(7).click(function(){
 			var reIdx = $('#test').val();
 			$('#test').val(1 - $('#test').val());
 			console.log(reIdx);
 			var currentPage = 1;
 			
+			refundYn(reIdx,currentPage);
+		});
+		
+		$('#search').click(function(){
+			var reIdx = $('#test3').val();
+			var currentPage = 1;
 			refundYn(reIdx,currentPage);
 		});
 		
@@ -233,21 +233,7 @@
 					currentPage:currentPage,
 					searchValue:searchValue,
 					selecter:selecter
-					  },
-					  
-					 /*  <div id="searchArea">
-						<div id="searchSelect"> 
-							<select name="selecter" id="selecter">
-								<option value="userId">유저ID</option>
-								<option value="chName">챌린지명</option>
-								<option value="pNo">결제번호</option>
-							</select>					
-						</div>
-						<!-- 검색 -->
-						<input class="searchBox" type="search" name="searchValue">
-						<button><img src="resources/images/main/search.png" alt=""></button>
-					</div> */
-				success:function(result){
+					  },success:function(result){
 					console.log(result);
 					$('.noticeList').remove();
 					$('.qnaPaging').remove();
@@ -261,6 +247,7 @@
 					listText +=	"<th>"+"챌린지명"+"</th>";
 					listText +=	"<th>"+"유저ID"+"</th>";
 					listText +=	"<th>"+"마감기한"+"</th>";
+					listText += "<th>"+"챌린지번호"+"</th>";
 					listText +=	"<th>"+"결제정보"+"</th>";
 					listText +=	"<th style='cursor:pointer;'>"+"환급여부"+"</th>";
 					listText += "</tr>"
@@ -273,10 +260,10 @@
 						listText += "<td>"+list[i].chList[0].chName+"</td>";
 						listText += "<td>"+list[i].userId+"</td>";
 						listText += "<td>"+list[i].pDate+"</td>";
+						listText += "<td>"+list[i].chList[0].chId+"</td>";
 						listText += "<td><button onclick='location.href="+'"'+"paydetail.do?pId="+list[i].pId+'"'+"'>"+"정보"+"</button></td>";
 						listText += "<td>"+list[i].refund_yn+"</td>";
 						listText += "</tr>";
-						/* $button.attr("onclick","location.href='paydetail.do?pId="+list[i].pId+"'").text("정보") */
 					} 
 					listText += "</table>"
 					// 페이징 처리
@@ -304,7 +291,7 @@
 						listText += "</div>";
 						$('#paylist').html(listText);
 						$('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247"); //even 짝수
-						$('.thArea').children().eq(6).click(function(){
+						$('.thArea').children().eq(7).click(function(){
 							var reIdx = $('#test').val();
 							$('#test').val(1 - $('#test').val());
 							console.log(reIdx);

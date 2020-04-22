@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+String check = request.getParameter("check");
+%>
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -126,6 +129,7 @@
 													<p style="color: white;">${ c.ceDate }</p>
 													<input type="hidden" id="certifyId" value="${ c.ceId }">
 													<input type="hidden" id="loginId" value="${ loginUser.userId }">
+													<input type="hidden" id="chId" value="${ c.chId }">
 												</div>
 											</div>
 										</li>
@@ -164,6 +168,8 @@
 														<button id="listBack" class="site-btn sb-dark" type="button" style="padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; margin-top:10px;">
 															목록가기
 														</button>
+														<input type="hidden" id="check" value="<%=check%>">
+														
 													</div>
 											</div>
 										</div>
@@ -219,7 +225,6 @@
 	
 
 	var ceId = ${c.ceId};
-	
 	$(function(){
 		
 		replyList();
@@ -228,9 +233,19 @@
 			replyList();
 		},3000);
 		
-				
 		$('#listBack').click(function(){
-			location.href="fid_ch_recommendView.do?"
+			
+			var check = document.getElementById("check").value;
+			var chId = document.getElementById("chId").value;
+			var fid = 'fid';
+			var chal = 'chal';
+			console.log(check,fid,chal);
+			if(fid == check){
+				location.href = "fid_ch_recommendView.do";
+			}else{
+				location.href = "ch_certifyList.do?chId="+chId;
+			}
+			
 		});
 		
 		/* 등록버튼 */

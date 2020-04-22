@@ -61,15 +61,16 @@
 			background: white;
 			vertical-align: middle;
 		}
+		
+		input{background:white;}
+		
 		.infoMenu{font-size: 16px;}
 		tbody  td {padding:20px; padding-bottom: 0;}
 		tbody  th {padding:10px;}
 		#prof{margin-left: 105px; text-align: center; margin-top: 20px; font-size: 18px;}
 		p{margin :0}
 		
-		button{
-			width:50%;
-		}
+		
 	</style>
 </head>
 <body>
@@ -130,8 +131,8 @@
 						<td>${b.banTerm}</td>
 					</tr>
 					<tr>
-						<td></td>
-						<td><button onclick="cancleCheck();">차단해제</button><button onclick="cancle();">취소</button></td>
+						<td><button onclick="cancleCheck();">차단해제</button></td>
+						<td><button onclick="cancle();">취소</button></td>
 					</tr>
 				</table>
 				</c:if>
@@ -219,7 +220,7 @@
 										<div class="col-lg-12">
                                             <input id="account" value="${m.account}" type="text" style="border-top: none; border-left: none; border-right: none;" disabled>
                                         </div>
-										<div class="col-lg-12">
+										<div class="col-lg-12" id="blackdiv">
                                             <input id="blackList" value="${m.blacklistYN}" type="text" style="border-top: none; border-left: none; border-right: none;">
                                         </div>
 									</div>
@@ -242,9 +243,39 @@
 	<script>
 		$(function(){
 			$('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247"); //even 짝수
+			
+			
+			$("#blackList").on({
+				"mouseenter":function(){
+					$(this).css("background","lightgray");
+					if($(this).val()=="N"){
+					$(this).val($(this).val()+ "       차단하기");
+					}else{
+					$(this).val($(this).val()+ "       해제하기");
+					}
+				},
+				"mouseout":function(){
+					$(this).css("background","white");
+					$(this).val($(this).val().substring(0,1));
+				},
+				"click":function(){
+					var blackList = $('#blackList').val();
+					console.log(blackList);
+					if(blackList == "N       차단하기"){
+						$('.black').show();
+						$('.blackinsert').show();
+						$('.blackcancle').hide();
+						
+					}else{
+						$('.black').show();
+						$('.blackinsert').hide();
+						$('.blackcancle').show();
+					}
+				}
+			})
 		});
 		
-		$('#blackList').click(function(){
+		/* $('#blackList').click(function(){
 			var blackList = $('#blackList').val();
 			console.log(blackList);
 			if(blackList == "N"){
@@ -257,7 +288,7 @@
 				$('.blackinsert').hide();
 				$('.blackcancle').show();
 			}
-		});
+		}); */
 		
 		$('#blackInsert').click(function(){
 			var BanDay = $('#BanDay').val();

@@ -87,7 +87,6 @@
 				<div class="page-section blog-page">
 					<div class="blog-posts">
 						<div class="blog-post-item">
-							<form action="searchChallengeAdmin.do">
 								<div id="searchArea">
 									<div id="searchSelect"> 
 										<select name="searchChallengeAdmin" id="searchChallengeAdmin">
@@ -95,13 +94,23 @@
 											<option value="userId">ID</option>
 											<option value="startDate">시작 날짜</option>
 											<option value="endDate">종료 날짜</option>
-										</select>					
+										</select>
+										<c:if test="${!empty search and search ne null }">
+										<script>
+										 $("#searchChallengeAdmin").val("${search}");
+										 </script>
+										</c:if>				
 									</div>
+								
 									<!-- 검색 -->
-									<input class="searchBox" name="search" type="search">
-									<button><img src="resources/images/main/search.png" alt=""></button>
+									<c:if test="${!empty sh and sh ne null }">
+									<input class="searchBox" name="search" type="search" value="${sh}">
+									</c:if>
+									<c:if test="${empty sh or sh eq null }">
+									<input class="searchBox" name="search" type="search" >
+									</c:if>
+									<button onclick="pagination(1);"><img src="resources/images/main/search.png" alt=""></button>
 								</div>
-							</form>
 							
 							<div class="listCount" style="display: none;">${ listCount }</div>
 
@@ -129,59 +138,82 @@
 										<td class="totalPrice">${ ch.totalPrice }</td>
 										<td><button class="showDetailBtn">정보</button></td>
 									</tr>
-									<!-- <script>
-										var lc = $(".listCount").text();
-										
-										for(var i=0; i<lc; i++){
-											var a = $(".price:eq("+i+")").text();
-											var b = $(".chPeople:eq("+i+")").text().split(",").length;
-										
-											$(".totalPrice:eq("+i+")").text(a*b);
-								
-										}
-									
-									</script> -->
 								</c:forEach>
 							</table>
 							
-							<div class="qnaPaging">
+							<%-- <div class="qnaPaging">
 								<!-- [이전] -->
 								<c:if test="${ pi.currentPage eq 1 }">
-									&lt; &nbsp;
+									[이전]&nbsp; 
 								</c:if>
 								<c:if test="${ pi.currentPage ne 1 }">
 									<c:url var="before" value="clist.do">
 										<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
 									</c:url>
-									<a href="${ before }">&lt;</a> &nbsp;
+									<a href="${before}" value="${currentPage-1}">[이전]</a>&nbsp; 
 								</c:if>
 								
 								<!-- 페이지 -->
 								<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
 									<c:if test="${ p eq pi.currentPage }">
-										<b>${ p }</b> &nbsp;
+										<font color="red" size="4"><b>[${ p }]</b></font>
 									</c:if>
 									
 									<c:if test="${ p ne pi.currentPage }">
 										<c:url var="pagination" value="clist.do">
 											<c:param name="currentPage" value="${ p }"/>
 										</c:url>
-										<a href="${ pagination }">${ p }</a> &nbsp;
+										<a href="${ pagination }" value="${p}">${ p }</a> 
 									</c:if>
 								</c:forEach>
 								
 								<!-- [다음] -->
 								<c:if test="${ pi.currentPage eq pi.maxPage }">
-									>
+									&nbsp;[다음]
 								</c:if>
 								<c:if test="${ pi.currentPage ne pi.maxPage }">
 									<c:url var="after" value="clist.do">
 										<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
-									</c:url> 
-									<a href="${ after }">></a>
+									</c:url>
+									&nbsp;<a href="${ after }" value="${currentPage+1}">[다음]</a> 
+								</c:if>
+												
+							</div> --%>
+							
+								<div class="qnaPaging">
+								<!-- [이전] -->
+								<c:if test="${ pi.currentPage eq 1 }">
+									[이전]&nbsp; 
+								</c:if>
+								<c:if test="${ pi.currentPage ne 1 }">
+						
+									<a onclick="pagination(${ pi.currentPage -1})">[이전]</a>&nbsp; 
+								</c:if>
+								
+								<!-- 페이지 -->
+								<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+									<c:if test="${ p eq pi.currentPage }">
+										<font color="red" size="4"><b>[${ p }]</b></font>
+									</c:if>
+									
+									<c:if test="${ p ne pi.currentPage }">
+								
+										<a onclick="pagination(${p})">${ p }</a> 
+									</c:if>
+								</c:forEach>
+								
+								<!-- [다음] -->
+								<c:if test="${ pi.currentPage eq pi.maxPage }">
+									&nbsp;[다음]
+								</c:if>
+								<c:if test="${ pi.currentPage ne pi.maxPage }">
+								
+									&nbsp;<a onclick="pagination(${pi.currentPage+1})">[다음]</a> 
 								</c:if>
 												
 							</div>
+							
+							
 						</div>
 					</div>
 				</div>
@@ -195,6 +227,16 @@
 
 	<!-- 리스트 짝수 배경색 변경 -->
 	<script>
+	
+	
+		function pagination(currentPage){
+			var searchChallengeAdmin = $('#searchChallengeAdmin').val();
+			var searchBox = $('.searchBox').val();
+			var chalValue = $('#chalValue').val();
+			location.href="searchChallengeAdmin.do?searchChallengeAdmin="+searchChallengeAdmin+"&search="+searchBox+"&currentPage="+currentPage;
+			
+		}
+	
 		$(document).ready(function(){
 		  $('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247)");   // even 짝수
 		});

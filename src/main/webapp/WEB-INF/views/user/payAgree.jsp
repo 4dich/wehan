@@ -58,7 +58,7 @@
 
 		
 		<header class="header-section">
-			<div class="nav-switch">
+			<div class="nav-switch menuIcon msgCount">
 				<i class="fa fa-bars"></i>
 			</div>
 		
@@ -431,7 +431,7 @@
 									<label><input type="radio" id="agreeall"></label>&nbsp;&nbsp;<label for="agreeall">모두 동의합니다.</label><br><br>
 									<button class="site-btn" style="width:20%; height: 80px;" onclick="paynow()">
 										결제하기
-									<button class="site-btn" style="width:20%; height: 80px;" onclick="location.href='chalList.do'">
+									<button class="site-btn" style="width:20%; height: 80px;" onclick="paycancel()">
 										취소하기														
 									</button>
 								</div>
@@ -454,9 +454,12 @@
 	<div id='div6' style="display:none;">${ch.chName}</div>
 	<div id='div7' style="display:none;">${ch.chPeople}</div>
 	<div id='div8' style="display:none;">${ch.chPeopleCount}</div>
+	<div id='div9' style="display:none;">${viewPage}</div> <!-- 챌린지 등록시 결제확인용 -->
 	
-	 
+
+		
 	<script>
+	
 		$( document ).ready(function(){
 			$('#agreeall').click(function(){
 				$('.ay').prop('checked',this.checked);
@@ -472,11 +475,18 @@
 		var chName = $('#div6')[0].innerText;
 		var chPeople = $('#div7')[0].innerText;
 		var chPeopleCount = $('#div8')[0].innerText;
+		var viewPage = $('#div9')[0].innerText;
 		
 		
-		function paycancel(){
-			location.href="chalList.do"
+		function paycancel(){		
+			if( '${viewPage}' == 0) {
+				location.href="chalList.do";
+			} else if('${viewPage}' == 1){
+				location.href="cancleRegister.do?chId=" + chId;
+			}
 		}
+		
+		
 		
 		function paynow(){
 			var msg
@@ -505,10 +515,16 @@
 			        		pmethod:rsp.pay_method,
 			        		chName:chName,
 			        		chPeople:chPeople,
-			        		chPeopleCount:chPeopleCount
+			        		chPeopleCount:chPeopleCount,
+			        		viewPage:viewPage
 			        	},success:function(result){
 			        		alert('결제성공');
-			        		location.href=result;
+			        		if('${viewPage}' == 1){
+			        			location.href='hiddenDetailInList.do?chId=' + chId;
+			        		}else if ('${viewPage}' == 0){
+			        			location.href=result;
+			        		}
+			        		
 			        	},error : function(request,errorcode,error){
 							console.log("결제 실패입니다!");
 						}

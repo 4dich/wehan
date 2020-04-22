@@ -152,15 +152,15 @@
 	JOIN MEMBER M
 	ON R.USERID = M.USERID
     JOIN FOLLOW F
-    ON F.FOLLOWER = M.USERID
-    WHERE F.HOST = #{mName}
+    ON F.HOST = M.USERID
+    WHERE F.FOLLOWER = #{mName}
     AND CEDEL_YN = 'N'
 	</select>
 	
 	<select id="followList" resultMap="cMemberResultSet">
 	SELECT * FROM MEMBER M
-	JOIN FOLLOW F ON (M.USERID = F.FOLLOWER)
-	WHERE F.HOST = #{mName}
+	JOIN FOLLOW F ON (M.USERID = F.HOST)
+	WHERE F.FOLLOWER = #{mName}
 	</select>
 	
 	<select id="selectDetailCertify" resultMap="certifyResultSet">
@@ -203,7 +203,8 @@
 	SELECT * FROM MEMBER M
 	JOIN FOLLOW F
 	ON F.FOLLOWER = M.USERID
-	WHERE HOST =#{writer} AND M.NICKNAME LIKE '%' || #{title} || '%'
+	WHERE HOST =#{writer} 
+	AND M.NICKNAME LIKE '%' || #{title} || '%'
 	
 	</select>
 	<update id="deleteReply" parameterType="CertifyReply">
@@ -215,11 +216,46 @@
 	</update>
 
 	<select id="fidTitleCount" resultType="_int">
-	SELECT COUNT(*) FROM CHALLENGE C JOIN CERTIFY R ON C.CHID = R.CHID JOIN MEMBER M ON R.USERID = M.USERID WHERE CEDEL_YN = 'N' AND CHNAME LIKE '%' || #{title} || '%'
+	SELECT COUNT(*) 
+	FROM CHALLENGE C 
+	JOIN CERTIFY R 
+	ON C.CHID = R.CHID 
+	JOIN MEMBER M 
+	ON R.USERID = M.USERID 
+	WHERE CEDEL_YN = 'N' 
+	AND CHNAME LIKE '%' || #{title} || '%'
 	</select>
+	
+	<!-- 피드 타이틀 출력 -->
 	<select id="fidTitle" resultMap="certifyResultSet">
-	SELECT C.CHNAME,C.CATEGORY,M.NICKNAME,R.* FROM CHALLENGE C JOIN CERTIFY R ON C.CHID = R.CHID JOIN MEMBER M ON R.USERID = M.USERID WHERE CEDEL_YN = 'N' AND CHNAME LIKE '%' || #{title} || '%'
+	SELECT C.CHNAME,C.CATEGORY,M.NICKNAME,R.* 
+	FROM CHALLENGE C 
+	JOIN CERTIFY R 
+	ON C.CHID = R.CHID 
+	JOIN MEMBER M 
+	ON R.USERID = M.USERID 
+	WHERE CEDEL_YN = 'N' 
+	AND CHNAME LIKE '%' || #{title} || '%'
 	</select>
+
+	<!-- 챌린지 인증글 리스트 -->
+	<select id="chCertifyList" resultMap="certifyResultSet">
+	SELECT R.*,C.CHNAME,M.NICKNAME
+	FROM CERTIFY R
+	JOIN CHALLENGE C
+	ON(C.CHID = R.CHID)
+	JOIN MEMBER M
+	ON(R.USERID = M.USERID)
+	WHERE C.CHID = #{chId}
+	</select>
+	
+	<insert id="insertCertify">
+	INSERT INTO CERTIFY 
+	VALUES(SEQ_CEID.NEXTVAL,#{chId},#{userId},#{ceContent},
+	#{cePicture},SYSDATE,DEFAULT)
+	</insert>
+	
+
 </mapper>
 
 

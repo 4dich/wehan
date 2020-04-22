@@ -128,21 +128,23 @@
   	<if test="chName != null">
   		WHERE C.CHNAME LIKE '%' || #{chName} || '%'
   	</if>
+  	<if test="chId != null">
+  		WHERE C.CHID = #{chId}
+  	</if>
   	</select>
-  	
-  	
-  	<select id="searchplist"  resultMap="payListResultSet">
-  		SELECT *
+	
+	<select id="searchplist" resultMap="payListResultSet">
+		SELECT *
 		FROM PAY P
 		JOIN CHALLENGE C
 		ON C.CHID = P.CHID
-  		<if test="userId != null">
+		<if test="userId != null">
 		WHERE P.USERID LIKE '%' || #{userId} || '%'
+		</if>
+		<if test="pId != null">
+		WHERE P.PID = #{pId}
   		</if>
-  		<if test="pId != null">
-		WHERE P.PID LIKE '%' || #{pId} || '%'
-  		</if>
-  	</select>
+	</select>
 	
 	<select id="searchchlist"  resultMap="payListResultSet">
 		SELECT *
@@ -151,6 +153,9 @@
 		ON C.CHID = P.CHID
 		<if test="chName != null">
 		WHERE C.CHNAME LIKE '%' || #{chName} || '%'
+		</if>
+		<if test="chId != null">
+		WHERE C.CHID = #{chId}
 		</if>
 	</select>
 	
@@ -166,7 +171,6 @@
 		WHERE P.PID LIKE '%' || #{pId} || '%'
   		</if>
 		ORDER BY REFUND_YN DESC
-  		
   	</select>
 	
 	<select id="pSearchN"  resultMap="payListResultSet">
@@ -191,6 +195,9 @@
 		<if test="chName != null">
 		WHERE C.CHNAME LIKE '%' || #{chName} || '%'
 		</if>
+		<if test="chId != null">
+		WHERE C.CHID = #{chId}
+		</if>
 		ORDER BY REFUND_YN DESC
 	</select>
 	
@@ -202,8 +209,10 @@
 		<if test="chName != null">
 		WHERE C.CHNAME LIKE '%' || #{chName} || '%'
 		</if>
-		ORDER BY REFUND_YN DESC
-		
+		<if test="chId != null">
+		WHERE C.CHID = #{chId}
+		</if>
+		ORDER BY REFUND_YN ASC
 	</select>
 	
 

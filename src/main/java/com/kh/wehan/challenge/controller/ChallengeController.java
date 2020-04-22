@@ -2,12 +2,13 @@ package com.kh.wehan.challenge.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,11 +26,9 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonIOException;
 import com.kh.wehan.challenge.model.service.ChallengeService;
 import com.kh.wehan.challenge.model.vo.Challenge;
-import com.kh.wehan.challenge.model.vo.PremiumChallenge;
 import com.kh.wehan.common.Pagination;
 import com.kh.wehan.common.model.vo.PageInfo;
 import com.kh.wehan.member.model.vo.Member;
-import com.kh.wehan.member.model.vo.Mypage;
 
 @Controller
 public class ChallengeController {
@@ -98,7 +97,10 @@ public class ChallengeController {
 	 * @return
 	 */
 	@RequestMapping("searchChallengeAdmin.do")
-	public ModelAndView searchChallengeAdmin(ModelAndView mv, String searchChallengeAdmin, String search) {
+	public ModelAndView searchChallengeAdmin(ModelAndView mv, @RequestParam(value="searchChallengeAdmin", required=false)String searchChallengeAdmin,  
+															@RequestParam(value="search", required=false)String search, 
+			@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
+		
 		
 		Challenge chal = new Challenge();
 		if(searchChallengeAdmin.equals("chName")) {
@@ -110,8 +112,6 @@ public class ChallengeController {
 		} else if(searchChallengeAdmin.equals("endDate")) {
 			chal.setEndDate(search);
 		}	
-		
-		int currentPage = 1;
 		
 		int listCount = cService.getSearchListCount(chal);
 		
@@ -125,7 +125,8 @@ public class ChallengeController {
 			
 			list.get(i).setTotalPrice(str.length * list.get(i).getPrice());
 		}
-		
+		mv.addObject("sh",search);
+		mv.addObject("search",searchChallengeAdmin);
 		mv.addObject("list", list).addObject("pi", pi).setViewName("admin/ad_challengeList");
 		
 		return mv;
@@ -195,9 +196,19 @@ public class ChallengeController {
 		chal.setChPicture(picture);
 		
 		int result = cService.insertChallenge(chal);
-		System.out.println(chal);
+		
+		// 챌린지 등록 후 등록한 챌린지 정보 가져오기
+		Challenge ch = cService.getChallenge(chal.getChName());
+		
+		
+		int viewPage = 1; // 페이지 확인용
+		String chName = ch.getChName();
+		int price = ch.getPrice();
+		String chId = ch.getChId();
+		
 		if(result > 0) {
-			mv.addObject("chal", chal).setViewName("user/challenge/ch_detail");
+			mv.addObject("viewPage", viewPage).addObject("ch", ch).addObject("chName", chName).addObject("price", price).addObject("chId",chId)
+			.setViewName("redirect:payinfo.do");
 		} else {
 			mv.addObject("msg", "오류입니다").setViewName("common/errorPage");
 		}	
@@ -210,10 +221,11 @@ public class ChallengeController {
 	 * @param mv
 	 * @param currentPage
 	 * @return
+	 * @throws ParseException 
 	 */
 	@RequestMapping(value="chalList.do")
 	public ModelAndView ChallengeList(ModelAndView mv, 
-						@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
+						@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) throws ParseException {
 		
 		int listCount = cService.getListCount();
 		
@@ -224,9 +236,38 @@ public class ChallengeController {
 		
 		ArrayList<Challenge> list = cService.selectChallengeList(pi);
 		
+		// 상태확인
+		// 오늘 날짜 가져오기
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd",Locale.KOREA);
+		Date today = new Date();
+		
+		Map condition = null;
+		ArrayList<Map> a = new ArrayList<Map>(); 
+		
+		for(int i = 0; i < list.size(); i++) {
+			// 시작날짜
+			Date startTime = sdf.parse(list.get(i).getStartDate());
+			// 마감날짜
+			Date endTime = sdf.parse(list.get(i).getEndDate());
+			
+			condition = new HashMap();
+			
+			if(today.getTime() < startTime.getTime()) {
+				condition.put("condition","모집중!");
+			} else if(today.getTime() >= startTime.getTime() && today.getTime() < endTime.getTime()) {
+				condition.put("condition","진행중!");
+			} else {
+				condition.put("condition","마감");
+			}
+			
+			a.add(condition);
+		};
+		
+		
 		mv.addObject("list", list);
 		mv.addObject("pi", pi);
 		mv.addObject("listCount", listCount);
+		mv.addObject("condition", a);
 		mv.setViewName("user/challenge/ch_list");
 		
 		return mv;
@@ -279,10 +320,12 @@ public class ChallengeController {
 	 * @return
 	 * @throws IOException 
 	 * @throws JsonIOException 
+	 * @throws ParseException 
 	 */
 	@RequestMapping("categoryInList.do") 
 	public void categoryInList(HttpServletResponse response, String category,
-						@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) throws JsonIOException, IOException {
+						@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) throws JsonIOException, IOException, ParseException {
+		
 		
 		int listCount = cService.getListCount(category);
 		
@@ -293,12 +336,41 @@ public class ChallengeController {
 		
 		ArrayList<Challenge> list = cService.selectList(category, pi);
 		
+		// 상태확인
+		// 오늘 날짜 가져오기
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd",Locale.KOREA);
+		Date today = new Date();
+		
+		Map condition = null;
+		ArrayList<Object> a = new ArrayList<Object>(); 
+		
+		for(int i = 0; i < list.size(); i++) {
+			// 시작날짜
+			Date startTime = sdf.parse(list.get(i).getStartDate());
+			// 마감날짜
+			Date endTime = sdf.parse(list.get(i).getEndDate());
+			
+			condition = new HashMap();
+			
+			if(today.getTime() < startTime.getTime()) {
+				condition.put("condition","모집중!");
+			} else if(today.getTime() >= startTime.getTime() && today.getTime() < endTime.getTime()) {
+				condition.put("condition","진행중!");
+			} else {
+				condition.put("condition","마감");
+			}
+			
+			a.add(condition);
+		};
+		
+		a.add(list);
+		
 		response.setContentType("application/json; charset=UTF-8");
 		
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-		gson.toJson(list, response.getWriter());
+		gson.toJson(a, response.getWriter());
 	}
-	
+	 
 	/**
 	 * 3_4. 챌린지 리스트 내 검색 기능
 	 * 3_5. 챌린지 디테일 내 검색 기능
@@ -331,165 +403,5 @@ public class ChallengeController {
 		
 		return mv;
 	}
-	
-	/**
-	 * 4_1. 프리미엄 챌린지 조회 시 사용자 레벨 조회 기능
-	 * @param mv
-	 * @param userId
-	 * @return
-	 */
-	@RequestMapping("checkPremium.do")
-	public void checkPremium(HttpServletResponse response,String userId) throws IOException {
-		
-		System.out.println("userId : " + userId);
-		Mypage myLvl = cService.checkPremiumCondition(userId);
-		int level = myLvl.getMyLevel();
-		System.out.println("level : " + level);
-		
-		PrintWriter out = response.getWriter();
-		out.print(level);
-		out.flush();
-		out.close();
-	}
-	
-	/**
-	 * 4_2. 프리미엄 챌린지 리스트
-	 * @param mv
-	 * @param currentPage
-	 * @return
-	 */
-	@RequestMapping(value="premiumList.do")
-	public ModelAndView premiumChalList(ModelAndView mv, 
-						@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
-		
-		int listCount = cService.getPremiumListCount();
-		
-		int pageLimit = 5;
-		int boardLimit = 9;
-		
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, pageLimit, boardLimit);
-		
-		ArrayList<PremiumChallenge> list = cService.selectPremiumList(pi);
-		
-		mv.addObject("list", list);
-		mv.addObject("pi", pi);
-		mv.addObject("listCount", listCount);
-		mv.setViewName("user/challenge/ch_premiumList");
-		
-		return mv;
-	}
-	
-	/**
-	 * 4_3. 프리미엄 챌린지 리스트 > 상세 정보 보기
-	 * @param mv
-	 * @param chId
-	 * @return
-	 * @throws ParseException
-	 */
-	@RequestMapping("hiddenDetailInPremiumList.do")
-	public ModelAndView selectPremiumDetailInList(ModelAndView mv, String chPId) throws ParseException {
-		
-		PremiumChallenge chal = cService.selectOnePremiumDetail(chPId);
-		
-		// 오늘 날짜 가져오기
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd",Locale.KOREA);
-		Date today = new Date();
-		
-		// 시작날짜
-		Date startTime = sdf.parse(chal.getStartDate());
-		// 마감날짜
-		Date endTime = sdf.parse(chal.getEndDate());
-		
-		// 진행 예정
-		if( today.getTime() < startTime.getTime() ) { 
-			mv.addObject("chal", chal).setViewName("user/challenge/ch_premiumDetail");
-		} 
-		// 진행 중
-		else if(today.getTime() >= startTime.getTime() && today.getTime() < endTime.getTime()) {
-			mv.addObject("chal", chal).setViewName("user/challenge/ch_premiumDetailDoing");
-		}
-		// 진행 마감
-		else {
-			mv.addObject("chal", chal);
-			mv.setViewName("user/challenge/ch_premiumDetailEnd");
-		}
-			
-		return mv;
-	}
-	
-	/**
-	 * 4_4. 프리미엄 챌린지 리스트 내 검색 기능
-	 * @param mv
-	 * @param searchChallenge
-	 * @return
-	 */
-	@RequestMapping("searchPremiumChallenge.do")
-	public ModelAndView searchPremiumChallenge(ModelAndView mv, String searchPremiumChallenge) {
 
-		PremiumChallenge chal = new PremiumChallenge(); // 비어있는 객체를 생성
-		// 예를 들어서 이름 chName 
-		chal.setChName(searchPremiumChallenge);
-		
-		int currentPage = 1;
-		
-		int listCount = cService.getSearchListCount(chal);
-		
-		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 9);
-		
-		ArrayList<PremiumChallenge> list = cService.selectSearchChNameList(chal, pi);
-		
-		for(int i=0; i<list.size(); i++) {
-			String[] str = list.get(i).getChPeople().split(",");
-			list.get(i).setChPeople(String.valueOf(str.length));
-			
-			list.get(i).setTotalPrice(str.length * list.get(i).getPrice());
-		}
-		
-		mv.addObject("list", list).addObject("pi", pi).setViewName("user/challenge/ch_premiumList");
-		
-		return mv;
-	}
-	
-	/**
-	 * 4_5. 프리미엄 챌린지 등록
-	 * @param chal
-	 * @param mv
-	 * @param request
-	 * @param file
-	 * @return
-	 */
-	@RequestMapping("registerPremiumChal.do")
-	public ModelAndView registerPremiumChal(PremiumChallenge chal, ModelAndView mv, HttpServletRequest request,
-									@RequestParam(name="registerPic", required=false) MultipartFile file) {
-	
-		HttpSession session = request.getSession();
-		
-		Member mem = (Member)session.getAttribute("loginUser");
-		String userId = mem.getUserId();
-		
-		String picture = null;
-		
-		chal.setUserId(userId);
-		
-		 if(!file.getOriginalFilename().equals(" ")) { 
-			 picture = saveFile(file, request);
-		 
-			 if(picture != null) { 
-				 chal.setChPicture(picture); 
-			 	}
-		 }
-		 
-		chal.setChPicture(picture);
-		
-		int result = cService.insertPremiumChallenge(chal);
-		
-		if(result > 0) {
-			mv.addObject("chal", chal).setViewName("user/challenge/ch_premiumDetail");
-		} else {
-			mv.addObject("msg", "오류입니다").setViewName("common/errorPage");
-		}	
-		
-		return mv;
-	}
-	
 }

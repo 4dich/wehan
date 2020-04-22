@@ -11,7 +11,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
 	<!-- Favicon -->
-	<link href="resources/img/favicon.ico" rel="shortcut icon"/>
+	<link href="resources/images/favicon.ico" rel="shortcut icon"/>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap" rel="stylesheet">
@@ -43,7 +43,10 @@
             position: absolute;
             bottom: 0;
             padding: 4% 11px 2% 15px;
+        }
         
+        .contact-section .row {
+        	height: 90%;
         }
     </style>
 </head>
@@ -64,8 +67,7 @@
             </div>            
             <div class="header-social">
                 <a href="chalList.do" style="color: red;">전체 챌린지</a>
-                <a onclick="return checkPremium();" id="premium" style="cursor: pointer;">프리미엄 챌린지</a>
-              
+                
 				<input type="hidden" id="chUser" value="${ sessionScope.loginUser.userId }">
 				
 				<script>
@@ -156,33 +158,101 @@
 				<div class="contact-section">
                     <!-- 카테고리 -->
 						<div id="category">
-							<div class="ca health">건강</div>
-							<div class="ca hobby">취미</div>
-							<div class="ca selfImprovement">자기계발</div>
-							<div class="ca economy" >경제</div>
-							<div class="ca life">생활</div>
-							<div class="ca etc">그외</div>
+							<div class="ca health">
+								<input type="hidden" value="health">
+								건강
+							</div>
+							<div class="ca hobby">
+								<input type="hidden" value="hobby">
+								취미
+							</div>
+							<div class="ca motivated">
+								<input type="hidden" value="motivated">
+								자기개발
+							</div>
+							<div class="ca economy">
+								<input type="hidden" value="economy">
+								경제
+							</div>
+							<div class="ca life">
+								<input type="hidden" value="life">
+								생활
+							</div>
+							<div class="ca etc">
+								<input type="hidden" value="etc">
+								그외
+							</div>
 						</div>
 					<div class="row">
 						  <div id="ch_confirmPhotoListArea">
                                	<div id="photoList">
-                                	<c:forEach var="ch" items="${ list }">
+                                	<c:forEach var="ch" items="${ list }" varStatus="status">
                                     <a class="detailInList" id="test" style="cursor:pointer" onclick="getdetailInList(this);" name="${ ch.chId }">
                                     	<input type="hidden" id="hiddenDetailInList" name="hiddenDetailInList"/>
                                         <div class="photoBox">
-											<img src="resources/images/challenge/${ ch.chPicture }" alt=""/>
+                                        	<img src="resources/images/challenge/${ ch.chPicture }" alt=""/>
+                                        	<!-- 카테고리 -->                                        	
+	                                           	<c:if test='${ ch.category eq "건강" or ch.category eq "health"}'>
+	                                           	<div class="message-body" style="position: absolute; margin-left: 310px; margin-top: 15px; top: 0;">													
+													<h5 style="margin-bottom:10px">
+														<span class="health" style="font-size:13px;">건강</span>
+													</h5>
+												</div>
+												</c:if>
+												<c:if test='${ ch.category eq "자기개발" or ch.category eq "motivated"}'>	
+												<div class="message-body" style="position: absolute; margin-left: 284px; margin-top: 15px; top: 0;">												
+													<h5 style="margin-bottom:10px">
+														<span class="motivated" style="font-size:13px;">자기개발</span>
+													</h5>
+												</div>
+												</c:if>
+												<c:if test='${ ch.category eq "경제" or ch.category eq "economy"}'>	
+												<div class="message-body" style="position: absolute; margin-left: 310px; margin-top: 15px; top: 0;">												
+													<h5 style="margin-bottom:10px">
+														<span class="economy" style="font-size:13px;">경제</span>
+													</h5>
+												</div>
+												</c:if>
+												<c:if test='${ ch.category eq "취미" or ch.category eq "hobby"}'>	
+												<div class="message-body" style="position: absolute; margin-left: 310px; margin-top: 15px; top: 0;">												
+													<h5 style="margin-bottom:10px">
+														<span class="hobby" style="font-size:13px;">취미</span>
+													</h5>
+												</div>
+												</c:if>
+												<c:if test='${ ch.category eq "생활" or ch.category eq "life"}'>	
+												<div class="message-body" style="position: absolute; margin-left: 310px; margin-top: 15px; top: 0;">												
+													<h5 style="margin-bottom:10px">
+														<span class="life" style="font-size:13px;">생활</span>
+													</h5>
+												</div>
+												</c:if>
+												<c:if test='${ ch.category eq "그외" or ch.category eq "etc"}'>
+												<div class="message-body" style="position: absolute; margin-left: 310px; margin-top: 15px; top: 0;">												
+													<h5 style="margin-bottom:10px">
+														<span class="etc" style="font-size:13px;">그외</span>
+													</h5>
+												</div>
+												</c:if>												
                                             <div class="textBox">
-                                             <h5>${ ch.chName }</h5>
+                                            
+                                            
+                                            <div class="message-body" style="position: absolute; margin-left: 93px; margin-top: 58px; top: 0;">												
+												<h5 style="margin-bottom:10px" class="condition">
+													<span style="font-size:15px; color:red;">${ condition[status.index].condition }</span>
+												</h5>
+											</div>
+                                             <h5>${ ch.chName } </h5>
                                                 <br>
-                                                <h5>${ ch.price }</h5>
+                                                <h5>${ ch.price }원</h5>
                                                 <h5 style="float: right;">${ ch.startDate }</h5>
                                             </div>
                                         </div>
-                                    </a>
+                                    </a>                                    
                                     </c:forEach>		
 								</div>
 							</div>	
-							<script>
+							<script>						
 								function getdetailInList(chId){
 									var msg1 = "<%= request.getAttribute("msg1")%>";
 						             if(msg1 != "null"){
@@ -197,7 +267,7 @@
 
 									$('.ca').on("click",function(){
 										var index = $('.ca').index(this);
-										var category = $('#category').children().eq(index).text();
+										var category = $('#category').children().eq(index).children().val();
 										console.log(category);
 										
 											$.ajax({
@@ -205,20 +275,53 @@
 												type: "get",
 			 									data: {"category":category},
 												success: function(data) {
-			 									console.log(data);
+			 									
+			 									var length=data.length-1;			 									
+			 									
 													$('.photoBox').remove();
 													
 													var listText = "";
-													for(var i=0; i<data.length; i++) {
+													for(var i=0; i<data.length-1; i++) {
 														
-														listText += '<a class="detailInList" href="hiddenDetailInList.do?chId='+data[i].chId + '" style="cursor:pointer;">';
+														listText += '<a class="detailInList" href="hiddenDetailInList.do?chId='+data[length][i].chId + '" style="cursor:pointer;">';
 														listText += '<div class="photoBox">';
-														listText += '<img src="resources/images/challenge/'+data[i].chPicture+'">';
+														listText += '<img src="resources/images/challenge/'+data[length][i].chPicture+'">';
+														
+														if (category == "건강" || category == "health"){
+															listText += '<div class="message-body" style="position: absolute; margin-left: 310px; margin-top: 15px; top: 0;">';
+															listText += '<h5 style="margin-bottom:10px">'; 
+															listText += '<span class="health" style="font-size:13px;">건강</span>';
+														 } else if(category ==  "자기개발" || category ==  "motivated"){
+															 listText += '<div class="message-body" style="position: absolute; margin-left: 284px; margin-top: 15px; top: 0;">';
+															 listText += '<h5 style="margin-bottom:10px">'; 
+															 listText += '<span class="motivated" style="font-size:13px;">자기개발</span>';
+														 } else if(category == "경제" || category ==  "economy")	 {
+															 listText += '<div class="message-body" style="position: absolute; margin-left: 310px; margin-top: 15px; top: 0;">';
+															 listText += '<h5 style="margin-bottom:10px">'; 
+															 listText += '<span class="economy" style="font-size:13px;">경제</span>';
+														 } else if(category ==  "취미" || category ==  "hobby"){
+															 listText += '<div class="message-body" style="position: absolute; margin-left: 310px; margin-top: 15px; top: 0;">';
+															 listText += '<h5 style="margin-bottom:10px">'; 
+															 listText += '<span class="hobby" style="font-size:13px;">취미</span>';
+														 } else if(category ==  "생활" || category ==  "life"){
+															 listText += '<div class="message-body" style="position: absolute; margin-left: 310px; margin-top: 15px; top: 0;">';
+															 listText += '<h5 style="margin-bottom:10px">'; 
+															 listText += '<span class="life" style="font-size:13px;">생활</span>';
+														 } else if(category ==  "그외" || category ==  "etc") {
+															 listText += '<div class="message-body" style="position: absolute; margin-left: 310px; margin-top: 15px; top: 0;">';
+															 listText += '<h5 style="margin-bottom:10px">'; 
+															 listText += '<span class="etc" style="font-size:13px;">그외</span>';
+														 }
+														listText += '</h5></div>'
 														listText += '<div class="textBox">';
-														listText += '<h5>'+ data[i].chName + '</h5><br>';
-														listText += '<h5>'+data[i].price + '</h5>';
+														listText += '<div class="message-body" style="position: absolute; margin-left: 93px; margin-top: 58px; top: 0;">';
+														listText += '<h5 style="margin-bottom:10px" class="condition">';
+														listText += '<span style="font-size:15px; color:red;">' + data[i].condition + '</span>';
+														listText += '</span></h5></div>';
+														listText += '<h5>'+ data[length][i].chName + '</h5><br>';
+														listText += '<h5>'+data[length][i].price + '원</h5>';
 														listText += '<h5 style="float: right;">';
-														listText += data[i].startDate;
+														listText += data[length][i].startDate;
 														listText += '</h5></div></div></a>';
 														
 														$('#photoList').html(listText);
@@ -289,10 +392,10 @@
 	<script>
 		var health = document.getElementsByClassName('health');
 		var hobby = document.getElementsByClassName('hobby');
-		var selfImprovement = document.getElementsByClassName('selfImprovement');
+		var motivated = document.getElementsByClassName('motivated');
 		var economy = document.getElementsByClassName('economy');
 		var life = document.getElementsByClassName('life');
-		var except = document.getElementsByClassName('except');
+		var etc = document.getElementsByClassName('etc');
 
 		
 		$(document).ready(function(){
@@ -302,14 +405,14 @@
 				$(this).css("border","1px solid black");
 				$(hobby).css("background","white");
 				$(hobby).css("color","black");
-				$(selfImprovement).css("background","white");
-				$(selfImprovement).css("color","black");
+				$(motivated).css("background","white");
+				$(motivated).css("color","black");
 				$(economy).css("background","white");
 				$(economy).css("color","black");
 				$(life).css("background","white");
 				$(life).css("color","black");
-				$(except).css("background","white");
-				$(except).css("color","black");
+				$(etc).css("background","white");
+				$(etc).css("color","black");
 			});
 
 			$('.hobby').click(function(){
@@ -318,17 +421,17 @@
 				$(this).css("border","1px solid black");
 				$(health).css("background","white");
 				$(health).css("color","black");
-				$(selfImprovement).css("background","white");
-				$(selfImprovement).css("color","black");
+				$(motivated).css("background","white");
+				$(motivated).css("color","black");
 				$(economy).css("background","white");
 				$(economy).css("color","black");
 				$(life).css("background","white");
 				$(life).css("color","black");
-				$(except).css("background","white");
-				$(except).css("color","black");
+				$(etc).css("background","white");
+				$(etc).css("color","black");
 			});
 
-			$('.selfImprovement').click(function(){
+			$('.motivated').click(function(){
 				$(this).css("background","black");
 				$(this).css("color","white");
 				$(this).css("border","1px solid black");
@@ -340,8 +443,8 @@
 				$(economy).css("color","black");
 				$(life).css("background","white");
 				$(life).css("color","black");
-				$(except).css("background","white");
-				$(except).css("color","black");
+				$(etc).css("background","white");
+				$(etc).css("color","black");
 			});
 
 			$('.economy').click(function(){
@@ -350,14 +453,14 @@
 				$(this).css("border","1px solid black");
 				$(hobby).css("background","white");
 				$(hobby).css("color","black");
-				$(selfImprovement).css("background","white");
-				$(selfImprovement).css("color","black");
+				$(motivated).css("background","white");
+				$(motivated).css("color","black");
 				$(health).css("background","white");
 				$(health).css("color","black");
 				$(life).css("background","white");
 				$(life).css("color","black");
-				$(except).css("background","white");
-				$(except).css("color","black");
+				$(etc).css("background","white");
+				$(etc).css("color","black");
 			});
 
 			$('.life').click(function(){
@@ -366,24 +469,24 @@
 				$(this).css("border","1px solid black");
 				$(hobby).css("background","white");
 				$(hobby).css("color","black");
-				$(selfImprovement).css("background","white");
-				$(selfImprovement).css("color","black");
+				$(motivated).css("background","white");
+				$(motivated).css("color","black");
 				$(economy).css("background","white");
 				$(economy).css("color","black");
 				$(health).css("background","white");
 				$(health).css("color","black");
-				$(except).css("background","white");
-				$(except).css("color","black");
+				$(etc).css("background","white");
+				$(etc).css("color","black");
 			});
 
-			$('.except').click(function(){
+			$('.etc').click(function(){
 				$(this).css("background","black");
 				$(this).css("color","white");
 				$(this).css("border","1px solid black");
 				$(hobby).css("background","white");
 				$(hobby).css("color","black");
-				$(selfImprovement).css("background","white");
-				$(selfImprovement).css("color","black");
+				$(motivated).css("background","white");
+				$(motivated).css("color","black");
 				$(economy).css("background","white");
 				$(economy).css("color","black");
 				$(life).css("background","white");
