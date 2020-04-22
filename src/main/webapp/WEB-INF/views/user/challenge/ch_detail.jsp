@@ -289,7 +289,7 @@
 					type : 'post',
 					success:function(data){	
 						
-						$('#tPrice').text((list.length-1) * price);
+						$('#tPrice').text((list.length) * price);
 						
 						for(var i = 0; i < data.length; i++) {
 							
@@ -324,7 +324,7 @@
 									$strong = $('<strong>').text(data[i].userNickname);
 									
 									
-									$('.dropdown-menu').append($a.append($strong).append('&nbsp;&nbsp;level.' + data[i].userLevel));
+									$('.dropdown-menu').append($a.append($strong).append('&nbsp;&nbsp;level.' + data[i].userLevel + '&nbsp;＜나＞'));
 								
 								} else { // 친구 아이디를 누르면 친구 프로필로 이동
 									$a = $('<a>').attr({'class':'dropdown-item', 
