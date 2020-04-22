@@ -113,7 +113,7 @@ public interface CertifyService {
 	 */
 	ArrayList<Certify> chCertifyList(String chId, PageInfo pi);
 
-	String chName(String chId);
+	Challenge chName(String chId);
 
 	/**
 	 * 인증글 등록페이지

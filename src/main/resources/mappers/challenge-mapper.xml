@@ -129,4 +129,9 @@
 	SELECT * FROM CHALLENGE
 	WHERE CHID = #{chId}
 	</select>
+	
+	<select id="chNameGet" resultMap="challengeResultSet">
+	SELECT * FROM CHALLENGE
+	WHERE CHID = #{chId}
+	</select>
 </mapper>

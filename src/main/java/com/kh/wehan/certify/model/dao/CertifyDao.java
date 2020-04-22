@@ -132,8 +132,8 @@ public class CertifyDao {
 		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
 		return (ArrayList)sqlSession.selectList("certifyMapper.chCertifyList",chId,rowBounds);
 	}
-	public String chNameGet(String chId) {
-		return sqlSession.selectOne("certifyMapper.chNameGet",chId);
+	public Challenge chNameGet(String chId) {
+		return sqlSession.selectOne("challengeMapper.chNameGet",chId);
 	}
 
 	public Challenge insertPage(String chId) {

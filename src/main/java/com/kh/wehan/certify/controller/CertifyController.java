@@ -329,7 +329,8 @@ public class CertifyController {
 	 * @throws IOException
 	 */
 	@RequestMapping("fid_Condition.do")
-	public void fidCategory(HttpServletResponse response,String title,String category,@RequestParam(value="currentPage",required=false,defaultValue="1") int currentPage) throws JsonIOException, IOException {
+	public void fidCategory(HttpServletResponse response,String title,
+			String category,@RequestParam(value="currentPage",required=false,defaultValue="1") int currentPage) throws JsonIOException, IOException {
 		
 		PageInfo pi = null;
 		ArrayList<Certify> list = null;
@@ -377,13 +378,14 @@ public class CertifyController {
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, pageLimit, boardLimit);
 		
-		String chName = ceService.chName(chId);
+		Challenge c = ceService.chName(chId);
+		
 		ArrayList<Certify> list = ceService.chCertifyList(chId,pi);
 		
-		System.out.println("chName:"+chName);
+		System.out.println("c:"+c);
 		
 		mv.addObject("list",list);
-		mv.addObject("chName",chName);
+		mv.addObject("c",c);
 		mv.addObject("pi",pi);
 		mv.setViewName("user/certify/ch_certifyPhotoList");
 		

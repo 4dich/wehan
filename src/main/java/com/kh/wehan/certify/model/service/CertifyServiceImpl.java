@@ -131,7 +131,7 @@ public class CertifyServiceImpl implements CertifyService{
 	}
 	
 	@Override
-	public String chName(String chId) {
+	public Challenge chName(String chId) {
 		return ceDao.chNameGet(chId);
 	}
 
