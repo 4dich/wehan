@@ -203,7 +203,8 @@
 	SELECT * FROM MEMBER M
 	JOIN FOLLOW F
 	ON F.FOLLOWER = M.USERID
-	WHERE HOST =#{writer} AND M.NICKNAME LIKE '%' || #{title} || '%'
+	WHERE HOST =#{writer} 
+	AND M.NICKNAME LIKE '%' || #{title} || '%'
 	
 	</select>
 	<update id="deleteReply" parameterType="CertifyReply">
@@ -215,12 +216,33 @@
 	</update>
 
 	<select id="fidTitleCount" resultType="_int">
-	SELECT COUNT(*) FROM CHALLENGE C JOIN CERTIFY R ON C.CHID = R.CHID JOIN MEMBER M ON R.USERID = M.USERID WHERE CEDEL_YN = 'N' AND CHNAME LIKE '%' || #{title} || '%'
-	</select>
-	<select id="fidTitle" resultMap="certifyResultSet">
-	SELECT C.CHNAME,C.CATEGORY,M.NICKNAME,R.* FROM CHALLENGE C JOIN CERTIFY R ON C.CHID = R.CHID JOIN MEMBER M ON R.USERID = M.USERID WHERE CEDEL_YN = 'N' AND CHNAME LIKE '%' || #{title} || '%'
+	SELECT COUNT(*) 
+	FROM CHALLENGE C 
+	JOIN CERTIFY R 
+	ON C.CHID = R.CHID 
+	JOIN MEMBER M 
+	ON R.USERID = M.USERID 
+	WHERE CEDEL_YN = 'N' 
+	AND CHNAME LIKE '%' || #{title} || '%'
 	</select>
 	
+	<!-- 피드 타이틀 출력 -->
+	<select id="fidTitle" resultMap="certifyResultSet">
+	SELECT C.CHNAME,C.CATEGORY,M.NICKNAME,R.* 
+	FROM CHALLENGE C 
+	JOIN CERTIFY R 
+	ON C.CHID = R.CHID 
+	JOIN MEMBER M 
+	ON R.USERID = M.USERID 
+	WHERE CEDEL_YN = 'N' 
+	AND CHNAME LIKE '%' || #{title} || '%'
+	</select>
+	<select id="chNameGet" resultType="string">
+	SELECT CHNAME
+	FROM CHALLENGE
+	WHERE CHID = #{chId}
+	</select>
+	<!-- 챌린지 인증글 리스트 -->
 	<select id="chCertifyList" resultMap="certifyResultSet">
 	SELECT R.*,C.CHNAME,M.NICKNAME
 	FROM CERTIFY R
@@ -230,6 +252,13 @@
 	ON(R.USERID = M.USERID)
 	WHERE C.CHID = #{chId}
 	</select>
+	<insert id="insertCertify">
+	INSERT INTO CERTIFY 
+	VALUES(SEQ_CEID.NEXTVAL,#{chId},#{userId},#{ceContent},
+	#{cePicture},SYSDATE,DEFAULT)
+	</insert>
+	
+
 </mapper>
 
 

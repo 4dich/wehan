@@ -119,10 +119,10 @@ public class viewController {
 //		return "user/fid/fid_detail";
 //	}
 	
-	@RequestMapping("ch_certifyDetailView.do")
-	public String ch_certifyDetailView() {
-		return "user/ceritify/ch_certifyDetail";
-	}
+	/*
+	 * @RequestMapping("ch_certifyDetailView.do") public String
+	 * ch_certifyDetailView() { return "user/ceritify/ch_certifyDetail"; }
+	 */
 	
 	@RequestMapping("guideInfoView.do")
 	public String guideInfoView() {
@@ -149,10 +149,10 @@ public class viewController {
 		return "user/info/serviceInfo";
 	}
 	
-	@RequestMapping("ch_registerPhotoView.do")
-	public String ch_registerPhotoView() {
-		return "user/ceritify/ch_registerPhoto";
-	}
+	/*
+	 * @RequestMapping("ch_registerPhotoView.do") public String
+	 * ch_registerPhotoView() { return "user/ceritify/ch_registerPhoto"; }
+	 */
 	
 	
 	@RequestMapping("companyInfoView.do")
@@ -170,10 +170,10 @@ public class viewController {
 		return "user/main";
 	}
 	
-	@RequestMapping("ch_certifyPhotoListView.do")
-	public String ch_certifyPhotoListView() {
-		return "user/ceritify/ch_certifyPhotoList";
-	}
+	/*
+	 * @RequestMapping("ch_certifyPhotoListView.do") public String
+	 * ch_certifyPhotoListView() { return "user/ceritify/ch_certifyPhotoList"; }
+	 */
 	
 //	@RequestMapping("fid_friendListView.do")
 //	public String fid_friendListView() {

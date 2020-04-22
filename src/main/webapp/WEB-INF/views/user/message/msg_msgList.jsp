@@ -129,10 +129,10 @@
 											<c:if test="${ empty msgList }">
 												<div style="text-align:center;">
 													<br><br>
-													검색하신 친구가 없습니다<br>
+													친구가 없습니다<br>
 													친구를 추가해보세요!<br><br>
-													<a href="msgFriendList.do">돌아가기</a><br>
-													<a href="">추천피드 가기</a>
+													<a href="getMsgList.do">돌아가기</a><br>
+													<a href="fid_ch_recommendView.do">추천피드 가기</a>
 												</div>
 											</c:if>
 											

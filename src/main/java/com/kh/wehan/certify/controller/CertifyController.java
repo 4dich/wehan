@@ -2,6 +2,7 @@ package com.kh.wehan.certify.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -376,12 +377,15 @@ public class CertifyController {
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, pageLimit, boardLimit);
 		
+		String chName = ceService.chName(chId);
 		ArrayList<Certify> list = ceService.chCertifyList(chId,pi);
 		
+		System.out.println("chName:"+chName);
 		
 		mv.addObject("list",list);
+		mv.addObject("chName",chName);
 		mv.addObject("pi",pi);
-		mv.setViewName("user/ceritify/ch_certifyPhotoList");
+		mv.setViewName("user/certify/ch_certifyPhotoList");
 		
 		return mv;
 		
@@ -393,44 +397,99 @@ public class CertifyController {
 	 * @param request
 	 * @return
 	 */
-	/*
-	 * public String saveFile(MultipartFile file,HttpServletRequest request) {
-	 * 
-	 * String root =
-	 * request.getSession().getServletContext().getRealPath("resources"); String
-	 * savePath = root + "\\images\\certify"; File folder = new File(savePath);
-	 * 
-	 * if(!folder.exists()) { folder.mkdir(); }
-	 * 
-	 * String originFileName = file.getOriginalFilename();
-	 * 
-	 * SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-	 * 
-	 * String picture = sdf.format(new java.sql.Date(System.currentTimeMillis()))+
-	 * "." + originFileName.substring(originFileName.lastIndexOf(".")+1); String
-	 * picturePath = folder + "\\" + picture;
-	 * 
-	 * try { file.transferTo(new File(picturePath)); }catch(Exception e) {
-	 * e.printStackTrace(); } return picture; }
-	 */
+	public String saveFile(MultipartFile file,HttpServletRequest request) {
+		
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String savePath = root + "\\images\\certify";
+		File folder = new File(savePath);
+		
+		if(!folder.exists()) {
+			folder.mkdir();
+		}
+		
+		String originFileName = file.getOriginalFilename();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+		
+		String picture = sdf.format(new java.sql.Date(System.currentTimeMillis()))+ "."
+				+ originFileName.substring(originFileName.lastIndexOf(".")+1);
+		String picturePath = folder + "\\" + picture;
+		
+		try {
+			file.transferTo(new File(picturePath));
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return picture;
+	}
 	/**
 	 * 
-	 * 인증글 등록
+	 * 인증글 등록창 
 	 * @param c
 	 * @param request
 	 * @param file
 	 * @return
 	 */
-	/*
-	 * @RequestMapping("insertCertify.do") public ModelAndView insertCertify(Certify
-	 * c,ModelAndView mv, HttpServletRequest request,
-	 * 
-	 * @RequestParam(name="registerPic", required=false) MultipartFile file) {
-	 * 
-	 * mv.setViewName("");
-	 * 
-	 * return mv; }
-	 */
+	
+		@RequestMapping("insertCertify.do") 
+		public ModelAndView certifyForm(ModelAndView mv, String chId){
+
+			Challenge c = ceService.insertPage(chId);
+			
+			mv.addObject("c",c).setViewName("user/certify/ch_registerPhoto");
+			
+			return mv;
+		}
+		
+		
+		/**
+		 *  인증글 insert
+		 * @param cer
+		 * @param mv
+		 * @param request
+		 * @param file
+		 * @return
+		 */
+		@RequestMapping("registerCertify.do")
+		public ModelAndView registerCertify(Certify cer, ModelAndView mv, HttpServletRequest request,
+										@RequestParam(name="registerPic", required=false) MultipartFile file) {
+		
+			HttpSession session = request.getSession();
+			
+			Member mem = (Member)session.getAttribute("loginUser");
+			String userId = mem.getUserId();
+			
+			String picture = null;
+			
+			cer.setUserId(userId);
+			
+			 if(!file.getOriginalFilename().equals(" ")) { 
+				 picture = saveFile(file, request);
+			 
+				 if(picture != null) { 
+					 cer.setCePicture(picture); 
+				 	}
+			 }
+			 
+			cer.setCePicture(picture);
+			
+			int result = ceService.insertCertify(cer);
+			
+			
+			String chId = cer.getChId();
+			
+			if(result > 0) {
+				mv.addObject("chId",chId)
+				.setViewName("redirect:ch_certifyList.do");
+			} else {
+				mv.addObject("msg", "오류입니다").setViewName("common/errorPage");
+			}	
+			
+			return mv;
+		}
+		
+	
+	
 
 }
 

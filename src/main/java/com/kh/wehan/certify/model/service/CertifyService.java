@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.kh.wehan.certify.model.vo.Certify;
 import com.kh.wehan.certify.model.vo.CertifyReply;
 import com.kh.wehan.certify.model.vo.SearchCondition;
+import com.kh.wehan.challenge.model.vo.Challenge;
 import com.kh.wehan.common.model.vo.PageInfo;
 import com.kh.wehan.member.model.vo.Follow;
 import com.kh.wehan.member.model.vo.Member;
@@ -111,5 +112,22 @@ public interface CertifyService {
 	 * @return
 	 */
 	ArrayList<Certify> chCertifyList(String chId, PageInfo pi);
+
+	String chName(String chId);
+
+	/**
+	 * 인증글 등록페이지
+	 * @param ceId
+	 * @return
+	 */
+	Challenge insertPage(String chId);
+
+	/**
+	 * 인증글 insert
+	 * @param cer
+	 * @return
+	 */
+	int insertCertify(Certify cer);
+
 
 }
