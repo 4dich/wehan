@@ -13,6 +13,7 @@ import com.kh.wehan.common.model.vo.PageInfo;
 import com.kh.wehan.notice.model.vo.Notice;
 import com.kh.wehan.questions.model.service.QuestionsService;
 import com.kh.wehan.questions.model.vo.Questions;
+import com.kh.wehan.questions.model.vo.QuestionsReply;
 import com.kh.wehan.questions.model.vo.SearchCondition;
 
 @Controller
@@ -250,7 +251,8 @@ public class QuestionsController {
 		System.out.println("test");
 		  System.out.println(q.getqUserid());
 		  System.out.println(q);		 	  
-		 		
+		 
+		  
 		int result = qService.questionsReplyInsert(q);
 		System.out.println(result);
 		
@@ -259,6 +261,19 @@ public class QuestionsController {
 		}else {
 			return"common/errorPage";
 		}
+	}
+	
+	@RequestMapping("replyListView.do")
+	public void questionsReply(@RequestParam("qId") int qId) {
+	
+		System.out.println("qId: "+qId);
+        ArrayList<QuestionsReply> list = qService.questionReplyList(qId);
+	 	
+        System.out.println("list : " + list);
+		
+	  
+				
+				
 	}
 	
 }
