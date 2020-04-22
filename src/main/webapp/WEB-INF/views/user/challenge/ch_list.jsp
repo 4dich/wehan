@@ -180,7 +180,7 @@
 							</div>
 							<div class="ca etc">
 								<input type="hidden" value="etc">
-								기타
+								그외
 							</div>
 						</div>
 					<div class="row">
@@ -230,7 +230,7 @@
 												<c:if test='${ ch.category eq "그외" or ch.category eq "etc"}'>
 												<div class="message-body" style="position: absolute; margin-left: 310px; margin-top: 15px; top: 0;">												
 													<h5 style="margin-bottom:10px">
-														<span class="etc" style="font-size:13px;">기타</span>
+														<span class="etc" style="font-size:13px;">그외</span>
 													</h5>
 												</div>
 												</c:if>												
@@ -310,7 +310,7 @@
 														 } else if(category ==  "그외" || category ==  "etc") {
 															 listText += '<div class="message-body" style="position: absolute; margin-left: 310px; margin-top: 15px; top: 0;">';
 															 listText += '<h5 style="margin-bottom:10px">'; 
-															 listText += '<span class="etc" style="font-size:13px;">기타</span>';
+															 listText += '<span class="etc" style="font-size:13px;">그외</span>';
 														 }
 														listText += '</h5></div>'
 														listText += '<div class="textBox">';

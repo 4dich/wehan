@@ -354,7 +354,7 @@
 															</c:if>
 															<c:if test='${ list.chCategory eq "그외" or list.chCategory eq "etc"}'>													
 																<h5 style="margin-bottom:10px">
-																	<span class="etc" style="font-size:13px;">기타</span>
+																	<span class="etc" style="font-size:13px;">그외</span>
 																</h5>
 															</c:if>	
 															
@@ -399,7 +399,7 @@
 														<h5><span class="life" style="font-size:13px; margin-right:10px;">생활</span></h5>
 													</c:if>
 													<c:if test='${ list.chCategory eq "그외" or list.chCategory eq "etc"}'>													
-														<h5><span class="etc" style="font-size:13px; margin-right:10px;">기타</span></h5>
+														<h5><span class="etc" style="font-size:13px; margin-right:10px;">그외</span></h5>
 													</c:if>		
 													<strong>${ list.chTitle }</strong>	
 			                                    </div>
