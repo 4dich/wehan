@@ -101,7 +101,6 @@ public class ChallengeController {
 															@RequestParam(value="search", required=false)String search, 
 			@RequestParam(value="currentPage", required=false, defaultValue="1") int currentPage) {
 		
-		System.out.println("searchChallengeAdmin : " + searchChallengeAdmin + " search : " + search + " currentPage : " + currentPage);
 		
 		Challenge chal = new Challenge();
 		if(searchChallengeAdmin.equals("chName")) {

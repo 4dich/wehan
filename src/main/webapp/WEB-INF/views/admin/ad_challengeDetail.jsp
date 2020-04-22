@@ -193,7 +193,8 @@
 													참여인원 : <strong>${ chal.chPeopleCount } 명</strong>
 
 													<div class="btn-group dropright">
-													  <button class="btn btn-secondary dropdown-toggle" style="border:0px; background:#8d918d; bottom:6px;"  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+													  <button class="btn btn-secondary dropdown-toggle" style="border:0px; background:#8d918d; bottom:6px;"  
+													  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 													   	참가자 목록
 													  </button>
 													  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -288,20 +289,22 @@
 					// 내 아이디를 누르면 내 프로필로 이동
 					
 					if(data[i].userId == hostId){
+							
+							$a = $('<a>').attr({'class':'dropdown-item'});
 						
 							
 							$strong = $('<strong>').text(data[i].userNickname);
 			
 			
-							$('.dropdown-menu').append($strong.append('&nbsp;&nbsp;level.' + data[i].userLevel + '&nbsp;＜주최자＞'));
+							$('.dropdown-menu').append($a.append($strong).append('&nbsp;&nbsp;level.' + data[i].userLevel + '&nbsp;＜주최자＞'));
 						
 					} else {
-						
+							$a = $('<a>').attr({'class':'dropdown-item'});
 							
 							$strong = $('<strong>').text(data[i].userNickname);
 			
+							$('.dropdown-menu').append($a.append($strong).append('&nbsp;&nbsp;level.' + data[i].userLevel));
 			
-							$('.dropdown-menu').append($strong.append('&nbsp;&nbsp;level.' + data[i].userLevel));
 						
 					}
 				}
