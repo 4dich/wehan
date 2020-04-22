@@ -112,7 +112,7 @@
 
 						<div id="ch_confirmPhotoListArea">
 							<div id="buttonArea">
-								<div class="challengeName">【      ${ chName }  】</div>
+								<div class="challengeName">【      ${ c.chName }  】</div>
 								<input type="button" value="인증등록" id="insertCertify">
 							</div>
 							<!-- 인증사진리스트영역 -->
@@ -133,7 +133,7 @@
 								
 								</c:forEach>
 								
-								<input type="hidden" id="chId" value="${ list[0].chId }">
+								<input type="hidden" id="chId" value="${ c.chId }">
 
 
 							</div>
