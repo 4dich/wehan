@@ -124,7 +124,17 @@ public class MessageDao {
 
 	/**
 	 * 메시지 저장하기
-	 * 3) 메시지룸 번호(MRID) 가져오기
+	 * 3) 메시지룸 Del 리셋
+	 * @param msg
+	 * @return
+	 */
+	public int updateMrid(Map msg) {
+		return sqlSession.update("messageMapper.updateMrid", msg);
+	}
+	
+	/**
+	 * 메시지 저장하기
+	 * 4) 메시지룸 번호(MRID) 가져오기
 	 * @param msg
 	 * @return
 	 */
@@ -132,16 +142,6 @@ public class MessageDao {
 		return sqlSession.selectOne("messageMapper.getMrid", msg);
 	}
 	
-	/**
-	 * 메시지 저장하기
-	 * 4) 메시지룸 Del 리셋
-	 * @param msg
-	 * @return
-	 */
-	public int updateMrid(Map msg) {
-		return sqlSession.update("messageMapper.updateMrid", msg);
-	}
-
 	/**
 	 * 메시지 저장하기
 	 * 5) 메시지 저장하기

@@ -241,11 +241,20 @@
 					"content" : content},
 				type:"post",
 				success:function(data){
-					// 실시간 불러오기
-					getMsgList();
 					
 					// input창 지우기
-					$('#content').val('');
+					$('#content').val('');					
+					
+					// 메시지 전송 성공 시
+					if(data == 'success') {
+						// 실시간 불러오기
+						getMsgList();
+					}
+					
+					// 메시지 전송 실패시 
+					else if (data == 'fail') {
+						alert("매시지 전송에 실패했습니다. 다시 시도해주세요");
+					}
 					
 				}, error:function(){
 					console.log("오류")
@@ -277,7 +286,7 @@
 				dataType:"json",
 				success:function(data){
 					
-					
+					// 화면에 보여지는 msgId 배열로 담기
 					$('.msgId').each(function(idx, elem){
 						/* console.log('index('+idx+') : ' + $(this).val() ); */
 						mId.push( $(this).val());
