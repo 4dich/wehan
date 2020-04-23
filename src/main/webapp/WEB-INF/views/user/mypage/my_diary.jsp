@@ -19,7 +19,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,900&display=swap" rel="stylesheet">
 
 	<!-- Stylesheets -->
-	<link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
+	<!-- <link rel="stylesheet" href="resources/css/bootstrap.min.css"/> -->
 	<link rel="stylesheet" href="resources/css/font-awesome.min.css"/>
 	<link rel="stylesheet" href="resources/css/magnific-popup.css"/>
 	<link rel="stylesheet" href="resources/css/owl.carousel.min.css"/>
@@ -37,9 +37,15 @@
 	<script src='resources/packages/interaction/main.js'></script>
 	<script src='resources/packages/daygrid/main.js'></script>
 	<script src='resources/packages/timegrid/main.js'></script>
-	<script src='resources/packages/bundle/google-calendar.js'></script>
 	<script src='resources/packages/list/main.js'></script>
 	<!-- <script src='resources/packages/bundle/locales/ko.js'></script> -->
+	
+	<link rel="stylesheet" href='resources/packages/custom/bootstrap-datetimepicker.min.css' />
+    <link rel="stylesheet" href="resources/packages/custom/bootstrap.min.css">
+    
+    <script src="resources/packages/custom/moment.min.js"></script>   
+    <script src="resources/packages/custom/bootstrap-datetimepicker.min.js"></script>
+    
 <script>
   $(function(){
     $.ajax({
@@ -55,6 +61,7 @@
                     title: value.title,
                     start: value.sDate,
                     end: value.eDate,
+                    allDay: value.allDay
                     //color : "#FF0000",
                     //textColor : "#FFFF00",
                     //borderColor : "#FF4500"
@@ -64,7 +71,7 @@
             var calendarEl = document.getElementById('calendar');
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
-              plugins: [ 'interaction', 'dayGrid', 'timeGrid',  'list', 'googleCalendar' ],
+              plugins: [ 'interaction', 'dayGrid', 'timeGrid',  'list' ],
               header: {
                 left: 'prev,next today',
                 center: 'title',
@@ -75,7 +82,8 @@
               selectable: true,
               selectMirror: true,
               select: function(arg) {
-                var title = prompt('Event Title:');
+                var title = prompt('Write Title:');
+                var content = prompt('Write Content:');
                 if (title) {
                   calendar.addEvent({
                     title: title,
@@ -90,17 +98,6 @@
               eventLimit: true, // allow "more" link when too many events
 
               events: events,
-              
-              googleCalendarApiKey : "AIzaSyChhnqZ3fciT772F1dgJMI0TGRR4kA1e2g",
-              eventSources : [
-              // 대한민국의 공휴일
-              {
-                    googleCalendarId : "ko.south_korea#holiday@group.v.calendar.google.com"
-                  , className : "koHolidays"
-                  , color : "#FF0000"
-                  , textColor : "#FFFFFF"
-              }],
-
 
               //locale: 'ko', // 한국어표시, "일"표시가 보기 안좋음
 
@@ -116,7 +113,8 @@
                   $('#modalTitle').html(info.event.title);
                   $('#modalBody1').html('시작일: '+info.event.start);
                   $('#modalBody2').html('종료일: '+info.event.end);
-                  $('#stat').css('display','');
+                  /* $('#stat').css('display',''); */
+                  $('#stat').slideDown(500);
               },
             });
             calendar.render();
@@ -129,7 +127,6 @@
 
 </script>
 <style>
-
 	.site-logo {
         margin-bottom: 40px;
     }
@@ -391,15 +388,41 @@
     max-width: 900px;
     margin: 0 auto;
   }
+  
+  .fc-sat {
+  	color:#0000FF;
+  }
+  
+  .fc-sun {
+  	color: #FF0000;
+  }
+  
+  /* 달력클릭시 팝업창에서 색고르는 항목 */
+  .box-radio-input input[type="radio"]{
+      display:none;
+  }
 
+  .box-radio-input input[type="radio"] + div{
+      width: 44px;
+      height: 44px;
+      display:inline-block;  
+      cursor:pointer;
+      border:1px solid black;   
+      padding:1px;
+  }
+
+  .box-radio-input input[type="radio"]:checked + div{
+      padding: 0px;
+      border:2px solid black;   
+  }
 </style>
 </head>
 
 <body>
 	<!-- Page Preloder -->
-	<div id="preloder">
+	<!-- <div id="preloder">
 		<div class="loader"></div>
-	</div>
+	</div> -->
 
 	<!-- Main section start -->
 	<div class="main-site-warp">
@@ -455,32 +478,56 @@
 			</div>
 			<!-- Left Side section end -->
 			<!-- Page start -->
+			<!-- <div id='itemContainer' style="width:900px; height:200px; margin-left: 185px; overflow-y: auto; margin-bottom: 50px; border:1px solid; -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);">
+				<div id='item1' style="display:inline-block; width:880px; height:200px; background:red;"></div>
+				<div id='item2' style="display:inline-block; width:880px; height:200px; background:blue;"></div>
+				<div id='item2' style="display:inline-block; width:880px; height:200px; background:yellow;"></div>
+			</div> -->
 			
 			<div id='calendar' style='-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);'></div>
 			
 			<div id='stat' style="display:none; background: white; width:500px; height:498px; position:absolute; left: 1000px; top: 200px; border-radius:5px; box-shadow : rgba(0,0,0,0.5) 0 0 0 9999px; z-index : 100;
 			-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);">
-				<div id='modalX' style="width:20px; height:20px; margin-top: 20px; margin-right:20px; float:right; font-size:18px; cursor:pointer; color:white">X</div>
-				<div id='modalTitle' style="width:500px; height:60px; padding-left:50px; padding-top:20px; background: #242424; color:white"></div>
-				<div id='modalBody' style="width:500px; height:380px; padding-left:50px; margin-top:-1px; padding-top:20px; background: lightgray;">
-					<div id='modalBody1' style="width:500px; height:80px; padding-top: 40px"></div>
-					<div id='modalBody2' style="width:500px; height:80px; padding-top: 40px"></div>
+				<div id='modalX' style="width:20px; height:20px; margin-top: 20px; margin-right:20px; float:right; font-size:18px; cursor:pointer;">X</div>
+				<div id='modalTitle' style="width:500px; height:60px; padding-left:50px; padding-top:14px; background: lightgray; font-weight:bold; font-size: 24px"></div>
+				<div id='modalBody' style="width:500px; height:380px; padding-left:50px; margin-top:-1px; padding-top:20px; background: white;">
+					<div id='modalBody3' style="width:500px; height:80px; padding-top: 20px">
+						<label class="box-radio-input"><input type="radio" name="cp_item" value="옵션1" checked="checked"><div><div style="background: #3A7D7C; width: 40px; height: 40px;"></div></div></label>
+					    <label class="box-radio-input"><input type="radio" name="cp_item" value="옵션2"><div><div style="background: #03A6A6;width: 40px; height: 40px;"></div></div></label>
+					    <label class="box-radio-input"><input type="radio" name="cp_item" value="옵션3"><div><div style="background: #F7D147; width: 40px; height: 40px;"></div></div></label>
+					    <label class="box-radio-input"><input type="radio" name="cp_item" value="옵션4"><div><div style="background: #FE736C; width: 40px; height: 40px;"></div></div></label>
+					    <label class="box-radio-input"><input type="radio" name="cp_item" value="옵션5"><div><div style="background: #EC5A31; width: 40px; height: 40px;"></div></div></label>
+					    
+					</div>
+					<div id='modalBody1' style="width:500px; height:30px; padding-top: 10px; ">
+					</div>
+					<div id='modalBody2' style="width:500px; height:30px; padding-top: 10px">
+					</div>
+					<div id='modalBody4' style="width:500px; height:30px; padding-top: 30px; position:relative">
+						<input type='text' id='calTest'>
+						<textarea cols="54" rows="7" style="resize: none;  background:white;"></textarea>
+					</div>
 				</div>
-				<div id="modalFooter" style="width:500px; height:60px; text-align:center; margin-top:-1px; padding-top:15px; background: #242424; color:white">
+				<div id="modalFooter" style="width:500px; height:60px; text-align:center; margin-top:-1px; padding-top:15px; background: lightgray; color:white">
 					<button>수정</button>
 					<button>삭제</button>
 				</div>
 			</div>
+			
 			<script>
 				$('#modalX').click(function(){
-					$('#stat').css('display','none');
+					/* $('#stat').css('display','none'); */
+					$('#stat').slideUp(500);
 				});
+				
+				$("#calTest").datetimepicker({
+		            format: 'YYYY-MM-DD HH:mm'
+		        });
 			</script>
 			<div class="copyright"><p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
 		           All rights reserved </p></div>
 			</div>
 		</div>
-	
 	<!-- Main section end -->
 	
 	<!--====== Javascripts & Jquery ======-->
@@ -491,6 +538,7 @@
 	<script src="resources/js/circle-progress.min.js"></script>
 	<script src="resources/js/jquery.magnific-popup.min.js"></script>
 	<script src="resources/js/main.js"></script>
+	
 
 	</body>
 </html>

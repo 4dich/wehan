@@ -276,8 +276,8 @@ public class MypageController {
 		 
 		
 		ArrayList<FullCalendar> myList = new ArrayList<FullCalendar>();
-		myList.add(new FullCalendar("DB이벤트1", "2020-04-20", "2020-04-27", false));
-		myList.add(new FullCalendar("DB이벤트2", "2020-04-01", "2020-04-07", false));
+		myList.add(new FullCalendar("DB이벤트1", "2020-04-20", "2020-04-27", true));
+		myList.add(new FullCalendar("DB이벤트2", "2020-04-01", "2020-04-07", true));
 		
 		response.setContentType("application/json; charset=utf-8");
 		

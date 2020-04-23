@@ -379,7 +379,7 @@
 			<div class="page-section portfolio-page">
 				<div class="portfolio-section">
 					<!-- Statistics 영역 -->				
-					<div class="main-down" id="statistics" style="height: 40%; width:90%; margin-left:20px">
+					<div class="main-down" id="statistics" style="height: 40%; width:90%; margin-left:20px;">
 						<div class="main-down-title" style="height: 70px; padding: 20px; font-weight:900; font-size: 21px; font-weight: 700;">
 							<div style="width:100px; height:100px; margin-left:-39px; display:inline-block; background-image: url('resources/images/icons/bookmark.png'); background-repeat : no-repeat; background-size : cover;"></div>
 							<div style="margin:-100px 24px 0 60px;">
