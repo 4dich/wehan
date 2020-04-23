@@ -40,11 +40,12 @@
 	<script src='resources/packages/list/main.js'></script>
 	<!-- <script src='resources/packages/bundle/locales/ko.js'></script> -->
 	
-	<link rel="stylesheet" href='resources/packages/custom/bootstrap-datetimepicker.min.css' />
-    <link rel="stylesheet" href="resources/packages/custom/bootstrap.min.css">
+	<link rel="stylesheet" href='resources/packages/custom/css/bootstrap-datetimepicker.min.css' />
+    <link rel="stylesheet" href="resources/packages/custom/css/bootstrap.min.css">
     
-    <script src="resources/packages/custom/moment.min.js"></script>   
-    <script src="resources/packages/custom/bootstrap-datetimepicker.min.js"></script>
+    <script src="resources/packages/custom/js/moment.min.js"></script>   
+    <script src="resources/packages/custom/js/bootstrap-datetimepicker.min.js"></script>
+    
     
 <script>
   $(function(){
@@ -58,10 +59,13 @@
         	var events = [];
             $.each(data, function (index, value) {
                 events.push({
-                    title: value.title,
+                    title: value.dTitle,
                     start: value.sDate,
                     end: value.eDate,
-                    allDay: value.allDay
+                    color: value.dColor,
+                    allDay: true,
+                    dColor: value.dColor,
+                    dContent: value.dContent
                     //color : "#FF0000",
                     //textColor : "#FFFF00",
                     //borderColor : "#FF4500"
@@ -75,7 +79,7 @@
               header: {
                 left: 'prev,next today',
                 center: 'title',
-                right: 'dayGridMonth,timeGridDay,listWeek'
+                right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
               },
               defaultDate: new Date(),
               navLinks: true, // can click day/week names to navigate views
@@ -83,14 +87,37 @@
               selectMirror: true,
               select: function(arg) {
                 var title = prompt('Write Title:');
-                var content = prompt('Write Content:');
                 if (title) {
-                  calendar.addEvent({
-                    title: title,
-                    start: arg.start,
-                    end: arg.end,
-                    allDay: arg.allDay
-                  })
+                  var content = prompt('Write Content:');
+                  /*---------------------------*/
+                  $.ajax({
+                	  contentType:'application/json',
+                      dataType:'json',
+                      url:'calendarInsert.do',
+                      type:'post',
+                      data:{
+                      	dTitle: title,
+                      	dContent: content,
+                      	sDate: arg.start,
+                      	eDate: arg.end,
+                      	dColor: '#3A7D7C',
+                      	cntStamp: 0
+                      },
+                      success:function(data){
+		                  calendar.addEvent({
+		                    title: title,
+		                    start: arg.start,
+		                    end: arg.end,
+		                    allDay: true,
+		                    color: '#3A7D7C',
+		                    dContent: content
+		                  });
+		                  $("input:radio[name='color_select']:radio[value='color1']").prop('checked',true);
+		            	  $('#modalTitle, #modalFooter').css('background','#3A7D7C');
+                      },error:function(){
+                    	  alert('ajax 오류: diary insert');
+                      }
+                  });
                 }
                 calendar.unselect()
               },
@@ -98,6 +125,11 @@
               eventLimit: true, // allow "more" link when too many events
 
               events: events,
+              titleFormat: { // will produce something like "Tuesday, September 18, 2018"
+           	    year: 'numeric',
+           	    month: '2-digit',
+           	    day: '2-digit'
+           	  },
 
               //locale: 'ko', // 한국어표시, "일"표시가 보기 안좋음
 
@@ -111,16 +143,37 @@
               }, */
               eventClick:  function(info) {
                   $('#modalTitle').html(info.event.title);
-                  $('#modalBody1').html('시작일: '+info.event.start);
-                  $('#modalBody2').html('종료일: '+info.event.end);
+                 /*  $('#sDate').html('시작일: '+info.event.start);
+                  $('#eDate').html('종료일: '+info.event.end); */
                   /* $('#stat').css('display',''); */
+                  
+                  $('#sDate').val(moment(info.event.start).format("YYYY-MM-DD HH:mm"));
+                  $('#eDate').val(moment(info.event.end).format("YYYY-MM-DD HH:mm"));
+                  $('#dContent').val(info.event.extendedProps.dContent);
+                  if(info.event.extendedProps.dColor=='#3A7D7C'){
+                	  $("input:radio[name='color_select']:radio[value='color1']").prop('checked',true);
+                	  $('#modalTitle, #modalFooter').css('background','#3A7D7C');
+                  }else if(info.event.extendedProps.dColor=='#03A6A6'){
+                	  $("input:radio[name='color_select']:radio[value='color2']").prop('checked',true);
+                	  $('#modalTitle, #modalFooter').css('background','#03A6A6');
+                  }else if(info.event.extendedProps.dColor=='#F7D147'){
+                	  $("input:radio[name='color_select']:radio[value='color3']").prop('checked',true);
+                	  $('#modalTitle, #modalFooter').css('background','#F7D147');
+                  }else if(info.event.extendedProps.dColor=='#FE736C'){
+                	  $("input:radio[name='color_select']:radio[value='color4']").prop('checked',true);
+                	  $('#modalTitle, #modalFooter').css('background','#FE736C');
+                  }else if(info.event.extendedProps.dColor=='#EC5A31'){
+                	  $("input:radio[name='color_select']:radio[value='color5']").prop('checked',true);
+                	  $('#modalTitle, #modalFooter').css('background','#EC5A31');
+                  }
+                  
                   $('#stat').slideDown(500);
               },
             });
             calendar.render();
         },
         error:function(){
-            alert('ajax 데이터 송신 오류');
+            alert('ajax오류: diary select list');
         }
       });
   });
@@ -415,6 +468,11 @@
       padding: 0px;
       border:2px solid black;   
   }
+  
+  a:link { text-decoration: none; color:black;}
+  a:visited { text-decoration: none;}
+  a:hover { text-decoration: none;}
+	
 </style>
 </head>
 
@@ -431,11 +489,11 @@
 
 		
         <!-- 메뉴 끝 -->
-		<header class="header-section" style="margin-top: -50px">
+		<header class="header-section" style="margin-top: -40px; margin-left:-10px">
 			<div class="nav-switch menuIcon msgCount">
 				<i class="fa fa-bars"></i>
 			</div>
-			<div class="header-social">
+			<div class="header-social" style='font-family:"Open Sans",sans-serif;'>
                 <a href="my_profileView.do">My Profile</a>
                 <a href="my_challengeView.do">My Challenge</a>
                 <a href="my_diaryView.do" style="color: red;">My Diary</a>
@@ -492,24 +550,29 @@
 				<div id='modalTitle' style="width:500px; height:60px; padding-left:50px; padding-top:14px; background: lightgray; font-weight:bold; font-size: 24px"></div>
 				<div id='modalBody' style="width:500px; height:380px; padding-left:50px; margin-top:-1px; padding-top:20px; background: white;">
 					<div id='modalBody3' style="width:500px; height:80px; padding-top: 20px">
-						<label class="box-radio-input"><input type="radio" name="cp_item" value="옵션1" checked="checked"><div><div style="background: #3A7D7C; width: 40px; height: 40px;"></div></div></label>
-					    <label class="box-radio-input"><input type="radio" name="cp_item" value="옵션2"><div><div style="background: #03A6A6;width: 40px; height: 40px;"></div></div></label>
-					    <label class="box-radio-input"><input type="radio" name="cp_item" value="옵션3"><div><div style="background: #F7D147; width: 40px; height: 40px;"></div></div></label>
-					    <label class="box-radio-input"><input type="radio" name="cp_item" value="옵션4"><div><div style="background: #FE736C; width: 40px; height: 40px;"></div></div></label>
-					    <label class="box-radio-input"><input type="radio" name="cp_item" value="옵션5"><div><div style="background: #EC5A31; width: 40px; height: 40px;"></div></div></label>
+						<label class="box-radio-input"><input type="radio" name="color_select" value="color1" checked="checked"><div><div style="background: #3A7D7C; width: 40px; height: 40px;"></div></div></label>
+					    <label class="box-radio-input"><input type="radio" name="color_select" value="color2"><div><div style="background: #03A6A6;width: 40px; height: 40px;"></div></div></label>
+					    <label class="box-radio-input"><input type="radio" name="color_select" value="color3"><div><div style="background: #F7D147; width: 40px; height: 40px;"></div></div></label>
+					    <label class="box-radio-input"><input type="radio" name="color_select" value="color4"><div><div style="background: #FE736C; width: 40px; height: 40px;"></div></div></label>
+					    <label class="box-radio-input"><input type="radio" name="color_select" value="color5"><div><div style="background: #EC5A31; width: 40px; height: 40px;"></div></div></label>
 					    
 					</div>
-					<div id='modalBody1' style="width:500px; height:30px; padding-top: 10px; ">
+					<div style="display:inline-block; width:220px; height:25px;">시작일</div>
+					<div style="display:inline-block; width:180px; height:25px;">종료일</div>
+					<div id='modalBody4' style="width:500px; height:30px; position:relative;">
+						<div style="width:400px; height:50px;">
+							<input type='text' id='sDate'>
+							<input type='text' id='eDate' style="float:right">
+						</div>
 					</div>
-					<div id='modalBody2' style="width:500px; height:30px; padding-top: 10px">
-					</div>
-					<div id='modalBody4' style="width:500px; height:30px; padding-top: 30px; position:relative">
-						<input type='text' id='calTest'>
-						<textarea cols="54" rows="7" style="resize: none;  background:white;"></textarea>
+					
+					<div id='modalBody5' style="width:500px; height:100px; margin-top:30px">
+						<div style="width:400px; height:25px;">메모</div>
+						<textarea id='dContent' cols="54" rows="7" style="resize: none; background:white;"></textarea>
 					</div>
 				</div>
-				<div id="modalFooter" style="width:500px; height:60px; text-align:center; margin-top:-1px; padding-top:15px; background: lightgray; color:white">
-					<button>수정</button>
+				<div id="modalFooter" style="width:500px; height:60px; text-align:center; margin-top:-1px; padding-top:15px; background: lightgray;">
+					<button>저장</button>
 					<button>삭제</button>
 				</div>
 			</div>
@@ -520,14 +583,14 @@
 					$('#stat').slideUp(500);
 				});
 				
-				$("#calTest").datetimepicker({
+				$("#sDate, #eDate").datetimepicker({
 		            format: 'YYYY-MM-DD HH:mm'
 		        });
 			</script>
-			<div class="copyright"><p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
-		           All rights reserved </p></div>
-			</div>
 		</div>
+			<!-- <div class="copyright"><p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
+		           All rights reserved </p></div>
+			</div> -->
 	<!-- Main section end -->
 	
 	<!--====== Javascripts & Jquery ======-->
