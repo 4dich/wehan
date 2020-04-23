@@ -2,6 +2,8 @@ package com.kh.wehan.questions.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.wehan.common.Pagination;
 import com.kh.wehan.common.model.vo.PageInfo;
+import com.kh.wehan.member.model.vo.Member;
 import com.kh.wehan.notice.model.vo.Notice;
 import com.kh.wehan.questions.model.service.QuestionsService;
 import com.kh.wehan.questions.model.vo.Questions;
@@ -247,13 +250,13 @@ public class QuestionsController {
 	}
 	
 	@RequestMapping("questionsReplyInsert.do")
-	public String questionsReply(Questions q) {
-		System.out.println("test");
-		  System.out.println(q.getqUserid());
-		  System.out.println(q);		 	  
-		 
+	public String questionsReply(QuestionsReply qr,@RequestParam("replyId") int replyId)  {
+		
+		qr.setqId(replyId);
+		
+		System.out.println(qr);		 	  
 		  
-		int result = qService.questionsReplyInsert(q);
+		int result = qService.questionsReplyInsert(qr);
 		System.out.println(result);
 		
 		if(result>0) {

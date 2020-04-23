@@ -108,9 +108,9 @@ public class QuestionsDao {
 		 * @param q
 		 * @return
 		 */
-		public int questionsReplyInsert(Questions q) {
+		public int questionsReplyInsert(QuestionsReply qr) {
 			
-			return sqlSession.insert("questionsMapper.questionsReplyInsert",q);
+			return sqlSession.insert("questionsMapper.insertReply",qr);
 			
 		}
 		
@@ -121,7 +121,7 @@ public class QuestionsDao {
 			return (ArrayList)sqlSession.selectList("questionsMapper.questionsReplySelect",qId);
 		}
 		
-		
+			
 			
 			
 		}

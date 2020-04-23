@@ -90,8 +90,8 @@ public class QuestionsServiceImpl implements QuestionsService{
 
 	
     @Override
-	public int questionsReplyInsert(Questions q) {
-    	return qDao.questionsReplyInsert(q);
+	public int questionsReplyInsert(QuestionsReply qr) {
+    	return qDao.questionsReplyInsert(qr);
     }
 	@Override
 	public ArrayList<QuestionsReply> questionReplyList(int qId) {

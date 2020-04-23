@@ -77,7 +77,7 @@ public interface QuestionsService {
 	 * @return
 	 */
 		
-	int questionsReplyInsert(Questions q);
+	int questionsReplyInsert(QuestionsReply qr);
 	
 	ArrayList<QuestionsReply> questionReplyList(int qId);
 }  
