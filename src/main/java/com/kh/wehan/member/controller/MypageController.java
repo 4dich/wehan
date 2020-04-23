@@ -2,7 +2,6 @@ package com.kh.wehan.member.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,8 +17,8 @@ import com.google.gson.JsonIOException;
 import com.kh.wehan.certify.model.vo.Certify;
 import com.kh.wehan.challenge.model.vo.Challenge;
 import com.kh.wehan.member.model.service.MypageService;
+import com.kh.wehan.member.model.vo.Diary;
 import com.kh.wehan.member.model.vo.Follow;
-import com.kh.wehan.member.model.vo.FullCalendar;
 import com.kh.wehan.member.model.vo.Member;
 import com.kh.wehan.member.model.vo.Mypage;
 
@@ -268,21 +267,34 @@ public class MypageController {
 	
 	
 	@RequestMapping("calendarView.do")
-	public void my_diaryView(HttpServletResponse response) throws JsonIOException, IOException {
+	public void my_diaryView(HttpServletResponse response, HttpServletRequest request) throws JsonIOException, IOException {
+		HttpSession session = request.getSession();
+		Member mem = (Member)session.getAttribute("loginUser");
+		String userId = mem.getUserId();
 		
-//		Map<String, FullCalendar> myMap = new HashMap<String, FullCalendar>();
-//		myMap.put("evt1", new FullCalendar("DB이벤트1", "2020-04-20", "2020-04-27", "false") );
-//		myMap.put("evt2", new FullCalendar("DB이벤트2", "2020-04-01", "2020-04-07", "false") ); 
-		 
-		
-		ArrayList<FullCalendar> myList = new ArrayList<FullCalendar>();
-		myList.add(new FullCalendar("DB이벤트1", "2020-04-20", "2020-04-27", false));
-		myList.add(new FullCalendar("DB이벤트2", "2020-04-01", "2020-04-07", false));
+		ArrayList<Diary> dList = myService.selectListDiary(userId);
 		
 		response.setContentType("application/json; charset=utf-8");
 		
 		Gson gson = new Gson();
-		gson.toJson(myList, response.getWriter());
+		gson.toJson(dList, response.getWriter());
 	}
 	
+	@RequestMapping("calendarInsert.do")
+	public void my_diaryView(HttpServletResponse response, HttpServletRequest request, Diary di, String dTitle) throws JsonIOException, IOException {
+		HttpSession session = request.getSession();
+		Member mem = (Member)session.getAttribute("loginUser");
+		String userId = mem.getUserId();
+		di.setUserId(userId);
+		
+		System.out.println(di);
+		System.out.println(dTitle);
+		
+		myService.insertDiary(di);
+		
+		response.setContentType("application/json; charset=utf-8");
+		
+		Gson gson = new Gson();
+		gson.toJson(di, response.getWriter());
+	}
 }

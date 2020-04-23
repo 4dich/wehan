@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.kh.wehan.certify.model.vo.Certify;
 import com.kh.wehan.challenge.model.vo.Challenge;
 import com.kh.wehan.member.model.dao.MypageDao;
+import com.kh.wehan.member.model.vo.Diary;
 import com.kh.wehan.member.model.vo.Follow;
 import com.kh.wehan.member.model.vo.Member;
 import com.kh.wehan.member.model.vo.Mypage;
@@ -71,5 +72,15 @@ public class MypageServiceImpl implements MypageService {
 	@Override
 	public int my_updateLvExp(Mypage mypage) {
 		return myDao.my_updateLvEx(mypage);
+	}
+
+	@Override
+	public ArrayList<Diary> selectListDiary(String userId) {
+		return myDao.selectListDiary(userId);
+	}
+
+	@Override
+	public int insertDiary(Diary di) {
+		return myDao.insertDiary(di);
 	}
 }
