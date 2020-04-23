@@ -111,12 +111,15 @@
   	</update>  	  	  	
   	
   	<!-- 댓글 -->
-	<select id= "selectReply" resultMap="replyResultSet">
+	<select id= "questionsReplySelect" resultMap="replyResultSet">
 	SELECT Q.QID,QR.QRID,QR.QRWRITER,QR.QRCONTENT,QR.QRDATE,QR.QRDEL_YN
-    FROM questions Q
-    JOIN questionsreply QR
+    FROM QUESTIONS Q
+    JOIN QUESTIONSREPLY QR
     ON Q.QID = QR.QID
-    WHERE Q.QID = QID;
+    WHERE Q.QID = #{qId} 
+    
+    AND QRDEL_YN='N' 
+    ORDER BY QRDATE DESC 
 	</select>
 	
 	<insert id="insertReply" parameterType="QuestionsReply">

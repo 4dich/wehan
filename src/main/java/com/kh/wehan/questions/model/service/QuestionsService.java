@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.kh.wehan.common.model.vo.PageInfo;
 import com.kh.wehan.notice.model.vo.Notice;
 import com.kh.wehan.questions.model.vo.Questions;
+import com.kh.wehan.questions.model.vo.QuestionsReply;
 import com.kh.wehan.questions.model.vo.SearchCondition;
 
 public interface QuestionsService {
@@ -68,19 +69,19 @@ public interface QuestionsService {
 	 * @return
 	 */
 	int questionsDelete(int qId);
-
+    
 	
 	/**
 	 * 문의사항 댓글 등록하기
 	 * @param q
 	 * @return
 	 */
+		
 	int questionsReplyInsert(Questions q);
 	
-
-	
-}
-
+	ArrayList<QuestionsReply> questionReplyList(int qId);
+}  
+    
 
 
 

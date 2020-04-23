@@ -149,7 +149,14 @@
 									
 								</table>			
 								
-								<!-- 댓글 -->
+								<div class="col-md-10"> 
+							<div class="portlet light bordered">
+								<div class="portlet-title tabbable-line"></div>
+								<div class="portlet-body">
+									<div>					
+													
+										<!-- 댓글 -->
+										<form action = "questionsReplyInsert.do"> 
 						<div class="col-md-10"> 
 							<div class="portlet light bordered">
 								<div class="portlet-title tabbable-line"></div>
@@ -171,28 +178,7 @@
 											</div>
 										</div>
 
-										<!-- 댓글 읽기 -->
-										<div class="card" style="margin-bottom: 20px;">
-											<div class="card-body">
-											
-												<div class="row">		
-													<div class="be-comment-block">
-														<h1 class="comments-title"></h1>
-														
-													</div>	
-													
-																					
-													<div id="commentbody" class="media g-mb-30 media-comment" style="display: inline-block;">
-														×
-													</div>
-													
-													<input type="hidden" value="5" id="ceid">
-													<input type="hidden" value="user01" id="loginId">
-												</div>
-												
-											</div>
-										</div>
-										
+										</form>
 									</div>
 								</div>
 							</div>
@@ -224,56 +210,20 @@
 	<script src="resources/js/circle-progress.min.js"></script>
 	<script src="resources/js/jquery.magnific-popup.min.js"></script>
 	<script src="resources/js/main.js"></script>
-	
-	<script>
-	
 
-	var ceId = 5;
-	
+<script>
 	$(function(){
 		
-		replyList();
-		
-		setInterval(function(){
-			replyList();
-		},3000);
-		
-		$('#listBack').click(function(){
-			location.href="fid_ch_recommendView.do?"
+		$("#btnList").on("click",function(){
+			location.href="questionsDetail.do?currentPage="+${currentPage};
 		});
 		
-		/* 등록버튼 */
-		$('#submitR').click(function(){
-			var ccContent = $('#addReflyText').val();
-			var userId = $('#loginId').val();
-			console.log(ccContent);
-			console.log(ceId);
-			console.log(userId);
-			
-			$.ajax({
-				url:"addReply.do",
-				data : {ccContent:ccContent,ceId:ceId,userId:userId},
-				type : "post",
-				success : function(data){
-					//console.log(data);
-					
-					if(data == "success"){
-						replyList();
-						$('#addReflyText').val("");
-						
-					}
-				},error:function(){
-					console.log("전송 실패");
-				}
-			});
-		});
-		/* 등록 끝 */
-
-		function replyList(){
-		/* ajax */
+		var qId = ${q.qId};
+		console.log(qId);
+		
 		$.ajax({
-			url : "replyList.do",
-			data : {ceId:ceId},
+			url : "replyListView.do",
+			data : {qId:qId},
 			//  	속성명 : 위에 선언된 변수명
 			dataType: "json",
 			success : function(data){
@@ -301,7 +251,6 @@
 						$span = $("<span class='g-color-gray-dark-v4 g-font-size-12'>").text(data[i].ccDate);
 						$p = $("<p>").text(data[i].ccContent);
 						$rdiv = $("<div style='width: 100%; display: inline-flex;margin-bottom: 10px;'>");
-						$delBtn = $("<div class = 'delBtn'> Ⅹ");
 						
 						$gmb.append($h5);
 						$gmb.append($span);
@@ -310,7 +259,6 @@
 						
 						$rdiv.append($img);
 						$rdiv.append($mediaBody);	
-						$rdiv.append($delBtn);
 						$divBody.append($rdiv);
 					}
 				}else{
@@ -325,11 +273,10 @@
 				console.log("전송실패");
 			}
 		});
-		}
 	});
 	
-
 	
 	</script>
+
 	</body>
 </html>

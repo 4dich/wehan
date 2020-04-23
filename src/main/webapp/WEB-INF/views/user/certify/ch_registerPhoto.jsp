@@ -1,7 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%
+	Date nowTime = new Date();
+	SimpleDateFormat sf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm:ss");
+	SimpleDateFormat sf2 = new SimpleDateFormat("yy/MM/dd");
+%>
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -86,26 +92,28 @@
 			<!-- Page start -->
 			<div class="page-section elements-page">
 				<div class="elements-section">
+				<form class="certify-form" action="registerCertify.do" method="post" enctype="multipart/form-data" >
 					<div class="col-md-12"> 
 						<div class="col-md-10"> 
 							<div class="portlet light bordered">
 								<div>
 									<div class="caption caption-md">										
 										<h3>
-											주3회 팩하기
+											${ c.chName }
 											<span class="unread">
-												자기개발
+											${ c.category }
 											</span>
 										</h3>
-										<p style="color:gray">2020-03-23 ~ 2020-03-30</p>
+										<p style="color:gray">${ c.startDate } ~ ${ c.endDate }</p>
 										<sapn>
 											<h6>인증 기준</h6>
-											<p>팩을 하고 있는 사진을 올려주세요</p>
+											<p>${ c.ceMethod }</p>
 										</sapn>
 									</div>
 								</div>
 							</div>
 						</div> 
+						
 						<div class="col-md-10">      
 							<div class="portlet light profile-sidebar-portlet bordered">
 								<div class="profile-userpic" style="text-align: center;">
@@ -113,43 +121,16 @@
 								</div>
 								<div class="profile-userbuttons"><br>
 									<span>
-										<button class="site-btn sb-dark" id="btnPic" style="padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; ">
-											이미지 올리기
-										</button>
+										<input type="button" value="이미지 올리기" class="site-btn sb-dark" id="btnPic" style="padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; ">
+									
+										<input type="text" id="chId" value="${ c.chId }" name="chId" hidden/>
 										<input type="file" id="certifyPicFile" name="registerPic" hidden/>
-										<button id="deleteBtn" class="site-btn sb-solid mr-3 mb-3" style="padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; ">
-											이미지 삭제하기
-										</button>
+										<input type="button" value="이미지 삭제하기"  id="deleteBtn" class="site-btn sb-solid mr-3 mb-3" style="padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; ">
+											
 									</span>
 									<br><br>
 									
-									<script>
-	      								$('#btnPic').click(function(){
-		      								$('#certifyPicFile').click();
-		      								alert('눌리는겨?');
-	      								});	
-	      								$('#deleteBtn').click(function () {
-											$('#certifyPhotoArea').attr("src","resources/images/image.png");
-										});
-	      								
-      								
-	      							  // ====== 첨부 이미지 스크립트  =============================================	
-	      								function readURL(input) {
-	      										if(input.files && input.files[0]) {
-	      											var reader = new FileReader();
-	      											reader.onload = function(e) {
-	      												$('#certifyPhotoArea').attr('src',e.target.result);
-	      											}
-	      											reader.readAsDataURL(input.files[0]);
-	      										}   
-	      								   }
-	      								   
-	      								   $("#certifyPicFile").change(function(){
-	      									   readURL(this);
-	      								   });
-	      							  // ====== 첨부 이미지 스크립트 끝 ============================================	
-							
-      							</script>
+									
 								</div>	
 							</div>
 						</div>
@@ -158,7 +139,9 @@
 								<div class="portlet-title tabbable-line">
 									<div class="caption caption-md">
 										<i class="icon-globe theme-font hide"></i>
-										<span class="caption-subject font-blue-madison bold uppercase">2020년 03월 23일</span>
+										<span class="caption-subject font-blue-madison bold uppercase">
+										<%= sf.format(nowTime) %>
+										</span>
 									</div>
 								</div>
 								<div class="portlet-body">
@@ -167,13 +150,13 @@
 										<!-- Tab panes -->
 										<div class="tab-content">
 											<div role="tabpanel" class="tab-pane active" id="home" align="center">
-												<form>
+												
 												  <div class="form-group">
-													<textarea class="form-control" id="inputChallenge" style="height:200px; resize:none;" placeholder="챌린지 내용을 기록해보세요!"></textarea>
+													<textarea class="form-control" id="inputChallenge" name="ceContent" style="height:200px; resize:none;" placeholder="챌린지 내용을 기록해보세요!"></textarea>
 												  </div>													
-												  <button class="site-btn sb-dark">등록하기</button>
-												  <button class="site-btn sb-solid mr-3 mb-3">취소하기</button>
-												</form>
+												  <button class="site-btn sb-dark" id="insertBtn">등록하기</button>
+												  <!-- <button class="site-btn sb-solid mr-3 mb-3">취소하기</button> -->
+						
 											</div>
 										</div>
 									
@@ -182,6 +165,7 @@
 							</div>
 						</div>
 					</div>
+				</form>	
 					
 				</div>
 			</div>
@@ -202,6 +186,33 @@
 	<script src="resources/js/circle-progress.min.js"></script>
 	<script src="resources/js/jquery.magnific-popup.min.js"></script>
 	<script src="resources/js/main.js"></script>
+	<script>
+			$('#btnPic').click(function(){
+			$('#certifyPicFile').click();
+			
+			});	
+			$('#deleteBtn').click(function () {
+			$('#certifyPhotoArea').attr("src","resources/images/image.png");
+		});
+			
+    	
+		  // ====== 첨부 이미지 스크립트  =============================================	
+			function readURL(input) {
+					if(input.files && input.files[0]) {
+						var reader = new FileReader();
+						reader.onload = function(e) {
+							$('#certifyPhotoArea').attr('src',e.target.result);
+						}
+						reader.readAsDataURL(input.files[0]);
+					}   
+			   }
+			   
+			   $("#certifyPicFile").change(function(){
+				   readURL(this);
+			   });
+		  // ====== 첨부 이미지 스크립트 끝 ============================================	
 
+			  
+    </script>
 	</body>
 </html>
