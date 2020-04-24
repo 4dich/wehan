@@ -36,8 +36,7 @@ public class InOutController {
 	public void login(String userId,String password,Model model,HttpSession 
 			session,SessionStatus status,HttpServletResponse response) throws JsonIOException, IOException, ParseException {
 		
-		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
-		response.setContentType("application/json; charset=utf-8");
+		BlackList b = null;
 		String result = null;
 		
 		if(userId.equals("admin")){
@@ -45,18 +44,15 @@ public class InOutController {
 			if(adminUser != null && password.equals(adminUser.getPassword())) {
 				session.setAttribute("adminUser",adminUser);
 				result = "ok1";
-				gson.toJson(result,response.getWriter());
 			}else {
 				result = "fail";
-				 gson.toJson(result,response.getWriter());
 			}
 		}else {
 			 Member loginUser = mService.login(userId);
 			 
 			 if(loginUser != null && password.equals(loginUser.getPassword())) {
 				 
-				 BlackList b = mService.BlackListInfo(userId);
-				 System.out.println(b);
+				 b = mService.BlackListInfo(userId);
 				 
 				 if(b != null) {
 					 Date date = new Date();
@@ -68,25 +64,29 @@ public class InOutController {
 							 loginUser.setBlacklistYN("N");
 							 model.addAttribute("loginUser",loginUser); 
 							 result = "ok2";
-						  gson.toJson(result,response.getWriter());
 						 }else{
 							 result = "fail2";
-							 gson.toJson(result,response.getWriter());
 						 }
-					 }else {
-						 gson.toJson(b,response.getWriter());
 					 }
 				 }else {
 					 loginUser.setBlacklistYN("N");
 					 model.addAttribute("loginUser",loginUser);
 					 result = "ok2";
-					 gson.toJson(result,response.getWriter());
 				 }
 			  }else{
 				  result = "fail";
-				  gson.toJson(result,response.getWriter());
 			  }
 		}
+		
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		response.setContentType("application/json; charset=utf-8");
+		
+		if(result !=null) {
+			gson.toJson(result,response.getWriter());
+		}else {
+			gson.toJson(b,response.getWriter());
+		}
+		
 	}
 	
 	@RequestMapping("logout.do")
