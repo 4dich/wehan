@@ -103,6 +103,11 @@ public class QuestionsServiceImpl implements QuestionsService{
 		
 		return qDao.selectreplyList(qId);
 	}
+	@Override
+	public int deletereply(int qrId) {
+		
+		return qDao.deletereply(qrId);
+	}
 	
 	
 	

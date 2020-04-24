@@ -264,7 +264,7 @@
 		<script>
 		 $(".deletereply").click(function(){
 		     var qrId= $(this).parent().children().find("input[type=hidden]").val();
-		      location.href="deletereply.do?qrId="+ qrId;
+		      location.href="deletereply.do?qrId="+ qrId+ "&qId="+${q.qId }+ "&currentPage="+${currentPage};
 			   
 		 })
 		 

@@ -82,6 +82,8 @@ public interface QuestionsService {
 	ArrayList<QuestionsReply> questionReplyList(int qId);
 
 	ArrayList<QuestionsReply> selectreplyList(int qId);
+
+	int deletereply(int qrId);
 }  
     
 

@@ -124,6 +124,10 @@ public class QuestionsDao {
 			
 			return (ArrayList)sqlSession.selectList("questionsMapper.selectreplyList",qId);
 		}
+		public int deletereply(int qrId) {
+			
+			return sqlSession.update("questionsMapper.deletereply",qrId);
+		}
 		
 			
 			

@@ -45,7 +45,8 @@ public class QuestionsController {
 		
 		// 문의사항 글 목록 불러오기
 		ArrayList<Questions> list = qService.selectList(pi);
-		System.out.println(list);
+		
+		
 		mv.addObject("list", list);
 		mv.addObject("pi", pi);
 		mv.setViewName("user/questions/questions");
@@ -99,7 +100,7 @@ public class QuestionsController {
 		}
 		int currentPage =1;
 		int listCount = qService.getSearchListCount(sc);
-		System.out.println(listCount);
+		
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
 		
@@ -168,12 +169,11 @@ public class QuestionsController {
  */
 	@RequestMapping("questionsInsert.do")
 	public String questionsInsert(Questions n) {
-		System.out.println(n.getqUserid());
 		
-		System.out.println(n);
 		
 		int result = qService.questionsInsert(n);
-		System.out.println(result);
+
+
 		
 		if(result > 0) {
 			return "redirect:qnaListView.do";
@@ -192,12 +192,12 @@ public class QuestionsController {
 	@RequestMapping("questionsModifyView.do")
 	public ModelAndView questionsModifyView(ModelAndView mv, int qId, int currentPage) {
 		
-		System.out.println("int qId :" + qId + "int currentPage : " + currentPage );
+		
 		
 		
 		Questions n = qService.questionsSelect(qId);
 		
-		System.out.println(n.toString());
+		
 		
 		if(n != null) {
 			mv.addObject("q", n).addObject("currentPage", currentPage).setViewName("user/questions/questionsModify");
@@ -215,10 +215,11 @@ public class QuestionsController {
 	@RequestMapping("questionsModify.do")
 	public ModelAndView questionsModify(ModelAndView mv, Questions n) {		
 		
-		System.out.println(n);
+
+
 		int result = qService.questionsModify(n);
 		
-		System.out.println(result);
+		
 		
 		if(result > 0 ) {
 			
@@ -256,14 +257,13 @@ public class QuestionsController {
 	
 	@RequestMapping("questionsReplyInsert.do")
 	public String questionsReply(QuestionsReply qr,@RequestParam("replyId") int replyId)  {
-		System.out.println("qr"+qr);
-		System.out.println("replyId"+replyId);
+		
 		qr.setqId(replyId);
 		
-		System.out.println(qr);		 	  
+			 	  
 		  
 		int result = qService.questionsReplyInsert(qr);
-		System.out.println(result);
+		
 		
 		if(result>0) {
 			return"redirect:qnaListView.do";
@@ -275,10 +275,9 @@ public class QuestionsController {
 	@RequestMapping("replyListView.do")
 	public void questionsReply(@RequestParam("qId") int qId,HttpServletResponse response ) throws JsonIOException, IOException {
 	
-		System.out.println("qId: "+qId);
-        ArrayList<QuestionsReply> list = qService.questionReplyList(qId);
+	  ArrayList<QuestionsReply> list = qService.questionReplyList(qId);
 	 	
-        System.out.println("list : " + list);
+       
 		
 	 response.setContentType("application/json; charset=utf-8");
 		
@@ -290,12 +289,32 @@ public class QuestionsController {
 				
 	}
 	@RequestMapping("deletereply.do")
-	public ModelAndView questionsReply(ModelAndView mv,@RequestParam("qrId") int qrId) {
+	public ModelAndView questionsReply(ModelAndView mv,@RequestParam("qrId") int qrId, @RequestParam("qId") int qId, 
+			                                           @RequestParam("currentPage") int currentPage) {
+		int result = qService.deletereply(qrId);
+		  if(result>0) {
+			  mv.setViewName("redirect:questionsDetail.do");
+			  mv.addObject("qId",qId);
+			  mv.addObject("currentPage",currentPage);
+		  }
 		
-		
-		 System.out.println("qrId"+qrId);
+		 
+		 
 		 return mv;
+		 
 	}
+	/*
+	 * @RequestMapping("questionsDelete.do") public ModelAndView
+	 * questionsDelete(ModelAndView mv, int qId) {
+	 * 
+	 * int result = qService.questionsDelete(qId);
+	 * 
+	 * if(result > 0) { mv.setViewName("redirect:qnaListView.do"); } else {
+	 * mv.addObject("msg", "Error").addObject("msg2",
+	 * "문의사항 삭제 에러").setViewName("common/errorPage"); }
+	 * 
+	 * return mv; }
+	 */
 	  
 }
 	

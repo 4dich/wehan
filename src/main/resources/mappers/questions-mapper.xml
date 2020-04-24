@@ -126,5 +126,11 @@
 	INSERT INTO QUESTIONSREPLY
 	VALUES(SEQ_QRID.NEXTVAL,#{qId},'admin',#{qrContent},SYSDATE,DEFAULT)
 	</insert>
-   
+    
+    <update id="deletereply">
+     UPDATE questionsreply SET QRDEL_YN='Y' WHERE QRID=#{qrId}
+    
+    </update> 
+    
+     
     </mapper>
