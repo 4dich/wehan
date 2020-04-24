@@ -83,4 +83,9 @@ public class MypageServiceImpl implements MypageService {
 	public int insertDiary(Diary di) {
 		return myDao.insertDiary(di);
 	}
+
+	@Override
+	public int deleteDiary(Diary di) {
+		return myDao.deleteDiary(di);
+	}
 }

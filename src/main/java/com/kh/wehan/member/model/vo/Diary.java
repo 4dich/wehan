@@ -28,6 +28,13 @@ public class Diary {
 	}
 	
 	
+	
+	public Diary(String dId, String userId) {
+		super();
+		this.dId = dId;
+		this.userId = userId;
+	}
+
 	public String getdId() {
 		return dId;
 	}

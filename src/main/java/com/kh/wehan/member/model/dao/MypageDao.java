@@ -73,4 +73,8 @@ public class MypageDao {
 		return sqlSession.insert("mypageMapper.insertDiary",di);
 	}
 
+	public int deleteDiary(Diary di) {
+		return sqlSession.delete("mypageMapper.deleteDiary",di);
+	}
+
 }
