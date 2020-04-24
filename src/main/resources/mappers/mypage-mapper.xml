@@ -133,4 +133,18 @@
 		WHERE DID=#{dId}
 		AND USERID=#{userId}
 	</delete>
+	
+	<update id="updateDiary" parameterType="Diary">
+		UPDATE DIARY
+		SET DTITLE=#{dTitle},DCONTENT=#{dContent},DCOLOR=#{dColor},SDATE=#{sDate},EDATE=#{eDate}
+		WHERE DID=#{dId}
+		AND USERID=#{userId}
+	</update>
+	
+	<update id="updateDiaryDrag" parameterType="Diary">
+		UPDATE DIARY
+		SET SDATE=#{sDate},EDATE=#{eDate}
+		WHERE DID=#{dId}
+		AND USERID=#{userId}
+	</update>
 </mapper>

@@ -95,17 +95,31 @@ public interface MypageService {
 	public ArrayList<Diary> selectListDiary(String userId);
 
 	/**
-	 * 3-2. 달력에 일정 추가
+	 * 3-2. 달력 일정 추가
 	 * @param di
 	 * @return
 	 */
 	public int insertDiary(Diary di);
 
 	/**
-	 * 3-3. 달력에 일정 삭제
+	 * 3-3. 달력 일정 삭제
 	 * @param di
 	 */
 	public int deleteDiary(Diary di);
+
+	/**
+	 * 3-4. 달력 일정 업데이트
+	 * @param di
+	 * @return
+	 */
+	public int updateDiary(Diary di);
+
+	/**
+	 * 3-5. 달력 드래그앤드롭 업데이트
+	 * @param di
+	 * @return
+	 */
+	public int updateDiaryDrag(Diary di);
 
 
 }

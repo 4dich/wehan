@@ -48,37 +48,15 @@
     
     
 <script>
-  $(function(){
-	/* 일정 보여주기 */
-    $.ajax({
-        contentType:'application/json',
-        dataType:'json',
-        url:'calendarView.do',
-        type:'post',
-        success:function(data){
-        	
-        	var events = [];
-            $.each(data, function (index, value) {
-                events.push({
-                	id: value.dId,
-                    title: value.dTitle,
-                    start: value.sDate,
-                    end: value.eDate,
-                    color: value.dColor,
-                    allDay: true,
-                    dColor: value.dColor,
-                    dContent: value.dContent
-                    //color : "#FF0000",
-                    //textColor : "#FFFF00",
-                    //borderColor : "#FF4500"
-                });
-            });
-            
-            var calendarEl = document.getElementById('calendar');
-			
-            var dId = "";
-            
-            var calendar = new FullCalendar.Calendar(calendarEl, {
+var calendar = "";
+var dId = "";
+var calendarEl = "";
+var events = [];
+      
+      /* 달력 세팅*/
+	  setCalendar = function setCalendar(){
+	  		calendarEl = document.getElementById('calendar');
+            calendar = new FullCalendar.Calendar(calendarEl, {
               plugins: [ 'interaction', 'dayGrid', 'timeGrid',  'list' ],
               header: {
                 left: 'prev,next today',
@@ -86,13 +64,18 @@
                 right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
               },
               defaultDate: new Date(),
-              navLinks: true, // can click day/week names to navigate views
+              navLinks: true,
               selectable: true,
               selectMirror: true,
-              select: function(arg) {
-                var title = prompt('Write Title:');
+              select: function select(arg){
+                var rowTitle = prompt('Write Title(under 15):');
+                var title = "";
+                if(rowTitle){
+	                title = rowTitle.substr(0, 15);
+                }
                 if (title) {
                   var content = prompt('Write Content:');
+                  /* 일정 입력하기(INSERT) */
                   $.ajax({
                       url:'calendarInsert.do',
                       dataType:'json',
@@ -105,9 +88,12 @@
                       	dColor:'#3A7D7C',
                       	cntStamp:0
                       },success:function(data){
-                    	  
+                    	  $('#calendar').remove();
+                    	  $('#dich').append("<div id='calendar' style='-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);'></div>");
+                    	  events = [];
+                    	  selectCalendar();
                       },error:function(){
-                    	  alert('ajax 오류: diary insert');
+                    	  alert('일정 입력 오류');
                       }
                   });
                   calendar.addEvent({
@@ -124,29 +110,23 @@
                 calendar.unselect()
               },
               editable: true,
-              eventLimit: true, // allow "more" link when too many events
+              eventLimit: true,
               events: events,
-              titleFormat: { // will produce something like "Tuesday, September 18, 2018"
+              titleFormat: { 
            	    year: 'numeric',
            	    month: '2-digit',
            	    day: '2-digit'
            	  },
 
               //locale: 'ko', // 한국어표시, "일"표시가 보기 안좋음
-
-/*               eventClick: function(info) {
-                alert('Event: ' + info.event.title);  // 이벤트명
-                alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY); // 좌표
-                alert('View: ' + info.view.type); // 페이지 형식 : 
-
-                // change the border color just for fun
+              /* eventClick: function(info) {
+                
                 info.el.style.borderColor = 'red';
-              }, */
+              },  */
+              
+              /* 일정 불러오기(SELECTONE) */
               eventClick:  function(info) {
                   $('#modalTitle').html(info.event.title);
-                 /*  $('#sDate').html('시작일: '+info.event.start);
-                  $('#eDate').html('종료일: '+info.event.end); */
-                  /* $('#stat').css('display',''); */
                   
                   $('#sDate').val(moment(info.event.start).format("YYYY-MM-DD HH:mm"));
                   $('#eDate').val(moment(info.event.end).format("YYYY-MM-DD HH:mm"));
@@ -171,40 +151,179 @@
                   $('#stat').slideDown(500);
                   
                	  dId = info.event.id;
-
             	},
+            	
+            	eventDrop: function(info) {
+                         /* 일정 드래그 업데이트하기(UPDATE) */
+	                	 $.ajax({
+	       	        	  url: 'calendarUpdateDragResize.do',
+	       	        	  dataType:'json',
+	       	        	  type: 'post',
+	       	        	  data: {
+	       	        		  dId:info.event.id,
+	       	        		  sDate:moment(info.event.start).format("YYYY-MM-DD HH:mm"),
+	       	        		  eDate:moment(info.event.end).format("YYYY-MM-DD HH:mm")
+	       	        	  },
+	       	        	  success:function(data){
+	       	        	  	  console.log(data + '개 행이 업데이트되었습니다.');
+	       	        	  $('#calendar').remove();
+	       	            	  $('#dich').append("<div id='calendar' style='-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);'></div>");
+	       	            	  events = [];
+	       	            	  selectCalendar();
+	       	        	  },
+	       	        	  error:function(){
+	       	        		  console.log('일정 드래그 업데이트 오류');
+	       	        	  }
+	       	        });
+	           	},
+	           	
+	           	eventResize: function(info) {
+	                   	/* 일정 리사이즈 업데이트하기(UPDATE) */
+	                   	$.ajax({
+	                    	  url: 'calendarUpdateDragResize.do',
+	                    	  dataType:'json',
+	                    	  type: 'post',
+	                    	  data: {
+	                    		  dId:info.event.id,
+	                    		  sDate:moment(info.event.start).format("YYYY-MM-DD HH:mm"),
+	                    		  eDate:moment(info.event.end).format("YYYY-MM-DD HH:mm")
+	                    	  },
+	                    	  success:function(data){
+	                    	  	  console.log(data + '개 행이 업데이트되었습니다.');
+	                    	  $('#calendar').remove();
+	                        	  $('#dich').append("<div id='calendar' style='-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);'></div>");
+	                        	  events = [];
+	                        	  selectCalendar();
+	                    	  },
+	                    	  error:function(){
+	                    		  console.log('일정 드래그 업데이트 오류');
+	                    	  }
+	                    });
+	           	  }
+	           	
             });
-            calendar.render();
-            
-            /* 일정 삭제*/
-            $('#btnDelete').click(function(){
-          	  calendar.getEventById(dId).remove();
-          	  $('#stat').slideUp(500);
-          	  $.ajax({
-          		  url: 'calendarDelete.do',
-          		  dataType:'json',
-          		  type: 'post',
-          		  data: {dId:dId},
-          		  success:function(data){
-          			  console.log('ajax 성공');
-          		  },
-          		  error:function(){
-          			  console.log('ajax 오류: diary delete');
-          		  }
-          	  });
-          	  /* window.location.reload(); */
+            calendar.render(); 
+	  }
+	  
+    /* 일정 불러오기(SELECTLIST) */
+    selectCalendar = function selectCalendar(){
+    $.ajax({
+        contentType:'application/json',
+        dataType:'json',
+        url:'calendarView.do',
+        type:'post',
+        success:function(data){
+            $.each(data, function (index, value) {
+                events.push({
+                	id: value.dId,
+                    title: value.dTitle,
+                    start: value.sDate,
+                    end: value.eDate,
+                    color: value.dColor,
+                    allDay: true,
+                    dColor: value.dColor,
+                    dContent: value.dContent
+                    //color : "#FF0000",
+                    //textColor : "#FFFF00",
+                    //borderColor : "#FF4500"
+                });
             });
+            setCalendar();
         },
         error:function(){
-            alert('ajax오류: diary select list');
+            alert('리스트 출력 오류');
         }
       });
-  });
+	}
+    
+    /* 일정 삭제하기(DELETE) */
+    deleteCalendar = function deleteCalendar(){
+  	  $('#btnDelete').click(function(){
+  	 	  calendar.getEventById(dId).remove();
+  	 	  $('#stat').slideUp(500);
+  	 	  $.ajax({
+  	 		  url: 'calendarDelete.do',
+  	 		  dataType:'json',
+  	 		  type: 'post',
+  	 		  data: {dId:dId},
+  	 		  success:function(data){
+  	 		  	  console.log(data + '개 행이 삭제되었습니다.');
+  	 		  },
+  	 		  error:function(){
+  	 			  console.log('일정 삭제 오류');
+  	 		  }
+  	 	  });
+  	   });
+    }
+    
+    /* 일정 업데이트하기(UPDATE) */
+    updateCalendar = function updateCalendar(){
+   	  $('#btnUpdate').click(function(info){
+	   		var event = calendar.getEventById(dId);
+   		  	var sDate = $('#sDate').val();
+   		  	var eDate = $('#eDate').val();
+	   		var dContent = $('#dContent').val();
+   		  	var dTitle = $('#modalTitle').html();
+   		  	var dColor = "";
+   		    //$("input:radio[name='color_select']:radio[value='color1']").prop('checked',true);
+   		  	var rawColor = $("input:radio[name='color_select']:checked").val();
+   		  	if(rawColor=='color1'){
+   		  		dColor = "#3A7D7C";
+   		  	}else if(rawColor=='color2'){
+   		  		dColor = "#03A6A6";
+   		  	}else if(rawColor=='color3'){
+   		  		dColor = "#F7D147";
+   		  	}else if(rawColor=='color4'){
+   		  		dColor = "#FE736C";
+   		  	}else{
+   		  		dColor = "#EC5A31";
+   		  	}
+   		  	
+	   		 $.ajax({
+	 	 		  url: 'calendarUpdate.do',
+	 	 		  dataType:'json',
+	 	 		  type: 'post',
+	 	 		  data: {
+	 	 			  dId:dId,
+	 	 			  dTitle:dTitle,
+	 	 			  dContent:dContent,
+	 	 			  dColor:dColor,
+	 	 			  sDate:sDate,
+	 	 			  eDate:eDate
+	 	 		  },
+	 	 		  success:function(data){
+	 	 		  	  console.log(data + '개 행이 업데이트되었습니다.');
+		 	 		  $('#calendar').remove();
+	              	  $('#dich').append("<div id='calendar' style='-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);'></div>");
+	              	  events = [];
+	              	  selectCalendar();
+	 	 		  },
+	 	 		  error:function(){
+	 	 			  console.log('일정 업데이트 오류');
+	 	 		  }
+	 	 	  });
+   		  	
+	   		event.setProp('title', dTitle);
+	   		event.setStart(sDate);
+	   		event.setEnd(eDate);
+	   		event.setProp('color', dColor);
+	   		$('#stat').slideUp(500);
+   	  });
+    }
   
-  $('#btnUpdate').click(function(){
-	  
-  });
+    /* 페이지 로드 시 */
+    $(function(){
+   	  selectCalendar();
+   	  deleteCalendar();
+   	  updateCalendar();
+    });
   
+  
+  
+  console.log(dId);
+  
+ 	/* window.location.reload(); */
+
   
 </script>
 <style>
@@ -570,6 +689,7 @@
 				<div id='item2' style="display:inline-block; width:880px; height:200px; background:yellow;"></div>
 			</div> -->
 			
+			<div id='dich'></div>
 			<div id='calendar' style='-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);'></div>
 			
 			<div id='stat' style="display:none; background: white; width:500px; height:498px; position:absolute; left: 1000px; top: 200px; border-radius:5px; box-shadow : rgba(0,0,0,0.5) 0 0 0 9999px; z-index : 100;
