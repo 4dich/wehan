@@ -90,8 +90,9 @@ public class InOutController {
 	}
 	
 	@RequestMapping("logout.do")
-	public String logout(SessionStatus status) {
+	public String logout(SessionStatus status,HttpSession session) {
 		status.setComplete();
+		session.invalidate();
 		return "redirect:index.jsp";
 	}
 }
