@@ -39,6 +39,23 @@ public class IdPwdFind {
 		}
 	}
 	
+	
+
+	public void MailSender(String email, String userId) {
+		MimeMessage mail = MailSender.createMimeMessage();
+		
+		String mStr = "아이디 : " + userId;
+		
+		try {
+			mail.setSubject("아이디 찾기");
+			mail.setText(mStr);
+			mail.addRecipient(RecipientType.TO, new InternetAddress(email));
+			MailSender.send(mail);
+		}catch(MessagingException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	@RequestMapping("pwdFind.do")
 	@ResponseBody
 	public String pwdFind(Member m) {
@@ -58,23 +75,6 @@ public class IdPwdFind {
 			return "fail";
 		}
 	}
-
-	public void MailSender(String email, String userId) {
-		MimeMessage mail = MailSender.createMimeMessage();
-		
-		String mStr = "아이디 : " + userId;
-		
-		try {
-			mail.setSubject("아이디 찾기");
-			mail.setText(mStr);
-			mail.addRecipient(RecipientType.TO, new InternetAddress(email));
-			MailSender.send(mail);
-		}catch(MessagingException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	
 	
 	private void MailSender2(Member m) throws SQLException {
 		String key = getKey(false,6);
