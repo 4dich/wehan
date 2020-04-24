@@ -38,7 +38,11 @@
 	<![endif]-->
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
+<style>
+	.col-md-10{
+	padding-left:0;
+	}
+</style>
 </head>
 <body>
 	<!-- Page Preloder -->
@@ -172,7 +176,7 @@
 																			<input type="hidden" name="replyId" value="${q.qId }"/>
 																			<div class="form-group" style="text-align: right;">
 																				<textarea class="form-control" id="addReflyText" name="qrContent"
-																					style="height: 100px; resize: none;"
+																					style="height: 100px; resize: none; width:150%;"
 																					placeholder=" 댓글을 남겨보세요!"></textarea>
 																				<button id="submitR" class="site-btn sb-dark"
 																					style="padding-left: 15px; padding-right: 15px; min-width: 120px; padding-top: 10px; padding-bottom: 10px; margin-top: 10px;">
@@ -187,8 +191,8 @@
 																	
 													<!-- 댓글 읽기 -->
 									<c:forEach var="q" items="${reply}"> 
-                              <div class="card" style="margin-bottom: 20px;">
-                                 <div class="card-body">
+                              <div class="card" style="margin-bottom: 20px; width:150%">
+                                 <div class="card-body" style="width:150%"> 
                                     <div class="row">      
                                       
                                          <div id="commentbody" class="media g-mb-30 media-comment deletereply" style="display: inline-block; margin-left:96%">
