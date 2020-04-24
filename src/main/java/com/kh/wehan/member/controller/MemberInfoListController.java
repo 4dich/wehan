@@ -65,7 +65,6 @@ public class MemberInfoListController {
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage,mCount,10,10);
 		
-		
 		ArrayList<Member> list = mService.mlistSearch(mem,pi);
 		
 		for(Member m : list) {
@@ -77,6 +76,8 @@ public class MemberInfoListController {
 			}
 		}
 		
+		mv.addObject("selecter",selecter);
+		mv.addObject("searchValue",searchValue);
 		mv.addObject("list",list); 
 		mv.addObject("pi",pi);
 		mv.setViewName("admin/ad_profileList");

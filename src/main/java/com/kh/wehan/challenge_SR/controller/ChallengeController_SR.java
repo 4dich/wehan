@@ -2,25 +2,21 @@ package com.kh.wehan.challenge_SR.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
-import com.kh.wehan.challenge.model.vo.Challenge;
 import com.kh.wehan.challenge_SR.model.service.ChallengeService_SR;
 import com.kh.wehan.challenge_SR.model.vo.ChallengeTop10;
 import com.kh.wehan.challenge_SR.model.vo.ChallengerInfo;
-import com.kh.wehan.member.model.vo.Member;
 
 @Controller
 public class ChallengeController_SR {
@@ -88,6 +84,31 @@ public class ChallengeController_SR {
 		}
 		
 		return mv;
+	}
+	
+	/**
+	 * 마감된 챌린지 성공률 구하기
+	 * @param chId
+	 * @throws IOException 
+	 * @throws JsonIOException 
+	 */
+	@RequestMapping("getSuccessRate.do")
+	public void getSuccessRate(String chId, int time, HttpServletResponse response) throws JsonIOException, IOException {
+		
+		Map m = new HashMap();
+		
+		m.put("chId", chId);
+		m.put("time", time);
+		
+		// 챌린지 80% 이상 인증한 사람 수 구하기
+		int successCount = chalServiceSr.getSuccessRate(m);
+		
+		response.setContentType("application/json; charset=UTF-8");
+		
+		Gson gson = new Gson();
+		
+		gson.toJson(successCount, response.getWriter());
+		
 	}
 	
 }

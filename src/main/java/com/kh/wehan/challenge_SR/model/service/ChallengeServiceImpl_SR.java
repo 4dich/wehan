@@ -1,6 +1,7 @@
 package com.kh.wehan.challenge_SR.model.service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -65,6 +66,16 @@ public class ChallengeServiceImpl_SR implements ChallengeService_SR{
 	@Override
 	public int cancleRegister(String chId) {
 		return chalDaoSr.cancleRegister(chId);
+	}
+
+
+	/**
+	 * 마감된 챌린지 성공률 구하기
+	 * 1) 챌린지 80% 이상 인증한 사람 수 구하기
+	 */
+	@Override
+	public int getSuccessRate(Map m) {		
+		return chalDaoSr.getSuccessRate(m);
 	}
 
 

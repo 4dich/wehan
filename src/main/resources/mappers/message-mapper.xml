@@ -222,20 +222,20 @@
   		VALUES(SEQ_MRID.NEXTVAL, #{userId}, #{fId}, DEFAULT, DEFAULT)
   	</insert>
   	
-  	<!-- 3) 메시지룸 번호(MRID) 가져오기 -->
-  	<select id="getMrid" parameterType="java.util.Map" resultType="_int">
-  		SELECT MRID
-		FROM MESSAGEROOM
-		WHERE USER1 = #{userId} AND USER2 = #{fId}
-		OR USER1 = #{fId} AND USER2 = #{userId}
-  	</select>
-  	
-  	<!-- 4) 메시지룸 Del 리셋  -->
+  	<!-- 3) 메시지룸 Del 리셋  -->
   	<update id="updateMrid" parameterType="java.util.Map">
   		UPDATE MESSAGEROOM SET USER1_DEL = DEFAULT, USER2_DEL = DEFAULT 
   		WHERE USER1 = #{userId} AND USER2 = #{fId}
   		OR USER1 = #{fId} AND USER2 = #{userId}
   	</update>
+  	
+  	<!-- 4) 메시지룸 번호(MRID) 가져오기 -->
+  	<select id="getMrid" parameterType="java.util.Map" resultType="_int">
+  		SELECT MRID
+		FROM MESSAGEROOM
+		WHERE USER1 = #{userId} AND USER2 = #{fId}
+		OR USER1 = #{fId} AND USER2 = #{userId}
+  	</select>  	
   	
   	<!-- 5) MESSAGE 테이블에 메시지 저장하기 -->
   	<insert id="saveMsgContent" parameterType="java.util.Map">

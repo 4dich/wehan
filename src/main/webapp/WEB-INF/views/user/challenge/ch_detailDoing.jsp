@@ -298,9 +298,9 @@
 						
 						for(var i = 0; i < data.length; i++) {
 							
-						// 내 아이디를 누르면 내 프로필로 이동
-							
+						// 주최자는 이름 옆에 주최자로 써주기					
 							if(data[i].userId == hostId){
+								// 내 아이디 누르면 내 프로필로 이동 (내가 주최자)
 								if( '${loginUser.userId}' == data[i].userId) {
 								
 									$a = $('<a>').attr({'class':'dropdown-item', 
@@ -311,7 +311,7 @@
 									
 									$('.dropdown-menu').append($a.append($strong).append('&nbsp;&nbsp;level.' + data[i].userLevel + '&nbsp;＜주최자＞'));
 								
-								} else { // 친구 아이디를 누르면 친구 프로필로 이동
+								} else { // 친구 아이디를 누르면 친구 프로필로 이동 (친구가 주최자)
 									$a = $('<a>').attr({'class':'dropdown-item', 
 										'value':data[i].userId, 
 										'href' : 'other_profileView.do?otherId=' + data[i].userId});
@@ -320,7 +320,10 @@
 					
 									$('.dropdown-menu').append($a.append($strong).append('&nbsp;&nbsp;level.' + data[i].userLevel + '&nbsp;＜주최자＞'));
 								}
-							} else {
+							} 
+							// 주최자 아니면 이름 옆에 주최자라고 안써줌
+							else {
+								// 내 아이디 누르면 내 프로필로 이동 & <나> 라고 써줌
 								if( '${loginUser.userId}' == data[i].userId) {
 									
 									$a = $('<a>').attr({'class':'dropdown-item', 

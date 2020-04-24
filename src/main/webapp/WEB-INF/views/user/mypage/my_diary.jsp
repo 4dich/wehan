@@ -49,6 +49,7 @@
     
 <script>
   $(function(){
+	/* 일정 보여주기 */
     $.ajax({
         contentType:'application/json',
         dataType:'json',
@@ -59,6 +60,7 @@
         	var events = [];
             $.each(data, function (index, value) {
                 events.push({
+                	id: value.dId,
                     title: value.dTitle,
                     start: value.sDate,
                     end: value.eDate,
@@ -73,7 +75,9 @@
             });
             
             var calendarEl = document.getElementById('calendar');
-
+			
+            var dId = "";
+            
             var calendar = new FullCalendar.Calendar(calendarEl, {
               plugins: [ 'interaction', 'dayGrid', 'timeGrid',  'list' ],
               header: {
@@ -89,41 +93,38 @@
                 var title = prompt('Write Title:');
                 if (title) {
                   var content = prompt('Write Content:');
-                  /*---------------------------*/
                   $.ajax({
-                	  contentType:'application/json',
-                      dataType:'json',
                       url:'calendarInsert.do',
+                      dataType:'json',
                       type:'post',
                       data:{
-                      	dTitle: title,
-                      	dContent: content,
-                      	sDate: arg.start,
-                      	eDate: arg.end,
-                      	dColor: '#3A7D7C',
-                      	cntStamp: 0
-                      },
-                      success:function(data){
-		                  calendar.addEvent({
-		                    title: title,
-		                    start: arg.start,
-		                    end: arg.end,
-		                    allDay: true,
-		                    color: '#3A7D7C',
-		                    dContent: content
-		                  });
-		                  $("input:radio[name='color_select']:radio[value='color1']").prop('checked',true);
-		            	  $('#modalTitle, #modalFooter').css('background','#3A7D7C');
+                      	dTitle:title,
+                      	dContent:content,
+                      	sDate:moment(arg.start).format("YYYY-MM-DD HH:mm"),
+                      	eDate:moment(arg.end).format("YYYY-MM-DD HH:mm"),
+                      	dColor:'#3A7D7C',
+                      	cntStamp:0
+                      },success:function(data){
+                    	  
                       },error:function(){
                     	  alert('ajax 오류: diary insert');
                       }
                   });
+                  calendar.addEvent({
+                    title: title,
+                    start: arg.start,
+                    end: arg.end,
+                    allDay: true,
+                    color: '#3A7D7C',
+                    dContent: content
+                  });
+                  $("input:radio[name='color_select']:radio[value='color1']").prop('checked',true);
+            	  $('#modalTitle, #modalFooter').css('background','#3A7D7C');
                 }
                 calendar.unselect()
               },
               editable: true,
               eventLimit: true, // allow "more" link when too many events
-
               events: events,
               titleFormat: { // will produce something like "Tuesday, September 18, 2018"
            	    year: 'numeric',
@@ -168,16 +169,43 @@
                   }
                   
                   $('#stat').slideDown(500);
-              },
+                  
+               	  dId = info.event.id;
+
+            	},
             });
             calendar.render();
+            
+            /* 일정 삭제*/
+            $('#btnDelete').click(function(){
+          	  calendar.getEventById(dId).remove();
+          	  $('#stat').slideUp(500);
+          	  $.ajax({
+          		  url: 'calendarDelete.do',
+          		  dataType:'json',
+          		  type: 'post',
+          		  data: {dId:dId},
+          		  success:function(data){
+          			  console.log('ajax 성공');
+          		  },
+          		  error:function(){
+          			  console.log('ajax 오류: diary delete');
+          		  }
+          	  });
+          	  /* window.location.reload(); */
+            });
         },
         error:function(){
             alert('ajax오류: diary select list');
         }
       });
   });
-
+  
+  $('#btnUpdate').click(function(){
+	  
+  });
+  
+  
 </script>
 <style>
 	.site-logo {
@@ -572,8 +600,8 @@
 					</div>
 				</div>
 				<div id="modalFooter" style="width:500px; height:60px; text-align:center; margin-top:-1px; padding-top:15px; background: lightgray;">
-					<button>저장</button>
-					<button>삭제</button>
+					<button id='btnUpdate'>저장</button>
+					<button id='btnDelete'>삭제</button>
 				</div>
 			</div>
 			
@@ -594,7 +622,7 @@
 	<!-- Main section end -->
 	
 	<!--====== Javascripts & Jquery ======-->
-	<script src="resources/js/jquery-3.2.1.min.js"></script>
+	<!-- <script src="resources/js/jquery-3.2.1.min.js"></script> -->
 	<script src="resources/js/bootstrap.min.js"></script>
 	<script src="resources/js/owl.carousel.min.js"></script>
 	<script src="resources/js/jquery.nicescroll.min.js"></script>

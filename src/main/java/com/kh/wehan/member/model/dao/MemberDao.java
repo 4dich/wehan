@@ -41,7 +41,6 @@ public class MemberDao {
 	public int blackCheck(String userId) {
 		return sqlSession.selectOne("memberMapper.blackCheck",userId);
 	}
-
 	public int insertMember(Member m) {
 		return sqlSession.insert("memberMapper.insertMember",m);
 	}
@@ -64,7 +63,7 @@ public class MemberDao {
 	public ArrayList<Member> mlistSearch(Member mem,PageInfo pi) {
 		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
-		return (ArrayList)sqlSession.selectList("memberMapper.mlistSearch",mem);
+		return (ArrayList)sqlSession.selectList("memberMapper.mlistSearch",mem,rowBounds);
 	}
 	public BlackList BlackListInfo(String userId) {
 		return sqlSession.selectOne("BlackListInfo",userId);

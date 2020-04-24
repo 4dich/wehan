@@ -47,6 +47,7 @@
 		]]>
   	</select>
   	
+  	<!-- 챌린지 참가자 목록 가져오기 -->
   	<select id="getChallengerList" resultMap="ChallengerInfoResultMap">
   		SELECT M.USERID AS USERID,
 		       M.NICKNAME AS USERNICKNAME,
@@ -55,9 +56,20 @@
 		JOIN MYPAGE P ON (M.USERID = P.USERID)
   	</select>
   	
+  	<!-- 챌린지 만들고 결제 안하면 챌린지 삭제하기 -->
 	<delete id="cancleRegister">
 		DELETE FROM CHALLENGE WHERE CHID = #{chId}	
 	</delete>
   	
+  	<!-- 챌린지 80% 이상 인증한 사람 수 구하기 -->
+  	<select id="getSuccessRate" resultType="_int">
+  		SELECT COUNT(*)
+		FROM(
+			SELECT (COUNT(*)/#{time})*100 AS RATE
+			FROM CERTIFY
+			WHERE CHID = #{chId}
+			GROUP BY USERID)
+		WHERE RATE >= 80
+  	</select>
   	
   </mapper>
