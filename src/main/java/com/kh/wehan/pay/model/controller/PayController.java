@@ -267,5 +267,18 @@ public class PayController {
 		gson.toJson(ad,response.getWriter());
 	}
 	
-	
+	@RequestMapping("deleteCh.do")
+	public String deleteCh(int chId) {
+		
+		int deleteChPay = pService.deleteChPay(chId);
+		int deleteChallenge = pService.deleteChllenge(chId);
+		System.out.println("deleteChPay : " + deleteChPay);
+		System.out.println("deleteChallenge : " + deleteChallenge);
+		if(deleteChallenge > 0) {
+		return "redirect:clist.do";
+		}else{
+		System.out.println("실패");	
+		return "errorPage";
+		}
+	}	
 }

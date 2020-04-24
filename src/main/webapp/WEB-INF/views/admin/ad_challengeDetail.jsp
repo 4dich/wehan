@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -29,8 +30,8 @@
 	<link rel="stylesheet" href="resources/css/owl.carousel.min.css"/>
 
 	<!-- Main Stylesheets -->
-	<link rel="stylesheet" href="resources/css/jh-css.css"/>
 	<link rel="stylesheet" href="resources/css/style.css"/>
+	<link rel="stylesheet" href="resources/css/admin_qna.css"/>
 	
 	
 	<style>
@@ -96,7 +97,7 @@
 	<!-- Main section start -->
 	<div class="main-site-warp">
 	
-		<include file="/WEB-INF/views/common/ad_menuBar"/>
+		<c:import url="/WEB-INF/views/common/ad_menuBar.jsp" />
 		
 		<header class="header-section">
 			<div class="nav-switch">
@@ -141,7 +142,7 @@
 							</div>
 							<div class="col-xl-6">
 								<div class="contact-text-warp">
-									<form class="contact-form" style="margin-top: 65px;">
+									<form action="deleteCh.do" class="contact-form" method="post" style="margin-top: 65px;">
 										<div class="row">
 										<input type="hidden" name="chId" value="${chal.chId}">
 										<input type="hidden" name="userId" value="${chal.userId}">
@@ -228,6 +229,9 @@
 											</div>
 										</div>
 									<br><br>
+									
+										 <div id="test" style="display:none;" ></div>
+								  			<div id="startDate" style="display:none;">${chal.startDate}</div>
 										<button class="site-btn sb-solid mr-3 mb-3" id="btn" style="color: white; float: right; width: 280px; font-size: 16px;" type="submit">
 										챌린지 삭제하기
 										<img src="resources/images/arrow-righ-2.png" alt="">
@@ -265,7 +269,30 @@
 		$('#count').text(count);
 			
 	});
-
+	
+	$(function(){
+		var date = new Date();
+		var year = date.getFullYear();
+		var month = (1 + date.getMonth());
+		month = month >= 10 ? month : '0' + month;
+		var day = date.getDate();
+		day = day >= 10 ? day : '0' + day;
+		$('#test').html(year+month+day);
+		var currentDate = parseInt($('#test').text());
+		
+		var startDate = $('#startDate').text();
+		var ss = startDate.split('-');
+		var cc = "";
+		for(var i=0;i<ss.length;i++){
+			cc += ss[i];
+		}
+		var startDay = parseInt(cc); 
+		if(currentDate>=startDay){
+			$('#btn').remove();
+		}
+		
+	});
+	
 	// 참여인원 목록 리스트 가져오기 ajax
 	$(function(){
 		var list = [];
@@ -315,28 +342,7 @@
 		});
 	});
 	
-	
-	// 유저가 참여한 챌린진지 확인해서 버튼 생성
-	$(function(){
-		var list = [];
-		list = '${chal.chPeople}'.split(',');
-		
-		var btn = $('#btn');
-		
-		var userId = '${loginUser.userId}';
-		var check;
-		
-		for(var i = 0; i < list.length; i++){
-			if(list[i] == userId) {
-				btn.attr({
-							'class':'site-btn sb-dark',
-							'type' : 'button'
-						}).css({'color':'black', 'cursor':'default'}).text('이미 참여한 챌린지입니다.');
-			}
-		}
-		
-		
-	});
+
 		
 	</script>
 	

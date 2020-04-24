@@ -47,4 +47,8 @@ public interface PayService {
 	ArrayList<Pay> pSearchY(Pay p, PageInfo pi);
 
 	ArrayList<Pay> pSearchN(Pay p, PageInfo pi);
+
+	int deleteChPay(int chId);
+
+	int deleteChllenge(int chId);
 }
