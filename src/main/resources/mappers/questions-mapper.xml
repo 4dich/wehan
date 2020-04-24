@@ -111,12 +111,12 @@
   	</update>  	  	  	
   	
   	<!-- 댓글 -->
-	<select id= "questionsReplySelect" resultMap="replyResultSet">
+	<select id= "selectreplyList" resultMap="replyResultSet">
 	SELECT Q.QID,QR.QRID,QR.QRWRITER,QR.QRCONTENT,QR.QRDATE,QR.QRDEL_YN
     FROM QUESTIONS Q
     JOIN QUESTIONSREPLY QR
     ON Q.QID = QR.QID
-    WHERE Q.QID = 4 
+    WHERE Q.QID = #{qId} 
     
     AND QRDEL_YN='N' 
     ORDER BY QRDATE DESC 
@@ -126,5 +126,11 @@
 	INSERT INTO QUESTIONSREPLY
 	VALUES(SEQ_QRID.NEXTVAL,#{qId},'admin',#{qrContent},SYSDATE,DEFAULT)
 	</insert>
-   
+    
+    <update id="deletereply">
+     UPDATE questionsreply SET QRDEL_YN='Y' WHERE QRID=#{qrId}
+    
+    </update> 
+    
+     
     </mapper>
