@@ -1,8 +1,9 @@
 package com.kh.wehan.questions.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,10 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
 import com.kh.wehan.common.Pagination;
 import com.kh.wehan.common.model.vo.PageInfo;
-import com.kh.wehan.member.model.vo.Member;
-import com.kh.wehan.notice.model.vo.Notice;
 import com.kh.wehan.questions.model.service.QuestionsService;
 import com.kh.wehan.questions.model.vo.Questions;
 import com.kh.wehan.questions.model.vo.QuestionsReply;
@@ -43,7 +45,8 @@ public class QuestionsController {
 		
 		// 문의사항 글 목록 불러오기
 		ArrayList<Questions> list = qService.selectList(pi);
-		System.out.println(list);
+		
+		
 		mv.addObject("list", list);
 		mv.addObject("pi", pi);
 		mv.setViewName("user/questions/questions");
@@ -62,11 +65,14 @@ public class QuestionsController {
 	public ModelAndView questionsDetail(ModelAndView mv, int qId, int currentPage) {
 		
 		Questions q = qService.questionsSelect(qId);
+		ArrayList<QuestionsReply>list = qService.selectreplyList(qId);
 		
 		if(q != null) {
 			mv.addObject("q", q) // 문의사항 내용 보내기
 			.addObject("currentPage",currentPage) // 현재 페이지 보내기
+			.addObject("reply",list)
 			.setViewName("user/questions/questionsDetail");
+			
 		} else {
 			mv.addObject("msg","Error").addObject("msg2","페이지 상세 조회 실패").setViewName("common/errorPage");
 		}
@@ -94,7 +100,7 @@ public class QuestionsController {
 		}
 		int currentPage =1;
 		int listCount = qService.getSearchListCount(sc);
-		System.out.println(listCount);
+		
 		
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
 		
@@ -163,12 +169,11 @@ public class QuestionsController {
  */
 	@RequestMapping("questionsInsert.do")
 	public String questionsInsert(Questions n) {
-		System.out.println(n.getqUserid());
 		
-		System.out.println(n);
 		
 		int result = qService.questionsInsert(n);
-		System.out.println(result);
+
+
 		
 		if(result > 0) {
 			return "redirect:qnaListView.do";
@@ -187,12 +192,12 @@ public class QuestionsController {
 	@RequestMapping("questionsModifyView.do")
 	public ModelAndView questionsModifyView(ModelAndView mv, int qId, int currentPage) {
 		
-		System.out.println("int qId :" + qId + "int currentPage : " + currentPage );
+		
 		
 		
 		Questions n = qService.questionsSelect(qId);
 		
-		System.out.println(n.toString());
+		
 		
 		if(n != null) {
 			mv.addObject("q", n).addObject("currentPage", currentPage).setViewName("user/questions/questionsModify");
@@ -210,10 +215,11 @@ public class QuestionsController {
 	@RequestMapping("questionsModify.do")
 	public ModelAndView questionsModify(ModelAndView mv, Questions n) {		
 		
-		System.out.println(n);
+
+
 		int result = qService.questionsModify(n);
 		
-		System.out.println(result);
+		
 		
 		if(result > 0 ) {
 			
@@ -254,10 +260,10 @@ public class QuestionsController {
 		
 		qr.setqId(replyId);
 		
-		System.out.println(qr);		 	  
+			 	  
 		  
 		int result = qService.questionsReplyInsert(qr);
-		System.out.println(result);
+		
 		
 		if(result>0) {
 			return"redirect:qnaListView.do";
@@ -267,18 +273,50 @@ public class QuestionsController {
 	}
 	
 	@RequestMapping("replyListView.do")
-	public void questionsReply(@RequestParam("qId") int qId) {
+	public void questionsReply(@RequestParam("qId") int qId,HttpServletResponse response ) throws JsonIOException, IOException {
 	
-		System.out.println("qId: "+qId);
-        ArrayList<QuestionsReply> list = qService.questionReplyList(qId);
+	  ArrayList<QuestionsReply> list = qService.questionReplyList(qId);
 	 	
-        System.out.println("list : " + list);
+       
 		
-	  
+	 response.setContentType("application/json; charset=utf-8");
+		
+	 
+		// 만약 날짜가 들어있다면
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		// json에게 보내겠음
+		gson.toJson(list,response.getWriter());
 				
 				
 	}
-	
+	@RequestMapping("deletereply.do")
+	public ModelAndView questionsReply(ModelAndView mv,@RequestParam("qrId") int qrId, @RequestParam("qId") int qId, 
+			                                           @RequestParam("currentPage") int currentPage) {
+		int result = qService.deletereply(qrId);
+		  if(result>0) {
+			  mv.setViewName("redirect:questionsDetail.do");
+			  mv.addObject("qId",qId);
+			  mv.addObject("currentPage",currentPage);
+		  }
+		
+		 
+		 
+		 return mv;
+		 
+	}
+	/*
+	 * @RequestMapping("questionsDelete.do") public ModelAndView
+	 * questionsDelete(ModelAndView mv, int qId) {
+	 * 
+	 * int result = qService.questionsDelete(qId);
+	 * 
+	 * if(result > 0) { mv.setViewName("redirect:qnaListView.do"); } else {
+	 * mv.addObject("msg", "Error").addObject("msg2",
+	 * "문의사항 삭제 에러").setViewName("common/errorPage"); }
+	 * 
+	 * return mv; }
+	 */
+	  
 }
 	
 

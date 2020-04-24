@@ -75,7 +75,6 @@ public class PayServiceImpl implements PayService {
 
 	@Override
 	public ArrayList<Pay> refundYn(PageInfo pi) {
-		// TODO Auto-generated method stub
 		return pDao.refundYn(pi);
 	}
 
@@ -114,9 +113,14 @@ public class PayServiceImpl implements PayService {
 		return pDao.pSearchN(p,pi);
 	}
 
-	
+	@Override
+	public int deleteChPay(int chId) {
+		return pDao.deleteChPay(chId);
+	}
 
-
-	
+	@Override
+	public int deleteChllenge(int chId) {
+		return pDao.deleteChllenge(chId);
+	}
 
 }
