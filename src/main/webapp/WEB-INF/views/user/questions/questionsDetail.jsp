@@ -173,12 +173,12 @@
 																			<div class="form-group" style="text-align: right;">
 																				<textarea class="form-control" id="addReflyText" name="qrContent"
 																					style="height: 100px; resize: none;"
-																					placeholder="친구의 피드에 댓글을 남겨보세요!"></textarea>
+																					placeholder=" 댓글을 남겨보세요!"></textarea>
 																				<button id="submitR" class="site-btn sb-dark"
 																					style="padding-left: 15px; padding-right: 15px; min-width: 120px; padding-top: 10px; padding-bottom: 10px; margin-top: 10px;">
 																					댓글 등록</button>
 																				<button id="listBack" class="site-btn sb-dark"
-																					type="button"
+																					type="button" onclick="location.href='qnaListView.do'"
 																					style="padding-left: 15px; padding-right: 15px; min-width: 120px; padding-top: 10px; padding-bottom: 10px; margin-top: 10px;">
 																					목록가기</button>
 																			</div>
