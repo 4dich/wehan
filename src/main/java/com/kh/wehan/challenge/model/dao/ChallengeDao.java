@@ -38,7 +38,7 @@ public class ChallengeDao {
 	}
 
 	public ArrayList<Challenge> getSelectSearchList(Challenge chal, PageInfo pi) {
-		
+		System.out.println("chal : " +chal);
 		int offset = (pi.getCurrentPage() -1) * pi.getBoardLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 		

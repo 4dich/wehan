@@ -116,4 +116,12 @@ public class PayDao {
 		RowBounds rowBounds = new RowBounds(offset,pi.getBoardLimit());
 		return (ArrayList)sqlSession.selectList("payMapper.pSearchN",p,rowBounds);
 	}
+
+	public int deleteChPay(int chId) {
+		return sqlSession.delete("payMapper.deleteChPay",chId);
+	}
+
+	public int deleteChllenge(int chId) {
+		return sqlSession.delete("payMapper.deleteChllenge",chId);
+	}
 }

@@ -258,4 +258,11 @@
   		WHERE CHID = #{chId}
   	</update>
   	
+  	<delete id="deleteChPay">
+  		DELETE FROM PAY WHERE CHID=#{chId}
+  	</delete>
+  	
+  	<delete id="deleteChllenge">
+  		DELETE FROM CHALLENGE WHERE CHID=#{chId}
+  	</delete>
   </mapper>
