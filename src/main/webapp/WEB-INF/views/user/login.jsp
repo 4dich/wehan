@@ -52,7 +52,7 @@
 			border-top-width:0;
 			border-bottom-width:1;
 		}
-		
+		.about-info{width:348px;}
 		.btn{
 			width :200px;
 		}
@@ -84,16 +84,20 @@
                     <!-- 서브메뉴 -->
 					<div class="about-info">
 						<h2>회사소개</h2>
-                        <!-- 감성글 작성 -->
-                        <p>"한 인간에게는 작은 한 걸음이지만, 인류에게는 위대한 도약이다. (One small step for a man, one giant leap for mankind.)”<br>
-							이 명언은 닐 암스트롱이 달 표면에 첫 발을 내딛고 한 말입니다.  </p>
+						<p style="font-size: 12px;">한 인간에게는 작은 한 걸음이지만, 인류에게는 위대한 도약<br>(One small step for a man, one giant leap for mankind.)<br>
+							이 명언은 닐 암스트롱이 달 표면에 첫 발을 내딛고 한 말입니다.
+							혼자선 힘들었던 계획들, 같은 목표의 사람들과 함께 해보세요.<br>
+						   	당신의 미래를 시작하기 위한 첫 걸음을 도와드릴게요.
+						</p>
 					</div>
 					<ul class="contact-info">
 						<li>서울특별시 강남구 테해란로14길 6</li>
 						<li>남도빌딩 3F H반 T:1544-9970</li><br>
 						<li><a href="mailto:contactme@myemail.com">contactme@myemail.com</a></li>
-					</ul>
-					
+					</ul>		
+					<div class="copyright"><p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
+						All rights reserved </p>
+					</div>
 				</div>
 			</div>
             <!-- Left Side section end -->

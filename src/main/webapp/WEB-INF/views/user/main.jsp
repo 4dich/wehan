@@ -25,13 +25,15 @@
 	<!-- Main Stylesheets -->
 	<!-- <link rel="stylesheet" href="resources/css/main.css"/> -->
 	<link rel="stylesheet" href="resources/css/style.css"/>
-
+	<script src="resources/js/jquery-3.2.1.min.js"></script>
 
 	<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
-
+	<style>
+		.about-info{width:348px;}
+	</style>
 </head>
 <body>
 	<!-- Page Preloder -->
@@ -46,18 +48,11 @@
 		<!-- 메뉴 -->
 		
 		<%@ include file="/WEB-INF/views/common/menuBar.jsp" %>
-
 		<header class="header-section">
 			<div class="nav-switch menuIcon msgCount">
 				<i class="fa fa-bars"></i>
 			</div>
-			<div class="header-social">
-				<!-- <a href=""><i class="fa fa-pinterest"></i></a>
-				<a href=""><i class="fa fa-facebook"></i></a>
-				<a href=""><i class="fa fa-twitter"></i></a>
-				<a href=""><i class="fa fa-dribbble"></i></a>
-				<a href=""><i class="fa fa-behance"></i></a> -->
-			</div>
+		
 		</header>
 		<div class="site-content-warp">
 			<!-- Left Side section -->
@@ -69,17 +64,12 @@
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
 
-					<div>
-						<input type="textarea" style="width: 300px; height: 50px; border-radius: 3px; border:3px solid #242424">
-						<a href="#" class="site-btn2">
-						<img src="resources/images/main/search.png" alt=""></a>
-					</div>
 					<br><br>
 					<!-- 서브메뉴 -->
 					<div class="about-info">
 						<h2>회사소개</h2>
-						<p>"한 인간에게는 작은 한 걸음이지만, 인류에게는 위대한 도약이다. (One small step for a man, one giant leap for mankind.)”<br>
-							이 명언은 닐 암스트롱이 달 표면에 첫 발을 내딛고 한 말입니다.<br><br>
+						<p style="font-size: 12px;">한 인간에게는 작은 한 걸음이지만, 인류에게는 위대한 도약<br>(One small step for a man, one giant leap for mankind.)<br>
+							이 명언은 닐 암스트롱이 달 표면에 첫 발을 내딛고 한 말입니다.
 							혼자선 힘들었던 계획들, 같은 목표의 사람들과 함께 해보세요.<br>
 						   	당신의 미래를 시작하기 위한 첫 걸음을 도와드릴게요.
 						</p>
@@ -87,7 +77,6 @@
 					<ul class="contact-info">
 						<li>서울특별시 강남구 테해란로14길 6</li>
 						<li>남도빌딩 3F H반 T:1544-9970</li><br>
-						<li><a href="mailto:contactme@myemail.com">contactme@myemail.com</a></li>
 					</ul>		
 					<div class="copyright"><p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
 						All rights reserved </p>
@@ -137,7 +126,7 @@
 	<!-- Main section end -->
 	
 	<!--====== Javascripts & Jquery ======-->
-	<script src="resources/js/jquery-3.2.1.min.js"></script>
+
 	<script src="resources/js/bootstrap.min.js"></script>
 	<script src="resources/js/owl.carousel.min.js"></script>
 	<script src="resources/js/jquery.nicescroll.min.js"></script>
