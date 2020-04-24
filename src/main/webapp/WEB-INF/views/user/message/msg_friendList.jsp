@@ -190,14 +190,11 @@
 		var $interest;
 		
 		$('.fName').each(function(idx, elem){
-			console.log('index('+idx+') : ' + $(this).val() );
 			$fName.push($(this));
 		});
 		
 		for(var i = 0; i < fCate.length; i++){
-			
-			console.log($fName[i]);
-						
+									
 			if(/건강/.test(fCate[i].textContent)) {
 				$interest = $('<span>').attr('class','health').text("건강"); 				
 				console.log($interest);

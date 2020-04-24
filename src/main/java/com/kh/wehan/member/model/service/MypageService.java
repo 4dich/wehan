@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.kh.wehan.certify.model.vo.Certify;
 import com.kh.wehan.challenge.model.vo.Challenge;
+import com.kh.wehan.member.model.vo.Diary;
 import com.kh.wehan.member.model.vo.Follow;
 import com.kh.wehan.member.model.vo.Member;
 import com.kh.wehan.member.model.vo.Mypage;
@@ -85,6 +86,26 @@ public interface MypageService {
 	 * @return
 	 */
 	public int my_follow(Follow f);
+
+	/**
+	 * 3-1. 달력리스트 가져오기
+	 * @param userId
+	 * @return
+	 */
+	public ArrayList<Diary> selectListDiary(String userId);
+
+	/**
+	 * 3-2. 달력에 일정 추가
+	 * @param di
+	 * @return
+	 */
+	public int insertDiary(Diary di);
+
+	/**
+	 * 3-3. 달력에 일정 삭제
+	 * @param di
+	 */
+	public int deleteDiary(Diary di);
 
 
 }

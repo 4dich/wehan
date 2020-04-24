@@ -129,43 +129,89 @@
 							</tr>
 							</c:forEach>
 						</table>
-						
-						<div class="qnaPaging">
-							<c:if test="${ pi.currentPage eq 1 }">
-								< &nbsp;
-							</c:if>
-							<c:if test="${ pi.currentPage ne 1 }">
-								<c:url var="before" value="mlist.do">
-									<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
-								</c:url>
-								<a href="${ before }"><</a> &nbsp;
-							</c:if>
-							
-							<!-- 페이지 -->
-							<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-								<c:if test="${ p eq pi.currentPage }">
-									<font color="red" size="4"><b>[${ p }]</b></font>
+						<c:if test="${!empty searchValue}">
+							<div class="qnaPaging">
+								<c:if test="${ pi.currentPage eq 1 }">
+									< &nbsp;
+								</c:if>
+								<c:if test="${ pi.currentPage ne 1 }">
+									<c:url var="before" value="mlistSearch.do">
+										<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
+										<c:param name="searchValue" value="${searchValue}"/>
+										<c:param name="selecter" value="${selecter}"/>
+									</c:url>
+									<a href="${ before }"><</a> &nbsp;
 								</c:if>
 								
-								<c:if test="${ p ne pi.currentPage }">
-									<c:url var="pagination" value="mlist.do">
-										<c:param name="currentPage" value="${ p }"/>
-									</c:url>
-									<a href="${ pagination }">${ p }</a> &nbsp;
+								<!-- 페이지 -->
+								<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+									<c:if test="${ p eq pi.currentPage }">
+										<font color="red" size="4"><b>[${ p }]</b></font>
+									</c:if>
+									
+									<c:if test="${ p ne pi.currentPage }">
+										<c:url var="pagination" value="mlistSearch.do">
+											<c:param name="currentPage" value="${ p }"/>
+											<c:param name="searchValue" value="${searchValue}"/>
+											<c:param name="selecter" value="${selecter}"/>
+										</c:url>
+										<a href="${ pagination }">${ p }</a> &nbsp;
+									</c:if>
+								</c:forEach>
+								
+								<!-- [다음] -->
+								<c:if test="${ pi.currentPage eq pi.maxPage }">
+									>
 								</c:if>
-							</c:forEach>
-							
-							<!-- [다음] -->
-							<c:if test="${ pi.currentPage eq pi.maxPage }">
-								>
-							</c:if>
-							<c:if test="${ pi.currentPage ne pi.maxPage }">
-								<c:url var="after" value="mlist.do">
-									<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
-								</c:url> 
-								<a href="${ after }">></a>
-							</c:if>
-						</div>
+								<c:if test="${ pi.currentPage ne pi.maxPage }">
+									<c:url var="after" value="mlistSearch.do">
+										<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
+										<c:param name="searchValue" value="${searchValue}"/>
+										<c:param name="selecter" value="${selecter}"/>
+									</c:url> 
+									<a href="${ after }">></a>
+								</c:if>
+							</div>
+						</c:if>
+						
+						<c:if test="${empty searchValue}">
+							<div class="qnaPaging">
+								<c:if test="${ pi.currentPage eq 1 }">
+									< &nbsp;
+								</c:if>
+								<c:if test="${ pi.currentPage ne 1 }">
+									<c:url var="before" value="mlist.do">
+										<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
+									</c:url>
+									<a href="${ before }"><</a> &nbsp;
+								</c:if>
+								
+								<!-- 페이지 -->
+								<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+									<c:if test="${ p eq pi.currentPage }">
+										<font color="red" size="4"><b>[${ p }]</b></font>
+									</c:if>
+									
+									<c:if test="${ p ne pi.currentPage }">
+										<c:url var="pagination" value="mlist.do">
+											<c:param name="currentPage" value="${ p }"/>
+										</c:url>
+										<a href="${ pagination }">${ p }</a> &nbsp;
+									</c:if>
+								</c:forEach>
+								
+								<!-- [다음] -->
+								<c:if test="${ pi.currentPage eq pi.maxPage }">
+									>
+								</c:if>
+								<c:if test="${ pi.currentPage ne pi.maxPage }">
+									<c:url var="after" value="mlist.do">
+										<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
+									</c:url> 
+									<a href="${ after }">></a>
+								</c:if>
+							</div>
+						</c:if>
 					</div>
 				</div>
 			</div>

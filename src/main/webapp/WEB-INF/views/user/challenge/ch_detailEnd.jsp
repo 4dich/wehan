@@ -184,8 +184,8 @@
 												</div>
 											</div>
 											<div class="col-lg-12">
-												<div class="contents-detail" style="height:auto;">
-													성공률 : <h2>계산해서 넣기</h2>
+												<div class="contents-detail">
+													성공률 : <strong><span id="rate"></span> %</strong>
 												</div>
 											</div>
 											<br><br><br><br>
@@ -210,9 +210,43 @@
 		</div>
 	<!-- Main section end -->	
 	<script>
+	
+	// 금액 구하기
 	$(function(){
-		$('#tPrice').text(${ chal.chPeopleCount } * ${ chal.price } );
+		var count = '${ chal.chPeopleCount }';
+		var price = '${ chal.price }';
+		$('#tPrice').text(count*price);
 	});
+	
+	// 성공률 구하기
+	$(function(){
+		var chId = '${chal.chId}';
+		var endDate = new Date('${ chal.endDate }');
+		var startDate = new Date('${ chal.startDate }');
+		var date = (endDate - startDate);
+		var time = Math.ceil(date/ (1000*60*60*24));
+		
+		var count = '${ chal.chPeopleCount }';
+		
+		$.ajax({
+			url:'getSuccessRate.do',
+			type:'post',
+			data:{'chId':chId,
+				  'time':time},
+			success:function(data){
+				
+				// 성공률 계산
+				var rate = data / count * 100;
+				// 반올림
+				rate = Math.round(rate);
+				$('#rate').text(rate);
+				
+			}, error:function(){
+				console.log('error');
+			}
+		});
+	});
+	
 	</script>
 	
 	<!--====== Javascripts & Jquery ======-->

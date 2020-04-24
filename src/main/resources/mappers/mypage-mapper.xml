@@ -42,6 +42,17 @@
 		<result property="nickName" column="NICKNAME"/>
 	</resultMap>
 	
+	<resultMap id="diaryResultSet" type="Diary">
+		<result property="dId" column="DID"/>
+		<result property="userId" column="USERID"/>
+		<result property="dTitle" column="DTITLE"/>
+		<result property="dContent" column="DCONTENT"/>
+		<result property="dColor" column="DCOLOR"/>
+		<result property="sDate" column="SDATE"/>
+		<result property="eDate" column="EDATE"/>
+		<result property="cntStamp" column="CNTSTAMP"/>
+	</resultMap>
+	
 	<select id="my_profileView" resultMap="mypageResultSet">
 		SELECT *
 		FROM MYPAGE
@@ -106,4 +117,20 @@
 		WHERE USERID=#{userId}
 	</update>
 	
+	<select id="selectListDiary" resultType="Diary">
+		SELECT * 
+		FROM DIARY
+		WHERE USERID=#{userId}
+	</select>
+	
+	<insert id="insertDiary" parameterType="Diary">
+		INSERT INTO DIARY
+		VALUES(SEQ_DID.NEXTVAL,#{userId},#{dTitle},#{dContent},#{dColor},#{sDate},#{eDate},DEFAULT)
+	</insert>
+	
+	<delete id="deleteDiary">
+		DELETE FROM DIARY
+		WHERE DID=#{dId}
+		AND USERID=#{userId}
+	</delete>
 </mapper>

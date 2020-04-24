@@ -9,6 +9,7 @@ import com.kh.wehan.common.model.vo.PageInfo;
 import com.kh.wehan.notice.model.vo.Notice;
 import com.kh.wehan.questions.model.dao.QuestionsDao;
 import com.kh.wehan.questions.model.vo.Questions;
+import com.kh.wehan.questions.model.vo.QuestionsReply;
 import com.kh.wehan.questions.model.vo.SearchCondition;
 
 @Service("qService")
@@ -89,9 +90,26 @@ public class QuestionsServiceImpl implements QuestionsService{
 
 	
     @Override
-	public int questionsReplyInsert(Questions q) {
-    	return qDao.questionsReplyInsert(q);
+	public int questionsReplyInsert(QuestionsReply qr) {
+    	return qDao.questionsReplyInsert(qr);
     }
+	@Override
+	public ArrayList<QuestionsReply> questionReplyList(int qId) {
+		
+		return qDao.questionsReplyList(qId);
+	}
+	@Override
+	public ArrayList<QuestionsReply> selectreplyList(int qId) {
+		
+		return qDao.selectreplyList(qId);
+	}
+	@Override
+	public int deletereply(int qrId) {
+		
+		return qDao.deletereply(qrId);
+	}
+	
+	
 	
 }
 
