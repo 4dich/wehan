@@ -1,8 +1,9 @@
 package com.kh.wehan.questions.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,10 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonIOException;
 import com.kh.wehan.common.Pagination;
 import com.kh.wehan.common.model.vo.PageInfo;
-import com.kh.wehan.member.model.vo.Member;
-import com.kh.wehan.notice.model.vo.Notice;
 import com.kh.wehan.questions.model.service.QuestionsService;
 import com.kh.wehan.questions.model.vo.Questions;
 import com.kh.wehan.questions.model.vo.QuestionsReply;
@@ -62,11 +64,14 @@ public class QuestionsController {
 	public ModelAndView questionsDetail(ModelAndView mv, int qId, int currentPage) {
 		
 		Questions q = qService.questionsSelect(qId);
+		ArrayList<QuestionsReply>list = qService.selectreplyList(qId);
 		
 		if(q != null) {
 			mv.addObject("q", q) // 문의사항 내용 보내기
 			.addObject("currentPage",currentPage) // 현재 페이지 보내기
+			.addObject("reply",list)
 			.setViewName("user/questions/questionsDetail");
+			
 		} else {
 			mv.addObject("msg","Error").addObject("msg2","페이지 상세 조회 실패").setViewName("common/errorPage");
 		}
@@ -251,7 +256,8 @@ public class QuestionsController {
 	
 	@RequestMapping("questionsReplyInsert.do")
 	public String questionsReply(QuestionsReply qr,@RequestParam("replyId") int replyId)  {
-		
+		System.out.println("qr"+qr);
+		System.out.println("replyId"+replyId);
 		qr.setqId(replyId);
 		
 		System.out.println(qr);		 	  
@@ -267,18 +273,30 @@ public class QuestionsController {
 	}
 	
 	@RequestMapping("replyListView.do")
-	public void questionsReply(@RequestParam("qId") int qId) {
+	public void questionsReply(@RequestParam("qId") int qId,HttpServletResponse response ) throws JsonIOException, IOException {
 	
 		System.out.println("qId: "+qId);
         ArrayList<QuestionsReply> list = qService.questionReplyList(qId);
 	 	
         System.out.println("list : " + list);
 		
-	  
+	 response.setContentType("application/json; charset=utf-8");
+		
+		// 만약 날짜가 들어있다면
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+		// json에게 보내겠음
+		gson.toJson(list,response.getWriter());
 				
 				
 	}
-	
+	@RequestMapping("deletereply.do")
+	public ModelAndView questionsReply(ModelAndView mv,@RequestParam("qrId") int qrId) {
+		
+		
+		 System.out.println("qrId"+qrId);
+		 return mv;
+	}
+	  
 }
 	
 

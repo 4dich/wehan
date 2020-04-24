@@ -98,6 +98,11 @@ public class QuestionsServiceImpl implements QuestionsService{
 		
 		return qDao.questionsReplyList(qId);
 	}
+	@Override
+	public ArrayList<QuestionsReply> selectreplyList(int qId) {
+		
+		return qDao.selectreplyList(qId);
+	}
 	
 	
 	

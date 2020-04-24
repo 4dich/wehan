@@ -184,13 +184,48 @@
 																			</div>
 																		</div>
 																	</div>
-												</form>
+																	
+													<!-- 댓글 읽기 -->
+									<c:forEach var="q" items="${reply}"> 
+                              <div class="card" style="margin-bottom: 20px;">
+                                 <div class="card-body">
+                                    <div class="row">      
+                                      
+                                         <div id="commentbody" class="media g-mb-30 media-comment deletereply" style="display: inline-block; margin-left:96%">
+														 <c:if test="${adminUser.userId eq q.qrUserid }">×</c:if> 
+													</div>                      
+                                       <div class="media g-mb-30 media-comment">
+                                       
+													
+                                          <img class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15" style="max-width:8%" src="resources/images/img.png" alt="Image Description">
+                                          <div class="media-body u-shadow-v18 g-bg-secondary g-pa-30">
+                                             <div class="g-mb-15">
+                                                <h5 class="h5 g-color-gray-dark-v1 mb-0">
+                                              ${q.qrUserid}
+                                           <input type="hidden" value= "${q.qrId }" >
+                                           <input type="hidden" value= "${q.qId }">
+                                                </h5>
+                                                <span class="g-color-gray-dark-v4 g-font-size-12">${q.qrDate }</span>
+                                             </div>                                       
+                                             <p>
+                                             ${q.qrContent }
+                                             </p>   
+                                          </div>
+                                          
+                                       </div>
+                                       
+                                    </div>
+                                 </div>
+                              </div>
+								</c:forEach>												
+						
+										</form>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-
+ 
 						</div>
 					</div>
 					<!-- Page end -->
@@ -227,6 +262,13 @@
 		<script src="resources/js/main.js"></script>
 
 		<script>
+		 $(".deletereply").click(function(){
+		     var qrId= $(this).parent().children().find("input[type=hidden]").val();
+		      location.href="deletereply.do?qrId="+ qrId;
+			   
+		 })
+		 
+		 
 			$(function() {
 
 				$("#btnList").on("click", function() {
@@ -255,7 +297,7 @@
 							success : function(data) {
 								$divBody = $("#commentbody");
 								$divBody.html("");
-
+                             console.log(data);
 								var $img;
 								var $mediaBody;
 								var $gmb;

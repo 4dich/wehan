@@ -80,6 +80,8 @@ public interface QuestionsService {
 	int questionsReplyInsert(QuestionsReply qr);
 	
 	ArrayList<QuestionsReply> questionReplyList(int qId);
+
+	ArrayList<QuestionsReply> selectreplyList(int qId);
 }  
     
 
