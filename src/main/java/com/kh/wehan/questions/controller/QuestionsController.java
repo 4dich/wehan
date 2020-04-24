@@ -281,6 +281,7 @@ public class QuestionsController {
 		
 	 response.setContentType("application/json; charset=utf-8");
 		
+	 
 		// 만약 날짜가 들어있다면
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 		// json에게 보내겠음
