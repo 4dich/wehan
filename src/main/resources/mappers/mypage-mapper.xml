@@ -127,4 +127,10 @@
 		INSERT INTO DIARY
 		VALUES(SEQ_DID.NEXTVAL,#{userId},#{dTitle},#{dContent},#{dColor},#{sDate},#{eDate},DEFAULT)
 	</insert>
+	
+	<delete id="deleteDiary">
+		DELETE FROM DIARY
+		WHERE DID=#{dId}
+		AND USERID=#{userId}
+	</delete>
 </mapper>

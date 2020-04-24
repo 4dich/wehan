@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
@@ -281,20 +282,37 @@ public class MypageController {
 	}
 	
 	@RequestMapping("calendarInsert.do")
-	public void my_diaryView(HttpServletResponse response, HttpServletRequest request, Diary di, String dTitle) throws JsonIOException, IOException {
+	@ResponseBody
+	public void my_diaryInsert(HttpServletResponse response, HttpServletRequest request, Diary di) throws JsonIOException, IOException {
 		HttpSession session = request.getSession();
 		Member mem = (Member)session.getAttribute("loginUser");
 		String userId = mem.getUserId();
+		
+//		Diary di = new Diary("99","user04","내가 제목이다","네가 제목이고","red","2020-04-22 15:00", "2020-04-28 15:00", 0);
 		di.setUserId(userId);
 		
-		System.out.println(di);
-		System.out.println(dTitle);
-		
-		myService.insertDiary(di);
+		int result = myService.insertDiary(di);
 		
 		response.setContentType("application/json; charset=utf-8");
 		
 		Gson gson = new Gson();
 		gson.toJson(di, response.getWriter());
+	}
+	
+	@RequestMapping("calendarDelete.do")
+	@ResponseBody
+	public void my_diaryDelete(HttpServletResponse response, HttpServletRequest request, String dId) throws JsonIOException, IOException {
+		HttpSession session = request.getSession();
+		Member mem = (Member)session.getAttribute("loginUser");
+		String userId = mem.getUserId();
+		
+		Diary di = new Diary(dId, userId);
+		System.out.println(di);
+		myService.deleteDiary(di);
+		
+		response.setContentType("application/json; charset=utf-8");
+		
+		Gson gson = new Gson();
+		gson.toJson(response.getWriter());
 	}
 }
