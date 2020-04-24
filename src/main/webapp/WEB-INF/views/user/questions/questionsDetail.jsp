@@ -170,6 +170,8 @@
 															<div class="portlet-body">
 																<div>
 																	<!-- 댓글 쓰기 -->
+																	<c:if test="${!empty adminUser.userId  }">
+																	
 																	<div class="tab-content">
 																		<div role="tabpanel" class="tab-pane active" id="home"
 																			align="center">
@@ -188,6 +190,7 @@
 																			</div>
 																		</div>
 																	</div>
+																	</c:if>
 																	
 													<!-- 댓글 읽기 -->
 									<c:forEach var="q" items="${reply}"> 
@@ -195,8 +198,8 @@
                                  <div class="card-body" style="width:150%"> 
                                     <div class="row">      
                                       
-                                         <div id="commentbody" class="media g-mb-30 media-comment deletereply" style="display: inline-block; margin-left:96%">
-														 <c:if test="${adminUser.userId eq q.qrUserid }">×</c:if> 
+                                         <div id="commentbody" class="media g-mb-30 media-comment deletereply" style="display: inline-block; margin-left:65%">
+														<c:if test="${!empty adminUser.userId  }">×</c:if> 
 													</div>                      
                                        <div class="media g-mb-30 media-comment">
                                        
