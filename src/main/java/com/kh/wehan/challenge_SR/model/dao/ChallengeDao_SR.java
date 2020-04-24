@@ -46,6 +46,17 @@ public class ChallengeDao_SR {
 	}
 
 
+	/**
+	 * 마감된 챌린지 성공률 구하기
+	 * 1)챌린지 80% 이상 인증한 사람 수 구하기
+	 * @param m
+	 * @return
+	 */
+	public int getSuccessRate(Map m) {
+		return sqlSession.selectOne("challengeMapperSR.getSuccessRate", m);
+	}
+
+
 	
 	
 	
