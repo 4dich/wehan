@@ -76,7 +76,7 @@
 					</div>
 					<ul class="contact-info">
 						<li>서울특별시 강남구 테해란로14길 6</li>
-						<li>남도빌딩 3F H반 T:1544-9970</li><br>
+						<li>남도빌딩 3F H반 T:1544-9970</li>
 					</ul>		
 					<div class="copyright"><p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
 						All rights reserved </p>

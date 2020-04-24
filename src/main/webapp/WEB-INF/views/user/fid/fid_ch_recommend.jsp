@@ -29,6 +29,7 @@
 	<link rel="stylesheet" href="resources/css/fidRecommend.css"/>
 	
 	<style>
+	.about-info{width:348px;}
 	#fidListArea {
     width: 100%;
     height: 100%;
@@ -69,18 +70,11 @@
 				<i class="fa fa-bars"></i>
 			</div>
 			<div class="header-social">
-				<!-- <a href=""><i class="fa fa-pinterest"></i></a>
-				<a href=""><i class="fa fa-facebook"></i></a>
-				<a href=""><i class="fa fa-twitter"></i></a>
-				<a href=""><i class="fa fa-dribbble"></i></a>
-                <a href=""><i class="fa fa-behance"></i></a> -->
                 <a href="fid_ch_recommendView.do" style="color: red;">추천피드</a>
                 <a href="fid_friendListView.do">친구피드</a>
                 <a href="fid_followView.do">팔로우</a>
 			</div>
 		</header>
-
-
 		<div class="site-content-warp">
 			<!-- Left Side section -->
 			<div class="main-sidebar">
@@ -92,19 +86,15 @@
 					</a>
 
                     <div class="challenges-search">
-						<input id="searchTitle" type="text" style="padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 3px solid black;" placeholder="챌린지 검색">
-                        <div id="search" class="site-btn2">
-						<img src="resources/images/main/search.png" alt=""></div>
+						<input id="searchTitle" type="text" style="font-size:12px; padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 2px solid black;" placeholder="챌린지 검색">
+                        <div id="search" class="site-btn2" style="padding:5px 5px 5px 5px; width:45px;">
+						<img src="resources/images/main/search.png" alt="" style="padding-left:10px;"></div>
                     </div>
-                    <!-- <div class="challenges-search">
-						<input type="textarea" style="padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 3px solid black;" placeholder="챌린지 검색">
-                        <a href=""><img src="img/arrow-righ-3.png" style="padding-left: 10px;" alt=""></a>
-                    </div> -->
                     <br><br>
 					<!-- 서브메뉴 -->
-					<div class="about-info">
+					<div class="about-info" style="margin-top:70px;">
 						<h2>피드</h2>
-						<p>
+						<p style="font-size: 12px; margin-top:20px;">
 		                            친구들의 피드와 추천피드를 둘러보고
 		                            나와 비슷한 유저를 찾아보고 팔로우 할 수 있습니다. 
 		                            다른 유저들은 어떤챌린지를 어떻게 하고 있는지
@@ -112,12 +102,6 @@
 
 						</p>
 					</div>
-					<ul class="contact-info">
-						<li>서울특별시 강남구 테해란로14길 6</li>
-						<li>남도빌딩 3F H반 T:1544-9970</li><br>
-						<li><a href="mailto:contactme@myemail.com">contactme@myemail.com</a></li>
-					</ul>
-					                    
                     
 					<!-- <ul class="contact-info">
 						<li>1525  Boring Lane, Los Angeles, CA</li>
