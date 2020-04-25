@@ -155,7 +155,7 @@
 																메시지 보내기
 															</button>
 															<button class="site-btn" onclick="location.href='other_profileView.do?otherId=${f.msgFriendId}'" style="background-color: white; padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; ">
-																피드 가기
+																프로필 가기
 															</button>
 														</span>
 													</div>
