@@ -63,7 +63,7 @@
     }
 
     .main-sidebar .mb-warp {
-        padding: 90px 95px 100px 145px;
+        padding: 120px 95px 100px 145px;
     }
     
     .grade{
@@ -130,9 +130,9 @@
 				<i class="fa fa-bars"></i>
 			</div>
 			<div class="header-social">
-                <a href="my_profileView.do" style="color: red;">My Profile</a>
-                <a href="my_challengeView.do">My Challenge</a>
-                <a href="my_diaryView.do">My Diary</a>
+                <a href="my_profileView.do" style="color: red;">Profile</a>
+                <a href="my_challengeView.do">Challenge</a>
+                <a href="my_diaryView.do">Diary</a>
                 <a href="getMsgList.do">Message</a>
 			</div>
 		</header>
@@ -140,7 +140,7 @@
 		<div class="site-content-warp">
 			<!-- Left Side section -->
 			<div class="main-sidebar">
-				<div class="mb-warp" style="text-align: center;">
+				<div class="mb-warp">
                     
 					<a href="indexView.do" class="site-logo">
 						<h2 style="margin-left: 6px;">위대한 한걸음</h2>
@@ -148,7 +148,7 @@
 					</a>
 					
 					<!-- follow 영역 -->
-					<div id="divAll">
+					<div id="divAll" style="margin-left:15px;">
 				        <div id="pic" style="display:inline-block">
 				            <img src="resources/images/user/${ loginUser.picture }" style="width: 100px; height:100px; margin-top: -70px">
 				        </div>
@@ -172,7 +172,7 @@
 				    <div id="divAll3" style="margin-top:30px; text-align:left">    
 				       	<div style="margin-bottom:5px; font-weight: 700; display:inline-block"><i>OWNER MESSAGE&nbsp;</i>
 				       	<input id="toggle3" style="margin-left:60px;" type="checkbox" checked data-toggle="toggle" data-on="<i class='fa fa-lock' aria-hidden='true'></i> 수정하기" data-off="<i class='fa fa-unlock' aria-hidden='true'></i> 수정중" data-onstyle="dark" data-offstyle="outline-dark" onchange="toggleBtn3();"></div>
-				       	<div style="border:1px solid gray; height:180px;"><textarea id="intro" cols="41" rows="6" style="resize: none; border:0px; background:white; margin:12px;" disabled>${ mypage.intro }</textarea></div> 
+				       	<div style="border:1px solid gray; height:180px; width:348px;"><textarea id="intro" cols="39" rows="6" style="resize: none; border:0px; background:white; margin:12px;" disabled>${ mypage.intro }</textarea></div> 
 				    </div>
 				        
 				    </div>
@@ -221,7 +221,7 @@
 							<div id="userId" style="display:none">${loginUser.userId}</div>
 							
 						</div>
-						<div class="main-up-content" style="font-size:20px; height: 306px; width: 100%; margin-top: 5px; text-align:right; border:1px solid gray;">
+						<div class="main-up-content" style="font-size:20px; height: 350px; width: 100%; margin-top: 5px; text-align:right; border:1px solid gray;">
 							<textarea id="goal" cols="104" rows="9" style="resize: none; border:0px; background:white; margin-top: 12px; margin-right:12px"  disabled>${ mypage.goal }</textarea>
 						</div>
 

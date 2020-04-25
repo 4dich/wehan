@@ -30,6 +30,7 @@
 	
 	<style>
 	.about-info{width:348px;}
+	.about-info p{font-size:12px;}
 	#fidListArea {
     width: 100%;
     height: 100%;

@@ -32,7 +32,11 @@
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
-
+	<style>
+	
+	.about-info{width:348px;}
+	.about-info p{font-size:12px;}
+	</style>
 </head>
 <body>
 	<!-- Page Preloder -->
@@ -57,11 +61,6 @@
 				<i class="fa fa-bars"></i>
 			</div>
 			<div class="header-social">
-				<!-- <a href=""><i class="fa fa-pinterest"></i></a>
-				<a href=""><i class="fa fa-facebook"></i></a>
-				<a href=""><i class="fa fa-twitter"></i></a>
-				<a href=""><i class="fa fa-dribbble"></i></a>
-                <a href=""><i class="fa fa-behance"></i></a> -->
                 <a href="fid_ch_recommendView.do" >추천피드</a>
                 <a href="fid_friendListView.do">친구피드</a>
                 <a href="fid_followView.do" style="color: red;">팔로우</a>
@@ -76,27 +75,23 @@
                         <h2 style="margin-left: 6px;">위대한 한걸음</h2>
                         <p style="padding-top: 15px;">THE GREAT ONE STEP</p>
                     </a>
-
+						
 					<div>
-						<input id="searchBox" class="searchBox" type="textarea" style="width: 300px; height: 50px; border-radius: 3px; border:3px solid #242424" placeholder="유저를 검색해주세요">
-						<img src="resources/images/main/search.png" id="site-btn2" class="site-btn2">
+						<input id="searchBox" class="searchBox" type="textarea" style="font-size:12px; padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 2px solid black;" placeholder="유저를 검색해주세요">
+						<div id="search" class="site-btn2" style="padding:5px 5px 5px 5px; width:45px;">
+						<img src="resources/images/main/search.png"  alt="" style="padding-left:10px;"></div>
 					</div>
 					<br><br>
 
 					<!-- 서브메뉴 -->
-					<div class="about-info">
+					<div class="about-info" style="margin-top:70px;">
 						<h2>팔로우</h2>
                         <!-- 감성글 작성 -->
-                        <p>내가 추가한 친구 리스트를 확인할 수 있습니다. <br>
-                        어떤 친구들을 팔로우하고 있는지 <br>
-                        확인해볼까요?
-                     </p>
+                        <p style="font-size: 12px; margin-top:20px;">내가 추가한 친구 리스트를 확인할 수 있습니다.<br>
+                     		  어떤 친구들을 팔로우하고 있는지 확인해볼까요?
+                    		 </p>
 					</div>
-					<ul class="contact-info">
-						<li>서울특별시 강남구 테해란로14길 6</li>
-						<li>남도빌딩 3F H반 T:1544-9970</li><br>
-						<li><a href="mailto:contactme@myemail.com">contactme@myemail.com</a></li>
-					</ul>
+					
                     
 
 					<!-- <a href="index.html" class="site-logo">
@@ -280,7 +275,7 @@
 		}
 		
 		
-		$('#site-btn2').click(function(){
+		$('#search').click(function(){
 			var searchText = document.getElementById("searchBox").value;
 			location.href="fid_followerSearch.do?searchText="+searchText;
 		});

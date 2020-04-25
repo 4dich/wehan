@@ -39,7 +39,7 @@
         margin-bottom: 40px;
     }
     .main-sidebar .mb-warp {
-        padding: 90px 95px 100px 145px;
+        padding: 120px 95px 100px 145px;
     }
     
     .grade{
@@ -332,22 +332,22 @@
 				<i class="fa fa-bars"></i>
 			</div>
 			<div class="header-social">
-                <a href="my_profileView.do">My Profile</a>
-                <a href="my_challengeView.do" style="color: red;">My Challenge</a>
-                <a href="my_diaryView.do">My Diary</a>
+                <a href="my_profileView.do">Profile</a>
+                <a href="my_challengeView.do" style="color: red;">Challenge</a>
+                <a href="my_diaryView.do">Diary</a>
                 <a href="getMsgList.do">Message</a>
 			</div>
 		</header>
 		<div class="site-content-warp">
 			<!-- Left Side section -->
 			<div class="main-sidebar">
-				<div class="mb-warp" style="text-align: center;">
+				<div class="mb-warp">
 
                     <a href="indexView.do" class="site-logo">
 						<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
-					<div id="lv" style="width: 350px; height: 470px; border: 1px solid gray; padding:20px; margin:auto; margin-top: -30px">
+					<div id="lv" style="width: 350px; height: 470px; border: 1px solid gray; padding:20px;  margin-top: -20px">
 						<div style="width: 300px; height:320px; margin:auto; background-image: url('resources/images/level/astro2.gif'); background-size: cover; border-radius: 15px;">
 							<img id="lv-img" src="">
 						</div>

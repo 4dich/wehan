@@ -36,6 +36,7 @@
 
     <style>
 		.about-info{width:348px;}
+		.about-info p{font-size:12px;}
         .textBox {
             width: 60%;
             height: 50%;

@@ -74,7 +74,7 @@
 					<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 				</a>
 			<!-- 서브메뉴 --><br><br>
-			<div class="about-info" style="margin:0 0 80px 0">
+			<div class="about-info" style="margin-top:120px;">
 				<h2>공지사항</h2>
 				<!-- 감성글 작성 -->
 				<p> 
@@ -82,10 +82,6 @@
 					당신의 위대한 한걸음을 위해 지켜주세요.<br>
 				</p>
 			</div>
-			<ul class="contact-info">
-				<li>서울특별시 강남구 테해란로14길 6</li>
-				<li>남도빌딩 3F H반 T:1544-9970</li><br>
-			</ul>
 					
 				</div>
 			</div>

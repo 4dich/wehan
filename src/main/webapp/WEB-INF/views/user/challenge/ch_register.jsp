@@ -60,19 +60,18 @@
                   <h2 style="margin-left: 6px;">위대한 한걸음</h2>
                   <p style="padding-top: 15px;">THE GREAT ONE STEP</p>
                </a>
-            <!-- 서브메뉴 -->
-                <div class="about-info" style="margin-left: 50px;">
-               <p style="font-size: 15px;">
-	                           나를 위한 새로운 도전을 만들 수 있어요.<br>
-	                           나와 같은 생각을 가진 사람들과<br>
-	                           또 내 의지를 붙잡아 줄 수 있는 사람들과<br> 
-                  <b>함께하는 도전</b>, 여기서 가능합니다.  
-               </p>
-            </div>
+            <!-- 서브메뉴 --><br><br>
+            <div class="about-info">
+						<p style="font-size: 12px; margin-top:20px;">
+			                            나의 도전에 관한 <b>상세 내용</b>입니다.
+			                            이 도전을 위해 얼마를 투자했는지,
+			                            이 도전을 언제부터 시작했는지 등의
+			                            모든 정보는 이 곳에서 확인가능합니다.
+                      </p>
+			</div>
 
-            <button class="site-btn sb-dark" style="margin-left: 35px; width: 280px; font-size: 15px;" type="button" onclick="location.href='chalList.do'">
+            <button class="site-btn sb-dark" style="font-size: 16px;  border-radius: 3px; width: 347px;" type="button" onclick="location.href='chalList.do'">
                  리스트 페이지로 가기
-               <img src="resouces/images/arrow-righ-3.png" alt="">
             </button>
             <br><br>
             <!-- <ul class="contact-info">

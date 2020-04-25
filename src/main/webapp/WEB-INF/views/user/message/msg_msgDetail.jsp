@@ -42,7 +42,10 @@
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
-
+	<style>
+		.about-info{width:348px;}
+		.about-info p{font-size:12px;}
+	</style>
 </head>
 <body>
 	<!-- Page Preloder -->
@@ -62,8 +65,8 @@
 			</div>
 			<div class="header-social">
 				<a href="my_profileView.do" >Profile</a>
-                <a href="my_challengeView.do">My Challenge</a>
-				<a href="my_diaryView.do">My Diary</a>
+                <a href="my_challengeView.do">Challenge</a>
+				<a href="my_diaryView.do">Diary</a>
 				<a href="msg_msgListView.do" style="color: red;">Message</a>
 			</div>
 		</header>
