@@ -74,7 +74,7 @@
 					<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 				</a>
 			<!-- 서브메뉴 --><br><br>
-			<div class="about-info" style="margin-top:120px;">
+			<div class="about-info" style="margin-top:100px; margin-left:0;">
 				<h2>공지사항</h2>
 				<!-- 감성글 작성 -->
 				<p> 

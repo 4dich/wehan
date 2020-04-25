@@ -34,7 +34,11 @@
 		<![endif]-->
 			
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
+	<style>
+		.about-info{width:348px;}
+		.about-info p{font-size:12px;}
+	
+	</style>
 </head>
 <body>
 	<!-- Page Preloder -->
@@ -66,8 +70,8 @@
 					<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 					<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 				</a>
-			<!-- 서브메뉴 -->
-			<div class="about-info">
+			<!-- 서브메뉴 --><br><br>
+			<div class="about-info" style="margin-top:100px; margin-left:0;">
 				<h2>공지사항</h2>
 				<!-- 감성글 작성 -->
 				<p>
@@ -75,11 +79,6 @@
 					당신의 위대한 한걸음을 위해 지켜주세요.<br>
 				 </p>
 			</div>
-			<ul class="contact-info">
-				<li>서울특별시 강남구 테해란로14길 6</li>
-				<li>남도빌딩 3F H반 T:1544-9970</li><br>
-				<li><a href="mailto:contactme@myemail.com">contactme@myemail.com</a></li>
-			</ul>
 					
 				</div>
 			</div>
