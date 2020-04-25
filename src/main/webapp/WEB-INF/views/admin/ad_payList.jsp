@@ -98,7 +98,6 @@
 					
 				<div class="blog-post-item">
 						<button style="margin-top: 12px;" onclick="refundSelect();">환불하기</button>
-						<button id="test2">테스트</button>
 					
 						<div id="searchArea">
 							<div id="searchSelect"> 

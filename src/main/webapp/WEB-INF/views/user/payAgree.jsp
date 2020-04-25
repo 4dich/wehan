@@ -20,8 +20,8 @@
 	<link rel="stylesheet" href="resources/css/owl.carousel.min.css"/>
 
 	<!-- Main Stylesheets -->
-	<link rel="stylesheet" href="resources/css/style.css"/>
 	<link rel="stylesheet" href="resources/css/admin_qna.css"/>
+	<link rel="stylesheet" href="resources/css/style.css"/>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
@@ -34,7 +34,9 @@
 			.policyname{margin: 40px 0 20px 0; margin-left: 8%;}
 			label{margin-bottom: 0;}
 			.site-btn{margin:30px; background-color: black; color: white; border: none;}
-			.agree{margin-left:60%; margin-top: 30px;}
+			.agree{margin-left:65%; margin-top: 30px;}
+			.about-info{width:348px; margin-left:0; margin-top:100px;}
+	.about-info p{font-size:12px;}
 		</style>
 		
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -72,6 +74,7 @@
 							<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 							<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 						</a>
+						<br><br>
                     <!-- 서브메뉴 -->
 					<div class="about-info">
 						<h2>결제하기</h2>
@@ -81,11 +84,6 @@
                            	 이 도전을 성공해 돈을벌어보세요,
                           	  도전을 성공해서 돈과 재미를 가지세요!  </p>
 					</div>
-					<ul class="contact-info">
-						<li>서울특별시 강남구 테해란로14길 6</li>
-						<li>남도빌딩 3F H반 T:1544-9970</li><br>
-						<li><a href="mailto:contactme@myemail.com">contactme@myemail.com</a></li>
-					</ul>
 					
 				</div>
 			</div>

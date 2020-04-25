@@ -103,8 +103,8 @@
 	       		
 	        <ul class="site-menu" style="padding-top:300px">
 	         	<!-- 유저 메인 이동 -->
-	            <li><a href="index.jsp">홈페이지 이동</a></li><br><br>
-	            <li><a href="qnaListView.do">문의사항</a></li><br><br>
+	            <li><a href="index.jsp">홈페이지 이동</a></li>
+	            <li><a href="qnaListView.do">문의사항</a></li>
 	            <!-- 관리자 공지사항 이동 -->
 	            <li><a href="ad_noticeList.do">관리자페이지 이동</a></li>
 	            <li><a href="logout.do">로그아웃</a></li>

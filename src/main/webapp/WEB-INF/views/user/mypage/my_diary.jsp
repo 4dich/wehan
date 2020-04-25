@@ -733,8 +733,6 @@ var events = [];
 					<button id='btnDelete'>삭제</button>
 				</div>
 			</div>
-			<div class="copyright"><p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
-            All rights reserved </p></div>
 		</div>
 			<script>
 				$('#modalX').click(function(){

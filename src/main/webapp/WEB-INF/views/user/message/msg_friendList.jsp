@@ -177,8 +177,6 @@
 			</div>
 			<!-- Page end -->
 		</div>
-		<div class="copyright"><p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
-            All rights reserved </p></div>
 		</div>
 		<!-- Main section end -->
 	<script>
