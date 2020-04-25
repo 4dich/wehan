@@ -127,9 +127,8 @@
                         </p>
                         
                     </div>
-                    <button class="site-btn sb-dark" style=" font-size: 16px;  border-radius: 3px; width: 347px;" type="button" onclick="join();">
+                    <button class="site-btn sb-dark" style="font-size: 16px;  border-radius: 3px; width: 347px;" type="button" onclick="join();">
                         	챌린지 등록하기
-                        <img src="resources/images/arrow-righ-3.png" alt="">
                     </button>
                     <script>
                     	function join() {

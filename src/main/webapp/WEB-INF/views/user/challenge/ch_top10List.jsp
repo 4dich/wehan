@@ -234,6 +234,8 @@
             padding: 16px 0 16px 18px;
             text-align: center;
         }
+        .about-info{width:348px;}
+        .about-info p{font-size:12px; margin-top:20px;}
     </style>
 </head>
 <body>
@@ -268,7 +270,7 @@
 					<!-- 챌린지 검색 -->
 					<form class="searchChallenge">
 	                    <div class="challenges-search">
-							<input type="text" style="padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 3px solid black;" placeholder="챌린지 이름 검색">
+							<input type="text" style="font-size:12px; padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 2px solid black;" placeholder="챌린지 이름 검색">
 	                        <a href="" class="site-btn2">
 	                            <img src="resources/images/main/search.png" style="padding-left: 10px;" alt="">
 	                        </a>
@@ -276,17 +278,16 @@
                     </form>
                     <br><br>
 				<!-- 서브메뉴 -->
-                <div class="about-info" style="margin-left: 50px;">
-					<p style="font-size: 15px;">
-						나를 위한 새로운 도전을 만들 수 있어요.<br>
-						나와 같은 생각을 가진 사람들과<br>
-						또 내 의지를 붙잡아 줄 수 있는 사람들과<br> 
-						<b>함께하는 도전</b>, 여기서 가능합니다.  
+                <div class="about-info">
+					<p>
+						나를 위한 <b>새로운 도전</b>을 만들 수 있어요.
+						나와 같은 생각을 가진 사람들과
+						또 내 의지를 붙잡아 줄 수 있는 사람들과
+						함께하는 도전 여기서 가능합니다.  
 					</p>
 				</div>
-				<button class="site-btn sb-dark" style="margin-left: 40px; width: 280px; font-size: 15px;" type="button" onclick="location.href='ch_registerView.do'">
+				<button class="site-btn sb-dark" style="font-size: 16px;  border-radius: 3px; width: 347px;" type="button" onclick="location.href='ch_registerView.do'">
                      	챌린지 등록하기
-                     <img src="resources/img/arrow-righ-3.png" alt="">
                  </button>
 				<br><br>
 				<!-- <ul class="contact-info">

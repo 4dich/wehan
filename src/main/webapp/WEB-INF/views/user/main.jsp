@@ -33,6 +33,7 @@
 	<![endif]-->
 	<style>
 		.about-info{width:348px;}
+		.about-info p{font-size:12px;}
 	</style>
 </head>
 <body>

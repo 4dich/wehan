@@ -34,7 +34,14 @@
 	<![endif]-->
 		
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
+	<style>
+		.about-info{width:348px;}
+		.about-info p{font-size:12px;}
+		.thArea {
+   			 border-bottom: 2px solid black;
+   			 }
+   		.questionsList td{padding:15px;}
+	</style>
 </head>
 <body>
 	<!-- Page Preloder -->
@@ -72,23 +79,18 @@
 					<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 					<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 				</a>
-			<!-- 서브메뉴 -->
-			<div class="about-info">
+			<!-- 서브메뉴 --><br><br>
+			<div class="about-info" style="margin:0 0 80px 0">
 				<h2>문의사항</h2>
 				<!-- 감성글 작성 -->
 				<p>위대한 한걸음에 궁금증이 생기신다면 <br>
 				언제든지 문의해주세요! </p>
 			</div>
-			<button class="site-btn sb-dark" style="width: 280px; font-size: 15px; margin-bottom: 40px;" type="button" onclick="location.href='questionsInsertView.do'">
+			<button class="site-btn sb-dark" style="margin-top:2px;font-size: 16px;  border-radius: 3px; width: 347px;" type="button" onclick="location.href='questionsInsertView.do'">
 				문의사항 등록하기
 				<images src="resources/images/arrow-righ-3.png" alt="">
 			</button>
 
-			<ul class="contact-info">
-				<li>서울특별시 강남구 테해란로14길 6</li>
-				<li>남도빌딩 3F H반 T:1544-9970</li><br>
-				<li><a href="mailto:contactme@myemail.com">contactme@myemail.com</a></li>
-			</ul>
 					
 				</div>
 			</div>
@@ -99,9 +101,6 @@
 					<h3 class="qnaText">문의사항</h3>
 					
 					<div class="blog-post-item">
-					<button class="site-btn sb-dark" style="width: 170px; font-size: 15px; margin-bottom: 40px;" type="button" onclick="location.href='questionsInsertView.do'">
-							등록하기							
-						</button>
 
 						<div id="searchArea">
 							<form action="searchQuestions.do">

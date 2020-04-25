@@ -36,6 +36,9 @@
 	<style>
 		.about-info{width:348px;}
 		.about-info p{font-size:12px;}
+		.thArea {
+   			 border-bottom: 2px solid black;
+   			 }
 	</style>
 </head>
 <body>
@@ -71,7 +74,7 @@
 					<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 				</a>
 			<!-- 서브메뉴 --><br><br>
-			<div class="about-info">
+			<div class="about-info" style="margin:0 0 80px 0">
 				<h2>공지사항</h2>
 				<!-- 감성글 작성 -->
 				<p> 
@@ -90,7 +93,7 @@
 			<!-- Page start -->
 			<div class="page-section blog-page">
 				<div class="blog-posts">
-					<h3 class="noticeText">공지사항</h3>
+					<h3 class="noticeText" style="text-align:center;">공지사항</h3>
 					
 					<div class="blog-post-item">
 
