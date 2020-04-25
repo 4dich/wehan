@@ -39,7 +39,8 @@
 			#file{
 				display: none;
 			}
-			
+			.about-info{width:348px;}
+		.about-info p{font-size:12px;}
 			.check{display: none; font-size: 14px;}
 			.c1{color:green;}
 			.c2{color:red;}
@@ -77,22 +78,27 @@
 			<div class="main-sidebar">
                     <!-- 로고 구역 -->
 					<div class="mb-warp">
-						<a href="index.html" class="site-logo">
+						<a href="indexView.do" class="site-logo">
 							<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 							<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 						</a>
-                    <!-- 서브메뉴 -->
+                     <br><br>
+					<!-- 서브메뉴 -->
 					<div class="about-info">
 						<h2>회사소개</h2>
-                        <!-- 감성글 작성 -->
-                        <p>"한 인간에게는 작은 한 걸음이지만, 인류에게는 위대한 도약이다. (One small step for a man, one giant leap for mankind.)”<br>
-							이 명언은 닐 암스트롱이 달 표면에 첫 발을 내딛고 한 말입니다.  </p>
+						<p style="font-size: 12px;">한 인간에게는 작은 한 걸음이지만, 인류에게는 위대한 도약<br>(One small step for a man, one giant leap for mankind.)<br>
+							이 명언은 닐 암스트롱이 달 표면에 첫 발을 내딛고 한 말입니다.
+							혼자선 힘들었던 계획들, 같은 목표의 사람들과 함께 해보세요.<br>
+						   	당신의 미래를 시작하기 위한 첫 걸음을 도와드릴게요.
+						</p>
 					</div>
 					<ul class="contact-info">
 						<li>서울특별시 강남구 테해란로14길 6</li>
-						<li>남도빌딩 3F H반 T:1544-9970</li><br>
-						<li><a href="mailto:contactme@myemail.com">contactme@myemail.com</a></li>
-					</ul>
+						<li>남도빌딩 3F H반 T:1544-9970</li>
+					</ul>		
+					<div class="copyright"><p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
+						All rights reserved </p>
+					</div>
 					
 				</div>
 			</div>
@@ -116,8 +122,8 @@
 						</div> -->
 						<div style="margin-top: 50px; margin-right: 20px;">
                             <div class="ch-register-pic"></div>
-                            <div id="View_area" style="height: 300px; width: 280px; dispaly: inline; border:1px solid;"></div>				
-								<br><br><label for="file">프로필 수정</label><input id="file" name="uploadFile" type="file" onchange="previewImage(this,'View_area')" style="margin-left: 50%;">
+                            <div id="View_area" style="margin-top:30px;height: 340px; width: 280px; dispaly: inline; border:1px solid;"></div>				
+								<br><br><label for="file" style="border:1px solid black; padding:10px; margin-left:94px; background-color:black; color:white; font-size:14px;">프로필 수정</label><input id="file" name="uploadFile" type="file" onchange="previewImage(this,'View_area')" style="margin-left: 50%;">
 							</div>
                         <div class="col-xl-6" style="margin-left: 20px;">
 							<div class="contact-text-warp">
@@ -144,10 +150,10 @@
                                             <span class="check c4">사용가능</span><span class="check c5">중복된 닉네임</span><span class="check c6">사용불가능한 닉네임</span>
                                             <input id="checkNick" type="hidden" value="0">
                                         </div>
-										<div class="col-lg-12">
+										<div class="col-lg-6">
                                             <input id="email" name="email" type="email" style="border-top: none; border-left: none; border-right: none;" placeholder="이메일">
                                         </div>
-										<div class="col-lg-12">
+										<div class="col-lg-6">
                                             <input id="birthDay" name="birthDay" type="text" style="border-top: none; border-left: none; border-right: none; " placeholder="생년월일">
                                         </div>
 									</div>
@@ -156,24 +162,24 @@
 						</div>
 						
 						<div class="col-lg-4">
-							<input id="bankName" name="bankName" type="text" style="height: 46px; font-size:14px; font-style:italic; border: 2px solid #e1e1e1; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 90%;" placeholder="은행명">
+							<input id="bankName" name="bankName" type="text" style="height: 46px; font-size:14px; font-style:italic; border: 1px solid #bbbbbb; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 90%;" placeholder="은행명">
 						</div>
 						<div class="col-lg-4">
-							<input id="accountHolder" name="accountHolder" type="text" style="height: 46px; font-size:14px; font-style:italic; border: 2px solid #e1e1e1; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 90%;" placeholder="예금주">
+							<input id="accountHolder" name="accountHolder" type="text" style="height: 46px; font-size:14px; font-style:italic; border: 1px solid #bbbbbb; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 90%;" placeholder="예금주">
 						</div>
 						<div class="col-lg-4">
-							<input id="accountNumber" name="accountNumber"type="text" style="height: 46px; font-size:14px; font-style:italic; border: 2px solid #e1e1e1; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 90%;" placeholder="계좌번호">
+							<input id="accountNumber" name="accountNumber"type="text" style="height: 46px; font-size:14px; font-style:italic; border: 1px solid #bbbbbb; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 90%;" placeholder="계좌번호">
 						</div>
 						 
 						<div class="col-lg-8" style="margin-top: 50px;">
-							<input id="address" name="address" type="text" style="height: 46px; font-size:14px; font-style:italic; border: 2px solid #e1e1e1; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 83%;" placeholder="주소"><button type="button" onclick="addrSearch();"style="margin-left: 10px;">주소검색</button>
+							<input id="address" name="address" type="text" style="height: 46px; font-size:14px; font-style:italic; border: 1px solid #bbbbbb; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 83%;" placeholder="주소"><button type="button" onclick="addrSearch();"style="margin-left: 10px;">주소검색</button>
 						</div>
 						<div class="col-lg-4" style="margin-top: 50px;">
-							<input id="phone" name="phone" type="text" style="height: 46px; font-size:14px; font-style:italic; border: 2px solid #e1e1e1; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 90%;" placeholder="전화번호">
+							<input id="phone" name="phone" type="text" style="height: 46px; font-size:14px; font-style:italic; border: 1px solid #bbbbbb; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 90%;" placeholder="전화번호">
 						</div>
 						<div style="margin-top: 50px;">
-							<input type="submit" value="회원가입" class="site-btn" style="width:20%; height: 80px; margin: 20px; margin-left: 300px;" >
-							<input type="button" value="취소하기" class="site-btn" style="width:20%; height: 80px;" onclick="location.href='login.do'">
+							<input type="submit" value="회원가입" class="site-btn sb-solid mr-3 mb-3" style="width:20%; height: 80px; margin: 20px; margin-left: 300px;" >
+							<input type="button" value="취소하기" class="site-btn sb-solid mr-3 mb-3" style="width:20%; height: 80px;" onclick="location.href='login.do'">
 							
 						</div>
 					</div>
