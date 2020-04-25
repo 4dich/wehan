@@ -42,6 +42,7 @@
 		tr{height: 58px;}
 		.blog-posts{height: 800px;}
 		a{text-decoration: none; color: black;}
+		.about-info{margin:0;}
 	</style>
 </head>
 <body>

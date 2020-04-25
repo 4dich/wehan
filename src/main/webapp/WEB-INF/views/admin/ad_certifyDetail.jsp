@@ -44,8 +44,8 @@
 	.infoMenu{
 		list-style: none;
 		color: black;
-		
 	}
+	.about-info{margin:0;}
 	</style>
 
 </head>

@@ -33,6 +33,7 @@
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 	<style>
+		.about-info{margin:0;}
 		.black{
 			display: none; /* Hidden by default */
             position: fixed; /* Stay in place */

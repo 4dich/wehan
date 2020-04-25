@@ -35,7 +35,7 @@
 
 	<style>
 		.infoMenu{font-size: 16px;}
-		
+		.about-info{margin:0;}
 		button{font-size:14px;}
 		#searchArea{width: 316px; margin-top: 0px; }
 		tr{height: 58px;}

@@ -45,6 +45,7 @@
             input:disabled{
             background-color:white;
             }
+            .about-info{margin:0;}
 		</style>
 
 

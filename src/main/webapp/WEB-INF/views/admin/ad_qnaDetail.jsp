@@ -35,6 +35,7 @@
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 	<style>
+		.about-info{margin:0;}
 		.infoMenu{font-size: 16px;}
 		button{font-size:14px;}
 		#searchArea{width: 316px; margin-top: 0px; }

@@ -32,6 +32,7 @@
 		#searchArea{width: 316px; margin-top: 0px; }
 		tr{height: 58px;}
 		.blog-posts{height: 800px;}
+		.about-info{margin:0;}
 	</style>
 		
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
