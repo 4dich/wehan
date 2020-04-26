@@ -69,8 +69,9 @@ public class PayController {
 	}
 	
 	@RequestMapping("payinfo.do")
-	public ModelAndView payinfo(Challenge ch,String chName,int price,String chId, @RequestParam(value="viewPage",required=false,defaultValue="0")int viewPage
-			,ModelAndView mv,HttpServletRequest request) {
+	public ModelAndView payinfo(Challenge ch,String chName,int price,String chId, 
+			@RequestParam(value="viewPage",required=false,defaultValue="0")int viewPage,
+			ModelAndView mv,HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
 		Member m = (Member)session.getAttribute("loginUser");
