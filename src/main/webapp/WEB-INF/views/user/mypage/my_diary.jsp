@@ -44,6 +44,7 @@
     <link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
 	<link rel="stylesheet" href='resources/packages/custom/css/bootstrap-datetimepicker.min.css' />
     <link rel="stylesheet" href="resources/css/style.css"/>
+    <link rel="stylesheet" href="resources/css/font.css"/>
     <script src="resources/packages/custom/js/moment.min.js"></script>   
     <script src="resources/packages/custom/js/bootstrap-datetimepicker.min.js"></script>
     <style>

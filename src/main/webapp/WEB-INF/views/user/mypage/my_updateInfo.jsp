@@ -24,7 +24,7 @@
 	<!-- <link rel="stylesheet" href="resources/css/main.css"/> -->
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="resources/css/style.css"/>
-	
+	<link rel="stylesheet" href="resources/css/font.css"/>
 	<!-- JQuery -->
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 

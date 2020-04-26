@@ -26,7 +26,7 @@
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="resources/css/fidRecommend.css"/>
 	<link rel="stylesheet" href="resources/css/style.css"/>
-	
+	<link rel="stylesheet" href="resources/css/font.css"/>	
 	<style>
 	#fidListArea {
     width: 100%;

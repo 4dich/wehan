@@ -27,7 +27,7 @@
 
    <!-- 인증사진 등록 CSS -->
    <link rel="stylesheet" href="resources/css/challengeRegister_sr.css"/>
-   
+   <link rel="stylesheet" href="resources/css/font.css"/>
    <!-- 회원전용 사이드바 CSS -->
    <!-- <link rel="stylesheet" href="resources/css/main.css"/> -->
    

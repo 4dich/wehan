@@ -33,7 +33,7 @@
 
 	<!-- 메시지 CSS -->
 	<link rel="stylesheet" href="resources/css/messageroom-sr.css"/>
-	
+	<link rel="stylesheet" href="resources/css/font.css"/>	
 	<!-- 회원전용 사이드바 CSS -->
 	<!-- <link rel="stylesheet" href="../resources/css/main.css"/> -->
 

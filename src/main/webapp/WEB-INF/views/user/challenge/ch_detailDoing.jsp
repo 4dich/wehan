@@ -34,7 +34,7 @@
 	<!-- <link rel="stylesheet" href="../resources/css/left_section.css"/>
 	<link rel="stylesheet" href="../resources/css/main.css"/> -->
 	<link rel="stylesheet" href="resources/css/style.css"/>	
-
+	<link rel="stylesheet" href="resources/css/font.css"/>
 	<style>
 		.contents-detail {
 			width: 100%; 
@@ -42,8 +42,7 @@
 			padding: 0 22px; 
 			margin-bottom: 35px; 
 			font-size: 20px;
-			font-family: 'Nanum Gothic Coding', monospace;
-			border: 2px solid #e1e1e1; 
+			border: 1px solid #bbbbbb; 
 			border-top: none; 
 			border-left: none; 
 			border-right: none;
@@ -55,8 +54,7 @@
 			padding: 10px 22px 10px 22px; 
 			margin-bottom: 15px; 
 			font-size: 20px; 
-			font-family: 'Nanum Gothic Coding', monospace;
-			border: 2px solid #e1e1e1; 
+			border: 1px solid #bbbbbb; 
 		}
 		.about-info{width:348px;}
 		.about-info p{font-size:12px;}

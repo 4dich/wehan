@@ -24,7 +24,7 @@
 	
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="resources/css/style.css"/>	
-
+	<link rel="stylesheet" href="resources/css/font.css"/>
 
 </head>
 <body>

@@ -25,6 +25,7 @@
 	<!-- Main Stylesheets -->
 	<!-- <link rel="stylesheet" href="resources/css/main.css"/> -->
 	<link rel="stylesheet" href="resources/css/style.css"/>
+	<link rel="stylesheet" href="resources/css/font.css"/>
 	<script src="resources/js/jquery-3.2.1.min.js"></script>
 
 	<!--[if lt IE 9]>

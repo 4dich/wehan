@@ -28,7 +28,7 @@
 	<!-- <link rel="stylesheet" h="../resources/css/left_section.css"/> -->
 	<!-- <link rel="stylesheet" href="../resources/css/main.css"/> -->
 	<link rel="stylesheet" href="resources/css/style.css"/>
-
+	<link rel="stylesheet" href="resources/css/font.css"/>
 	<!-- 스타일 -->
 	<style>
         .textBox {

@@ -27,7 +27,7 @@
 	<link rel="stylesheet" href="resources/css/qna.css"/>
 	<!-- <link rel="stylesheet" href="resources/css/left_section.css"/> -->
 	<link rel="stylesheet" href="resources/css/style.css"/>
-
+	<link rel="stylesheet" href="resources/css/font.css"/>
 	<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -60,11 +60,6 @@
 				<i class="fa fa-bars"></i>
 			</div>
 			<div class="header-social">
-				<!-- <a href=""><i class="fa fa-pinterest"></i></a>
-				<a href=""><i class="fa fa-facebook"></i></a>
-				<a href=""><i class="fa fa-twitter"></i></a>
-				<a href=""><i class="fa fa-dribbble"></i></a>
-                <a href=""><i class="fa fa-behance"></i></a> -->
                 <a href="noticeList.do">공지사항</a>
                 <a href="qnaListView.do" style="color: red;">문의사항</a>
 			</div>
@@ -80,7 +75,7 @@
 					<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 				</a>
 			<!-- 서브메뉴 --><br><br>
-			<div class="about-info" style="margin:0 0 80px 0">
+			<div class="about-info" style="margin:0 0 80px 0;">
 				<h2>문의사항</h2>
 				<!-- 감성글 작성 -->
 				<p>위대한 한걸음에 궁금증이 생기신다면 <br>
@@ -88,7 +83,6 @@
 			</div>
 			<button class="site-btn sb-dark" style="margin-top:2px;font-size: 16px;  border-radius: 3px; width: 347px;" type="button" onclick="location.href='questionsInsertView.do'">
 				문의사항 등록하기
-				<images src="resources/images/arrow-righ-3.png" alt="">
 			</button>
 
 					

@@ -28,7 +28,7 @@
 	<link rel="stylesheet" href="resources/css/style.css"/>
 	<link rel="stylesheet" href="resources/css/admin_qna.css"/>
 	<link rel="stylesheet" href="resources/css/admin_noticeInsert.css"/>
-
+	<link rel="stylesheet" href="resources/css/font.css"/>
 	<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -43,6 +43,8 @@
 		tr{height: 58px;}
 		.blog-posts{height: 800px;}
 		a{text-decoration: none;}
+		.about-info{width:348px;}
+		.about-info p{font-size:12px;}
 	</style>
 </head>
 <body>
@@ -72,26 +74,13 @@
                     <p style="padding-top: 15px;">THE GREAT ONE STEP</p>
                 </a>
 
-					<!-- <div class="about-info">
-						<h2>문의사항</h2>
-						<a href="ad_payListView.do" id="ad_pay" class="infoMenu">결제정보</a><br><br>
-						<a href="ad_profileListView.do" id="ad_profile" class="infoMenu">회원정보</a><br><br>
-						<a href="ad_challengeListView.do" id="ad_challenge" class="infoMenu">챌린지 정보</a><br><br>
-						<a href="ad_certifyView.do" id="ad_certify" class="infoMenu">인증글 정보</a><br><br>
-						<a href="ad_qnaListView.do" id="ad_questions" class="infoMenu">문의사항</a><br><br>
-					</div> -->
-					<!-- 서브메뉴 -->
-					<div class="about-info">
-						<h2>문의사항</h2>
-						<!-- 감성글 작성 -->
-						<p>위대한 한걸음에 궁금증이 생기신다면 <br>
-						언제든지 문의해주세요! </p>
-					</div>
-					<ul class="contact-info">
-						<li>서울특별시 강남구 테해란로14길 6</li>
-						<li>남도빌딩 3F H반 T:1544-9970</li><br>
-						<li><a href="mailto:contactme@myemail.com">contactme@myemail.com</a></li>
-					</ul>		
+				<!-- 서브메뉴 --><br><br>
+			<div class="about-info" style="margin:100px 0 80px 0;">
+				<h2>문의사항</h2>
+				<!-- 감성글 작성 -->
+				<p>위대한 한걸음에 궁금증이 생기신다면 <br>
+				언제든지 문의해주세요! </p>
+			</div>
 					
 				</div>
 			</div>

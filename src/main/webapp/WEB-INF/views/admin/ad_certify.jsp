@@ -26,6 +26,7 @@
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="resources/css/style.css"/>
 	<link rel="stylesheet" href="resources/css/admin_qna.css"/>
+	<link rel="stylesheet" href="resources/css/font.css"/>
 	<style>
 		.infoMenu{font-size: 16px;}
 		button{font-size:14px;}

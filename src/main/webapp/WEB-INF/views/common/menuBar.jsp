@@ -8,8 +8,8 @@
 <title>Insert title here</title>
 <!-- JQuery -->
 	<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
+	<link rel="stylesheet" href="resources/css/font.css"/>
 	<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script> 
-	
 	<style>
 		.userdiv{
 			margin-bottom: 60px;

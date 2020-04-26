@@ -27,7 +27,7 @@
 	<link rel="stylesheet" href="resources/css/style.css"/>
 	<link rel="stylesheet" href="resources/css/category.css"/>
 	<link rel="stylesheet" href="resources/css/fidRecommend.css"/>
-	
+	<link rel="stylesheet" href="resources/css/font.css"/>	
 	<style>
 	.about-info{width:348px;}
 	.about-info p{font-size:12px;}
