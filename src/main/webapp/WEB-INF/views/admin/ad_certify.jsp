@@ -10,7 +10,7 @@
 	<meta name="keywords" content="industry, html">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
-	<!-- Favicon -->
+	<!-- Favicon --> 
 	<link href="resources/images/favicon.ico" rel="shortcut icon"/>
 
 	<!-- Google font -->
