@@ -201,7 +201,7 @@ public class CertifyController {
 
 			HttpSession session = request.getSession();
 			Member m = (Member)session.getAttribute("loginUser");
-			Follow f = new Follow(host,follower);
+			Follow f = new Follow(follower,host);
 			
 			
 			if(m != null) {
@@ -487,6 +487,20 @@ public class CertifyController {
 				mv.addObject("msg", "오류입니다").setViewName("common/errorPage");
 			}	
 			
+			return mv;
+		}
+		
+	
+		@RequestMapping("ch_certifyDel.do")
+		public ModelAndView certifyDel(ModelAndView mv,String chId,String ceId){
+			int result = ceService.certifyDel(ceId);
+			
+			if(result > 0) {
+				mv.addObject("chId",chId)
+				.setViewName("redirect:ch_certifyList.do");
+			}else {
+				mv.addObject("msg", "오류입니다").setViewName("common/errorPage");
+			}
 			return mv;
 		}
 		
