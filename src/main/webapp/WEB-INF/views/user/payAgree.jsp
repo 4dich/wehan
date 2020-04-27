@@ -488,7 +488,6 @@
 		
 		
 		function paynow(){
-			var msg
 		if( $("input:radio[class='ay']:checked").length == 4){
 			IMP.request_pay({
 				merchant_uid : 'merchant_' + new Date().getTime(),
@@ -498,12 +497,10 @@
 				buyer_email : email,
 				buyer_name : userName,
 				buyer_tel : phone,
-				
-			}, function (rsp) { // callback
+			}, function (rsp) { 
 				console.log(rsp);
 				console.log(rsp.success);
-				if (rsp.success) { // 결제 성공 시: 결제 승인 또는 가상계좌 발급에 성공한 경우
-			        // jQuery로 HTTP 요청
+				if (rsp.success) { 
 			        $.ajax({
 			        	url:"payments.do",
 			        	type:"post",

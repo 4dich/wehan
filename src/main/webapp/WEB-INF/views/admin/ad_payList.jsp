@@ -202,11 +202,9 @@
 	<script>
 	
 		$('.thArea').children().eq(7).click(function(){
-			var reIdx = $('#test').val();
-			$('#test').val(1 - $('#test').val());
-			console.log(reIdx);
+			var reIdx = $('#test').val(); // 기본값 1
+			$('#test').val(1 - $('#test').val()); // 클릭 시 값이 1 -> 0 - > 1순으로 순환함
 			var currentPage = 1;
-			
 			refundYn(reIdx,currentPage);
 		});
 		
