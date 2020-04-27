@@ -26,9 +26,10 @@
 	<link rel="stylesheet" href="resources/css/owl.carousel.min.css"/>
 
 	<!-- Main Stylesheets -->
-	<link rel="stylesheet" href="resources/css/style.css"/>
 	<link rel="stylesheet" href="resources/css/admin_qna.css"/>
-
+	<link rel="stylesheet" href="resources/css/style.css"/>
+	<link rel="stylesheet" href="resources/css/font.css"/>
+	<link rel="stylesheet" href="resources/css/adminmargin.css"/>
 	<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -156,10 +157,10 @@
 						</div>
 						<div>
 						<br><br><br><br><br><br>
-							<button type="button" id="refund" class="site-btn" style="width:20%; height: 80px; margin: 20px; margin-left: 300px;">
+							<button type="button" id="refund" class="site-btn sb-solid mr-3 mb-3" style="width:20%; height: 80px; margin: 20px; margin-left: 300px;">
 								환불하기
 							</button>
-							<button class="site-btn" style="width:20%; height: 80px;" onclick="location.href='paylist.do'">
+							<button class="site-btn sb-solid mr-3 mb-3" style="width:20%; height: 80px;" onclick="location.href='paylist.do'">
 								취소하기
 							</button>
 					</div>

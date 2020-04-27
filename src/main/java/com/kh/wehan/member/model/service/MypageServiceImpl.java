@@ -98,4 +98,9 @@ public class MypageServiceImpl implements MypageService {
 	public int updateDiaryDrag(Diary di) {
 		return myDao.updateDiaryDrag(di);
 	}
+
+	@Override
+	public ArrayList<Member> selectListFollowing(String userId) {
+		return myDao.selectListFollowing(userId);
+	}
 }

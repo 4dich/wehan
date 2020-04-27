@@ -26,7 +26,7 @@
 	<!-- Main Stylesheets -->
     <link rel="stylesheet" href="resources/css/follow.css"/>
     <link rel="stylesheet" href="resources/css/style.css"/>
-
+	<link rel="stylesheet" href="resources/css/font.css"/>
 
 	<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -71,7 +71,7 @@
 			<div class="main-sidebar">
 				<div class="mb-warp">
 
-                    <a href="index.html" class="site-logo">
+                    <a href="indexView.do" class="site-logo">
                         <h2 style="margin-left: 6px;">위대한 한걸음</h2>
                         <p style="padding-top: 15px;">THE GREAT ONE STEP</p>
                     </a>
@@ -94,7 +94,7 @@
 					
                     
 
-					<!-- <a href="index.html" class="site-logo">
+					<!-- <a href="indexView.do" class="site-logo">
 						<h2>Nissa</h2>
 						<p>Photography Studio</p>
 					</a>

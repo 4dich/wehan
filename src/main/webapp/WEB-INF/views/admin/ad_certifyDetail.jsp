@@ -32,7 +32,8 @@
 
 	<!-- 피드 상세보기 CSS -->
 	<link rel="stylesheet" href="resources/css/fidDetail-sr.css"/>
-	
+	<link rel="stylesheet" href="resources/css/font.css"/>
+	<link rel="stylesheet" href="resources/css/adminmargin.css"/>
 	<!-- 회원전용 사이드바 CSS -->
 	<!-- <link rel="stylesheet" href="resources/css/main.css"/> -->
 	

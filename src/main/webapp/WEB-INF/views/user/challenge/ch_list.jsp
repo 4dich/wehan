@@ -33,7 +33,7 @@
    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     
 	<link rel="stylesheet" href="resources/css/category.css"/>
-
+	<link rel="stylesheet" href="resources/css/font.css"/>
     <style>
 		.about-info{width:348px;}
 		.about-info p{font-size:12px;}

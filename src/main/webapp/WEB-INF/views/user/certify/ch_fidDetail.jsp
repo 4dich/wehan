@@ -30,7 +30,7 @@
 
 	<!-- 피드 상세보기 CSS -->
 	<link rel="stylesheet" href="resources/css/fidDetail-sr.css"/>
-	
+	<link rel="stylesheet" href="resources/css/font.css"/>
 	<!-- 회원전용 사이드바 CSS -->
 	<!-- <link rel="stylesheet" href="resources/css/main.css"/> -->
 	
@@ -55,6 +55,8 @@
 .crId{
 	display: none;
 }
+.about-info{width:348px;}
+	.about-info p{font-size:12px;}
 </style>
 </head>
 <body>
@@ -79,23 +81,19 @@
 			<div class="main-sidebar">
                     <!-- 로고 구역 -->
 				<div class="mb-warp">
-					<a href="index.html" class="site-logo">
+					<a href="indexView.do" class="site-logo">
 						<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
+					<br><br>
                     <!-- 서브메뉴 -->
-					<div class="about-info">
+					<div class="about-info" style="margin-top:100px;">
 						<h2>FID</h2>
 						<p>피드관련<br>
 							인증사진이 한장씩 쌓여<br>
 							당신의 위대한 내일이 됩니다.												
 						</p>
 					</div>
-					<ul class="contact-info">
-						<li>서울특별시 강남구 테해란로14길 6</li>
-						<li>남도빌딩 3F H반 T:1544-9970</li><br>
-						<li><a href="mailto:contactme@myemail.com">contactme@myemail.com</a></li>
-					</ul>
 				</div>
 			</div>
 			<!-- Left Side section end -->

@@ -35,7 +35,7 @@
 
 	<!-- 인증사진 등록 CSS -->
 	<link rel="stylesheet" href="resources/css/challengeRegister_sr.css"/>
-	
+	<link rel="stylesheet" href="resources/css/font.css"/>
 	<!-- 회원전용 사이드바 CSS -->
 	<!-- <link rel="stylesheet" href="resources/css/main.css"/> -->
 	
@@ -43,7 +43,10 @@
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
-
+	<style>
+	.about-info{width:348px;}
+	.about-info p{font-size:12px;}
+	</style>
 </head>
 <body>
 	<!-- Page Preloder -->
@@ -68,12 +71,13 @@
 			<div class="main-sidebar">
 				 <!-- 로고 구역 -->
 				 <div class="mb-warp">
-					<a href="index.html" class="site-logo">
+					<a href="indexView.do" class="site-logo">
 						<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
+					<br><br>
 					<!-- 서브메뉴 -->
-					<div class="about-info">
+					<div class="about-info" style="margin-top:100px;">
 						<h2>인증사진 등록</h2>
 						<p>챌린지 인증기준을 확인하고 <br>
 							챌린지 인증 사진을 등록해보세요. <br>
@@ -81,11 +85,6 @@
 							당신의 미래를 바꾸는 습관이 될 거에요.<br>					
 						</p>
 					</div>
-					<ul class="contact-info">
-						<li>서울특별시 강남구 테해란로14길 6</li>
-						<li>남도빌딩 3F H반 T:1544-9970</li><br>
-						<li><a href="mailto:contactme@myemail.com">contactme@myemail.com</a></li>
-					</ul>
 				</div>
 			</div>
 			<!-- Left Side section end -->
@@ -166,7 +165,7 @@
 						</div>
 					</div>
 				</form>	
-					
+					</div>
 				</div>
 			</div>
 			<!-- Page end -->

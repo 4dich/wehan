@@ -26,13 +26,16 @@
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="resources/css/ch_confirmPhotoList.css"/>
 	<link rel="stylesheet" href="resources/css/style.css"/>	
-	
+	<link rel="stylesheet" href="resources/css/font.css"/>
 
 	<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
-
+	<style>
+	.about-info{width:348px;}
+	.about-info p{font-size:12px;}
+	</style>
 </head>
 <body>
 	<!-- Page Preloder -->
@@ -50,8 +53,6 @@
 			<div class="nav-switch menuIcon msgCount">
 				<i class="fa fa-bars"></i>
 			</div>
-			<div class="header-social">
-			</div>
 		</header>
 
 
@@ -60,34 +61,25 @@
 			<div class="main-sidebar">
 				<!-- 로고 구역 -->
 				<div class="mb-warp">
-					<a href="index.html" class="site-logo">
+					<a href="indexView.do" class="site-logo">
 						<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
 
-                   <!--  <div class="challenges-search">
-						<input type="textarea" style="padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 3px solid black;" placeholder="챌린지 검색">
-                        <a href="#" class="site-btn2">
-						<img src="resources/images/main/search.png" alt=""></a>
-                    </div> -->
-                    <!-- <div class="challenges-search">
-						<input type="textarea" style="padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 3px solid black;" placeholder="챌린지 검색">
-                        <a href=""><img src="img/arrow-righ-3.png" style="padding-left: 10px;" alt=""></a>
-                    </div> -->
                     <br><br>
 					<!-- 서브메뉴 -->
 					<div class="about-info">
 						<h2>인증사진리스트</h2>
-						<p>"내가 도전하는 챌린지의 <b>인증사진리스트</b>입니다.<br>
-							같이 도전하는 챌린져들의 인증샷을 <br>
-							확인할 수 있으며, 나의 인증샷을 올려 <br>
+						<p style="font-size: 12px; margin-top:20px;">
+						"내가 도전하는 챌린지의 <b>인증사진리스트</b>입니다.
+							같이 도전하는 챌린져들의 인증샷을 
+							확인할 수 있으며, 나의 인증샷을 올려 
 							챌린지를 활성화 시켜보세요"
 						</p>
 					</div>
 					                    
-					<button id="challengeBack" class="site-btn sb-dark" style="margin-left: 15px; width: 280px; font-size: 15px;" type="button">
+					<button id="challengeBack" class="site-btn sb-dark" style="font-size: 16px;  border-radius: 3px; width: 347px;" type="button">
 						챌린지로 돌아가기
-						<img src="resources/images/arrow-righ-3.png" alt="">
 					</button>
 					<!-- <ul class="contact-info">
 						<li>1525  Boring Lane, Los Angeles, CA</li>

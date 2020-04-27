@@ -31,7 +31,7 @@
 
 	<!-- 메시지 CSS -->
 	<link rel="stylesheet" href="resources/css/message-sr.css"/>
-
+	<link rel="stylesheet" href="resources/css/font.css"/>
 	<!-- 회원전용 사이드바 CSS -->
 	<!-- <link rel="stylesheet" href="../resources/css/main.css"/> -->
 
@@ -74,7 +74,7 @@
 			<div class="main-sidebar">
 				 <!-- 로고 구역 -->
 				 <div class="mb-warp">
-					<a href="index.html" class="site-logo">
+					<a href="indexView.do" class="site-logo">
 						<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
@@ -195,8 +195,6 @@
 			</div>
 			<!-- Page end -->
 		</div>
-		<div class="copyright"><p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
-            All rights reserved </p></div>
 		</div>
 		<!-- Main section end -->
 	

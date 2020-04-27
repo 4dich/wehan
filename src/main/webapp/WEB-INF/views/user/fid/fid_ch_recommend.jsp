@@ -27,7 +27,7 @@
 	<link rel="stylesheet" href="resources/css/style.css"/>
 	<link rel="stylesheet" href="resources/css/category.css"/>
 	<link rel="stylesheet" href="resources/css/fidRecommend.css"/>
-	
+	<link rel="stylesheet" href="resources/css/font.css"/>	
 	<style>
 	.about-info{width:348px;}
 	.about-info p{font-size:12px;}
@@ -81,7 +81,7 @@
 			<div class="main-sidebar">
 				<!-- 로고 구역 -->
 				<div class="mb-warp">
-					<a href="index.html" class="site-logo">
+					<a href="indexView.do" class="site-logo">
 						<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
@@ -127,12 +127,12 @@
 
 						<!-- 카테고리 -->
 						<div id="category">
-							<div class="ca">건강</div>
-							<div class="ca">취미</div>
-							<div class="ca">자기계발</div>
-							<div class="ca">경제</div>
-							<div class="ca">생활</div>
-							<div class="ca">그외</div>
+							<div class="ca"><input class="category" type="hidden" value="health">건강</div>
+							<div class="ca"><input class="category" type="hidden" value="hobby">취미</div>
+							<div class="ca"><input class="category" type="hidden" value="motivated">자기계발</div>
+							<div class="ca"><input class="category" type="hidden" value="economy">경제</div>
+							<div class="ca"><input class="category" type="hidden" value="life"">생활</div>
+							<div class="ca"><input class="category" type="hidden" value="etc">그외</div>
 						</div>
 
 						
@@ -264,7 +264,7 @@
 		});	
 		
 		function list(currentPage,index){
-			var category = $('#category').children().eq(index).text();
+			var category = $('.category').eq(index).val();
 			var serachTitle = $('#searchTitle').val();
 			
 			if(index != null){

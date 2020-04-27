@@ -30,10 +30,11 @@
 	<link rel="stylesheet" href="resources/css/owl.carousel.min.css"/>
 
 	<!-- Main Stylesheets -->
-	<link rel="stylesheet" href="resources/css/style.css"/>
+	<link rel="stylesheet" href="resources/css/jh-css.css"/>
 	<link rel="stylesheet" href="resources/css/admin_qna.css"/>
-	
-	
+	<link rel="stylesheet" href="resources/css/style.css"/>
+	<link rel="stylesheet" href="resources/css/font.css"/>
+	<link rel="stylesheet" href="resources/css/adminmargin.css"/>
 	<style>
 		.about-info{margin:0;}
 		.infoMenu{font-size: 16px;}
@@ -66,8 +67,7 @@
 			padding: 0 22px; 
 			margin-bottom: 35px; 
 			font-size: 20px;
-			font-family: 'Nanum Gothic Coding', monospace;
-			border: 2px solid #e1e1e1; 
+			border: 1px solid #bbbbbb; 
 			border-top: none; 
 			border-left: none; 
 			border-right: none;
@@ -79,7 +79,6 @@
 			padding: 10px 22px 10px 22px; 
 			margin-bottom: 15px; 
 			font-size: 20px; 
-			font-family: 'Nanum Gothic Coding', monospace;
 			border: 2px solid #e1e1e1; 
 		}
 		
@@ -110,7 +109,7 @@
 			<div class="main-sidebar">
 				<!-- 로고구역 -->		
 				<div class="mb-warp">
-					<a href="homepage/index.html" class="site-logo">
+					<a href="indexView.do" class="site-logo">
 						<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
@@ -160,11 +159,11 @@
 										<input type="hidden" name="chPeopleCount" value="${chal.chPeopleCount}">
 										
 											<div class="col-lg-12 message-body">
-												<div class="contents-detail" style="font-size:30px; display:inline-flex;" name = "chName" value="${ chal.chName }">
+												<div style="font-size:30px; display:inline-flex;">
 													<strong>${ chal.chName }</strong>
-													<h5 style="margin-top:13px" name="category" value="${ chal.category }">
+													<h5 style="margin-top:13px">
 													<c:if test='${ chal.category eq "건강" or chal.category eq "health"}'>
-														<span class="health" >건강</span>
+														<span class="health">건강</span>
 													</c:if>
 													<c:if test='${ chal.category eq "자기개발" or chal.category eq "motivated" or chal.category eq "자기계발"}'>
 														<span class="motivated">자기개발</span>
@@ -183,6 +182,7 @@
 													</c:if>	
 													</h5>		
 												</div>
+												<br><br>
 											</div>
 											<div class="col-lg-12">
 												<div class="contents-detail">
@@ -221,7 +221,7 @@
 													모인 금액 : <strong><span id="tPrice"></span> 원</strong>
 												</div>
 											</div>
-											<br><br><br><br>
+											<br><br><br>
 											<div class="col-lg-12">
 												<div class="contents-detail2" name="chContent" value="${ chal.chContent }">
 													${ chal.chContent }

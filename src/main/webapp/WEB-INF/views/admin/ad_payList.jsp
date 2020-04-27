@@ -27,7 +27,8 @@
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="resources/css/style.css"/>
 	<link rel="stylesheet" href="resources/css/admin_qna.css"/>
-
+	<link rel="stylesheet" href="resources/css/font.css"/>
+	<link rel="stylesheet" href="resources/css/adminmargin.css"/>
 	<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -98,7 +99,6 @@
 					
 				<div class="blog-post-item">
 						<button style="margin-top: 12px;" onclick="refundSelect();">환불하기</button>
-						<button id="test2">테스트</button>
 					
 						<div id="searchArea">
 							<div id="searchSelect"> 
@@ -202,11 +202,9 @@
 	<script>
 	
 		$('.thArea').children().eq(7).click(function(){
-			var reIdx = $('#test').val();
-			$('#test').val(1 - $('#test').val());
-			console.log(reIdx);
+			var reIdx = $('#test').val(); // 기본값 1
+			$('#test').val(1 - $('#test').val()); // 클릭 시 값이 1 -> 0 - > 1순으로 순환함
 			var currentPage = 1;
-			
 			refundYn(reIdx,currentPage);
 		});
 		

@@ -27,7 +27,8 @@
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="resources/css/style.css"/>
 	<link rel="stylesheet" href="resources/css/admin_qna.css"/>
-
+	<link rel="stylesheet" href="resources/css/font.css"/>
+	<link rel="stylesheet" href="resources/css/adminmargin.css"/>
 	<style>
 		.about-info{margin:0;}
 		.infoMenu{font-size: 16px;}
@@ -62,7 +63,7 @@
 			<div class="main-sidebar">
 				<!-- 로고구역 -->		
 				<div class="mb-warp">
-					<a href="homepage/index.html" class="site-logo">
+					<a href="indexView.do" class="site-logo">
 						<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>

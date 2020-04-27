@@ -26,7 +26,7 @@
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="resources/css/notice.css"/>
 	<link rel="stylesheet" href="resources/css/style.css"/>
-
+	<link rel="stylesheet" href="resources/css/font.css"/>
 	<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -74,7 +74,7 @@
 					<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 				</a>
 			<!-- 서브메뉴 --><br><br>
-			<div class="about-info" style="margin-top:120px;">
+			<div class="about-info" style="margin-top:100px; margin-left:0;">
 				<h2>공지사항</h2>
 				<!-- 감성글 작성 -->
 				<p> 

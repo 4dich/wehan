@@ -31,9 +31,14 @@
 
    <!-- 달력 라이브러리 수정  -->
    <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css"/>  
+   <link rel="stylesheet" href="resources/css/font.css"/>
    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  
    <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>  
-    
+   <style>
+   		.about-info{width:348px;}
+		.about-info p{font-size:12px;}
+		input{border:1px solid #bbbbbb; color:#696969;}
+   </style>
 </head>
 <body>
     <!-- Page Preloder -->
@@ -56,13 +61,13 @@
          <div class="main-sidebar">
             <!-- 로고 구역 -->
             <div class="mb-warp">
-               <a href="index.html" class="site-logo">
+               <a href="indexView.do" class="site-logo">
                   <h2 style="margin-left: 6px;">위대한 한걸음</h2>
                   <p style="padding-top: 15px;">THE GREAT ONE STEP</p>
                </a>
             <!-- 서브메뉴 --><br><br>
             <div class="about-info">
-						<p style="font-size: 12px; margin-top:20px;">
+						<p style="font-size: 12px; margin-top:80px;">
 			                            나의 도전에 관한 <b>상세 내용</b>입니다.
 			                            이 도전을 위해 얼마를 투자했는지,
 			                            이 도전을 언제부터 시작했는지 등의
@@ -97,7 +102,7 @@
                               <div class="row">
                                  <div class="col-lg-12">
                                  	<input type='hidden' name="viewPage" value="1">
-                                    <input type="text" id="chName" name="chName" maxlength="12" style="border-top: none; border-left: none; border-right: none;" placeholder="챌린지명">
+                                    <input type="text" id="chName" name="chName" maxlength="12" style="border:1px solid #bbbbbb; border-top: none; border-left: none; border-right: none; " placeholder="챌린지명">
                                  </div>
                              
                                  <script> 
@@ -112,13 +117,13 @@
                                  </script> 
                                  
                                  <div class="col-lg-6">
-                                    <input type="text" id="startDatepicker" name="startDate" class="datepicker" onChange="inputDateComparison(this);" style="border-top: none; border-left: none; border-right: none;" placeholder="기간 설정(시작)">
+                                    <input type="text" id="startDatepicker" name="startDate" class="datepicker" onChange="inputDateComparison(this);" style="border:1px solid #bbbbbb; border-top: none; border-left: none; border-right: none;" placeholder="기간 설정(시작)">
                                  </div>
                                  <div class="col-lg-6">
-                                    <input type="text" id="endDatepicker" name="endDate" class="datepicker" onChange="inputDateComparison(this);" style="border-top: none; border-left: none; border-right: none;" placeholder="기간 설정(종료)">
+                                    <input type="text" id="endDatepicker" name="endDate" class="datepicker" onChange="inputDateComparison(this);" style="border:1px solid #bbbbbb; border-top: none; border-left: none; border-right: none;" placeholder="기간 설정(종료)">
                                  </div>
                                  <div class="col-lg-12">
-                                    <select class="col-lg-12" name="category" style="border: 2px solid #e1e1e1; border-top: none; border-left: none; border-right: none; padding-bottom: 8px; margin-top: 22px; margin-bottom: 30px; font-size: 14px; font-style: italic; font-color: #e1e1e1;">
+                                    <select class="col-lg-12" name="category" style="color:#696969; border: 1px solid #bbbbbb; border-top: none; border-left: none; border-right: none; padding-bottom: 15px; margin-top: 22px; margin-bottom: 30px; font-size: 14px; font-style: italic; font-color: #e1e1e1;">
                                     	<option value="category" hidden>카테고리</option>
 										<option value="health">건강</option>
 										<option value="hobby">취미</option>
@@ -129,17 +134,17 @@
 									</select>
                                  </div>
                                  <div class="col-lg-12">
-                                    <input type="text" name="ceMethod" style="border-top: none; border-left: none; border-right: none;" placeholder="인증 방법">
+                                    <input type="text" name="ceMethod" style="border:1px solid #bbbbbb; border-top: none; border-left: none; border-right: none;" placeholder="인증 방법">
                                  </div>
                                  <div class="col-lg-6">
-                                    <input type="text" name="maxPerson" style="border-top: none; border-left: none; border-right: none;" placeholder="최대 참여 인원 (숫자만 적어주세요)">
+                                    <input type="text" name="maxPerson" style="border:1px solid #bbbbbb; border-top: none; border-left: none; border-right: none;" placeholder="최대 참여 인원 (숫자만 적어주세요)">
                                  </div>
                                  <div class="col-lg-6">
-                                    <input type="text" name="price" style="border-top: none; border-left: none; border-right: none;" placeholder="배팅 금액 (숫자만 적어주세요)">
+                                    <input type="text" name="price" style="border:1px solid #bbbbbb; border-top: none; border-left: none; border-right: none;" placeholder="배팅 금액 (숫자만 적어주세요)">
                                  </div>
                                  <br><br><br><br>
                                  <div class="col-lg-12">
-                                    <textarea name="chContent" placeholder="챌린지 상세 정보"></textarea>
+                                    <textarea style="border:1px solid #bbbbbb;" name="chContent" placeholder="챌린지 상세 정보"></textarea>
                                  </div>
                               </div>
                         </div>
@@ -173,7 +178,7 @@
       								   });
       							  // ====== 첨부 이미지 스크립트 끝 ============================================	
       							</script>
-                              <button class="site-btn sb-solid mr-3 mb-3" style="color: white; margin-top: 30px; margin-left: 100px; width: 280px; font-size: 16px;">챌린지 등록하기<img src="resources/images/arrow-righ-2.png" alt=""></button>
+                              <button class="site-btn sb-solid mr-3 mb-3" style="color: white; margin-top: 23px; margin-left: 100px; width: 280px; font-size: 16px;">챌린지 등록하기<img src="resources/images/arrow-righ-2.png" alt=""></button>
                            </div>
                         </form>
                      </div>
