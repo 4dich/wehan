@@ -31,14 +31,20 @@
 <link rel="stylesheet" href="resources/css/qnaDetail.css" />
 <!-- <link rel="stylesheet" href="resources/css/left_section.css"/> -->
 <link rel="stylesheet" href="resources/css/style.css" />
-
+<link rel="stylesheet" href="resources/css/font.css"/>
 <!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
+<style>
+	.col-md-10{
+	padding-left:0;
+	}
+	.about-info{width:348px;}
+	.about-info p{font-size:12px;}
+</style>
 </head>
 <body>
 	<!-- Page Preloder -->
@@ -72,24 +78,19 @@
 			<div class="main-sidebar">
 				<!-- 로고 구역 -->
 				<div class="mb-warp">
-					<a href="index.html" class="site-logo">
+					<a href="indexView.do" class="site-logo">
 						<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
+					<br><br>
 					<!-- 서브메뉴 -->
-					<div class="about-info">
+					<div class="about-info" style="margin-left:0;margin-top:100px;">
 						<h2>문의사항</h2>
 						<!-- 감성글 작성 -->
 						<p>
 							위대한 한걸음에 궁금증이 생기신다면 <br> 언제든지 문의해주세요!
 						</p>
 					</div>
-					<ul class="contact-info">
-						<li>서울특별시 강남구 테해란로14길 6</li>
-						<li>남도빌딩 3F H반 T:1544-9970</li>
-						<br>
-						<li><a href="mailto:contactme@myemail.com">contactme@myemail.com</a></li>
-					</ul>
 
 				</div>
 			</div>
@@ -166,13 +167,15 @@
 															<div class="portlet-body">
 																<div>
 																	<!-- 댓글 쓰기 -->
+																	<c:if test="${!empty adminUser.userId  }">
+																	
 																	<div class="tab-content">
 																		<div role="tabpanel" class="tab-pane active" id="home"
 																			align="center">
 																			<input type="hidden" name="replyId" value="${q.qId }"/>
 																			<div class="form-group" style="text-align: right;">
 																				<textarea class="form-control" id="addReflyText" name="qrContent"
-																					style="height: 100px; resize: none;"
+																					style="height: 100px; resize: none; width:150%;"
 																					placeholder=" 댓글을 남겨보세요!"></textarea>
 																				<button id="submitR" class="site-btn sb-dark"
 																					style="padding-left: 15px; padding-right: 15px; min-width: 120px; padding-top: 10px; padding-bottom: 10px; margin-top: 10px;">
@@ -184,15 +187,16 @@
 																			</div>
 																		</div>
 																	</div>
+																	</c:if>
 																	
 													<!-- 댓글 읽기 -->
 									<c:forEach var="q" items="${reply}"> 
-                              <div class="card" style="margin-bottom: 20px;">
-                                 <div class="card-body">
+                              <div class="card" style="margin-bottom: 20px; width:150%">
+                                 <div class="card-body" style="width:150%"> 
                                     <div class="row">      
                                       
-                                         <div id="commentbody" class="media g-mb-30 media-comment deletereply" style="display: inline-block; margin-left:96%">
-														 <c:if test="${adminUser.userId eq q.qrUserid }">×</c:if> 
+                                         <div id="commentbody" class="media g-mb-30 media-comment deletereply" style="display: inline-block; margin-left:65%">
+														<c:if test="${!empty adminUser.userId  }">×</c:if> 
 													</div>                      
                                        <div class="media g-mb-30 media-comment">
                                        

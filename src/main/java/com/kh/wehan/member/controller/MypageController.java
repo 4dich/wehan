@@ -52,9 +52,14 @@ public class MypageController {
 		int follow = myService.followCount(userId);
 		int following = myService.followingCount(userId);
 		
+		ArrayList<Member> followingList = myService.selectListFollowing(userId);
+		
+		System.out.println(followingList);
+		
 		mv.addObject("mypage", mypage)
 		  .addObject("follow", follow)
 		  .addObject("following", following)
+		  .addObject("followingList", followingList)
 		  .setViewName("user/mypage/my_profile");
 		
 		return mv;
@@ -307,12 +312,44 @@ public class MypageController {
 		String userId = mem.getUserId();
 		
 		Diary di = new Diary(dId, userId);
-		System.out.println(di);
-		myService.deleteDiary(di);
+		int result = myService.deleteDiary(di);
 		
 		response.setContentType("application/json; charset=utf-8");
 		
 		Gson gson = new Gson();
-		gson.toJson(response.getWriter());
+		gson.toJson(result, response.getWriter());
 	}
+	
+	@RequestMapping("calendarUpdate.do")
+	@ResponseBody
+	public void my_diaryUpdate(HttpServletResponse response, HttpServletRequest request, Diary di) throws JsonIOException, IOException {
+		HttpSession session = request.getSession();
+		Member mem = (Member)session.getAttribute("loginUser");
+		String userId = mem.getUserId();
+		di.setUserId(userId);
+		
+		int result = myService.updateDiary(di);
+		
+		response.setContentType("application/json; charset=utf-8");
+		
+		Gson gson = new Gson();
+		gson.toJson(result, response.getWriter());
+	}
+	
+	@RequestMapping("calendarUpdateDragResize.do")
+	@ResponseBody
+	public void my_diaryDragUpdate(HttpServletResponse response, HttpServletRequest request, Diary di) throws JsonIOException, IOException {
+		HttpSession session = request.getSession();
+		Member mem = (Member)session.getAttribute("loginUser");
+		String userId = mem.getUserId();
+		di.setUserId(userId);
+		
+		int result = myService.updateDiaryDrag(di);
+		
+		response.setContentType("application/json; charset=utf-8");
+		
+		Gson gson = new Gson();
+		gson.toJson(result, response.getWriter());
+	}
+	
 }

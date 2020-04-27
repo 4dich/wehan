@@ -24,7 +24,7 @@
 	
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="resources/css/style.css"/>	
-
+	<link rel="stylesheet" href="resources/css/font.css"/>
 
 </head>
 <body>
@@ -35,37 +35,42 @@
 
 	<!-- Main section start -->
 	<div class="main-site-warp">
-		
+		<!-- 메뉴 -->
 		<%@ include file="/WEB-INF/views/common/menuBar.jsp" %>
-
-		
 		<header class="header-section">
-			<div class="nav-switch menuIcon msgCount">
+			<div class="nav-switch">
 				<i class="fa fa-bars"></i>
 			</div>
-		
+			<div class="header-social">
+
+			</div>
 		</header>
 		<div class="site-content-warp">
 			<!-- Left Side section -->
 			<div class="main-sidebar">
-			
-					<div class="mb-warp">
-						<a href="indexView.do" class="site-logo">
-							<h2 style="margin-left: 6px;">위대한 한걸음</h2>
-							<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
-						</a>
+				<!-- 로고 구역 -->
+				<div class="mb-warp">
+					<a href="indexView.do" class="site-logo" style="margin-bottom: 70px;">
+						<h2 style="margin-left: 11px;">위대한 한걸음</h2>
+						<p style="padding-top: 20px;">THE GREAT ONE STEP</p>
+					</a>
 
-					<div class="about-info">
-						<h2>회사소개</h2>
-						<p>"한 인간에게는 작은 한 걸음이지만, 인류에게는 위대한 도약이다. (One small step for a man, one giant leap for mankind.)”<br>
-							이 명언은 닐 암스트롱이 달 표면에 첫 발을 내딛고 한 말입니다.  </p>
+					<!-- 서브메뉴 -->
+					<div class="about-info" style="margin-left: 5px;">
+						<h2 style="margin-left: 72px;">회사 소개</h2><br>
+						<p>&nbsp;&nbsp;"한 인간에겐 작은 한 걸음이지만, 인류에겐 위대한 도약이다.”<br>
+							&nbsp;&nbsp;이 말은 닐 암스트롱이 달 표면에 첫 발을 내딛고 한 말입니다.<br>
+							혼자서는 힘들었던 계획들, 같은 목표의 사람들과 함께 해보세요.<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;당신의 미래를 시작하기 위한 첫 걸음을 도와드릴게요.
+						</p>
 					</div>
-					<ul class="contact-info">
-						<li>서울특별시 강남구 테해란로14길 6</li>
-						<li>남도빌딩 3F H반 T:1544-9970</li><br>
-						<li><a href="mailto:contactme@myemail.com">contactme@myemail.com</a></li>
+					<ul class="contact-info" style="text-align: center;">
+					<br>
+						<li>서울특별시 강남구 테헤란로14길 6</li>
+						<li>남도빌딩 3F H 오후반 TEAM THROW</li>
+						<li>ADMIN : 010-8691-8934</li>
+						<li><a href="mailto:contactme@myemail.com">teamthrow@gmail.com</a></li>
 					</ul>
-					
 				</div>
 			</div>
 			<!-- Left Side section end -->
@@ -73,35 +78,35 @@
 			<div class="page-section blog-page">
 				<div class="blog-posts" style="padding-bottom: 80px;">
 					<div class="blog-post-item">
-						<div class="blog-thumb set-bg" data-setbg="../resources/img/hero/1.jpg" style="margin-bottom: 80px;">
-						</div>
-					</div>
-					
-					
-					<div class="blog-post-item">
-						<div class="blog-thumb set-bg" data-setbg="../resources/img/blog/1.jpg">
-
+						<div class="blog-thumb set-bg" data-setbg="resources/images/goal.png">
 						</div>
 						<div class="blog-content">
-							<h2><a href="./single-blog.html">경영이념</a></h2>
-							<br><br><br>
-							<p> 바쁜 일상 속에서 의미 없이 지나가버리는 시간들...
-								무언가를 시작해 보겠다고 다짐하지만 작심 3일이라는 말처럼 금방 잊히죠,
-								목표 달성에 가장 필요한 것은 의지보다 반드시 해내야만 하는 환경이라는 결론을 얻었고,
-								스스로 돈을 걸고 실천해나가는  ‘목표 달성 플랫폼 - 위대한 한 걸음’을 만들게 되었습니다..  </p>
+							<h2><a href="./single-blog.html">경영 이념</a></h2>
+							<br>
+							<p style="font-weight: bold">
+								현대 사회에서 대부분의 사람들은 바쁜 일과, 업무에 치여 그저 바쁘게만 아무 의미없이 시간을 보내곤 합니다.<br>
+								새해와 같이 특별한 날이 되거나 문득 무언가를 실천해 보겠다고, 시작해 보겠다고 다짐하지만 작심 3일이라는 말처럼 금방 잊히고 무너지죠.<br>
+								우리는 생각했습니다. 목표 달성에 가장 필요한 것은 의지보다도 할 수 있는, 반드시 해내야만 하는 환경이 제일 중요한 것이라고.<br>
+								돈은 정말 좋습니다. 그렇기 때문에 잃는다고 생각하면 아찔합니다.<br> 
+								스스로 나의 소중한 돈을 걸고 목표를 위해 하나하나 실천해 가는  ‘목표 달성 플랫폼 - 위대한 한 걸음'.<br>
+								우리가 만들었습니다. 함께 하시죠 !
+							</p>
 						</div>
 					</div>
-					<div class="blog-post-item">
-						<div class="blog-thumb set-bg" data-setbg="../resources/img/blog/3.jpg">
+					<div class="blog-post-item"><br><br>
+						<div class="blog-thumb set-bg" data-setbg="resources/images/goal2.jpg">
 						
-						</div>
+						</div><
 						<div class="blog-content">
-							<h2>회사비전 </h2>
-							<br><br><br>
-							<p> "변화와 혁신으로 새로운 가치를 추구하는" 위대한 한 걸음 프로젝트..
-								목표를 달성하여 나무를 키워 변화하는 나무의 모습과 나의 모습을 보며 성취감과
-								재미를 동시에 느끼고 돈까지 벌 수 있는 혁신적인 시스템을 통하여 국내에서 많은 유저의 유입과
-								더 나아가 국내뿐만아닌 국제 챌린지를 목표로 나아가고 있습니다.<br><br>
+							<h2>회사 비전</h2>
+							<br>
+							<p style="font-weight: bold"> 
+								"작은 변화"로 새로운 가치를 추구하는 우리의 "위대한 한 걸음" 프로젝트<br>
+								목표를 달성하여 점점 발전하는 자기 자신과 그와 더불어 함께 자라는 나만의 나무 모습을 확인할 수 있습니다.<br>
+								그 모습을 보며 성취감과 재미를 동시에 느끼고 돈까지 벌 수 있는 혁신적인 시스템을 통해 많은 사람들에게 동기를 부여하고 싶었습니다.<br>
+								또한 같은 목표를 가진 사람들이 함께 모여, 만남의 장을 이루고 같이 발전해 나가는 모습을 보면서<br>
+								쳇바퀴처럼 돌아가는 바쁜 일상에 안주하지 말고 자기 자신을, 나와 같은 환경의 여러 나라 사람들을<br>
+								함께 어우를 수 있는 회사가 되기 위해 나아가고 있습니다.
 							</p>
 						</div>
 					</div>
@@ -109,16 +114,14 @@
 						<div class="blog-thumb set-bg" style="height: 150px;">
 							<div class="tab-element" style="text-align-last: center;">
 								<ul class="nav nav-tabs" id="myTab" role="tablist" style="place-content: center;">
-									<li class="nav-item">
-										<a class="nav-link active" id="3-tab" href="serviceInfoView.do" role="tab" aria-controls="tab-3" aria-selected="true" style="width: 200px; height: 80px; padding-top: 28px; font-size: 15px;">
-											한걸음 가이드
-										</a>
-									</li>
-									<li class="nav-item">
-										<a class="nav-link active" id="3-tab" href="guideInfoView.do" role="tab" aria-controls="tab-3" aria-selected="true" style="width: 200px; height: 80px; margin-left: 120px; padding-top: 28px; font-size: 15px;">
+									<div style="text-align: center;">
+										<button class="site-btn sb-solid mr-3 mb-3" type="button" onclick="location.href='serviceInfoView.do'">
+											한걸음 가이드							
+										</button>
+										<button class="site-btn sb-solid mr-3 mb-3" type="button" onclick="location.href='guideInfoView.do'">
 											나무 알아보기
-										</a>
-									</li>
+										</button>
+									</div>	
 								</ul>
 							</div>
 					</div>			
@@ -129,9 +132,9 @@
 			</div>
 			<!-- Page end -->
 		</div>
-		<div class="copyright"><p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
-            All rights reserved </p></div>
-            </div>
+		<div class="copyright" style="margin-left: 90px;"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> TEAM THROW
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
 	</div>
 	<!-- Main section end -->
 	

@@ -657,7 +657,7 @@ body.push-side #ascrail2000-hr {
 }
 
 .main-sidebar .mb-warp {
-	padding: 151px 95px 100px 145px;
+	padding: 120px 95px 100px 145px;
 }
 
 .site-logo {
@@ -696,7 +696,6 @@ body.push-side #ascrail2000-hr {
 
 .contact-info {
 	list-style: none;
-	margin-bottom: 65px;
 	position: relative;
 }
 
@@ -874,7 +873,7 @@ Blog page
 }
 
 .blog-thumb {
-	height: 586px;
+	height: 750px;
 }
 
 .post-date {
@@ -1086,7 +1085,7 @@ Contact page
 	margin-bottom: 30px;
 	font-size: 14px;
 	font-style: italic;
-	border: 2px solid #e1e1e1;
+	border: 1px solid #bbbbbb;
 }
 
 .contact-form textarea {
@@ -1112,7 +1111,7 @@ Responsive
 		padding-left: 450px;
 	}
 	.main-sidebar .mb-warp {
-		padding: 110px 40px 91px 50px;
+		padding: 110px 40px 91px 40px;
 	}
 	.portfolio-item .pi-info {
 		padding: 15px 0 10px 0;

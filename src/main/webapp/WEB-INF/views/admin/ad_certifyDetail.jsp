@@ -32,7 +32,8 @@
 
 	<!-- 피드 상세보기 CSS -->
 	<link rel="stylesheet" href="resources/css/fidDetail-sr.css"/>
-	
+	<link rel="stylesheet" href="resources/css/font.css"/>
+	<link rel="stylesheet" href="resources/css/adminmargin.css"/>
 	<!-- 회원전용 사이드바 CSS -->
 	<!-- <link rel="stylesheet" href="resources/css/main.css"/> -->
 	
@@ -44,8 +45,8 @@
 	.infoMenu{
 		list-style: none;
 		color: black;
-		
 	}
+	.about-info{margin:0;}
 	</style>
 
 </head>
@@ -78,14 +79,12 @@
                     <!-- 서브메뉴 -->
 					<div class="about-info">
 						<h2>인증글 정보</h2>
-						<a href="paylist.do" id="ad_pay" class="infoMenu">결제정보</a><br><br>
-						<!-- <a href="blackList.do" id="ad_blackList" class="infoMenu">블랙리스트</a><br><br> -->
-						<a href="mlist.do" id="mlist" class="infoMenu">회원정보</a><br><br>
-						<a href="ad_challengeListView.do" id="ad_challenge" class="infoMenu">챌린지 정보</a><br><br>
-						<!-- <a href="ad_certifyView.do" id="ad_certify" class="infoMenu">인증글 정보</a><br><br> -->
 						<a href="ad_noticeList.do" id="ad_notice" class="infoMenu">공지사항</a><br><br>
 						<a href="ad_questionsList.do" id="ad_questions" class="infoMenu">문의사항</a><br><br>
-					
+						<a href="mlist.do" id="mlist" class="infoMenu">회원정보</a><br><br>
+						<a href="paylist.do" id="ad_pay" class="infoMenu">결제정보</a><br><br>
+						<a href="ad_challengeListView.do" id="ad_challenge" class="infoMenu">챌린지 정보</a><br><br>
+						<a href="blackList.do" id="ad_blackList" class="infoMenu">블랙리스트</a><br><br>
 					</div>
 				</div>
 			</div>

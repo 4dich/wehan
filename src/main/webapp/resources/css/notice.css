@@ -650,7 +650,6 @@ body.push-side #ascrail2000-hr {
 
 .about-info {
     margin-bottom: 80px;
-    margin: 10px;
 }
 .infoMenu{
     color: black;
@@ -875,7 +874,7 @@ Blog page
 	height: 40px;
     border: none;
     cursor: pointer;
-    width: 57%;
+    widht:56%;
     margin-left: 5%;
 }
 #searchArea button{
