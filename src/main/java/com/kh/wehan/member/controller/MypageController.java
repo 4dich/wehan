@@ -2,8 +2,6 @@ package com.kh.wehan.member.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
@@ -19,8 +18,8 @@ import com.google.gson.JsonIOException;
 import com.kh.wehan.certify.model.vo.Certify;
 import com.kh.wehan.challenge.model.vo.Challenge;
 import com.kh.wehan.member.model.service.MypageService;
+import com.kh.wehan.member.model.vo.Diary;
 import com.kh.wehan.member.model.vo.Follow;
-import com.kh.wehan.member.model.vo.FullCalendar;
 import com.kh.wehan.member.model.vo.Member;
 import com.kh.wehan.member.model.vo.Mypage;
 
@@ -53,9 +52,14 @@ public class MypageController {
 		int follow = myService.followCount(userId);
 		int following = myService.followingCount(userId);
 		
+		ArrayList<Member> followingList = myService.selectListFollowing(userId);
+		
+		System.out.println(followingList);
+		
 		mv.addObject("mypage", mypage)
 		  .addObject("follow", follow)
 		  .addObject("following", following)
+		  .addObject("followingList", followingList)
 		  .setViewName("user/mypage/my_profile");
 		
 		return mv;
@@ -121,10 +125,6 @@ public class MypageController {
 			ceListCount = myService.certifyCount(ce);
 			ceCount.add(ceListCount);
 		}
-			
-		
-		System.out.println("챌린지아이디:" + ceId);
-		System.out.println("인증글 개수:" + ceCount);
 		
 		mv.addObject("chList", chList)
 		  .addObject("ceCount", ceCount)
@@ -252,9 +252,6 @@ public class MypageController {
 		HttpSession session = request.getSession();
 		Member mem = (Member)session.getAttribute("loginUser");
 		
-		System.out.println(myExp);
-		System.out.println(myLevel);
-		
 		String myId = mem.getUserId();
 		Mypage mypage = new Mypage(myId, myExp, myLevel);
 		
@@ -276,21 +273,83 @@ public class MypageController {
 	
 	
 	@RequestMapping("calendarView.do")
-	public void my_diaryView(HttpServletResponse response) throws JsonIOException, IOException {
+	public void my_diaryView(HttpServletResponse response, HttpServletRequest request) throws JsonIOException, IOException {
+		HttpSession session = request.getSession();
+		Member mem = (Member)session.getAttribute("loginUser");
+		String userId = mem.getUserId();
 		
-//		Map<String, FullCalendar> myMap = new HashMap<String, FullCalendar>();
-//		myMap.put("evt1", new FullCalendar("DB이벤트1", "2020-04-20", "2020-04-27", "false") );
-//		myMap.put("evt2", new FullCalendar("DB이벤트2", "2020-04-01", "2020-04-07", "false") ); 
-		 
-		
-		ArrayList<FullCalendar> myList = new ArrayList<FullCalendar>();
-		myList.add(new FullCalendar("DB이벤트1", "2020-04-20", "2020-04-27", false));
-		myList.add(new FullCalendar("DB이벤트2", "2020-04-01", "2020-04-07", false));
+		ArrayList<Diary> dList = myService.selectListDiary(userId);
 		
 		response.setContentType("application/json; charset=utf-8");
 		
 		Gson gson = new Gson();
-		gson.toJson(myList, response.getWriter());
+		gson.toJson(dList, response.getWriter());
+	}
+	
+	@RequestMapping("calendarInsert.do")
+	@ResponseBody
+	public void my_diaryInsert(HttpServletResponse response, HttpServletRequest request, Diary di) throws JsonIOException, IOException {
+		HttpSession session = request.getSession();
+		Member mem = (Member)session.getAttribute("loginUser");
+		String userId = mem.getUserId();
+		
+//		Diary di = new Diary("99","user04","내가 제목이다","네가 제목이고","red","2020-04-22 15:00", "2020-04-28 15:00", 0);
+		di.setUserId(userId);
+		
+		int result = myService.insertDiary(di);
+		
+		response.setContentType("application/json; charset=utf-8");
+		
+		Gson gson = new Gson();
+		gson.toJson(di, response.getWriter());
+	}
+	
+	@RequestMapping("calendarDelete.do")
+	@ResponseBody
+	public void my_diaryDelete(HttpServletResponse response, HttpServletRequest request, String dId) throws JsonIOException, IOException {
+		HttpSession session = request.getSession();
+		Member mem = (Member)session.getAttribute("loginUser");
+		String userId = mem.getUserId();
+		
+		Diary di = new Diary(dId, userId);
+		int result = myService.deleteDiary(di);
+		
+		response.setContentType("application/json; charset=utf-8");
+		
+		Gson gson = new Gson();
+		gson.toJson(result, response.getWriter());
+	}
+	
+	@RequestMapping("calendarUpdate.do")
+	@ResponseBody
+	public void my_diaryUpdate(HttpServletResponse response, HttpServletRequest request, Diary di) throws JsonIOException, IOException {
+		HttpSession session = request.getSession();
+		Member mem = (Member)session.getAttribute("loginUser");
+		String userId = mem.getUserId();
+		di.setUserId(userId);
+		
+		int result = myService.updateDiary(di);
+		
+		response.setContentType("application/json; charset=utf-8");
+		
+		Gson gson = new Gson();
+		gson.toJson(result, response.getWriter());
+	}
+	
+	@RequestMapping("calendarUpdateDragResize.do")
+	@ResponseBody
+	public void my_diaryDragUpdate(HttpServletResponse response, HttpServletRequest request, Diary di) throws JsonIOException, IOException {
+		HttpSession session = request.getSession();
+		Member mem = (Member)session.getAttribute("loginUser");
+		String userId = mem.getUserId();
+		di.setUserId(userId);
+		
+		int result = myService.updateDiaryDrag(di);
+		
+		response.setContentType("application/json; charset=utf-8");
+		
+		Gson gson = new Gson();
+		gson.toJson(result, response.getWriter());
 	}
 	
 }

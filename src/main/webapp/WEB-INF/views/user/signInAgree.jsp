@@ -24,6 +24,7 @@
 
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="resources/css/style.css"/>
+	<link rel="stylesheet" href="resources/css/font.css"/>
 	<script src="resources/js/jquery-3.2.1.min.js"></script>
 
 	<!--[if lt IE 9]>
@@ -39,6 +40,8 @@
 			.policyname{margin: 40px 0 20px 0; margin-left: 8%;}
 			label{margin-bottom: 0;}
 			.site-btn{margin:30px; background-color: black; color: white; border: none;}
+			.about-info{width:348px;}
+		.about-info p{font-size:12px;}
 		</style>
 
 
@@ -65,22 +68,27 @@
 			<div class="main-sidebar">
                     <!-- 로고 구역 -->
 					<div class="mb-warp">
-						<a href="index.html" class="site-logo">
+						<a href="indexView.do" class="site-logo">
 							<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 							<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 						</a>
-                    <!-- 서브메뉴 -->
+                   <br><br>
+					<!-- 서브메뉴 -->
 					<div class="about-info">
 						<h2>회사소개</h2>
-                        <!-- 감성글 작성 -->
-                        <p>"한 인간에게는 작은 한 걸음이지만, 인류에게는 위대한 도약이다. (One small step for a man, one giant leap for mankind.)”<br>
-							이 명언은 닐 암스트롱이 달 표면에 첫 발을 내딛고 한 말입니다.  </p>
+						<p style="font-size: 12px;">한 인간에게는 작은 한 걸음이지만, 인류에게는 위대한 도약<br>(One small step for a man, one giant leap for mankind.)<br>
+							이 명언은 닐 암스트롱이 달 표면에 첫 발을 내딛고 한 말입니다.
+							혼자선 힘들었던 계획들, 같은 목표의 사람들과 함께 해보세요.<br>
+						   	당신의 미래를 시작하기 위한 첫 걸음을 도와드릴게요.
+						</p>
 					</div>
 					<ul class="contact-info">
 						<li>서울특별시 강남구 테해란로14길 6</li>
-						<li>남도빌딩 3F H반 T:1544-9970</li><br>
-						<li><a href="mailto:contactme@myemail.com">contactme@myemail.com</a></li>
-					</ul>
+						<li>남도빌딩 3F H반 T:1544-9970</li>
+					</ul>		
+					<div class="copyright"><p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
+						All rights reserved </p>
+					</div>
 					
 				</div>
 			</div>
@@ -283,7 +291,7 @@
 
 						
 						</div>
-						<div style="margin-left:60%; margin-top: 30px;">
+						<div style="margin-left:65%; margin-top: 30px;">
 							<label><input type="radio" id="agreeA1" name="agreeA" class="agree" value="Y" style="float: right;"></label>&nbsp;&nbsp;<label for="agreeA1">동의합니다. </label>&nbsp;&nbsp;
 							<label><input type="radio" id="agreeA2" name="agreeA" class="agree" checked="checked" value="N" style="float: right;"></label>&nbsp;&nbsp;<label for="agreeA2">동의하지 않습니다. </label>
 						</div>	
@@ -311,7 +319,7 @@
 							③ 회원은 자신의 접근매체를 제3자에게 누설 또는 노출하거나 방치하여서는 안되며, 접근매체의 도용이나 위조 또는 변조를 방지하기 위하여 충분한 주의를 기울여야 합니다.
 							④ 회사는 회원으로부터 접근매체의 분실이나 도난 등의 통지를 받은 때에는 그 때부터 제3자가 그 접근매체를 사용함으로 인하여 회원에게 발생한 손해를 배상할 책임이 있습니다.
 						</div>
-						<div style="margin-left:60%; margin-top: 30px;">
+						<div style="margin-left:65%; margin-top: 30px;">
 							<label><input type="radio" id="agreeB1" name="agreeB" class="agree" value="Y" style="float: right;"></label>&nbsp;&nbsp;<label for="agreeB1">동의합니다. </label>&nbsp;&nbsp;
 							<label><input type="radio" id="agreeB2" name="agreeB" class="agree" value="N" checked="checked" style="float: right;"></label>&nbsp;&nbsp;<label for="agreeB2">동의하지 않습니다. </label>
 						</div>							

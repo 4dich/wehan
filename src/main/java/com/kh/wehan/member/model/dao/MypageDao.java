@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.wehan.certify.model.vo.Certify;
 import com.kh.wehan.challenge.model.vo.Challenge;
+import com.kh.wehan.member.model.vo.Diary;
 import com.kh.wehan.member.model.vo.Follow;
 import com.kh.wehan.member.model.vo.Member;
 import com.kh.wehan.member.model.vo.Mypage;
@@ -62,6 +63,30 @@ public class MypageDao {
 
 	public int my_updateLvEx(Mypage mypage) {
 		return sqlSession.update("mypageMapper.my_updateLvEx",mypage);
+	}
+
+	public ArrayList<Diary> selectListDiary(String userId) {
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectListDiary",userId);
+	}
+
+	public int insertDiary(Diary di) {
+		return sqlSession.insert("mypageMapper.insertDiary",di);
+	}
+
+	public int deleteDiary(Diary di) {
+		return sqlSession.delete("mypageMapper.deleteDiary",di);
+	}
+
+	public int updateDiary(Diary di) {
+		return sqlSession.update("mypageMapper.updateDiary",di);
+	}
+
+	public int updateDiaryDrag(Diary di) {
+		return sqlSession.update("mypageMapper.updateDiaryDrag",di);
+	}
+
+	public ArrayList<Member> selectListFollowing(String userId) {
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectListFollowing",userId);
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.kh.wehan.challenge_SR.model.service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import com.kh.wehan.challenge_SR.model.vo.ChallengeTop10;
 import com.kh.wehan.challenge_SR.model.vo.ChallengerInfo;
@@ -26,6 +27,15 @@ public interface ChallengeService_SR {
 	 * @return
 	 */
 	int cancleRegister(String chId);
+
+	/**
+	 * 마감된 챌린지 성공률 구하기
+	 * 1)챌린지 80% 이상 인증한 사람 수 구하기 
+	 * @param chId
+	 * @param count 
+	 * @return
+	 */
+	int getSuccessRate(Map m);
 	
 	
 }

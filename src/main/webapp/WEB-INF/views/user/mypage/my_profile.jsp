@@ -11,6 +11,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
 	
+	
 	<!-- Favicon -->
 	<link href="resources/images/favicon.ico" rel="shortcut icon"/>
 
@@ -26,14 +27,13 @@
 	
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="resources/css/style.css"/>
-	
+	<link rel="stylesheet" href="resources/css/font.css"/>
 	<!-- JQuery -->
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	
 	<!-- bootstrap4 toggle -->
 	<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
-	
 	
     <style>
 /*     .profile-images {
@@ -63,7 +63,7 @@
     }
 
     .main-sidebar .mb-warp {
-        padding: 90px 95px 100px 145px;
+        padding: 120px 95px 100px 145px;
     }
     
     .grade{
@@ -114,9 +114,9 @@
 </head>
 <body>
 	<!-- Page Preloder -->
-	<div id="preloder">
+	<!-- <div id="preloder">
 		<div class="loader"></div>
-	</div>
+	</div> -->
 
 	<!-- Main section start -->
 	<div class="main-site-warp">
@@ -130,9 +130,9 @@
 				<i class="fa fa-bars"></i>
 			</div>
 			<div class="header-social">
-                <a href="my_profileView.do" style="color: red;">My Profile</a>
-                <a href="my_challengeView.do">My Challenge</a>
-                <a href="my_diaryView.do">My Diary</a>
+                <a href="my_profileView.do" style="color: red;">Profile</a>
+                <a href="my_challengeView.do">Challenge</a>
+                <a href="my_diaryView.do">Diary</a>
                 <a href="getMsgList.do">Message</a>
 			</div>
 		</header>
@@ -140,7 +140,7 @@
 		<div class="site-content-warp">
 			<!-- Left Side section -->
 			<div class="main-sidebar">
-				<div class="mb-warp" style="text-align: center;">
+				<div class="mb-warp">
                     
 					<a href="indexView.do" class="site-logo">
 						<h2 style="margin-left: 6px;">위대한 한걸음</h2>
@@ -148,17 +148,20 @@
 					</a>
 					
 					<!-- follow 영역 -->
-					<div id="divAll">
+					<div id="divAll" style="margin-left:15px;">
 				        <div id="pic" style="display:inline-block">
 				            <img src="resources/images/user/${ loginUser.picture }" style="width: 100px; height:100px; margin-top: -70px">
 				        </div>
 				        <div id="foAll" style="display:inline-block; margin-left: 20px">
 				            <div id="fo1" style="display:inline-block; text-align:center; width:60px;">
-				            	<div style="font-weight:bold;font-size:30px">1</div><div style="font-size:12px; color:gray">grade</div></div>
+				            	<div style="font-weight:bold;font-size:30px;cursor:pointer">${ mypage.myLevel }</div>
+				            	<div style="font-size:12px; color:gray">level</div></div>
 				            <div id="fo2" style="display:inline-block; text-align:center; width:60px;">
-				            	<div style="font-weight:bold;font-size:30px">${ follow }</div><div style="font-size:12px; color:gray">followers</div></div>
+				            	<div style="font-weight:bold;font-size:30px;cursor:pointer">${ follow }</div>
+				            	<div style="font-size:12px; color:gray">followers</div></div>
 				            <div id="fo3" style="display:inline-block; text-align:center; width:60px;">
-				            	<div style="font-weight:bold;font-size:30px">${ following }</div><div style="font-size:12px; color:gray">following</div></div>
+				            	<div style="font-weight:bold;font-size:30px;cursor:pointer">${ following }</div>
+				            	<div style="font-size:12px; color:gray">following</div></div>
 				            <br>
 				            <button style="display: block; width:100%; margin-top: 20px" onclick="location.href='my_updateInfoView.do'">Settings</button>
 				        </div>
@@ -172,13 +175,56 @@
 				    <div id="divAll3" style="margin-top:30px; text-align:left">    
 				       	<div style="margin-bottom:5px; font-weight: 700; display:inline-block"><i>OWNER MESSAGE&nbsp;</i>
 				       	<input id="toggle3" style="margin-left:60px;" type="checkbox" checked data-toggle="toggle" data-on="<i class='fa fa-lock' aria-hidden='true'></i> 수정하기" data-off="<i class='fa fa-unlock' aria-hidden='true'></i> 수정중" data-onstyle="dark" data-offstyle="outline-dark" onchange="toggleBtn3();"></div>
-				       	<div style="border:1px solid gray; height:180px;"><textarea id="intro" cols="41" rows="6" style="resize: none; border:0px; background:white; margin:12px;" disabled>${ mypage.intro }</textarea></div> 
+				       	<div style="border:1px solid gray; height:180px; width:348px;"><textarea id="intro" cols="39" rows="6" style="resize: none; border:0px; background:white; margin:12px;" disabled>${ mypage.intro }</textarea></div> 
 				    </div>
 				        
 				    </div>
 				</div>
 			</div>
 			<div class="page-section portfolio-page">
+			
+			
+			<!-- follower 팝업 시작-->
+		    <div id="followingPopup" style="width:400px; height:800px; background: pink; position:absolute; left:1000px; top:100px; z-index: 1000; -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); overflow:auto; display:none">
+		    	<div style="display:inline-block; width:357px; height:60px; background:skyblue; font-size:24px; padding:10px; text-align:left; font-weight:bold">followers</div>
+		    	<div id="xBtn" style="display:inline-block; width:37px; height:60px; background:orangered; font-size:24px; padding:10px; text-align:right; font-weight:bold; cursor:pointer">X</div>
+		    	<div style="width:400px; height:60px; background:orange; font-size:24px; padding:10px; text-align:center;">
+		    		<input type="search" class="form-control" placeholder="search"/>
+		    	</div>
+		    	<!--  -->
+		    	<c:forEach var="fl" items="${ followingList }">
+			    	<div style="display:flex; width:400px; height:70px; background:skyblue; font-size:24px; padding:10px;">
+			    		<div style="display:inline-flex; width: 50px; height:50px; border-radius: 70%; overflow: hidden;">
+			    			<img src="resources/images/user/${ fl.picture }" style="width: 100%; height:100%; object-fit: cover;">
+			    		</div>
+			    		<div style="display:inline-flex; flex-direction:column; width: 240px; height:50px; background:yellowgreen;">
+			    			<div style="font-size:13px; width: 230px; height:30px; font-weight:bold">${ fl.nickName }#${ fl.userId }</div>
+			    			<div style="font-size:13px; width: 230px; height:20px; color:gray">${ fl.intro }</div>
+			    		</div>
+			    		<div style="width: 80px; height:50px;">
+			    			<button style="font-size:14px; margin-top:12px; width:100%; padding: 2px 10px 2px 10px">follow</button>
+			    		</div>
+			    	</div>
+		    	</c:forEach>
+		    	<!--  -->
+		    </div>
+		    <!-- 팝업 끝 -->
+		    <script>
+		    	$('#xBtn').click(function(){
+		    		$('#followingPopup').css('display','none');
+		    		console.log('x');
+		    	});
+		    	
+		    	$('#fo2').click(function(){
+		    		alert('hoho');
+		    	});
+		    	
+		    	$('#fo3').click(function(){
+		    		$('#followingPopup').css('display','');
+		    	});
+		    </script>
+		    
+		    
 				<div class="portfolio-section">
 					<!-- interest 영역 -->				
 					<div class="main-down" style="height: 40%; width:90%; margin-left:20px">
@@ -221,8 +267,8 @@
 							<div id="userId" style="display:none">${loginUser.userId}</div>
 							
 						</div>
-						<div class="main-up-content" style="font-size:20px; height: 306px; width: 100%; margin-top: 5px; text-align:right; border:1px solid gray;">
-							<textarea id="goal" cols="104" rows="9" style="resize: none; border:0px; background:white; margin-top: 12px; margin-right:12px"  disabled>${ mypage.goal }</textarea>
+						<div class="main-up-content" style="font-size:20px; height: 350px; width: 100%; margin-top: 5px; text-align:right; border:1px solid gray;">
+							<textarea id="goal" cols="116" rows="10" style="resize: none; border:0px; background:white; margin-top: 12px; margin-right:12px;" disabled>${ mypage.goal }</textarea>
 						</div>
 
 						<script>
@@ -331,9 +377,6 @@
 				</div>
 			</div>
 			<!-- Page end -->
-		</div>
-		<div class="copyright"><p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
-            All rights reserved </p></div>
 		</div>
 	</div>
 	<!-- Main section end -->

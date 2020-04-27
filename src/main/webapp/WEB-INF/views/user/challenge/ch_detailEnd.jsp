@@ -32,7 +32,7 @@
 
 	<!-- <link rel="stylesheet" href="../resources/css/main.css"/> -->
 	<link rel="stylesheet" href="resources/css/style.css"/>	
-
+	<link rel="stylesheet" href="resources/css/font.css"/>
 	<style>
 		.contents-detail {
 			width: 100%; 
@@ -40,8 +40,7 @@
 			padding: 0 22px; 
 			margin-bottom: 35px; 
 			font-size: 20px;
-			font-family: 'Nanum Gothic Coding', monospace;
-			border: 2px solid #e1e1e1; 
+			border: 1px solid #bbbbbb; 
 			border-top: none; 
 			border-left: none; 
 			border-right: none;
@@ -53,9 +52,10 @@
 			padding: 10px 22px 10px 22px; 
 			margin-bottom: 15px; 
 			font-size: 20px; 
-			font-family: 'Nanum Gothic Coding', monospace;
-			border: 2px solid #e1e1e1; 
+			border: 1px solid #bbbbbb; 
 		}
+		.about-info{width:348px;}
+		.about-info p{font-size:12px;}
 	</style>
 </head>
 <body>
@@ -84,30 +84,30 @@
 			<div class="main-sidebar">
 					<!-- 로고 구역 -->
 					<div class="mb-warp">
-						<a href="index.html" class="site-logo">
+						<a href="indexView.do" class="site-logo">
 							<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 							<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 						</a>
 					<!-- 서브메뉴 -->
-					<div class="challenges-search" style="margin-left: 10px;">
-						<input type="text" style="padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 3px solid black;" placeholder="챌린지 검색">
+					<div class="challenges-search">
+						<input type="text" style="font-size:12px; padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 2px solid black;" placeholder="챌린지 검색">
 						<a href="" class="site-btn2"><img src="resources/images/main/search.png" style="padding-left: 10px;" alt=""></a>
 					</div>
 
 					<br><br>
 
-					<div class="about-info" style="margin-left: 50px;">
-						<p style="font-size: 15px;">
-							나의 도전에 관한 <b>상세 내용</b>입니다.<br>
-							이 도전을 위해 얼마를 투자했는지,<br>
-							이 도전을 언제부터 시작했는지 등의<br> 
-							모든 정보는 이 곳에서 확인 가능합니다.
-						</p>
-					</div>
+					<div class="about-info">
+                        <p style="font-size: 12px; margin-top:20px;">
+			                            나의 도전에 관한 <b>상세 내용</b>입니다.
+			                            이 도전을 위해 얼마를 투자했는지,
+			                            이 도전을 언제부터 시작했는지 등의
+			                            모든 정보는 이 곳에서 확인가능합니다.
+                        </p>
+                        
+                    </div>
 					
-					<button class="site-btn sb-dark" style="margin-left: 35px; width: 280px; font-size: 15px;" type="button" onclick="location.href='chalList.do'">
+					<button class="site-btn sb-dark" style="font-size: 16px;  border-radius: 3px; width: 347px;" type="button" onclick="location.href='chalList.do'">
 						리스트 페이지로 가기
-						<img src="resources/images/arrow-righ-3.png" alt="">
 					</button>
 					<br><br>
 					<!-- <ul class="contact-info">
@@ -184,8 +184,8 @@
 												</div>
 											</div>
 											<div class="col-lg-12">
-												<div class="contents-detail" style="height:auto;">
-													성공률 : <h2>계산해서 넣기</h2>
+												<div class="contents-detail">
+													성공률 : <strong><span id="rate"></span> %</strong>
 												</div>
 											</div>
 											<br><br><br><br>
@@ -210,9 +210,43 @@
 		</div>
 	<!-- Main section end -->	
 	<script>
+	
+	// 금액 구하기
 	$(function(){
-		$('#tPrice').text(${ chal.chPeopleCount } * ${ chal.price } );
+		var count = '${ chal.chPeopleCount }';
+		var price = '${ chal.price }';
+		$('#tPrice').text(count*price);
 	});
+	
+	// 성공률 구하기
+	$(function(){
+		var chId = '${chal.chId}';
+		var endDate = new Date('${ chal.endDate }');
+		var startDate = new Date('${ chal.startDate }');
+		var date = (endDate - startDate);
+		var time = Math.ceil(date/ (1000*60*60*24));
+		
+		var count = '${ chal.chPeopleCount }';
+		
+		$.ajax({
+			url:'getSuccessRate.do',
+			type:'post',
+			data:{'chId':chId,
+				  'time':time},
+			success:function(data){
+				
+				// 성공률 계산
+				var rate = data / count * 100;
+				// 반올림
+				rate = Math.round(rate);
+				$('#rate').text(rate);
+				
+			}, error:function(){
+				console.log('error');
+			}
+		});
+	});
+	
 	</script>
 	
 	<!--====== Javascripts & Jquery ======-->

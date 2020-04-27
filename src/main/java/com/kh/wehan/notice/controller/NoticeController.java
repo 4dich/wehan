@@ -204,11 +204,11 @@ public class NoticeController {
 	@RequestMapping("ad_noticeInsert.do")
 	public String adNoticeInsert(Notice n, HttpServletRequest request) {
 		
-//		HttpSession session = request.getSession();
-//		Admin admin = (Admin)session.getAttribute("loginAdmin");
-//		String adminId = admin.getUserId();
+		HttpSession session = request.getSession();
+		Admin admin = (Admin)session.getAttribute("adminUser");
+		String writer = admin.getUserId();
 		
-		n.setnWriter("admin");
+		n.setnWriter(writer);
 		
 		int result = nService.adNoticeInsert(n);
 		

@@ -27,7 +27,8 @@
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="resources/css/style.css"/>
 	<link rel="stylesheet" href="resources/css/admin_qna.css"/>
-
+	<link rel="stylesheet" href="resources/css/font.css"/>
+	<link rel="stylesheet" href="resources/css/adminmargin.css"/>
 	<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -36,6 +37,7 @@
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 	<style>
+		.about-info{margin:0;}
 		.infoMenu{font-size: 16px;}
 		button{font-size:14px;}
 		#searchArea{width: 316px; margin-top: 0px; }
@@ -53,11 +55,8 @@
 	<!-- Main section start -->
 
 	<div class="main-site-warp">
-
-
 		
 	<c:import url="/WEB-INF/views/common/ad_menuBar.jsp" />
-
 
 		<header class="header-section">
 			<div class="nav-switch">
@@ -77,13 +76,12 @@
 
 					<div class="about-info">
 						<h2>결제정보</h2>
-						<!-- <a href="paylist.do" id="ad_pay" class="infoMenu">결제정보</a><br><br> -->
-						<!-- <a href="blackList.do" id="ad_blackList" class="infoMenu">블랙리스트</a><br><br> -->
+						<a href="ad_noticeList.do" id="ad_notice" class="infoMenu">공지사항</a><br><br>
+						<a href="ad_questionsList.do" id="ad_questions" class="infoMenu">문의사항</a><br><br>
 						<a href="mlist.do" id="mlist" class="infoMenu">회원정보</a><br><br>
 						<a href="ad_challengeListView.do" id="ad_challenge" class="infoMenu">챌린지 정보</a><br><br>
 						<a href="ad_certifyView.do" id="ad_certify" class="infoMenu">인증글 정보</a><br><br>
-						<a href="ad_noticeList.do" id="ad_notice" class="infoMenu">공지사항</a><br><br>
-						<a href="ad_questionsList.do" id="ad_questions" class="infoMenu">문의사항</a><br><br>
+						<a href="blackList.do" id="ad_blackList" class="infoMenu">블랙리스트</a><br><br>
 					</div>
 					
 					
@@ -101,7 +99,6 @@
 					
 				<div class="blog-post-item">
 						<button style="margin-top: 12px;" onclick="refundSelect();">환불하기</button>
-						<button id="test2">테스트</button>
 					
 						<div id="searchArea">
 							<div id="searchSelect"> 
@@ -205,11 +202,9 @@
 	<script>
 	
 		$('.thArea').children().eq(7).click(function(){
-			var reIdx = $('#test').val();
-			$('#test').val(1 - $('#test').val());
-			console.log(reIdx);
+			var reIdx = $('#test').val(); // 기본값 1
+			$('#test').val(1 - $('#test').val()); // 클릭 시 값이 1 -> 0 - > 1순으로 순환함
 			var currentPage = 1;
-			
 			refundYn(reIdx,currentPage);
 		});
 		

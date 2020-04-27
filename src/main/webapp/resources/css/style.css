@@ -657,7 +657,7 @@ body.push-side #ascrail2000-hr {
 }
 
 .main-sidebar .mb-warp {
-	padding: 151px 95px 100px 145px;
+	padding: 120px 95px 100px 145px;
 }
 
 .site-logo {
@@ -696,7 +696,6 @@ body.push-side #ascrail2000-hr {
 
 .contact-info {
 	list-style: none;
-	margin-bottom: 65px;
 	position: relative;
 }
 
@@ -1086,7 +1085,7 @@ Contact page
 	margin-bottom: 30px;
 	font-size: 14px;
 	font-style: italic;
-	border: 2px solid #e1e1e1;
+	border: 1px solid #bbbbbb;
 }
 
 .contact-form textarea {

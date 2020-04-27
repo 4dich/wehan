@@ -111,17 +111,26 @@
   	</update>  	  	  	
   	
   	<!-- 댓글 -->
-	<select id= "selectReply" resultMap="replyResultSet">
+	<select id= "selectreplyList" resultMap="replyResultSet">
 	SELECT Q.QID,QR.QRID,QR.QRWRITER,QR.QRCONTENT,QR.QRDATE,QR.QRDEL_YN
-    FROM questions Q
-    JOIN questionsreply QR
+    FROM QUESTIONS Q
+    JOIN QUESTIONSREPLY QR
     ON Q.QID = QR.QID
-    WHERE Q.QID = QID;
+    WHERE Q.QID = #{qId} 
+    
+    AND QRDEL_YN='N' 
+    ORDER BY QRDATE DESC 
 	</select>
 	
 	<insert id="insertReply" parameterType="QuestionsReply">
-	INSERT INTO QUESTIONS
-	 VALUES(SEQ_QRID.NEXTVAL,#{qrId},#{qrUserid},#{qrContent},SYSDATE,DEFAULT)
+	INSERT INTO QUESTIONSREPLY
+	VALUES(SEQ_QRID.NEXTVAL,#{qId},'admin',#{qrContent},SYSDATE,DEFAULT)
 	</insert>
-   
+    
+    <update id="deletereply">
+     UPDATE questionsreply SET QRDEL_YN='Y' WHERE QRID=#{qrId}
+    
+    </update> 
+    
+     
     </mapper>

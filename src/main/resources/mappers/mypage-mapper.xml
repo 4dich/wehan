@@ -12,6 +12,22 @@
 		<result property="myLevel" column="MYLEVEL"/>
 	</resultMap>
 	
+	<resultMap id="memberResultSet" type="Member">
+		<id property="userId" column="USERID"/>
+		<result property="password" column="PASSWORD"/>
+		<result property="nickName" column="NICKNAME"/>
+		<result property="userName" column="USERNAME"/>
+		<result property="birthDay" column="BIRTHDAY"/>
+		<result property="email" column="EMAIL"/>
+		<result property="address" column="ADDRESS"/>
+		<result property="phone" column="PHONE"/>
+		<result property="account" column="ACCOUNT"/>
+		<result property="picture" column="PICTURE"/>
+		<result property="joinDate" column="JOINDATE"/>
+		<result property="outYN" column="OUT_YN"/>
+		<result property="intro" column="INTRO"/>
+	</resultMap>
+	
 	<resultMap id="challengeResultSet" type="Challenge">
 		<id property="chId" column="CHID"/>
 		<result property="userId" column="USERID"/>
@@ -40,6 +56,17 @@
 		<result property="chName" column="CHNAME"/>
 		<result property="category" column="CATEGORY"/>
 		<result property="nickName" column="NICKNAME"/>
+	</resultMap>
+	
+	<resultMap id="diaryResultSet" type="Diary">
+		<result property="dId" column="DID"/>
+		<result property="userId" column="USERID"/>
+		<result property="dTitle" column="DTITLE"/>
+		<result property="dContent" column="DCONTENT"/>
+		<result property="dColor" column="DCOLOR"/>
+		<result property="sDate" column="SDATE"/>
+		<result property="eDate" column="EDATE"/>
+		<result property="cntStamp" column="CNTSTAMP"/>
 	</resultMap>
 	
 	<select id="my_profileView" resultMap="mypageResultSet">
@@ -106,4 +133,42 @@
 		WHERE USERID=#{userId}
 	</update>
 	
+	<select id="selectListDiary" resultType="Diary">
+		SELECT * 
+		FROM DIARY
+		WHERE USERID=#{userId}
+	</select>
+	
+	<insert id="insertDiary" parameterType="Diary">
+		INSERT INTO DIARY
+		VALUES(SEQ_DID.NEXTVAL,#{userId},#{dTitle},#{dContent},#{dColor},#{sDate},#{eDate},DEFAULT)
+	</insert>
+	
+	<delete id="deleteDiary">
+		DELETE FROM DIARY
+		WHERE DID=#{dId}
+		AND USERID=#{userId}
+	</delete>
+	
+	<update id="updateDiary" parameterType="Diary">
+		UPDATE DIARY
+		SET DTITLE=#{dTitle},DCONTENT=#{dContent},DCOLOR=#{dColor},SDATE=#{sDate},EDATE=#{eDate}
+		WHERE DID=#{dId}
+		AND USERID=#{userId}
+	</update>
+	
+	<update id="updateDiaryDrag" parameterType="Diary">
+		UPDATE DIARY
+		SET SDATE=#{sDate},EDATE=#{eDate}
+		WHERE DID=#{dId}
+		AND USERID=#{userId}
+	</update>
+	
+	<select id="selectListFollowing" resultMap="memberResultSet">
+		SELECT ME.USERID,ME.NICKNAME,ME.PICTURE,MY.INTRO
+		FROM MEMBER ME,MYPAGE MY
+		WHERE ME.USERID=MY.USERID
+		AND ME.USERID IN (SELECT HOST FROM FOLLOW
+		                 WHERE FOLLOWER=#{userId})
+	</select>
 </mapper>

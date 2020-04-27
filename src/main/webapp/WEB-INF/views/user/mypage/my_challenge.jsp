@@ -30,7 +30,7 @@
     
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="resources/css/style.css"/>
-	
+	<link rel="stylesheet" href="resources/css/font.css"/>
 	<!-- JQuery -->
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	
@@ -39,7 +39,7 @@
         margin-bottom: 40px;
     }
     .main-sidebar .mb-warp {
-        padding: 90px 95px 100px 145px;
+        padding: 120px 95px 100px 145px;
     }
     
     .grade{
@@ -292,7 +292,7 @@
 		margin: 0 auto;
 		padding-top: 25px;
 		display: inline-block; 
-		width: 20px; 
+		width: 30px; 
 		height: 100%; 
 		text-align: center;
 		overflow: hidden;
@@ -318,9 +318,9 @@
 </head>
 <body>
 	<!-- Page Preloder -->
-	<div id="preloder">
+	<!-- <div id="preloder">
 		<div class="loader"></div>
-	</div>
+	</div> -->
 
 	<!-- Main section start -->
 	<div class="main-site-warp">
@@ -332,22 +332,22 @@
 				<i class="fa fa-bars"></i>
 			</div>
 			<div class="header-social">
-                <a href="my_profileView.do">My Profile</a>
-                <a href="my_challengeView.do" style="color: red;">My Challenge</a>
-                <a href="my_diaryView.do">My Diary</a>
+                <a href="my_profileView.do">Profile</a>
+                <a href="my_challengeView.do" style="color: red;">Challenge</a>
+                <a href="my_diaryView.do">Diary</a>
                 <a href="getMsgList.do">Message</a>
 			</div>
 		</header>
 		<div class="site-content-warp">
 			<!-- Left Side section -->
 			<div class="main-sidebar">
-				<div class="mb-warp" style="text-align: center;">
+				<div class="mb-warp">
 
                     <a href="indexView.do" class="site-logo">
 						<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
-					<div id="lv" style="width: 350px; height: 470px; border: 1px solid gray; padding:20px; margin:auto; margin-top: -30px">
+					<div id="lv" style="width: 350px; height: 470px; border: 1px solid gray; padding:20px;  margin-top: -20px">
 						<div style="width: 300px; height:320px; margin:auto; background-image: url('resources/images/level/astro2.gif'); background-size: cover; border-radius: 15px;">
 							<img id="lv-img" src="">
 						</div>
@@ -379,7 +379,7 @@
 			<div class="page-section portfolio-page">
 				<div class="portfolio-section">
 					<!-- Statistics 영역 -->				
-					<div class="main-down" id="statistics" style="height: 40%; width:90%; margin-left:20px">
+					<div class="main-down" id="statistics" style="height: 40%; width:90%; margin-left:20px;">
 						<div class="main-down-title" style="height: 70px; padding: 20px; font-weight:900; font-size: 21px; font-weight: 700;">
 							<div style="width:100px; height:100px; margin-left:-39px; display:inline-block; background-image: url('resources/images/icons/bookmark.png'); background-repeat : no-repeat; background-size : cover;"></div>
 							<div style="margin:-100px 24px 0 60px;">
@@ -471,85 +471,84 @@
 							<div class="tab-content" id="myTabContent" >
 								<!-- 전체 챌린지 -->
 								<div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="tab-1">
-									<div class="main-down" style="width: 100%; height: 350px; border: 1px solid gray; padding:3%; margin-top:19px; overflow-y:scroll;">
+									<div class="main-down" style="width: 100%; height: 350px; border: 1px solid gray; padding:1%; margin-top:19px; overflow-y:scroll;">
 										<c:forEach var="c" items="${ chList }" varStatus="status">
 											<div class="chList" style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
 												<div class="result" style="width: 100px">상태미표시</div>
 												<div class="sArr" style="width: 100px">${ c.startDate }</div>
-												<div>~</div>
+												<div style="width:10px">~</div>
 												<div class="eArr" style="width: 100px;">${ c.endDate }</div>
 												<div style="width: 80px; padding: 5px 0 0 0; border-left:1px solid gray; border-right:1px solid gray;"  >
 													<img src="resources/images/user/${c.chPicture }" style="width: 70px; height: auto;" >
 												</div>
 												<div style="width: 250px; text-align:left;">${ c.chName }</div>
 												<div class="ceCount" style="border-left:1px solid gray;">${ceCount[status.index]}</div>
-												<div>/</div>
+												<div style="width:10px">/</div>
 												<div class="gapDate" style="border-right:1px solid gray;">-1</div>
-
-												<div class="chId" style="display:none">${ c.chId }</div>
+												<span class="chId" style="display:none">${ c.chId }</span>
 											</div>
 										</c:forEach>
 									</div>
 								</div>
 								<!-- 진행중 챌린지 -->
 								<div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="tab-2">
-									<div class="main-down" style="width: 100%; height: 350px; border: 1px solid gray; padding:3%; margin-top:19px; overflow-y:scroll;">
-										<c:forEach var="c" items="${ chList }">
+									<div class="main-down" style="width: 100%; height: 350px; border: 1px solid gray; padding:1%; margin-top:19px; overflow-y:scroll;">
+										<c:forEach var="c" items="${ chList }" varStatus="status">
 											<div class="chList" style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
 												<div class="result2" style="width: 100px">상태미표시</div>
 												<div class="sArr2" style="width: 100px">${ c.startDate }</div>
-												<div>~</div>
+												<div style="width:10px">~</div>
 												<div class="eArr2" style="width: 100px;">${ c.endDate }</div>
 												<div style="width: 80px; padding: 5px 0 0 0; border-left:1px solid gray; border-right:1px solid gray;"  >
 													<img src="resources/images/user/${c.chPicture }" style="width: 70px; height: auto;" >
 												</div>
 												<div style="width: 250px; text-align:left;">${ c.chName }</div>
 												<div class="ceCount" style="border-left:1px solid gray;">${ceCount[status.index]}</div>
-												<div>/</div>
-												<div class="gapDate" style="border-right:1px solid gray;">-1</div>
-												
+												<div style="width:10px">/</div>
+												<div class="gapDate2" style="border-right:1px solid gray;">-1</div>
+												<span class="chId" style="display:none">${ c.chId }</span>
 											</div>
 										</c:forEach>
 									</div>
 								</div>
 								<!-- 진행예정 챌린지 -->
 								<div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="tab-3">
-									<div class="main-down" style="width: 100%; height: 350px; border: 1px solid gray; padding:3%; margin-top:19px; overflow-y:scroll;">
-										<c:forEach var="c" items="${ chList }">
+									<div class="main-down" style="width: 100%; height: 350px; border: 1px solid gray; padding:1%; margin-top:19px; overflow-y:scroll;">
+										<c:forEach var="c" items="${ chList }" varStatus="status">
 											<div class="chList" style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
 												<div class="result3" style="width: 100px">상태미표시</div>
 												<div class="sArr3" style="width: 100px">${ c.startDate }</div>
-												<div>~</div>
+												<div style="width:10px">~</div>
 												<div class="eArr3" style="width: 100px;">${ c.endDate }</div>
 												<div style="width: 80px; padding: 5px 0 0 0; border-left:1px solid gray; border-right:1px solid gray;"  >
 													<img src="resources/images/user/${c.chPicture }" style="width: 70px; height: auto;" >
 												</div>
 												<div style="width: 250px; text-align:left;">${ c.chName }</div>
 												<div class="ceCount" style="border-left:1px solid gray;">${ceCount[status.index]}</div>
-												<div>/</div>
-												<div class="gapDate" style="border-right:1px solid gray;">-1</div>
-												
+												<div style="width:10px">/</div>
+												<div class="gapDate3" style="border-right:1px solid gray;">-1</div>
+												<span class="chId" style="display:none">${ c.chId }</span>
 											</div>
 										</c:forEach>
 									</div>
 								</div>
 								<!-- 진행완료 챌린지 -->
 								<div class="tab-pane fade" id="tab-4" role="tabpanel" aria-labelledby="tab-4">
-									<div class="main-down" style="width: 100%; height: 350px; border: 1px solid gray; padding:3%; margin-top:19px; overflow-y:scroll;">
-										<c:forEach var="c" items="${ chList }">
+									<div class="main-down" style="width: 100%; height: 350px; border: 1px solid gray; padding:1%; margin-top:19px; overflow-y:scroll;">
+										<c:forEach var="c" items="${ chList }" varStatus="status">
 											<div class="chList" style="width: 100%; height: 80px; background: white; border: 1px solid gray; margin-top:-1px">
 												<div class="result4" style="width: 100px">상태미표시</div>
 												<div class="sArr4" style="width: 100px">${ c.startDate }</div>
-												<div>~</div>
+												<div style="width:10px">~</div>
 												<div class="eArr4" style="width: 100px;">${ c.endDate }</div>
 												<div style="width: 80px; padding: 5px 0 0 0; border-left:1px solid gray; border-right:1px solid gray;"  >
 													<img src="resources/images/user/${c.chPicture }" style="width: 70px; height: auto;" >
 												</div>
 												<div style="width: 250px; text-align:left;">${ c.chName }</div>
 												<div class="ceCount" style="border-left:1px solid gray;">${ceCount[status.index]}</div>
-												<div>/</div>
-												<div class="gapDate" style="border-right:1px solid gray;">-1</div>
-												
+												<div style="width:10px">/</div>
+												<div class="gapDate4" style="border-right:1px solid gray;">-1</div>
+												<span class="chId" style="display:none">${ c.chId }</span>
 											</div>
 										</c:forEach>
 									</div>
@@ -602,6 +601,9 @@
 											var chId = $('.chId')[i].innerText;
 											var $ceCount = $('.ceCount');
 											var $gapDate = $('.gapDate');
+											var $gapDate2 = $('.gapDate2');
+											var $gapDate3 = $('.gapDate3');
+											var $gapDate4 = $('.gapDate4');
 											
 											if(sDate.getTime()>today.getTime()){
 												$result[i].innerText = '진행예정';
@@ -614,7 +616,6 @@
 												
 												$result4.parent().eq(i).css('display','none');
 												
-												$gapDate[i].innerText = gapDate;
 											}else if(sDate.getTime()<today.getTime() && eDate.getTime()>today.getTime()){
 												$result[i].innerText = '진행중';
 												$result.parent().eq(i).children().eq(0).css('background-color','#FE736C');
@@ -626,7 +627,6 @@
 												
 												$result4.parent().eq(i).css('display','none');
 												
-												$gapDate[i].innerText = gapDate;
 											}else{
 												countTotalCh++;
 												$result[i].innerText = '진행완료';
@@ -639,8 +639,11 @@
 												$result4[i].innerText = '진행완료';
 												$result4.parent().eq(i).children().eq(0).css('background-color','#3A7D7C');
 												
-												$gapDate[i].innerText = gapDate;
 											}
+											$gapDate[i].innerText = gapDate;
+											$gapDate2[i].innerText = gapDate;
+											$gapDate3[i].innerText = gapDate;
+											$gapDate4[i].innerText = gapDate;
 										}
 										
 										$totalCh[0].innerText = countTotalCh;
@@ -786,6 +789,9 @@
 										}).click(function(){
 											//console.log($(this).parent().children().eq(0).text());
 											//var nno = $(this).parent().children().eq(0).text();
+											var chId = $(this).parent().find('span').text();
+											location.href="hiddenDetailInList.do?chId="+chId;
+											
 										});
 									});
 								</script>
@@ -796,8 +802,6 @@
 			</div>
 			<!-- Page end -->
 		</div>
-		<div class="copyright"><p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
-            All rights reserved </p></div>
 		</div>
 	<!-- Main section end -->
 	

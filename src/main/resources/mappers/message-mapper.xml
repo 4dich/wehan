@@ -63,32 +63,32 @@
   	
   	<!-- 메시지 친구 리스트 가져오기 -->
   	<select id="msgFriendList" resultMap="friendResultSet">
-  		SELECT F.HOST AS MSGMYID, 
-  			   F.FOLLOWER AS MSGFRIENDID,
+  		SELECT F.FOLLOWER AS MSGMYID,
+		       F.HOST AS MSGFRIENDID, 
 		       M.PICTURE AS MSGFRIENDIMG,
 		       NICKNAME AS MSGFRIENDNAME,
-		       (SELECT COUNT(*)FROM FOLLOW WHERE HOST = F.FOLLOWER) AS MSGFOLLOWINGNUM,
-		       (SELECT COUNT(*) FROM FOLLOW WHERE FOLLOWER = F.FOLLOWER) AS MSGFOLLOWERNUM,
+		       (SELECT COUNT(*)FROM FOLLOW WHERE HOST = F.HOST) AS MSGFOLLOWINGNUM,
+		       (SELECT COUNT(*) FROM FOLLOW WHERE FOLLOWER = F.HOST) AS MSGFOLLOWERNUM,
 		       P.INTEREST MSGFRIENDCATEGORY
 		FROM MEMBER M
-		JOIN FOLLOW F ON (M.USERID = F.FOLLOWER)
-		JOIN MYPAGE P ON (F.FOLLOWER = P.USERID)
-		WHERE F.HOST = #{userId}
+		JOIN FOLLOW F ON (M.USERID = F.HOST)
+		JOIN MYPAGE P ON (F.HOST = P.USERID)
+		WHERE F.FOLLOWER = #{userId}
   	</select>
   	
   	<!-- 메시지 친구 검색 리스트 가져오기 -->
   	<select id="msgSearchFriend" resultMap="friendResultSet">
-  		SELECT F.HOST AS MSGMYID, 
-  			   F.FOLLOWER AS MSGFRIENDID,
+  		SELECT F.FOLLOWER AS MSGMYID, 
+  			   F.HOST AS MSGFRIENDID,
 		       M.PICTURE AS MSGFRIENDIMG,
 		       NICKNAME AS MSGFRIENDNAME,
-		       (SELECT COUNT(*)FROM FOLLOW WHERE HOST = F.FOLLOWER) AS MSGFOLLOWINGNUM,
-		       (SELECT COUNT(*) FROM FOLLOW WHERE FOLLOWER = F.FOLLOWER) AS MSGFOLLOWERNUM,
+		       (SELECT COUNT(*)FROM FOLLOW WHERE HOST = F.HOST) AS MSGFOLLOWINGNUM,
+		       (SELECT COUNT(*) FROM FOLLOW WHERE FOLLOWER = F.HOST) AS MSGFOLLOWERNUM,
 		       P.INTEREST MSGFRIENDCATEGORY
 		FROM MEMBER M
-		JOIN FOLLOW F ON (M.USERID = F.FOLLOWER)
-		JOIN MYPAGE P ON (F.FOLLOWER = P.USERID)
-		WHERE F.HOST = #{userId}
+		JOIN FOLLOW F ON (M.USERID = F.HOST)
+		JOIN MYPAGE P ON (F.HOST = P.USERID)
+		WHERE F.FOLLOWER = #{userId}
 		AND M.NICKNAME LIKE '%' || #{searchWord} || '%'
   	</select>
   	
@@ -194,7 +194,7 @@
 		     OR MSGR.USER2 = #{userId} AND MSGR.USER2_DEL = 1)
 		WHERE MROWNUM = 1  
 		AND SENDERID != #{userId}
-		AND RECEIVERNAME LIKE '%' || #{searchWord} ||'%' OR SENDERNAME LIKE #{searchWord}
+		AND RECEIVERNAME LIKE '%'|| #{searchWord} ||'%' OR SENDERNAME LIKE '%'|| #{searchWord} ||'%'
 		ORDER BY MDATE DESC
   	</select>
   	
@@ -222,20 +222,20 @@
   		VALUES(SEQ_MRID.NEXTVAL, #{userId}, #{fId}, DEFAULT, DEFAULT)
   	</insert>
   	
-  	<!-- 3) 메시지룸 번호(MRID) 가져오기 -->
-  	<select id="getMrid" parameterType="java.util.Map" resultType="_int">
-  		SELECT MRID
-		FROM MESSAGEROOM
-		WHERE USER1 = #{userId} AND USER2 = #{fId}
-		OR USER1 = #{fId} AND USER2 = #{userId}
-  	</select>
-  	
-  	<!-- 4) 메시지룸 Del 리셋  -->
+  	<!-- 3) 메시지룸 Del 리셋  -->
   	<update id="updateMrid" parameterType="java.util.Map">
   		UPDATE MESSAGEROOM SET USER1_DEL = DEFAULT, USER2_DEL = DEFAULT 
   		WHERE USER1 = #{userId} AND USER2 = #{fId}
   		OR USER1 = #{fId} AND USER2 = #{userId}
   	</update>
+  	
+  	<!-- 4) 메시지룸 번호(MRID) 가져오기 -->
+  	<select id="getMrid" parameterType="java.util.Map" resultType="_int">
+  		SELECT MRID
+		FROM MESSAGEROOM
+		WHERE USER1 = #{userId} AND USER2 = #{fId}
+		OR USER1 = #{fId} AND USER2 = #{userId}
+  	</select>  	
   	
   	<!-- 5) MESSAGE 테이블에 메시지 저장하기 -->
   	<insert id="saveMsgContent" parameterType="java.util.Map">

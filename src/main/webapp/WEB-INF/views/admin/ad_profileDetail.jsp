@@ -22,9 +22,10 @@
 	<link rel="stylesheet" href="resources/css/owl.carousel.min.css"/>
 
 	<!-- Main Stylesheets -->
-	<link rel="stylesheet" href="resources/css/style.css"/>
 	<link rel="stylesheet" href="resources/css/admin_qna.css"/>
-
+	<link rel="stylesheet" href="resources/css/style.css"/>
+	<link rel="stylesheet" href="resources/css/font.css"/>
+	<link rel="stylesheet" href="resources/css/adminmargin.css"/>
 	<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -33,6 +34,7 @@
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 	<style>
+		.about-info{margin:0;}
 		.black{
 			display: none; /* Hidden by default */
             position: fixed; /* Stay in place */
@@ -158,13 +160,12 @@
 
 					<div class="about-info">
 						<h2>회원정보</h2>
-						<a href="blackList.do" id="ad_blackList" class="infoMenu">블랙리스트</a><br><br>
-						<a href="paylist.do" id="ad_pay" class="infoMenu">결제정보</a><br><br>
-						<!-- <a href="mlist.do" id="mlist" class="infoMenu">회원정보</a><br><br> -->
-						<a href="ad_challengeListView.do" id="ad_challenge" class="infoMenu">챌린지 정보</a><br><br>
-						<a href="ad_certifyView.do" id="ad_certify" class="infoMenu">인증글 정보</a><br><br>
 						<a href="ad_noticeList.do" id="ad_notice" class="infoMenu">공지사항</a><br><br>
 						<a href="ad_questionsList.do" id="ad_questions" class="infoMenu">문의사항</a><br><br>
+						<a href="paylist.do" id="ad_pay" class="infoMenu">결제정보</a><br><br>
+						<a href="ad_challengeListView.do" id="ad_challenge" class="infoMenu">챌린지 정보</a><br><br>
+						<a href="ad_certifyView.do" id="ad_certify" class="infoMenu">인증글 정보</a><br><br>
+						<a href="blackList.do" id="ad_blackList" class="infoMenu">블랙리스트</a><br><br>
 					</div>
 				</div>
 			</div>
@@ -181,13 +182,13 @@
 						<!-- <div class="col-xl-6">
 							<div class="map"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14376.077865872314!2d-73.879277264103!3d40.757667781624285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1546528920522" style="border:0" allowfullscreen></iframe></div>
 						</div> -->
-						<div style="margin-top: 50px; margin-right: 20px;">
+						<div style="margin-top: 100px; margin-right: 20px;">
                             <div class="ch-register-pic"></div>
                             <div  style="margin-top: 30px; margin-left: 100px; height: 300px; width: 280px; font-size: 15px;">
                            		 <img src='resources/images/user/${m.picture }' style="height: 300px; width: 280px;">
                             </div>				
 							<div id="prof">
-							<p>회원 마이페이지</p>
+							<p style="font-size:16px; margin-top:40px;">회원 마이페이지</p>
 							<!-- <p style="font-size: 20px; margin-top: 20px;"><b>챌린지명</b></p>
 							<p>결제금액</p> -->
 							</div>
@@ -196,16 +197,16 @@
 							<div class="contact-text-warp">
 								<form class="contact-form" style="margin-top: 60px;">
 									<div class="row">	
-                                        <div class="col-lg-12">
+                                        <div class="col-lg-6">
                                             <input id="userId" value="${m.userId}" type="text" style="border-top: none; border-left: none; border-right: none;" disabled>
                                         </div>
-										<div class="col-lg-12">
+										<div class="col-lg-6">
                                             <input id="nickName" value="${m.nickName}" type="text" style="border-top: none; border-left: none; border-right: none;" disabled>
                                         </div>
-                                        <div class="col-lg-12">
+                                        <div class="col-lg-6">
                                             <input id="userName" value="${m.userName}" type="text" style="border-top: none; border-left: none; border-right: none;" disabled>
                                         </div>
-                                        <div class="col-lg-12">
+                                        <div class="col-lg-6">
                                             <input id="birthDay" value="${m.birthDay}" type="text" style="border-top: none; border-left: none; border-right: none;" disabled>
                                         </div>
                                         <div class="col-lg-12">
@@ -214,10 +215,10 @@
                                         <div class="col-lg-12">
                                             <input id="email" value="${m.email}" type="text" style="border-top: none; border-left: none; border-right: none;" disabled>
                                         </div>
-										<div class="col-lg-12">
+										<div class="col-lg-6">
                                             <input id="phone" value="${m.phone}" type="text" style="border-top: none; border-left: none; border-right: none;" disabled>
                                         </div>
-										<div class="col-lg-12">
+										<div class="col-lg-6">
                                             <input id="account" value="${m.account}" type="text" style="border-top: none; border-left: none; border-right: none;" disabled>
                                         </div>
 										<div class="col-lg-12" id="blackdiv">

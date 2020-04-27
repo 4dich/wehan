@@ -26,7 +26,7 @@
 	
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="resources/css/style.css"/>
-	
+	<link rel="stylesheet" href="resources/css/font.css"/>
 	<!-- JQuery -->
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	
@@ -257,7 +257,7 @@
 							
 						</div>
 						<div class="main-up-content" style="font-size:20px; height: 306px; width: 100%; margin-top: 5px; text-align:right; border:1px solid gray;">
-							<textarea id="goal" cols="104" rows="9" style="resize: none; border:0px; background:white; margin-top: 12px; margin-right:12px"  disabled>${ otherPage.goal }</textarea>
+							<textarea id="goal" cols="116" rows="10" style="resize: none; border:0px; background:white; margin-top: 12px; margin-right:12px"  disabled>${ otherPage.goal }</textarea>
 						</div>
 
 						<script>

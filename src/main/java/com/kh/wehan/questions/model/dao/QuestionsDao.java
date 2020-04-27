@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.kh.wehan.common.model.vo.PageInfo;
 import com.kh.wehan.notice.model.vo.Notice;
 import com.kh.wehan.questions.model.vo.Questions;
+import com.kh.wehan.questions.model.vo.QuestionsReply;
 import com.kh.wehan.questions.model.vo.SearchCondition;
 
 @Repository("qDao")
@@ -107,13 +108,28 @@ public class QuestionsDao {
 		 * @param q
 		 * @return
 		 */
-		public int questionsReplyInsert(Questions q) {
+		public int questionsReplyInsert(QuestionsReply qr) {
 			
-			return sqlSession.insert("questionsMapper.questionsReplyInsert",q);
+			return sqlSession.insert("questionsMapper.insertReply",qr);
 			
 		}
 		
 		
+		
+		public ArrayList<QuestionsReply> questionsReplyList(int qId) {
+			
+			return (ArrayList)sqlSession.selectList("questionsMapper.questionsReplySelect",qId);
+		}
+		public ArrayList<QuestionsReply> selectreplyList(int qId) {
+			
+			return (ArrayList)sqlSession.selectList("questionsMapper.selectreplyList",qId);
+		}
+		public int deletereply(int qrId) {
+			
+			return sqlSession.update("questionsMapper.deletereply",qrId);
+		}
+		
+			
 			
 			
 		}

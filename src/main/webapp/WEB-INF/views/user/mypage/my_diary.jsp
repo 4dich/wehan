@@ -1,10 +1,11 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="ko">
 <head>
-	<title>NISSA - PHOTOGRAPHY STUDIO HTML TEMPLATE</title>
+	<title>WEHAN</title>
 	<meta charset="UTF-8">
 	<meta name="description" content="Nissa Photography studio html template">
 	<meta name="keywords" content="industry, html">
@@ -18,190 +19,330 @@
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,900&display=swap" rel="stylesheet">
 
 	<!-- Stylesheets -->
-	<link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
+	<!-- <link rel="stylesheet" href="resources/css/bootstrap.min.css"/> -->
 	<link rel="stylesheet" href="resources/css/font-awesome.min.css"/>
 	<link rel="stylesheet" href="resources/css/magnific-popup.css"/>
 	<link rel="stylesheet" href="resources/css/owl.carousel.min.css"/>
 
 	<!-- Main Stylesheets -->
-	<link rel="stylesheet" href="resources/css/style.css"/>
+	
 
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-	
-	<!--[if lt IE 9]>
-		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	<![endif]-->
 	
 	<link href='resources/packages/core/main.css' rel='stylesheet' />
 	<link href='resources/packages/daygrid/main.css' rel='stylesheet' />
 	<link href='resources/packages/timegrid/main.css' rel='stylesheet' />
+	<link href='resources/packages/list/main.css' rel='stylesheet' />
 	<script src='resources/packages/core/main.js'></script>
 	<script src='resources/packages/interaction/main.js'></script>
 	<script src='resources/packages/daygrid/main.js'></script>
 	<script src='resources/packages/timegrid/main.js'></script>
+	<script src='resources/packages/list/main.js'></script>
+	<!-- <script src='resources/packages/bundle/locales/ko.js'></script> -->
 	
+    <!-- <link rel="stylesheet" href="resources/packages/custom/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href='resources/packages/custom/css/bootstrap-datetimepicker.min.css' />
+    <link rel="stylesheet" href="resources/css/style.css"/>
+    <link rel="stylesheet" href="resources/css/font.css"/>
+    <script src="resources/packages/custom/js/moment.min.js"></script>   
+    <script src="resources/packages/custom/js/bootstrap-datetimepicker.min.js"></script>
+    <style>
+     body{margin:0;}
+    </style>
+    
 <script>
-
-  document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
-
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      plugins: [ 'interaction', 'dayGrid', 'timeGrid' ],
-      header: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay'
-      },
-      defaultDate: new Date(),
-      navLinks: true, // can click day/week names to navigate views
-      selectable: true,
-      selectMirror: true,
-      select: function(arg) {
-        var title = prompt('Event Title:');
-        if (title) {
-          calendar.addEvent({
-            title: title,
-            start: arg.start,
-            end: arg.end,
-            allDay: arg.allDay
-
-            
-          })
-        }
-        calendar.unselect()
-      },
-      editable: true,
-      eventLimit: true, // allow "more" link when too many events
-      events: [
-        {
-          title: 'All Day Event',
-          start: '2020-02-01'
-        },
-        {
-          title: 'Long Event',
-          start: '2020-02-07',
-          end: '2020-02-10'
-        },
-        {
-          groupId: 999,
-          title: 'Repeating Event',
-          start: '2020-02-09T16:00:00'
-        },
-        {
-          groupId: 999,
-          title: 'Repeating Event',
-          start: '2020-02-16T16:00:00'
-        },
-        {
-          title: 'Conference',
-          start: '2020-02-11',
-          end: '2020-02-13'
-        },
-        {
-          title: 'Meeting',
-          start: '2020-02-12T10:30:00',
-          end: '2020-02-12T12:30:00'
-        },
-        {
-          title: 'Lunch',
-          start: '2020-02-12T12:00:00'
-        },
-        {
-          title: 'Meeting',
-          start: '2020-02-12T14:30:00'
-        },
-        {
-          title: 'Happy Hour',
-          start: '2020-02-12T17:30:00'
-        },
-        {
-          title: 'Dinner',
-          start: '2020-02-12T20:00:00'
-        },
-        {
-          id: 'a',
-          title: 'Birthday Party',
-          start: '2020-02-13T07:00:00',
-          color: '#3A7D7C'
-        },
-        {
-          title: 'Click for Google',
-          url: 'http://google.com/',
-          start: '2020-02-28'
-        }
-      ],
-
-      // eventSources: [
-      //   {
-      //     url: '/myfeed.php',
-      //     method: 'POST',
-      //     extraParams: {
-      //       custom_param1: 'something',
-      //       custom_param2: 'somethingelse'
-      //     },success:function(){
-      //       alert('success');
-      //     },failure: function() {
-      //       alert('failure');
-      //     },
-      //     color: 'yellow',   // a non-ajax option
-      //     textColor: 'black' // a non-ajax option
-      //   }
-      // ],
+var calendar = "";
+var dId = "";
+var calendarEl = "";
+var events = [];
       
-      eventColor: 'red',
-      eventClick: function(info) {
-        alert('Event: ' + info.event.title);  // 이벤트명
-        alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY); // 좌표
-        alert('View: ' + info.view.type); // 페이지 형식 : 
+      /* 달력 세팅*/
+	  setCalendar = function setCalendar(){
+	  		calendarEl = document.getElementById('calendar');
+            calendar = new FullCalendar.Calendar(calendarEl, {
+              plugins: [ 'interaction', 'dayGrid', 'timeGrid',  'list' ],
+              header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+              },
+              defaultDate: new Date(),
+              navLinks: true,
+              selectable: true,
+              selectMirror: true,
+              select: function select(arg){
+                var rowTitle = prompt('Write Title(under 15):');
+                var title = "";
+                if(rowTitle){
+	                title = rowTitle.substr(0, 15);
+                }
+                if (title) {
+                  var content = prompt('Write Content:');
+                  /* 일정 입력하기(INSERT) */
+                  $.ajax({
+                      url:'calendarInsert.do',
+                      dataType:'json',
+                      type:'post',
+                      data:{
+                      	dTitle:title,
+                      	dContent:content,
+                      	sDate:moment(arg.start).format("YYYY-MM-DD HH:mm"),
+                      	eDate:moment(arg.end).format("YYYY-MM-DD HH:mm"),
+                      	dColor:'#3A7D7C',
+                      	cntStamp:0
+                      },success:function(data){
+                    	  $('#calendar').remove();
+                    	  $('#dich').append("<div id='calendar' style='margin-top:50px; border: 1px solid gray; padding: 10px';'></div>");
+                    	  events = [];
+                    	  selectCalendar();
+                      },error:function(){
+                    	  alert('일정 입력 오류');
+                      }
+                  });
+                  calendar.addEvent({
+                    title: title,
+                    start: arg.start,
+                    end: arg.end,
+                    allDay: true,
+                    color: '#3A7D7C',
+                    dContent: content
+                  });
+                  $("input:radio[name='color_select']:radio[value='color1']").prop('checked',true);
+            	  $('#modalTitle, #modalFooter').css('background','#3A7D7C');
+                }
+                calendar.unselect()
+              },
+              editable: true,
+              eventLimit: true,
+              events: events,
+              titleFormat: { 
+           	    year: 'numeric',
+           	    month: '2-digit',
+           	    day: '2-digit'
+           	  },
 
-        // change the border color just for fun
-        info.el.style.borderColor = 'red';
-      }
-    });
-
-    var event = calendar.getEventById('a') // an event object!
-    var start = event.start // a property (a Date object)
-    console.log(start.toISOString()) // "2018-09-01T00:00:00.000Z"
-
-    calendar.render();
-  });
-  
-  $(function(){
+              //locale: 'ko', // 한국어표시, "일"표시가 보기 안좋음
+              /* eventClick: function(info) {
+                
+                info.el.style.borderColor = 'red';
+              },  */
+              
+              /* 일정 불러오기(SELECTONE) */
+              eventClick:  function(info) {
+                  $('#modalTitle').html(info.event.title);
+                  
+                  $('#sDate').val(moment(info.event.start).format("YYYY-MM-DD HH:mm"));
+                  $('#eDate').val(moment(info.event.end).format("YYYY-MM-DD HH:mm"));
+                  $('#dContent').val(info.event.extendedProps.dContent);
+                  if(info.event.extendedProps.dColor=='#3A7D7C'){
+                	  $("input:radio[name='color_select']:radio[value='color1']").prop('checked',true);
+                	  $('#modalTitle, #modalFooter').css('background','#3A7D7C');
+                  }else if(info.event.extendedProps.dColor=='#03A6A6'){
+                	  $("input:radio[name='color_select']:radio[value='color2']").prop('checked',true);
+                	  $('#modalTitle, #modalFooter').css('background','#03A6A6');
+                  }else if(info.event.extendedProps.dColor=='#F7D147'){
+                	  $("input:radio[name='color_select']:radio[value='color3']").prop('checked',true);
+                	  $('#modalTitle, #modalFooter').css('background','#F7D147');
+                  }else if(info.event.extendedProps.dColor=='#FE736C'){
+                	  $("input:radio[name='color_select']:radio[value='color4']").prop('checked',true);
+                	  $('#modalTitle, #modalFooter').css('background','#FE736C');
+                  }else if(info.event.extendedProps.dColor=='#EC5A31'){
+                	  $("input:radio[name='color_select']:radio[value='color5']").prop('checked',true);
+                	  $('#modalTitle, #modalFooter').css('background','#EC5A31');
+                  }
+                  
+                  $('#stat').slideDown(500);
+                  
+               	  dId = info.event.id;
+            	},
+            	
+            	eventDrop: function(info) {
+                         /* 일정 드래그 업데이트하기(UPDATE) */
+	                	 $.ajax({
+	       	        	  url: 'calendarUpdateDragResize.do',
+	       	        	  dataType:'json',
+	       	        	  type: 'post',
+	       	        	  data: {
+	       	        		  dId:info.event.id,
+	       	        		  sDate:moment(info.event.start).format("YYYY-MM-DD HH:mm"),
+	       	        		  eDate:moment(info.event.end).format("YYYY-MM-DD HH:mm")
+	       	        	  },
+	       	        	  success:function(data){
+	       	        	  	  console.log(data + '개 행이 업데이트되었습니다.');
+	       	        	  $('#calendar').remove();
+	       	            	  $('#dich').append("<div id='calendar' style='margin-top:50px; border: 1px solid gray; padding: 10px'></div>");
+	       	            	  events = [];
+	       	            	  selectCalendar();
+	       	        	  },
+	       	        	  error:function(){
+	       	        		  console.log('일정 드래그 업데이트 오류');
+	       	        	  }
+	       	        });
+	           	},
+	           	
+	           	eventResize: function(info) {
+	                   	/* 일정 리사이즈 업데이트하기(UPDATE) */
+	                   	$.ajax({
+	                    	  url: 'calendarUpdateDragResize.do',
+	                    	  dataType:'json',
+	                    	  type: 'post',
+	                    	  data: {
+	                    		  dId:info.event.id,
+	                    		  sDate:moment(info.event.start).format("YYYY-MM-DD HH:mm"),
+	                    		  eDate:moment(info.event.end).format("YYYY-MM-DD HH:mm")
+	                    	  },
+	                    	  success:function(data){
+	                    	  	  console.log(data + '개 행이 업데이트되었습니다.');
+	                    	  $('#calendar').remove();
+	                        	  $('#dich').append("<div id='calendar' style='margin-top:50px; border: 1px solid gray; padding: 10px'></div>");
+	                        	  events = [];
+	                        	  selectCalendar();
+	                    	  },
+	                    	  error:function(){
+	                    		  console.log('일정 드래그 업데이트 오류');
+	                    	  }
+	                    });
+	           	  }
+	           	
+            });
+            calendar.render(); 
+	  }
+	  
+    /* 일정 불러오기(SELECTLIST) */
+    selectCalendar = function selectCalendar(){
     $.ajax({
         contentType:'application/json',
         dataType:'json',
         url:'calendarView.do',
         type:'post',
         success:function(data){
-        	var events = [];
             $.each(data, function (index, value) {
-
                 events.push({
-                    
-                    title: value.title,
-                    start: value.sDate
-                    //all data
+                	id: value.dId,
+                    title: value.dTitle,
+                    start: value.sDate,
+                    end: value.eDate,
+                    color: value.dColor,
+                    allDay: true,
+                    dColor: value.dColor,
+                    dContent: value.dContent
+                    //color : "#FF0000",
+                    //textColor : "#FFFF00",
+                    //borderColor : "#FF4500"
                 });
-                console.log(value)
             });
-            callback(events);
+            setCalendar();
         },
         error:function(){
-            alert('에러남, 아무튼 에러남');
+            alert('일정 리스트 출력 오류');
         }
       });
-  });
+	}
+    
+    /* 일정 삭제하기(DELETE) */
+    deleteCalendar = function deleteCalendar(){
+  	  $('#btnDelete').click(function(){
+  	 	  calendar.getEventById(dId).remove();
+  	 	  $('#stat').slideUp(500);
+  	 	  $.ajax({
+  	 		  url: 'calendarDelete.do',
+  	 		  dataType:'json',
+  	 		  type: 'post',
+  	 		  data: {dId:dId},
+  	 		  success:function(data){
+  	 		  	  console.log(data + '개 행이 삭제되었습니다.');
+  	 		  },
+  	 		  error:function(){
+  	 			  console.log('일정 삭제 오류');
+  	 		  }
+  	 	  });
+  	   });
+    }
+    
+    /* 일정 업데이트하기(UPDATE) */
+    updateCalendar = function updateCalendar(){
+   	  $('#btnUpdate').click(function(info){
+	   		var event = calendar.getEventById(dId);
+   		  	var sDate = $('#sDate').val();
+   		  	var eDate = $('#eDate').val();
+	   		var dContent = $('#dContent').val();
+   		  	var dTitle = $('#modalTitle').html();
+   		  	var dColor = "";
+   		    //$("input:radio[name='color_select']:radio[value='color1']").prop('checked',true);
+   		  	var rawColor = $("input:radio[name='color_select']:checked").val();
+   		  	if(rawColor=='color1'){
+   		  		dColor = "#3A7D7C";
+   		  	}else if(rawColor=='color2'){
+   		  		dColor = "#03A6A6";
+   		  	}else if(rawColor=='color3'){
+   		  		dColor = "#F7D147";
+   		  	}else if(rawColor=='color4'){
+   		  		dColor = "#FE736C";
+   		  	}else{
+   		  		dColor = "#EC5A31";
+   		  	}
+   		  	
+	   		 $.ajax({
+	 	 		  url: 'calendarUpdate.do',
+	 	 		  dataType:'json',
+	 	 		  type: 'post',
+	 	 		  data: {
+	 	 			  dId:dId,
+	 	 			  dTitle:dTitle,
+	 	 			  dContent:dContent,
+	 	 			  dColor:dColor,
+	 	 			  sDate:sDate,
+	 	 			  eDate:eDate
+	 	 		  },
+	 	 		  success:function(data){
+	 	 		  	  console.log(data + '개 행이 업데이트되었습니다.');
+		 	 		  $('#calendar').remove();
+	              	  $('#dich').append("<div id='calendar' style='margin-top:50px; border: 1px solid gray; padding: 10px'></div>");
+	              	  events = [];
+	              	  selectCalendar();
+	 	 		  },
+	 	 		  error:function(){
+	 	 			  console.log('일정 업데이트 오류');
+	 	 		  }
+	 	 	  });
+   		  	
+	   		event.setProp('title', dTitle);
+	   		event.setStart(sDate);
+	   		event.setEnd(eDate);
+	   		event.setProp('color', dColor);
+	   		$('#stat').slideUp(500);
+   	  });
+    }
+  
+    /* 페이지 로드 시 */
+    $(function(){
+   	  selectCalendar();
+   	  deleteCalendar();
+   	  updateCalendar();
+    });
+  
+  
+  
+  console.log(dId);
+  
+ 	/* window.location.reload(); */
 
+  
 </script>
 <style>
+
+	h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    color: #242424;
+	}
 
 	.site-logo {
         margin-bottom: 40px;
     }
 
     .main-sidebar .mb-warp {
-        padding: 90px 95px 100px 145px;
+        padding: 120px 95px 100px 145px;
     }
     
     .grade{
@@ -333,88 +474,6 @@
 		margin-bottom: 0;
 		color: #828282;
 	}
-	
-	/* calendar*/
-	#calendar {
-		width: 100%;
-	}
-	#calendar a {
-		color: #8e352e;
-		text-decoration: none;
-	}
-	#calendar ul {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		width: 100%;
-	}
-	#calendar li {
-		display: block;
-		float: left;
-		width: 14.342%;
-		padding: 5px;
-		box-sizing: border-box;
-		border: 1px solid #ccc;
-		margin-right: -1px;
-		margin-bottom: -1px;
-	}
-	#calendar ul.weekdays {
-		height: 40px;
-		background: #ccc;
-	}
-		
-	#calendar ul.weekdays li {
-		text-align: center;
-		text-transform: uppercase;
-		line-height: 20px;
-		padding: 10px 6px;
-		color: #fff;
-		font-size: 13px;
-		
-		color: white;
-		background-color: #323232;
-		border: 1px solid gray;
-	}
-	#calendar .days li {
-		height: 140px;
-	}
-	#calendar .days li:hover {
-		background: #d3d3d3;
-	}
-	#calendar .date {
-		text-align: center;
-		/* padding: 10px; */
-		background-color: gray;
-		color: #fff;
-		width: 28px;
-		border-radius: 60%;
-		float: left;
-		
-	}
-	#calendar .event {
-		clear: both;
-		display: block;
-		font-size: 13px;
-		border-radius: 4px;
-		padding: 5px;
-		margin-top: 40px;
-		margin-bottom: 5px;
-		line-height: 14px;
-		background: #e4f2f2;
-		border: 1px solid #b5dbdc;
-		color: #009aaf;
-		text-decoration: none;
-		overflow: hidden;
-	}
-	#calendar .event-desc {
-		color: #666;
-		margin: 3px 0 7px 0;
-	text-decoration: none;
-	}
-	#calendar .other-month {
-		background: #f5f5f5;
-		color: #666;
-	}
 
 	/* progress-bar */
 	@-webkit-keyframes progress-bar-stripes {
@@ -530,9 +589,8 @@
 
 
   body {
-    margin: 40px 10px;
+    margin: 0;
     padding: 0;
-    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
     font-size: 14px;
   }
 
@@ -540,15 +598,46 @@
     max-width: 900px;
     margin: 0 auto;
   }
+  
+  .fc-sat {
+  	color:#0000FF;
+  }
+  
+  .fc-sun {
+  	color: #FF0000;
+  }
+  
+  /* 달력클릭시 팝업창에서 색고르는 항목 */
+  .box-radio-input input[type="radio"]{
+      display:none;
+  }
 
+  .box-radio-input input[type="radio"] + div{
+      width: 44px;
+      height: 44px;
+      display:inline-block;  
+      cursor:pointer;
+      border:1px solid black;   
+      padding:1px;
+  }
+
+  .box-radio-input input[type="radio"]:checked + div{
+      padding: 0px;
+      border:2px solid black;   
+  }
+  
+  a:link { text-decoration: none; color:black;}
+  a:visited { text-decoration: none;}
+  a:hover { text-decoration: none;}
+	
 </style>
 </head>
 
 <body>
 	<!-- Page Preloder -->
-	<div id="preloder">
+	<!-- <div id="preloder">
 		<div class="loader"></div>
-	</div>
+	</div> -->
 
 	<!-- Main section start -->
 	<div class="main-site-warp">
@@ -561,23 +650,24 @@
 			<div class="nav-switch menuIcon msgCount">
 				<i class="fa fa-bars"></i>
 			</div>
-			<div class="header-social">
-                <a href="my_profileView.do">My Profile</a>
-                <a href="my_challengeView.do">My Challenge</a>
-                <a href="my_diaryView.do" style="color: red;">My Diary</a>
+			<div class="header-social" style='font-family:"Open Sans",sans-serif;'>
+                <a href="my_profileView.do">Profile</a>
+                <a href="my_challengeView.do">Challenge</a>
+                <a href="my_diaryView.do" style="color: red;">Diary</a>
 				<a href="getMsgList.do">Message</a>
 			</div>
 		</header>
+		
 		<div class="site-content-warp">
 			<!-- Left Side section -->
 			<div class="main-sidebar">
-				<div class="mb-warp" style="text-align: center;">
+				<div class="mb-warp">
 
                     <a href="indexView.do" class="site-logo">
-						<h2 style="margin-left: 6px;">위대한 한걸음</h2>
+						<h2 style="margin-left: 6px; /* margin-top:4px; */">위대한 한걸음</h2>
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
-					<div id="lv" style="width: 350px; height: 470px; border: 1px solid gray; padding:20px; margin:auto; margin-top: -30px">
+					<div id="lv" style="width: 350px; height: 470px; border: 1px solid gray; padding:20px;  margin-top: -20px">
 						<div id="lv-img" style="width: 300px; height:320px; margin:auto; background-image: url('resources/images/level/astro2.gif'); background-size: cover; border-radius: 15px;">
 							<img src="resources/images/level/lv4.png">
 						</div>
@@ -603,25 +693,73 @@
 			</div>
 			<!-- Left Side section end -->
 			<!-- Page start -->
+			<!-- <div id='itemContainer' style="width:900px; height:200px; margin-left: 185px; overflow-y: auto; margin-bottom: 50px; border:1px solid; -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);">
+				<div id='item1' style="display:inline-block; width:880px; height:200px; background:red;"></div>
+				<div id='item2' style="display:inline-block; width:880px; height:200px; background:blue;"></div>
+				<div id='item2' style="display:inline-block; width:880px; height:200px; background:yellow;"></div>
+			</div> -->
 			
-			<div id='calendar'></div>
+			<div id='dich'></div>
+			<div id='calendar' style='margin-top:50px; border: 1px solid gray; padding: 10px'></div>
 			
-			<!-- Page end -->
+			<div id='stat' style="display:none; background: white; width:500px; height:498px; position:absolute; left: 1000px; top: 200px; border-radius:5px; box-shadow : rgba(0,0,0,0.5) 0 0 0 9999px; z-index : 100;
+			-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);">
+				<div id='modalX' style="width:20px; height:20px; margin-top: 20px; margin-right:20px; float:right; font-size:18px; cursor:pointer;">X</div>
+				<div id='modalTitle' style="width:500px; height:60px; padding-left:50px; padding-top:14px; background: lightgray; font-weight:bold; font-size: 24px"></div>
+				<div id='modalBody' style="width:500px; height:380px; padding-left:50px; margin-top:-1px; padding-top:20px; background: white;">
+					<div id='modalBody3' style="width:500px; height:80px; padding-top: 20px">
+						<label class="box-radio-input"><input type="radio" name="color_select" value="color1" checked="checked"><div><div style="background: #3A7D7C; width: 40px; height: 40px;"></div></div></label>
+					    <label class="box-radio-input"><input type="radio" name="color_select" value="color2"><div><div style="background: #03A6A6;width: 40px; height: 40px;"></div></div></label>
+					    <label class="box-radio-input"><input type="radio" name="color_select" value="color3"><div><div style="background: #F7D147; width: 40px; height: 40px;"></div></div></label>
+					    <label class="box-radio-input"><input type="radio" name="color_select" value="color4"><div><div style="background: #FE736C; width: 40px; height: 40px;"></div></div></label>
+					    <label class="box-radio-input"><input type="radio" name="color_select" value="color5"><div><div style="background: #EC5A31; width: 40px; height: 40px;"></div></div></label>
+					    
+					</div>
+					<div style="display:inline-block; width:220px; height:25px;">시작일</div>
+					<div style="display:inline-block; width:180px; height:25px;">종료일</div>
+					<div id='modalBody4' style="width:500px; height:30px; position:relative;">
+						<div style="width:400px; height:50px;">
+							<input type='text' id='sDate'>
+							<input type='text' id='eDate' style="float:right">
+						</div>
+					</div>
+					
+					<div id='modalBody5' style="width:500px; height:100px; margin-top:30px">
+						<div style="width:400px; height:25px;">메모</div>
+						<textarea id='dContent' cols="54" rows="7" style="resize: none; background:white;"></textarea>
+					</div>
+				</div>
+				<div id="modalFooter" style="width:500px; height:60px; text-align:center; margin-top:-1px; padding-top:15px; background: lightgray;">
+					<button id='btnUpdate'>저장</button>
+					<button id='btnDelete'>삭제</button>
+				</div>
+			</div>
 		</div>
-		<div class="copyright"><p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
-            All rights reserved </p></div>
+			<script>
+				$('#modalX').click(function(){
+					/* $('#stat').css('display','none'); */
+					$('#stat').slideUp(500);
+				});
+				
+				$("#sDate, #eDate").datetimepicker({
+		            format: 'YYYY-MM-DD HH:mm'
+		        });
+			</script>
 		</div>
-	</div>
+			<!-- <div class="copyright"><p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
+		           All rights reserved </p></div>
+			</div> -->
 	<!-- Main section end -->
 	
 	<!--====== Javascripts & Jquery ======-->
-	<script src="resources/js/jquery-3.2.1.min.js"></script>
+	<!-- <script src="resources/js/jquery-3.2.1.min.js"></script> -->
 	<script src="resources/js/bootstrap.min.js"></script>
 	<script src="resources/js/owl.carousel.min.js"></script>
 	<script src="resources/js/jquery.nicescroll.min.js"></script>
 	<script src="resources/js/circle-progress.min.js"></script>
 	<script src="resources/js/jquery.magnific-popup.min.js"></script>
 	<script src="resources/js/main.js"></script>
+	
 
 	</body>
 </html>

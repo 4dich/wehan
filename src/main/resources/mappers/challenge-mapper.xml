@@ -39,6 +39,7 @@
 	<select id="selectList" resultMap="challengeResultSet">
 		SELECT *
 		FROM CHALLENGE
+		ORDER BY CHID+1 DESC
 	</select>
 	
 	<select id="selectOneDetail" resultMap="challengeResultSet">
@@ -68,7 +69,6 @@
 	<select id="getSelectSearchList" resultMap="challengeResultSet">
 		SELECT *
 		FROM CHALLENGE
-		
 			<if test="chName != null">
 				WHERE CHNAME LIKE '%' || #{chName} || '%'
 			</if>
@@ -81,7 +81,7 @@
 			<if test="endDate != null">
 				WHERE ENDDATE LIKE '%' || #{endDate} || '%'
 			</if>
-		ORDER BY CHID DESC
+		ORDER BY CHID+1 DESC
 	</select>
 	
 	<insert id="insertChallenge">
@@ -122,5 +122,16 @@
 		SELECT *
 		FROM CHALLENGE
 		WHERE CHNAME = #{chName}
+	</select>
+	
+	<!-- 인증글 등록 페이지 -->
+	<select id="insertPage" resultMap="challengeResultSet">
+	SELECT * FROM CHALLENGE
+	WHERE CHID = #{chId}
+	</select>
+	
+	<select id="chNameGet" resultMap="challengeResultSet">
+	SELECT * FROM CHALLENGE
+	WHERE CHID = #{chId}
 	</select>
 </mapper>

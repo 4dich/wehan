@@ -31,7 +31,7 @@
 
 	<!-- 메시지 CSS -->
 	<link rel="stylesheet" href="resources/css/message-sr.css"/>
-
+	<link rel="stylesheet" href="resources/css/font.css"/>
 	<!-- 회원전용 사이드바 CSS -->
 	<!-- <link rel="stylesheet" href="../resources/css/main.css"/> -->
 
@@ -40,7 +40,10 @@
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
-
+	<style>
+		.about-info{width:348px;}
+		.about-info p{font-size:12px;}
+	</style>
 </head>
 <body>
 	 <!-- Page Preloder -->
@@ -59,9 +62,9 @@
 				<i class="fa fa-bars"></i>
 			</div>
 			<div class="header-social">
-				<a href="my_profileView.do" >My Profile</a>
-                <a href="my_challengeView.do">My Challenge</a>
-				<a href="my_diaryView.do">My Diary</a>
+				<a href="my_profileView.do" >Profile</a>
+                <a href="my_challengeView.do">Challenge</a>
+				<a href="my_diaryView.do">Diary</a>
 				<a href="getMsgList.do" style="color: red;">Message</a>
 			</div>
 		</header>
@@ -71,22 +74,21 @@
 			<div class="main-sidebar">
 				 <!-- 로고 구역 -->
 				 <div class="mb-warp">
-					<a href="index.html" class="site-logo">
+					<a href="indexView.do" class="site-logo">
 						<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
-					<!-- 서브 메뉴 -->
+					<!-- 서브 메뉴 --><br><br>
 					<div class="about-info">
 						<h2>메시지 목록</h2>
 						<p>
 							친구와 대화를 나눠보세요.<br>
-							함께 도전하면 성공할 확률도 올라갑니다. <br><br>
+							함께 도전하면 성공할 확률도 올라갑니다. 
 						</p>	
-						<a class="site-btn sb-dark" href="msg_friendListView.do" style="color:black">
-							친구 목록
-							<img src="resources/images/arrow-righ-3.png" alt="">
-						</a>
 					</div>
+						<a class="site-btn sb-dark" href="msg_friendListView.do" style="font-size: 16px;  border-radius: 3px; width: 347px;">
+							친구 목록
+						</a>
 					<!-- <ul class="contact-info">
 						<li>서울특별시 강남구 테해란로14길 6</li>
 						<li>남도빌딩 3F H반 T:1544-9970</li><br>
@@ -129,10 +131,10 @@
 											<c:if test="${ empty msgList }">
 												<div style="text-align:center;">
 													<br><br>
-													검색하신 친구가 없습니다<br>
+													친구가 없습니다<br>
 													친구를 추가해보세요!<br><br>
-													<a href="msgFriendList.do">돌아가기</a><br>
-													<a href="">추천피드 가기</a>
+													<a href="getMsgList.do">돌아가기</a><br>
+													<a href="fid_ch_recommendView.do">추천피드 가기</a>
 												</div>
 											</c:if>
 											
@@ -193,8 +195,6 @@
 			</div>
 			<!-- Page end -->
 		</div>
-		<div class="copyright"><p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
-            All rights reserved </p></div>
 		</div>
 		<!-- Main section end -->
 	

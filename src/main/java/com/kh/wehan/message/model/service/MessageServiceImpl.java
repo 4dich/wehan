@@ -82,6 +82,7 @@ public class MessageServiceImpl implements MessageService{
 		
 		msg.put("mrId", getMrid);
 		
+		// 메시지 저장하기
 		return msgDao.saveMsgContent(msg);
 	}
 

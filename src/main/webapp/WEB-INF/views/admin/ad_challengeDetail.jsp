@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -16,7 +17,12 @@
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,900&display=swap" rel="stylesheet">
-
+	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
+	
+	<!-- JQuery -->
+	<script src="resources/js/jquery-3.2.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	
 	<!-- Stylesheets -->
 	<link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
 	<link rel="stylesheet" href="resources/css/font-awesome.min.css"/>
@@ -24,15 +30,13 @@
 	<link rel="stylesheet" href="resources/css/owl.carousel.min.css"/>
 
 	<!-- Main Stylesheets -->
-	<link rel="stylesheet" href="resources/css/style.css"/>
+	<link rel="stylesheet" href="resources/css/jh-css.css"/>
 	<link rel="stylesheet" href="resources/css/admin_qna.css"/>
-	<!-- JQuery -->
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
-	<!-- bootstrap4 toggle -->
-	<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
-	<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+	<link rel="stylesheet" href="resources/css/style.css"/>
+	<link rel="stylesheet" href="resources/css/font.css"/>
+	<link rel="stylesheet" href="resources/css/adminmargin.css"/>
 	<style>
+		.about-info{margin:0;}
 		.infoMenu{font-size: 16px;}
 		button{font-size:14px;}
 		#searchArea{width: 316px; margin-top: 0px; }
@@ -63,8 +67,7 @@
 			padding: 0 22px; 
 			margin-bottom: 35px; 
 			font-size: 20px;
-			font-family: 'Nanum Gothic Coding', monospace;
-			border: 2px solid #e1e1e1; 
+			border: 1px solid #bbbbbb; 
 			border-top: none; 
 			border-left: none; 
 			border-right: none;
@@ -76,7 +79,6 @@
 			padding: 10px 22px 10px 22px; 
 			margin-bottom: 15px; 
 			font-size: 20px; 
-			font-family: 'Nanum Gothic Coding', monospace;
 			border: 2px solid #e1e1e1; 
 		}
 		
@@ -85,10 +87,6 @@
 			background: none !important;
 		}
 	</style>
-	<!--</head>-->
-		
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
 </head>
 <body>
 	<!-- Page Preloder -->
@@ -99,7 +97,7 @@
 	<!-- Main section start -->
 	<div class="main-site-warp">
 	
-		<include file="/WEB-INF/views/common/ad_menuBar"/>
+		<c:import url="/WEB-INF/views/common/ad_menuBar.jsp" />
 		
 		<header class="header-section">
 			<div class="nav-switch">
@@ -111,7 +109,7 @@
 			<div class="main-sidebar">
 				<!-- 로고구역 -->		
 				<div class="mb-warp">
-					<a href="homepage/index.html" class="site-logo">
+					<a href="indexView.do" class="site-logo">
 						<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
@@ -119,13 +117,12 @@
 					<!-- 관리자 사이드 메뉴 -->
 					<div class="about-info">
 						<h2>챌린지 정보</h2>
-						<a href="paylist.do" id="ad_pay" class="infoMenu">결제정보</a><br><br>
-						<!-- <a href="blackList.do" id="ad_blackList" class="infoMenu">블랙리스트</a><br><br> -->
-						<a href="mlist.do" id="mlist" class="infoMenu">회원정보</a><br><br>
-						<!-- <a href="ad_challengeListView.do" id="ad_challenge" class="infoMenu">챌린지 정보</a><br><br> -->
-						<a href="ad_certifyView.do" id="ad_certify" class="infoMenu">인증글 정보</a><br><br>
 						<a href="ad_noticeList.do" id="ad_notice" class="infoMenu">공지사항</a><br><br>
 						<a href="ad_questionsList.do" id="ad_questions" class="infoMenu">문의사항</a><br><br>
+						<a href="mlist.do" id="mlist" class="infoMenu">회원정보</a><br><br>
+						<a href="paylist.do" id="ad_pay" class="infoMenu">결제정보</a><br><br>
+						<a href="ad_certifyView.do" id="ad_certify" class="infoMenu">인증글 정보</a><br><br>
+						<a href="blackList.do" id="ad_blackList" class="infoMenu">블랙리스트</a><br><br>
 					</div>
 				</div>
 			</div>
@@ -139,131 +136,213 @@
 						<div class="sampleArea" style="display: inline-flex;">
 							<div class="col-xl-6">
 								<div class="portfolio-item" style="margin-top: 60px;">
-									<img src="resources/img/portfolio/1.jpg" alt="#">
-									<div class="pi-info">
-										<h3 style="padding-left: 60px; padding-bottom: 20px;">D-31일</h3>
-									</div>
+									<img src="resources/images/challenge/${ chal.chPicture }" style="height: 626px;" alt="#">
 								</div>				
 							</div>
 							<div class="col-xl-6">
 								<div class="contact-text-warp">
-										<div class="row" style="margin-top:80px;">
-											<div class="col-lg-12">
-												<div class="contents-detail">
-													<textarea style="width:100%; height:100%; background-color:white; resize: none; border:0;" id="chChName" name="chChName" >${ chal.chName }</textarea>
+									<form action="deleteCh.do" class="contact-form" method="post" style="margin-top: 65px;">
+										<div class="row">
+										<input type="hidden" name="chId" value="${chal.chId}">
+										<input type="hidden" name="userId" value="${chal.userId}">
+										<input type="hidden" name="chName" value="${chal.chName}">
+										<input type="hidden" name="chPicture" value="${chal.chPicture}">
+										<input type="hidden" name="startDate" value="${chal.startDate}">
+										<input type="hidden" name="endDate" value="${chal.endDate}">
+										<input type="hidden" name="category" value="${chal.category}">
+										<input type="hidden" name="ceMethod" value="${chal.ceMethod}">
+										<input type="hidden" name="price" value="${chal.price}">
+										<input type="hidden" name="totalPrice" value="${chal.totalPrice}">
+										<input type="hidden" name="minPerson" value="${chal.minPerson}">
+										<input type="hidden" name="maxPerson" value="${chal.maxPerson}">
+										<input type="hidden" name="chPeople" value="${chal.chPeople}">
+										<input type="hidden" name="chPeopleCount" value="${chal.chPeopleCount}">
+										
+											<div class="col-lg-12 message-body">
+												<div style="font-size:30px; display:inline-flex;">
+													<strong>${ chal.chName }</strong>
+													<h5 style="margin-top:13px">
+													<c:if test='${ chal.category eq "건강" or chal.category eq "health"}'>
+														<span class="health">건강</span>
+													</c:if>
+													<c:if test='${ chal.category eq "자기개발" or chal.category eq "motivated" or chal.category eq "자기계발"}'>
+														<span class="motivated">자기개발</span>
+													</c:if>
+													<c:if test='${ chal.category eq "경제" or chal.category eq "economy"}'>
+														<span class="economy">경제</span>
+													</c:if>
+													<c:if test='${ chal.category eq "취미" or chal.category eq "hobby"}'>
+														<span class="hobby">취미</span>
+													</c:if>
+													<c:if test='${ chal.category eq "생활" or chal.category eq "life"}'>
+														<span class="life">생활</span>
+													</c:if>
+													<c:if test='${ chal.category eq "그외" or chal.category eq "etc"}'>													
+														<span class="etc">그외</span>
+													</c:if>	
+													</h5>		
 												</div>
+												<br><br>
 											</div>
 											<div class="col-lg-12">
 												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chCategory" value="${ chal.category }" disabled>
-													${ ch.category }
+													기간 : <strong>${ chal.startDate } ~ ${ chal.endDate }</strong>
 												</div>
-											</div>
-											<div class="col-lg-6">
+											</div>		
+											<div class="col-lg-12">
 												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chChId" value="${ chal.chId }" disabled>
-													${ ch.chId }
-												</div>
-											</div>
-											<div class="col-lg-6">
-												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chChPeople" value="${ chal.chPeople }" disabled>
-													${ ch.chPeople }
-												</div>
-											</div>
-											<div class="col-lg-6">
-												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chDeadLine" value="${ chal.startDate }" disabled>
-													${ ch.startDate }
-												</div>
-											</div>
-											<div class="col-lg-6">
-												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chEndDate" value="${ chal.endDate }" disabled>
-													${ ch.endDate }
+													참여인원 : <strong>${ chal.chPeopleCount } 명</strong>
+
+													<div class="btn-group dropright">
+													  <button class="btn btn-secondary dropdown-toggle" style="border:0px; background:#8d918d; bottom:6px;"  
+													  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+													   	참가자 목록
+													  </button>
+													  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+													  	
+													  </div>
+													</div>
 												</div>
 											</div>
 											<div class="col-lg-12">
-												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chCeMethod" value="${ chal.ceMethod }" disabled>
-													${ ch.ceMethod }
+												<div class="contents-detail" style="height:auto;">
+													인증 방법 : <br>
+													<strong>${ chal.ceMethod }</strong>
 												</div>
 											</div>
-											<div class="col-lg-6">
-												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chPrice" value="${ chal.price }" disabled>
-													${ ch.price }
-												</div>
-											</div>
-											<div class="col-lg-6">
-												<div class="contents-detail">
-													<input type="text" class="challengeDetail" name="chTotalPrice" value="${ chal.totalPrice }" disabled>
-													${ ch.totalPrice }
-												</div>
-											</div>
-											<br><br><br><br>
+											
 											<div class="col-lg-12">
-												<div class="contents-detail2" style="padding:0;">
-													<textarea id="chChContent"  class="challengeDetail"  name="chChContent"  
-													disabled style="width:100%; height:100%; background-color:white; resize: none; border:0;
-													padding:10px;">${ chal.chContent }</textarea>
+												<div class="contents-detail"  name="price" value="${ chal.price }">
+													참여 금액 : <strong>${ chal.price } 원</strong>
+												</div>
+											</div>
+											<div class="col-lg-12">
+												<div class="contents-detail" name="totalPrice">
+													모인 금액 : <strong><span id="tPrice"></span> 원</strong>
+												</div>
+											</div>
+											<br><br><br>
+											<div class="col-lg-12">
+												<div class="contents-detail2" name="chContent" value="${ chal.chContent }">
+													${ chal.chContent }
 												</div>
 											</div>
 										</div>
-										<div style="margin-top:10px; font-weight: 700; display:inline-block"><i>챌린지 수정하기&nbsp;</i>
-				       					<input id="toggle3" style="margin-left:60px;" type="checkbox" checked data-toggle="toggle" 
-				       					data-on="<i class='fa fa-lock' aria-hidden='true'></i> 수정하기" 
-				       					data-off="<i class='fa fa-unlock' aria-hidden='true'></i> 수정중" 
-				       					data-onstyle="dark" data-offstyle="outline-dark" onchange="toggleBtn3();"></div>
+									<br><br>
+									
+										 <div id="test" style="display:none;" ></div>
+								  			<div id="startDate" style="display:none;">${chal.startDate}</div>
+										<button class="site-btn sb-solid mr-3 mb-3" id="btn" style="color: white; float: right; width: 280px; font-size: 16px;" type="submit">
+										챌린지 삭제하기
+										<img src="resources/images/arrow-righ-2.png" alt="">
+									</button>
+									</form>	
 								</div>
 							</div>
 						</div>
                     </div>
 				</div>
 			</div>
-		<!-- Page end -->
 		</div>
+		<!-- Page end -->
+		
 		<div class="copyright"><p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
 			All rights reserved </p>
 		</div>
-	</div>
+	
 	<!-- Main section end -->
 
 	<!-- 리스트 짝수 배경색 변경 -->
 	<script>
-		$(document).ready(function(){
-		  $('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247)");   // even 짝수
-		});
+	<!-- 남은 날짜 출력 -->
+	$(function(){
+		var today = new Date();
+		var a = '${chal.endDate}';
+		var b = a.replace(/-/g,",");
+		
+		var endDate = new Date(b);
+		
+		var count = endDate.getTime() - today.getTime();
+	 	
+		count = Math.ceil(count / (1000*60*60*24));
+		
+		$('#count').text(count);
+			
+	});
+	
+	$(function(){
+		var date = new Date();
+		var year = date.getFullYear();
+		var month = (1 + date.getMonth());
+		month = month >= 10 ? month : '0' + month;
+		var day = date.getDate();
+		day = day >= 10 ? day : '0' + day;
+		$('#test').html(year+month+day);
+		var currentDate = parseInt($('#test').text());
+		
+		var startDate = $('#startDate').text();
+		var ss = startDate.split('-');
+		var cc = "";
+		for(var i=0;i<ss.length;i++){
+			cc += ss[i];
+		}
+		var startDay = parseInt(cc); 
+		if(currentDate>=startDay){
+			$('#btn').remove();
+		}
+		
+	});
+	
+	// 참여인원 목록 리스트 가져오기 ajax
+	$(function(){
+		var list = [];
+		list = '${chal.chPeople}'.split(',');	
+		
+		var hostId = '${chal.userId}';
+		var price = '${ chal.price }';
 		
 		
-		function toggleBtn3(){
-	    	if(document.getElementById('toggle3').checked==false){
-	    		$('#chChName').attr('disabled',false);
-	    		$('#chChContent').attr('disabled',false);
-	    		
-	    		cate.on("click",function(){
-	    			$(this)[0].textContent = 1 - $(this)[0].textContent;
-	            });
-	    		
-			}else{
+		$.ajaxSettings.traditional=true;
+		$.ajax ({					
+			url:'getChallengerList.do',
+			data:{'list': list}, 
+			type : 'post',
+			success:function(data){	
 				
+				$('#tPrice').text((list.length-1) * price);
 				
-				$('#intro').attr('disabled',true);
-				$('#goal').attr('disabled',true);
-				var userId = $('#userId')[0].innerText;
-	   			var intro = $('#intro')[0].value;
-	   			var goal = $('#goal')[0].value;
-				
-	   			myCate=""
-	   			
-	   			
-	   			var interest = myCate;
-	   			
-	   			cate.off("click");
-	    		
-	    		
+				for(var i = 0; i < data.length; i++) {
+					
+					// 내 아이디를 누르면 내 프로필로 이동
+					
+					if(data[i].userId == hostId){
+							
+							$a = $('<a>').attr({'class':'dropdown-item'});
+						
+							
+							$strong = $('<strong>').text(data[i].userNickname);
+			
+			
+							$('.dropdown-menu').append($a.append($strong).append('&nbsp;&nbsp;level.' + data[i].userLevel + '&nbsp;＜주최자＞'));
+						
+					} else {
+							$a = $('<a>').attr({'class':'dropdown-item'});
+							
+							$strong = $('<strong>').text(data[i].userNickname);
+			
+							$('.dropdown-menu').append($a.append($strong).append('&nbsp;&nbsp;level.' + data[i].userLevel));
+			
+						
+					}
+				}
+			}, error:function(){
+				console.log('에러');
 			}
-	    }
+			
+		});
+	});
+	
+
 		
 	</script>
 	

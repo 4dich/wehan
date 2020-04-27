@@ -6,7 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
+
+<link rel="stylesheet" href="resources/css/font.css"/>
+</style></head>
 <body>
     <div class="site-menu-warp">
          <div class="close-menu">x</div>
@@ -14,7 +16,7 @@
          <!-- 검은사이드바 구역-->
          <ul class="site-menu" style="padding-top:300px">
          	<!-- 유저 메인 이동 -->
-             <li><a href="logout.do">홈페이지 이동</a></li><br><br>
+             <li><a href="index.jsp">홈페이지 이동</a></li><br><br>
              <!-- 관리자 공지사항 이동 -->
              <li><a href="ad_noticeList.do">관리자페이지 이동</a></li>
          </ul>

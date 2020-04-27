@@ -49,9 +49,9 @@
 			<div class="main-sidebar">
 				<!-- 로고 구역 -->
 				<div class="mb-warp">
-					<a href="indexView.do" class="site-logo" style="margin-bottom: 70px;">
-						<h2 style="margin-left: 11px;">위대한 한걸음</h2>
-						<p style="padding-top: 20px;">THE GREAT ONE STEP</p>
+					<a href="indexView.do" class="site-logo">
+						<h2 style="margin-left: 6px;">위대한 한걸음</h2>
+						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
 
 					<!-- 서브메뉴 -->
