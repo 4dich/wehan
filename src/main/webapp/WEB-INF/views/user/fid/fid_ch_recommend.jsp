@@ -127,12 +127,12 @@
 
 						<!-- 카테고리 -->
 						<div id="category">
-							<div class="ca">건강</div>
-							<div class="ca">취미</div>
-							<div class="ca">자기계발</div>
-							<div class="ca">경제</div>
-							<div class="ca">생활</div>
-							<div class="ca">그외</div>
+							<div class="ca"><input class="category" type="hidden" value="health">건강</div>
+							<div class="ca"><input class="category" type="hidden" value="hobby">취미</div>
+							<div class="ca"><input class="category" type="hidden" value="motivated">자기계발</div>
+							<div class="ca"><input class="category" type="hidden" value="economy">경제</div>
+							<div class="ca"><input class="category" type="hidden" value="life"">생활</div>
+							<div class="ca"><input class="category" type="hidden" value="etc">그외</div>
 						</div>
 
 						
@@ -264,7 +264,7 @@
 		});	
 		
 		function list(currentPage,index){
-			var category = $('#category').children().eq(index).text();
+			var category = $('.category').eq(index).val();
 			var serachTitle = $('#searchTitle').val();
 			
 			if(index != null){

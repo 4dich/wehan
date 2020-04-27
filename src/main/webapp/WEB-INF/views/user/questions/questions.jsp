@@ -81,10 +81,12 @@
 				<p>위대한 한걸음에 궁금증이 생기신다면 <br>
 				언제든지 문의해주세요! </p>
 			</div>
+			
+			<c:if test="${!sessionScope.adminUser.getUserId().equals('admin') }">
 			<button class="site-btn sb-dark" style="margin-top:2px;font-size: 16px;  border-radius: 3px; width: 347px;" type="button" onclick="location.href='questionsInsertView.do'">
 				문의사항 등록하기
 			</button>
-
+             </c:if>
 					
 				</div>
 			</div>

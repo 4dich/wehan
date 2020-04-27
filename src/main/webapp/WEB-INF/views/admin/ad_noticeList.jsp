@@ -77,7 +77,7 @@
 
 					<div class="about-info">
 						<h2>공지사항</h2>
-						<a href="ad_questionsList.do" id="ad_questions" class="infoMenu">문의사항</a><br><br>
+						<a href="qnaListView.do" id="qnaList" class="infoMenu">문의사항</a><br><br>
 						<a href="mlist.do" id="mlist" class="infoMenu">회원정보</a><br><br>
 						<a href="paylist.do" id="ad_pay" class="infoMenu">결제정보</a><br><br>
 						<a href="ad_challengeListView.do" id="ad_challenge" class="infoMenu">챌린지 정보</a><br><br>
@@ -151,7 +151,7 @@
 							</c:if>
 							<c:if test ="${pi.currentPage ne 1 }">
 								<c:url var="before" value="ad_noticeList.do">
-									<c:param name="currentPage" value="${pi.currentjPage - 1}"/>
+									<c:param name="currentPage" value="${pi.currentPage - 1}"/>
 								</c:url>
 								<a href="${ before }"><</a>
 							</c:if>
@@ -166,7 +166,7 @@
 									<c:url var="pagenation" value="ad_noticeList.do">
 										<c:param name="currentPage" value="${ p }"/>
 									</c:url>
-									<a href="${ pagination }">${p}</a>
+									<a href="${ pagenation }">${p}</a>
 								</c:if>
 							</c:forEach>
 							
