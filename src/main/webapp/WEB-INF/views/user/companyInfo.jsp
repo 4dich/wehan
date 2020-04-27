@@ -58,10 +58,11 @@
 					<!-- 서브메뉴 -->
 					<div class="about-info" style="margin-left: 5px;">
 						<h2 style="margin-left: 72px;">회사 소개</h2><br>
-						<p>&nbsp;&nbsp;"한 인간에겐 작은 한 걸음이지만, 인류에겐 위대한 도약이다.”<br>
-							&nbsp;&nbsp;이 말은 닐 암스트롱이 달 표면에 첫 발을 내딛고 한 말입니다.<br>
-							혼자서는 힘들었던 계획들, 같은 목표의 사람들과 함께 해보세요.<br>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;당신의 미래를 시작하기 위한 첫 걸음을 도와드릴게요.
+						<p>&nbsp;&nbsp;큰 목적만 세우고 이루지 못하는 때가 많으신가요?<br>
+							&nbsp;&nbsp;큰 목적에만 너무 마음쓰지 마세요.<br>
+							&nbsp;&nbsp;당신은 작은 목적을 가져도 아름다운 사람이니까요.<br>
+							&nbsp;&nbsp;당신을 따뜻하게 해 줄 새로운 해가 떠오를 거에요.<br>
+							&nbsp;&nbsp;그 때까지 작은 목적도 완수할 수 있는 달이 되어 드릴게요.
 						</p>
 					</div>
 					<ul class="contact-info" style="text-align: center;">

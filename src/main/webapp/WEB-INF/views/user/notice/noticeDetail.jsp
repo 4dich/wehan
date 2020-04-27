@@ -116,7 +116,8 @@
 									</tr>
 									<tr class="qnaTextBox">
 										<td class="noticeTextArea" colspan="2" style="height:500px; text-align:-webkit-auto;"> 
-											<div style="white-space:pre; width:100%; height:100%; padding:5%;">${n.nContent}</div>
+											<textarea style="width:100%; height:100%; padding:5%; resize:none; background:white;" disabled>${n.nContent}</textarea>
+											<%-- <div style="white-space:pre; width:100%; height:100%; padding:5%;">${n.nContent}</div> --%>
 										</td>
 									</tr>
 									

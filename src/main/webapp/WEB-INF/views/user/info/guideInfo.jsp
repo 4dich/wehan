@@ -86,7 +86,9 @@
 			<div class="page-section elements-page">
 				<div class="elements-section">
 					<div class="element">						
-						<img src="#" style="max-width:100%; height:auto">이미지 넣기						
+						<img src="resources/images/main/tree1.JPG" style="max-width:100%; height:auto">
+						<img src="resources/images/main/tree2.JPG" style="max-width:100%; height:auto">	
+						<img src="resources/images/main/tree3.JPG" style="max-width:100%; height:auto">						
 						<div style="text-align: center;">
 							<button class="site-btn sb-solid mr-3 mb-3" type="button" onclick="location.href='companyInfoView.do'">
 								회사소개								
