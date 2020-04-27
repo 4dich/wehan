@@ -28,6 +28,7 @@
 		<result property="ccDate" column="CCDATE"/>
 		<result property="ccDel" column="CCDEL_YN"/>
 		<result property="picture" column="PICTURE"/>
+		<result property="nickName" column="NICKNAME"/>
 	
 	</resultMap>
 	
@@ -115,7 +116,7 @@
 	
 	<!-- 댓글 -->
 	<select id="selectReply" resultMap="certifyReplyResultSet">
-	SELECT M.PICTURE, C.*
+	SELECT M.PICTURE, M.NICKNAME, C.*
 	FROM CERTIFYREPLY C
 	JOIN MEMBER M
 	ON C.USERID = M.USERID

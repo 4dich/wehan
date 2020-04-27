@@ -25,8 +25,8 @@
 
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="resources/css/style.css"/>
-	<link rel="stylesheet" href="resources/css/admin_qna.css"/>
-	<link rel="stylesheet" href="resources/css/admin_notice.css"/>
+	<link rel="stylesheet" href="resources/css/admin_qna.css"/><!-- 
+	<link rel="stylesheet" href="resources/css/admin_notice.css"/> -->
 	 <link rel="stylesheet" href="resources/css/font.css"/>	       
 	 <link rel="stylesheet" href="resources/css/adminmargin.css"/>                     
 	<!--[if lt IE 9]>
@@ -77,7 +77,7 @@
 
 					<div class="about-info">
 						<h2>공지사항</h2>
-						<a href="ad_questionsList.do" id="ad_questions" class="infoMenu">문의사항</a><br><br>
+						<a href="qnaListView.do" id="qnaList" class="infoMenu">문의사항</a><br><br>
 						<a href="mlist.do" id="mlist" class="infoMenu">회원정보</a><br><br>
 						<a href="paylist.do" id="ad_pay" class="infoMenu">결제정보</a><br><br>
 						<a href="ad_challengeListView.do" id="ad_challenge" class="infoMenu">챌린지 정보</a><br><br>
@@ -114,7 +114,7 @@
 
 
 						<!-- 공지사항 테이블 -->
-						<table class="qnaTable" style="width:100%">
+						<table class="qnaTable" style="width:100%;margin-bottom:4px;">
 							
 							<tr class="thArea">								
 								<th>NO</th>								
@@ -151,7 +151,7 @@
 							</c:if>
 							<c:if test ="${pi.currentPage ne 1 }">
 								<c:url var="before" value="ad_noticeList.do">
-									<c:param name="currentPage" value="${pi.currentjPage - 1}"/>
+									<c:param name="currentPage" value="${pi.currentPage - 1}"/>
 								</c:url>
 								<a href="${ before }"><</a>
 							</c:if>
@@ -164,9 +164,9 @@
 								
 								<c:if test="${ p ne pi.currentPage }">
 									<c:url var="pagenation" value="ad_noticeList.do">
-										<c:param name="currentPage" value="${ p }"/>
+										<c:param name="currentPage" value="${p}"/>
 									</c:url>
-									<a href="${ pagination }">${p}</a>
+									<a href="${ pagenation }">${p}</a>
 								</c:if>
 							</c:forEach>
 							
@@ -180,7 +180,6 @@
 								</c:url>
 								<a href="${after}">></a>
 							</c:if>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -189,6 +188,7 @@
 		<div class="copyright"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
   Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved 
   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
+	</div>
 	</div>
 	<!-- Main section end -->
 

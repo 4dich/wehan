@@ -148,7 +148,7 @@
 								</div>
 								<div id="pwdFind">
 									<div id="pwd">
-										<input id="userId" name="userId" class="input" type="text" placeholder="id입력">
+										<input id="userId" name="userId" class="input" type="text" placeholder="아이디 입력">
 										<br><br>
 										<input id="email2" name="email" class="input" type="email" placeholder="이메일 입력">
 										<br><br><br><br>

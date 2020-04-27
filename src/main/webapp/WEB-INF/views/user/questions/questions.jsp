@@ -81,10 +81,12 @@
 				<p>위대한 한걸음에 궁금증이 생기신다면 <br>
 				언제든지 문의해주세요! </p>
 			</div>
+			
+			<c:if test="${!sessionScope.adminUser.getUserId().equals('admin') }">
 			<button class="site-btn sb-dark" style="margin-top:2px;font-size: 16px;  border-radius: 3px; width: 347px;" type="button" onclick="location.href='questionsInsertView.do'">
 				문의사항 등록하기
 			</button>
-
+             </c:if>
 					
 				</div>
 			</div>
@@ -157,10 +159,10 @@
 								<
 							</c:if>
 							<c:if test ="${pi.currentPage ne 1 }">
-								<c:url var="before" value="qnaList.do">
-									<c:param name="currentPage" value="${pi.currentjPage - 1}"/>
+								<c:url var="before" value="qnaListView.do">
+									<c:param name="currentPage" value="${pi.currentPage - 1}"/>
 								</c:url>
-								<a href="${ before }"></a>
+								<a href="${ before }"><</a>
 							</c:if>
 							
 							<!-- 페이지 -->  
@@ -170,10 +172,10 @@
 								</c:if>
 								
 								<c:if test="${ p ne pi.currentPage }">
-									<c:url var="pagenation" value="qnaList.do">
+									<c:url var="pagenation" value="qnaListView.do">
 										<c:param name="currentPage" value="${ p }"/>
 									</c:url>
-									<a href="${ pagination }">${p}</a>
+									<a href="${ pagenation }">${p}</a>
 								</c:if>
 							</c:forEach>
 							
@@ -182,7 +184,7 @@
 								>
 							</c:if>
 							<c:if test="${pi.currentPage ne pi.maxPage }">
-								<c:url var="after" value="qnaList.do">
+								<c:url var="after" value="qnaListView.do">
 									<c:param name="currentPage" value="${pi.currentPage + 1 }"/>
 								</c:url>
 								<a href="${after}">></a>

@@ -288,7 +288,7 @@
 					type : 'post',
 					success:function(data){	
 						
-						$('#tPrice').text((list.length) * price);
+						$('#tPrice').text((list.length-1) * price);
 						
 						for(var i = 0; i < data.length; i++) {
 							
