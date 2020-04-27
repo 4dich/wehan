@@ -151,7 +151,7 @@
 							</c:if>
 							<c:if test ="${pi.currentPage ne 1 }">
 								<c:url var="before" value="ad_noticeList.do">
-									<c:param name="currentPage" value="${pi.currentjPage - 1}"/>
+									<c:param name="currentPage" value="${pi.currentPage - 1}"/>
 								</c:url>
 								<a href="${ before }"><</a>
 							</c:if>
@@ -166,7 +166,7 @@
 									<c:url var="pagenation" value="ad_noticeList.do">
 										<c:param name="currentPage" value="${ p }"/>
 									</c:url>
-									<a href="${ pagination }">${p}</a>
+									<a href="${ pagenation }">${p}</a>
 								</c:if>
 							</c:forEach>
 							
