@@ -55,21 +55,19 @@
 					</a>
 
 					<!-- 서브메뉴 -->
-					<div class="about-info" style="margin-left: 5px;">
-						<h4>&nbsp;&nbsp;"One small step for a man,<span style="line-height: 180%;">
-						<br></span>&nbsp;&nbsp;One giant leap for mankind."</h4><br>
-						<p>&nbsp;&nbsp;"한 인간에겐 작은 한 걸음이지만, 인류에겐 위대한 도약이다.”<br>
-							&nbsp;이 말은 닐 암스트롱이 달 표면에 첫 발을 내딛고 한 말입니다.<br>
-							&nbsp;혼자서 힘들었던 계획들, 같은 목표의 사람들과 함께 해보세요.<br>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;당신의 미래를 시작하기 위한 첫 걸음을 도와드릴게요.
+					<div class="about-info">
+						<h4>One small step for a man,<span style="line-height: 180%;">
+						<br></span>One giant leap for mankind.</h4><br>
+						<p style="width:348px;">"한 인간에겐 작은 한 걸음이지만, 인류에겐 위대한 도약이다.”
+							이 말은 닐 암스트롱이 달 표면에 첫 발을 내딛고 한 말입니다.
+							혼자서 힘들었던 계획들, 같은 목표의 사람들과 함께 해보세요.
+							당신의 미래를 시작하기 위한 첫 걸음을 도와드릴게요.
 						</p>
 					</div>
-					<ul class="contact-info" style="text-align: center;">
+					<ul class="contact-info" >
 					<br>
-						<li>서울특별시 강남구 테헤란로14길 6</li>
-						<li>남도빌딩 3F H 오후반 TEAM THROW</li>
-						<li>ADMIN : 010-8691-8934</li>
-						<li><a href="mailto:contactme@myemail.com">teamthrow@gmail.com</a></li>
+						<li>서울특별시 강남구 테해란로14길 6</li>
+						<li>남도빌딩 3F H반 T:1544-9970</li>
 					</ul>
 				</div>
 			</div>
@@ -112,7 +110,7 @@
 			</div>
 			<!-- Page end -->
 		</div>
-		<div class="copyright" style="margin-left: 90px;"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+		<div class="copyright"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
   Copyright &copy;<script>document.write(new Date().getFullYear());</script> TEAM THROW
   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
 	</div>
