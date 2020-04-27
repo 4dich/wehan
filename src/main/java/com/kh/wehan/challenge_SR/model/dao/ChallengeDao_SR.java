@@ -57,6 +57,16 @@ public class ChallengeDao_SR {
 	}
 
 
+	/**
+	 * 마감된 챌린지 성공자 리스트
+	 * @param m
+	 * @return
+	 */
+	public ArrayList<ChallengerInfo> getSuccessList(Map m) {
+		return (ArrayList)sqlSession.selectList("challengeMapperSR.getSuccessList", m);
+	}
+
+
 	
 	
 	

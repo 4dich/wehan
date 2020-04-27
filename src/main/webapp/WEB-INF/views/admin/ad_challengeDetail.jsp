@@ -188,22 +188,39 @@
 												<div class="contents-detail">
 													기간 : <strong>${ chal.startDate } ~ ${ chal.endDate }</strong>
 												</div>
-											</div>		
+											</div>
+											
+											
 											<div class="col-lg-12">
 												<div class="contents-detail">
 													참여인원 : <strong>${ chal.chPeopleCount } 명</strong>
-
 													<div class="btn-group dropright">
 													  <button class="btn btn-secondary dropdown-toggle" style="border:0px; background:#8d918d; bottom:6px;"  
 													  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 													   	참가자 목록
 													  </button>
-													  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+													  <div class="dropdown-menu challengerList" aria-labelledby="dropdownMenuButton">
 													  	
 													  </div>
 													</div>
 												</div>
 											</div>
+											
+											<div class="col-lg-12">
+												<div class="contents-detail">
+													성공인원 : <strong><span id="successChal"></span></strong>
+													<div class="btn-group dropright">
+													  <button class="btn btn-secondary dropdown-toggle successBtn" style="border:0px; background:#8d918d; bottom:6px;"  
+													  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+													   	성공자 목록
+													  </button>
+													  <div class="dropdown-menu successList" aria-labelledby="dropdownMenuButton">
+													  	
+													  </div>
+													</div>
+												</div>
+											</div>
+											
 											<div class="col-lg-12">
 												<div class="contents-detail" style="height:auto;">
 													인증 방법 : <br>
@@ -255,7 +272,7 @@
 	<!-- 리스트 짝수 배경색 변경 -->
 	<script>
 	<!-- 남은 날짜 출력 -->
-	$(function(){
+	$(document).ready(function(){
 		var today = new Date();
 		var a = '${chal.endDate}';
 		var b = a.replace(/-/g,",");
@@ -266,8 +283,8 @@
 	 	
 		count = Math.ceil(count / (1000*60*60*24));
 		
-		$('#count').text(count);
-			
+		
+		$('#eDate').val(count);
 	});
 	
 	$(function(){
@@ -323,14 +340,14 @@
 							$strong = $('<strong>').text(data[i].userNickname);
 			
 			
-							$('.dropdown-menu').append($a.append($strong).append('&nbsp;&nbsp;level.' + data[i].userLevel + '&nbsp;＜주최자＞'));
+							$('.challengerList').append($a.append($strong).append('&nbsp;&nbsp;level.' + data[i].userLevel + '&nbsp;＜주최자＞'));
 						
 					} else {
 							$a = $('<a>').attr({'class':'dropdown-item'});
 							
 							$strong = $('<strong>').text(data[i].userNickname);
 			
-							$('.dropdown-menu').append($a.append($strong).append('&nbsp;&nbsp;level.' + data[i].userLevel));
+							$('.challengerList').append($a.append($strong).append('&nbsp;&nbsp;level.' + data[i].userLevel));
 			
 						
 					}
@@ -341,6 +358,95 @@
 			
 		});
 	});
+		
+	
+	// 성공인원 가져오기
+	$(function(){
+		var hostId = '${chal.userId}';
+		var chId = '${chal.chId}';
+		var endDate = new Date('${ chal.endDate }');
+		var startDate = new Date('${ chal.startDate }');
+		// 챌린지 기간 일수 (챌린지 마감일 - 챌린지 시작일)
+		var date = (endDate - startDate); 
+		var time = Math.ceil(date/ (1000*60*60*24));
+		// 챌린지 도전한 사람 수 
+		var count = '${ chal.chPeopleCount }';	
+		
+		// 챌린지 끝나고 지난 기간 구하기 (마감일 - 오늘)
+		var today = new Date();
+		var a = '${chal.endDate}';
+		var b = a.replace(/-/g,",");
+		
+		var endDate = new Date(b);
+		// 챌린지 끝나고 지난 기간
+		var t = endDate.getTime() - today.getTime();
+	 	
+		t = Math.ceil(t / (1000*60*60*24));
+		
+		
+		// 마감 안된 챌린지면 진행중인 챌린지 나오기
+		if(t > 0){
+			$('#successChal').text('진행중인 챌린지입니다.');
+			$('.successBtn').css('display','none');			
+		}
+		
+		//마감된 챌린지면 성공인원 수 및 리스트 나오기
+		else if(t < 0) {
+		// 성공인원 수 구하기
+		$.ajax({
+			url:'getSuccessRate.do',
+			type:'post',
+			data:{'chId':chId,
+				  'time':time},
+			success:function(data){
+				
+				console.log(data);
+				// 성공인원 수 넣기
+				$('#successChal').text(data + ' 명');
+				
+				
+			}, error:function(){
+				console.log('error');
+			}
+		});
+		
+		// 성공인원 목록 가져오기
+		$.ajax({
+			url:'getSuccessList.do',
+			type:'post',
+			data:{'chId':chId,
+				  'time':time},
+			success:function(data){
+				
+				for(var i = 0; i < data.length; i++) {
+					if(data[i].userId == hostId){
+						
+						$a = $('<a>').attr({'class':'dropdown-item'});
+					
+						
+						$strong = $('<strong>').text(data[i].userNickname);
+		
+		
+						$('.successList').append($a.append($strong).append('&nbsp;&nbsp;level.' + data[i].userLevel + '&nbsp;＜주최자＞'));
+					
+					} else {
+						$a = $('<a>').attr({'class':'dropdown-item'});
+						
+						$strong = $('<strong>').text(data[i].userNickname);
+		
+						$('.successList').append($a.append($strong).append('&nbsp;&nbsp;level.' + data[i].userLevel));
+			
+						
+					}
+				} 
+				
+			}, error:function(){
+				console.log('오류');
+			}
+		});
+		}
+	});
+	
 	
 
 		
