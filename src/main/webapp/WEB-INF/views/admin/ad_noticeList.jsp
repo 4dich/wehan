@@ -25,8 +25,8 @@
 
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="resources/css/style.css"/>
-	<link rel="stylesheet" href="resources/css/admin_qna.css"/>
-	<link rel="stylesheet" href="resources/css/admin_notice.css"/>
+	<link rel="stylesheet" href="resources/css/admin_qna.css"/><!-- 
+	<link rel="stylesheet" href="resources/css/admin_notice.css"/> -->
 	 <link rel="stylesheet" href="resources/css/font.css"/>	       
 	 <link rel="stylesheet" href="resources/css/adminmargin.css"/>                     
 	<!--[if lt IE 9]>
@@ -114,7 +114,7 @@
 
 
 						<!-- 공지사항 테이블 -->
-						<table class="qnaTable" style="width:100%">
+						<table class="qnaTable" style="width:100%;margin-bottom:4px;">
 							
 							<tr class="thArea">								
 								<th>NO</th>								
@@ -164,7 +164,7 @@
 								
 								<c:if test="${ p ne pi.currentPage }">
 									<c:url var="pagenation" value="ad_noticeList.do">
-										<c:param name="currentPage" value="${ p }"/>
+										<c:param name="currentPage" value="${p}"/>
 									</c:url>
 									<a href="${ pagenation }">${p}</a>
 								</c:if>
@@ -180,7 +180,6 @@
 								</c:url>
 								<a href="${after}">></a>
 							</c:if>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -189,6 +188,7 @@
 		<div class="copyright"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
   Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved 
   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
+	</div>
 	</div>
 	<!-- Main section end -->
 
