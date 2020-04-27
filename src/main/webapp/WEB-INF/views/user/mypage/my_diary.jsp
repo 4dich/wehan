@@ -25,7 +25,7 @@
 	<link rel="stylesheet" href="resources/css/owl.carousel.min.css"/>
 
 	<!-- Main Stylesheets -->
-	<link rel="stylesheet" href="resources/css/style.css"/>
+	
 
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	
@@ -40,12 +40,16 @@
 	<script src='resources/packages/list/main.js'></script>
 	<!-- <script src='resources/packages/bundle/locales/ko.js'></script> -->
 	
+    <!-- <link rel="stylesheet" href="resources/packages/custom/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
 	<link rel="stylesheet" href='resources/packages/custom/css/bootstrap-datetimepicker.min.css' />
-    <link rel="stylesheet" href="resources/packages/custom/css/bootstrap.min.css">
-    
+    <link rel="stylesheet" href="resources/css/style.css"/>
+    <link rel="stylesheet" href="resources/css/font.css"/>
     <script src="resources/packages/custom/js/moment.min.js"></script>   
     <script src="resources/packages/custom/js/bootstrap-datetimepicker.min.js"></script>
-    
+    <style>
+     body{margin:0;}
+    </style>
     
 <script>
 var calendar = "";
@@ -89,7 +93,7 @@ var events = [];
                       	cntStamp:0
                       },success:function(data){
                     	  $('#calendar').remove();
-                    	  $('#dich').append("<div id='calendar' style='-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);'></div>");
+                    	  $('#dich').append("<div id='calendar' style='margin-top:50px; border: 1px solid gray; padding: 10px';'></div>");
                     	  events = [];
                     	  selectCalendar();
                       },error:function(){
@@ -167,7 +171,7 @@ var events = [];
 	       	        	  success:function(data){
 	       	        	  	  console.log(data + '개 행이 업데이트되었습니다.');
 	       	        	  $('#calendar').remove();
-	       	            	  $('#dich').append("<div id='calendar' style='-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);'></div>");
+	       	            	  $('#dich').append("<div id='calendar' style='margin-top:50px; border: 1px solid gray; padding: 10px'></div>");
 	       	            	  events = [];
 	       	            	  selectCalendar();
 	       	        	  },
@@ -191,7 +195,7 @@ var events = [];
 	                    	  success:function(data){
 	                    	  	  console.log(data + '개 행이 업데이트되었습니다.');
 	                    	  $('#calendar').remove();
-	                        	  $('#dich').append("<div id='calendar' style='-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);'></div>");
+	                        	  $('#dich').append("<div id='calendar' style='margin-top:50px; border: 1px solid gray; padding: 10px'></div>");
 	                        	  events = [];
 	                        	  selectCalendar();
 	                    	  },
@@ -231,7 +235,7 @@ var events = [];
             setCalendar();
         },
         error:function(){
-            alert('리스트 출력 오류');
+            alert('일정 리스트 출력 오류');
         }
       });
 	}
@@ -294,7 +298,7 @@ var events = [];
 	 	 		  success:function(data){
 	 	 		  	  console.log(data + '개 행이 업데이트되었습니다.');
 		 	 		  $('#calendar').remove();
-	              	  $('#dich').append("<div id='calendar' style='-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);'></div>");
+	              	  $('#dich').append("<div id='calendar' style='margin-top:50px; border: 1px solid gray; padding: 10px'></div>");
 	              	  events = [];
 	              	  selectCalendar();
 	 	 		  },
@@ -327,12 +331,18 @@ var events = [];
   
 </script>
 <style>
+
+	h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    color: #242424;
+	}
+
 	.site-logo {
         margin-bottom: 40px;
     }
 
     .main-sidebar .mb-warp {
-        padding: 90px 95px 100px 145px;
+        padding: 120px 95px 100px 145px;
     }
     
     .grade{
@@ -579,7 +589,7 @@ var events = [];
 
 
   body {
-    margin: 40px 10px;
+    margin: 0;
     padding: 0;
     font-size: 14px;
   }
@@ -636,14 +646,14 @@ var events = [];
 
 		
         <!-- 메뉴 끝 -->
-		<header class="header-section" style="margin-top: -40px; margin-left:-10px">
+		<header class="header-section">
 			<div class="nav-switch menuIcon msgCount">
 				<i class="fa fa-bars"></i>
 			</div>
 			<div class="header-social" style='font-family:"Open Sans",sans-serif;'>
-                <a href="my_profileView.do">My Profile</a>
-                <a href="my_challengeView.do">My Challenge</a>
-                <a href="my_diaryView.do" style="color: red;">My Diary</a>
+                <a href="my_profileView.do">Profile</a>
+                <a href="my_challengeView.do">Challenge</a>
+                <a href="my_diaryView.do" style="color: red;">Diary</a>
 				<a href="getMsgList.do">Message</a>
 			</div>
 		</header>
@@ -651,13 +661,13 @@ var events = [];
 		<div class="site-content-warp">
 			<!-- Left Side section -->
 			<div class="main-sidebar">
-				<div class="mb-warp" style="text-align: center;">
+				<div class="mb-warp">
 
                     <a href="indexView.do" class="site-logo">
-						<h2 style="margin-left: 6px;">위대한 한걸음</h2>
+						<h2 style="margin-left: 6px; /* margin-top:4px; */">위대한 한걸음</h2>
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
-					<div id="lv" style="width: 350px; height: 470px; border: 1px solid gray; padding:20px; margin:auto; margin-top: -30px">
+					<div id="lv" style="width: 350px; height: 470px; border: 1px solid gray; padding:20px;  margin-top: -20px">
 						<div id="lv-img" style="width: 300px; height:320px; margin:auto; background-image: url('resources/images/level/astro2.gif'); background-size: cover; border-radius: 15px;">
 							<img src="resources/images/level/lv4.png">
 						</div>
@@ -690,7 +700,7 @@ var events = [];
 			</div> -->
 			
 			<div id='dich'></div>
-			<div id='calendar' style='-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);'></div>
+			<div id='calendar' style='margin-top:50px; border: 1px solid gray; padding: 10px'></div>
 			
 			<div id='stat' style="display:none; background: white; width:500px; height:498px; position:absolute; left: 1000px; top: 200px; border-radius:5px; box-shadow : rgba(0,0,0,0.5) 0 0 0 9999px; z-index : 100;
 			-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);">
@@ -724,7 +734,7 @@ var events = [];
 					<button id='btnDelete'>삭제</button>
 				</div>
 			</div>
-			
+		</div>
 			<script>
 				$('#modalX').click(function(){
 					/* $('#stat').css('display','none'); */

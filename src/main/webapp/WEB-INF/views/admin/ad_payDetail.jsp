@@ -26,9 +26,10 @@
 	<link rel="stylesheet" href="resources/css/owl.carousel.min.css"/>
 
 	<!-- Main Stylesheets -->
-	<link rel="stylesheet" href="resources/css/style.css"/>
 	<link rel="stylesheet" href="resources/css/admin_qna.css"/>
-
+	<link rel="stylesheet" href="resources/css/style.css"/>
+	<link rel="stylesheet" href="resources/css/font.css"/>
+	<link rel="stylesheet" href="resources/css/adminmargin.css"/>
 	<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -45,6 +46,7 @@
             input:disabled{
             background-color:white;
             }
+            .about-info{margin:0;}
 		</style>
 
 
@@ -78,13 +80,12 @@
 					<!-- 관리자 사이드 메뉴 -->
 					<div class="about-info">
 						<h2>결제정보</h2>
-						<!-- <a href="paylist.do" id="ad_pay" class="infoMenu">결제정보</a><br><br> -->
-						<!-- <a href="blackList.do" id="ad_blackList" class="infoMenu">블랙리스트</a><br><br> -->
+						<a href="ad_noticeList.do" id="ad_notice" class="infoMenu">공지사항</a><br><br>
+						<a href="ad_questionsList.do" id="ad_questions" class="infoMenu">문의사항</a><br><br>
 						<a href="mlist.do" id="mlist" class="infoMenu">회원정보</a><br><br>
 						<a href="ad_challengeListView.do" id="ad_challenge" class="infoMenu">챌린지 정보</a><br><br>
 						<a href="ad_certifyView.do" id="ad_certify" class="infoMenu">인증글 정보</a><br><br>
-						<a href="ad_noticeList.do" id="ad_notice" class="infoMenu">공지사항</a><br><br>
-						<a href="ad_questionsList.do" id="ad_questions" class="infoMenu">문의사항</a><br><br>
+						<a href="blackList.do" id="ad_blackList" class="infoMenu">블랙리스트</a><br><br>
 					</div>
 				</div>
 			</div>
@@ -156,10 +157,10 @@
 						</div>
 						<div>
 						<br><br><br><br><br><br>
-							<button type="button" id="refund" class="site-btn" style="width:20%; height: 80px; margin: 20px; margin-left: 300px;">
+							<button type="button" id="refund" class="site-btn sb-solid mr-3 mb-3" style="width:20%; height: 80px; margin: 20px; margin-left: 300px;">
 								환불하기
 							</button>
-							<button class="site-btn" style="width:20%; height: 80px;" onclick="location.href='paylist.do'">
+							<button class="site-btn sb-solid mr-3 mb-3" style="width:20%; height: 80px;" onclick="location.href='paylist.do'">
 								취소하기
 							</button>
 					</div>

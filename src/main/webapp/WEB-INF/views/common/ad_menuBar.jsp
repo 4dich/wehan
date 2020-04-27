@@ -6,7 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
+
+<link rel="stylesheet" href="resources/css/font.css"/>
+</style></head>
 <body>
     <div class="site-menu-warp">
          <div class="close-menu">x</div>

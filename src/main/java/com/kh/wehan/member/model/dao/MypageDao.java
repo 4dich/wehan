@@ -85,4 +85,8 @@ public class MypageDao {
 		return sqlSession.update("mypageMapper.updateDiaryDrag",di);
 	}
 
+	public ArrayList<Member> selectListFollowing(String userId) {
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectListFollowing",userId);
+	}
+
 }

@@ -21,6 +21,8 @@ public class Member {
 	private String outYN;
 	private String blacklistYN;
 	
+	private String intro;
+	
 	public Member() {
 		super();
 	}
@@ -57,6 +59,14 @@ public class Member {
 		this.phone = phone;
 		this.account = account;
 		this.picture = picture;
+	}
+	
+	public Member(String userId, String nickName, String picture, String intro) {
+		super();
+		this.userId = userId;
+		this.nickName = nickName;
+		this.picture = picture;
+		this.intro = intro;
 	}
 
 	public String getUserId() {
@@ -162,13 +172,21 @@ public class Member {
 	public void setBlacklistYN(String blacklistYN) {
 		this.blacklistYN = blacklistYN;
 	}
+	
+	public String getIntro() {
+		return intro;
+	}
+
+	public void setIntro(String intro) {
+		this.intro = intro;
+	}
 
 	@Override
 	public String toString() {
 		return "Member [userId=" + userId + ", password=" + password + ", nickName=" + nickName + ", userName="
 				+ userName + ", birthDay=" + birthDay + ", address=" + address + ", email=" + email + ", phone=" + phone
 				+ ", account=" + account + ", picture=" + picture + ", joinDate=" + joinDate + ", outYN=" + outYN
-				+ ", blicklistYN=" + blacklistYN + "]";
+				+ ", blacklistYN=" + blacklistYN + ", intro=" + intro + "]";
 	}
 	
 }

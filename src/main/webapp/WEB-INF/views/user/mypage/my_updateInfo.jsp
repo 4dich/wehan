@@ -24,7 +24,7 @@
 	<!-- <link rel="stylesheet" href="resources/css/main.css"/> -->
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="resources/css/style.css"/>
-	
+	<link rel="stylesheet" href="resources/css/font.css"/>
 	<!-- JQuery -->
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
@@ -52,7 +52,12 @@
 			.c7{color:green;}
 			.c8{color:red;}
 			.c9{color:red;}
-			
+			.about-info{width:348px;}
+			.about-info p{font-size:12px;}
+			input{color:#696969;
+				font-size:16px;
+			}
+		
 		</style>
 
 
@@ -80,23 +85,26 @@
 			<div class="main-sidebar">
                     <!-- 로고 구역 -->
 					<div class="mb-warp">
-						<a href="index.html" class="site-logo">
+						<a href="indexView.do" class="site-logo">
 							<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 							<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 						</a>
-                    <!-- 서브메뉴 -->
+                    <!-- 서브메뉴 --><br><br>
 					<div class="about-info">
 						<h2>회사소개</h2>
-                        <!-- 감성글 작성 -->
-                        <p>"한 인간에게는 작은 한 걸음이지만, 인류에게는 위대한 도약이다. (One small step for a man, one giant leap for mankind.)”<br>
-							이 명언은 닐 암스트롱이 달 표면에 첫 발을 내딛고 한 말입니다.  </p>
+						<p style="font-size: 12px;">한 인간에게는 작은 한 걸음이지만, 인류에게는 위대한 도약<br>(One small step for a man, one giant leap for mankind.)<br>
+							이 명언은 닐 암스트롱이 달 표면에 첫 발을 내딛고 한 말입니다.
+							혼자선 힘들었던 계획들, 같은 목표의 사람들과 함께 해보세요.<br>
+						   	당신의 미래를 시작하기 위한 첫 걸음을 도와드릴게요.
+						</p>
 					</div>
 					<ul class="contact-info">
 						<li>서울특별시 강남구 테해란로14길 6</li>
 						<li>남도빌딩 3F H반 T:1544-9970</li><br>
-						<li><a href="mailto:contactme@myemail.com">contactme@myemail.com</a></li>
-					</ul>
-					
+					</ul>		
+					<div class="copyright"><p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
+						All rights reserved </p>
+					</div>
 				</div>
 			</div>
             <!-- Left Side section end -->
@@ -131,29 +139,29 @@
 								<div class="contact-form" style="margin-top: 60px;">
 									<div class="row">	
                                         <div class="col-lg-12">
-                                            <input type="text" id="userId" name="userId" style="border: 1px solid #242424; border-top: none; border-left: none; border-right: none;" placeholder="아이디" value="${ loginUser.userId }">
+                                            <input type="text" id="userId" name="userId" style="border: 1px solid #bbbbbb; border-top: none; border-left: none; border-right: none;" placeholder="아이디" value="${ loginUser.userId }">
                                         </div>
-										<div class="col-lg-12">
-                                            <input type="password" id="password" name="password" style="border: 1px solid #242424; border-top: none; border-left: none; border-right: none;" placeholder="비밀번호" value="${ loginUser.password }">
+										<div class="col-lg-6">
+                                            <input type="password" id="password" name="password" style="border: 1px solid #bbbbbb; border-top: none; border-left: none; border-right: none;" placeholder="비밀번호" value="${ loginUser.password }">
                                         </div>
-                                        <div class="col-lg-12">
-                                            <input type="password" id="password2" style="border: 1px solid #242424; border-top: none; border-left: none; border-right: none;" placeholder="비밀번호확인" value="${ loginUser.password }">
+                                        <div class="col-lg-6">
+                                            <input type="password" id="password2" style="border: 1px solid #bbbbbb; border-top: none; border-left: none; border-right: none;" placeholder="비밀번호확인" value="${ loginUser.password }">
                                             <span class="check c7">사용가능</span><span class="check c8">비밀번호 불일치</span><span class="check c9">사용불가능한 비밀번호</span>
                                             <input id="chkPass" type="hidden" value="0">
                                         </div>
-                                        <div class="col-lg-12">
-                                            <input type="text" id="userName" name="userName" style="border: 1px solid #242424; border-top: none; border-left: none; border-right: none;" placeholder="이름" value="${ loginUser.userName }">
+                                        <div class="col-lg-6">
+                                            <input type="text" id="userName" name="userName" style="border: 1px solid #bbbbbb; border-top: none; border-left: none; border-right: none;" placeholder="이름" value="${ loginUser.userName }">
                                         </div>
-										<div class="col-lg-12">
-                                            <input type="text" id="nickName" name="nickName" style="border: 1px solid #242424; border-top: none; border-left: none; border-right: none;" placeholder="닉네임" value="${ loginUser.nickName }">
+										<div class="col-lg-6">
+                                            <input type="text" id="nickName" name="nickName" style="border: 1px solid #bbbbbb; border-top: none; border-left: none; border-right: none;" placeholder="닉네임" value="${ loginUser.nickName }">
                                             <span class="check c4">사용가능</span><span class="check c5">중복된 닉네임</span><span class="check c6">사용불가능한 닉네임</span>
                                             <input id="checkNick" type="hidden" value="0">
                                         </div>
                                         <div class="col-lg-12">
-                                            <input type="text" id="birthDay" name="birthDay" style="border: 1px solid #242424; border-top: none; border-left: none; border-right: none;" placeholder="생년월일" value="${ loginUser.birthDay }">
+                                            <input type="text" id="birthDay" name="birthDay" style="border: 1px solid #bbbbbb; border-top: none; border-left: none; border-right: none;" placeholder="생년월일" value="${ loginUser.birthDay }">
                                         </div>
                                         <div class="col-lg-12">
-                                            <input type="text" id="email" name="email" style="border: 1px solid #242424; border-top: none; border-left: none; border-right: none;" placeholder="이메일" value="${ loginUser.email }">
+                                            <input type="text" id="email" name="email" style="border: 1px solid #bbbbbb; border-top: none; border-left: none; border-right: none;" placeholder="이메일" value="${ loginUser.email }">
                                         </div>
 									</div>
 								</div>
@@ -163,14 +171,14 @@
 						
 							<div id="account" style="display:none">${ loginUser.account }</div>
 						
-							<div class="col-lg-4">
-								<input type="text" id="bankName" class="account" style="height: 46px; font-size:14px; font-style:italic; border: 1px solid #242424; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 90%;" placeholder="은행명">
+							<div class="col-lg-4" style="margin-top:20px;">
+								<input type="text" id="bankName" class="account" style="height: 46px; font-size:14px; font-style:italic; border: 1px solid #bbbbbb; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 90%;" placeholder="은행명">
 							</div>
-							<div class="col-lg-4">
-								<input type="text" id="accountHolder" class="account" style="height: 46px; font-size:14px; font-style:italic; border: 1px solid #242424; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 90%;" placeholder="예금주">
+							<div class="col-lg-4" style="margin-top:20px;">
+								<input type="text" id="accountHolder" class="account" style="height: 46px; font-size:14px; font-style:italic; border: 1px solid #bbbbbb; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 90%;" placeholder="예금주">
 							</div>
-							<div class="col-lg-4">
-								<input type="text" id="accountNumber" class="account" style="height: 46px; font-size:14px; font-style:italic; border: 1px solid #242424; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 90%;" placeholder="계좌번호">
+							<div class="col-lg-4" style="margin-top:20px;">
+								<input type="text" id="accountNumber" class="account" style="height: 46px; font-size:14px; font-style:italic; border: 1px solid #bbbbbb; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 90%;" placeholder="계좌번호">
 							</div>
 							
 							<input type="text" class="account" name="account" style="display:none">
@@ -193,15 +201,15 @@
 							
 						 
 							<div class="col-lg-8" style="margin-top: 50px;">
-								<input type="text" id="address" name="address" style="height: 46px; font-size:14px; font-style:italic; border: 1px solid #242424; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 83%;" placeholder="주소" value="${ loginUser.address }"><button style="margin-left: 10px;">주소검색</button>
+								<input type="text" id="address" name="address" style="height: 46px; font-size:14px; font-style:italic; border: 1px solid #bbbbbb; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 83%;" placeholder="주소" value="${ loginUser.address }"><button style="margin-left: 10px;">주소검색</button>
 							</div>
 							<div class="col-lg-4" style="margin-top: 50px;">
-								<input type="text" id="phone" name="phone" style="height: 46px; font-size:14px; font-style:italic; border: 1px solid #242424; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 90%;" placeholder="전화번호" value="${ loginUser.phone }">
+								<input type="text" id="phone" name="phone" style="height: 46px; font-size:14px; font-style:italic; border: 1px solid #bbbbbb; padding: 0 18px; border-top: none; border-left: none; border-right: none; width: 90%;" placeholder="전화번호" value="${ loginUser.phone }">
 							</div>
 						<div style="margin-top: 50px;">
-							<button type="submit" class="site-btn" style="width:20%; height: 80px; margin: 20px; margin-left: 300px;">
+							<button type="submit" class="site-btn sb-solid mr-3 mb-3" style="width:20%; height: 80px; margin: 20px; margin-left: 300px;">
 								정보수정
-							<button class="site-btn" style="width:20%; height: 80px;" onclick="location.href='my_profileView.do'">
+							<button class="site-btn sb-solid mr-3 mb-3" style="width:20%; height: 80px;" onclick="location.href='my_profileView.do'">
 								취소하기
 							</button>
 						</div>

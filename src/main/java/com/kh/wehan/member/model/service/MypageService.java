@@ -121,5 +121,12 @@ public interface MypageService {
 	 */
 	public int updateDiaryDrag(Diary di);
 
+	/**
+	 * 1-4. 내가 팔로우한 사람 리스트 가져오기
+	 * @param userId
+	 * @return
+	 */
+	public ArrayList<Member> selectListFollowing(String userId);
+
 
 }

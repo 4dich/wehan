@@ -27,9 +27,10 @@
 	<link rel="stylesheet" href="resources/css/style.css"/>
 	<link rel="stylesheet" href="resources/css/category.css"/>
 	<link rel="stylesheet" href="resources/css/fidRecommend.css"/>
-	
+	<link rel="stylesheet" href="resources/css/font.css"/>	
 	<style>
 	.about-info{width:348px;}
+	.about-info p{font-size:12px;}
 	#fidListArea {
     width: 100%;
     height: 100%;
@@ -80,7 +81,7 @@
 			<div class="main-sidebar">
 				<!-- 로고 구역 -->
 				<div class="mb-warp">
-					<a href="index.html" class="site-logo">
+					<a href="indexView.do" class="site-logo">
 						<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
