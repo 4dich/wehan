@@ -33,7 +33,11 @@
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
-
+<style>
+		.about-info{width:348px;}
+		.about-info a{font-size:12px;}
+	
+	</style>
 </head>
 <body>
 	<!-- Page Preloder -->
@@ -58,26 +62,23 @@
 			<div class="main-sidebar">
 				<!-- 로고 구역 -->
 				<div class="mb-warp">
-					<a href="indexView.do" class="site-logo" style="margin-bottom: 70px;">
-						<h2 style="margin-left: 11px;">위대한 한걸음</h2>
-						<p style="padding-top: 20px;">THE GREAT ONE STEP</p>
+					<a href="indexView.do" class="site-logo" style="margin-bottom: 80px;">
+						<h2 style="margin-left: 6px;">위대한 한걸음</h2>
+						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
-
+					<br><br>
 					<!-- 서브메뉴 -->
-					<div class="about-info" style="margin-left: 5px;">
-						<h2 style="margin-left: 68px;">나무 키우기</h2><br>
-						<p>&nbsp;&nbsp;"한 인간에겐 작은 한 걸음이지만, 인류에겐 위대한 도약이다.”<br>
-							&nbsp;&nbsp;이 말은 닐 암스트롱이 달 표면에 첫 발을 내딛고 한 말입니다.<br>
-							혼자서는 힘들었던 계획들, 같은 목표의 사람들과 함께 해보세요.<br>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;당신의 미래를 시작하기 위한 첫 걸음을 도와드릴게요.
+					<div class="about-info">
+						<h2>나무 키우기</h2>
+						<p style="width:348px; font-size:12px;">"한 인간에겐 작은 한 걸음이지만, 인류에겐 위대한 도약이다.”
+							이 말은 닐 암스트롱이 달 표면에 첫 발을 내딛고 한 말입니다.
+							혼자서는 힘들었던 계획들, 같은 목표의 사람들과 함께 해보세요.
+							당신의 미래를 시작하기 위한 첫 걸음을 도와드릴게요.
 						</p>
 					</div>
-					<ul class="contact-info" style="text-align: center;">
-					<br>
+					<ul class="contact-info">
 						<li>서울특별시 강남구 테헤란로14길 6</li>
 						<li>남도빌딩 3F H 오후반 TEAM THROW</li>
-						<li>ADMIN : 010-8691-8934</li>
-						<li><a href="mailto:contactme@myemail.com">teamthrow@gmail.com</a></li>
 					</ul>
 				</div>
 			</div>
