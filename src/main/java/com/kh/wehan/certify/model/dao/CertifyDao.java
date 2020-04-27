@@ -69,6 +69,7 @@ public class CertifyDao {
 		return (ArrayList)sqlSession.selectList("certifyMapper.deleteFollow",f,rowBounds);
 	
 	} 
+	
 
 	public int insertReply(CertifyReply r) {
 		
