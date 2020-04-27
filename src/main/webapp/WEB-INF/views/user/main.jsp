@@ -53,7 +53,7 @@
 						<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
-
+					<br><br>
 					<!-- 서브메뉴 -->
 					<div class="about-info">
 						<h4>One small step for a man,<span style="line-height: 180%;">

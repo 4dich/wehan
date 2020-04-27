@@ -64,6 +64,7 @@
 							<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 						</a>
                     <!-- 서브메뉴 -->
+                    <br><br>
 					<div class="about-info">
 						<h2>한걸음 가이드</h2>
 						<p style="width:348px;">
