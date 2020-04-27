@@ -34,7 +34,7 @@
 		SELECT *
 		FROM QUESTIONS
 		WHERE QDEL_YN='N'
-		ORDER BY QID DESC	
+		ORDER BY QID+1 DESC	
 	</select>     
 	    <!-- 문의사항 전체 개수 가져오기 -->
 	<select id="getListCount" resultType="_int">
