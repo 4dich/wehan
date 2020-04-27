@@ -58,7 +58,7 @@
 			</div>
 			<div class="header-social">
 				<a href="noticeView.do" style="color: red;">공지사항</a>
-                <a href="qnaView.do">문의사항</a>
+                <a href="qnaListView.do">문의사항</a>
 			</div>
 		</header>
 		<div class="site-content-warp">
