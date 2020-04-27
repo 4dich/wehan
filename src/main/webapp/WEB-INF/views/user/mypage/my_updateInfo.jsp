@@ -112,7 +112,7 @@
 			<div class="page-section blog-page" style="margin-top: 40px; height: 800px;">
 				<div class="contact-section">
 					<form action="updateMember.do" method="post" onsubmit="return pattern();" enctype="multipart/form-data">
-					<h3>회원정보 - 회원정보수정</h3>
+					<h3>회원정보수정</h3>
 					<div class="row" style="margin-left: 30px; height: 400px;">
 						<!-- <div class="col-xl-6">
 							<div class="map"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14376.077865872314!2d-73.879277264103!3d40.757667781624285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1546528920522" style="border:0" allowfullscreen></iframe></div>
@@ -139,7 +139,7 @@
 								<div class="contact-form" style="margin-top: 60px;">
 									<div class="row">	
                                         <div class="col-lg-12">
-                                            <input type="text" id="userId" name="userId" style="border: 1px solid #bbbbbb; border-top: none; border-left: none; border-right: none;" placeholder="아이디" value="${ loginUser.userId }">
+                                            <input type="text" id="userId" name="userId" style="border: 1px solid #bbbbbb; border-top: none; border-left: none; border-right: none;" placeholder="아이디" value="${ loginUser.userId }" readonly>
                                         </div>
 										<div class="col-lg-6">
                                             <input type="password" id="password" name="password" style="border: 1px solid #bbbbbb; border-top: none; border-left: none; border-right: none;" placeholder="비밀번호" value="${ loginUser.password }">
@@ -150,7 +150,7 @@
                                             <input id="chkPass" type="hidden" value="0">
                                         </div>
                                         <div class="col-lg-6">
-                                            <input type="text" id="userName" name="userName" style="border: 1px solid #bbbbbb; border-top: none; border-left: none; border-right: none;" placeholder="이름" value="${ loginUser.userName }">
+                                            <input type="text" id="userName" name="userName" style="border: 1px solid #bbbbbb; border-top: none; border-left: none; border-right: none;" placeholder="이름" value="${ loginUser.userName }" readonly>
                                         </div>
 										<div class="col-lg-6">
                                             <input type="text" id="nickName" name="nickName" style="border: 1px solid #bbbbbb; border-top: none; border-left: none; border-right: none;" placeholder="닉네임" value="${ loginUser.nickName }">

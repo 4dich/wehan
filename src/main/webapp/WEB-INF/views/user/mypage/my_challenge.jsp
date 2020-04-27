@@ -479,7 +479,7 @@
 												<div style="width:10px">~</div>
 												<div class="eArr" style="width: 100px;">${ c.endDate }</div>
 												<div style="width: 80px; padding: 5px 0 0 0; border-left:1px solid gray; border-right:1px solid gray;"  >
-													<img src="resources/images/user/${c.chPicture }" style="width: 70px; height: auto;" >
+													<img src="resources/images/challenge/${c.chPicture }" style="width: 70px; height: auto;" >
 												</div>
 												<div style="width: 250px; text-align:left;">${ c.chName }</div>
 												<div class="ceCount" style="border-left:1px solid gray;">${ceCount[status.index]}</div>
@@ -500,7 +500,7 @@
 												<div style="width:10px">~</div>
 												<div class="eArr2" style="width: 100px;">${ c.endDate }</div>
 												<div style="width: 80px; padding: 5px 0 0 0; border-left:1px solid gray; border-right:1px solid gray;"  >
-													<img src="resources/images/user/${c.chPicture }" style="width: 70px; height: auto;" >
+													<img src="resources/images/challenge/${c.chPicture }" style="width: 70px; height: auto;" >
 												</div>
 												<div style="width: 250px; text-align:left;">${ c.chName }</div>
 												<div class="ceCount" style="border-left:1px solid gray;">${ceCount[status.index]}</div>
@@ -521,7 +521,7 @@
 												<div style="width:10px">~</div>
 												<div class="eArr3" style="width: 100px;">${ c.endDate }</div>
 												<div style="width: 80px; padding: 5px 0 0 0; border-left:1px solid gray; border-right:1px solid gray;"  >
-													<img src="resources/images/user/${c.chPicture }" style="width: 70px; height: auto;" >
+													<img src="resources/images/challenge/${c.chPicture }" style="width: 70px; height: auto;" >
 												</div>
 												<div style="width: 250px; text-align:left;">${ c.chName }</div>
 												<div class="ceCount" style="border-left:1px solid gray;">${ceCount[status.index]}</div>
@@ -542,7 +542,7 @@
 												<div style="width:10px">~</div>
 												<div class="eArr4" style="width: 100px;">${ c.endDate }</div>
 												<div style="width: 80px; padding: 5px 0 0 0; border-left:1px solid gray; border-right:1px solid gray;"  >
-													<img src="resources/images/user/${c.chPicture }" style="width: 70px; height: auto;" >
+													<img src="resources/images/challenge/${c.chPicture }" style="width: 70px; height: auto;" >
 												</div>
 												<div style="width: 250px; text-align:left;">${ c.chName }</div>
 												<div class="ceCount" style="border-left:1px solid gray;">${ceCount[status.index]}</div>
