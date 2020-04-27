@@ -874,7 +874,7 @@ Blog page
 }
 
 .blog-thumb {
-	height: 586px;
+	height: 750px;
 }
 
 .post-date {
@@ -1112,7 +1112,7 @@ Responsive
 		padding-left: 450px;
 	}
 	.main-sidebar .mb-warp {
-		padding: 110px 40px 91px 50px;
+		padding: 110px 40px 91px 40px;
 	}
 	.portfolio-item .pi-info {
 		padding: 15px 0 10px 0;
