@@ -56,11 +56,12 @@
 
 					<!-- 서브메뉴 -->
 					<div class="about-info" style="margin-left: 5px;">
-						<h4>&nbsp;&nbsp;"One small step for a man,<span style="line-height: 180%;"><br></span>&nbsp;One giant leap for mankind."</h4><br>
+						<h4>&nbsp;&nbsp;"One small step for a man,<span style="line-height: 180%;">
+						<br></span>&nbsp;&nbsp;One giant leap for mankind."</h4><br>
 						<p>&nbsp;&nbsp;"한 인간에겐 작은 한 걸음이지만, 인류에겐 위대한 도약이다.”<br>
-							&nbsp;&nbsp;이 말은 닐 암스트롱이 달 표면에 첫 발을 내딛고 한 말입니다.<br>
-							혼자서는 힘들었던 계획들, 같은 목표의 사람들과 함께 해보세요.<br>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;당신의 미래를 시작하기 위한 첫 걸음을 도와드릴게요.
+							&nbsp;이 말은 닐 암스트롱이 달 표면에 첫 발을 내딛고 한 말입니다.<br>
+							&nbsp;혼자서 힘들었던 계획들, 같은 목표의 사람들과 함께 해보세요.<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;당신의 미래를 시작하기 위한 첫 걸음을 도와드릴게요.
 						</p>
 					</div>
 					<ul class="contact-info" style="text-align: center;">
