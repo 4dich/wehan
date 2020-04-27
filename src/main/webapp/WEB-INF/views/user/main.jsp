@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="ko">
 <head>
-	<title>NISSA - PHOTOGRAPHY STUDIO HTML TEMPLATE</title>
+	<title>MAIN</title>
 	<meta charset="UTF-8">
 	<meta name="description" content="Nissa Photography studio html template">
 	<meta name="keywords" content="industry, html">
@@ -23,14 +23,7 @@
 	<link rel="stylesheet" href="resources/css/owl.carousel.min.css"/>
 
 	<!-- Main Stylesheets -->
-	<!-- <link rel="stylesheet" href="resources/css/main.css"/> -->
 	<link rel="stylesheet" href="resources/css/style.css"/>
-
-
-	<!--[if lt IE 9]>
-		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	<![endif]-->
 
 </head>
 <body>
@@ -41,22 +34,14 @@
 
 	<!-- Main section start -->
 	<div class="main-site-warp">
-
-
 		<!-- 메뉴 -->
-		
 		<%@ include file="/WEB-INF/views/common/menuBar.jsp" %>
-
 		<header class="header-section">
-			<div class="nav-switch menuIcon msgCount">
+			<div class="nav-switch">
 				<i class="fa fa-bars"></i>
 			</div>
 			<div class="header-social">
-				<!-- <a href=""><i class="fa fa-pinterest"></i></a>
-				<a href=""><i class="fa fa-facebook"></i></a>
-				<a href=""><i class="fa fa-twitter"></i></a>
-				<a href=""><i class="fa fa-dribbble"></i></a>
-				<a href=""><i class="fa fa-behance"></i></a> -->
+
 			</div>
 		</header>
 		<div class="site-content-warp">
@@ -69,74 +54,69 @@
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
 
-					<div>
-						<input type="textarea" style="width: 300px; height: 50px; border-radius: 3px; border:3px solid #242424">
-						<a href="#" class="site-btn2">
-						<img src="resources/images/main/search.png" alt=""></a>
-					</div>
-					<br><br>
 					<!-- 서브메뉴 -->
-					<div class="about-info">
-						<h2>회사소개</h2>
-						<p>"한 인간에게는 작은 한 걸음이지만, 인류에게는 위대한 도약이다. (One small step for a man, one giant leap for mankind.)”<br>
-							이 명언은 닐 암스트롱이 달 표면에 첫 발을 내딛고 한 말입니다.<br><br>
-							혼자선 힘들었던 계획들, 같은 목표의 사람들과 함께 해보세요.<br>
-						   	당신의 미래를 시작하기 위한 첫 걸음을 도와드릴게요.
+					<div class="about-info" style="margin-left: 5px;">
+						<h4>&nbsp;&nbsp;"One small step for a man,<span style="line-height: 180%;"><br></span>&nbsp;One giant leap for mankind."</h4><br>
+						<p>&nbsp;&nbsp;"한 인간에겐 작은 한 걸음이지만, 인류에겐 위대한 도약이다.”<br>
+							&nbsp;&nbsp;이 말은 닐 암스트롱이 달 표면에 첫 발을 내딛고 한 말입니다.<br>
+							혼자서는 힘들었던 계획들, 같은 목표의 사람들과 함께 해보세요.<br>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;당신의 미래를 시작하기 위한 첫 걸음을 도와드릴게요.
 						</p>
 					</div>
-					<ul class="contact-info">
-						<li>서울특별시 강남구 테해란로14길 6</li>
-						<li>남도빌딩 3F H반 T:1544-9970</li><br>
-						<li><a href="mailto:contactme@myemail.com">contactme@myemail.com</a></li>
-					</ul>		
-					<div class="copyright"><p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
-						All rights reserved </p>
-					</div>
-					
+					<ul class="contact-info" style="text-align: center;">
+					<br>
+						<li>서울특별시 강남구 테헤란로14길 6</li>
+						<li>남도빌딩 3F H 오후반 TEAM THROW</li>
+						<li>ADMIN : 010-8691-8934</li>
+						<li><a href="mailto:contactme@myemail.com">teamthrow@gmail.com</a></li>
+					</ul>
 				</div>
 			</div>
 			<!-- Left Side section end -->
 			<!-- Page start -->
 			<div class="page-section">
 				<div class="hero-section">
-					<div class="hero-track">
-						<a href="companyInfoView.do" style="margin-right: 0;">
-							<div class="hs-item set-bg" data-setbg="resources/images/hero/1.jpg" style="height: 400px; width: 400px">
-								<div class="hs-info">
-									<h5>위대한 한걸음</h5>
-									<p>알아보기</p>
-									<img src="resources/images/arrow-righ-3.png" alt="">
+					<div class="hero-scroll">
+						<div class="hero-track">
+							<a href="companyInfoView.do">
+								<div class="hs-item set-bg" data-setbg="resources/images/main/company.jpg" style="margin-left: 22px;">
+									<div class="hs-info">
+										<h5>회사 소개</h5>
+										<p>THE GREAT ONE STEP</p>
+										<img src="resources/images/arrow-right.png" alt=""></a>
+									</div>
 								</div>
-							</div>
-						</a>						
-						<a href="serviceInfoView.do">
-							<div class="hs-item set-bg" data-setbg="resources/images/hero/3.jpg">
-								<div class="hs-info">
-									<h5>한걸음 가이드</h5>
-									<p>알아보기</p>
-									<img src="resources/images/arrow-righ-3.png" alt="">
+							</a>
+							<a href="serviceInfoView.do">
+								<div class="hs-item set-bg" data-setbg="resources/images/hero/1.jpg">
+									<div class="hs-info">
+										<h5>위대한 한걸음</h5>
+										<p>자세한 가이드 알아보기</p>
+										<img src="resources/images/arrow-right.png" alt=""></a>
+									</div>
 								</div>
-							</div>
-						</a>
-						<a href="guideInfoView.do">
-							<div class="hs-item set-bg" data-setbg="resources/images/hero/2.jpg">
-								<div class="hs-info">
-									<h5>당신의 나무를 키워보세요</h5>
-									<p>알아보기</p>
-									<img src="resources/images/arrow-righ-3.png" alt="">
+							</a>
+							<a href="guideInfoView.do">	
+								<div class="hs-item set-bg" data-setbg="resources/images/main/tree.jpg">
+									<div class="hs-info">
+										<h5>나만의 나무를 키워보세요</h5>
+										<p>자세히 살펴보기</p>
+										<img src="resources/images/arrow-right.png" alt=""></a>
+									</div>
 								</div>
-							</div>
-						</a>
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>
 			<!-- Page end -->
 		</div>
-		
-		</div>
+		<div class="copyright" style="margin-left: 90px;"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> TEAM THROW
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
+	</div>
 	<!-- Main section end -->
 	
-	<!--====== Javascripts & Jquery ======-->
 	<script src="resources/js/jquery-3.2.1.min.js"></script>
 	<script src="resources/js/bootstrap.min.js"></script>
 	<script src="resources/js/owl.carousel.min.js"></script>
