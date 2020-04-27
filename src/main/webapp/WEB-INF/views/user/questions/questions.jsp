@@ -75,13 +75,25 @@
 					<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 				</a>
 			<!-- 서브메뉴 --><br><br>
+			<c:if test="${empty sessionScope.adminUser}">
 			<div class="about-info" style="margin:0 0 80px 0;">
 				<h2>문의사항</h2>
 				<!-- 감성글 작성 -->
 				<p>위대한 한걸음에 궁금증이 생기신다면 <br>
 				언제든지 문의해주세요! </p>
 			</div>
-			
+			</c:if>
+			<c:if test="${!empty sessionScope.adminUser}">
+			<div class="about-info" style="margin:0 0 80px 0;">
+				<h2>문의사항</h2>
+				<a href="qnaListView.do" id="qnaList" class="infoMenu">문의사항</a><br><br>
+				<a href="mlist.do" id="mlist" class="infoMenu">회원정보</a><br><br>
+				<a href="paylist.do" id="ad_pay" class="infoMenu">결제정보</a><br><br>
+				<a href="ad_challengeListView.do" id="ad_challenge" class="infoMenu">챌린지 정보</a><br><br>
+				<a href="ad_certifyView.do" id="ad_certify" class="infoMenu">인증글 정보</a><br><br>
+				<a href="blackList.do" id="ad_blackList" class="infoMenu">블랙리스트</a><br><br>
+			</div>
+			</c:if>
 			<c:if test="${!sessionScope.adminUser.getUserId().equals('admin') }">
 			<button class="site-btn sb-dark" style="margin-top:2px;font-size: 16px;  border-radius: 3px; width: 347px;" type="button" onclick="location.href='questionsInsertView.do'">
 				문의사항 등록하기
