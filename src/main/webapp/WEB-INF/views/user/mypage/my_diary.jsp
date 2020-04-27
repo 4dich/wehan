@@ -93,7 +93,7 @@ var events = [];
                       	cntStamp:0
                       },success:function(data){
                     	  $('#calendar').remove();
-                    	  $('#dich').append("<div id='calendar' style='-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);'></div>");
+                    	  $('#dich').append("<div id='calendar' style='margin-top:50px; border: 1px solid gray; padding: 10px';'></div>");
                     	  events = [];
                     	  selectCalendar();
                       },error:function(){
@@ -171,7 +171,7 @@ var events = [];
 	       	        	  success:function(data){
 	       	        	  	  console.log(data + '개 행이 업데이트되었습니다.');
 	       	        	  $('#calendar').remove();
-	       	            	  $('#dich').append("<div id='calendar' style='-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);'></div>");
+	       	            	  $('#dich').append("<div id='calendar' style='margin-top:50px; border: 1px solid gray; padding: 10px'></div>");
 	       	            	  events = [];
 	       	            	  selectCalendar();
 	       	        	  },
@@ -195,7 +195,7 @@ var events = [];
 	                    	  success:function(data){
 	                    	  	  console.log(data + '개 행이 업데이트되었습니다.');
 	                    	  $('#calendar').remove();
-	                        	  $('#dich').append("<div id='calendar' style='-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);'></div>");
+	                        	  $('#dich').append("<div id='calendar' style='margin-top:50px; border: 1px solid gray; padding: 10px'></div>");
 	                        	  events = [];
 	                        	  selectCalendar();
 	                    	  },
@@ -235,7 +235,7 @@ var events = [];
             setCalendar();
         },
         error:function(){
-            alert('리스트 출력 오류');
+            alert('일정 리스트 출력 오류');
         }
       });
 	}
@@ -298,7 +298,7 @@ var events = [];
 	 	 		  success:function(data){
 	 	 		  	  console.log(data + '개 행이 업데이트되었습니다.');
 		 	 		  $('#calendar').remove();
-	              	  $('#dich').append("<div id='calendar' style='-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);'></div>");
+	              	  $('#dich').append("<div id='calendar' style='margin-top:50px; border: 1px solid gray; padding: 10px'></div>");
 	              	  events = [];
 	              	  selectCalendar();
 	 	 		  },
@@ -700,7 +700,7 @@ var events = [];
 			</div> -->
 			
 			<div id='dich'></div>
-			<div id='calendar' style='-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); margin-top:50px; -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);'></div>
+			<div id='calendar' style='margin-top:50px; border: 1px solid gray; padding: 10px'></div>
 			
 			<div id='stat' style="display:none; background: white; width:500px; height:498px; position:absolute; left: 1000px; top: 200px; border-radius:5px; box-shadow : rgba(0,0,0,0.5) 0 0 0 9999px; z-index : 100;
 			-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);">

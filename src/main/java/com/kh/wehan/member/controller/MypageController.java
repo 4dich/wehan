@@ -52,9 +52,14 @@ public class MypageController {
 		int follow = myService.followCount(userId);
 		int following = myService.followingCount(userId);
 		
+		ArrayList<Member> followingList = myService.selectListFollowing(userId);
+		
+		System.out.println(followingList);
+		
 		mv.addObject("mypage", mypage)
 		  .addObject("follow", follow)
 		  .addObject("following", following)
+		  .addObject("followingList", followingList)
 		  .setViewName("user/mypage/my_profile");
 		
 		return mv;
