@@ -77,11 +77,13 @@ public class ChallengeController {
 	 * @param mv
 	 * @param chId
 	 * @return
+	 * @throws ParseException 
 	 */
 	@RequestMapping("selectOneDetail.do")
-	public ModelAndView selectOneDetail(ModelAndView mv, String chId) {
+	public ModelAndView selectOneDetail(ModelAndView mv, String chId) throws ParseException {
 		
 		Challenge chal = cService.selectOneDetail(chId);
+	
 		
 		mv.addObject("chal", chal);
 		mv.setViewName("admin/ad_challengeDetail");

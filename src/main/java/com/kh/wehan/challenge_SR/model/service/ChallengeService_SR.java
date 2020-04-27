@@ -36,6 +36,13 @@ public interface ChallengeService_SR {
 	 * @return
 	 */
 	int getSuccessRate(Map m);
+
+	/**
+	 * 마감된 챌린지 성공자 리스트
+	 * @param m
+	 * @return
+	 */
+	ArrayList<ChallengerInfo> getSuccessList(Map m);
 	
 	
 }

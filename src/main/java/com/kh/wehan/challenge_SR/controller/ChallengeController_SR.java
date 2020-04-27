@@ -111,4 +111,31 @@ public class ChallengeController_SR {
 		
 	}
 	
+	/**
+	 * 마감된 챌린지 성공자 리스트
+	 * @param chId
+	 * @param time
+	 * @param response
+	 * @throws IOException 
+	 * @throws JsonIOException 
+	 */
+	@RequestMapping("getSuccessList.do")
+	public void getSuccessList(String chId, int time, HttpServletResponse response) throws JsonIOException, IOException {
+		
+		Map m = new HashMap();
+		
+		m.put("chId", chId);
+		m.put("time", time);
+		
+		// 챌린지 성공자 리스트 가져오기
+		ArrayList<ChallengerInfo> list = chalServiceSr.getSuccessList(m);
+				
+		response.setContentType("application/json; charset=UTF-8");
+		
+		Gson gson = new Gson();
+		
+		gson.toJson(list, response.getWriter());
+		
+	}
+	
 }
