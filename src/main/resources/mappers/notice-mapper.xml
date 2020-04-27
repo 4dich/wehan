@@ -28,7 +28,7 @@
 		SELECT *
 		FROM NOTICE
 		WHERE NDEL_YN='N'
-		ORDER BY NID DESC	
+		ORDER BY NID+1 DESC	
 	</select>
 	
 	<!-- 조회수 올리기 -->
