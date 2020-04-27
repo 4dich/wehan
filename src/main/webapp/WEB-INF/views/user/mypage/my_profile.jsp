@@ -99,16 +99,17 @@
 	}
 	
 	/*스크롤바*/
-	#goal::-webkit-scrollbar, #intro::-webkit-scrollbar{
+	#followingMembers::-webkit-scrollbar{
 		width: 5px;
 	}
 	
-	#goal::-webkit-scrollbar-thumb, #intro::-webkit-scrollbar-thumb{
+	#followingMembers::-webkit-scrollbar-thumbb{
 		background-color: #242424;
 	}
-	#goal::-webkit-scrollbar-track, #intro::-webkit-scrollbar-track{
-		background-color: grey;
+	#followingMembers::-webkit-scrollbar-track{
+		background-color: gray;
 	}
+	
 	
     </style>
 </head>
@@ -185,31 +186,60 @@
 			
 			
 			<!-- follower 팝업 시작-->
-		    <div id="followingPopup" style="width:400px; height:800px; background: pink; position:absolute; left:1000px; top:100px; z-index: 1000; -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); overflow:auto; display:none">
-		    	<div style="display:inline-block; width:357px; height:60px; background:skyblue; font-size:24px; padding:10px; text-align:left; font-weight:bold">followers</div>
-		    	<div id="xBtn" style="display:inline-block; width:37px; height:60px; background:orangered; font-size:24px; padding:10px; text-align:right; font-weight:bold; cursor:pointer">X</div>
-		    	<div style="width:400px; height:60px; background:orange; font-size:24px; padding:10px; text-align:center;">
+		    <div id="followingPopup" style="width:405px; height:800px; background:rgb(255, 233, 233); position:absolute; left:1000px; top:100px; z-index: 1000; -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); display:none">
+		    	<div style="display:inline-block; width:342px; height:60px; font-size:24px; padding:10px; text-align:left; font-weight:bold; margin-left:10px">following</div>
+		    	<div id="xBtn" style="display:inline-block; width:37px; height:60px; font-size:24px; padding:10px; text-align:right; font-weight:bold; cursor:pointer; margin-right:10px">X</div>
+		    	<div style="width:405px; height:60px; font-size:24px; padding:10px; text-align:center;">
 		    		<input type="search" class="form-control" placeholder="search"/>
 		    	</div>
 		    	<!--  -->
-		    	<c:forEach var="fl" items="${ followingList }">
-			    	<div style="display:flex; width:400px; height:70px; background:skyblue; font-size:24px; padding:10px;">
-			    		<div style="display:inline-flex; width: 50px; height:50px; border-radius: 70%; overflow: hidden;">
-			    			<img src="resources/images/user/${ fl.picture }" style="width: 100%; height:100%; object-fit: cover;">
-			    		</div>
-			    		<div style="display:inline-flex; flex-direction:column; width: 240px; height:50px; background:yellowgreen;">
-			    			<div style="font-size:13px; width: 230px; height:30px; font-weight:bold">${ fl.nickName }#${ fl.userId }</div>
-			    			<div style="font-size:13px; width: 230px; height:20px; color:gray">${ fl.intro }</div>
-			    		</div>
-			    		<div style="width: 80px; height:50px;">
-			    			<button style="font-size:14px; margin-top:12px; width:100%; padding: 2px 10px 2px 10px">follow</button>
-			    		</div>
-			    	</div>
-		    	</c:forEach>
+		    	<div id="followingMembers" style="overflow:auto; width:405px; height:680px;">
+			    	<c:forEach var="fl" items="${ followingList }">
+				    	<div style="display:flex; width:400px; height:70px; font-size:24px; padding:10px;">
+				    		<div style="display:inline-flex; width: 50px; height:50px; border-radius: 70%; overflow: hidden;">
+				    			<img src="resources/images/user/${ fl.picture }" style="width: 100%; height:100%; object-fit: cover;">
+				    		</div>
+				    		<div style="display:inline-flex; flex-direction:column; width: 230px; height:50px; margin-left:10px">
+				    			<div style="font-size:13px; width: 230px; height:30px; font-weight:bold">${ fl.nickName }</div>
+				    			<div class="afterIntro" style="font-size:13px; width: 230px; height:20px; color:gray"></div>
+				    			<input type="hidden" class="rawIntro" value="${ fl.intro }"> 
+				    		</div>
+				    		<div style="width: 80px; height:50px;">
+				    			<button class="unfoBtn" style="font-size:14px; margin-top:12px; width:100%; padding: 2px 10px 2px 10px">unfollow</button>
+				    		</div>
+				    		<span class="otherId" style="display:none">${ fl.userId }</span>
+				    	</div>
+			    	</c:forEach>
+		    	</div>
 		    	<!--  -->
 		    </div>
 		    <!-- 팝업 끝 -->
 		    <script>
+		    	/* following intro 20자이상이면 뒤에 ...으로 표기 */
+		    	$(function(){
+			    	var followStat = [];
+		    		var $rawIntro = $('.rawIntro');
+		    		var $afterIntro = $('.afterIntro');
+		    		var followingLen = $rawIntro.length;
+		    		for(var i=0; i<followingLen; i++){
+		    			if($rawIntro[i].value.length>20){
+		    				$afterIntro[i].innerText = ($rawIntro[i].value).substr(0,20) + "...";
+		    			}else{
+			    			$afterIntro[i].innerText = ($rawIntro[i].value).substr(0,20);
+		    			}
+		    			
+		    		}
+		    	});
+		    	
+    			$('.unfoBtn').click(function(){
+		    		console.log($(this).parent().parent().find('span').text());
+		    		$(this).parent().parent().remove();
+		    		
+		    		$.ajax({
+		    			url:'unfollow.do'
+		    		});
+		    	});
+		    	
 		    	$('#xBtn').click(function(){
 		    		$('#followingPopup').css('display','none');
 		    		console.log('x');
@@ -221,7 +251,9 @@
 		    	
 		    	$('#fo3').click(function(){
 		    		$('#followingPopup').css('display','');
+		    		console.log('following');
 		    	});
+		    	
 		    </script>
 		    
 		    

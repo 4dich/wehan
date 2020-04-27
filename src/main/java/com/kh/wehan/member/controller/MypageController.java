@@ -54,8 +54,6 @@ public class MypageController {
 		
 		ArrayList<Member> followingList = myService.selectListFollowing(userId);
 		
-		System.out.println(followingList);
-		
 		mv.addObject("mypage", mypage)
 		  .addObject("follow", follow)
 		  .addObject("following", following)
