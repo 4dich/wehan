@@ -11,6 +11,7 @@ public class CertifyReply {
 	private Date ccDate;
 	private String ccDel;
 	private String picture;
+	private String nickName;
 	
 	public CertifyReply() {
 		super();
@@ -18,7 +19,7 @@ public class CertifyReply {
 
 	
 	public CertifyReply(String crId, String ceId, String userId, String ccContent, Date ccDate, String ccDel,
-			String picture) {
+			String picture,String nickName) {
 		super();
 		this.crId = crId;
 		this.ceId = ceId;
@@ -27,7 +28,18 @@ public class CertifyReply {
 		this.ccDate = ccDate;
 		this.ccDel = ccDel;
 		this.picture = picture;
+		this.nickName = nickName;
 	}
+
+	public String getNickName() {
+		return nickName;
+	}
+
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+
 
 	public String getCrId() {
 		return crId;

@@ -54,23 +54,21 @@
 						<h2 style="margin-left: 11px;">위대한 한걸음</h2>
 						<p style="padding-top: 20px;">THE GREAT ONE STEP</p>
 					</a>
-
+					<br><br>
 					<!-- 서브메뉴 -->
 					<div class="about-info" style="margin-left: 5px;">
-						<h2 style="margin-left: 72px;">회사 소개</h2><br>
-						<p>&nbsp;&nbsp;큰 목적만 세우고 이루지 못하는 때가 많으신가요?<br>
-							&nbsp;&nbsp;큰 목적에만 너무 마음쓰지 마세요.<br>
-							&nbsp;&nbsp;당신은 작은 목적을 가져도 아름다운 사람이니까요.<br>
-							&nbsp;&nbsp;당신을 따뜻하게 해 줄 새로운 해가 떠오를 거에요.<br>
-							&nbsp;&nbsp;그 때까지 작은 목적도 완수할 수 있는 달이 되어 드릴게요.
+						<h2>회사 소개</h2><br>
+						<p style="width:348px;">큰 목적만 세우고 이루지 못하는 때가 많으신가요?
+							큰 목적에만 너무 마음쓰지 마세요.
+							당신은 작은 목적을 가져도 아름다운 사람이니까요.
+							당신을 따뜻하게 해 줄 새로운 해가 떠오를 거에요.
+							그 때까지 작은 목적도 완수할 수 있는 달이 되어 드릴게요.
 						</p>
 					</div>
-					<ul class="contact-info" style="text-align: center;">
+					<ul class="contact-info" >
 					<br>
-						<li>서울특별시 강남구 테헤란로14길 6</li>
-						<li>남도빌딩 3F H 오후반 TEAM THROW</li>
-						<li>ADMIN : 010-8691-8934</li>
-						<li><a href="mailto:contactme@myemail.com">teamthrow@gmail.com</a></li>
+						<li>서울특별시 강남구 테해란로14길 6</li>
+						<li>남도빌딩 3F H반 T:1544-9970</li>
 					</ul>
 				</div>
 			</div>
@@ -97,7 +95,7 @@
 					<div class="blog-post-item"><br><br>
 						<div class="blog-thumb set-bg" data-setbg="resources/images/goal2.jpg">
 						
-						</div><
+						</div>
 						<div class="blog-content">
 							<h2>회사 비전</h2>
 							<br>
@@ -115,7 +113,7 @@
 						<div class="blog-thumb set-bg" style="height: 150px;">
 							<div class="tab-element" style="text-align-last: center;">
 								<ul class="nav nav-tabs" id="myTab" role="tablist" style="place-content: center;">
-									<div style="text-align: center;">
+									<div>
 										<button class="site-btn sb-solid mr-3 mb-3" type="button" onclick="location.href='serviceInfoView.do'">
 											한걸음 가이드							
 										</button>
@@ -133,7 +131,7 @@
 			</div>
 			<!-- Page end -->
 		</div>
-		<div class="copyright" style="margin-left: 90px;"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+		<div class="copyright"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
   Copyright &copy;<script>document.write(new Date().getFullYear());</script> TEAM THROW
   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
 	</div>

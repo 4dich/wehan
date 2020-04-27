@@ -64,19 +64,19 @@
 							<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 						</a>
                     <!-- 서브메뉴 -->
+                    <br><br>
 					<div class="about-info">
 						<h2>한걸음 가이드</h2>
-						<p>
-							혼자선 힘들었던 계획을 같은 목표의 사람들과 함께 해보세요. <br>
-							계획을 세우고, 결심에 대한 돈을 걸면 끝까지 해낼 수 있습니다.<br>
-							<br>
+						<p style="width:348px;">
+							혼자선 힘들었던 계획을 같은 목표의 사람들과 함께 해보세요.
+							계획을 세우고, 결심에 대한 돈을 걸면 끝까지 해낼 수 있습니다.
+							<br><br>
 							지금 바로 계획을 세워보세요!						
 						</p>
 					</div>
 					<ul class="contact-info">
 						<li>서울특별시 강남구 테해란로14길 6</li>
 						<li>남도빌딩 3F H반 T:1544-9970</li><br>
-						<li><a href="mailto:contactme@myemail.com">contactme@myemail.com</a></li>
 					</ul>
 				</div>
 			</div>

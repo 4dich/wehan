@@ -292,7 +292,7 @@
  						$img.attr('src','resources/images/user/'+ data[i].picture);
  						$mediaBody = $("<div class='media-body u-shadow-v18 g-bg-secondary g-pa-30'>");
 						$gmb = $("<div class='g-mb-15'>");
-						$h5 = $("<h5 class='h5 g-color-gray-dark-v1 mb-0'>").text(data[i].userId);
+						$h5 = $("<h5 class='h5 g-color-gray-dark-v1 mb-0'>").text(data[i].nickName);
 						$span = $("<span class='g-color-gray-dark-v4 g-font-size-12'>").text(data[i].ccDate);
 						$p = $("<p>").text(data[i].ccContent);
 						$crId = $("<p class='crId'>").text(data[i].crId);
