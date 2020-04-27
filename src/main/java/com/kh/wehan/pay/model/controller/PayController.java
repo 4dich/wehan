@@ -33,7 +33,8 @@ public class PayController {
 	private PayService pService;
 	
 	@RequestMapping("paylist.do")
-	public ModelAndView payList(ModelAndView mv,@RequestParam(value="currentPage",required=false,defaultValue="1") int currentPage) {
+	public ModelAndView payList(ModelAndView mv,
+			@RequestParam(value="currentPage",required=false,defaultValue="1") int currentPage) {
 		
 		int listCount = pService.getListCount();
 		
@@ -85,7 +86,6 @@ public class PayController {
 	
 	@RequestMapping("payments.do")
 	public void pay(HttpServletRequest request,HttpServletResponse response) throws IOException {
-		
 
 		int viewPage = Integer.parseInt(request.getParameter("viewPage"));
 
@@ -99,7 +99,6 @@ public class PayController {
 		String[] peopleArr =  peoplePlus.split(",");
 		int count = peopleArr.length-1;
 		
-		
 		Pay pay = new Pay();
 		pay.setChId(chId);
 		pay.setUserId(userId);
@@ -112,7 +111,6 @@ public class PayController {
 		ch.setChPeople(peoplePlus);
 		ch.setChId(chId);
 		ch.setChPeopleCount(count);
-		
 		
 		if(payResult>0) {
 	    int Plus = pService.updatepeoplePlus(ch); 
@@ -194,8 +192,8 @@ public class PayController {
 	}
 	
 	@RequestMapping("refundYn.do")
-	public void refundYn(HttpServletResponse response ,@RequestParam(value="currentPage",required=false,defaultValue="1") int currentPage
-			,int reIdx,String selecter,String searchValue) throws JsonIOException, IOException {
+	public void refundYn(HttpServletResponse response ,@RequestParam(value="currentPage",required=false,defaultValue="1") 
+	int currentPage,int reIdx,String selecter,String searchValue) throws JsonIOException, IOException {
 		response.setCharacterEncoding("UTF-8");
 		int listCount = 0;
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
@@ -207,16 +205,14 @@ public class PayController {
 			
 			ad.put("pi",pi);
 			
-			if(reIdx != 0) {
+			if(reIdx != 0) { // reIdx값이 0이거나 1일때 y정렬 n정렬
 				list = pService.refundYn(pi);
 			}else {
 				list = pService.refundNy(pi);
 			}
 			ad.put("list",list);
 		}else {
-			
 			PageInfo pi = null;
-			
 			Pay p = new Pay();
 			Challenge ch = new Challenge();
 			ArrayList<Challenge> chsearch = null;
@@ -230,10 +226,10 @@ public class PayController {
 			}if(selecter.equals("chId")) {
 				ch.setChId(searchValue);
 			}
-			if(ch.getChName() != null || ch.getChId() != null) {
+			if(ch.getChName() != null || ch.getChId() != null) { // 검색 값이 있는지 확인
 				listCount = pService.getSearchListCount(ch); //1
 				pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
-				if(reIdx == 1) {
+				if(reIdx == 1) { // reIdx값이 0이거나 1일때 y정렬 n정렬
 				chsearch = pService.chSearchY(ch,pi);
 				}else if(reIdx == 0){
 				chsearch = pService.chSearchN(ch,pi);	
@@ -244,13 +240,11 @@ public class PayController {
 				}
 				ad.put("list",chsearch);
 				ad.put("pi",pi);
-				
 			}
-			
-			if(p.getUserId() != null || p.getpId() !=null) {
+			if(p.getUserId() != null || p.getpId() !=null) { // 검색 값이 있는지 확인
 				listCount = pService.getSearchListCount(p);
 			    pi = Pagination.getPageInfo(currentPage, listCount, 5, 10);
-			    if(reIdx == 1) {
+			    if(reIdx == 1) { // reIdx값이 0이거나 1일때 y정렬 n정렬
 			    psearch = pService.pSearchY(p,pi);
 			    }else if(reIdx == 0){
 			    psearch = pService.pSearchN(p,pi);	
@@ -264,7 +258,6 @@ public class PayController {
 			}
 		}
 		response.setContentType("applecation/json charset=utf-8"); 
-		
 		gson.toJson(ad,response.getWriter());
 	}
 	
