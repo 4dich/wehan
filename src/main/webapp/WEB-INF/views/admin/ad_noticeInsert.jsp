@@ -76,7 +76,7 @@
 
 					<div class="about-info">
 						<h2>공지사항</h2>
-						<a href="ad_questionsList.do" id="ad_questions" class="infoMenu">문의사항</a><br><br>
+						<a href="qnaListView.do" id="qnaList" class="infoMenu">문의사항</a><br><br>
 						<a href="mlist.do" id="mlist" class="infoMenu">회원정보</a><br><br>
 						<a href="paylist.do" id="ad_pay" class="infoMenu">결제정보</a><br><br>
 						<a href="ad_challengeListView.do" id="ad_challenge" class="infoMenu">챌린지 정보</a><br><br>
