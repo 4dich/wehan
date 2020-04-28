@@ -94,15 +94,12 @@ public class MessageServiceImpl implements MessageService{
 		
 		// 보낸 사람 메시지 삭제
 		int delSender = msgDao.deleteSenderMsg(m);
-		System.out.println("delSender : " + delSender);
 		
 		// 받은 사람 메시지 삭제
 		int delReceiver = msgDao.deleteReceiverMsg(m);
-		System.out.println("delReceiver : " + delReceiver);
 					
 		// messageRoom USER1 삭제
 		int delUser1 = msgDao.deleteUser1Msg(m);
-		System.out.println("delUser1 : " + delUser1);
 		
 		// USER1삭제가 안되면 USER2 삭제
 		int delUser2 = 0;
@@ -111,11 +108,7 @@ public class MessageServiceImpl implements MessageService{
 			delUser2 = msgDao.deleteUser2Msg(m);
 		}
 		
-		System.out.println("delUser2 : " + delUser2);
-		
 		int result = delUser1 + delUser2;
-		
-		System.out.println("result : " + result);
 		
 		return result;
 	}
