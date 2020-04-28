@@ -106,14 +106,14 @@
 									</select>					
 								</div>
 								<!-- 검색 -->
-								<input class="searchBox" type="search" name="adNoticeSerchWord">
+								<input class="searchBox" type="search" name="adNoticeSerchWord" style="height:31px; width:55%">
 								<button>
 									<img src="resources/images/main/search.png" alt="">
 								</button>
-							</form>
+							</form>3
 						</div>
-
-
+ 
+    
 						<!-- 공지사항 테이블 -->
 						<table class="qnaTable" style="width:100%;margin-bottom:4px;">
 							
@@ -140,9 +140,9 @@
 									<td>${n.nCount}</td>
 								</tr>	
 							</c:forEach>	
-
+           
 							
-
+         
 						</table>
 						<!-- 페이징 처리 -->
 						<!-- 이전 -->
@@ -156,7 +156,7 @@
 								</c:url>
 								<a href="${ before }"><</a>
 							</c:if>
-							
+					 		
 							<!-- 페이지 -->
 							<c:forEach var="p" begin="${pi.startPage}" end="${pi.endPage }">
 								<c:if test="${ p eq pi.currentPage }">
