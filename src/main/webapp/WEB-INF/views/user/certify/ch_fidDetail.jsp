@@ -156,6 +156,11 @@
 												
 													<div class="form-group" style="text-align: right;">														
 														<textarea class="form-control" id="addReflyText" style="height:100px; resize:none;" placeholder="친구의 피드에 댓글을 남겨보세요!"></textarea>
+														<c:if test="${ loginUser.userId eq c.userId }">
+														<button id="certifyDel" class="site-btn sb-dark" style="padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; margin-top:10px;">
+															인증글 삭제
+														</button>
+														</c:if>
 														<button id="submitR" class="site-btn sb-dark" style="padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; margin-top:10px;">
 															댓글 등록
 														</button>

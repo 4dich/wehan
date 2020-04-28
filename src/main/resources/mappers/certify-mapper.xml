@@ -203,8 +203,8 @@
 	<select id="searchUser" resultMap="cMemberResultSet">
 	SELECT * FROM MEMBER M
 	JOIN FOLLOW F
-	ON F.FOLLOWER = M.USERID
-	WHERE HOST =#{writer} 
+	ON F.HOST = M.USERID
+	WHERE FOLLOWER =#{writer} 
 	AND M.NICKNAME LIKE '%' || #{title} || '%'
 	
 	</select>
@@ -247,7 +247,7 @@
 	ON(C.CHID = R.CHID)
 	JOIN MEMBER M
 	ON(R.USERID = M.USERID)
-	WHERE C.CHID = #{chId}
+	WHERE C.CHID = #{chId} AND CEDEL_YN = 'N'
 	</select>
 	
 	<insert id="insertCertify">
@@ -255,7 +255,11 @@
 	VALUES(SEQ_CEID.NEXTVAL,#{chId},#{userId},#{ceContent},
 	#{cePicture},SYSDATE,DEFAULT)
 	</insert>
-	
+	<update id="certifyDel" parameterType="Certify">
+	UPDATE CERTIFY
+	SET CEDEL_YN = 'Y'
+	WHERE CEID = #{ceId}
+	</update>
 
 </mapper>
 

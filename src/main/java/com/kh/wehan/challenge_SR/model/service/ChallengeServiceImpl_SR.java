@@ -79,4 +79,13 @@ public class ChallengeServiceImpl_SR implements ChallengeService_SR{
 	}
 
 
+	/**
+	 * 마감된 챌린지 성공자 리스트
+	 */
+	@Override
+	public ArrayList<ChallengerInfo> getSuccessList(Map m) {
+		return chalDaoSr.getSuccessList(m);
+	}
+
+
 }

@@ -26,7 +26,8 @@
 
 	<!-- jquery -->
 	<script src="resources/js/jquery-3.2.1.min.js"></script>
-
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+	
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="resources/css/jh-css.css"/>
 
@@ -180,6 +181,19 @@
 											</div>
 											<div class="col-lg-12">
 												<div class="contents-detail">
+													성공 인원 : <strong><span id="successChal"></span> 명</strong>
+													<div class="btn-group dropright">
+													  <button class="btn btn-secondary dropdown-toggle" style="border:0px; background:#8d918d; bottom:6px;"  type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+													   	성공자 목록
+													  </button>
+													  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+													  	
+													  </div>
+													</div>
+												</div>
+											</div>
+											<div class="col-lg-12">
+												<div class="contents-detail">
 													모인 금액 : <strong><span id="tPrice"></span> 원</strong>
 												</div>
 											</div>
@@ -218,22 +232,27 @@
 		$('#tPrice').text(count*price);
 	});
 	
-	// 성공률 구하기
+	
 	$(function(){
+		var hostId = '${chal.userId}';
 		var chId = '${chal.chId}';
 		var endDate = new Date('${ chal.endDate }');
 		var startDate = new Date('${ chal.startDate }');
 		var date = (endDate - startDate);
 		var time = Math.ceil(date/ (1000*60*60*24));
 		
-		var count = '${ chal.chPeopleCount }';
+		var count = '${ chal.chPeopleCount }';		
 		
+		// 성공률 구하기
 		$.ajax({
 			url:'getSuccessRate.do',
 			type:'post',
 			data:{'chId':chId,
 				  'time':time},
 			success:function(data){
+				
+				// 성공인원 수 넣기
+				$('#successChal').text(data);
 				
 				// 성공률 계산
 				var rate = data / count * 100;
@@ -245,7 +264,72 @@
 				console.log('error');
 			}
 		});
+		
+		// 성공인원 목록 가져오기
+		$.ajax({
+			url:'getSuccessList.do',
+			type:'post',
+			data:{'chId':chId,
+				  'time':time},
+			success:function(data){
+				console.log(data);
+				
+				for(var i = 0; i < data.length; i++) {
+					// 주최자는 이름 옆에 주최자로 써주기					
+					if(data[i].userId == hostId){
+						// 내 아이디 누르면 내 프로필로 이동 (내가 주최자)
+						if( '${loginUser.userId}' == data[i].userId) {
+						
+							$a = $('<a>').attr({'class':'dropdown-item', 
+												'value':data[i].userId, 
+												'href' : 'my_profileView.do'});
+							$strong = $('<strong>').text(data[i].userNickname);
+							
+							
+							$('.dropdown-menu').append($a.append($strong).append('&nbsp;&nbsp;level.' + data[i].userLevel + '&nbsp;＜주최자＞'));
+						
+						} else { // 친구 아이디를 누르면 친구 프로필로 이동 (친구가 주최자)
+							$a = $('<a>').attr({'class':'dropdown-item', 
+								'value':data[i].userId, 
+								'href' : 'other_profileView.do?otherId=' + data[i].userId});
+							$strong = $('<strong>').text(data[i].userNickname);
+			
+			
+							$('.dropdown-menu').append($a.append($strong).append('&nbsp;&nbsp;level.' + data[i].userLevel + '&nbsp;＜주최자＞'));
+						}
+					} 
+					// 주최자 아니면 이름 옆에 주최자라고 안써줌
+					else {
+						// 내 아이디 누르면 내 프로필로 이동 & <나> 라고 써줌
+						if( '${loginUser.userId}' == data[i].userId) {
+							
+							$a = $('<a>').attr({'class':'dropdown-item', 
+												'value':data[i].userId, 
+												'href' : 'my_profileView.do'});
+							$strong = $('<strong>').text(data[i].userNickname);
+							
+							
+							$('.dropdown-menu').append($a.append($strong).append('&nbsp;&nbsp;level.' + data[i].userLevel + '&nbsp;＜나＞'));
+						
+						} else { // 친구 아이디를 누르면 친구 프로필로 이동
+							$a = $('<a>').attr({'class':'dropdown-item', 
+								'value':data[i].userId, 
+								'href' : 'other_profileView.do?otherId=' + data[i].userId});
+							$strong = $('<strong>').text(data[i].userNickname);
+			
+			
+							$('.dropdown-menu').append($a.append($strong).append('&nbsp;&nbsp;level.' + data[i].userLevel));
+						}
+					}
+				}
+			}, error:function(){
+				console.log('오류');
+			}
+		});
 	});
+	
+	
+	
 	
 	</script>
 	

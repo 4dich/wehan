@@ -198,7 +198,7 @@
 
                 
                         <!-- 지울거 끝 -->
-					
+					<%-- 
 							<div class="qnaPaging">
 								<c:if test="${pi.currentPage eq 1 }">
 								<
@@ -237,7 +237,7 @@
 								</c:if>
 								
 						
-							</div>
+							</div> --%>
                        
 
 

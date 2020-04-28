@@ -68,7 +68,23 @@
 			SELECT (COUNT(*)/#{time})*100 AS RATE
 			FROM CERTIFY
 			WHERE CHID = #{chId}
+			AND CEDEL_YN = 'N'
 			GROUP BY USERID)
+		WHERE RATE >= 80
+  	</select>
+  	
+  	<!-- 마감된 챌린지 성공한 사람 리스트 가져오기 -->
+  	<select id="getSuccessList" resultMap="ChallengerInfoResultMap">
+  		SELECT USERID, USERNICKNAME, USERLEVEL
+		FROM(
+		    SELECT C.USERID AS USERID, 
+		           (SELECT NICKNAME FROM MEMBER WHERE USERID = C.USERID) AS USERNICKNAME,
+                   (SELECT MYLEVEL FROM MYPAGE WHERE USERID = C.USERID) AS USERLEVEL,
+		           (COUNT(*)/#{time})*100 AS RATE
+		    FROM CERTIFY C
+		    WHERE CHID = #{chId}
+		    AND CEDEL_YN = 'N'
+		    GROUP BY C.USERID)
 		WHERE RATE >= 80
   	</select>
   	

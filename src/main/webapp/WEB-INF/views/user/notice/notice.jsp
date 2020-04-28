@@ -158,10 +158,10 @@
 								</c:if>
 								
 								<c:if test="${ p ne pi.currentPage }">
-									<c:url var="pagenation" value="noticeList.do">
+									<c:url var="pagination" value="noticeList.do">
 										<c:param name="currentPage" value="${p}"/>
 									</c:url>
-									<a href="${ pagenation }">${p}</a>
+									<a href="${ pagination }">${p}</a>
 								</c:if>
 							</c:forEach>
 							
@@ -195,13 +195,13 @@
 		});
 		
 		
-			$('.qnaTable td').click(function(){
-				var nId = $(this).parent().children().find("input[type=hidden]").val();
-				var currentPage = ${pi.currentPage};
-				
-				location.href="noticeDetail.do?nId="+nId+"&currentPage=" + currentPage;
-			});
-		
+		$('.qnaTable td').click(function(){
+			var nId = $(this).parent().children().find("input[type=hidden]").val();
+			var currentPage = ${pi.currentPage};
+			
+			location.href="noticeDetail.do?nId="+nId+"&currentPage=" + currentPage;
+		});
+	
 		
 	</script>
 	

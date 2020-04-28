@@ -25,10 +25,11 @@
 
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="resources/css/style.css"/>
-	<link rel="stylesheet" href="resources/css/admin_qna.css"/><!-- 
+<!-- 	<link rel="stylesheet" href="resources/css/admin_qna.css"/>
 	<link rel="stylesheet" href="resources/css/admin_notice.css"/> -->
 	 <link rel="stylesheet" href="resources/css/font.css"/>	       
-	 <link rel="stylesheet" href="resources/css/adminmargin.css"/>                     
+	 <link rel="stylesheet" href="resources/css/adminmargin.css"/>
+	 <link rel="stylesheet" href="resources/css/notice.css"/>          
 	<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -195,7 +196,7 @@
 	<!-- 리스트 짝수 배경색 변경 -->
 	<script>
 		$(document).ready(function(){
-		  $('.noticeTable tr:even').css("backgroundColor","rgb(247, 247, 247)");   // even 짝수
+		  $('.qnaTable tr:even').css("backgroundColor","rgb(247, 247, 247)");   // even 짝수
 		});
 		
 		$('.qnaTable td').click(function(){
