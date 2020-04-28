@@ -6,6 +6,7 @@ import com.kh.wehan.certify.model.vo.Certify;
 import com.kh.wehan.challenge.model.vo.Challenge;
 import com.kh.wehan.member.model.vo.Diary;
 import com.kh.wehan.member.model.vo.Follow;
+import com.kh.wehan.member.model.vo.FollowerSearch;
 import com.kh.wehan.member.model.vo.Member;
 import com.kh.wehan.member.model.vo.Mypage;
 
@@ -134,6 +135,14 @@ public interface MypageService {
 	 * @return
 	 */
 	public ArrayList<Member> selectListFollower(String userId);
+
+	/**
+	 * 1-6. 나를 팔로우한 사람 리스트중 검색목록 가져오기
+	 * @param fs
+	 * @return
+	 */
+	public ArrayList<Member> followerSearch(FollowerSearch fs);
+
 
 
 }

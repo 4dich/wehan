@@ -20,6 +20,7 @@ import com.kh.wehan.challenge.model.vo.Challenge;
 import com.kh.wehan.member.model.service.MypageService;
 import com.kh.wehan.member.model.vo.Diary;
 import com.kh.wehan.member.model.vo.Follow;
+import com.kh.wehan.member.model.vo.FollowerSearch;
 import com.kh.wehan.member.model.vo.Member;
 import com.kh.wehan.member.model.vo.Mypage;
 
@@ -354,6 +355,22 @@ public class MypageController {
 		
 		Gson gson = new Gson();
 		gson.toJson(result, response.getWriter());
+	}
+	
+	@RequestMapping("followerSearch.do")
+	@ResponseBody
+	public void followerSearch(HttpServletResponse response, String userId, String search) throws IOException {
+		
+		System.out.println(userId);
+		System.out.println(search);
+	
+		FollowerSearch fs = new FollowerSearch(userId, search);
+		ArrayList<Member> followerSearchList = myService.followerSearch(fs);
+		
+		response.setContentType("application/json; charset=utf-8");
+	
+		Gson gson = new Gson();
+		gson.toJson(followerSearchList,response.getWriter());
 	}
 	
 }

@@ -69,6 +69,8 @@
 		<result property="cntStamp" column="CNTSTAMP"/>
 	</resultMap>
 	
+
+	
 	<select id="my_profileView" resultMap="mypageResultSet">
 		SELECT *
 		FROM MYPAGE
@@ -179,5 +181,14 @@
 		WHERE ME.USERID=MY.USERID
 		AND ME.USERID IN (SELECT FOLLOWER FROM FOLLOW
 		                 WHERE HOST=#{userId})
+	</select>
+	
+	<select id="followerSearch" resultMap="memberResultSet">
+		SELECT ME.USERID,ME.NICKNAME,ME.PICTURE,MY.INTRO
+		FROM MEMBER ME,MYPAGE MY
+		WHERE ME.USERID=MY.USERID
+		AND ME.USERID IN (SELECT FOLLOWER FROM FOLLOW
+		                  WHERE HOST=#{userId})
+		AND ME.NICKNAME LIKE '%'||#{search}||'%'
 	</select>
 </mapper>

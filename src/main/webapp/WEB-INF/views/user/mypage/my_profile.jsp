@@ -142,7 +142,7 @@
 			<!-- Left Side section -->
 			<div class="main-sidebar">
 				<div class="mb-warp">
-                    
+                    <input type="button" onclick="han()" value="확인">
 					<a href="indexView.do" class="site-logo">
 						<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
@@ -189,7 +189,7 @@
 		    	<div style="display:inline-block; width:342px; height:60px; font-size:24px; padding:10px; text-align:left; font-weight:bold; margin-left:10px">follower</div>
 		    	<div id="xBtn2" style="display:inline-block; width:37px; height:60px; font-size:24px; padding:10px; text-align:right; font-weight:bold; cursor:pointer; margin-right:10px">X</div>
 		    	<div style="width:405px; height:60px; font-size:24px; padding:10px; text-align:center;">
-		    		<input type="search" class="form-control" placeholder="search"/>
+		    		<input type="search" id="followerSearch" class="form-control" placeholder="search"/>
 		    	</div>
 		    	<!--  -->
 		    	<div id="followerMembers2" style="overflow:auto; width:405px; height:680px;">
@@ -237,7 +237,7 @@
 		    		<c:set var="fList" value="${ followingList }"/>
 		    		<c:if test="${ not empty fList }">
 				    	<c:forEach var="fl" items="${ followingList }">
-					    	<div style="display:flex; width:400px; height:70px; font-size:24px; padding:10px;">
+					    	<div class='friend' style="display:flex; width:400px; height:70px; font-size:24px; padding:10px;">
 					    		<div style="display:inline-flex; width: 50px; height:50px; border-radius: 70%; overflow: hidden;">
 					    			<img src="resources/images/user/${ fl.picture }" style="width: 100%; height:100%; object-fit: cover;">
 					    		</div>
@@ -252,17 +252,17 @@
 					    		<span class="otherId" style="display:none">${ fl.userId }</span>
 					    	</div>
 				    	</c:forEach>
-			    	</c:if>
-			    	<c:if test="${ empty fList }">
-			    		<div id="searchFriend" style="cursor:pointer; margin:auto; width:200px">
-				    		<div style="display:flex; padding:10px; margin-top:150px;">
-				    			<img src="resources/images/mypage/compass.png" style="opacity:0.5">
-				    		</div>
-			    			<div style="text-align:center; margin-top:20px; color:gray">
-			    				친구가 없네요<br>새 친구를 찾아보죠
+			    		</c:if>
+				    	<c:if test="${ empty fList }">
+				    		<div id="searchFriend" style="cursor:pointer; margin:auto; width:200px">
+					    		<div style="display:flex; padding:10px; margin-top:150px;">
+					    			<img src="resources/images/mypage/compass.png" style="opacity:0.5">
+					    		</div>
+				    			<div style="text-align:center; margin-top:20px; color:gray">
+				    				친구가 없네요<br>새 친구를 찾아보죠
+				    			</div>
 			    			</div>
-		    			</div>
-			    	</c:if>
+				    	</c:if>
 		    	</div>
 		    	<!--  -->
 		    </div>
@@ -346,8 +346,76 @@
 		    		var otherId = $(this).parent().parent().find('span').text();
 		    		location.href="other_profileView.do?otherId="+otherId;
 		    	});
+		    	
+		    	$('#followerSearch').on("keyup",function(){
+		    		var search = $('#followerSearch').val();
+		    		var userId = $('#userId').text();
+		    		
+		    		$.ajax({
+						url:'followerSearch.do',
+						type:'post',
+						data:{search:search,userId:userId},
+						success:function(data){
+							$('#followerMembers2').remove();
+				    		$('#followerPopup').append('<div id="followerMembers2" style="overflow:auto; width:405px; height:680px;">');
+				    		$('#followerMembers2').append('<div id="a1" style="display:flex; width:400px; height:70px; font-size:24px; padding:10px;">');
+							for(var i in data){
+					    		$('#a1').append('<div id="a2" style="display:inline-flex; width: 50px; height:50px; border-radius: 70%; overflow: hidden;">');
+					    		$('#a2').append('<img src="resources/images/user/'+data[i].picture+'" style="width: 100%; height:100%; object-fit: cover;">');
+					    		$('#a1').append('<div id="a3" style="display:inline-flex; flex-direction:column; width: 230px; height:50px; margin-left:10px; margin-right:10px">');
+					    		$('#a3').append('<div class="otherNickName" style="font-size:13px; width: 230px; height:20px; font-weight:bold; cursor:pointer">'+data[i].nickName+'</div>')
+					    		.append('<div class="afterIntro" style="font-size:13px; width: 230px; height:20px; color:gray"></div>')
+					    		.append('<input type="hidden" class="rawIntro" value="안녕하세요">');
+					    		$('#a1').append('<span class="otherId" style="display:none">'+data[i].userId+'</span>');
+							}
+							
+							/* followingMembers */
+						},error:function(){
+							console.log('error: follower search');
+						}
+					});
+				});
+		    	
+		    	
+		    	function han(){
+		    		$('#followerMembers2').remove();
+		    		$('#followerPopup').append('<div id="followerMembers2" style="overflow:auto; width:405px; height:680px;">');
+		    		$('#followerMembers2').append('<div id="a1" style="display:flex; width:400px; height:70px; font-size:24px; padding:10px;">');
+		    		$('#a1').append('<div id="a2" style="display:inline-flex; width: 50px; height:50px; border-radius: 70%; overflow: hidden;">');
+		    		$('#a2').append('<img src="resources/images/user/01.jpg" style="width: 100%; height:100%; object-fit: cover;">');
+		    		$('#a1').append('<div id="a3" style="display:inline-flex; flex-direction:column; width: 230px; height:50px; margin-left:10px; margin-right:10px">');
+		    		$('#a3').append('<div class="otherNickName" style="font-size:13px; width: 230px; height:20px; font-weight:bold; cursor:pointer">디히</div>')
+		    		.append('<div class="afterIntro" style="font-size:13px; width: 230px; height:20px; color:gray"></div>')
+		    		.append('<input type="hidden" class="rawIntro" value="안녕하세요">');
+		    		$('#a1').append('<span class="otherId" style="display:none">4dich</span>');
+		    		
+		    	}
+		    	
+		    	/* --*/
+		    	/* --*/
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
+		    	
 		    </script>
-		    
+		    	
 		    
 				<div class="portfolio-section">
 					<!-- interest 영역 -->				

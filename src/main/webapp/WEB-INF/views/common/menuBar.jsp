@@ -43,7 +43,7 @@
 	           <li><a href="chalList.do">Challenge</a></li>
 	           <li><a href="fid_ch_recommendView.do">Fid</a></li>
 	           <li><a onclick="needLogin()" style="color:white; cursor:pointer">My Page</a></li>
-	           <li><a href="noticeView.do">고객센터</a></li>
+	           <li><a href="noticeView.do">Service</a></li>
 	        </ul>
 	         
 	        <script>
@@ -83,7 +83,7 @@
 	            <li><a href="chalList.do">Challenge</a></li>
 	            <li><a href="fid_ch_recommendView.do">Fid</a></li>
 	            <li><a href="my_profileView.do">My Page</a></li>
-	            <li><a href="noticeView.do">고객센터</a></li>
+	            <li><a href="noticeView.do">Service</a></li>
 	          </ul>
 	          
 	          <div class="menu-social">

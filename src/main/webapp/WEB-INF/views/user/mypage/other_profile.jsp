@@ -207,7 +207,7 @@
 				    <div id="divAll3" style="margin-top:30px; text-align:left">    
 				       	<div style="margin-bottom:5px; font-weight: 700; display:inline-block"><i>OWNER MESSAGE&nbsp;</i>
 				       	<input style="margin-left:60px; display:none"></div>
-				       	<div style="border:1px solid gray; height:180px;"><textarea id="intro" cols="41" rows="6" style="resize: none; border:0px; background:white; margin:12px;" disabled>${ otherPage.intro }</textarea></div> 
+				       	<div style="border:1px solid gray; height:180px;"><textarea id="intro" cols="45" rows="6" style="resize: none; border:0px; background:white; margin:12px;" disabled>${ otherPage.intro }</textarea></div> 
 				    </div>
 				        
 				    </div>
@@ -257,7 +257,7 @@
 							
 						</div>
 						<div class="main-up-content" style="font-size:20px; height: 306px; width: 100%; margin-top: 5px; text-align:right; border:1px solid gray;">
-							<textarea id="goal" cols="116" rows="10" style="resize: none; border:0px; background:white; margin-top: 12px; margin-right:12px"  disabled>${ otherPage.goal }</textarea>
+							<textarea id="goal" cols="116" rows="9" style="resize: none; border:0px; background:white; margin-top: 12px; margin-right:12px;" disabled>${ otherPage.goal }</textarea>
 						</div>
 
 						<script>

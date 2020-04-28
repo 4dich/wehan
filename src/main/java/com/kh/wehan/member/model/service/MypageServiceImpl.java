@@ -10,6 +10,7 @@ import com.kh.wehan.challenge.model.vo.Challenge;
 import com.kh.wehan.member.model.dao.MypageDao;
 import com.kh.wehan.member.model.vo.Diary;
 import com.kh.wehan.member.model.vo.Follow;
+import com.kh.wehan.member.model.vo.FollowerSearch;
 import com.kh.wehan.member.model.vo.Member;
 import com.kh.wehan.member.model.vo.Mypage;
 
@@ -107,5 +108,10 @@ public class MypageServiceImpl implements MypageService {
 	@Override
 	public ArrayList<Member> selectListFollower(String userId) {
 		return myDao.selectListFollower(userId);
+	}
+
+	@Override
+	public ArrayList<Member> followerSearch(FollowerSearch fs) {
+		return myDao.followerSearch(fs);
 	}
 }

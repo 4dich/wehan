@@ -10,6 +10,7 @@ import com.kh.wehan.certify.model.vo.Certify;
 import com.kh.wehan.challenge.model.vo.Challenge;
 import com.kh.wehan.member.model.vo.Diary;
 import com.kh.wehan.member.model.vo.Follow;
+import com.kh.wehan.member.model.vo.FollowerSearch;
 import com.kh.wehan.member.model.vo.Member;
 import com.kh.wehan.member.model.vo.Mypage;
 
@@ -91,6 +92,10 @@ public class MypageDao {
 
 	public ArrayList<Member> selectListFollower(String userId) {
 		return (ArrayList)sqlSession.selectList("mypageMapper.selectListFollower",userId);
+	}
+
+	public ArrayList<Member> followerSearch(FollowerSearch fs) {
+		return (ArrayList)sqlSession.selectList("mypageMapper.followerSearch",fs);
 	}
 
 }
