@@ -171,4 +171,13 @@
 		AND ME.USERID IN (SELECT HOST FROM FOLLOW
 		                 WHERE FOLLOWER=#{userId})
 	</select>
+	
+	
+	<select id="selectListFollower" resultMap="memberResultSet">
+		SELECT ME.USERID,ME.NICKNAME,ME.PICTURE,MY.INTRO
+		FROM MEMBER ME,MYPAGE MY
+		WHERE ME.USERID=MY.USERID
+		AND ME.USERID IN (SELECT FOLLOWER FROM FOLLOW
+		                 WHERE HOST=#{userId})
+	</select>
 </mapper>

@@ -103,4 +103,9 @@ public class MypageServiceImpl implements MypageService {
 	public ArrayList<Member> selectListFollowing(String userId) {
 		return myDao.selectListFollowing(userId);
 	}
+
+	@Override
+	public ArrayList<Member> selectListFollower(String userId) {
+		return myDao.selectListFollower(userId);
+	}
 }

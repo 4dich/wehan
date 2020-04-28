@@ -161,7 +161,7 @@
 				            	<div style="font-weight:bold;font-size:30px;cursor:pointer">${ follow }</div>
 				            	<div style="font-size:12px; color:gray">followers</div></div>
 				            <div id="fo3" style="display:inline-block; text-align:center; width:60px;">
-				            	<div style="font-weight:bold;font-size:30px;cursor:pointer">${ following }</div>
+				            	<div id="cntFollowing" style="font-weight:bold;font-size:30px;cursor:pointer">${ following }</div>
 				            	<div style="font-size:12px; color:gray">following</div></div>
 				            <br>
 				            <button style="display: block; width:100%; margin-top: 20px" onclick="location.href='my_updateInfoView.do'">Settings</button>
@@ -184,9 +184,49 @@
 			</div>
 			<div class="page-section portfolio-page">
 			
-			
 			<!-- follower 팝업 시작-->
-		    <div id="followingPopup" style="width:405px; height:800px; background:rgb(255, 233, 233); position:absolute; left:1000px; top:100px; z-index: 1000; -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); display:none">
+		    <div id="followerPopup" style="width:405px; height:800px; background:#c9e3ff; position:absolute; left:1000px; top:100px; z-index: 1000; -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); display:none">
+		    	<div style="display:inline-block; width:342px; height:60px; font-size:24px; padding:10px; text-align:left; font-weight:bold; margin-left:10px">follower</div>
+		    	<div id="xBtn2" style="display:inline-block; width:37px; height:60px; font-size:24px; padding:10px; text-align:right; font-weight:bold; cursor:pointer; margin-right:10px">X</div>
+		    	<div style="width:405px; height:60px; font-size:24px; padding:10px; text-align:center;">
+		    		<input type="search" class="form-control" placeholder="search"/>
+		    	</div>
+		    	<!--  -->
+		    	<div id="followerMembers2" style="overflow:auto; width:405px; height:680px;">
+		    		<c:set var="fList2" value="${ followerList }"/>
+		    		<c:if test="${ not empty fList2 }">
+				    	<c:forEach var="fl2" items="${ followerList }">
+					    	<div style="display:flex; width:400px; height:70px; font-size:24px; padding:10px;">
+					    		<div style="display:inline-flex; width: 50px; height:50px; border-radius: 70%; overflow: hidden;">
+					    			<img src="resources/images/user/${ fl2.picture }" style="width: 100%; height:100%; object-fit: cover;">
+					    		</div>
+					    		<div style="display:inline-flex; flex-direction:column; width: 230px; height:50px; margin-left:10px; margin-right:10px">
+					    			<div class="otherNickName" style="font-size:13px; width: 230px; height:20px; font-weight:bold; cursor:pointer">${ fl2.nickName }</div>
+					    			<div class="afterIntro" style="font-size:13px; width: 230px; height:20px; color:gray"></div>
+					    			<input type="hidden" class="rawIntro" value="${ fl2.intro }"> 
+					    		</div>
+					    		<span class="otherId" style="display:none">${ fl2.userId }</span>
+					    	</div>
+				    	</c:forEach>
+			    	</c:if>
+			    	<c:if test="${ empty fList2 }">
+			    		<div id="searchFriend2" style="cursor:pointer; margin:auto; width:200px">
+				    		<div style="display:flex; padding:10px; margin-top:150px;">
+				    			<img src="resources/images/mypage/compass.png" style="opacity:0.5">
+				    		</div>
+			    			<div style="text-align:center; margin-top:20px; color:gray">
+			    				친구가 없네요<br>나를 알려보죠
+			    			</div>
+		    			</div>
+			    	</c:if>
+		    	</div>
+		    	<!--  -->
+		    </div>
+		    <!-- follower 팝업 끝 -->
+			
+			
+			<!-- following 팝업 시작-->
+		    <div id="followingPopup" style="width:405px; height:800px; background:rgb(255, 210, 210); position:absolute; left:1000px; top:100px; z-index: 1000; -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); display:none">
 		    	<div style="display:inline-block; width:342px; height:60px; font-size:24px; padding:10px; text-align:left; font-weight:bold; margin-left:10px">following</div>
 		    	<div id="xBtn" style="display:inline-block; width:37px; height:60px; font-size:24px; padding:10px; text-align:right; font-weight:bold; cursor:pointer; margin-right:10px">X</div>
 		    	<div style="width:405px; height:60px; font-size:24px; padding:10px; text-align:center;">
@@ -194,66 +234,118 @@
 		    	</div>
 		    	<!--  -->
 		    	<div id="followingMembers" style="overflow:auto; width:405px; height:680px;">
-			    	<c:forEach var="fl" items="${ followingList }">
-				    	<div style="display:flex; width:400px; height:70px; font-size:24px; padding:10px;">
-				    		<div style="display:inline-flex; width: 50px; height:50px; border-radius: 70%; overflow: hidden;">
-				    			<img src="resources/images/user/${ fl.picture }" style="width: 100%; height:100%; object-fit: cover;">
+		    		<c:set var="fList" value="${ followingList }"/>
+		    		<c:if test="${ not empty fList }">
+				    	<c:forEach var="fl" items="${ followingList }">
+					    	<div style="display:flex; width:400px; height:70px; font-size:24px; padding:10px;">
+					    		<div style="display:inline-flex; width: 50px; height:50px; border-radius: 70%; overflow: hidden;">
+					    			<img src="resources/images/user/${ fl.picture }" style="width: 100%; height:100%; object-fit: cover;">
+					    		</div>
+					    		<div style="display:inline-flex; flex-direction:column; width: 230px; height:50px; margin-left:10px; margin-right:10px">
+					    			<div class="otherNickName" style="font-size:13px; width: 230px; height:20px; font-weight:bold; cursor:pointer">${ fl.nickName }</div>
+					    			<div class="afterIntro" style="font-size:13px; width: 230px; height:20px; color:gray"></div>
+					    			<input type="hidden" class="rawIntro" value="${ fl.intro }"> 
+					    		</div>
+					    		<div style="width: 80px; height:50px;">
+					    			<button class="unfoBtn" style="font-size:14px; margin-top:12px; width:100%; padding: 2px 10px 2px 10px">unfollow</button>
+					    		</div>
+					    		<span class="otherId" style="display:none">${ fl.userId }</span>
+					    	</div>
+				    	</c:forEach>
+			    	</c:if>
+			    	<c:if test="${ empty fList }">
+			    		<div id="searchFriend" style="cursor:pointer; margin:auto; width:200px">
+				    		<div style="display:flex; padding:10px; margin-top:150px;">
+				    			<img src="resources/images/mypage/compass.png" style="opacity:0.5">
 				    		</div>
-				    		<div style="display:inline-flex; flex-direction:column; width: 230px; height:50px; margin-left:10px">
-				    			<div style="font-size:13px; width: 230px; height:30px; font-weight:bold">${ fl.nickName }</div>
-				    			<div class="afterIntro" style="font-size:13px; width: 230px; height:20px; color:gray"></div>
-				    			<input type="hidden" class="rawIntro" value="${ fl.intro }"> 
-				    		</div>
-				    		<div style="width: 80px; height:50px;">
-				    			<button class="unfoBtn" style="font-size:14px; margin-top:12px; width:100%; padding: 2px 10px 2px 10px">unfollow</button>
-				    		</div>
-				    		<span class="otherId" style="display:none">${ fl.userId }</span>
-				    	</div>
-			    	</c:forEach>
+			    			<div style="text-align:center; margin-top:20px; color:gray">
+			    				친구가 없네요<br>새 친구를 찾아보죠
+			    			</div>
+		    			</div>
+			    	</c:if>
 		    	</div>
 		    	<!--  -->
 		    </div>
-		    <!-- 팝업 끝 -->
+		    <!-- following 팝업 끝 -->
+		    
 		    <script>
-		    	/* following intro 20자이상이면 뒤에 ...으로 표기 */
+		    	/* following에서 intro 36자이상이면 뒤에 ...으로 표기 */
 		    	$(function(){
-			    	var followStat = [];
 		    		var $rawIntro = $('.rawIntro');
 		    		var $afterIntro = $('.afterIntro');
 		    		var followingLen = $rawIntro.length;
 		    		for(var i=0; i<followingLen; i++){
-		    			if($rawIntro[i].value.length>20){
-		    				$afterIntro[i].innerText = ($rawIntro[i].value).substr(0,20) + "...";
+		    			if($rawIntro[i].value.length>36){
+		    				$afterIntro[i].innerText = ($rawIntro[i].value).substr(0,36) + "...";
 		    			}else{
-			    			$afterIntro[i].innerText = ($rawIntro[i].value).substr(0,20);
+			    			$afterIntro[i].innerText = ($rawIntro[i].value).substr(0,36);
 		    			}
 		    			
 		    		}
 		    	});
 		    	
+		    	/* following에서 unfollow */
     			$('.unfoBtn').click(function(){
-		    		console.log($(this).parent().parent().find('span').text());
+		    		var host = $(this).parent().parent().find('span').text();
+		    		var follower = $('#userId').text();
 		    		$(this).parent().parent().remove();
 		    		
 		    		$.ajax({
-		    			url:'unfollow.do'
+		    			url:'my_unfollow.do',
+		    			type:'post',
+		    			data:{host:host,follower:follower},
+		    			success:function(data){
+				    		console.log(data);
+				    		$('#cntFollowing').text(data);
+				    		if(data==0){
+				    			$('#followingMembers')
+				    			.append('<div id="searchFriend" style="cursor:pointer;">')
+				    			.append('<img src="resources/images/mypage/compass.png" style="opacity:0.5; width:200px; margin-left:100px; margin-top:150px">')
+				    			.append('<div style="text-align:center; margin-top:20px; color:gray">친구가 없네요<br>새 친구를 찾아보죠');
+				    		}
+		    			},error:function(){
+		    				console.log('fail: unfollow');
+		    			}
 		    		});
 		    	});
 		    	
-		    	$('#xBtn').click(function(){
-		    		$('#followingPopup').css('display','none');
-		    		console.log('x');
-		    	});
 		    	
-		    	$('#fo2').click(function(){
-		    		alert('hoho');
-		    	});
-		    	
+		    	/* --- following --- */
+		    	/* following 팝업 on */
 		    	$('#fo3').click(function(){
 		    		$('#followingPopup').css('display','');
 		    		console.log('following');
 		    	});
+		    	/* following 팝업 off */
+		    	$('#xBtn').click(function(){
+		    		$('#followingPopup').css('display','none');
+		    		console.log('x');
+		    	});
+    			/* following하는 사람이 없을 때, 클릭 시 fid로 연결*/
+		    	$('#searchFriend').click(function(){
+		    		location.href="fid_ch_recommendView.do";
+		    	});
 		    	
+		    	/* ---- follower ---- */
+		    	/* follower 팝업 on */
+		    	$('#fo2').click(function(){
+		    		$('#followerPopup').css('display','');
+		    		console.log('follower');
+		    	});
+		    	/* follower 팝업 off */
+		    	$('#xBtn2').click(function(){
+		    		$('#followerPopup').css('display','none');
+		    		console.log('x');
+		    	});
+		    	/* follow하는 사람이 없을 때, 클릭 시 challenge로 연결*/
+		    	$('#searchFriend2').click(function(){
+		    		location.href="chalList.do";
+		    	});
+		    
+		    	$('.otherNickName').click(function(){
+		    		var otherId = $(this).parent().parent().find('span').text();
+		    		location.href="other_profileView.do?otherId="+otherId;
+		    	});
 		    </script>
 		    
 		    

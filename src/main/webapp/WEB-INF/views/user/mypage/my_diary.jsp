@@ -25,7 +25,7 @@
 	<link rel="stylesheet" href="resources/css/owl.carousel.min.css"/>
 
 	<!-- Main Stylesheets -->
-	
+	<link rel="stylesheet" href="resources/css/style.css"/>
 
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	
@@ -40,16 +40,12 @@
 	<script src='resources/packages/list/main.js'></script>
 	<!-- <script src='resources/packages/bundle/locales/ko.js'></script> -->
 	
-    <!-- <link rel="stylesheet" href="resources/packages/custom/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
 	<link rel="stylesheet" href='resources/packages/custom/css/bootstrap-datetimepicker.min.css' />
-    <link rel="stylesheet" href="resources/css/style.css"/>
-    <link rel="stylesheet" href="resources/css/font.css"/>
+    <link rel="stylesheet" href="resources/packages/custom/css/bootstrap.min.css">
+    
     <script src="resources/packages/custom/js/moment.min.js"></script>   
     <script src="resources/packages/custom/js/bootstrap-datetimepicker.min.js"></script>
-    <style>
-     body{margin:0;}
-    </style>
+    
     
 <script>
 var calendar = "";
@@ -89,11 +85,11 @@ var events = [];
                       	dContent:content,
                       	sDate:moment(arg.start).format("YYYY-MM-DD HH:mm"),
                       	eDate:moment(arg.end).format("YYYY-MM-DD HH:mm"),
-                      	dColor:'#3A7D7C',
+                      	dColor:'#FFEB87',
                       	cntStamp:0
                       },success:function(data){
                     	  $('#calendar').remove();
-                    	  $('#dich').append("<div id='calendar' style='margin-top:50px; border: 1px solid gray; padding: 10px';'></div>");
+                    	  $('#dich').append("<div id='calendar' style='border: 1px solid #242424; border-radius:10px; padding: 10px'></div>");
                     	  events = [];
                     	  selectCalendar();
                       },error:function(){
@@ -105,11 +101,11 @@ var events = [];
                     start: arg.start,
                     end: arg.end,
                     allDay: true,
-                    color: '#3A7D7C',
+                    color: '#FFEB87',
                     dContent: content
                   });
                   $("input:radio[name='color_select']:radio[value='color1']").prop('checked',true);
-            	  $('#modalTitle, #modalFooter').css('background','#3A7D7C');
+            	  $('#modalTitle, #modalFooter').css('background','#FFEB87');
                 }
                 calendar.unselect()
               },
@@ -121,7 +117,6 @@ var events = [];
            	    month: '2-digit',
            	    day: '2-digit'
            	  },
-
               //locale: 'ko', // 한국어표시, "일"표시가 보기 안좋음
               /* eventClick: function(info) {
                 
@@ -135,21 +130,21 @@ var events = [];
                   $('#sDate').val(moment(info.event.start).format("YYYY-MM-DD HH:mm"));
                   $('#eDate').val(moment(info.event.end).format("YYYY-MM-DD HH:mm"));
                   $('#dContent').val(info.event.extendedProps.dContent);
-                  if(info.event.extendedProps.dColor=='#3A7D7C'){
+                  if(info.event.extendedProps.dColor=='#FFEB87'){
                 	  $("input:radio[name='color_select']:radio[value='color1']").prop('checked',true);
-                	  $('#modalTitle, #modalFooter').css('background','#3A7D7C');
-                  }else if(info.event.extendedProps.dColor=='#03A6A6'){
+                	  $('#modalTitle, #modalFooter').css('background','#FFEB87');
+                  }else if(info.event.extendedProps.dColor=='#F59B82'){
                 	  $("input:radio[name='color_select']:radio[value='color2']").prop('checked',true);
-                	  $('#modalTitle, #modalFooter').css('background','#03A6A6');
-                  }else if(info.event.extendedProps.dColor=='#F7D147'){
+                	  $('#modalTitle, #modalFooter').css('background','#F59B82');
+                  }else if(info.event.extendedProps.dColor=='#D9A4FF'){
                 	  $("input:radio[name='color_select']:radio[value='color3']").prop('checked',true);
-                	  $('#modalTitle, #modalFooter').css('background','#F7D147');
-                  }else if(info.event.extendedProps.dColor=='#FE736C'){
+                	  $('#modalTitle, #modalFooter').css('background','#D9A4FF');
+                  }else if(info.event.extendedProps.dColor=='#89D1E8'){
                 	  $("input:radio[name='color_select']:radio[value='color4']").prop('checked',true);
-                	  $('#modalTitle, #modalFooter').css('background','#FE736C');
-                  }else if(info.event.extendedProps.dColor=='#EC5A31'){
+                	  $('#modalTitle, #modalFooter').css('background','#89D1E8');
+                  }else if(info.event.extendedProps.dColor=='#B7FFA6'){
                 	  $("input:radio[name='color_select']:radio[value='color5']").prop('checked',true);
-                	  $('#modalTitle, #modalFooter').css('background','#EC5A31');
+                	  $('#modalTitle, #modalFooter').css('background','#B7FFA6');
                   }
                   
                   $('#stat').slideDown(500);
@@ -171,7 +166,7 @@ var events = [];
 	       	        	  success:function(data){
 	       	        	  	  console.log(data + '개 행이 업데이트되었습니다.');
 	       	        	  $('#calendar').remove();
-	       	            	  $('#dich').append("<div id='calendar' style='margin-top:50px; border: 1px solid gray; padding: 10px'></div>");
+	       	            	  $('#dich').append("<div id='calendar' style='border: 1px solid #242424; border-radius:10px; padding: 10px'></div>");
 	       	            	  events = [];
 	       	            	  selectCalendar();
 	       	        	  },
@@ -195,7 +190,7 @@ var events = [];
 	                    	  success:function(data){
 	                    	  	  console.log(data + '개 행이 업데이트되었습니다.');
 	                    	  $('#calendar').remove();
-	                        	  $('#dich').append("<div id='calendar' style='margin-top:50px; border: 1px solid gray; padding: 10px'></div>");
+	                        	  $('#dich').append("<div id='calendar' style='border: 1px solid #242424; border-radius:10px; padding: 10px'></div>");
 	                        	  events = [];
 	                        	  selectCalendar();
 	                    	  },
@@ -235,7 +230,7 @@ var events = [];
             setCalendar();
         },
         error:function(){
-            alert('일정 리스트 출력 오류');
+            alert('리스트 출력 오류');
         }
       });
 	}
@@ -272,15 +267,15 @@ var events = [];
    		    //$("input:radio[name='color_select']:radio[value='color1']").prop('checked',true);
    		  	var rawColor = $("input:radio[name='color_select']:checked").val();
    		  	if(rawColor=='color1'){
-   		  		dColor = "#3A7D7C";
+   		  		dColor = "#FFEB87";
    		  	}else if(rawColor=='color2'){
-   		  		dColor = "#03A6A6";
+   		  		dColor = "#F59B82";
    		  	}else if(rawColor=='color3'){
-   		  		dColor = "#F7D147";
+   		  		dColor = "#D9A4FF";
    		  	}else if(rawColor=='color4'){
-   		  		dColor = "#FE736C";
+   		  		dColor = "#89D1E8";
    		  	}else{
-   		  		dColor = "#EC5A31";
+   		  		dColor = "#B7FFA6";
    		  	}
    		  	
 	   		 $.ajax({
@@ -298,7 +293,7 @@ var events = [];
 	 	 		  success:function(data){
 	 	 		  	  console.log(data + '개 행이 업데이트되었습니다.');
 		 	 		  $('#calendar').remove();
-	              	  $('#dich').append("<div id='calendar' style='margin-top:50px; border: 1px solid gray; padding: 10px'></div>");
+	              	  $('#dich').append("<div id='calendar' style='border: 1px solid #242424; border-radius:10px; padding: 10px'></div>");
 	              	  events = [];
 	              	  selectCalendar();
 	 	 		  },
@@ -317,32 +312,39 @@ var events = [];
   
     /* 페이지 로드 시 */
     $(function(){
-   	  selectCalendar();
-   	  deleteCalendar();
-   	  updateCalendar();
+	   	selectCalendar();
+	   	deleteCalendar();
+	   	updateCalendar();
+	   	
+	    $('#cs1').click(function(){
+	    	$('#modalTitle,#modalFooter').css('background', '#FFEB87');
+	    });
+	    $('#cs2').click(function(){
+	    	$('#modalTitle,#modalFooter').css('background', '#F59B82');
+	    });
+	    $('#cs3').click(function(){
+	    	$('#modalTitle,#modalFooter').css('background', '#D9A4FF');
+	    });
+	    $('#cs4').click(function(){
+	    	$('#modalTitle,#modalFooter').css('background', '#89D1E8');
+	    });
+	    $('#cs5').click(function(){
+	    	$('#modalTitle,#modalFooter').css('background', '#B7FFA6');
+	    });
     });
   
+    
   
-  
-  console.log(dId);
   
  	/* window.location.reload(); */
-
   
 </script>
 <style>
-
-	h1, h2, h3, h4, h5, h6 {
-    margin: 0;
-    color: #242424;
-	}
-
 	.site-logo {
         margin-bottom: 40px;
     }
-
     .main-sidebar .mb-warp {
-        padding: 120px 95px 100px 145px;
+        padding: 90px 95px 100px 145px;
     }
     
     .grade{
@@ -357,7 +359,6 @@ var events = [];
     .following{
         float:none;
     }
-
     .menuIcon{
     background: white;
     border-radius: 20%;
@@ -370,7 +371,6 @@ var events = [];
         width: 30px;
         height: 30px;
     }
-
     .menuIcon div{
         position: absolute;
         background: red;
@@ -474,7 +474,6 @@ var events = [];
 		margin-bottom: 0;
 		color: #828282;
 	}
-
 	/* progress-bar */
 	@-webkit-keyframes progress-bar-stripes {
 	  from {
@@ -586,14 +585,11 @@ var events = [];
 	.main-up::-webkit-scrollbar-track, .main-down::-webkit-scrollbar-track{
 		background-color: grey;
 	} */
-
-
   body {
-    margin: 0;
+    margin: 40px 10px;
     padding: 0;
     font-size: 14px;
   }
-
   #calendar {
     max-width: 900px;
     margin: 0 auto;
@@ -611,7 +607,6 @@ var events = [];
   .box-radio-input input[type="radio"]{
       display:none;
   }
-
   .box-radio-input input[type="radio"] + div{
       width: 44px;
       height: 44px;
@@ -620,16 +615,26 @@ var events = [];
       border:1px solid black;   
       padding:1px;
   }
-
   .box-radio-input input[type="radio"]:checked + div{
       padding: 0px;
       border:2px solid black;   
   }
   
-  a:link { text-decoration: none; color:black;}
+  a:link { text-decoration: none; color:#242424;}
   a:visited { text-decoration: none;}
   a:hover { text-decoration: none;}
-	
+  
+  .main-sidebar .mb-warp {
+     padding: 45px 95px 100px 115px;
+  }
+  
+  .fc-title{
+  	color:black;
+  }
+  
+  #calendar h2{
+  	font-weight:bold;
+  }
 </style>
 </head>
 
@@ -646,7 +651,7 @@ var events = [];
 
 		
         <!-- 메뉴 끝 -->
-		<header class="header-section">
+		<header class="header-section" style="margin-top: -40px; margin-left:-10px">
 			<div class="nav-switch menuIcon msgCount">
 				<i class="fa fa-bars"></i>
 			</div>
@@ -661,13 +666,13 @@ var events = [];
 		<div class="site-content-warp">
 			<!-- Left Side section -->
 			<div class="main-sidebar">
-				<div class="mb-warp">
+				<div class="mb-warp" style="text-align: center;">
 
                     <a href="indexView.do" class="site-logo">
-						<h2 style="margin-left: 6px; /* margin-top:4px; */">위대한 한걸음</h2>
+						<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
-					<div id="lv" style="width: 350px; height: 470px; border: 1px solid gray; padding:20px;  margin-top: -20px">
+					<div id="lv" style="width: 350px; height: 470px; border: 1px solid gray; padding:20px; margin:auto; margin-top: -30px">
 						<div id="lv-img" style="width: 300px; height:320px; margin:auto; background-image: url('resources/images/level/astro2.gif'); background-size: cover; border-radius: 15px;">
 							<img src="resources/images/level/lv4.png">
 						</div>
@@ -700,7 +705,7 @@ var events = [];
 			</div> -->
 			
 			<div id='dich'></div>
-			<div id='calendar' style='margin-top:50px; border: 1px solid gray; padding: 10px'></div>
+			<div id='calendar' style='border: 1px solid #242424; border-radius:10px; padding: 10px'></div>
 			
 			<div id='stat' style="display:none; background: white; width:500px; height:498px; position:absolute; left: 1000px; top: 200px; border-radius:5px; box-shadow : rgba(0,0,0,0.5) 0 0 0 9999px; z-index : 100;
 			-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);">
@@ -708,12 +713,11 @@ var events = [];
 				<div id='modalTitle' style="width:500px; height:60px; padding-left:50px; padding-top:14px; background: lightgray; font-weight:bold; font-size: 24px"></div>
 				<div id='modalBody' style="width:500px; height:380px; padding-left:50px; margin-top:-1px; padding-top:20px; background: white;">
 					<div id='modalBody3' style="width:500px; height:80px; padding-top: 20px">
-						<label class="box-radio-input"><input type="radio" name="color_select" value="color1" checked="checked"><div><div style="background: #3A7D7C; width: 40px; height: 40px;"></div></div></label>
-					    <label class="box-radio-input"><input type="radio" name="color_select" value="color2"><div><div style="background: #03A6A6;width: 40px; height: 40px;"></div></div></label>
-					    <label class="box-radio-input"><input type="radio" name="color_select" value="color3"><div><div style="background: #F7D147; width: 40px; height: 40px;"></div></div></label>
-					    <label class="box-radio-input"><input type="radio" name="color_select" value="color4"><div><div style="background: #FE736C; width: 40px; height: 40px;"></div></div></label>
-					    <label class="box-radio-input"><input type="radio" name="color_select" value="color5"><div><div style="background: #EC5A31; width: 40px; height: 40px;"></div></div></label>
-					    
+						<label class="box-radio-input"><input type="radio" id="cs1" name="color_select" value="color1" checked="checked"><div><div style="background: #FFEB87; width: 40px; height: 40px;"></div></div></label>
+					    <label class="box-radio-input"><input type="radio" id="cs2" name="color_select" value="color2"><div><div style="background: #F59B82;width: 40px; height: 40px;"></div></div></label>
+					    <label class="box-radio-input"><input type="radio" id="cs3" name="color_select" value="color3"><div><div style="background: #D9A4FF; width: 40px; height: 40px;"></div></div></label>
+					    <label class="box-radio-input"><input type="radio" id="cs4" name="color_select" value="color4"><div><div style="background: #89D1E8; width: 40px; height: 40px;"></div></div></label>
+					    <label class="box-radio-input"><input type="radio" id="cs5" name="color_select" value="color5"><div><div style="background: #B7FFA6; width: 40px; height: 40px;"></div></div></label>
 					</div>
 					<div style="display:inline-block; width:220px; height:25px;">시작일</div>
 					<div style="display:inline-block; width:180px; height:25px;">종료일</div>
@@ -734,7 +738,7 @@ var events = [];
 					<button id='btnDelete'>삭제</button>
 				</div>
 			</div>
-		</div>
+			
 			<script>
 				$('#modalX').click(function(){
 					/* $('#stat').css('display','none'); */

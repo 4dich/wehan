@@ -89,4 +89,8 @@ public class MypageDao {
 		return (ArrayList)sqlSession.selectList("mypageMapper.selectListFollowing",userId);
 	}
 
+	public ArrayList<Member> selectListFollower(String userId) {
+		return (ArrayList)sqlSession.selectList("mypageMapper.selectListFollower",userId);
+	}
+
 }

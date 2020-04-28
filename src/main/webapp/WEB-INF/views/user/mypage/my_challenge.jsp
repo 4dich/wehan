@@ -607,21 +607,21 @@
 											
 											if(sDate.getTime()>today.getTime()){
 												$result[i].innerText = '진행예정';
-												$result.parent().eq(i).children().eq(0).css('background-color','#F7D147');
+												$result.parent().eq(i).children().eq(0).css('background-color','#FFEB87');
 												
 												$result2.parent().eq(i).css('display','none');
 												
 												$result3[i].innerText = '진행예정';
-												$result3.parent().eq(i).children().eq(0).css('background-color','#F7D147');
+												$result3.parent().eq(i).children().eq(0).css('background-color','#FFEB87');
 												
 												$result4.parent().eq(i).css('display','none');
 												
 											}else if(sDate.getTime()<today.getTime() && eDate.getTime()>today.getTime()){
 												$result[i].innerText = '진행중';
-												$result.parent().eq(i).children().eq(0).css('background-color','#FE736C');
+												$result.parent().eq(i).children().eq(0).css('background-color','#F59B82');
 												
 												$result2[i].innerText = '진행중';
-												$result2.parent().eq(i).children().eq(0).css('background-color','#FE736C');
+												$result2.parent().eq(i).children().eq(0).css('background-color','#F59B82');
 												
 												$result3.parent().eq(i).css('display','none');
 												
@@ -630,14 +630,14 @@
 											}else{
 												countTotalCh++;
 												$result[i].innerText = '진행완료';
-												$result.parent().eq(i).children().eq(0).css('background-color','#3A7D7C');
+												$result.parent().eq(i).children().eq(0).css('background-color','#B7FFA6');
 												
 												$result2.parent().eq(i).css('display','none');
 												
 												$result3.parent().eq(i).css('display','none');
 												
 												$result4[i].innerText = '진행완료';
-												$result4.parent().eq(i).children().eq(0).css('background-color','#3A7D7C');
+												$result4.parent().eq(i).children().eq(0).css('background-color','#B7FFA6');
 												
 											}
 											$gapDate[i].innerText = gapDate;
