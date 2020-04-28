@@ -133,7 +133,7 @@
 						<!-- 문의사항 테이블 -->
 						<table class="qnaTable" style="width:100%">
 							
-							<tr class="thArea">
+							<tr class="thArea" style="border-bottom:2px solid black;">
 								<th>NO</th>
 								<th>제목</th>
 								<th>유저명</th>

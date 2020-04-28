@@ -849,7 +849,7 @@ Blog page
 	height: 100%;
 }
 
-/* 검색 */
+/* 寃��깋 */
 
 #searchArea{
 	float: right;
@@ -892,7 +892,7 @@ Blog page
     padding: 1px;
 }
 
-/* 문의사항 버튼 */
+/* 臾몄쓽�궗�빆 踰꾪듉 */
 .qnaInsertBtn{
 	display: inline-block;
     font-size: 14px;
@@ -908,7 +908,7 @@ Blog page
     background: transparent;
 }
 
-/* 문의사항 */
+/* 臾몄쓽�궗�빆 */
 .qnaTable{
 	text-align: center;
     margin-top: 40px;
