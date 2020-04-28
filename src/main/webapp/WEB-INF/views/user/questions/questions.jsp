@@ -28,6 +28,7 @@
 	<!-- <link rel="stylesheet" href="resources/css/left_section.css"/> -->
 	<link rel="stylesheet" href="resources/css/style.css"/>
 	<link rel="stylesheet" href="resources/css/font.css"/>
+	<link rel="stylesheet" href="resources/css/padding.css"/>
 	<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -75,7 +76,7 @@
 					<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 					<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 				</a>
-			<!-- 서브메뉴 --><br><br>
+			<!-- 서브메뉴 -->
 			<c:if test="${empty sessionScope.adminUser}">
 			<div class="about-info" style="margin:0 0 80px 0;">
 				<h2>문의사항</h2>

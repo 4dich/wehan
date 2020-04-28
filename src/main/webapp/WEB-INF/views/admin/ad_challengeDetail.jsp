@@ -35,6 +35,7 @@
 	<link rel="stylesheet" href="resources/css/style.css"/>
 	<link rel="stylesheet" href="resources/css/font.css"/>
 	<link rel="stylesheet" href="resources/css/adminmargin.css"/>
+	<link rel="stylesheet" href="resources/css/padding.css"/>
 	<style>
 		.about-info{margin:0;}
 		.infoMenu{font-size: 16px;}

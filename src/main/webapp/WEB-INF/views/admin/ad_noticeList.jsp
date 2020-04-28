@@ -25,11 +25,11 @@
 
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="resources/css/style.css"/>
-<!-- 	<link rel="stylesheet" href="resources/css/admin_qna.css"/>
-	<link rel="stylesheet" href="resources/css/admin_notice.css"/> -->
-	 <link rel="stylesheet" href="resources/css/font.css"/>	       
-	 <link rel="stylesheet" href="resources/css/adminmargin.css"/>
-	 <link rel="stylesheet" href="resources/css/notice.css"/>          
+	<link rel="stylesheet" href="resources/css/admin_qna.css"/>
+	<link rel="stylesheet" href="resources/css/font.css"/>
+	<link rel="stylesheet" href="resources/css/adminmargin.css"/>
+	<link rel="stylesheet" href="resources/css/padding.css"/>
+	
 	<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -94,10 +94,10 @@
 				<div class="blog-posts">
 					
 					<div class="blog-post-item">
-						<button class="site-btn sb-dark" style="width: 170px; font-size: 15px; margin-bottom: 40px;" type="button" onclick="location.href='ad_noticeInsertView.do'">
+						<button class="site-btn sb-dark" style="width: 170px; font-size: 15px;" type="button" onclick="location.href='ad_noticeInsertView.do'">
 							등록하기							
 						</button>
-						<div id="searchArea">		
+					<!-- 	<div id="searchArea" style=height:52px;>		
 							<form action="ad_searchNotice.do">					
 								<div id="searchSelect"> 
 									<select name="adSearchNotice" id="searchNotice">
@@ -105,19 +105,31 @@
 										<option value="content">내용</option>
 									</select>					
 								</div>
-								<!-- 검색 -->
+								검색
 								<input class="searchBox" type="search" name="adNoticeSerchWord" style="height:31px; width:55%">
 								<button>
 									<img src="resources/images/main/search.png" alt="">
 								</button>
-							</form>3
+							</form>
+						</div> -->
+ 						<div id="searchArea">
+							<div id="searchSelect"> 
+								<select name="selecter" id="selecter">
+									<option value="userId">유저ID</option>
+									<option value="chName">챌린지명</option>
+									<option value="pNo">결제번호</option>
+									<option value="chId">챌린지번호</option>
+								</select>					
+							</div>
+							<!-- 검색 -->
+							<input class="searchBox" type="search" name="searchValue">
+							<button id="search"><img src="resources/images/main/search.png" alt=""></button>
 						</div>
- 
     
 						<!-- 공지사항 테이블 -->
 						<table class="qnaTable" style="width:100%;margin-bottom:4px;">
 							
-							<tr class="thArea">								
+							<tr class="thArea" style="border-bottom:2px solid black;">								
 								<th>NO</th>								
 								<th>제목</th>
 								<th>작성자</th>
