@@ -67,7 +67,7 @@
 				<i class="fa fa-bars"></i>
 			</div>
 			<div class="header-social">
-				<a href="fid_ch_recommendView.do" >추천피드</a>
+				<a href="fid_ch_recommendView.do" >전체피드</a>
                 <a href="fid_friendListView.do" style="color: red;">친구피드</a>
                 <a href="fid_followView.do">팔로우</a>
 			</div>
@@ -156,7 +156,7 @@
 								</c:if>
 								
 								<c:if test="${ pi.currentPage ne 1 }">
-									<c:url var="before" value="fid_ch_recommendView.do">
+									<c:url var="before" value="fid_friendListView.do">
 										<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
 									</c:url>
 									<a href="${ before }">&lt;</a> &nbsp;
@@ -169,7 +169,7 @@
 									</c:if>
 									
 									<c:if test="${ p ne pi.currentPage }">
-										<c:url var="pagenation" value="fid_ch_recommendView.do">
+										<c:url var="pagination" value="fid_friendListView.do">
 											<c:param name="currentPage" value="${ p }"/>
 										</c:url>
 										<a href="${ pagination }">${p}</a>
@@ -181,7 +181,7 @@
 									>
 								</c:if>
 								<c:if test="${pi.currentPage ne pi.maxPage }">
-									<c:url var="after" value="fid_ch_recommendView.do">
+									<c:url var="after" value="fid_friendListView.do">
 										<c:param name="currentPage" value="${pi.currentPage + 1 }"/>
 									</c:url>
 									<a href="${after}">&gt;</a>
