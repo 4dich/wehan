@@ -282,7 +282,7 @@
   	
   	<!-- 4) User2Del_YN 삭제 -->
   	<update id="deletUser2Msg" parameterType="java.util.Map">
-  		UPDATE MESSAGEROOM SET USER2_DEL = 0 WHERE MRID = #{mrId} AND USER1 = #{userId}
+  		UPDATE MESSAGEROOM SET USER2_DEL = 0 WHERE MRID = #{mrId} AND USER2 = #{userId}
   	</update>
   	
   </mapper>
