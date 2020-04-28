@@ -71,7 +71,7 @@
 				<i class="fa fa-bars"></i>
 			</div>
 			<div class="header-social">
-                <a href="fid_ch_recommendView.do" style="color: red;">추천피드</a>
+                <a href="fid_ch_recommendView.do" style="color: red;">전체피드</a>
                 <a href="fid_friendListView.do">친구피드</a>
                 <a href="fid_followView.do">팔로우</a>
 			</div>

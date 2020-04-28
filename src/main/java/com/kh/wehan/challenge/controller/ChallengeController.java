@@ -295,17 +295,20 @@ public class ChallengeController {
 		Date startTime = sdf.parse(chal.getStartDate());
 		// 마감날짜
 		Date endTime = sdf.parse(chal.getEndDate());
+		String[] arr = chal.getEndDate().split("-");
+		String after = arr[0]+"-"+arr[1]+"-"+(Integer.parseInt(arr[2])+1);
+		Date endTime2 = sdf.parse(after);
 		
 		// 진행 예정
 		if( today.getTime() < startTime.getTime() ) { 
 			mv.addObject("chal", chal).setViewName("user/challenge/ch_detail");
 		} 
 		// 진행 중
-		else if(today.getTime() >= startTime.getTime() && today.getTime() < endTime.getTime()) {
+		else if(today.getTime() >= startTime.getTime() && today.getTime() <= endTime2.getTime()) {
 			mv.addObject("chal", chal).setViewName("user/challenge/ch_detailDoing");
 		}
 		// 진행 마감
-		else {
+		else{
 			mv.addObject("chal", chal);
 			mv.setViewName("user/challenge/ch_detailEnd");
 		}

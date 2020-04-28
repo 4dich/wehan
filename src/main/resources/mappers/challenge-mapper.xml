@@ -39,7 +39,7 @@
 	<select id="selectList" resultMap="challengeResultSet">
 		SELECT *
 		FROM CHALLENGE
-		ORDER BY CHID+1 DESC
+		ORDER BY CHID+1 ASC
 	</select>
 	
 	<select id="selectOneDetail" resultMap="challengeResultSet">
@@ -93,7 +93,7 @@
 	<select id="selectChallengeList" resultMap="challengeResultSet">
 		SELECT * FROM
 		CHALLENGE
-		ORDER BY CHID DESC
+		ORDER BY CHID ASC
 	</select>
 	
 	<select id="getListCategoryCount" resultType="_int">
