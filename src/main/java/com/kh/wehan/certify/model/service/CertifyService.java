@@ -129,5 +129,12 @@ public interface CertifyService {
 	 */
 	int insertCertify(Certify cer);
 
+	/**
+	 * 인증글 삭제
+	 * @param ceId
+	 * @return
+	 */
+	int certifyDel(String ceId);
+
 
 }

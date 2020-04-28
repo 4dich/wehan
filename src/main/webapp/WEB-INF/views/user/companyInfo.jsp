@@ -25,7 +25,11 @@
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="resources/css/style.css"/>	
 	<link rel="stylesheet" href="resources/css/font.css"/>
-
+<style>
+		.about-info{width:348px;}
+		.about-info a{font-size:12px;}
+	
+	</style>
 </head>
 <body>
 	<!-- Page Preloder -->
@@ -50,15 +54,15 @@
 			<div class="main-sidebar">
 				<!-- 로고 구역 -->
 				<div class="mb-warp">
-					<a href="indexView.do" class="site-logo" style="margin-bottom: 70px;">
-						<h2 style="margin-left: 11px;">위대한 한걸음</h2>
-						<p style="padding-top: 20px;">THE GREAT ONE STEP</p>
+					<a href="indexView.do" class="site-logo" style="margin-bottom: 80px;">
+						<h2 style="margin-left: 6px;">위대한 한걸음</h2>
+						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
 					<br><br>
 					<!-- 서브메뉴 -->
-					<div class="about-info" style="margin-left: 5px;">
-						<h2>회사 소개</h2><br>
-						<p style="width:348px;">큰 목적만 세우고 이루지 못하는 때가 많으신가요?
+					<div class="about-info">
+						<h2>회사소개</h2>
+						<p style="width:348px; font-size:12px;">큰 목적만 세우고 이루지 못하는 때가 많으신가요?
 							큰 목적에만 너무 마음쓰지 마세요.
 							당신은 작은 목적을 가져도 아름다운 사람이니까요.
 							당신을 따뜻하게 해 줄 새로운 해가 떠오를 거에요.
@@ -66,7 +70,6 @@
 						</p>
 					</div>
 					<ul class="contact-info" >
-					<br>
 						<li>서울특별시 강남구 테해란로14길 6</li>
 						<li>남도빌딩 3F H반 T:1544-9970</li>
 					</ul>
@@ -75,14 +78,14 @@
 			<!-- Left Side section end -->
 			<!-- Page start -->
 			<div class="page-section blog-page">
-				<div class="blog-posts" style="padding-bottom: 80px;">
+				<div class="blog-posts">
 					<div class="blog-post-item">
 						<div class="blog-thumb set-bg" data-setbg="resources/images/goal.png">
 						</div>
 						<div class="blog-content">
 							<h2><a href="./single-blog.html">경영 이념</a></h2>
 							<br>
-							<p style="font-weight: bold">
+							<p>
 								현대 사회에서 대부분의 사람들은 바쁜 일과, 업무에 치여 그저 바쁘게만 아무 의미없이 시간을 보내곤 합니다.<br>
 								새해와 같이 특별한 날이 되거나 문득 무언가를 실천해 보겠다고, 시작해 보겠다고 다짐하지만 작심 3일이라는 말처럼 금방 잊히고 무너지죠.<br>
 								우리는 생각했습니다. 목표 달성에 가장 필요한 것은 의지보다도 할 수 있는, 반드시 해내야만 하는 환경이 제일 중요한 것이라고.<br>
@@ -93,13 +96,13 @@
 						</div>
 					</div>
 					<div class="blog-post-item"><br><br>
-						<div class="blog-thumb set-bg" data-setbg="resources/images/goal2.jpg">
+						<div class="blog-thumb set-bg" data-setbg="resources/images/31.jpg">
 						
 						</div>
 						<div class="blog-content">
 							<h2>회사 비전</h2>
 							<br>
-							<p style="font-weight: bold"> 
+							<p> 
 								"작은 변화"로 새로운 가치를 추구하는 우리의 "위대한 한 걸음" 프로젝트<br>
 								목표를 달성하여 점점 발전하는 자기 자신과 그와 더불어 함께 자라는 나만의 나무 모습을 확인할 수 있습니다.<br>
 								그 모습을 보며 성취감과 재미를 동시에 느끼고 돈까지 벌 수 있는 혁신적인 시스템을 통해 많은 사람들에게 동기를 부여하고 싶었습니다.<br>

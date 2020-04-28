@@ -145,6 +145,11 @@ public class CertifyDao {
 		return sqlSession.insert("certifyMapper.insertCertify",cer);
 	}
 
+	public int certifyDel(String ceId) {
+		return sqlSession.update("certifyMapper.certifyDel",ceId);
+	}
+
+
 
 	
 }

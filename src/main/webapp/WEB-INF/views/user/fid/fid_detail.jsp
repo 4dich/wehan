@@ -160,6 +160,11 @@ String check = request.getParameter("check");
 												
 													<div class="form-group" style="text-align: right;">														
 														<textarea class="form-control" id="addReflyText" style="height:100px; resize:none;" placeholder="친구의 피드에 댓글을 남겨보세요!"></textarea>
+														<c:if test="${ loginUser.userId eq c.userId }">
+														<button id="certifyDel" class="site-btn sb-dark" style="padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; margin-top:10px;">
+															인증글 삭제
+														</button>
+														</c:if>
 														<button id="submitR" class="site-btn sb-dark" style="padding-left:15px; padding-right: 15px; min-width:120px; padding-top:10px; padding-bottom: 10px; margin-top:10px;">
 															댓글 등록
 														</button>
@@ -244,6 +249,11 @@ String check = request.getParameter("check");
 				location.href = "ch_certifyList.do?chId="+chId;
 			}
 			
+		});
+		$('#certifyDel').click(function(){
+			var chId = document.getElementById("chId").value;
+			alert("인증글을 삭제하시겠습니까? 인증글을 삭제하시면 챌린지 목표달성에 데이터가 삭제되어 인증되지 않습니다.");
+			location.href = "ch_certifyDel.do?ceId="+ceId+"&chId="+chId;
 		});
 		
 		/* 등록버튼 */

@@ -151,6 +151,11 @@ public class CertifyServiceImpl implements CertifyService{
 		return ceDao.insertCertify(cer);
 	}
 
+	@Override
+	public int certifyDel(String ceId) {
+		return ceDao.certifyDel(ceId);
+	}
+
 
 
 }

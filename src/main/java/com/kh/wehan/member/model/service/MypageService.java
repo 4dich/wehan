@@ -127,6 +127,13 @@ public interface MypageService {
 	 * @return
 	 */
 	public ArrayList<Member> selectListFollowing(String userId);
+	
+	/**
+	 * 1-5. 나를 팔로우한 사람 리스트 가져오기
+	 * @param userId
+	 * @return
+	 */
+	public ArrayList<Member> selectListFollower(String userId);
 
 
 }

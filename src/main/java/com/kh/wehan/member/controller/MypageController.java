@@ -52,11 +52,13 @@ public class MypageController {
 		int follow = myService.followCount(userId);
 		int following = myService.followingCount(userId);
 		
+		ArrayList<Member> followerList = myService.selectListFollower(userId);
 		ArrayList<Member> followingList = myService.selectListFollowing(userId);
 		
 		mv.addObject("mypage", mypage)
 		  .addObject("follow", follow)
 		  .addObject("following", following)
+		  .addObject("followerList", followerList)
 		  .addObject("followingList", followingList)
 		  .setViewName("user/mypage/my_profile");
 		
@@ -152,7 +154,9 @@ public class MypageController {
 		Mypage otherPage = myService.my_profileView(otherId);
 		Member otherMember = myService.selectMember(otherId);
 		
+		// host로 검색
 		int follow = myService.followCount(otherId);
+		// follower로 검색
 		int following = myService.followingCount(otherId);
 		
 		mv.addObject("otherPage", otherPage)
@@ -182,10 +186,12 @@ public class MypageController {
 		
 		int result = myService.my_unfollow(f);
 		
+		int following = myService.followingCount(follower);
+		
 		response.setContentType("application/json; charset=utf-8");
 		
 		Gson gson = new Gson();
-		gson.toJson(result, response.getWriter());
+		gson.toJson(following, response.getWriter());
 	}
 	
 	/**

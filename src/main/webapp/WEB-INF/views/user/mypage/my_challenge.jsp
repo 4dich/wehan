@@ -479,7 +479,7 @@
 												<div style="width:10px">~</div>
 												<div class="eArr" style="width: 100px;">${ c.endDate }</div>
 												<div style="width: 80px; padding: 5px 0 0 0; border-left:1px solid gray; border-right:1px solid gray;"  >
-													<img src="resources/images/user/${c.chPicture }" style="width: 70px; height: auto;" >
+													<img src="resources/images/challenge/${c.chPicture }" style="width: 70px; height: auto;" >
 												</div>
 												<div style="width: 250px; text-align:left;">${ c.chName }</div>
 												<div class="ceCount" style="border-left:1px solid gray;">${ceCount[status.index]}</div>
@@ -500,7 +500,7 @@
 												<div style="width:10px">~</div>
 												<div class="eArr2" style="width: 100px;">${ c.endDate }</div>
 												<div style="width: 80px; padding: 5px 0 0 0; border-left:1px solid gray; border-right:1px solid gray;"  >
-													<img src="resources/images/user/${c.chPicture }" style="width: 70px; height: auto;" >
+													<img src="resources/images/challenge/${c.chPicture }" style="width: 70px; height: auto;" >
 												</div>
 												<div style="width: 250px; text-align:left;">${ c.chName }</div>
 												<div class="ceCount" style="border-left:1px solid gray;">${ceCount[status.index]}</div>
@@ -521,7 +521,7 @@
 												<div style="width:10px">~</div>
 												<div class="eArr3" style="width: 100px;">${ c.endDate }</div>
 												<div style="width: 80px; padding: 5px 0 0 0; border-left:1px solid gray; border-right:1px solid gray;"  >
-													<img src="resources/images/user/${c.chPicture }" style="width: 70px; height: auto;" >
+													<img src="resources/images/challenge/${c.chPicture }" style="width: 70px; height: auto;" >
 												</div>
 												<div style="width: 250px; text-align:left;">${ c.chName }</div>
 												<div class="ceCount" style="border-left:1px solid gray;">${ceCount[status.index]}</div>
@@ -542,7 +542,7 @@
 												<div style="width:10px">~</div>
 												<div class="eArr4" style="width: 100px;">${ c.endDate }</div>
 												<div style="width: 80px; padding: 5px 0 0 0; border-left:1px solid gray; border-right:1px solid gray;"  >
-													<img src="resources/images/user/${c.chPicture }" style="width: 70px; height: auto;" >
+													<img src="resources/images/challenge/${c.chPicture }" style="width: 70px; height: auto;" >
 												</div>
 												<div style="width: 250px; text-align:left;">${ c.chName }</div>
 												<div class="ceCount" style="border-left:1px solid gray;">${ceCount[status.index]}</div>
@@ -607,21 +607,21 @@
 											
 											if(sDate.getTime()>today.getTime()){
 												$result[i].innerText = '진행예정';
-												$result.parent().eq(i).children().eq(0).css('background-color','#F7D147');
+												$result.parent().eq(i).children().eq(0).css('background-color','#FFEB87');
 												
 												$result2.parent().eq(i).css('display','none');
 												
 												$result3[i].innerText = '진행예정';
-												$result3.parent().eq(i).children().eq(0).css('background-color','#F7D147');
+												$result3.parent().eq(i).children().eq(0).css('background-color','#FFEB87');
 												
 												$result4.parent().eq(i).css('display','none');
 												
 											}else if(sDate.getTime()<today.getTime() && eDate.getTime()>today.getTime()){
 												$result[i].innerText = '진행중';
-												$result.parent().eq(i).children().eq(0).css('background-color','#FE736C');
+												$result.parent().eq(i).children().eq(0).css('background-color','#F59B82');
 												
 												$result2[i].innerText = '진행중';
-												$result2.parent().eq(i).children().eq(0).css('background-color','#FE736C');
+												$result2.parent().eq(i).children().eq(0).css('background-color','#F59B82');
 												
 												$result3.parent().eq(i).css('display','none');
 												
@@ -630,14 +630,14 @@
 											}else{
 												countTotalCh++;
 												$result[i].innerText = '진행완료';
-												$result.parent().eq(i).children().eq(0).css('background-color','#3A7D7C');
+												$result.parent().eq(i).children().eq(0).css('background-color','#B7FFA6');
 												
 												$result2.parent().eq(i).css('display','none');
 												
 												$result3.parent().eq(i).css('display','none');
 												
 												$result4[i].innerText = '진행완료';
-												$result4.parent().eq(i).children().eq(0).css('background-color','#3A7D7C');
+												$result4.parent().eq(i).children().eq(0).css('background-color','#B7FFA6');
 												
 											}
 											$gapDate[i].innerText = gapDate;
