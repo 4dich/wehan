@@ -35,12 +35,13 @@
 		
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<style>
-		.about-info{width:348px;}
-		.about-info p{font-size:12px;}
-		.thArea {
-   			 border-bottom: 2px solid black;
-   			 }
-   		.questionsList td{padding:15px;}
+		.infoMenu{font-size: 16px;}
+		button{font-size:14px;}
+		#searchArea{width: 316px; margin-top: 0px; }
+		tr{height: 58px;}
+		.blog-posts{height: 800px;}
+		a{text-decoration: none; color: black;}
+		.about-info{margin:0;}
 	</style>
 </head>
 <body>
@@ -84,18 +85,19 @@
 			</div>
 			</c:if>
 			<c:if test="${!empty sessionScope.adminUser}">
-			<div class="about-info" style="margin:0 0 80px 0;">
-				<h2>문의사항</h2>
-				<a href="qnaListView.do" id="qnaList" class="infoMenu">문의사항</a><br><br>
-				<a href="mlist.do" id="mlist" class="infoMenu">회원정보</a><br><br>
-				<a href="paylist.do" id="ad_pay" class="infoMenu">결제정보</a><br><br>
-				<a href="ad_challengeListView.do" id="ad_challenge" class="infoMenu">챌린지 정보</a><br><br>
-				<a href="ad_certifyView.do" id="ad_certify" class="infoMenu">인증글 정보</a><br><br>
-				<a href="blackList.do" id="ad_blackList" class="infoMenu">블랙리스트</a><br><br>
-			</div>
+			<div class="about-info">
+						<h2>문의사항</h2>
+						<a href="ad_noticeList.do" id="ad_notice" class="infoMenu">공지사항</a><br><br>
+						<a href="mlist.do" id="mlist" class="infoMenu">회원정보</a><br><br>
+						<a href="paylist.do" id="ad_pay" class="infoMenu">결제정보</a><br><br>
+						<a href="ad_challengeListView.do" id="ad_challenge" class="infoMenu">챌린지 정보</a><br><br>
+						<a href="ad_certifyView.do" id="ad_certify" class="infoMenu">인증글 정보</a><br><br>
+						<a href="blackList.do" id="ad_blackList" class="infoMenu">블랙리스트</a><br><br>
+					</div>
 			</c:if>
 			<c:if test="${!sessionScope.adminUser.getUserId().equals('admin') }">
-			<button class="site-btn sb-dark" style="margin-top:2px;font-size: 16px;  border-radius: 3px; width: 347px;" type="button" onclick="location.href='questionsInsertView.do'">
+			<button class="site-btn sb-dark" style="margin-top:2px;font-size: 16px; 
+			 border-radius: 3px; width: 347px;" type="button" onclick="location.href='questionsInsertView.do'">
 				문의사항 등록하기
 			</button>
              </c:if>
@@ -109,7 +111,7 @@
 					<h3 class="qnaText">문의사항</h3>
 					
 					<div class="blog-post-item">
-
+     
 						<div id="searchArea">
 							<form action="searchQuestions.do">
 								<div id="searchSelect"> 
@@ -156,9 +158,7 @@
 								
 							</tr>
                       
-								<%-- <td>
-								    <input type="hidden" value="${q.qId }"/>							    
-								</td> --%>			
+										
                       </c:forEach> 			
 							
 						</table>
