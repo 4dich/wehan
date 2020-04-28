@@ -71,7 +71,7 @@
 				<i class="fa fa-bars"></i>
 			</div>
 			<div class="header-social">
-                <a href="fid_ch_recommendView.do" style="color: red;">추천피드</a>
+                <a href="fid_ch_recommendView.do" style="color: red;">전체피드</a>
                 <a href="fid_friendListView.do">친구피드</a>
                 <a href="fid_followView.do">팔로우</a>
 			</div>
@@ -131,7 +131,7 @@
 							<div class="ca"><input class="category" type="hidden" value="hobby">취미</div>
 							<div class="ca"><input class="category" type="hidden" value="motivated">자기계발</div>
 							<div class="ca"><input class="category" type="hidden" value="economy">경제</div>
-							<div class="ca"><input class="category" type="hidden" value="life"">생활</div>
+							<div class="ca"><input class="category" type="hidden" value="life">생활</div>
 							<div class="ca"><input class="category" type="hidden" value="etc">그외</div>
 						</div>
 
@@ -260,6 +260,16 @@
 				
 				var currentPage = 1;
 				list(currentPage,index);
+			});
+			
+			$("#searchTitle").keydown(function(e){
+				if(e.keyCode == 13){
+					var index = null;
+					$('.ca').css({'background':'white','color':'black'});
+					
+					var currentPage = 1;
+					list(currentPage,index);
+				}
 			});
 		});	
 		

@@ -28,6 +28,7 @@
 	<link rel="stylesheet" href="resources/css/admin_qna.css"/>
 	<link rel="stylesheet" href="resources/css/font.css"/>
 	<link rel="stylesheet" href="resources/css/adminmargin.css"/>
+	<link rel="stylesheet" href="resources/css/padding.css"/>
 	<style>
 		.infoMenu{font-size: 16px;}
 		button{font-size:14px;}

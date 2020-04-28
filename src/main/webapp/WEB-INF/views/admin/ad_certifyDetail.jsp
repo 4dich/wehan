@@ -26,6 +26,7 @@
 
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="resources/css/style.css"/>
+	<link rel="stylesheet" href="resources/css/padding.css"/>
 	<!-- 
 	<link rel="stylesheet" href="resources/css/admin_qna.css"/> -->
 	

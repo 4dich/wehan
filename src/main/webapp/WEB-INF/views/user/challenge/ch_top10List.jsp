@@ -268,14 +268,7 @@
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
 					<!-- 챌린지 검색 -->
-					<form class="searchChallenge">
-	                    <div class="challenges-search">
-							<input type="text" style="font-size:12px; padding-left: 15px; width: 300px; height: 50px; border-radius: 3px; border: 2px solid black;" placeholder="챌린지 이름 검색">
-	                        <a href="" class="site-btn2">
-	                            <img src="resources/images/main/search.png" style="padding-left: 10px;" alt="">
-	                        </a>
-	                    </div>
-                    </form>
+					
                     <br><br>
 				<!-- 서브메뉴 -->
                 <div class="about-info">

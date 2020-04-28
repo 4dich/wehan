@@ -32,6 +32,7 @@
 <!-- <link rel="stylesheet" href="resources/css/left_section.css"/> -->
 <link rel="stylesheet" href="resources/css/style.css" />
 <link rel="stylesheet" href="resources/css/font.css"/>
+<link rel="stylesheet" href="resources/css/padding.css"/>
 <!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -51,13 +52,13 @@
 	<div id="preloder">
 		<div class="loader"></div>
 	</div>
-
+   
 	<!-- Main section start -->
 	<div class="main-site-warp">
-
+     
 		<%@ include file="/WEB-INF/views/common/menuBar.jsp"%>
-
-
+    
+      
 		<header class="header-section">
 			<div class="nav-switch">
 				<i class="fa fa-bars"></i>
@@ -71,7 +72,7 @@
 				<a href="noticeList.do">공지사항</a> <a href="qnaListView.do"
 					style="color: red;">문의사항</a>
 			</div>
-
+       
 		</header>
 		<div class="site-content-warp">
 			<!-- Left Side section -->
@@ -91,7 +92,7 @@
 							위대한 한걸음에 궁금증이 생기신다면 <br> 언제든지 문의해주세요!
 						</p>
 					</div>
-
+              
 				</div>
 			</div>
 			<!-- Left Side section end -->
@@ -103,14 +104,14 @@
 							src="resources/images/arrow-righ-3.png" alt="">
 						</a>
 					</div>
-
-
+         
+         
 					<br>
 					<div class="blog-post-item">
-
+           
 						<div class="qnaInfo">
 							<div class="qnaInfoArea">
-
+                    
 								<table class="detailArea">
 									<tr class="qnaNumber">
 										<td>번호</td>
@@ -131,7 +132,7 @@
 									<tr class="qnaTextBox">
 										<td class="qnaTextArea" colspan="2">${q.qContent}</td>
 									</tr>
-
+             
 									<c:if test="${loginUser.userId eq q.qUserid }">
 										<tr class="replybuttonArea">
 											<c:url var="qModifyView" value="questionsModifyView.do">
@@ -150,15 +151,15 @@
 													삭제하기 </a></td>
 										</tr>
 									</c:if>
-
+                   
 								</table>
-
+                   
 								<div class="col-md-10">
 									<div class="portlet light bordered">
 										<div class="portlet-title tabbable-line"></div>
 										<div class="portlet-body">
 											<div>
-
+                    
 												<!-- 댓글 -->
 												<form action="questionsReplyInsert.do">
 													<div class="col-md-10">
@@ -178,29 +179,31 @@
 																					style="height: 100px; resize: none; width:150%;"
 																					placeholder=" 댓글을 남겨보세요!"></textarea>
 																				<button id="submitR" class="site-btn sb-dark"
-																					style="padding-left: 15px; padding-right: 15px; min-width: 120px; padding-top: 10px; padding-bottom: 10px; margin-top: 10px;">
+																					style="padding-left: 15px; padding-right: 15px; min-width: 120px;
+																					 padding-top: 10px; padding-bottom: 10px; margin-top: 10px;">
 																					댓글 등록</button>
 																				<button id="listBack" class="site-btn sb-dark"
 																					type="button" onclick="location.href='qnaListView.do'"
-																					style="padding-left: 15px; padding-right: 15px; min-width: 120px; padding-top: 10px; padding-bottom: 10px; margin-top: 10px;">
+																					style="padding-left: 15px; padding-right: 15px; min-width: 120px;
+																					 padding-top: 10px; padding-bottom: 10px; margin-top: 10px;">
 																					목록가기</button>
 																			</div>
 																		</div>
 																	</div>
 																	</c:if>
-																	
+										   							
 													<!-- 댓글 읽기 -->
 									<c:forEach var="q" items="${reply}"> 
                               <div class="card" style="margin-bottom: 20px; width:150%">
                                  <div class="card-body" style="width:150%"> 
                                     <div class="row">      
-                                      
+                                         
                                          <div id="commentbody" class="media g-mb-30 media-comment deletereply" style="display: inline-block; margin-left:65%">
 														<c:if test="${!empty adminUser.userId  }">×</c:if> 
 													</div>                      
                                        <div class="media g-mb-30 media-comment">
-                                       
-													
+                                          
+									   				
                                           <img class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15" style="max-width:8%" src="resources/images/img.png" alt="Image Description">
                                           <div class="media-body u-shadow-v18 g-bg-secondary g-pa-30">
                                              <div class="g-mb-15">

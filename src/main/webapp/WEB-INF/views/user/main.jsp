@@ -24,6 +24,7 @@
 
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="resources/css/style.css"/>
+	<link rel="stylesheet" href="resources/css/font.css"/>
 
 </head>
 <body>
@@ -55,17 +56,15 @@
 					</a>
 					<br><br>
 					<!-- 서브메뉴 -->
-					<div class="about-info" style="margin-bottom:69px;">
-						<h4>One small step for a man,<span style="line-height: 180%;">
-						<br></span>One giant leap for mankind.</h4><br>
-						<p style="width:348px;">"한 인간에겐 작은 한 걸음이지만, 인류에겐 위대한 도약이다.”
+					<div class="about-info" style="width:348px;">
+						<h2 style="font-family:Noto Sans KR; font-weight:500;" >ONE STEP</h2>
+						<p style="font-size:12px;">"한 인간에겐 작은 한 걸음이지만, 인류에겐 위대한 도약이다.”
 							이 말은 닐 암스트롱이 달 표면에 첫 발을 내딛고 한 말입니다.
 							혼자서 힘들었던 계획들, 같은 목표의 사람들과 함께 해보세요.
 							당신의 미래를 시작하기 위한 첫 걸음을 도와드릴게요.
 						</p>
 					</div>
-					<ul class="contact-info" >
-					<br>
+					<ul class="contact-info">
 						<li>서울특별시 강남구 테해란로14길 6</li>
 						<li>남도빌딩 3F H반 T:1544-9970</li>
 					</ul>
