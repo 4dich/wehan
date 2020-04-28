@@ -179,8 +179,7 @@
 						</div>
 						<div style="margin-top: 50px;">
 							<input type="submit" value="회원가입" class="site-btn sb-solid mr-3 mb-3" style="width:20%; height: 80px; margin: 20px; margin-left: 300px;" >
-							<input type="button" value="취소하기" class="site-btn sb-solid mr-3 mb-3" style="width:20%; height: 80px;" onclick="location.href='login.do'">
-							
+							<input type="button" value="취소하기" class="site-btn sb-solid mr-3 mb-3" style="width:20%; height: 80px;" onclick="location.href='loginView.do'">
 						</div>
 					</div>
 				</form>
