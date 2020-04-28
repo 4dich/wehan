@@ -360,10 +360,6 @@ public class MypageController {
 	@RequestMapping("followerSearch.do")
 	@ResponseBody
 	public void followerSearch(HttpServletResponse response, String userId, String search) throws IOException {
-		
-		System.out.println(userId);
-		System.out.println(search);
-	
 		FollowerSearch fs = new FollowerSearch(userId, search);
 		ArrayList<Member> followerSearchList = myService.followerSearch(fs);
 		
@@ -371,6 +367,18 @@ public class MypageController {
 	
 		Gson gson = new Gson();
 		gson.toJson(followerSearchList,response.getWriter());
+	}
+	
+	@RequestMapping("followingSearch.do")
+	@ResponseBody
+	public void followingSearch(HttpServletResponse response, String userId, String search) throws IOException {
+		FollowerSearch fs = new FollowerSearch(userId, search);
+		ArrayList<Member> followingSearchList = myService.followingSearch(fs);
+		
+		response.setContentType("application/json; charset=utf-8");
+	
+		Gson gson = new Gson();
+		gson.toJson(followingSearchList,response.getWriter());
 	}
 	
 }

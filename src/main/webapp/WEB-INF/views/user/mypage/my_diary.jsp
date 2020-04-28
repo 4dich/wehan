@@ -89,7 +89,7 @@ var events = [];
                       	cntStamp:0
                       },success:function(data){
                     	  $('#calendar').remove();
-                    	  $('#dich').append("<div id='calendar' style='border: 1px solid #242424; border-radius:10px; padding: 10px'></div>");
+                    	  $('#dich').append("<div id='calendar'></div>");
                     	  events = [];
                     	  selectCalendar();
                       },error:function(){
@@ -166,7 +166,7 @@ var events = [];
 	       	        	  success:function(data){
 	       	        	  	  console.log(data + '개 행이 업데이트되었습니다.');
 	       	        	  $('#calendar').remove();
-	       	            	  $('#dich').append("<div id='calendar' style='border: 1px solid #242424; border-radius:10px; padding: 10px'></div>");
+	       	            	  $('#dich').append("<div id='calendar'></div>");
 	       	            	  events = [];
 	       	            	  selectCalendar();
 	       	        	  },
@@ -190,7 +190,7 @@ var events = [];
 	                    	  success:function(data){
 	                    	  	  console.log(data + '개 행이 업데이트되었습니다.');
 	                    	  $('#calendar').remove();
-	                        	  $('#dich').append("<div id='calendar' style='border: 1px solid #242424; border-radius:10px; padding: 10px'></div>");
+	                        	  $('#dich').append("<div id='calendar'></div>");
 	                        	  events = [];
 	                        	  selectCalendar();
 	                    	  },
@@ -293,7 +293,7 @@ var events = [];
 	 	 		  success:function(data){
 	 	 		  	  console.log(data + '개 행이 업데이트되었습니다.');
 		 	 		  $('#calendar').remove();
-	              	  $('#dich').append("<div id='calendar' style='border: 1px solid #242424; border-radius:10px; padding: 10px'></div>");
+	              	  $('#dich').append("<div id='calendar'></div>");
 	              	  events = [];
 	              	  selectCalendar();
 	 	 		  },
@@ -595,14 +595,6 @@ var events = [];
     margin: 0 auto;
   }
   
-  .fc-sat {
-  	color:#0000FF;
-  }
-  
-  .fc-sun {
-  	color: #FF0000;
-  }
-  
   /* 달력클릭시 팝업창에서 색고르는 항목 */
   .box-radio-input input[type="radio"]{
       display:none;
@@ -628,13 +620,41 @@ var events = [];
      padding: 45px 95px 100px 115px;
   }
   
-  .fc-title{
-  	color:black;
+  #calendar .fc-title{
+  	color:#333333;
   }
   
   #calendar h2{
   	font-weight:bold;
   }
+  
+  #calendar{
+  	border: 1px solid gray;
+  }
+  
+  #calendar .fc-day-number{
+  	color:#333333;
+  }
+  
+  #calendar .fc-today{
+  }
+  
+  #calendar a:visited { text-decoration: none;}
+  #calendar a:hover { text-decoration: none;}
+  
+  .fc-unthemed td.fc-today {
+    background: #c7c7c7;
+  }
+  
+  .fc-day-header a{
+  	color: #333333;
+  }
+  
+  .fc-toolbar{
+  	background:#333333;
+  	color: white;
+  }
+  /* fc-day-header fc-widget-header */
 </style>
 </head>
 
@@ -705,7 +725,7 @@ var events = [];
 			</div> -->
 			
 			<div id='dich'></div>
-			<div id='calendar' style='border: 1px solid #242424; border-radius:10px; padding: 10px'></div>
+			<div id='calendar'></div>
 			
 			<div id='stat' style="display:none; background: white; width:500px; height:498px; position:absolute; left: 1000px; top: 200px; border-radius:5px; box-shadow : rgba(0,0,0,0.5) 0 0 0 9999px; z-index : 100;
 			-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);">
