@@ -37,12 +37,14 @@
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<style>
 		.infoMenu{font-size: 16px;}
-		button{font-size:14px;}
 		#searchArea{width: 316px; margin-top: 0px; }
-		tr{height: 58px;}
 		.blog-posts{height: 800px;}
 		a{text-decoration: none; color: black;}
 		.about-info{margin:0;}
+		.questionsList td {
+    padding: 15px;
+    cursor: pointer;
+}
 	</style>
 </head>
 <body>

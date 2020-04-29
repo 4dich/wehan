@@ -127,7 +127,7 @@
 						</div>
     
 						<!-- 공지사항 테이블 -->
-						<table class="qnaTable" style="width:100%;margin-bottom:4px;">
+						<table class="qnaTable">
 							
 							<tr class="thArea" style="border-bottom:2px solid black;">								
 								<th>NO</th>								
