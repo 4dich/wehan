@@ -127,7 +127,7 @@
 						</div>
     
 						<!-- 공지사항 테이블 -->
-						<table class="qnaTable">
+						<table class="qnaTable" style="margin-bottom:30px;">
 							
 							<tr class="thArea" style="border-bottom:2px solid black;">								
 								<th>NO</th>								
@@ -160,7 +160,6 @@
 						<!-- 이전 -->
 						<div class="qnaPaging">
 							<c:if test="${pi.currentPage eq 1 }">
-								<
 							</c:if>
 							<c:if test ="${pi.currentPage ne 1 }">
 								<c:url var="before" value="ad_noticeList.do">
@@ -172,7 +171,7 @@
 							<!-- 페이지 -->
 							<c:forEach var="p" begin="${pi.startPage}" end="${pi.endPage }">
 								<c:if test="${ p eq pi.currentPage }">
-									<font color="red" size = "4"><b>[${ p }]</b></font>
+									<div style="width:24px; height:24px; background:#242424; color:white; display:inline-block; border-radius:70%">${ p }</div>
 								</c:if>
 								
 								<c:if test="${ p ne pi.currentPage }">
@@ -185,7 +184,6 @@
 							
 							<!-- 다음 -->
 							<c:if test="${pi.currentPage eq pi.maxPage }">
-								>
 							</c:if>
 							<c:if test="${pi.currentPage ne pi.maxPage }">
 								<c:url var="after" value="ad_noticeList.do">

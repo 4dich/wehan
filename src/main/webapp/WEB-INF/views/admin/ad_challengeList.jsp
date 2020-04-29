@@ -182,20 +182,19 @@
 												
 							</div> --%>
 							
-								<div class="qnaPaging">
+								<div class="qnaPaging" style="margin-top:-25px;">
 								<!-- [이전] -->
 								<c:if test="${ pi.currentPage eq 1 }">
-									[이전]&nbsp; 
+									&nbsp; 
 								</c:if>
 								<c:if test="${ pi.currentPage ne 1 }">
-						
-									<a onclick="pagination(${ pi.currentPage -1})">[이전]</a>&nbsp; 
+									<a onclick="pagination(${ pi.currentPage -1})"><</a>&nbsp; 
 								</c:if>
 								
 								<!-- 페이지 -->
 								<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
 									<c:if test="${ p eq pi.currentPage }">
-										<font color="red" size="4"><b>[${ p }]</b></font>
+										<div style="width:24px; height:24px; background:#242424; color:white; display:inline-block; border-radius:70%">${ p }</div>
 									</c:if>
 									
 									<c:if test="${ p ne pi.currentPage }">
@@ -206,16 +205,12 @@
 								
 								<!-- [다음] -->
 								<c:if test="${ pi.currentPage eq pi.maxPage }">
-									&nbsp;[다음]
+									&nbsp;
 								</c:if>
 								<c:if test="${ pi.currentPage ne pi.maxPage }">
-								
-									&nbsp;<a onclick="pagination(${pi.currentPage+1})">[다음]</a> 
+									&nbsp;<a onclick="pagination(${pi.currentPage+1})">></a> 
 								</c:if>
-												
 							</div>
-							
-							
 						</div>
 					</div>
 				</div>

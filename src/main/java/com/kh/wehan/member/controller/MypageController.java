@@ -269,9 +269,15 @@ public class MypageController {
 	}
 	
 	@RequestMapping("my_diaryView.do")
-	public ModelAndView my_diaryView(ModelAndView mv) {
+	public ModelAndView my_diaryView(ModelAndView mv, HttpServletRequest request) {
 		
-		mv.setViewName("user/mypage/my_diary");
+		HttpSession session = request.getSession();
+		Member mem = (Member)session.getAttribute("loginUser");
+		String userId = mem.getUserId();
+		Mypage mypage = myService.my_profileView(userId);
+		
+		mv.addObject("mypage", mypage)
+		.setViewName("user/mypage/my_diary");
 		
 		return mv;
 	}
