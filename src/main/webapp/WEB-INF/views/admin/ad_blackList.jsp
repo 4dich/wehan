@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>NISSA - PHOTOGRAPHY STUDIO HTML TEMPLATE</title>
+	<title>Blacklist</title>
 	<meta charset="UTF-8">
 	<meta name="description" content="Nissa Photography studio html template">
 	<meta name="keywords" content="industry, html">
@@ -115,7 +115,6 @@
 						
 						<div class="qnaPaging">
 							<c:if test="${ pi.currentPage eq 1 }">
-								< &nbsp;
 							</c:if>
 							<c:if test="${ pi.currentPage ne 1 }">
 								<c:url var="before" value="blackList.do">
@@ -127,7 +126,7 @@
 							<!-- 페이지 -->
 							<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
 								<c:if test="${ p eq pi.currentPage }">
-									<font color="red" size="4"><b>[${ p }]</b></font>
+									<div style="width:24px; height:24px; background:#242424; color:white; display:inline-block; border-radius:70%">${ p }</div>
 								</c:if>
 								
 								<c:if test="${ p ne pi.currentPage }">
@@ -140,7 +139,6 @@
 							
 							<!-- [다음] -->
 							<c:if test="${ pi.currentPage eq pi.maxPage }">
-								>
 							</c:if>
 							<c:if test="${ pi.currentPage ne pi.maxPage }">
 								<c:url var="after" value="blackList.do">

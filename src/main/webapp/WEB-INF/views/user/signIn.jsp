@@ -448,7 +448,7 @@
 					$('#chkPass').val(3);
 				}else{
 					if(password != password2){
-						$('#password2').css("width","80%");
+						$('#password2').css("width","79%");
 						$('.c7').hide();
 						$('.c8').show();
 						$('.c9').hide();
@@ -473,7 +473,7 @@
 					$('#chkPass').val(3);
 				}else{
 					if(password != password2){
-						$('#password2').css("width","80%");
+						$('#password2').css("width","79%");
 						$('.c7').hide();
 						$('.c8').show();
 						$('.c9').hide();

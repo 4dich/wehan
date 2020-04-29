@@ -142,7 +142,13 @@ public interface MypageService {
 	 * @return
 	 */
 	public ArrayList<Member> followerSearch(FollowerSearch fs);
-
-
+	
+	
+	/**
+	 * 1-7. 내가 팔로우한 사람 리스트중 검색목록 가져오기
+	 * @param fs
+	 * @return
+	 */
+	public ArrayList<Member> followingSearch(FollowerSearch fs);
 
 }

@@ -114,4 +114,9 @@ public class MypageServiceImpl implements MypageService {
 	public ArrayList<Member> followerSearch(FollowerSearch fs) {
 		return myDao.followerSearch(fs);
 	}
+
+	@Override
+	public ArrayList<Member> followingSearch(FollowerSearch fs) {
+		return myDao.followingSearch(fs);
+	}
 }

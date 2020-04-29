@@ -24,9 +24,11 @@
 	<link rel="stylesheet" href="resources/css/owl.carousel.min.css"/>
 
 	<!-- Main Stylesheets -->
-	<link rel="stylesheet" href="resources/css/notice.css"/>
-	<link rel="stylesheet" href="resources/css/style.css"/>
+<link rel="stylesheet" href="resources/css/style.css"/>
+	<link rel="stylesheet" href="resources/css/admin_qna.css"/>
 	<link rel="stylesheet" href="resources/css/font.css"/>
+	<link rel="stylesheet" href="resources/css/adminmargin.css"/>
+	<link rel="stylesheet" href="resources/css/padding.css"/>
 	<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -39,6 +41,10 @@
 		.thArea {
    			 border-bottom: 2px solid black;
    			 }
+   			 #searchArea{width: 316px; margin-top: 0px; }
+   		
+		.qnaPaging a{color: #242424;
+		font-weight: bold;}
 	</style>
 </head>
 <body>
@@ -142,7 +148,6 @@
 						<!-- 이전 -->
 						<div class="qnaPaging">
 							<c:if test="${pi.currentPage eq 1 }">
-								<
 							</c:if>
 							<c:if test ="${pi.currentPage ne 1 }">
 								<c:url var="before" value="noticeList.do">
@@ -150,24 +155,23 @@
 								</c:url>
 								<a href="${ before }"><</a>
 							</c:if>
-							
+					 		
 							<!-- 페이지 -->
 							<c:forEach var="p" begin="${pi.startPage}" end="${pi.endPage }">
 								<c:if test="${ p eq pi.currentPage }">
-									<font color="red" size = "4"><b>[${ p }]</b></font>
+									<div style="width:24px; height:24px; background:#242424; color:white; display:inline-block; border-radius:70%">${ p }</div>
 								</c:if>
 								
 								<c:if test="${ p ne pi.currentPage }">
-									<c:url var="pagination" value="noticeList.do">
+									<c:url var="pagenation" value="noticeList.do">
 										<c:param name="currentPage" value="${p}"/>
 									</c:url>
-									<a href="${ pagination }">${p}</a>
+									<a href="${ pagenation }">${p}</a>
 								</c:if>
 							</c:forEach>
 							
 							<!-- 다음 -->
 							<c:if test="${pi.currentPage eq pi.maxPage }">
-								>
 							</c:if>
 							<c:if test="${pi.currentPage ne pi.maxPage }">
 								<c:url var="after" value="noticeList.do">
@@ -175,9 +179,8 @@
 								</c:url>
 								<a href="${after}">></a>
 							</c:if>
-							
-						
 					</div>
+						
 				</div>
 			</div>
 			<!-- Page end -->

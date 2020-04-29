@@ -115,9 +115,9 @@
 </head>
 <body>
 	<!-- Page Preloder -->
-	<!-- <div id="preloder">
+	<div id="preloder">
 		<div class="loader"></div>
-	</div> -->
+	</div>
 
 	<!-- Main section start -->
 	<div class="main-site-warp">
@@ -142,7 +142,6 @@
 			<!-- Left Side section -->
 			<div class="main-sidebar">
 				<div class="mb-warp">
-                    <input type="button" onclick="han()" value="확인">
 					<a href="indexView.do" class="site-logo">
 						<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
@@ -193,6 +192,7 @@
 		    	</div>
 		    	<!--  -->
 		    	<div id="followerMembers2" style="overflow:auto; width:405px; height:680px;">
+		    		<div id="con">
 		    		<c:set var="fList2" value="${ followerList }"/>
 		    		<c:if test="${ not empty fList2 }">
 				    	<c:forEach var="fl2" items="${ followerList }">
@@ -220,6 +220,7 @@
 		    			</div>
 			    	</c:if>
 		    	</div>
+		    	</div>
 		    	<!--  -->
 		    </div>
 		    <!-- follower 팝업 끝 -->
@@ -230,10 +231,11 @@
 		    	<div style="display:inline-block; width:342px; height:60px; font-size:24px; padding:10px; text-align:left; font-weight:bold; margin-left:10px">following</div>
 		    	<div id="xBtn" style="display:inline-block; width:37px; height:60px; font-size:24px; padding:10px; text-align:right; font-weight:bold; cursor:pointer; margin-right:10px">X</div>
 		    	<div style="width:405px; height:60px; font-size:24px; padding:10px; text-align:center;">
-		    		<input type="search" class="form-control" placeholder="search"/>
+		    		<input type="search" id="followingSearch" class="form-control" placeholder="search"/>
 		    	</div>
 		    	<!--  -->
 		    	<div id="followingMembers" style="overflow:auto; width:405px; height:680px;">
+		    		<div id='ing'>
 		    		<c:set var="fList" value="${ followingList }"/>
 		    		<c:if test="${ not empty fList }">
 				    	<c:forEach var="fl" items="${ followingList }">
@@ -263,6 +265,7 @@
 				    			</div>
 			    			</div>
 				    	</c:if>
+				    	</div>
 		    	</div>
 		    	<!--  -->
 		    </div>
@@ -347,6 +350,7 @@
 		    		location.href="other_profileView.do?otherId="+otherId;
 		    	});
 		    	
+		    	/* follower에서 검색으로 filter된 리스트 */
 		    	$('#followerSearch').on("keyup",function(){
 		    		var search = $('#followerSearch').val();
 		    		var userId = $('#userId').text();
@@ -356,67 +360,117 @@
 						type:'post',
 						data:{search:search,userId:userId},
 						success:function(data){
-							$('#followerMembers2').remove();
-				    		$('#followerPopup').append('<div id="followerMembers2" style="overflow:auto; width:405px; height:680px;">');
-				    		$('#followerMembers2').append('<div id="a1" style="display:flex; width:400px; height:70px; font-size:24px; padding:10px;">');
-							for(var i in data){
-					    		$('#a1').append('<div id="a2" style="display:inline-flex; width: 50px; height:50px; border-radius: 70%; overflow: hidden;">');
-					    		$('#a2').append('<img src="resources/images/user/'+data[i].picture+'" style="width: 100%; height:100%; object-fit: cover;">');
-					    		$('#a1').append('<div id="a3" style="display:inline-flex; flex-direction:column; width: 230px; height:50px; margin-left:10px; margin-right:10px">');
-					    		$('#a3').append('<div class="otherNickName" style="font-size:13px; width: 230px; height:20px; font-weight:bold; cursor:pointer">'+data[i].nickName+'</div>')
-					    		.append('<div class="afterIntro" style="font-size:13px; width: 230px; height:20px; color:gray"></div>')
-					    		.append('<input type="hidden" class="rawIntro" value="안녕하세요">');
-					    		$('#a1').append('<span class="otherId" style="display:none">'+data[i].userId+'</span>');
-							}
 							
-							/* followingMembers */
+							$('#con').remove();
+							
+						    var fm = "";
+				    		fm += '<div id="con">';
+				    		fm += '<div id="followerMembers2" style="overflow:auto; width:405px; height:680px;">';
+				    		
+				    		for(var i in data){
+					    		fm += '<div style="display:flex; width:400px; height:70px; font-size:24px; padding:10px;">';
+					    		fm += '<div style="display:inline-flex; width: 50px; height:50px; border-radius: 70%; overflow: hidden;">';
+					    		fm += '<img src="resources/images/user/'+data[i].picture+'" style="width: 100%; height:100%; object-fit: cover;">';
+					    		fm += '</div>';
+					    		fm += '<div style="display:inline-flex; flex-direction:column; width: 230px; height:50px; margin-left:10px; margin-right:10px">';
+					    		fm += '<div class="otherNickName" style="font-size:13px; width: 230px; height:20px; font-weight:bold; cursor:pointer">'+data[i].nickName+'</div>';
+					    		fm += '<div class="afterIntro" style="font-size:13px; width: 230px; height:20px; color:gray">'+data[i].intro+'</div>';
+					    		fm += '</div>';
+					    		
+					    		fm += '<span class="otherId" style="display:none">'+data[i].userId+'</span>';
+					    		fm += '</div>';
+				    		}
+				    		
+				    		fm += '</div></div>';
+				    		
+				    		$('#followerMembers2').html(fm);
+				    		
+				    		$('.otherNickName').click(function(){
+					    		var otherId = $(this).parent().parent().find('span').text();
+					    		location.href="other_profileView.do?otherId="+otherId;
+					    	});
+				    		
 						},error:function(){
 							console.log('error: follower search');
 						}
 					});
 				});
 		    	
-		    	
-		    	function han(){
-		    		$('#followerMembers2').remove();
-		    		$('#followerPopup').append('<div id="followerMembers2" style="overflow:auto; width:405px; height:680px;">');
-		    		$('#followerMembers2').append('<div id="a1" style="display:flex; width:400px; height:70px; font-size:24px; padding:10px;">');
-		    		$('#a1').append('<div id="a2" style="display:inline-flex; width: 50px; height:50px; border-radius: 70%; overflow: hidden;">');
-		    		$('#a2').append('<img src="resources/images/user/01.jpg" style="width: 100%; height:100%; object-fit: cover;">');
-		    		$('#a1').append('<div id="a3" style="display:inline-flex; flex-direction:column; width: 230px; height:50px; margin-left:10px; margin-right:10px">');
-		    		$('#a3').append('<div class="otherNickName" style="font-size:13px; width: 230px; height:20px; font-weight:bold; cursor:pointer">디히</div>')
-		    		.append('<div class="afterIntro" style="font-size:13px; width: 230px; height:20px; color:gray"></div>')
-		    		.append('<input type="hidden" class="rawIntro" value="안녕하세요">');
-		    		$('#a1').append('<span class="otherId" style="display:none">4dich</span>');
+		    	/* following에서 검색으로 filter된 리스트 */
+		    	$('#followingSearch').on("keyup",function(){
+		    		var search = $('#followingSearch').val();
+		    		var userId = $('#userId').text();
 		    		
-		    	}
-		    	
-		    	/* --*/
-		    	/* --*/
-		    	
-		    	
-		    	
-		    	
-		    	
-		    	
-		    	
-		    	
-		    	
-		    	
-		    	
-		    	
-		    	
-		    	
-		    	
-		    	
-		    	
-		    	
-		    	
-		    	
+		    		$.ajax({
+						url:'followingSearch.do',
+						type:'post',
+						data:{search:search,userId:userId},
+						success:function(data){
+							
+							console.log(data);
+							
+							$('#ing').remove();
+							
+						    var ing = "";
+						    ing += '<div id="ing">';
+						    ing += '<div id="followingMember" style="overflow:auto; width:405px; height:680px;">';
+				    		
+				    		for(var i in data){
+				    			ing += '<div style="display:flex; width:400px; height:70px; font-size:24px; padding:10px;">';
+				    			ing += '<div style="display:inline-flex; width: 50px; height:50px; border-radius: 70%; overflow: hidden;">';
+				    			ing += '<img src="resources/images/user/'+data[i].picture+'" style="width: 100%; height:100%; object-fit: cover;">';
+					    		ing += '</div>';
+					    		ing += '<div style="display:inline-flex; flex-direction:column; width: 230px; height:50px; margin-left:10px; margin-right:10px">';
+					    		ing += '<div class="otherNickName" style="font-size:13px; width: 230px; height:20px; font-weight:bold; cursor:pointer">'+data[i].nickName+'</div>';
+					    		ing += '<div class="afterIntro" style="font-size:13px; width: 230px; height:20px; color:gray">'+data[i].intro+'</div>';
+					    		ing += '</div>';
+					    		ing += '<div style="width: 80px; height:50px;">';
+					    		ing += '<button class="unfoBtn" style="font-size:14px; margin-top:12px; width:100%; padding: 2px 10px 2px 10px">unfollow</button>';
+					    		ing += '</div>';
+					    		ing += '<span class="otherId" style="display:none">'+data[i].userId+'</span>';
+					    		ing += '</div>';
+				    		}
+				    		
+				    		ing += '</div></div>';
+				    		
+				    		$('#followingMembers').html(ing);
+				    		
+				    		$('.otherNickName').click(function(){
+					    		var otherId = $(this).parent().parent().find('span').text();
+					    		location.href="other_profileView.do?otherId="+otherId;
+					    	});
+				    		
+				    		$('.unfoBtn').click(function(){
+					    		var host = $(this).parent().parent().find('span').text();
+					    		var follower = $('#userId').text();
+					    		$(this).parent().parent().remove();
+					    		
+					    		$.ajax({
+					    			url:'my_unfollow.do',
+					    			type:'post',
+					    			data:{host:host,follower:follower},
+					    			success:function(data){
+							    		console.log(data);
+							    		$('#cntFollowing').text(data);
+							    		if(data==0){
+							    			$('#followingMembers')
+							    			.append('<div id="searchFriend" style="cursor:pointer;">')
+							    			.append('<img src="resources/images/mypage/compass.png" style="opacity:0.5; width:200px; margin-left:100px; margin-top:150px">')
+							    			.append('<div style="text-align:center; margin-top:20px; color:gray">친구가 없네요<br>새 친구를 찾아보죠');
+							    		}
+					    			},error:function(){
+					    				console.log('fail: unfollow');
+					    			}
+					    		});
+					    	});
+				    		
+						},error:function(){
+							console.log('error: follower search');
+						}
+					});
+				});
 		    	
 		    </script>
-		    	
-		    
 				<div class="portfolio-section">
 					<!-- interest 영역 -->				
 					<div class="main-down" style="height: 40%; width:90%; margin-left:20px">

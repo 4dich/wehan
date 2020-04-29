@@ -1377,4 +1377,8 @@ Responsive
 	.menu-social a {
 		margin-right: 15px;
 	}
+	
+	.qnaPaging a:link { text-decoration: none; color:#242424;}
+	.qnaPaging a:visited { text-decoration: none; color:#242424;}
+	.qnaPaging a:hover { text-decoration: none; color:#242424;}
 }

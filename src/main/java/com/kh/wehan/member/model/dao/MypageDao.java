@@ -98,4 +98,8 @@ public class MypageDao {
 		return (ArrayList)sqlSession.selectList("mypageMapper.followerSearch",fs);
 	}
 
+	public ArrayList<Member> followingSearch(FollowerSearch fs) {
+		return (ArrayList)sqlSession.selectList("mypageMapper.followingSearch",fs);
+	}
+
 }

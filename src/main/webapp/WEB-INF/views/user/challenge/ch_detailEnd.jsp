@@ -238,9 +238,11 @@
 		var chId = '${chal.chId}';
 		var endDate = new Date('${ chal.endDate }');
 		var startDate = new Date('${ chal.startDate }');
-		var date = (endDate - startDate);
-		var time = Math.ceil(date/ (1000*60*60*24));
 		
+		// 챌린지 기간 일수 (챌린지 마감일 - 챌린지 시작일)
+		var date = (endDate - startDate) + 1;
+		var time = Math.ceil(date/ (1000*60*60*24));
+		// 챌린지 도전한 사람 수 
 		var count = '${ chal.chPeopleCount }';		
 		
 		// 성공률 구하기

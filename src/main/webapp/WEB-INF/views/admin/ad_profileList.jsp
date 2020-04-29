@@ -176,34 +176,32 @@
 						</c:if>
 						
 						<c:if test="${empty searchValue}">
-							<div class="qnaPaging">
+							<div class="qnaPaging" style="margin-top:-25px;">
 								<c:if test="${ pi.currentPage eq 1 }">
-									< &nbsp;
 								</c:if>
 								<c:if test="${ pi.currentPage ne 1 }">
 									<c:url var="before" value="mlist.do">
 										<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
 									</c:url>
-									<a href="${ before }"><</a> &nbsp;
+									<a href="${ before }"><</a>
 								</c:if>
 								
 								<!-- 페이지 -->
 								<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
 									<c:if test="${ p eq pi.currentPage }">
-										<font color="red" size="4"><b>[${ p }]</b></font>
+										<div style="width:24px; height:24px; background:#242424; color:white; display:inline-block; border-radius:70%">${ p }</div>
 									</c:if>
 									
 									<c:if test="${ p ne pi.currentPage }">
 										<c:url var="pagination" value="mlist.do">
 											<c:param name="currentPage" value="${ p }"/>
 										</c:url>
-										<a href="${ pagination }">${ p }</a> &nbsp;
+										<a href="${ pagination }">${ p }</a>
 									</c:if>
 								</c:forEach>
 								
 								<!-- [다음] -->
 								<c:if test="${ pi.currentPage eq pi.maxPage }">
-									>
 								</c:if>
 								<c:if test="${ pi.currentPage ne pi.maxPage }">
 									<c:url var="after" value="mlist.do">

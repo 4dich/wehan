@@ -89,7 +89,7 @@ var events = [];
                       	cntStamp:0
                       },success:function(data){
                     	  $('#calendar').remove();
-                    	  $('#dich').append("<div id='calendar' style='border: 1px solid #242424; border-radius:10px; padding: 10px'></div>");
+                    	  $('#dich').append("<div id='calendar'></div>");
                     	  events = [];
                     	  selectCalendar();
                       },error:function(){
@@ -166,7 +166,7 @@ var events = [];
 	       	        	  success:function(data){
 	       	        	  	  console.log(data + '개 행이 업데이트되었습니다.');
 	       	        	  $('#calendar').remove();
-	       	            	  $('#dich').append("<div id='calendar' style='border: 1px solid #242424; border-radius:10px; padding: 10px'></div>");
+	       	            	  $('#dich').append("<div id='calendar'></div>");
 	       	            	  events = [];
 	       	            	  selectCalendar();
 	       	        	  },
@@ -190,7 +190,7 @@ var events = [];
 	                    	  success:function(data){
 	                    	  	  console.log(data + '개 행이 업데이트되었습니다.');
 	                    	  $('#calendar').remove();
-	                        	  $('#dich').append("<div id='calendar' style='border: 1px solid #242424; border-radius:10px; padding: 10px'></div>");
+	                        	  $('#dich').append("<div id='calendar'></div>");
 	                        	  events = [];
 	                        	  selectCalendar();
 	                    	  },
@@ -293,7 +293,7 @@ var events = [];
 	 	 		  success:function(data){
 	 	 		  	  console.log(data + '개 행이 업데이트되었습니다.');
 		 	 		  $('#calendar').remove();
-	              	  $('#dich').append("<div id='calendar' style='border: 1px solid #242424; border-radius:10px; padding: 10px'></div>");
+	              	  $('#dich').append("<div id='calendar'></div>");
 	              	  events = [];
 	              	  selectCalendar();
 	 	 		  },
@@ -595,14 +595,6 @@ var events = [];
     margin: 0 auto;
   }
   
-  .fc-sat {
-  	color:#0000FF;
-  }
-  
-  .fc-sun {
-  	color: #FF0000;
-  }
-  
   /* 달력클릭시 팝업창에서 색고르는 항목 */
   .box-radio-input input[type="radio"]{
       display:none;
@@ -628,21 +620,49 @@ var events = [];
      padding: 45px 95px 100px 115px;
   }
   
-  .fc-title{
-  	color:black;
+  #calendar .fc-title{
+  	color:#333333;
   }
   
   #calendar h2{
   	font-weight:bold;
   }
+  
+  #calendar{
+  	border: 1px solid gray;
+  }
+  
+  #calendar .fc-day-number{
+  	color:#333333;
+  }
+  
+  #calendar .fc-today{
+  }
+  
+  #calendar a:visited { text-decoration: none;}
+  #calendar a:hover { text-decoration: none;}
+  
+  .fc-unthemed td.fc-today {
+    background: #c7c7c7;
+  }
+  
+  .fc-day-header a{
+  	color: #333333;
+  }
+  
+  .fc-toolbar{
+  	background:#333333;
+  	color: white;
+  }
+  /* fc-day-header fc-widget-header */
 </style>
 </head>
 
 <body>
 	<!-- Page Preloder -->
-	<!-- <div id="preloder">
+	<div id="preloder">
 		<div class="loader"></div>
-	</div> -->
+	</div>
 
 	<!-- Main section start -->
 	<div class="main-site-warp">
@@ -666,36 +686,103 @@ var events = [];
 		<div class="site-content-warp">
 			<!-- Left Side section -->
 			<div class="main-sidebar">
-				<div class="mb-warp" style="text-align: center;">
+				<div class="mb-warp">
 
                     <a href="indexView.do" class="site-logo">
 						<h2 style="margin-left: 6px;">위대한 한걸음</h2>
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
-					<div id="lv" style="width: 350px; height: 470px; border: 1px solid gray; padding:20px; margin:auto; margin-top: -30px">
-						<div id="lv-img" style="width: 300px; height:320px; margin:auto; background-image: url('resources/images/level/astro2.gif'); background-size: cover; border-radius: 15px;">
-							<img src="resources/images/level/lv4.png">
+					<div id="lv" style="width: 350px; height: 470px; border: 1px solid gray; padding:20px;  margin-top: -20px">
+						<div style="width: 300px; height:320px; margin:auto; background-image: url('resources/images/level/astro2.gif'); background-size: cover; border-radius: 15px;">
+							<img id="lv-img" src="">
 						</div>
-						<div id="lv-progress" style="width: 300px; margin:auto; margin-top: 10px;">
-							<div>
+						<div style="width: 300px; margin:auto; margin-top: 10px;">
+							<div style="text-align:left">
 								<div id="nickName" style="font-size:24px; margin-bottom: 10px; text-align:left"><b>${loginUser.nickName}</b></div>
-								<div id="lv-text" style="font-size:16px; margin-bottom: 5px; text-align:left" >Lv 4</div>
+								<span style="font-size:16px;">Lv</span>
+								<span class="lv-txt2" style="font-size:16px; margin-bottom: 5px; text-align:left">${ mypage.myLevel }</span>
+								<!-- <div id="lv-txt2" style="font-size:16px; margin-bottom: 5px; text-align:left" >Lv 4</div> -->
 							</div>
 							<div class="progress" style="border:1px solid gray; margin-bottom:-3px; ">
-								<div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar"
-									aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:66%"> Exp 10
+								<div id="progress-bar" class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar"
+									aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:0%">${ mypage.myExp }
 								</div>
 						    </div>
-							<div id="lv-progress1" style="width: 140px; text-align:left; display:inline-block; font-size: 12px">
+							<div class="exp-min" style="width: 140px; text-align:left; display:inline-block; font-size: 12px">
 								0
 							</div>
-							<div id="lv-progress2" style="width: 140px; text-align:right; display:inline-block; font-size: 12px">
-								15
+							<div class="exp-max" style="width: 140px; text-align:right; display:inline-block; font-size: 12px">
+								-1
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			
+			<div class='exp-txt' style='display:none'>${mypage.myExp }</div>
+			
+			<script>
+			var $lv2 = $('.lv-txt2').text();
+			var $exp = $('.exp-txt');
+			var $expMax = $('.exp-max');
+			var $progress = $("#progress-bar");
+			var percent = 0;
+			
+			var currentLv = 0;
+			var currentExp = 0;
+			/* lv1 */
+			if($lv2==1){
+				$expMax[0].innerText = 5;
+				percent = ($exp[0].innerText / 5) * 100;
+				percent += '%';
+				$progress.css('width',percent);
+				$progress[0].innerText = 'Exp ' + $exp[0].innerText;
+				$("#lv-img").attr("src", "resources/images/level/lv1.png");
+			/* lv2 */
+			}else if($lv2==2){
+				$expMax[0].innerText = 10;
+				percent = ($exp[0].innerText / 10) * 100;
+				percent += '%';
+				$progress.css('width',percent);
+				$progress[0].innerText = 'Exp ' + $exp[0].innerText;
+				$("#lv-img").attr("src", "resources/images/level/lv2.png");
+			/* lv3 */
+			}else if($lv2==3){
+				$expMax[0].innerText = 15;
+				percent = ($exp[0].innerText / 15) * 100;
+				percent += '%';
+				$progress.css('width',percent);
+				$progress[0].innerText = 'Exp ' + $exp[0].innerText;
+				$("#lv-img").attr("src", "resources/images/level/lv3.png");
+			/* lv4 */
+			}else if($lv2==4){
+				$expMax[0].innerText = 20;
+				percent = ($exp[0].innerText / 20) * 100;
+				percent += '%';
+				$progress.css('width',percent);
+				$progress[0].innerText = 'Exp ' + $exp[0].innerText;
+				$("#lv-img").attr("src", "resources/images/level/lv4.png");
+			/* lv5 */ 
+			}else if($lv2==5){
+				$expMax[0].innerText = 25;
+				percent = ($exp[0].innerText / 25) * 100;
+				percent += '%';
+				$progress.css('width',percent);
+				$progress[0].innerText = 'Exp ' + $exp[0].innerText;
+				$("#lv-img").attr("src", "resources/images/level/lv5.png");
+			/* lv6 */
+			}else{
+				$expMax[0].innerText = 999;
+				percent = ($exp[0].innerText / 999) * 100;
+				percent += '%';
+				$progress.css('width',percent);
+				$progress[0].innerText = 'Exp ' + $exp[0].innerText;
+				$("#lv-img").attr("src", "resources/images/level/lv6.png");
+				
+				currentLv = 6;
+				currentExp = countComplete-75;
+			}
+			</script>
 			<!-- Left Side section end -->
 			<!-- Page start -->
 			<!-- <div id='itemContainer' style="width:900px; height:200px; margin-left: 185px; overflow-y: auto; margin-bottom: 50px; border:1px solid; -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);">
@@ -705,7 +792,7 @@ var events = [];
 			</div> -->
 			
 			<div id='dich'></div>
-			<div id='calendar' style='border: 1px solid #242424; border-radius:10px; padding: 10px'></div>
+			<div id='calendar'></div>
 			
 			<div id='stat' style="display:none; background: white; width:500px; height:498px; position:absolute; left: 1000px; top: 200px; border-radius:5px; box-shadow : rgba(0,0,0,0.5) 0 0 0 9999px; z-index : 100;
 			-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75); -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);">

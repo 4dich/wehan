@@ -191,4 +191,13 @@
 		                  WHERE HOST=#{userId})
 		AND ME.NICKNAME LIKE '%'||#{search}||'%'
 	</select>
+	
+	<select id="followingSearch" resultMap="memberResultSet">
+		SELECT ME.USERID,ME.NICKNAME,ME.PICTURE,MY.INTRO
+		FROM MEMBER ME,MYPAGE MY
+		WHERE ME.USERID=MY.USERID
+		AND ME.USERID IN (SELECT HOST FROM FOLLOW
+		                  WHERE FOLLOWER=#{userId})
+		AND ME.NICKNAME LIKE '%'||#{search}||'%'
+	</select>
 </mapper>

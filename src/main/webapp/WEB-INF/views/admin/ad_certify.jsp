@@ -36,6 +36,7 @@
 		tr{height: 58px;}
 		.blog-posts{height: 800px;}
 		.about-info{margin:0;}
+		a{color: black;}
 	</style>
 		
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -130,44 +131,39 @@
 							</table>
 							
 							<div class="qnaPaging">
-								<c:if test="${pi.currentPage eq 1 }">
-								<
+							<c:if test="${pi.currentPage eq 1 }">
+							</c:if>
+							<c:if test ="${pi.currentPage ne 1 }">
+								<c:url var="before" value="ad_certifyView.do">
+									<c:param name="currentPage" value="${pi.currentPage - 1}"/>
+								</c:url>
+								<a href="${ before }"><</a>
+							</c:if>
+					 		
+							<!-- 페이지 -->
+							<c:forEach var="p" begin="${pi.startPage}" end="${pi.endPage }">
+								<c:if test="${ p eq pi.currentPage }">
+									<div style="width:24px; height:24px; background:#242424; color:white; display:inline-block; border-radius:70%">${ p }</div>
 								</c:if>
 								
-								<c:if test="${ pi.currentPage ne 1 }">
-									<c:url var="before" value="ad_certifyView.do">
-										<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
+								<c:if test="${ p ne pi.currentPage }">
+									<c:url var="pagenation" value="ad_certifyView.do">
+										<c:param name="currentPage" value="${p}"/>
 									</c:url>
-									<a href="${ before }">&lt;</a> &nbsp;
+									<a href="${ pagenation }">${p}</a>
 								</c:if>
+							</c:forEach>
 							
-								<!-- 페이지 -->
-								<c:forEach var="p" begin="${pi.startPage}" end="${pi.endPage }">
-									<c:if test="${ p eq pi.currentPage }">
-										<font color="red" size = "4"><b>[${ p }]</b></font>
-									</c:if>
-									
-									<c:if test="${ p ne pi.currentPage }">
-										<c:url var="pagenation" value="ad_certifyView.do">
-											<c:param name="currentPage" value="${ p }"/>
-										</c:url>
-										<a href="${ pagination }">${p}</a>
-									</c:if>
-								</c:forEach>
-								
-								<!-- 다음 -->
-								<c:if test="${pi.currentPage eq pi.maxPage }">
-									>
-								</c:if>
-								<c:if test="${pi.currentPage ne pi.maxPage }">
-									<c:url var="after" value="ad_certifyView.do">
-										<c:param name="currentPage" value="${pi.currentPage + 1 }"/>
-									</c:url>
-									<a href="${after}">&gt;</a>
-								</c:if>
-								
-						
-							</div>
+							<!-- 다음 -->
+							<c:if test="${pi.currentPage eq pi.maxPage }">
+							</c:if>
+							<c:if test="${pi.currentPage ne pi.maxPage }">
+								<c:url var="after" value="ad_certifyView.do">
+									<c:param name="currentPage" value="${pi.currentPage + 1 }"/>
+								</c:url>
+								<a href="${after}">></a>
+							</c:if>
+					</div>
 						</div>
 					</div>
 				</div>

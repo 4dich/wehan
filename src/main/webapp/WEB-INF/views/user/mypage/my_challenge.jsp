@@ -318,9 +318,9 @@
 </head>
 <body>
 	<!-- Page Preloder -->
-	<!-- <div id="preloder">
+	<div id="preloder">
 		<div class="loader"></div>
-	</div> -->
+	</div>
 
 	<!-- Main section start -->
 	<div class="main-site-warp">
@@ -484,7 +484,7 @@
 												<div style="width: 250px; text-align:left;">${ c.chName }</div>
 												<div class="ceCount" style="border-left:1px solid gray;">${ceCount[status.index]}</div>
 												<div style="width:10px">/</div>
-												<div class="gapDate" style="border-right:1px solid gray;">-1</div>
+												<div class="gapDate" style="border-right:1px solid gray;"></div>
 												<span class="chId" style="display:none">${ c.chId }</span>
 											</div>
 										</c:forEach>
@@ -505,7 +505,7 @@
 												<div style="width: 250px; text-align:left;">${ c.chName }</div>
 												<div class="ceCount" style="border-left:1px solid gray;">${ceCount[status.index]}</div>
 												<div style="width:10px">/</div>
-												<div class="gapDate2" style="border-right:1px solid gray;">-1</div>
+												<div class="gapDate2" style="border-right:1px solid gray;"></div>
 												<span class="chId" style="display:none">${ c.chId }</span>
 											</div>
 										</c:forEach>
@@ -526,7 +526,7 @@
 												<div style="width: 250px; text-align:left;">${ c.chName }</div>
 												<div class="ceCount" style="border-left:1px solid gray;">${ceCount[status.index]}</div>
 												<div style="width:10px">/</div>
-												<div class="gapDate3" style="border-right:1px solid gray;">-1</div>
+												<div class="gapDate3" style="border-right:1px solid gray;"></div>
 												<span class="chId" style="display:none">${ c.chId }</span>
 											</div>
 										</c:forEach>
@@ -547,7 +547,7 @@
 												<div style="width: 250px; text-align:left;">${ c.chName }</div>
 												<div class="ceCount" style="border-left:1px solid gray;">${ceCount[status.index]}</div>
 												<div style="width:10px">/</div>
-												<div class="gapDate4" style="border-right:1px solid gray;">-1</div>
+												<div class="gapDate4" style="border-right:1px solid gray;"></div>
 												<span class="chId" style="display:none">${ c.chId }</span>
 											</div>
 										</c:forEach>
@@ -572,14 +572,14 @@
 										var $totalCh = $('#totalCh');
 										
 										for(var i=0; i<$sArr.length; i++){
-											var sYear = $sArr[i].innerText.split('/')[0];
-											var sMonth = $sArr[i].innerText.split('/')[1];
-											var sDay = $sArr[i].innerText.split('/')[2];
+											var sYear = $sArr[i].innerText.split('-')[0];
+											var sMonth = $sArr[i].innerText.split('-')[1];
+											var sDay = $sArr[i].innerText.split('-')[2];
 											var sDate = new Date(sYear,sMonth-1,sDay);
 											
-											var eYear = $eArr[i].innerText.split('/')[0];
-											var eMonth = $eArr[i].innerText.split('/')[1];
-											var eDay = $eArr[i].innerText.split('/')[2];
+											var eYear = $eArr[i].innerText.split('-')[0];
+											var eMonth = $eArr[i].innerText.split('-')[1];
+											var eDay = $eArr[i].innerText.split('-')[2];
 											var eDate = new Date(eYear,eMonth-1,eDay);
 											
 											console.log('sDate:'+sDate);

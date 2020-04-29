@@ -27,6 +27,8 @@
 	<link rel="stylesheet" href="resources/css/fidRecommend.css"/>
 	<link rel="stylesheet" href="resources/css/style.css"/>
 	<link rel="stylesheet" href="resources/css/font.css"/>	
+	
+	<link rel="stylesheet" href="resources/css/padding.css"/>
 	<style>
 	#fidListArea {
     width: 100%;
@@ -36,13 +38,14 @@
 	}
 	.qnaPaging{
 	height: 10%;
-    position: absolute;
     bottom: 0;
     text-align: center;
-    width: 70%;
+    width: 100%;
 	}
 	.about-info{width:348px;}
 	.about-info p{font-size:12px;}
+	.qnaPaging a{color: #242424;
+	font-weight: bold;}
 	</style>
 	<!--[if lt IE 9]>
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -67,7 +70,7 @@
 				<i class="fa fa-bars"></i>
 			</div>
 			<div class="header-social">
-				<a href="fid_ch_recommendView.do" >추천피드</a>
+				<a href="fid_ch_recommendView.do" >전체피드</a>
                 <a href="fid_friendListView.do" style="color: red;">친구피드</a>
                 <a href="fid_followView.do">팔로우</a>
 			</div>
@@ -150,45 +153,41 @@
 							</div>
 
 							
-							<div class="qnaPaging">
-								<c:if test="${pi.currentPage eq 1 }">
-								<
+						<div class="qnaPaging">
+							<c:if test="${pi.currentPage eq 1 }">
+							</c:if>
+							<c:if test ="${pi.currentPage ne 1 }">
+								<c:url var="before" value="fid_friendListView.do">
+									<c:param name="currentPage" value="${pi.currentPage - 1}"/>
+								</c:url>
+								<a href="${ before }"><</a>
+							</c:if>
+					 		
+							<!-- 페이지 -->
+							<c:forEach var="p" begin="${pi.startPage}" end="${pi.endPage }">
+								<c:if test="${ p eq pi.currentPage }">
+									<div style="width:24px; height:24px; background:#242424; color:white; display:inline-block; border-radius:70%">${ p }</div>
 								</c:if>
 								
-								<c:if test="${ pi.currentPage ne 1 }">
-									<c:url var="before" value="fid_ch_recommendView.do">
-										<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
+								<c:if test="${ p ne pi.currentPage }">
+									<c:url var="pagenation" value="fid_friendListView.do">
+										<c:param name="currentPage" value="${p}"/>
 									</c:url>
-									<a href="${ before }">&lt;</a> &nbsp;
+									<a href="${ pagenation }">${p}</a>
 								</c:if>
+							</c:forEach>
 							
-								<!-- 페이지 -->
-								<c:forEach var="p" begin="${pi.startPage}" end="${pi.endPage }">
-									<c:if test="${ p eq pi.currentPage }">
-										<font color="red" size = "4"><b>[${ p }]</b></font>
-									</c:if>
-									
-									<c:if test="${ p ne pi.currentPage }">
-										<c:url var="pagenation" value="fid_ch_recommendView.do">
-											<c:param name="currentPage" value="${ p }"/>
-										</c:url>
-										<a href="${ pagination }">${p}</a>
-									</c:if>
-								</c:forEach>
-								
-								<!-- 다음 -->
-								<c:if test="${pi.currentPage eq pi.maxPage }">
-									>
-								</c:if>
-								<c:if test="${pi.currentPage ne pi.maxPage }">
-									<c:url var="after" value="fid_ch_recommendView.do">
-										<c:param name="currentPage" value="${pi.currentPage + 1 }"/>
-									</c:url>
-									<a href="${after}">&gt;</a>
-								</c:if>
-								
-						
-							</div>
+							<!-- 다음 -->
+							<c:if test="${pi.currentPage eq pi.maxPage }">
+							</c:if>
+							<c:if test="${pi.currentPage ne pi.maxPage }">
+								<c:url var="after" value="fid_friendListView.do">
+									<c:param name="currentPage" value="${pi.currentPage + 1 }"/>
+								</c:url>
+								<a href="${after}">></a>
+							</c:if>
+					</div>
+							
 
 
 							<!-- 인증사진 리스트 끝 -->
