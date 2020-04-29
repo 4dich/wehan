@@ -81,7 +81,7 @@
 			<if test="endDate != null">
 				WHERE ENDDATE LIKE '%' || #{endDate} || '%'
 			</if>
-		ORDER BY CHID+1 DESC
+		ORDER BY CHID+1 ASC
 	</select>
 	
 	<insert id="insertChallenge">
