@@ -145,12 +145,16 @@
 											</c:url>
 											<td class="buttonArea" colspan="2"><a class="site-btn"
 												href="${qModifyView}"
-												style="background-color: white; padding-left: 15px; padding-right: 15px; min-width: 120px; padding-top: 10px; padding-bottom: 10px;">
+												style="background-color: white; padding-left: 15px;
+												padding-right: 15px; min-width: 120px;
+												padding-top: 10px; padding-bottom: 10px;">
 													수정하기 </a> <a class="site-btn" href="${qDelete}"
-												style="background-color: white; padding-left: 15px; padding-right: 15px; min-width: 120px; padding-top: 10px; padding-bottom: 10px;">
+												style="background-color: white; padding-left: 15px;
+												padding-right: 15px; min-width: 120px;
+												padding-top: 10px; padding-bottom: 10px;">
 													삭제하기 </a></td>
-										</tr>
-									</c:if>
+										   </tr>
+									   </c:if>
                    
 								</table>
                    
