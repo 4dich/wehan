@@ -334,7 +334,7 @@
 			<div class="header-social">
                 <a href="other_profileView.do?otherId=${otherMember.userId}">Profile</a>
                 <a href="other_challengeView.do?otherId=${otherMember.userId}" style="color: blue;">Challenge</a>
-                <a href="other_diaryView.do">Diary</a>
+                <!-- <a href="other_diaryView.do">Diary</a> -->
 			</div>
 		</header>
 		<div class="site-content-warp">
