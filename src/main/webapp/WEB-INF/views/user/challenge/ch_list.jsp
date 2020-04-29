@@ -34,6 +34,8 @@
     
 	<link rel="stylesheet" href="resources/css/category.css"/>
 	<link rel="stylesheet" href="resources/css/font.css"/>
+	
+	<link rel="stylesheet" href="resources/css/padding.css"/>
     <style>
 		.about-info{width:348px;}
 		.about-info p{font-size:12px;}
@@ -46,7 +48,14 @@
             bottom: 0;
             padding: 4% 11px 2% 15px;
         }
-        
+        .qnaPaging{
+		height: 10%;
+	    bottom: 0;
+	    text-align: center;
+	    width: 100%;
+		}
+		.qnaPaging a{color: #242424;
+		font-weight: bold;}
         .contact-section .row {
         	height: 90%;
         }
@@ -336,43 +345,45 @@
 								});
 							</script>
                        </div>  
-                                    <div class="qnaPaging" style="float: right; margin-right: 29px; margin-top: 20px;">
-										<!-- [이전] -->
-										<c:if test="${ pi.currentPage eq 1 }">
-											&lt; &nbsp;
-										</c:if>
-										<c:if test="${ pi.currentPage ne 1 }">
-											<c:url var="before" value="chalList.do">
-												<c:param name="currentPage" value="${ pi.currentPage - 1 }"/>
-											</c:url>
-											<a href="${ before }">&lt;</a> &nbsp;
-										</c:if>
-										
-										<!-- 페이지 -->
-										<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-											<c:if test="${ p eq pi.currentPage }">
-												<b>${ p }</b> &nbsp;
-											</c:if>
-											
-											<c:if test="${ p ne pi.currentPage }">
-												<c:url var="pagination" value="chalList.do">
-													<c:param name="currentPage" value="${ p }"/>
-												</c:url>
-												<a href="${ pagination }">${ p }</a> &nbsp;
-											</c:if>
-										</c:forEach>
-										
-										<!-- [다음] -->
-										<c:if test="${ pi.currentPage eq pi.maxPage }">
-											>
-										</c:if>
-										<c:if test="${ pi.currentPage ne pi.maxPage }">
-											<c:url var="after" value="chalList.do">
-												<c:param name="currentPage" value="${ pi.currentPage + 1 }"/>
-											</c:url> 
-											<a href="${ after }">></a>
-										</c:if>				
-									</div>
+                       <div class="qnaPaging">
+							<c:if test="${pi.currentPage eq 1 }">
+							</c:if>
+							<c:if test ="${pi.currentPage ne 1 }">
+								<c:url var="before" value="chalList.do">
+									<c:param name="currentPage" value="${pi.currentPage - 1}"/>
+								</c:url>
+								<a href="${ before }"><</a>
+							</c:if>
+					 		
+							<!-- 페이지 -->
+							<c:forEach var="p" begin="${pi.startPage}" end="${pi.endPage }">
+								<c:if test="${ p eq pi.currentPage }">
+									<div style="width:24px; height:24px; background:#242424; color:white; display:inline-block; border-radius:70%">${ p }</div>
+								</c:if>
+								
+								<c:if test="${ p ne pi.currentPage }">
+									<c:url var="pagenation" value="chalList.do">
+										<c:param name="currentPage" value="${p}"/>
+									</c:url>
+									<a href="${ pagenation }">${p}</a>
+								</c:if>
+							</c:forEach>
+							
+							<!-- 다음 -->
+							<c:if test="${pi.currentPage eq pi.maxPage }">
+							</c:if>
+							<c:if test="${pi.currentPage ne pi.maxPage }">
+								<c:url var="after" value="chalList.do">
+									<c:param name="currentPage" value="${pi.currentPage + 1 }"/>
+								</c:url>
+								<a href="${after}">></a>
+							</c:if>
+					</div>
+                                    
+                                    
+                                    
+                                    
+                                    
                                 </div>
                             </div>
             <!-- Page end -->
