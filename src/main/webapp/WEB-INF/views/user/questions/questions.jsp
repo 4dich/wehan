@@ -99,12 +99,16 @@
 						<a href="blackList.do" id="ad_blackList" class="infoMenu">블랙리스트</a><br><br>
 					</div>
 			</c:if>
-			<c:if test="${!sessionScope.adminUser.getUserId().equals('admin') }">
-			<button class="site-btn sb-dark" style="margin-top:2px;font-size: 16px; 
-			 border-radius: 3px; width: 347px;" type="button" onclick="location.href='questionsInsertView.do'">
+			<c:if test="${!sessionScope.adminUser
+			              .getUserId().equals('admin') }">
+			<button class="site-btn sb-dark" 
+			 style="margin-top:2px;font-size: 16px; 
+			 border-radius: 3px; width: 347px;" 
+			 type="button" 
+			 onclick="location.href='questionsInsertView.do'">
 				문의사항 등록하기
 			</button>
-             </c:if>
+            </c:if>
 					
 				</div>
 			</div>
