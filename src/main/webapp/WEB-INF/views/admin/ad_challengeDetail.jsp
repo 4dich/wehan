@@ -327,7 +327,7 @@
 			type : 'post',
 			success:function(data){	
 				
-				$('#tPrice').text((list.length-1) * price);
+				$('#tPrice').text((list.length) * price);
 				
 				for(var i = 0; i < data.length; i++) {
 					
@@ -368,7 +368,7 @@
 		var endDate = new Date('${ chal.endDate }');
 		var startDate = new Date('${ chal.startDate }');
 		// 챌린지 기간 일수 (챌린지 마감일 - 챌린지 시작일)
-		var date = (endDate - startDate); 
+		var date = (endDate - startDate) +1; 
 		var time = Math.ceil(date/ (1000*60*60*24));
 		// 챌린지 도전한 사람 수 
 		var count = '${ chal.chPeopleCount }';	
