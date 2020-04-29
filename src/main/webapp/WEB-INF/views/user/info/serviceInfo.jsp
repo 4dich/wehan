@@ -89,7 +89,7 @@
 			<div class="page-section elements-page">
 				<div class="elements-section">
 					<div class="element">						
-						<img src="resources/images/serviceInfo/1212.jpg" style="max-width:100%; height:auto">							
+						<img src="resources/images/serviceInfo/svc.jpg" style="max-width:100%; height:auto">							
 						<div style="text-align: center;">
 							<button class="site-btn sb-solid mr-3 mb-3" type="button" onclick="location.href='companyInfoView.do'">
 								회사소개
