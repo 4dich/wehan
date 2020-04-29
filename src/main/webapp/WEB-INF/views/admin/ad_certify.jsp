@@ -110,7 +110,6 @@
 									<th>시작 날짜</th>
 									<th>종료 날짜</th>
 									<th>비공개 여부</th>
-									<th>조회 수</th>
 								</tr>
 								<c:forEach var ="c" items="${ list }">
 									<tr class="noticeList">
@@ -124,7 +123,6 @@
 										<td>${ c.startDate }</td>
 										<td>${ c.endDate }</td>
 										<td>${ c.ceDel }</td>
-										<td>2</td>
 									</tr>
 								</c:forEach>
 
