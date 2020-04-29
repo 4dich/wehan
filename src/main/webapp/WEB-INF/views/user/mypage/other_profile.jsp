@@ -109,9 +109,9 @@
 </head>
 <body>
 	<!-- Page Preloder -->
-	<!-- <div id="preloder">
+	<div id="preloder">
 		<div class="loader"></div>
-	</div> -->
+	</div>
 
 	<!-- Main section start -->
 	<div class="main-site-warp">
@@ -127,7 +127,7 @@
 			<div class="header-social">
                 <a href="other_profileView.do?otherId=${otherMember.userId}" style="color: blue;">Profile</a>
                 <a href="other_challengeView.do?otherId=${otherMember.userId}">Challenge</a>
-                <a href="other_diaryView.do">Diary</a>
+                <!-- <a href="other_diaryView.do">Diary</a> -->
 			</div>
 		</header>
 		
