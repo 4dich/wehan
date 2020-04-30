@@ -53,7 +53,6 @@ public class PayController {
 		 
 		Pay p = pService.slectPayDetail(pId);
 		Challenge ch = pService.slectchDetail(pId);
-		
 		String str = p.getmList().get(0).getAccount();
 		String[] starr = str.split(",");
 	

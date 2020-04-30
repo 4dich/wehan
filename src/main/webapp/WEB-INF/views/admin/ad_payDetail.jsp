@@ -101,11 +101,10 @@
 						</div> -->
 						<div style="margin-top: 50px; margin-right: 20px;">
                             <div class="ch-register-pic"></div>
-                            <button class="site-btn" style="margin-top: 30px; margin-left: 100px; height: 300px; width: 280px; font-size: 15px;"> 프로필 사진 (300x280)</button>				
+                            <button class="site-btn" style="margin-top: 30px; margin-left: 100px; height: 300px; width: 280px; font-size: 15px;"> <img src="resources/images/user/${p.mList[0].picture}" style="margin:0;"></button>	
 							<div id="prof">
 							<p>카테고리 > 세부카테고리</p>
 							<p style="font-size: 14px; margin-top: 10px;"><b>${ch.chName}</b></p>
-							
 							</div>
 						</div>
 						
