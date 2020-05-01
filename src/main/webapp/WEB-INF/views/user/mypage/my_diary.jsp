@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<title>WEHAN</title>
+	<title>WEHAN - MY DIARY</title>
 	<meta charset="UTF-8">
 	<meta name="description" content="Nissa Photography studio html template">
 	<meta name="keywords" content="industry, html">
@@ -693,7 +693,7 @@ var events = [];
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
 					<div id="lv" style="width: 350px; height: 470px; border: 1px solid gray; padding:20px;  margin-top: -20px">
-						<div style="width: 300px; height:320px; margin:auto; background-image: url('resources/images/level/astro2.gif'); background-size: cover; border-radius: 15px;">
+						<div style="width: 300px; height:320px; margin:auto; background-image: url('resources/images/level/green.gif'); background-size: 450px 450px; border-radius: 15px;">
 							<img id="lv-img" src="">
 						</div>
 						<div style="width: 300px; margin:auto; margin-top: 10px;">

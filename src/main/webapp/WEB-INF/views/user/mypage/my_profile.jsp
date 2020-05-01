@@ -1,16 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-	<title>위대한 한걸음</title>
+	<title>WEHAN - MY PROFILE</title>
 	<meta charset="UTF-8">
 	<meta name="description" content="Nissa Photography studio html template">
 	<meta name="keywords" content="industry, html">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
-	
 	
 	<!-- Favicon -->
 	<link href="resources/images/favicon.ico" rel="shortcut icon"/>
@@ -201,7 +200,7 @@
 					    			<img src="resources/images/user/${ fl2.picture }" style="width: 100%; height:100%; object-fit: cover;">
 					    		</div>
 					    		<div style="display:inline-flex; flex-direction:column; width: 230px; height:50px; margin-left:10px; margin-right:10px">
-					    			<div class="otherNickName" style="font-size:13px; width: 230px; height:20px; font-weight:bold; cursor:pointer">${ fl2.nickName }</div>
+					    			<div class="otherNickName" style="font-size:13px; width: 230px; height:20px; font-weight:bold; cursor:pointer">${ fl2.nickName }#${ fl2.userId }</div>
 					    			<div class="afterIntro" style="font-size:13px; width: 230px; height:20px; color:gray"></div>
 					    			<input type="hidden" class="rawIntro" value="${ fl2.intro }"> 
 					    		</div>
@@ -244,7 +243,7 @@
 					    			<img src="resources/images/user/${ fl.picture }" style="width: 100%; height:100%; object-fit: cover;">
 					    		</div>
 					    		<div style="display:inline-flex; flex-direction:column; width: 230px; height:50px; margin-left:10px; margin-right:10px">
-					    			<div class="otherNickName" style="font-size:13px; width: 230px; height:20px; font-weight:bold; cursor:pointer">${ fl.nickName }</div>
+					    			<div class="otherNickName" style="font-size:13px; width: 230px; height:20px; font-weight:bold; cursor:pointer">${ fl.nickName }#${ fl.userId }</div>
 					    			<div class="afterIntro" style="font-size:13px; width: 230px; height:20px; color:gray"></div>
 					    			<input type="hidden" class="rawIntro" value="${ fl.intro }"> 
 					    		</div>
@@ -373,7 +372,7 @@
 					    		fm += '<img src="resources/images/user/'+data[i].picture+'" style="width: 100%; height:100%; object-fit: cover;">';
 					    		fm += '</div>';
 					    		fm += '<div style="display:inline-flex; flex-direction:column; width: 230px; height:50px; margin-left:10px; margin-right:10px">';
-					    		fm += '<div class="otherNickName" style="font-size:13px; width: 230px; height:20px; font-weight:bold; cursor:pointer">'+data[i].nickName+'</div>';
+					    		fm += '<div class="otherNickName" style="font-size:13px; width: 230px; height:20px; font-weight:bold; cursor:pointer">'+data[i].nickName+'#'+data[i].userId+'</div>';
 					    		fm += '<div class="afterIntro" style="font-size:13px; width: 230px; height:20px; color:gray">'+data[i].intro+'</div>';
 					    		fm += '</div>';
 					    		
@@ -421,7 +420,7 @@
 				    			ing += '<img src="resources/images/user/'+data[i].picture+'" style="width: 100%; height:100%; object-fit: cover;">';
 					    		ing += '</div>';
 					    		ing += '<div style="display:inline-flex; flex-direction:column; width: 230px; height:50px; margin-left:10px; margin-right:10px">';
-					    		ing += '<div class="otherNickName" style="font-size:13px; width: 230px; height:20px; font-weight:bold; cursor:pointer">'+data[i].nickName+'</div>';
+					    		ing += '<div class="otherNickName" style="font-size:13px; width: 230px; height:20px; font-weight:bold; cursor:pointer">'+data[i].nickName+'#'+data[i].userId+'</div>';
 					    		ing += '<div class="afterIntro" style="font-size:13px; width: 230px; height:20px; color:gray">'+data[i].intro+'</div>';
 					    		ing += '</div>';
 					    		ing += '<div style="width: 80px; height:50px;">';

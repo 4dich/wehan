@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<title>위대한 한걸음</title>
+	<title>WEHAN - OTHER CHALLANGE</title>
 	<meta charset="UTF-8">
 	<meta name="description" content="Nissa Photography studio html template">
 	<meta name="keywords" content="industry, html">
@@ -347,7 +347,7 @@
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
 					<div id="lv" style="width: 350px; height: 470px; border: 1px solid gray; padding:20px; margin:auto; margin-top: -30px">
-						<div style="width: 300px; height:320px; margin:auto; background-image: url('resources/images/level/astro2.gif'); background-size: cover; border-radius: 15px;">
+						<div style="width: 300px; height:320px; margin:auto; background-image: url('resources/images/level/green.gif'); background-size: 450px 450px; border-radius: 15px;">
 							<img id="lv-img" src="">
 						</div>
 						<div style="width: 300px; margin:auto; margin-top: 10px;">
@@ -572,15 +572,27 @@
 										var $totalCh = $('#totalCh');
 										
 										for(var i=0; i<$sArr.length; i++){
-											var sYear = $sArr[i].innerText.split('/')[0];
-											var sMonth = $sArr[i].innerText.split('/')[1];
-											var sDay = $sArr[i].innerText.split('/')[2];
+											if($sArr[i].innerText.includes('-')){
+												var sYear = $sArr[i].innerText.split('-')[0];
+												var sMonth = $sArr[i].innerText.split('-')[1];
+												var sDay = $sArr[i].innerText.split('-')[2];
+												
+												var eYear = $eArr[i].innerText.split('-')[0];
+												var eMonth = $eArr[i].innerText.split('-')[1];
+												var eDay = $eArr[i].innerText.split('-')[2];
+											}else{
+												var sYear = $sArr[i].innerText.split('/')[0];
+												var sMonth = $sArr[i].innerText.split('/')[1];
+												var sDay = $sArr[i].innerText.split('/')[2];
+												
+												var eYear = $eArr[i].innerText.split('/')[0];
+												var eMonth = $eArr[i].innerText.split('/')[1];
+												var eDay = $eArr[i].innerText.split('/')[2];
+											}
+
 											var sDate = new Date(sYear,sMonth-1,sDay);
-											
-											var eYear = $eArr[i].innerText.split('/')[0];
-											var eMonth = $eArr[i].innerText.split('/')[1];
-											var eDay = $eArr[i].innerText.split('/')[2];
 											var eDate = new Date(eYear,eMonth-1,eDay);
+											var eDate2 = new Date(eYear,eMonth-1,parseInt(eDay)+1);
 											
 											var diff = eDate.getTime()-sDate.getTime();
 											var gapDate = Math.ceil(diff / (1000 * 3600 * 24)) + 1;
@@ -604,21 +616,21 @@
 											
 											if(sDate.getTime()>today.getTime()){
 												$result[i].innerText = '진행예정';
-												$result.parent().eq(i).children().eq(0).css('background-color','#F7D147');
+												$result.parent().eq(i).children().eq(0).css('background-color','#FFEB87');
 												
 												$result2.parent().eq(i).css('display','none');
 												
 												$result3[i].innerText = '진행예정';
-												$result3.parent().eq(i).children().eq(0).css('background-color','#F7D147');
+												$result3.parent().eq(i).children().eq(0).css('background-color','#FFEB87');
 												
 												$result4.parent().eq(i).css('display','none');
 												
-											}else if(sDate.getTime()<today.getTime() && eDate.getTime()>today.getTime()){
+											}else if(sDate.getTime()<today.getTime() && eDate2.getTime()>today.getTime()){
 												$result[i].innerText = '진행중';
-												$result.parent().eq(i).children().eq(0).css('background-color','#FE736C');
+												$result.parent().eq(i).children().eq(0).css('background-color','#F59B82');
 												
 												$result2[i].innerText = '진행중';
-												$result2.parent().eq(i).children().eq(0).css('background-color','#FE736C');
+												$result2.parent().eq(i).children().eq(0).css('background-color','#F59B82');
 												
 												$result3.parent().eq(i).css('display','none');
 												
@@ -626,14 +638,14 @@
 											}else{
 												countTotalCh++;
 												$result[i].innerText = '진행완료';
-												$result.parent().eq(i).children().eq(0).css('background-color','#3A7D7C');
+												$result.parent().eq(i).children().eq(0).css('background-color','#B7FFA6');
 												
 												$result2.parent().eq(i).css('display','none');
 												
 												$result3.parent().eq(i).css('display','none');
 												
 												$result4[i].innerText = '진행완료';
-												$result4.parent().eq(i).children().eq(0).css('background-color','#3A7D7C');
+												$result4.parent().eq(i).children().eq(0).css('background-color','#B7FFA6');
 											}
 											$gapDate[i].innerText = gapDate;
 											$gapDate2[i].innerText = gapDate;

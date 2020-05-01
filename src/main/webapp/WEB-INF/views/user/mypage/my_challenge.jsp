@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<title>위대한 한걸음</title>
+	<title>WEHAN - MY CHALLANGE</title>
 	<meta charset="UTF-8">
 	<meta name="description" content="Nissa Photography studio html template">
 	<meta name="keywords" content="industry, html">
@@ -348,8 +348,8 @@
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
 					<div id="lv" style="width: 350px; height: 470px; border: 1px solid gray; padding:20px;  margin-top: -20px">
-						<div style="width: 300px; height:320px; margin:auto; background-image: url('resources/images/level/astro2.gif'); background-size: cover; border-radius: 15px;">
-							<img id="lv-img" src="">
+						<div style="width: 300px; height:320px; margin:auto; background-image: url('resources/images/level/green.gif'); background-size: 450px 450px; border-radius: 15px;">
+							<img id="lv-img">
 						</div>
 						<div style="width: 300px; margin:auto; margin-top: 10px;">
 							<div style="text-align:left">
@@ -427,15 +427,17 @@
 									</div>
 									
 									<script>
+									
 										var nDate = new Date();
 										var jDateString = $("#joinDate")[0].innerText;
 										var jDateArr = jDateString.split('-');
 										var jDate = new Date(jDateArr[0],jDateArr[1]-1,jDateArr[2]);
-										
+										console.log(jDateString);
 										var gap = nDate.getTime() - jDate.getTime();
 										var result = Math.floor(gap / (1000 * 60 * 60 * 24)) + 1;
 										
 										$("#joinedDate")[0].innerText = result;
+										
 										
 									</script>
 								</div>
@@ -572,24 +574,33 @@
 										var $totalCh = $('#totalCh');
 										
 										for(var i=0; i<$sArr.length; i++){
-											var sYear = $sArr[i].innerText.split('-')[0];
-											var sMonth = $sArr[i].innerText.split('-')[1];
-											var sDay = $sArr[i].innerText.split('-')[2];
+											if($sArr[i].innerText.includes('-')){
+												var sYear = $sArr[i].innerText.split('-')[0];
+												var sMonth = $sArr[i].innerText.split('-')[1];
+												var sDay = $sArr[i].innerText.split('-')[2];
+												
+												var eYear = $eArr[i].innerText.split('-')[0];
+												var eMonth = $eArr[i].innerText.split('-')[1];
+												var eDay = $eArr[i].innerText.split('-')[2];
+											}else{
+												var sYear = $sArr[i].innerText.split('/')[0];
+												var sMonth = $sArr[i].innerText.split('/')[1];
+												var sDay = $sArr[i].innerText.split('/')[2];
+												
+												var eYear = $eArr[i].innerText.split('/')[0];
+												var eMonth = $eArr[i].innerText.split('/')[1];
+												var eDay = $eArr[i].innerText.split('/')[2];
+											}
+
 											var sDate = new Date(sYear,sMonth-1,sDay);
-											
-											var eYear = $eArr[i].innerText.split('-')[0];
-											var eMonth = $eArr[i].innerText.split('-')[1];
-											var eDay = $eArr[i].innerText.split('-')[2];
+											/* 표기용 종료일  */
 											var eDate = new Date(eYear,eMonth-1,eDay);
-											
-											console.log('sDate:'+sDate);
-											console.log('eDate:'+eDate);
+											/* 실제 계산용 종료일*/
+											var eDate2 = new Date(eYear,eMonth-1,parseInt(eDay)+1);
 											
 											var diff = eDate.getTime()-sDate.getTime();
 											var gapDate = Math.ceil(diff / (1000 * 3600 * 24)) + 1;
 											var ceCount = $('.ceCount')[i].innerText;
-											console.log('ceCount:'+ceCount);
-											console.log('gapDate:'+gapDate);
 											
 											if(ceCount/gapDate>=0.8){
 												countComplete++;
@@ -616,7 +627,7 @@
 												
 												$result4.parent().eq(i).css('display','none');
 												
-											}else if(sDate.getTime()<today.getTime() && eDate.getTime()>today.getTime()){
+											}else if(sDate.getTime()<today.getTime() && eDate2.getTime()>today.getTime()){
 												$result[i].innerText = '진행중';
 												$result.parent().eq(i).children().eq(0).css('background-color','#F59B82');
 												

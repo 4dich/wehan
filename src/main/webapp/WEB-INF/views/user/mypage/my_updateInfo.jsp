@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-	<title>NISSA - PHOTOGRAPHY STUDIO HTML TEMPLATE</title>
+	<title>WEHAN - 개인정보수정</title>
 	<meta charset="UTF-8">
 	<meta name="description" content="Nissa Photography studio html template">
 	<meta name="keywords" content="industry, html">
@@ -28,10 +30,6 @@
 	<!-- JQuery -->
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
-	<!--[if lt IE 9]>
-		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	<![endif]-->
 		<style>
 			tbody  td {padding:20px; padding-bottom: 0;}
 			tbody  th {padding:10px;}
@@ -114,12 +112,7 @@
 					<form action="updateMember.do" method="post" onsubmit="return pattern();" enctype="multipart/form-data">
 					<h3>회원정보수정</h3>
 					<div class="row" style="margin-left: 30px; height: 400px;">
-						<!-- <div class="col-xl-6">
-							<div class="map"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14376.077865872314!2d-73.879277264103!3d40.757667781624285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1546528920522" style="border:0" allowfullscreen></iframe></div>
-						</div> -->
 						<div style="margin-top: 100px; margin-right: 20px;">
-                            <!-- <button class="site-btn" style="border: 2px solid #242424; margin-top: 30px; margin-left: 100px; height: 300px; width: 280px; font-size: 15px;"> 프로필 사진 (300x280)</button> -->
-                            <%-- <img class="profile" src="resources/images/user/${ loginUser.picture }" style="width:300px;height:300px; object-fit:contain; border:1px solid #242424;"> --%>
 							<input type="text" id="picture" name="picture" style="display:none" value="${ loginUser.picture }">
 							<input id="file" name="uploadFile" type="file" onchange="previewImage(this,'View_area')" style="margin-left: 50%;">
 							<div id="View_area" style="height: 350px; width: 350px; dispaly: inline; border:1px solid black; text-align:center; padding-top:24px;">
@@ -127,7 +120,6 @@
 							</div>
 						<script>
 							$(function(){
-								/* $("#View_area_in").css('background-image','url(resources/images/user/01.jpg)'); */
 								$("#View_area_in").css('background-image','url(resources/images/user/'+$('#picture')[0].value+')');
 							});
 						</script>
