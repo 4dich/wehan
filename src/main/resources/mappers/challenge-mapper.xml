@@ -93,7 +93,7 @@
 	<select id="selectChallengeList" resultMap="challengeResultSet">
 		SELECT * FROM
 		CHALLENGE
-		ORDER BY CHID ASC
+		ORDER BY CHID+1 ASC
 	</select>
 	
 	<select id="getListCategoryCount" resultType="_int">

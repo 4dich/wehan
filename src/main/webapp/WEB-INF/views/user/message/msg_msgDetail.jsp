@@ -284,7 +284,7 @@
 				data:{fId:fId},
 				dataType:"json",
 				success:function(data){
-					
+					console.log('성공');
 					// 화면에 보여지는 msgId 배열로 담기
 					$('.msgId').each(function(idx, elem){
 						/* console.log('index('+idx+') : ' + $(this).val() ); */
