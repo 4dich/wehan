@@ -488,6 +488,7 @@
 												<div class="ceCount" style="border-left:1px solid gray;">${ceCount[status.index]}</div>
 												<div style="width:10px">/</div>
 												<div class="gapDate" style="border-right:1px solid gray;"></div>
+												<div class="chContent" style="width:350px; text-align:left">${ c.chContent }</div>
 												<span class="chId" style="display:none">${ c.chId }</span>
 											</div>
 										</c:forEach>
@@ -509,6 +510,7 @@
 												<div class="ceCount" style="border-left:1px solid gray;">${ceCount[status.index]}</div>
 												<div style="width:10px">/</div>
 												<div class="gapDate2" style="border-right:1px solid gray;"></div>
+												<div class="chContent2" style="width:350px; text-align:left">${ c.chContent }</div>
 												<span class="chId" style="display:none">${ c.chId }</span>
 											</div>
 										</c:forEach>
@@ -530,6 +532,7 @@
 												<div class="ceCount" style="border-left:1px solid gray;">${ceCount[status.index]}</div>
 												<div style="width:10px">/</div>
 												<div class="gapDate3" style="border-right:1px solid gray;"></div>
+												<div class="chContent3" style="width:350px; text-align:left">${ c.chContent }</div>
 												<span class="chId" style="display:none">${ c.chId }</span>
 											</div>
 										</c:forEach>
@@ -551,6 +554,7 @@
 												<div class="ceCount" style="border-left:1px solid gray;">${ceCount[status.index]}</div>
 												<div style="width:10px">/</div>
 												<div class="gapDate4" style="border-right:1px solid gray;"></div>
+												<div class="chContent4" style="width:350px; text-align:left">${ c.chContent }</div>
 												<span class="chId" style="display:none">${ c.chId }</span>
 											</div>
 										</c:forEach>
