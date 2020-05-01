@@ -8,7 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>WEHAN / 위대한 한걸음</title>
+<title>WEHAN - 위대한 한걸음</title>
 
 <link href="resources/css/css" rel="stylesheet">
 
@@ -17,10 +17,9 @@
 <link type="text/css" rel="stylesheet" href="resources/css/errorpage-sr.css">
 
 <link rel="stylesheet" href="resources/css/font.css"/>
-<!--[if lt IE 9]>
-		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
+
+<link href="resources/images/sitelogo.png" rel="shortcut icon"/>
+
 </head>
 <body>
 <div id="notfound">

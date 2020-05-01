@@ -5,9 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<!-- Favicon -->
-	<link href="resources/images/favicon.ico" rel="shortcut icon"/>
+<title>WEHAN - 위대한 한걸음</title>
+	<link href="resources/images/sitelogo.png" rel="shortcut icon"/>	
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap" rel="stylesheet">

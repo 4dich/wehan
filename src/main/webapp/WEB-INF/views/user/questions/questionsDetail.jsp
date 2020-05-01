@@ -3,15 +3,14 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<title>NISSA - PHOTOGRAPHY STUDIO HTML TEMPLATE</title>
+<title>WEHAN - 위대한 한걸음</title>
 <meta charset="UTF-8">
 <meta name="description"
 	content="Nissa Photography studio html template">
 <meta name="keywords" content="industry, html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Favicon -->
-<link href="resources/img/favicon.ico" rel="shortcut icon" />
+<link href="resources/images/sitelogo.png" rel="shortcut icon"/>
 
 <!-- Google font -->
 <link

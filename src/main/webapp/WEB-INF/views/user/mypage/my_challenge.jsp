@@ -5,14 +5,13 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<title>WEHAN - MY CHALLANGE</title>
+	<title>WEHAN - 위대한 한걸음</title>
 	<meta charset="UTF-8">
 	<meta name="description" content="Nissa Photography studio html template">
 	<meta name="keywords" content="industry, html">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
-	<!-- Favicon -->
-	<link href="resources/images/favicon.ico" rel="shortcut icon"/>
+	<link href="resources/images/sitelogo.png" rel="shortcut icon"/>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap" rel="stylesheet">
@@ -332,12 +331,14 @@
 				<i class="fa fa-bars"></i>
 			</div>
 			<div class="header-social">
+				<button id="haha" style="margin-right:800px">★</button>
                 <a href="my_profileView.do">Profile</a>
                 <a href="my_challengeView.do" style="color: red;">Challenge</a>
                 <a href="my_diaryView.do">Diary</a>
                 <a href="getMsgList.do">Message</a>
 			</div>
 		</header>
+		
 		<div class="site-content-warp">
 			<!-- Left Side section -->
 			<div class="main-sidebar">
@@ -348,7 +349,7 @@
 						<p style="padding-top: 15px;">THE GREAT ONE STEP</p>
 					</a>
 					<div id="lv" style="width: 350px; height: 470px; border: 1px solid gray; padding:20px;  margin-top: -20px">
-						<div style="width: 300px; height:320px; margin:auto; background-image: url('resources/images/level/green.gif'); background-size: 450px 450px; border-radius: 15px;">
+						<div id="bg-img" style="width: 300px; height:320px; margin:auto; background-image: url('resources/images/level/green.gif'); background-size: 450px 450px; border-radius: 15px;">
 							<img id="lv-img">
 						</div>
 						<div style="width: 300px; margin:auto; margin-top: 10px;">
@@ -755,8 +756,8 @@
 											currentExp = countComplete-50;
 										/* lv6 */
 										}else{
-											$lv[0].innerText = 75;
-											$lv2[0].innerText = 75;
+											$lv[0].innerText = 6;
+											$lv2[0].innerText = 6;
 											$exp[0].innerText = countComplete-75;
 											$expMax[0].innerText = 999;
 											percent = ($exp[0].innerText / 999) * 100;
@@ -764,6 +765,7 @@
 											$progress.css('width',percent);
 											$progress[0].innerText = 'Exp ' + $exp[0].innerText;
 											$("#lv-img").attr("src", "resources/images/level/lv6.png");
+											$('#bg-img').css('background-image','url(resources/images/level/astro2.gif)');
 											
 											currentLv = 6;
 											currentExp = countComplete-75;
@@ -778,6 +780,7 @@
 											data: {myLevel:currentLv,myExp:currentExp}
 										});
 									});
+									
 									
 									/* circle-wrap, window.onload뒤에 값변경 적용 안되서 포기*/
 									/* window.addEventListener('DOMContentLoaded', function(){ 
@@ -815,6 +818,92 @@
 		</div>
 		</div>
 	<!-- Main section end -->
+	
+	<script>
+	$('#haha').click(function(){
+		/* lv-txt
+		exp-txt
+		 */
+		var $lv = $('.lv-txt');
+		var $lv2 = $('.lv-txt2');
+		var $exp = $('.exp-txt');
+		var $expMax = $('.exp-max');
+		var $progress = $("#progress-bar");
+		var percent = 0;
+		
+		var currentLv = 0;
+		var currentExp = 0;
+		/* lv1 */
+		if($lv[0].innerText==1){
+			$lv[0].innerText = 2;
+			$lv2[0].innerText = 2;
+			$exp[0].innerText = 5;
+			$expMax[0].innerText = 10;
+			percent = ($exp[0].innerText / 10) * 100;
+			percent += '%';
+			$progress.css('width',percent);
+			$progress[0].innerText = 'Exp ' + $exp[0].innerText;
+			$("#lv-img").attr("src", "resources/images/level/lv2.png");
+		/* lv2 */
+		}else if($lv[0].innerText==2){
+			$lv[0].innerText = 3;
+			$lv2[0].innerText = 3;
+			$exp[0].innerText = 5;
+			$expMax[0].innerText = 15;
+			percent = ($exp[0].innerText / 15) * 100;
+			percent += '%';
+			$progress.css('width',percent);
+			$progress[0].innerText = 'Exp ' + $exp[0].innerText;
+			$("#lv-img").attr("src", "resources/images/level/lv3.png");
+		/* lv3 */
+		}else if($lv[0].innerText==3){
+			$lv[0].innerText = 4;
+			$lv2[0].innerText = 4;
+			$exp[0].innerText = 5;
+			$expMax[0].innerText = 20;
+			percent = ($exp[0].innerText / 20) * 100;
+			percent += '%';
+			$progress.css('width',percent);
+			$progress[0].innerText = 'Exp ' + $exp[0].innerText;
+			$("#lv-img").attr("src", "resources/images/level/lv4.png");
+		/* lv4 */
+		}else if($lv[0].innerText==4){
+			$lv[0].innerText = 5;
+			$lv2[0].innerText = 5;
+			$exp[0].innerText = 5;
+			$expMax[0].innerText = 25;
+			percent = ($exp[0].innerText / 25) * 100;
+			percent += '%';
+			$progress.css('width',percent);
+			$progress[0].innerText = 'Exp ' + $exp[0].innerText;
+			$("#lv-img").attr("src", "resources/images/level/lv5.png");
+		/* lv5 */ 
+		}else if($lv[0].innerText==5){
+			$lv[0].innerText = 6;
+			$lv2[0].innerText = 6;
+			$exp[0].innerText = 777;
+			$expMax[0].innerText = 999;
+			percent = ($exp[0].innerText / 999) * 100;
+			percent += '%';
+			$progress.css('width',percent);
+			$progress[0].innerText = 'Exp ' + $exp[0].innerText;
+			$("#lv-img").attr("src", "resources/images/level/lv6.png");
+			$('#bg-img').css('background-image','url(resources/images/level/astro2.gif)');
+		/* lv6 */
+		}else{
+			$lv[0].innerText = 1;
+			$lv2[0].innerText = 1;
+			$exp[0].innerText = 5;
+			$expMax[0].innerText = 5;
+			percent = ($exp[0].innerText / 5) * 100;
+			percent += '%';
+			$progress.css('width',percent);
+			$progress[0].innerText = 'Exp ' + $exp[0].innerText;
+			$("#lv-img").attr("src", "resources/images/level/lv1.png");
+			$('#bg-img').css('background-image','url(resources/images/level/green.gif)');
+		}
+	});
+	</script>
 	
 	<!--====== Javascripts & Jquery ======-->
 	<script src="resources/js/jquery-3.2.1.min.js"></script>

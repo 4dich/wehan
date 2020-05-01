@@ -5,9 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<!-- JQuery -->
-	<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
+<title>WEHAN - 위대한 한걸음</title>
 	<link rel="stylesheet" href="resources/css/font.css"/>
 	<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script> 
 	<style>
