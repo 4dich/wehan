@@ -263,23 +263,24 @@
 					   // [이전]
 					 listText += "<div class='qnaPaging'>";
 					   if(currentPage == 1){    
-						   listText +=	"[이전] &nbsp;";
+						   listText +=	"";
 					   }else{
-						   listText += "<a onclick='refundYn("+reIdx+","+ (currentPage - 1) +")'>[이전]</a> &nbsp;";
+						   listText += "<a onclick='refundYn("+reIdx+","+ (currentPage - 1) +")'><</a> &nbsp;";
 					   }
 						// 페이지 
 						for(var p= result.pi.startPage; p<= result.pi.endPage; p++){
 							if(p == result.pi.currentPage){
-								listText += "<font color='red' size='4'><b>["+ p +"]  </b></font>" +"&nbsp;" ;
+								/* listText += "<font color='red' size='4'><b>["+ p +"]  </b></font>" +"&nbsp;" ; */
+								listText += '<div style="width:24px; height:24px; background:#242424; color:white; display:inline-block; border-radius:70%">'+p+'</div>'
 							}else{
 								listText +=  "<a  onclick='refundYn("+reIdx+","+ p +")'>" + p + "</a> &nbsp;";
 							}						
 						}
 						// [다음]
 						if(currentPage == result.pi.maxPage){
-							listText += "[다음]";
+							listText += "";
 						}else{
-							listText += "<a onclick='refundYn("+reIdx+","+ (currentPage + 1) +")'>[다음]</a>";
+							listText += "<a onclick='refundYn("+reIdx+","+ (currentPage + 1) +")'>></a>";
 						}
 						listText += "</div>";
 						$('#paylist').html(listText);
